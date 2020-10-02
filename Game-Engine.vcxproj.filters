@@ -40,6 +40,18 @@
     <Filter Include="Source Files\GameObjects\Extensions\CollisonResoluton">
       <UniqueIdentifier>{666c81d5-123c-45a1-a08e-793366f411df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{b1897e9b-0231-4572-925f-a1f2e786b954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{a20a2654-0880-44bc-b936-e51c8e7b11d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\PhysicalObject">
+      <UniqueIdentifier>{4c68c40c-143e-4a76-a6e1-b10af51ccc87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\PhysicalObject">
+      <UniqueIdentifier>{f9081f51-4f18-4443-8bb2-043527ea07b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine.cd">
@@ -101,6 +113,30 @@
     <ClInclude Include="ThirdPartyFacade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicalBody.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MassData.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionDefaultExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollsionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionPortalExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollsionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -153,6 +189,30 @@
     </ClCompile>
     <ClCompile Include="ThirdPartyFacade.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalBody.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MassData.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionResolutionDefaultExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisonResoluton</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionResolutionPortalExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisonResoluton</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
