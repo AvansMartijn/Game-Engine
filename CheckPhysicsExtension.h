@@ -1,12 +1,12 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 #include "AbstractCollisionResolutionExtension.h"
-#include "Physics.h"
+#include "PhysicsFacade.h"
 
 class CheckPhysicsExtension : AbstractGameObjectExtension
 {
 private: 
-	Physics _physics;
+	PhysicsFacade _physicsfacade;
 
 	//ask for collisions for subject from physics
 	//if collision, call collisionresolution extensions

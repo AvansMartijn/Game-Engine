@@ -18,7 +18,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="AiExtension" Collapsed="true">
-    <Position X="17.25" Y="8.25" Width="1.5" />
+    <Position X="14.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AiExtension.h</FileName>
@@ -32,7 +32,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CanWieldExtension" Collapsed="true">
-    <Position X="14.75" Y="8.25" Width="1.5" />
+    <Position X="17.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CanWieldExtension.h</FileName>
@@ -49,11 +49,11 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CheckPhysicsExtension.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_physics" />
+      <Field Name="_physicsfacade" />
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObject">
@@ -130,9 +130,8 @@
     <InheritanceLine Type="AbstractGameObjectExtension" ManuallyRouted="true">
       <Path>
         <Point X="16.75" Y="6.618" />
-        <Point X="16.75" Y="7.11" />
-        <Point X="17.588" Y="7.11" />
-        <Point X="17.588" Y="7.25" />
+        <Point X="16.75" Y="7.131" />
+        <Point X="18" Y="7.131" />
         <Point X="18" Y="7.25" />
       </Path>
     </InheritanceLine>
@@ -189,7 +188,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Physics" Collapsed="true">
-    <Position X="11.25" Y="7.25" Width="1.5" />
+    <Position X="11" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Physics.h</FileName>
@@ -201,6 +200,35 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="FluixEngine">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAACAAEAAAAAAA=</HashCode>
+      <FileName>FluixEngine.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gameObjectFacade" />
+      <Field Name="_thirdPartyFacade" />
+      <Field Name="_physicsFacade" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ThirdPartyFacade" Collapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ThirdPartyFacade.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicsFacade">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>PhysicsFacade.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_physics" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

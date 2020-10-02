@@ -163,6 +163,7 @@
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="PhysicalBody.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PhysicsFacade.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="PhysicalBody.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="PhysicsFacade.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="StateExtension.h" />
