@@ -142,10 +142,17 @@
     <None Include="Engine.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractBehaviour.cpp" />
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
+    <ClCompile Include="AbstractEntityAI.cpp" />
     <ClCompile Include="AbstractGameObjectExtension.cpp" />
     <ClCompile Include="AiExtension.cpp" />
     <ClCompile Include="AttackExtension.cpp" />
+    <ClCompile Include="BehaviourAttack.cpp" />
+    <ClCompile Include="BehaviourIdle.cpp" />
+    <ClCompile Include="BehaviourMove.cpp" />
+    <ClCompile Include="BehaviourRotate.cpp" />
+    <ClCompile Include="BehaviourSeesEnemy.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -171,10 +178,17 @@
     <ClCompile Include="VisionExtension.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractBehaviour.h" />
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
+    <ClInclude Include="AbstractEntityAI.h" />
     <ClInclude Include="AbstractGameObjectExtension.h" />
     <ClInclude Include="AiExtension.h" />
     <ClInclude Include="AttackExtension.h" />
+    <ClInclude Include="BehaviourAttack.h" />
+    <ClInclude Include="BehaviourIdle.h" />
+    <ClInclude Include="BehaviourMove.h" />
+    <ClInclude Include="BehaviourRotate.h" />
+    <ClInclude Include="BehaviourSeesEnemy.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
     <ClInclude Include="Collision.h" />
