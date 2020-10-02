@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AbstractCollisionResolutionExtension" Collapsed="true">
-    <Position X="14.75" Y="8.25" Width="1.5" />
+    <Position X="14.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AbstractCollisionResolutionExtension.h</FileName>
@@ -25,14 +25,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AttackExtension" Collapsed="true">
-    <Position X="14.75" Y="11.25" Width="1.5" />
+    <Position X="14.75" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AttackExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CanWieldExtension" Collapsed="true">
-    <Position X="14.75" Y="9.25" Width="1.5" />
+    <Position X="14.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CanWieldExtension.h</FileName>
@@ -52,13 +52,19 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>CheckPhysicsExtension.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_physics" />
+    </ShowAsAssociation>
   </Class>
-  <Class Name="GameObject" Collapsed="true">
+  <Class Name="GameObject">
     <Position X="19.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_physicalBody" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectBuilder">
     <Position X="20" Y="2.5" Width="1.5" />
@@ -114,7 +120,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="StateExtension" Collapsed="true">
-    <Position X="14.75" Y="10.25" Width="1.5" />
+    <Position X="14.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StateExtension.h</FileName>
@@ -141,6 +147,52 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VisionExtension.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicalBody">
+    <Position X="22" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>PhysicalBody.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_massData" />
+      <Field Name="_material" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MassData" Collapsed="true">
+    <Position X="23" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MassData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Material" Collapsed="true">
+    <Position X="21.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Material.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionResolutionDefaultExtension" Collapsed="true">
+    <Position X="13.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CollisionResolutionDefaultExtension.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionResolutionPortalExtension" Collapsed="true">
+    <Position X="15.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CollisionResolutionPortalExtension.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Physics" Collapsed="true">
+    <Position X="11.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Physics.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

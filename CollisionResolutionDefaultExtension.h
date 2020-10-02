@@ -1,6 +1,8 @@
 #pragma once
-class CollisionResolutionDefaultExtension
+#include "AbstractCollisionResolutionExtension.h"
+class CollisionResolutionDefaultExtension : AbstractCollisionResolutionExtension
 {
 	//physics do something(subject, subject)
+
 };
 

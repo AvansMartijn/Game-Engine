@@ -1,5 +1,7 @@
 #pragma once
-class CollisionResolutionPortalExtension
+#include "AbstractCollisionResolutionExtension.h"
+
+class CollisionResolutionPortalExtension : AbstractCollisionResolutionExtension
 {
 };
 
