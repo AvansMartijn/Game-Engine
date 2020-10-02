@@ -137,6 +137,9 @@
     <ClInclude Include="Physics.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -213,6 +216,9 @@
     </ClCompile>
     <ClCompile Include="Physics.cpp">
       <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

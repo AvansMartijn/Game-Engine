@@ -67,12 +67,11 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectBuilder">
-    <Position X="20" Y="2.5" Width="1.5" />
+    <Position X="20" Y="3" Width="1.5" />
     <AssociationLine Name="_gameObjectFactory" Type="GameObjectFactory" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="20" Y="3.024" />
-        <Point X="19.625" Y="3.024" />
-        <Point X="19.625" Y="4.25" />
+        <Point X="20.75" Y="3.868" />
+        <Point X="20.75" Y="4.25" />
         <Point X="17.75" Y="4.25" />
       </Path>
     </AssociationLine>
@@ -152,23 +151,24 @@
   <Class Name="PhysicalBody">
     <Position X="22" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>PhysicalBody.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_massData" />
       <Field Name="_material" />
+      <Field Name="_shape" />
     </ShowAsAssociation>
   </Class>
   <Class Name="MassData" Collapsed="true">
-    <Position X="23" Y="8.25" Width="1.5" />
+    <Position X="22.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MassData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Material" Collapsed="true">
-    <Position X="21.25" Y="8.25" Width="1.5" />
+    <Position X="20.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Material.h</FileName>
@@ -193,6 +193,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Physics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shape" Collapsed="true">
+    <Position X="24" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shape.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
