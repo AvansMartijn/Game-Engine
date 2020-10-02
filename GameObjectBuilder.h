@@ -1,10 +1,8 @@
 #pragma once
-#include "GameObjectBuilder.h"
 #include "GameObjectFactory.h"
-class GameObjectFacade
+class GameObjectBuilder
 {
 private:
-	GameObjectBuilder _gameObjectBuilder;
 	GameObjectFactory _gameObjectFactory;
 };
 
