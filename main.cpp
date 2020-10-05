@@ -1,4 +1,4 @@
-#include "main.h"
+﻿#include "main.h"
 #include <iostream>
 #include "Windows.h"
 #include "SDL.h"
@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 
 	//OutputDebugString("Sandbox running");
     std::cout << "JOOD \n";
-	Window window("JOOD", 500, 500);
+	Window window("FluixEngine", 500, 500);
 
 	SDL_Event event;
 
