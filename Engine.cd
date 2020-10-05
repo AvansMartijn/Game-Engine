@@ -27,14 +27,14 @@
   <Class Name="AttackExtension" Collapsed="true">
     <Position X="14.75" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AttackExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CanWieldExtension" Collapsed="true">
-    <Position X="17.25" Y="8.25" Width="1.5" />
+    <Position X="17.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAiAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CanWieldExtension.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -48,6 +48,13 @@
         <Point X="15.5" Y="7.25" />
       </Path>
     </InheritanceLine>
+    <AssociationLine Name="_physicsfacade" Type="PhysicsFacade" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.125" Y="7.25" />
+        <Point X="15.125" Y="2.184" />
+        <Point X="12.5" Y="2.184" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CheckPhysicsExtension.h</FileName>
@@ -59,7 +66,7 @@
   <Class Name="GameObject">
     <Position X="19.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAADAAAAACIAAAAAAAAgAAAABAAAACAAAAgAQAAAAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -67,12 +74,12 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectBuilder">
-    <Position X="20" Y="3" Width="1.5" />
+    <Position X="19.5" Y="2.75" Width="1.5" />
     <AssociationLine Name="_gameObjectFactory" Type="GameObjectFactory" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="20.75" Y="3.868" />
-        <Point X="20.75" Y="4.25" />
-        <Point X="17.75" Y="4.25" />
+        <Point X="20.25" Y="3.618" />
+        <Point X="20.25" Y="4.25" />
+        <Point X="18.5" Y="4.25" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -84,7 +91,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectFacade">
-    <Position X="17.25" Y="1.75" Width="1.5" />
+    <Position X="17" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectFacade.h</FileName>
@@ -95,7 +102,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectFactory">
-    <Position X="16.25" Y="3.75" Width="1.5" />
+    <Position X="17" Y="3.75" Width="1.5" />
+    <AssociationLine Name="_gameObject" Type="GameObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.5" Y="4.583" />
+        <Point X="20.25" Y="4.583" />
+        <Point X="20.25" Y="5.25" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectFactory.h</FileName>
@@ -107,21 +121,21 @@
   <Class Name="HealthExtension" Collapsed="true">
     <Position X="17.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HealthExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MoveExtension" Collapsed="true">
-    <Position X="17.25" Y="11.25" Width="1.5" />
+    <Position X="17.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgwAAAAAAAAAAAAAAABAAAAADAAAAAAAA=</HashCode>
       <FileName>MoveExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StateExtension" Collapsed="true">
     <Position X="14.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StateExtension.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -136,19 +150,19 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAIBAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SwitchExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VisionExtension" Collapsed="true">
     <Position X="17.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>CAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>VisionExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PhysicalBody">
-    <Position X="22" Y="6.75" Width="1.5" />
+    <Position X="24.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>PhysicalBody.h</FileName>
@@ -160,14 +174,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MassData" Collapsed="true">
-    <Position X="24" Y="8.25" Width="1.5" />
+    <Position X="24.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MassData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Material" Collapsed="true">
-    <Position X="20.5" Y="8.25" Width="1.5" />
+    <Position X="22.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Material.h</FileName>
@@ -195,7 +209,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Shape" Collapsed="true">
-    <Position X="22.25" Y="8.25" Width="1.5" />
+    <Position X="26.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
@@ -205,7 +219,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="FluixEngine">
-    <Position X="17.25" Y="0.5" Width="1.5" />
+    <Position X="17" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAACAAEAAAAAAA=</HashCode>
       <FileName>FluixEngine.h</FileName>
@@ -217,7 +231,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ThirdPartyFacade" Collapsed="true">
-    <Position X="28.5" Y="0.5" Width="1.5" />
+    <Position X="26.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ThirdPartyFacade.h</FileName>
@@ -282,12 +296,12 @@
       <FileName>BehaviourSeesEnemy.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="Body" Collapsed="true">
-    <Position X="22.25" Y="9.25" Width="1.5" />
+  <Class Name="AbstractManageableItem" Collapsed="true">
+    <Position X="20.25" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABgAAQAAAAAAEAAAAAAAIAAAAAgAAQAAAgQAACAAAAA=</HashCode>
-      <FileName>Body.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbstractManageableItem.h</FileName>
     </TypeIdentifier>
-  </Struct>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

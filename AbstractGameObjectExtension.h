@@ -3,7 +3,7 @@
 class AbstractGameObjectExtension
 {
 	private:
-		GameObject _subject;
+		//GameObject _subject;
 
 
 	//check collison
