@@ -179,6 +179,9 @@
     <ClInclude Include="Body.h">
       <Filter>Header Files\GameObjects\PhysicalObject</Filter>
     </ClInclude>
+    <ClInclude Include="IEMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">

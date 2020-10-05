@@ -203,6 +203,7 @@
     <ClInclude Include="GameObjectFacade.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="HealthExtension.h" />
+    <ClInclude Include="IEMath.h" />
     <ClInclude Include="Manifold.h" />
     <ClInclude Include="MassData.h" />
     <ClInclude Include="Material.h" />
