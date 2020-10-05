@@ -7,6 +7,8 @@ class GameObject
 {
 private:
 	std::vector<AbstractGameObjectExtension> _gameObjectExtensions;
-	PhysicalBody _physicalBody;
+
+public:
+	PhysicalBody physicalBody;
 };
 

@@ -160,7 +160,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MassData" Collapsed="true">
-    <Position X="22.25" Y="8.25" Width="1.5" />
+    <Position X="24" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MassData.h</FileName>
@@ -195,11 +195,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Shape" Collapsed="true">
-    <Position X="24" Y="8.25" Width="1.5" />
+    <Position X="22.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="body" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="FluixEngine">
     <Position X="17.25" Y="0.5" Width="1.5" />
@@ -279,5 +282,12 @@
       <FileName>BehaviourSeesEnemy.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Struct Name="Body" Collapsed="true">
+    <Position X="22.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgAAQAAAAAAEAAAAAAAIAAAAAgAAQAAAgQAACAAAAA=</HashCode>
+      <FileName>Body.h</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
