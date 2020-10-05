@@ -21,9 +21,10 @@ bool GameObject::hasExtension(const std::type_info& type)
 		cout << givenName << '\n';
 		cout << currentName << '\n';
 
-		//TODO: these 2 value are not the smae but still returns true...
-		if (currentName.compare(givenName) == 0);
+		if (currentName.compare(givenName) == 0)
 		{
+			cout << "FOUND IT" << '\n';
+			// TODO: If the value is true, should we not stop searching? (if yes, make sure to exit the loop here)
 			counter = true;
 		}
 	}
