@@ -3,6 +3,14 @@
 
 class MoveExtension : AbstractGameObjectExtension
 {
+private:
+	float  _velocityX;
+	float  _velocityY;
 
+	//a movable platform on rails
+	float _startX;
+	float _startY;
+	float _endX;
+	float _endY;
 };
 
