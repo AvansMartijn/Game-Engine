@@ -1,8 +1,8 @@
 #pragma once
+#include "AbstractGameObjectExtension.h"
 #include <vector>
 #include "PhysicalBody.h"
 #include <memory>
-#include "AbstractGameObjectExtension.h"
 #include <iostream>
 using namespace std;
 
@@ -11,7 +11,7 @@ using namespace std;
 class GameObject
 {
 private:
-	//vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
+	vector<shared_ptr<AbstractGameObjectExtension> > _gameObjectExtensions;
 
 	PhysicalBody _physicalBody;
 
