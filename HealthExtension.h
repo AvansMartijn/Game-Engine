@@ -3,5 +3,7 @@
 
 class HealthExtension : AbstractGameObjectExtension
 {
+private:
+	float _health;
 };
 
