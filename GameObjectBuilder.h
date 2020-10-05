@@ -5,8 +5,8 @@
 class GameObjectBuilder
 {
 protected:
-	/*std::unique_ptr<GameObjectExtensionFactory> _gameObjectExtensionFactory;
-	std::shared_ptr<GameObject> _gameObject;*/
+	std::unique_ptr<GameObjectExtensionFactory> _gameObjectExtensionFactory;
+	std::shared_ptr<GameObject> _gameObject;
 
 public:
 	GameObjectBuilder();
