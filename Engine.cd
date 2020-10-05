@@ -186,16 +186,19 @@
   <Class Name="Physics" Collapsed="true">
     <Position X="11" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gEAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Physics.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Shape" Collapsed="true">
+  <Class Name="Shape">
     <Position X="22.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="body" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="FluixEngine">
     <Position X="17.25" Y="0.5" Width="1.5" />
@@ -276,7 +279,7 @@
     </TypeIdentifier>
   </Class>
   <Struct Name="Body" Collapsed="true">
-    <Position X="22.25" Y="9.25" Width="1.5" />
+    <Position X="22.25" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABgAAQAAAAAAEAAAAAAAIAAAAAkAAQAAAgQAACAAAAA=</HashCode>
       <FileName>Body.h</FileName>
