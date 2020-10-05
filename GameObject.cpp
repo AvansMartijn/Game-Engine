@@ -21,7 +21,7 @@ bool GameObject::hasExtension(const std::type_info& type)
 		cout << extension->type << '\n';
 
 
-
+		//TODO: these 2 value are not the smae but still returns true...
 		if (extension->type == name);
 		{
 			counter = true;
@@ -34,7 +34,6 @@ bool GameObject::hasExtension(const std::type_info& type)
 std::shared_ptr<AbstractGameObjectExtension> GameObject::GetExtension(const std::type_info& type) {
 
 
-	//TODO: check if is statement is working
 	for (auto& extension : _gameObjectExtensions)
 	{
 		if (typeid(extension) == type)
