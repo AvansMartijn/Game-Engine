@@ -5,8 +5,8 @@
 
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
-    Register("Ai", &AiExtension::Create);
-    Register("Attack", &AttackExtension::Create);
+    Register("AiExtension", &AiExtension::Create);
+    Register("AttackExtension", &AttackExtension::Create);
 }
 
 void GameObjectExtensionFactory::Register(const string& extensionName, CreateExtensionFn pfnCreate)
@@ -18,6 +18,11 @@ AbstractGameObjectExtension* GameObjectExtensionFactory::CreateExtension(const s
 {
     FactoryMap::iterator it = m_FactoryMap.find(extensionName);
     if (it != m_FactoryMap.end())
-        return it->second();
+    {
+        auto obj = it->second();
+        obj->type = extensionName;
+        return obj;
+    }
+
     return NULL;
 }

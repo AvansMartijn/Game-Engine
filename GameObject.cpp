@@ -11,9 +11,15 @@ void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> exten
 bool GameObject::hasExtension(const std::type_info& type)
 {
 	//TODO: check if is statement is working
-	for (auto& extension : _gameObjectExtensions) 
+	for (auto const& extension : _gameObjectExtensions) 
 	{
-		if (typeid(extension) == type)
+
+		cout << type.name() << '\n';
+
+		cout << extension->type << '\n';
+
+
+		if (extension->type == type.name());
 		{
 			return true;
 		}

@@ -8,6 +8,7 @@ class GameObject;
 class AbstractGameObjectExtension
 {
 	public:
+		string type;
 		shared_ptr<GameObject> _subject;
 };
 

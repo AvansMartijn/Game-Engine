@@ -41,16 +41,16 @@ int main(int argc, char* argv[]) {
 
     builder.buildGameObject();
 
-    vector<string> extensionNames{ "Ai","Attack" };
+    vector<string> extensionNames{ "AiExtension","AttackExtension" };
 
 
     builder.addExtension(extensionNames);
 
     obj = builder.getResult();
 
-    cout << obj->hasExtension(typeid(AttackExtension));
-    cout << obj->hasExtension(typeid(AiExtension));
-    cout << obj->hasExtension(typeid(HealthExtension));
+
+
+    cout << obj->hasExtension(typeid(AttackExtension)) << '\n';
    
 
     std::system("pause");
