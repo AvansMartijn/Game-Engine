@@ -7,7 +7,7 @@ private:
 	float  _velocityX;
 	float  _velocityY;
 
-	//voor een movable platform die heen hen weer gaat
+	//a movable platform on rails
 	float _startX;
 	float _startY;
 	float _endX;

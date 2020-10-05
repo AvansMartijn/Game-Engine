@@ -8,6 +8,6 @@ private:
 	float _range;
 
 	//MS
-	int cooldown;
+	int _cooldown;
 };
 
