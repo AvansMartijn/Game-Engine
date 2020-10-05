@@ -2,6 +2,6 @@
 class Physics
 {
 private:
-	std::vector<GameObject> _gameObjects;
+	//std::vector<GameObject> _gameObjects;
 };
 

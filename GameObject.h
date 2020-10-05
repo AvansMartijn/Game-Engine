@@ -6,7 +6,7 @@
 class GameObject
 {
 private:
-	std::vector<AbstractGameObjectExtension> _gameObjectExtensions;
+	//std::vector<AbstractGameObjectExtension> _gameObjectExtensions;
 	PhysicalBody _physicalBody;
 
 	float _width;
@@ -16,9 +16,9 @@ private:
 	int _gridPositionY;
 
 public:
-	void addExtension();
+	/*void addExtension();
 	bool hasExtension();
-	AbstractGameObjectExtension getExtension();
+	AbstractGameObjectExtension getExtension();*/
 
 };
 
