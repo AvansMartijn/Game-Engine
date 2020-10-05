@@ -5,13 +5,13 @@ std::vector<GameObject> Collision::getCollisions(GameObject objectA, std::vector
 {
 	std::vector<GameObject> collisions;
 	for (int i = 0; i < objectList.size(); i++) {
-		if (AABBvsAABB(objectA, objectList[i])) {
+		if (isColliding(objectA, objectList[i])) {
 			collisions.push_back(objectList[i]);
 		}
 	}
 }
 
-bool Collision::AABBvsAABB(GameObject objectA, GameObject objectB)
+bool Collision::isColliding(GameObject objectA, GameObject objectB)
 {
 	Shape shapeA = objectA.physicalBody.shape;
 	Shape shapeB = objectB.physicalBody.shape;
@@ -29,5 +29,8 @@ bool Collision::AABBvsAABB(GameObject objectA, GameObject objectB)
 
 void Collision::resolveCollision(GameObject objectA, GameObject objectB) {
 	Manifold *m = new Manifold(&objectA.physicalBody, &objectB.physicalBody);
+	if (m->AABBvsAABB()) {
+		m->ApplyImpulse();
+	}
 	
 }

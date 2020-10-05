@@ -13,7 +13,7 @@ public:
 	void resolveCollision(GameObject objectA, GameObject objectB);
 
 private: 
-	bool AABBvsAABB(GameObject objectA, GameObject objectB);
+	bool isColliding(GameObject objectA, GameObject objectB);
 	
 	
 };
