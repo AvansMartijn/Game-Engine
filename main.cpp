@@ -51,6 +51,8 @@ int main(int argc, char* argv[]) {
 
 
     cout << obj->hasExtension(typeid(HealthExtension)) << '\n';
+    cout << obj->hasExtension(typeid(AiExtension)) << '\n';
+
    
 
     std::system("pause");
