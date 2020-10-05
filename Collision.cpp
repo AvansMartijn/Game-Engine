@@ -28,7 +28,6 @@ bool Collision::AABBvsAABB(GameObject objectA, GameObject objectB)
 }
 
 void Collision::resolveCollision(GameObject objectA, GameObject objectB) {
-	Manifold *m = new Manifold(objectA.physicalBody, objectB.physicalBody);
-
+	Manifold *m = new Manifold(&objectA.physicalBody, &objectB.physicalBody);
 	
 }
