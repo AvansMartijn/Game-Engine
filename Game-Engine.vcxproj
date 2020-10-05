@@ -153,6 +153,7 @@
     <ClCompile Include="BehaviourMove.cpp" />
     <ClCompile Include="BehaviourRotate.cpp" />
     <ClCompile Include="BehaviourSeesEnemy.cpp" />
+    <ClCompile Include="Body.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="BehaviourMove.h" />
     <ClInclude Include="BehaviourRotate.h" />
     <ClInclude Include="BehaviourSeesEnemy.h" />
+    <ClInclude Include="Body.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
     <ClInclude Include="Collision.h" />

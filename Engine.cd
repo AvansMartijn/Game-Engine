@@ -59,12 +59,9 @@
   <Class Name="GameObject">
     <Position X="19.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_physicalBody" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectBuilder">
     <Position X="20" Y="3" Width="1.5" />
@@ -150,13 +147,12 @@
   <Class Name="PhysicalBody">
     <Position X="22" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAQAAAAAACAAAAAAABAA=</HashCode>
       <FileName>PhysicalBody.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_material" />
       <Field Name="_massData" />
-      <Field Name="_shape" />
     </ShowAsAssociation>
   </Class>
   <Class Name="MassData" Collapsed="true">
@@ -197,12 +193,9 @@
   <Class Name="Shape" Collapsed="true">
     <Position X="22.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAAAAQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="body" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="FluixEngine">
     <Position X="17.25" Y="0.5" Width="1.5" />
@@ -285,7 +278,7 @@
   <Struct Name="Body" Collapsed="true">
     <Position X="22.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABgAAQAAAAAAEAAAAAAAIAAAAAgAAQAAAgQAACAAAAA=</HashCode>
+      <HashCode>ABgAAQAAAAAAEAAAAAAAIAAAAAkAAQAAAgQAACAAAAA=</HashCode>
       <FileName>Body.h</FileName>
     </TypeIdentifier>
   </Struct>

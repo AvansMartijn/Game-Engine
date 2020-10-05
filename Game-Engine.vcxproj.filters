@@ -176,6 +176,9 @@
     <ClInclude Include="AbstractEntityAI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -279,6 +282,9 @@
     </ClCompile>
     <ClCompile Include="AbstractEntityAI.cpp">
       <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Body.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
