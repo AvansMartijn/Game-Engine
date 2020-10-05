@@ -14,9 +14,7 @@ void GameObjectBuilder::addExtension(std::vector<string> extensionName)
 {
 	for (string& extensionName : extensionName)
 	{
-		/*AbstractGameObjectExtension* extension = GameObjectExtensionFactory::Get()->CreateExtension(extensionName);
+		shared_ptr<AbstractGameObjectExtension> extension = make_shared<AbstractGameObjectExtension>(GameObjectExtensionFactory::Get()->CreateExtension(extensionName));
 		if(extension)
-			_gameObject->addExtension(make_shared<AbstractGameObjectExtension>(extension));*/
+			_gameObject->addExtension(extension);
 	}
-}
-

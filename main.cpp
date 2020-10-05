@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
 
-    AbstractGameObjectExtension* extension= NULL;
+    shared_ptr<AbstractGameObjectExtension> extension= NULL;
     string extensionName;
 
     while (extension == NULL)
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
         if (extensionName == "q")
             break;
 
-        AbstractGameObjectExtension* extension = GameObjectExtensionFactory::Get()->CreateExtension(extensionName);
+         AbstractGameObjectExtension* extension = GameObjectExtensionFactory::Get()->CreateExtension(extensionName);
         if (extension)
         {
             cout <<  extension << endl;

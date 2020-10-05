@@ -30,9 +30,10 @@ public:
         return &instance;
     }
 
-    void Register(const string& animalName, CreateExtensionFn pfnCreate);
+    void Register(const string& extensionName, CreateExtensionFn pfnCreate);
 
     AbstractGameObjectExtension* CreateExtension(const string& extensionName);
+
 };
 
 
