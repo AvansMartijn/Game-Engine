@@ -3,8 +3,5 @@
 
 class VisionExtension : AbstractGameObjectExtension
 {
-	int _coneRadius;
-	int _radius;
-	int _direction;
 };
 

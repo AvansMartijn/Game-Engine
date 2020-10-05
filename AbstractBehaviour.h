@@ -1,7 +1,7 @@
 #pragma once
 #include "AbstractBehaviour.h"
 
-class AbstractBehaviour
+class AbstractBehaviour: public AbstractBehaviour
 {
 };
 

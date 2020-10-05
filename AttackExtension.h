@@ -3,11 +3,5 @@
 
 class AttackExtension : AbstractGameObjectExtension
 {
-private:
-	int _damage;
-	float _range;
-
-	//MS
-	int _cooldown;
 };
 
