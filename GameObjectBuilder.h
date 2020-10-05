@@ -13,6 +13,6 @@ public:
 
 	void buildGameObject();
 	void addExtension(std::vector<string> extensions);
-	GameObject getResult();
+	shared_ptr<GameObject> getResult();
 };
 

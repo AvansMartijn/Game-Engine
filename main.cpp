@@ -1,10 +1,14 @@
 #include "main.h"
 #include <iostream>
 #include "GameObjectExtensionFactory.h"
+#include "GameObjectBuilder.h"
+#include "AttackExtension.h"
+#include "AiExtension.h"
+#include "HealthExtension.h"
 
 int main(int argc, char* argv[]) {
 
-    shared_ptr<AbstractGameObjectExtension> extension= NULL;
+   /*shared_ptr<AbstractGameObjectExtension> extension= NULL;
     string extensionName;
 
     while (extension == NULL)
@@ -16,6 +20,7 @@ int main(int argc, char* argv[]) {
             break;
 
          AbstractGameObjectExtension* extension = GameObjectExtensionFactory::Get()->CreateExtension(extensionName);
+         std::cout << typeid(extension).name() << '\n';
         if (extension)
         {
             cout <<  extension << endl;
@@ -28,8 +33,25 @@ int main(int argc, char* argv[]) {
         delete extension;
         extension = NULL;
         extensionName.clear();
-    }
+    }*/
 
+
+    shared_ptr<GameObject> obj;
+    GameObjectBuilder builder;
+
+    builder.buildGameObject();
+
+    vector<string> extensionNames{ "Ai","Attack" };
+
+
+    builder.addExtension(extensionNames);
+
+    obj = builder.getResult();
+
+    cout << obj->hasExtension(typeid(AttackExtension));
+    cout << obj->hasExtension(typeid(AiExtension));
+    cout << obj->hasExtension(typeid(HealthExtension));
+   
 
     std::system("pause");
 
