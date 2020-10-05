@@ -1,12 +1,14 @@
 #pragma once
 #include "GameObject.h"
+#include <memory>
+#include <iostream>
+using namespace std;
+
 class AbstractGameObjectExtension
 {
-	private:
-		//GameObject _subject;
-
-
-	//check collison
-	//check physics
+	public:
+		//shared_ptr<GameObject> _subject;
 };
+
+typedef AbstractGameObjectExtension* (__stdcall* CreateExtensionFn)(void);
 

@@ -12,5 +12,8 @@ private:
 	float _startY;
 	float _endX;
 	float _endY;
+
+public:
+	static AbstractGameObjectExtension* __stdcall Create() { return new MoveExtension(); }
 };
 

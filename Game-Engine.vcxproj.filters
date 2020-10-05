@@ -80,9 +80,6 @@
     <ClInclude Include="GameObjectFacade.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectFactory.h">
-      <Filter>Header Files\GameObjects\Creation</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectBuilder.h">
       <Filter>Header Files\GameObjects\Creation</Filter>
     </ClInclude>
@@ -185,15 +182,15 @@
     <ClInclude Include="main.h">
       <Filter>Header Files\SandBox</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectExtensionFactory.h">
+      <Filter>Header Files\GameObjects\Creation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectBuilder.cpp">
-      <Filter>Source Files\GameObjects\Creation</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp">
       <Filter>Source Files\GameObjects\Creation</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
@@ -291,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\SandBox</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectExtensionFactory.cpp">
+      <Filter>Source Files\GameObjects\Creation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

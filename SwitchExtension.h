@@ -9,5 +9,7 @@ private:
 
 public:
 	void SwitchState();
+
+	static AbstractGameObjectExtension* __stdcall Create() { return new SwitchExtension(); }
 };
 

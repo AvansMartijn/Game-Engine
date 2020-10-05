@@ -9,5 +9,10 @@ private:
 
 	//MS
 	int _cooldown;
+
+
+public:
+
+	static AbstractGameObjectExtension* __stdcall Create() { return new AttackExtension(); }
 };
 
