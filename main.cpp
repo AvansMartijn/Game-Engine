@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
 
 
 
-    cout << obj->hasExtension(typeid(AttackExtension)) << '\n';
+    cout << obj->hasExtension(typeid(HealthExtension)) << '\n';
    
 
     std::system("pause");
