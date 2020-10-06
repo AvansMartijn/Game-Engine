@@ -21,7 +21,7 @@ void Shapes::DrawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int
 	SDL_RenderFillRect(renderer, &_cube);
 	SDL_RenderPresent(renderer);
 	// Clear als het goed is de renderer
-	SDL_RenderClear(renderer);
+	//SDL_RenderClear(renderer);
 }
 
 void Shapes::DrawImage(SDL_Renderer* renderer, std::string image_path, int x, int y, int width, int height)
@@ -43,7 +43,7 @@ void Shapes::DrawImage(SDL_Renderer* renderer, std::string image_path, int x, in
 	SDL_RenderCopy(renderer, _texture, nullptr, &_cube);
 	SDL_RenderPresent(renderer);
 	// Clear als het goed is de renderer
-	SDL_RenderClear(renderer);
+	//SDL_RenderClear(renderer);
 	_texture = nullptr;
 }
 

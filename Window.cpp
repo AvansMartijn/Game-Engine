@@ -28,6 +28,9 @@ void Window::PollEvents()
 		case SDL_QUIT:
 			_closed = true;
 			break;
+		case SDL_KEYDOWN:
+			g_ShapeDrawer.DrawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
+			break;
 		default:
 			break;
 		}
@@ -37,8 +40,10 @@ void Window::PollEvents()
 void Window::clear() const
 {
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
-	SDL_RenderClear(_renderer);
+	//SDL_RenderClear(_renderer);
 	SDL_RenderPresent(_renderer);
+
+	g_ShapeDrawer.DrawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
 }
 
 bool Window::init()
