@@ -13,5 +13,307 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{3b3b0448-5676-4092-9e77-11f63bc3890f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{13117951-ca81-4ee4-ab7c-44948cb229ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClassDiagrams">
+      <UniqueIdentifier>{f4f09d64-2499-4411-9b96-2a4b7234a3ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Creation">
+      <UniqueIdentifier>{f0e4e975-abf3-4e08-9d6c-150aaa4dde19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Creation">
+      <UniqueIdentifier>{99af88de-2999-4253-80c5-8adddae1067f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Extensions">
+      <UniqueIdentifier>{2a553365-c20d-4ef6-9f74-c9d1e2e6e1d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Extensions">
+      <UniqueIdentifier>{b369c17b-b917-43ba-8c71-9463aae25cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Extensions\CollsionResolution">
+      <UniqueIdentifier>{85117770-cce1-4324-aab5-554727acca58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Extensions\CollisonResoluton">
+      <UniqueIdentifier>{666c81d5-123c-45a1-a08e-793366f411df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{b1897e9b-0231-4572-925f-a1f2e786b954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{a20a2654-0880-44bc-b936-e51c8e7b11d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\PhysicalObject">
+      <UniqueIdentifier>{4c68c40c-143e-4a76-a6e1-b10af51ccc87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\PhysicalObject">
+      <UniqueIdentifier>{f9081f51-4f18-4443-8bb2-043527ea07b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI">
+      <UniqueIdentifier>{c0ed2fd6-dbf1-4ebd-9269-030fdf954c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AI">
+      <UniqueIdentifier>{b1a77f23-1e4d-4715-831c-c4bc4ef16b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AI\Behaviours">
+      <UniqueIdentifier>{7bdf3706-5403-45f5-b227-378c2c6dfe77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Behaviours">
+      <UniqueIdentifier>{77c86ad3-5da8-4c09-8d30-0acc6182dc8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SandBox">
+      <UniqueIdentifier>{ece5d03c-9007-4a7e-8021-45f747bf1243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SandBox">
+      <UniqueIdentifier>{cf094b0b-2c6c-4e48-9ac7-29e42108d658}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine.cd">
+      <Filter>ClassDiagrams</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameObjectFacade.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectBuilder.h">
+      <Filter>Header Files\GameObjects\Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractGameObjectExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractCollisionResolutionExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollsionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="StateExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="VisionExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckPhysicsExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="CanWieldExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AiExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="FluixEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPartyFacade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalBody.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MassData.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionDefaultExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollsionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionPortalExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollsionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsFacade.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractBehaviour.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourAttack.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourIdle.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourMove.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourRotate.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourSeesEnemy.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractEntityAI.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files\SandBox</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectExtensionFactory.h">
+      <Filter>Header Files\GameObjects\Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractManageableItem.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameObjectFacade.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectBuilder.cpp">
+      <Filter>Source Files\GameObjects\Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractGameObjectExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractCollisionResolutionExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisonResoluton</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="StateExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="VisionExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckPhysicsExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="CanWieldExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AiExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="FluixEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdPartyFacade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalBody.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MassData.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionResolutionDefaultExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisonResoluton</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionResolutionPortalExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisonResoluton</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsFacade.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractBehaviour.cpp">
+      <Filter>Source Files\AI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourAttack.cpp">
+      <Filter>Source Files\AI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourIdle.cpp">
+      <Filter>Source Files\AI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourMove.cpp">
+      <Filter>Source Files\AI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourRotate.cpp">
+      <Filter>Source Files\AI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourSeesEnemy.cpp">
+      <Filter>Source Files\AI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractEntityAI.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\SandBox</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectExtensionFactory.cpp">
+      <Filter>Source Files\GameObjects\Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractManageableItem.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game-Engine.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
