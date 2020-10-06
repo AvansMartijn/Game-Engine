@@ -10,5 +10,7 @@ private:
 
 	//ask for collisions for subject from physics
 	//if collision, call collisionresolution extensions
+public:
+	static AbstractGameObjectExtension* __stdcall Create() { return new CheckPhysicsExtension(); }
 };
 

@@ -1,13 +1,18 @@
 #pragma once
-#include "AbstractGameObjectExtension.h"
 #include <vector>
 #include "PhysicalBody.h"
+#include <memory>
+#include <iostream>
+#include "AbstractGameObjectExtension.h"
+using namespace std;
+
 
 class GameObject
 {
 private:
-	//std::vector<AbstractGameObjectExtension> _gameObjectExtensions;
-	PhysicalBody _physicalBody;
+	vector<shared_ptr<AbstractGameObjectExtension> > _gameObjectExtensions;
+
+	shared_ptr<PhysicalBody> _physicalBody;
 
 	float _width;
 	float _height;
@@ -16,9 +21,12 @@ private:
 	int _gridPositionY;
 
 public:
-	/*void addExtension();
-	bool hasExtension();
-	AbstractGameObjectExtension getExtension();*/
+	GameObject();
 
+	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
+
+	bool hasExtension(const std::type_info& type);
+
+	shared_ptr<AbstractGameObjectExtension> GetExtension(const std::type_info& type);
 };
 
