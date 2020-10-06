@@ -64,11 +64,11 @@
     <Filter Include="Header Files\AI\Behaviours">
       <UniqueIdentifier>{77c86ad3-5da8-4c09-8d30-0acc6182dc8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SandBox">
-      <UniqueIdentifier>{ece5d03c-9007-4a7e-8021-45f747bf1243}</UniqueIdentifier>
+    <Filter Include="Header Files\Sandbox">
+      <UniqueIdentifier>{cb976ae6-b938-4206-a4cf-4fcb6d32ed98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SandBox">
-      <UniqueIdentifier>{cf094b0b-2c6c-4e48-9ac7-29e42108d658}</UniqueIdentifier>
+    <Filter Include="Source Files\Sandbox">
+      <UniqueIdentifier>{0cbe7807-ebc0-4414-b3d0-8a378e507022}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,8 +179,8 @@
     <ClInclude Include="AbstractEntityAI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files\SandBox</Filter>
+    <ClInclude Include="Body.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectExtensionFactory.h">
       <Filter>Header Files\GameObjects\Creation</Filter>
@@ -193,6 +193,12 @@
     </ClInclude>
     <ClInclude Include="AbstractManageableItem.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="IEMath.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -295,8 +301,8 @@
     <ClCompile Include="AbstractEntityAI.cpp">
       <Filter>Source Files\AI</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files\SandBox</Filter>
+    <ClCompile Include="Body.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectExtensionFactory.cpp">
       <Filter>Source Files\GameObjects\Creation</Filter>
@@ -309,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="AbstractManageableItem.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Sandbox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

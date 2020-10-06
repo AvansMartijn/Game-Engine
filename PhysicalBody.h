@@ -1,12 +1,21 @@
 #pragma once
+
+
 #include "Material.h"
 #include "MassData.h"
 #include "Shape.h"
+#include "Body.h"
+#include "IEMath.h"
+
+
 class PhysicalBody
 {
 private:
 	Material _material;
 	MassData _massData;
-	Shape _shape;
+
+public:
+	Shape shape;
+	Body body;
 };
 

@@ -8,7 +8,9 @@ GameObject::GameObject() {
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
 {
     _gameObjectExtensions.push_back(extension);
-	extension->RegisterSubject(this);
+
+	shared_ptr<GameObject> temp(this);
+	extension->RegisterSubject(temp);
 }
 
 bool GameObject::hasExtension(const std::type_info& type)
