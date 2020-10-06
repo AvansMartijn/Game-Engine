@@ -63,9 +63,9 @@ bool Manifold::AABBvsAABB()
 			if (xOverlap > yOverlap) {
 				// Point toward B knowing that n points from B to A
 
-				if (n.x < 0) {
+				if (n.x < 0) 
 					normal = Vec2(-1, 0);
-				}
+				
 				else {
 					normal = Vec2(0, 0);
 					penetration = xOverlap;
@@ -74,9 +74,9 @@ bool Manifold::AABBvsAABB()
 			}
 			else {
 				// Point toward B knowing that n points from A to B
-				if (n.y < 0) {
+				if (n.y < 0) 
 					normal = Vec2(0, -1);
-				}
+				
 				else {
 					normal = Vec2(0, 1);
 					penetration = yOverlap;
