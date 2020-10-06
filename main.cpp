@@ -17,9 +17,9 @@ int main(int argc, char* argv[]) {
 
 	SDL_Event event;
 
-	while (!window.IsClosed()) {
+	while (!window.isClosed()) {
 		while (SDL_PollEvent(&event)) {
-			window.PollEvents();
+			window.pollEvents();
 			window.clear();
 		}
 	}

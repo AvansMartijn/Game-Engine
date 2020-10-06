@@ -4,8 +4,8 @@
 
 class Shapes {
 public:
-	void DrawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int width, int height);
-	void DrawImage(SDL_Renderer* renderer, std::string image_path, int x, int y, int width, int height);
+	void drawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int width, int height);
+	void drawImage(SDL_Renderer* renderer, std::string image_path, int x, int y, int width, int height);
 	~Shapes();
 
 private:

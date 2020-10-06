@@ -9,7 +9,7 @@ class AbstractGameObjectExtension
 {
 public:
 	string type;
-	virtual void RegisterSubject(GameObject* subject);
+	virtual void registerSubject(GameObject* subject);
 
 protected:
 	shared_ptr<GameObject> _subject;

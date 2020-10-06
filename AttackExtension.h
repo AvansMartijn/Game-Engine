@@ -13,6 +13,6 @@ private:
 
 public:
 
-	static AbstractGameObjectExtension* __stdcall Create() { return new AttackExtension(); }
+	static AbstractGameObjectExtension* __stdcall create() { return new AttackExtension(); }
 };
 

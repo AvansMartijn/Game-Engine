@@ -23,15 +23,15 @@ private:
 public:
     ~GameObjectExtensionFactory() { _m_FactoryMap.clear(); }
 
-    static GameObjectExtensionFactory* Get()
+    static GameObjectExtensionFactory* get()
     {
         static GameObjectExtensionFactory instance;
         return &instance;
     }
 
-    void Register(const string& extensionName, CreateExtensionFn pfnCreate);
+    void registerExtension(const string& extensionName, CreateExtensionFn pfnCreate);
 
-    AbstractGameObjectExtension* CreateExtension(const string& extensionName);
+    AbstractGameObjectExtension* createExtension(const string& extensionName);
 
 };
 

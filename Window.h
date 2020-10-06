@@ -8,9 +8,9 @@ public:
 	~Window();
 
 	// Dat inline hoeft niet maar is makkelijker om te lezen
-	inline bool IsClosed() const { return _closed; };
+	inline bool isClosed() const { return _closed; };
 
-	void PollEvents();
+	void pollEvents();
 	void clear() const;
 
 private:
