@@ -3,18 +3,12 @@
 
 GameObject::GameObject() {
 
-	//_gridPositionX = NULL;
-	//_gridPositionY = NULL;
-	//_height = NULL;
-	//_width = NULL;
-
-	//_physicalBody = NULL;
 }
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
 {
     _gameObjectExtensions.push_back(extension);
-	extension->_subject.reset(this);
+	extension->RegisterSubject(this);
 }
 
 bool GameObject::hasExtension(const std::type_info& type)
