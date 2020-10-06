@@ -130,9 +130,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <ProgramDataBaseFileName>$(TEMP)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -176,6 +175,7 @@
     <ClCompile Include="BehaviourMove.cpp" />
     <ClCompile Include="BehaviourRotate.cpp" />
     <ClCompile Include="BehaviourSeesEnemy.cpp" />
+    <ClCompile Include="Body.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -216,6 +216,7 @@
     <ClInclude Include="BehaviourMove.h" />
     <ClInclude Include="BehaviourRotate.h" />
     <ClInclude Include="BehaviourSeesEnemy.h" />
+    <ClInclude Include="Body.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
     <ClInclude Include="Collision.h" />
@@ -227,6 +228,7 @@
     <ClInclude Include="GameObjectFacade.h" />
     <ClInclude Include="GameObjectExtensionFactory.h" />
     <ClInclude Include="HealthExtension.h" />
+    <ClInclude Include="IEMath.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Manifold.h" />
     <ClInclude Include="MassData.h" />

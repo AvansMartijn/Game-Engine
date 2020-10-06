@@ -8,6 +8,7 @@
 #include "AttackExtension.h"
 #include "AiExtension.h"
 #include "HealthExtension.h"
+#include "IEMath.h"
 
 int main(int argc, char* argv[]) {
 

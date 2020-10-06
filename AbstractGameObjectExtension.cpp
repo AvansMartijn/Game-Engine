@@ -1,7 +1,6 @@
 #include "AbstractGameObjectExtension.h"
 
 
-void AbstractGameObjectExtension::registerSubject(GameObject* subject) {
-	shared_ptr<GameObject> test(subject);
-	_subject = test;
+void AbstractGameObjectExtension::RegisterSubject(shared_ptr<GameObject> subject) {
+	_subject = subject;
 }
