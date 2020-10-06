@@ -70,6 +70,12 @@
     <Filter Include="Header Files\SandBox">
       <UniqueIdentifier>{cf094b0b-2c6c-4e48-9ac7-29e42108d658}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{cff9c891-616b-414d-bd6f-9e44c2943118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{3e6f9107-93c5-4163-b785-d2125d977988}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine.cd">
@@ -182,6 +188,11 @@
     <ClInclude Include="main.h">
       <Filter>Header Files\SandBox</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes.h">
+      <Filter>Header Files\UI</Filter>
     <ClInclude Include="GameObjectExtensionFactory.h">
       <Filter>Header Files\GameObjects\Creation</Filter>
     </ClInclude>
@@ -289,6 +300,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\SandBox</Filter>
     </ClCompile>
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes.cpp">
+      <Filter>Source Files\UI</Filter>
     <ClCompile Include="GameObjectExtensionFactory.cpp">
       <Filter>Source Files\GameObjects\Creation</Filter>
     </ClCompile>
