@@ -72,21 +72,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\sdl2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdl2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Lib\SDL2\lib\x86;.\Lib\SDL2_ttf\lib\x86;.\Lib\SDL2_image\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Configuration)\Build\\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Lib\SDL2\lib\x86;.\Lib\SDL2_ttf\lib\x86;.\Lib\SDL2_image\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\sdl2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdl2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Lib\SDL2\lib\x64;.\Lib\SDL2_ttf\lib\x64;.\Lib\SDL2_image\lib\x64;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Configuration)\Build\\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Lib\SDL2\lib\x64;.\Lib\SDL2_ttf\lib\x64;.\Lib\SDL2_image\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -156,6 +160,7 @@
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
     <ClCompile Include="AbstractEntityAI.cpp" />
     <ClCompile Include="AbstractGameObjectExtension.cpp" />
+    <ClCompile Include="AbstractManageableItem.cpp" />
     <ClCompile Include="AiExtension.cpp" />
     <ClCompile Include="AttackExtension.cpp" />
     <ClCompile Include="BehaviourAttack.cpp" />
@@ -195,6 +200,7 @@
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
     <ClInclude Include="AbstractEntityAI.h" />
     <ClInclude Include="AbstractGameObjectExtension.h" />
+    <ClInclude Include="AbstractManageableItem.h" />
     <ClInclude Include="AiExtension.h" />
     <ClInclude Include="AttackExtension.h" />
     <ClInclude Include="BehaviourAttack.h" />
