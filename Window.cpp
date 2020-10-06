@@ -42,21 +42,22 @@ void Window::clear() const
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 	//SDL_RenderClear(_renderer);
 	SDL_RenderPresent(_renderer);
+	g_ShapeDrawer.DrawCube(Window::_renderer, SDL_Color{ 0, 255, 255 }, 0, 250, 250, 250);
 
-	g_ShapeDrawer.DrawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
+	//g_ShapeDrawer.DrawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
 }
 
 bool Window::init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cerr << "Failed to init SDL \n";
-		return false;
+		return false;	
 	}
 
-	if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
+	/*if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
 		std::cerr << "Failed to init image lib \n";
 		return false;
-	}
+	}*/
 
 	_window = SDL_CreateWindow(_title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _width, _height, SDL_WINDOW_RESIZABLE);
 	std::cout << "Creating Window \n";
