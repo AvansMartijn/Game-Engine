@@ -126,7 +126,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -181,6 +181,7 @@
     <ClCompile Include="GameObjectFacade.cpp" />
     <ClCompile Include="GameObjectExtensionFactory.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Manifold.cpp" />
     <ClCompile Include="MassData.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="GameObjectExtensionFactory.h" />
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="IEMath.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Manifold.h" />
     <ClInclude Include="MassData.h" />
     <ClInclude Include="Material.h" />
