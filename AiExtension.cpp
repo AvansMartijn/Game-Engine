@@ -1,5 +1,5 @@
 #include "AiExtension.h"
-void AiExtension::DoAi()
+void AiExtension::doAi()
 {
 	cout << "AI NEEF";
 }

@@ -12,6 +12,6 @@ public:
 	void addItem(AbstractManageableItem);
 	void removeItem(AbstractManageableItem);
 
-	static AbstractGameObjectExtension* __stdcall Create() { return new CanWieldExtension(); }
+	static AbstractGameObjectExtension* __stdcall create() { return new CanWieldExtension(); }
 };
 

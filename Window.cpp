@@ -18,7 +18,7 @@ Window::~Window()
 	SDL_Quit();
 }
 
-void Window::PollEvents()
+void Window::pollEvents()
 {
 	// Hier kan je alle events pollen en toevoegen
 	SDL_Event event;
@@ -29,7 +29,7 @@ void Window::PollEvents()
 			_closed = true;
 			break;
 		case SDL_KEYDOWN:
-			g_ShapeDrawer.DrawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
+			g_ShapeDrawer.drawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
 			break;
 		default:
 			break;
@@ -42,7 +42,7 @@ void Window::clear() const
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 	//SDL_RenderClear(_renderer);
 	SDL_RenderPresent(_renderer);
-	g_ShapeDrawer.DrawCube(Window::_renderer, SDL_Color{ 0, 255, 255 }, 0, 250, 250, 250);
+	g_ShapeDrawer.drawCube(Window::_renderer, SDL_Color{ 0, 255, 255 }, 0, 250, 250, 250);
 
 	//g_ShapeDrawer.DrawImage(Window::_renderer, "res/WUAH.png", 0, 250, 250, 250);
 }

@@ -5,10 +5,10 @@ class AiExtension : AbstractGameObjectExtension
 
 
 public:
-	void DoAi();
+	void doAi();
 
 
 
-	static AbstractGameObjectExtension* __stdcall Create() { return new AiExtension(); }
+	static AbstractGameObjectExtension* __stdcall create() { return new AiExtension(); }
 };
 

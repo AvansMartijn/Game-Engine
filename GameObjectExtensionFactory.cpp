@@ -5,16 +5,16 @@
 
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
-    Register("AiExtension", &AiExtension::Create);
-    Register("AttackExtension", &AttackExtension::Create);
+    registerExtension("AiExtension", &AiExtension::create);
+    registerExtension("AttackExtension", &AttackExtension::create);
 }
 
-void GameObjectExtensionFactory::Register(const string& extensionName, CreateExtensionFn pfnCreate)
+void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate)
 {
     _m_FactoryMap[extensionName] = pfnCreate;
 }
 
-AbstractGameObjectExtension* GameObjectExtensionFactory::CreateExtension(const string& extensionName)
+AbstractGameObjectExtension* GameObjectExtensionFactory::createExtension(const string& extensionName)
 {
     FactoryMap::iterator it = _m_FactoryMap.find(extensionName);
     if (it != _m_FactoryMap.end())

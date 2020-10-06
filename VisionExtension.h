@@ -9,6 +9,6 @@ private:
 	int _direction;
 
 public:
-	static AbstractGameObjectExtension* __stdcall Create() { return new VisionExtension(); }
+	static AbstractGameObjectExtension* __stdcall create() { return new VisionExtension(); }
 };
 

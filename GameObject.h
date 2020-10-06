@@ -26,6 +26,6 @@ public:
 
 	bool hasExtension(const std::type_info& type);
 
-	shared_ptr<AbstractGameObjectExtension> GetExtension(const std::type_info& type);
+	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
 };
 

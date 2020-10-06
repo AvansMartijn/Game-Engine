@@ -9,7 +9,7 @@ Shapes::~Shapes()
 	SDL_DestroyTexture(_texture);
 }
 
-void Shapes::DrawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int width, int height)
+void Shapes::drawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int width, int height)
 {
 	_cube.w = width;
 	_cube.h = height;
@@ -24,7 +24,7 @@ void Shapes::DrawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int
 	//SDL_RenderClear(renderer);
 }
 
-void Shapes::DrawImage(SDL_Renderer* renderer, std::string image_path, int x, int y, int width, int height)
+void Shapes::drawImage(SDL_Renderer* renderer, std::string image_path, int x, int y, int width, int height)
 {
 	auto surface = IMG_Load(image_path.c_str());
 	if (!surface)

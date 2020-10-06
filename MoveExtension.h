@@ -14,6 +14,6 @@ private:
 	float _endY;
 
 public:
-	static AbstractGameObjectExtension* __stdcall Create() { return new MoveExtension(); }
+	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
 };
 
