@@ -1,10 +1,5 @@
 #include "GameObjectBuilder.h"
 
-GameObjectBuilder::GameObjectBuilder()
-{
-	//_gameObjectExtensionFactory.reset(GameObjectExtensionFactory::Get());
-	//_gameObject = NULL;
-}
 
 void GameObjectBuilder::buildGameObject()
 {

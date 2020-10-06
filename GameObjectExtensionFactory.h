@@ -18,10 +18,10 @@ private:
 
     typedef map<string, CreateExtensionFn> FactoryMap;
 
-    FactoryMap m_FactoryMap;
+    FactoryMap _m_FactoryMap;
 
 public:
-    ~GameObjectExtensionFactory() { m_FactoryMap.clear(); }
+    ~GameObjectExtensionFactory() { _m_FactoryMap.clear(); }
 
     static GameObjectExtensionFactory* Get()
     {

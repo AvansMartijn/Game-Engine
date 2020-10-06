@@ -8,7 +8,7 @@ protected:
 	std::shared_ptr<GameObject> _gameObject;
 
 public:
-	GameObjectBuilder();
+
 
 	void buildGameObject();
 	void addExtension(std::vector<string> extensions);

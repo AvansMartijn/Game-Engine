@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
     cout << Gameobj->hasExtension(typeid(AttackExtension)) << '\n';
 
 
+
     if (Gameobj->hasExtension(typeid(AiExtension)))
     {
         shared_ptr<AiExtension> test = dynamic_pointer_cast<AiExtension>(Gameobj->GetExtension(typeid(AiExtension)));
