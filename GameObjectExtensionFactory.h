@@ -20,7 +20,6 @@ private:
 
     FactoryMap m_FactoryMap;
 
-
 public:
     ~GameObjectExtensionFactory() { m_FactoryMap.clear(); }
 

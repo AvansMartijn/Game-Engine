@@ -35,27 +35,37 @@ int main(int argc, char* argv[]) {
         extensionName.clear();
     }*/
 
+    //shared_ptr<GameObject> obj;
+    //GameObjectBuilder builder;
 
-    shared_ptr<GameObject> obj;
+    ////build gameobject
+    //builder.buildGameObject();
+
+    ////add extensions
+    //vector<string> extensionNames{ "AiExtension","AttackExtension" };
+    //builder.addExtension(extensionNames);
+
+    ////get the results
+    //obj = builder.getResult();
+    //cout << obj->hasExtension(typeid(HealthExtension)) << '\n';
+    //cout << obj->hasExtension(typeid(AiExtension)) << '\n';
+
+    //obj.reset();
+    //std::system("pause");
+
+
     GameObjectBuilder builder;
+    shared_ptr<GameObject> obj;
 
     builder.buildGameObject();
+    
 
-    vector<string> extensionNames{ "AiExtension","AttackExtension" };
-
-
+    vector<string> extensionNames{ "AiExtension"};
     builder.addExtension(extensionNames);
+    extensionNames.clear();
 
     obj = builder.getResult();
 
-
-
-    cout << obj->hasExtension(typeid(HealthExtension)) << '\n';
-    cout << obj->hasExtension(typeid(AiExtension)) << '\n';
-
-   
-
     std::system("pause");
-
     return 0;
 }

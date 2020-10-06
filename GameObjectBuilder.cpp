@@ -2,7 +2,8 @@
 
 GameObjectBuilder::GameObjectBuilder()
 {
-	_gameObjectExtensionFactory.reset(GameObjectExtensionFactory::Get());
+	//_gameObjectExtensionFactory.reset(GameObjectExtensionFactory::Get());
+	//_gameObject = NULL;
 }
 
 void GameObjectBuilder::buildGameObject()
@@ -14,14 +15,12 @@ void GameObjectBuilder::addExtension(std::vector<string> extensionNames)
 {
 	for (string& extensionName : extensionNames)
 	{
-
 		shared_ptr<AbstractGameObjectExtension> extension(GameObjectExtensionFactory::Get()->CreateExtension(extensionName));
 
 		if (extension)
 		{
 			_gameObject->addExtension(extension);
 		}
-		
 	}
 }
 

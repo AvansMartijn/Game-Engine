@@ -1,16 +1,25 @@
 #include "GameObject.h"
 
+
+GameObject::GameObject() {
+
+	//_gridPositionX = NULL;
+	//_gridPositionY = NULL;
+	//_height = NULL;
+	//_width = NULL;
+
+	//_physicalBody = NULL;
+}
+
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
 {
-    
     _gameObjectExtensions.push_back(extension);
-    extension->_subject.reset(this);
-
+	extension->_subject.reset(this);
 }
 
 bool GameObject::hasExtension(const std::type_info& type)
 {
-	bool counter = false;
+	
 	for (auto const& extension : _gameObjectExtensions) 
 	{
 		string givenName = type.name();
@@ -18,18 +27,13 @@ bool GameObject::hasExtension(const std::type_info& type)
 
 		string currentName = extension->type;
 
-		cout << givenName << '\n';
-		cout << currentName << '\n';
-
 		if (currentName.compare(givenName) == 0)
 		{
-			cout << "FOUND IT" << '\n';
-			// TODO: If the value is true, should we not stop searching? (if yes, make sure to exit the loop here)
-			counter = true;
+			return true;
 		}
 	}
 
-	return counter;
+	return false;
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::GetExtension(const std::type_info& type) {
@@ -37,7 +41,12 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::GetExtension(const std:
 
 	for (auto& extension : _gameObjectExtensions)
 	{
-		if (typeid(extension) == type)
+		string givenName = type.name();
+		givenName.erase(0, 6);
+
+		string currentName = extension->type;
+
+		if (currentName.compare(givenName) == 0)
 		{
 			return extension;
 		}
