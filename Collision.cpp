@@ -1,20 +1,21 @@
 #include "Collision.h"
 
 
-std::vector<GameObject> Collision::getCollisions(GameObject objectA, std::vector<GameObject> objectList)
+std::vector<shared_ptr<GameObject>> Collision::getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList)
 {
-	std::vector<GameObject> collisions;
+	std::vector<shared_ptr<GameObject>> collisions;
 	for (int i = 0; i < objectList.size(); i++) {
 		if (isColliding(objectA, objectList[i])) {
 			collisions.push_back(objectList[i]);
 		}
 	}
+	return collisions;
 }
 
-bool Collision::isColliding(GameObject objectA, GameObject objectB)
+bool Collision::isColliding(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB)
 {
-	Shape shapeA = objectA.physicalBody.shape;
-	Shape shapeB = objectB.physicalBody.shape;
+	Shape shapeA = objectA->physicalBody.shape;
+	Shape shapeB = objectB->physicalBody.shape;
 	if (shapeA.max.x < shapeB.min.x || shapeA.min.x > shapeB.max.x) {
 		return false;
 	}
@@ -27,8 +28,8 @@ bool Collision::isColliding(GameObject objectA, GameObject objectB)
 	return true;
 }
 
-void Collision::resolveCollision(GameObject objectA, GameObject objectB) {
-	Manifold *m = new Manifold(&objectA.physicalBody, &objectB.physicalBody);
+void Collision::resolveCollision(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB) {
+	Manifold *m = new Manifold(objectA->physicalBody, objectB->physicalBody);
 	if (m->AABBvsAABB()) {
 		m->ApplyImpulse();
 	}

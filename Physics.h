@@ -6,9 +6,9 @@
 class Physics
 {
 private:
-	std::vector<GameObject> _gameObjects;
+	std::vector<shared_ptr<GameObject>> _gameObjects;
 public:
-	void changeVelocity(GameObject object, Vec2 velocity);
-	void changePosition(GameObject object, Vec2 position);
+	void changeVelocity(shared_ptr<GameObject> object, Vec2 velocity);
+	void changePosition(shared_ptr<GameObject> object, Vec2 position);
 };
 

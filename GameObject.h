@@ -12,7 +12,6 @@ class GameObject
 private:
 	vector<shared_ptr<AbstractGameObjectExtension> > _gameObjectExtensions;
 
-	shared_ptr<PhysicalBody> _physicalBody;
 
 	float _width;
 	float _height;
@@ -21,8 +20,8 @@ private:
 	int _gridPositionY;
 
 public:
+	PhysicalBody physicalBody;
 	GameObject();
-
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 
 	bool hasExtension(const std::type_info& type);

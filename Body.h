@@ -1,6 +1,6 @@
 #pragma once
 #include "IEMath.h"
-struct Shape;
+class Shape;
 
 struct Body
 {

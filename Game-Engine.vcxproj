@@ -157,6 +157,7 @@
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
     <ClCompile Include="AbstractEntityAI.cpp" />
     <ClCompile Include="AbstractGameObjectExtension.cpp" />
+    <ClCompile Include="AbstractManageableItem.cpp" />
     <ClCompile Include="AiExtension.cpp" />
     <ClCompile Include="AttackExtension.cpp" />
     <ClCompile Include="BehaviourAttack.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
     <ClInclude Include="AbstractEntityAI.h" />
     <ClInclude Include="AbstractGameObjectExtension.h" />
+    <ClInclude Include="AbstractManageableItem.h" />
     <ClInclude Include="AiExtension.h" />
     <ClInclude Include="AttackExtension.h" />
     <ClInclude Include="BehaviourAttack.h" />

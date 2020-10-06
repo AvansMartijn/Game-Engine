@@ -3,12 +3,12 @@
 class Manifold
 {
 private:
-	PhysicalBody *_bodyA;
-	PhysicalBody *_bodyB;
+	PhysicalBody _bodyA;
+	PhysicalBody _bodyB;
 
 
 public:
-	Manifold(PhysicalBody *bodyA, PhysicalBody *bodyB);
+	Manifold(PhysicalBody bodyA, PhysicalBody bodyB);
 	real penetration;     // Depth of penetration from collision
 	Vec2 normal;          // From A to B
 	Vec2 contacts[2];     // Points of contact during collision

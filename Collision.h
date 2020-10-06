@@ -9,11 +9,11 @@
 class Collision
 {
 public:
-	std::vector<GameObject> getCollisions(GameObject objectA, std::vector<GameObject> objectList);
-	void resolveCollision(GameObject objectA, GameObject objectB);
+	std::vector<shared_ptr<GameObject>> getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList);
+	void resolveCollision(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB);
 
 private: 
-	bool isColliding(GameObject objectA, GameObject objectB);
+	bool isColliding(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB);
 	
 	
 };

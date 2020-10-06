@@ -4,7 +4,7 @@
 class Shape
 {
 public:
-	Body* body;
+	Body body;
 	Vec2 min;
 	Vec2 max;
 };
