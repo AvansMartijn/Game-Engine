@@ -1,12 +1,19 @@
 #pragma once
-#include "GameObject.h"
+#include <memory>
+#include <iostream>
+
+using namespace std;
+
+class GameObject;
 class AbstractGameObjectExtension
 {
-	private:
-		GameObject _subject;
+public:
+	string type;
+	virtual void RegisterSubject(GameObject* subject);
 
-
-	//check collison
-	//check physics
+protected:
+	shared_ptr<GameObject> _subject;
 };
+
+typedef AbstractGameObjectExtension* (__stdcall* CreateExtensionFn)(void);
 
