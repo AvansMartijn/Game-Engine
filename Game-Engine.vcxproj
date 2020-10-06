@@ -172,7 +172,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
     <ClCompile Include="GameObjectFacade.cpp" />
-    <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="GameObjectExtensionFactory.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manifold.cpp" />
@@ -211,7 +211,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectBuilder.h" />
     <ClInclude Include="GameObjectFacade.h" />
-    <ClInclude Include="GameObjectFactory.h" />
+    <ClInclude Include="GameObjectExtensionFactory.h" />
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Manifold.h" />
