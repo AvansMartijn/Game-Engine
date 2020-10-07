@@ -3,5 +3,11 @@
 
 class BehaviourAttack: public AbstractBehaviour
 {
+public:
+	using AbstractBehaviour::AbstractBehaviour;
+
+	void execute();
+
+	bool canAttack();
 };
 
