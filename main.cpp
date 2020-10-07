@@ -16,60 +16,7 @@
 #include <thread>
 #include "DefaultEntityAI.h"
 
-
-void Sleep(int ms) {
-	using namespace std::this_thread;     // sleep_for, sleep_until
-
-	sleep_for(std::chrono::milliseconds(ms));
-}
-
-GameObject player;
-GameObject tile1;
-vector<GameObject> createScene() {
-	vector<GameObject> scene = {};
-
-	player = GameObject();
-	tile1 = GameObject();
-
-	tile1.gridPositionX = 10;
-	tile1.gridPositionY = 0;
-
-	scene.push_back(tile1);
-	scene.push_back(player);
-
-	return scene;
-}
-
-GameObject enemy;
-vector<GameObject> scene;
-void testAi() {
-	DefaultEntityAI ai1 = DefaultEntityAI{};
-
-	//enemy = Enemy(0, 0, 100, false);
-	enemy = GameObject();
-	scene = createScene();
-
-	shared_ptr<GameObject> enemyPtr = make_shared<GameObject>(enemy);
-	shared_ptr<vector<GameObject>> scenePtr = make_shared<vector<GameObject>>(scene);
-
-	std::thread behaviourThread([&ai1, &enemyPtr, &scenePtr] {
-		ai1.createBehaviourTree(enemyPtr, scenePtr);
-	});
-
-	std::thread playerThread([] {
-		while (true) {
-			*&player.gridPositionX = player.gridPositionX + 1;
-			Sleep(1000);
-		}
-	});
-
-	behaviourThread.join();
-	playerThread.join();
-}
-
 int main(int argc, char* argv[]) {
-
-	testAi();
 	//OutputDebugString("Sandbox running");
     std::cout << "JOOD \n";
 	Window window("FluixEngine", 500, 500);
@@ -119,3 +66,54 @@ int main(int argc, char* argv[]) {
 
 //     return 0;
 // }
+
+
+// Test code to make sure the architecture works correctly.
+/*
+
+GameObject player;
+GameObject tile1;
+vector<GameObject> createScene() {
+	vector<GameObject> scene = {};
+
+	player = GameObject();
+	tile1 = GameObject();
+
+	tile1.gridPositionX = 10;
+	tile1.gridPositionY = 0;
+
+	scene.push_back(tile1);
+	scene.push_back(player);
+
+	return scene;
+}
+
+GameObject enemy;
+vector<GameObject> scene;
+void testAi() {
+	shared_ptr<DefaultEntityAI> ai1 = make_shared<DefaultEntityAI>(DefaultEntityAI{});
+
+	//enemy = Enemy(0, 0, 100, false);
+	enemy = GameObject();
+	scene = createScene();
+
+	shared_ptr<GameObject> enemyPtr = make_shared<GameObject>(enemy);
+	shared_ptr<vector<GameObject>> scenePtr = make_shared<vector<GameObject>>(scene);
+
+	thread behaviourThread([ai1, enemyPtr, scenePtr] {
+		ai1->createBehaviourTree(enemyPtr, scenePtr);
+	});
+
+	thread playerThread([] {
+		while (true) {
+			*&player.gridPositionX = player.gridPositionX + 1;
+			using namespace std::this_thread;     // sleep_for, sleep_until
+
+			sleep_for(std::chrono::milliseconds(1000));
+		}
+	});
+
+	behaviourThread.join();
+	playerThread.join();
+}
+*/
