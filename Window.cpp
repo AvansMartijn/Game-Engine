@@ -73,6 +73,8 @@ void Window::display() {
 }
 
 
+
+
 //void Window::pollEvents()
 //{
 //	// Hier kan je alle events pollen en toevoegen

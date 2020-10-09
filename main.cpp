@@ -64,40 +64,38 @@ int main(int argc, char* argv[]) {
      //cout << obj1->hasExtension(typeid(AttackExtension)) << '\n';
 
 	//gameloop
-	const float fps = 100;
-	const float dt = 1 / fps;
-	float accumulator = 0;
+	//const float fps = 100;
+	//const float dt = 1 / fps;
+	//float accumulator = 0;
 
 		// In units of seconds
-	float frameStart = GetCurrentTime();
+	//float frameStart = GetCurrentTime();
 
 		// main loop
 		//std::cout << "beforeLoop\n";
 		bool running = true;
 		while (running) {
 		//while (true) {
-			while (SDL_PollEvent(&event)) {
-				if (event.type == SDL_QUIT) {
-					running = false;
-				}
-			}
-			const float currentTime = GetCurrentTime();
+			
+			//const float currentTime = GetCurrentTime();
 			//std::cout << "curtime: " << currentTime << "\n";
 
 			// Store the time elapsed since the last frame began
-			accumulator += currentTime - frameStart;
+			//accumulator += currentTime - frameStart;
 
 			// Record the starting of this frame
-			frameStart = currentTime;
+			//frameStart = currentTime;
 
-			if (accumulator > 0.2f)
-				accumulator = 0.2f;
+		/*	if (accumulator > 0.2f)
+				accumulator = 0.2f;*/
 
 			/*while (accumulator > dt) {*/
 
 				//UpdatePhysics(gameObjectList);
 				for (auto& obj : gameObjectList)
 				{
+
+
 					//std::cout << "doExtensions\n";
 					if (obj->hasExtension(typeid(MoveExtension))) {
 						std::cout << "hasMoveExtension\n";
@@ -113,12 +111,12 @@ int main(int argc, char* argv[]) {
 						phys.setPosition(obj, newPos);
 					}
 				}
-				accumulator -= dt;
+				//accumulator -= dt;
 
 				//RenderGame();
 			//}
 
-			const float alpha = accumulator / dt;
+			//const float alpha = accumulator / dt;
 			//RenderGame(alpha);
 			window.clear();
 			//foreach game object;
@@ -130,11 +128,16 @@ int main(int argc, char* argv[]) {
 
 			window.display();
 			//}
+			while (SDL_PollEvent(&event)) {
+				if (event.type == SDL_QUIT) {
+					running = false;
+				}
+			}
 		}
 		window.cleanUp();
+		
 
 	//end physics test <--------------------------
-
 	return 0;
 
 }

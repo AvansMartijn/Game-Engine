@@ -10,3 +10,9 @@ void PhysicsFacade::updatePosition(shared_ptr<GameObject> gameObject)
 	gameObject->physicalBody.body.position += gameObject->physicalBody.body.velocity;
 
 }
+
+vector<shared_ptr<GameObject>> PhysicsFacade::getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList)
+{
+	Collision col;
+	return col.getCollisions(objectA, objectList);
+}
