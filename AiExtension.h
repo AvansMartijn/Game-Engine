@@ -6,6 +6,7 @@ class AiExtension : AbstractGameObjectExtension
 
 public:
 	void doAi();
+	AiExtension();
 
 
 

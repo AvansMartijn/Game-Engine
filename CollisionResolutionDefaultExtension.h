@@ -4,6 +4,11 @@ class CollisionResolutionDefaultExtension : public AbstractCollisionResolutionEx
 {
 	//physics do something(subject, subject)
 public:
-	static AbstractCollisionResolutionExtension* __stdcall create() { return new CollisionResolutionDefaultExtension(); }
+	CollisionResolutionDefaultExtension();
+
+	bool isDefault();
+	void resolveCollition(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB);
+
+	static AbstractGameObjectExtension* __stdcall create() { return new CollisionResolutionDefaultExtension(); }
 };
 

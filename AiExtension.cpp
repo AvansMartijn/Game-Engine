@@ -3,3 +3,8 @@ void AiExtension::doAi()
 {
 	cout << "AI NEEF";
 }
+
+AiExtension::AiExtension()
+{
+	type = "AiExtension";
+}

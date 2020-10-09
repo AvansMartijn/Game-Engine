@@ -22,7 +22,7 @@ AbstractGameObjectExtension* GameObjectExtensionFactory::createExtension(const s
     if (it != _m_FactoryMap.end())
     {
         auto obj = it->second();
-        obj->type = extensionName;
+        //obj->type = extensionName;
         return obj;
     }
 

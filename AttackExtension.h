@@ -12,6 +12,7 @@ private:
 
 
 public:
+	AttackExtension();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new AttackExtension(); }
 };
