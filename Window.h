@@ -1,7 +1,13 @@
 #pragma once
+
+#define byte win_byte_override
+
 #include "string"
 #include "SDL.h"
 #include "GameObject.h"
+#include "Shapes.h"
+
+#undef byte
 
 class Window {
 public:
@@ -14,7 +20,7 @@ public:
 	~Window();
 
 	// Dat inline hoeft niet maar is makkelijker om te lezen
-	inline bool isClosed() const { return _closed; };
+	//inline bool isClosed() const { return _closed; };
 
 	//void pollEvents();
 	//void clear() const;
@@ -27,8 +33,10 @@ private:
 	//int _width;
 	//int _height;
 
-	bool _closed;
+	//bool _closed;
 
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 };
+
+//extern Shapes g_ShapeDrawer;

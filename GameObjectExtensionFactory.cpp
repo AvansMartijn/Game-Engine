@@ -1,12 +1,14 @@
 #include "GameObjectExtensionFactory.h"
 #include "AiExtension.h"
 #include "AttackExtension.h"
+#include "MoveExtension.h"
 
 
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
     registerExtension("AiExtension", &AiExtension::create);
     registerExtension("AttackExtension", &AttackExtension::create);
+    registerExtension("MoveExtension", &MoveExtension::create);
 }
 
 void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate)

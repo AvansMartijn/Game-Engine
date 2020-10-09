@@ -5,6 +5,8 @@
 #include "SDL_image.h"
 #include <iostream>
 
+//Shapes g_ShapeDrawer;
+
 Window::Window(const char* title, int width, int height): _window(NULL), _renderer(NULL) {
 
 	_window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
@@ -16,7 +18,7 @@ Window::Window(const char* title, int width, int height): _window(NULL), _render
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 
 
-	_closed = !init();
+	//_closed = !init();
 }
 
 // Deconstructer
@@ -26,6 +28,11 @@ Window::~Window()
 	SDL_DestroyWindow(_window);
 	SDL_Quit();
 }
+
+//bool Window::init()
+//{
+//	return true;
+//}
 
 SDL_Texture* Window::loadTexture(const char* filePath) {
 	SDL_Texture* texture = NULL;
@@ -44,15 +51,21 @@ void Window::cleanUp() {
 }
 
 void Window::clear() {
+	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(_renderer);
 }
 
 void Window::render(const shared_ptr<GameObject>& gameObject) {
-	SDL_Rect rect;
-	rect.x = gameObject->physicalBody.body.position.x;
-	rect.y = gameObject->physicalBody.body.position.y;
-	rect.w = gameObject->physicalBody.shape.max.x - gameObject->physicalBody.shape.min.x;
-	rect.h = gameObject->physicalBody.shape.max.y - gameObject->physicalBody.shape.min.y;
+	Vec2 pos;
+	Vec2 size;
+	pos.x = gameObject->physicalBody.body.position.x;
+	pos.y = gameObject->physicalBody.body.position.y;
+	size.x = gameObject->physicalBody.shape.max.x - gameObject->physicalBody.shape.min.x;
+	size.y = gameObject->physicalBody.shape.max.y - gameObject->physicalBody.shape.min.y;
+	SDL_Color color = { 255, 0, 0, 255 };
+	g_ShapeDrawer.drawCube(_renderer, color, pos.x, pos.y, size.x, size.y);
+
+	//SDL_RenderCopy(_renderer, NULL, rect)
 }
 
 void Window::display() {

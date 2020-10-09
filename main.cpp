@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 
 	//OutputDebugString("Sandbox running");
     std::cout << "JOOD \n";
-	Window window("FluixEngine", 500, 500);
+	Window window("FluixEngine", 1080, 720);
 
 	SDL_Event event;
 
@@ -45,8 +45,8 @@ int main(int argc, char* argv[]) {
 	 obj1 = builder.getResult();
 
 	 Vec2 newPos;
-	 newPos.x = 100;
-	 newPos.y = 100;
+	 newPos.x = 0;
+	 newPos.y = 0;
 	 Vec2 newVel;
 	 newVel.x = 1;
 	 newVel.y = 1;
@@ -72,26 +72,51 @@ int main(int argc, char* argv[]) {
 	float frameStart = GetCurrentTime();
 
 		// main loop
-		while (!window.isClosed()) {
-
+		//std::cout << "beforeLoop\n";
+		bool running = true;
+		while (running) {
+		//while (true) {
+			while (SDL_PollEvent(&event)) {
+				if (event.type == SDL_QUIT) {
+					running = false;
+				}
+			}
 			const float currentTime = GetCurrentTime();
+			//std::cout << "curtime: " << currentTime << "\n";
 
-				// Store the time elapsed since the last frame began
+			// Store the time elapsed since the last frame began
 			accumulator += currentTime - frameStart;
 
-				// Record the starting of this frame
+			// Record the starting of this frame
 			frameStart = currentTime;
 
 			if (accumulator > 0.2f)
 				accumulator = 0.2f;
 
-			while (accumulator > dt) {
+			/*while (accumulator > dt) {*/
 
-				UpdatePhysics(gameObjectList);
+				//UpdatePhysics(gameObjectList);
+				for (auto& obj : gameObjectList)
+				{
+					//std::cout << "doExtensions\n";
+					if (obj->hasExtension(typeid(MoveExtension))) {
+						std::cout << "hasMoveExtension\n";
+						//auto onzin = obj->getExtension(typeid(MoveExtension));
+						shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
+						moveExtenstion->move();
+					}
+					if (obj->physicalBody.body.position.x >= 1000) {
+						PhysicsFacade phys;
+						Vec2 newPos;
+						newPos.x = 0;
+						newPos.y = 0;
+						phys.setPosition(obj, newPos);
+					}
+				}
 				accumulator -= dt;
 
 				//RenderGame();
-			}
+			//}
 
 			const float alpha = accumulator / dt;
 			//RenderGame(alpha);
@@ -99,11 +124,14 @@ int main(int argc, char* argv[]) {
 			//foreach game object;
 			for (auto& obj : gameObjectList)
 			{
+				std::cout << "x: " << obj->physicalBody.body.position.x << " y: " << obj->physicalBody.body.position.x << "\n" ;
 				window.render(obj);
 			}
 
 			window.display();
+			//}
 		}
+		window.cleanUp();
 
 	//end physics test <--------------------------
 
@@ -111,15 +139,15 @@ int main(int argc, char* argv[]) {
 
 }
 
-void UpdatePhysics(vector<shared_ptr<GameObject>> gameObjectList) {
-	for (auto& obj : gameObjectList)
-	{
-		if (obj->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
-			moveExtenstion->move();
-		}
-	}
-}
+//void UpdatePhysics(vector<shared_ptr<GameObject>> gameObjectList) {
+//	/*for (auto& obj : gameObjectList)
+//	{
+//		if (obj->hasExtension(typeid(MoveExtension))) {
+//			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
+//			moveExtenstion->move();
+//		}
+//	}*/
+//}
 
 
 // int main(int argc, char* argv[]) {

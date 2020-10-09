@@ -13,11 +13,11 @@ private:
 	vector<shared_ptr<AbstractGameObjectExtension> > _gameObjectExtensions;
 
 
-	float _width;
+	/*float _width;
 	float _height;
 
 	int _gridPositionX;
-	int _gridPositionY;
+	int _gridPositionY;*/
 
 public:
 	PhysicalBody physicalBody;

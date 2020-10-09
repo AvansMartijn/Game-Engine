@@ -4,7 +4,7 @@
 class HealthExtension : AbstractGameObjectExtension
 {
 private:
-	float _health;
+	//float _health;
 
 
 public:
