@@ -1,4 +1,6 @@
 #pragma once
-class main {
 
+class main {
+public:
+	void UpdatePhysics(vector<shared_ptr<GameObject>> gameObjectList);
 };

@@ -6,6 +6,7 @@
 #include "GameObjectExtensionFactory.h"
 #include "GameObjectBuilder.h"
 #include "AttackExtension.h"
+#include "MoveExtension.h"
 #include "AiExtension.h"
 #include "HealthExtension.h"
 #include "IEMath.h"
@@ -18,16 +19,109 @@ int main(int argc, char* argv[]) {
 
 	SDL_Event event;
 
-	while (!window.isClosed()) {
-		while (SDL_PollEvent(&event)) {
-			window.pollEvents();
+	//while (!window.isClosed()) {
+	//	while (SDL_PollEvent(&event)) {
+	//		window.pollEvents();
+	//		window.clear();
+	//	}
+	//}
+
+	//physics test <--------------------------
+
+	//create gameObjectList
+	vector<shared_ptr<GameObject>> gameObjectList;
+	GameObjectBuilder builder;
+
+	shared_ptr<GameObject> obj1;
+
+	//Build gameobject
+     builder.buildGameObject();
+
+     //Add extensions
+     vector<string> extensionNames{ "MoveExtension" };
+     builder.addExtension(extensionNames);
+
+     //Get the results
+	 obj1 = builder.getResult();
+
+	 Vec2 newPos;
+	 newPos.x = 100;
+	 newPos.y = 100;
+	 Vec2 newVel;
+	 newVel.x = 1;
+	 newVel.y = 1;
+
+	 //set widht and height (min, max in shape)
+	 obj1->physicalBody.shape.min = newPos;
+	 obj1->physicalBody.shape.max = newPos + 50;
+	 //set position and velocity
+	 obj1->physicalBody.body.position = newPos;
+	 obj1->physicalBody.body.velocity = newVel;
+
+	 gameObjectList.push_back(obj1);
+     //cout << obj1->hasExtension(typeid(HealthExtension)) << '\n';
+     //cout << obj1->hasExtension(typeid(AiExtension)) << '\n';
+     //cout << obj1->hasExtension(typeid(AttackExtension)) << '\n';
+
+	//gameloop
+	const float fps = 100;
+	const float dt = 1 / fps;
+	float accumulator = 0;
+
+		// In units of seconds
+	float frameStart = GetCurrentTime();
+
+		// main loop
+		while (!window.isClosed()) {
+
+			const float currentTime = GetCurrentTime();
+
+				// Store the time elapsed since the last frame began
+			accumulator += currentTime - frameStart;
+
+				// Record the starting of this frame
+			frameStart = currentTime;
+
+			if (accumulator > 0.2f)
+				accumulator = 0.2f;
+
+			while (accumulator > dt) {
+
+				UpdatePhysics(gameObjectList);
+				accumulator -= dt;
+
+				//RenderGame();
+			}
+
+			const float alpha = accumulator / dt;
+			//RenderGame(alpha);
 			window.clear();
+			//foreach game object;
+			for (auto& obj : gameObjectList)
+			{
+				window.render(obj);
+			}
+
+			window.display();
 		}
-	}
+
+	//end physics test <--------------------------
 
 	return 0;
 
 }
+
+void UpdatePhysics(vector<shared_ptr<GameObject>> gameObjectList) {
+	for (auto& obj : gameObjectList)
+	{
+		if (obj->hasExtension(typeid(MoveExtension))) {
+			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
+			moveExtenstion->move();
+		}
+	}
+}
+
+
 // int main(int argc, char* argv[]) {
 
    

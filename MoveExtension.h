@@ -1,11 +1,13 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
+#include "PhysicsFacade.h"
+
 
 class MoveExtension : AbstractGameObjectExtension
 {
 private:
-	float  _velocityX;
-	float  _velocityY;
+	//float  _velocityX;
+	//float  _velocityY;
 
 	//a movable platform on rails
 	float _startX;
@@ -15,5 +17,6 @@ private:
 
 public:
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
+	void move();
 };
 

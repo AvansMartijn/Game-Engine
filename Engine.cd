@@ -8,48 +8,37 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AbstractGameObjectExtension">
-    <Position X="16" Y="5.75" Width="1.5" />
+    <Position X="16" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACABAAAAAAAgAAAAAAA=</HashCode>
       <FileName>AbstractGameObjectExtension.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_subject" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="AiExtension" Collapsed="true">
     <Position X="14.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>AiExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AttackExtension" Collapsed="true">
     <Position X="14.75" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAACAAAEAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>AttackExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CanWieldExtension" Collapsed="true">
     <Position X="17.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAiAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>CanWieldExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CheckPhysicsExtension" Collapsed="true">
     <Position X="14.75" Y="7.25" Width="1.5" />
-    <InheritanceLine Type="AbstractGameObjectExtension" ManuallyRouted="true">
-      <Path>
-        <Point X="16.75" Y="6.618" />
-        <Point X="16.75" Y="7.115" />
-        <Point X="15.5" Y="7.115" />
-        <Point X="15.5" Y="7.25" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAA=</HashCode>
       <FileName>CheckPhysicsExtension.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -59,36 +48,25 @@
   <Class Name="GameObject">
     <Position X="19.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAADBAAAACAAAAAAAAAgAAAABAAAACAAAAgAQIAAAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameObjectBuilder">
     <Position X="20" Y="3" Width="1.5" />
-    <AssociationLine Name="_gameObjectFactory" Type="GameObjectFactory" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="20.75" Y="3.868" />
-        <Point X="20.75" Y="4.25" />
-        <Point X="17.75" Y="4.25" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAABCAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectBuilder.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_gameObjectFactory" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectFacade">
     <Position X="17.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectFacade.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_gameObjectBuilder" />
-      <Field Name="_gameObjectFactory" />
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectFactory">
@@ -104,43 +82,35 @@
   <Class Name="HealthExtension" Collapsed="true">
     <Position X="17.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>HealthExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MoveExtension" Collapsed="true">
     <Position X="17.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAACAAAAAAAAAAAAABAAAAADAAAAAAAA=</HashCode>
       <FileName>MoveExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StateExtension" Collapsed="true">
     <Position X="14.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>StateExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SwitchExtension" Collapsed="true">
     <Position X="17.25" Y="7.25" Width="1.5" />
-    <InheritanceLine Type="AbstractGameObjectExtension" ManuallyRouted="true">
-      <Path>
-        <Point X="16.75" Y="6.618" />
-        <Point X="16.75" Y="7.131" />
-        <Point X="18" Y="7.131" />
-        <Point X="18" Y="7.25" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>SwitchExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VisionExtension" Collapsed="true">
     <Position X="17.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>CAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
       <FileName>VisionExtension.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -186,7 +156,7 @@
   <Class Name="Physics" Collapsed="true">
     <Position X="11" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gEAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAACCAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Physics.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -222,7 +192,7 @@
   <Class Name="PhysicsFacade">
     <Position X="11" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAACAAAACAAAAAAAA=</HashCode>
       <FileName>PhysicsFacade.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
