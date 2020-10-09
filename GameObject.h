@@ -16,11 +16,11 @@ private:
 	float _width;
 	float _height;
 
-	int _gridPositionX;
-	int _gridPositionY;
-
 public:
 	PhysicalBody physicalBody;
+	int gridPositionX;
+	int gridPositionY;
+
 	GameObject();
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 

@@ -200,6 +200,9 @@
     <ClInclude Include="IEMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DefaultEntityAI.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -318,6 +321,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultEntityAI.cpp">
+      <Filter>Source Files\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

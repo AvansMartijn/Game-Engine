@@ -4,14 +4,19 @@
 #include "SDL.h"
 #include "Window.h"
 #include "GameObjectExtensionFactory.h"
+#include "AbstractEntityAi.h"
+#include "AbstractBehaviour.h"
 #include "GameObjectBuilder.h"
 #include "AttackExtension.h"
 #include "AiExtension.h"
 #include "HealthExtension.h"
 #include "IEMath.h"
 
-int main(int argc, char* argv[]) {
+#include <list>
+#include <thread>
+#include "DefaultEntityAI.h"
 
+int main(int argc, char* argv[]) {
 	//OutputDebugString("Sandbox running");
     std::cout << "JOOD \n";
 	Window window("FluixEngine", 500, 500);
@@ -28,6 +33,7 @@ int main(int argc, char* argv[]) {
 	return 0;
 
 }
+
 // int main(int argc, char* argv[]) {
 
    
@@ -60,3 +66,54 @@ int main(int argc, char* argv[]) {
 
 //     return 0;
 // }
+
+
+// Test code to make sure the architecture works correctly.
+/*
+
+GameObject player;
+GameObject tile1;
+vector<GameObject> createScene() {
+	vector<GameObject> scene = {};
+
+	player = GameObject();
+	tile1 = GameObject();
+
+	tile1.gridPositionX = 10;
+	tile1.gridPositionY = 0;
+
+	scene.push_back(tile1);
+	scene.push_back(player);
+
+	return scene;
+}
+
+GameObject enemy;
+vector<GameObject> scene;
+void testAi() {
+	shared_ptr<DefaultEntityAI> ai1 = make_shared<DefaultEntityAI>(DefaultEntityAI{});
+
+	//enemy = Enemy(0, 0, 100, false);
+	enemy = GameObject();
+	scene = createScene();
+
+	shared_ptr<GameObject> enemyPtr = make_shared<GameObject>(enemy);
+	shared_ptr<vector<GameObject>> scenePtr = make_shared<vector<GameObject>>(scene);
+
+	thread behaviourThread([ai1, enemyPtr, scenePtr] {
+		ai1->createBehaviourTree(enemyPtr, scenePtr);
+	});
+
+	thread playerThread([] {
+		while (true) {
+			*&player.gridPositionX = player.gridPositionX + 1;
+			using namespace std::this_thread;     // sleep_for, sleep_until
+
+			sleep_for(std::chrono::milliseconds(1000));
+		}
+	});
+
+	behaviourThread.join();
+	playerThread.join();
+}
+*/
