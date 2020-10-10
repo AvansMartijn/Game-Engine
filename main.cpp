@@ -42,8 +42,8 @@ int main(int argc, char* argv[]) {
 	 newPos.x = 0;
 	 newPos.y = 0;
 	 Vec2 newVel;
-	 newVel.x = 1;
-	 newVel.y = 1;
+	 newVel.x = 0;
+	 newVel.y = 0;
 
 	 //set widht and height (min, max in shape)
 	 obj1->physicalBody.shape.min = newPos;

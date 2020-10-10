@@ -15,6 +15,11 @@ void PhysicsFacade::resolveCollision(shared_ptr<GameObject> objectA, shared_ptr<
 	_collision.resolveCollision(objectA, objectB);
 }
 
+void PhysicsFacade::addGravityForce(shared_ptr<GameObject> gameObject)
+{
+	_physics.addGravityForce(gameObject);
+}
+
 vector<shared_ptr<GameObject>> PhysicsFacade::getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList)
 {
 	return _collision.getCollisions(objectA, objectList);
