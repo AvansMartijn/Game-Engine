@@ -1,7 +1,7 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
-class AttackExtension : AbstractGameObjectExtension
+class AttackExtension : public AbstractGameObjectExtension
 {
 private:
 	/*int _damage;

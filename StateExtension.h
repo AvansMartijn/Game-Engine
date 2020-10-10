@@ -1,7 +1,7 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
-class StateExtension : AbstractGameObjectExtension
+class StateExtension : public AbstractGameObjectExtension
 {
 private:
 	bool _state;

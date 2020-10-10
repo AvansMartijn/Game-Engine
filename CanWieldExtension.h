@@ -3,7 +3,7 @@
 #include "AbstractManageableItem.h"
 #include <vector>
 
-class CanWieldExtension : AbstractGameObjectExtension
+class CanWieldExtension : public AbstractGameObjectExtension
 {
 private:
 	std::vector<AbstractManageableItem> items;

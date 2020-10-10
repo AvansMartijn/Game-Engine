@@ -8,7 +8,6 @@ GameObject::GameObject() {
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
 {
 	shared_ptr<GameObject> temp(this);
-
 	_gameObjectExtensions.push_back(extension);
 	extension->registerSubject(temp);
 }
@@ -20,9 +19,7 @@ bool GameObject::hasExtension(const std::type_info& type)
 	{
 		string givenName = type.name();
 		givenName.erase(0, 6);
-
 		string currentName = extension->type;
-
 		if (currentName.compare(givenName) == 0)
 			return true;
 	}
@@ -37,9 +34,7 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 	{
 		string givenName = type.name();
 		givenName.erase(0, 6);
-
 		string currentName = extension->type;
-
 		if (currentName.compare(givenName) == 0)
 			return extension;
 	}

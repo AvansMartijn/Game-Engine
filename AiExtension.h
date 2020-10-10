@@ -1,6 +1,6 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
-class AiExtension : AbstractGameObjectExtension
+class AiExtension : public AbstractGameObjectExtension
 {
 
 

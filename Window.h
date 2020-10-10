@@ -15,19 +15,9 @@ public:
 	SDL_Texture* loadTexture(const char* p_filePath);
 	void cleanUp();
 	void clear();
-	void render(const shared_ptr<GameObject>& gameObject);
+	void render(shared_ptr<GameObject> gameObject);
 	void display();
 	~Window();
-
-	// Dat inline hoeft niet maar is makkelijker om te lezen
-	//inline bool isClosed() const { return _closed; };
-
-	//void pollEvents();
-	//void clear() const;
-
-private:
-	bool init();
-
 private:
 	//std::string _title;
 	//int _width;

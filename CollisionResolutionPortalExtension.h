@@ -2,7 +2,7 @@
 #include "AbstractCollisionResolutionExtension.h"
 #include "PhysicsFacade.h"
 
-class CollisionResolutionPortalExtension : AbstractCollisionResolutionExtension
+class CollisionResolutionPortalExtension : public AbstractCollisionResolutionExtension
 {
 public:
 
