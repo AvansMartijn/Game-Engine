@@ -14,6 +14,9 @@ std::vector<shared_ptr<GameObject>> Collision::getCollisions(shared_ptr<GameObje
 
 bool Collision::isColliding(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB)
 {
+	if (objectA == objectB) {
+		return false;
+	}
 	Shape shapeA = objectA->physicalBody.shape;
 	Shape shapeB = objectB->physicalBody.shape;
 	if (shapeA.max.x < shapeB.min.x || shapeA.min.x > shapeB.max.x)

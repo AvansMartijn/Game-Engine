@@ -9,12 +9,13 @@
 #include "MoveExtension.h"
 #include "AiExtension.h"
 #include "HealthExtension.h"
+#include "CheckPhysicsExtension.h"
 #include "IEMath.h"
 
 int main(int argc, char* argv[]) {
 
 	//OutputDebugString("Sandbox running");
-    std::cout << "JOOD \n";
+    std::cout << "Started \n";
 	Window window("FluixEngine", 1080, 720);
 
 	SDL_Event event;
@@ -38,7 +39,7 @@ int main(int argc, char* argv[]) {
      builder.buildGameObject();
 
      //Add extensions
-     vector<string> extensionNames{ "MoveExtension" };
+     vector<string> extensionNames{ "MoveExtension", "CollisionResolutionDefaultExtension", "CheckPhysicsExtension" };
      builder.addExtension(extensionNames);
 
      //Get the results
@@ -46,7 +47,7 @@ int main(int argc, char* argv[]) {
 
 	 Vec2 newPos;
 	 newPos.x = 0;
-	 newPos.y = 0;
+	 newPos.y = 645;
 	 Vec2 newVel;
 	 newVel.x = 1;
 	 newVel.y = 1;
@@ -59,6 +60,34 @@ int main(int argc, char* argv[]) {
 	 obj1->physicalBody.body.velocity = newVel;
 
 	 gameObjectList.push_back(obj1);
+
+	 shared_ptr<GameObject> obj2;
+
+	//Build gameobject
+     builder.buildGameObject();
+
+     //Add extensions
+     extensionNames = { "CollisionResolutionDefaultExtension" };
+     builder.addExtension(extensionNames);
+
+     //Get the results
+	 obj2 = builder.getResult();
+
+	 newPos.x = 0;
+	 newPos.y = 700;
+	 newVel.x = 0;
+	 newVel.y = 0;
+
+	 //set widht and height (min, max in shape)
+	 obj2->physicalBody.shape.min = newPos;
+	 obj2->physicalBody.shape.max.x = 1080;
+	 obj2->physicalBody.shape.max.y = 720;
+	 //set position and velocity
+	 obj2->physicalBody.body.position = newPos;
+	 obj2->physicalBody.body.velocity = newVel;
+
+	 gameObjectList.push_back(obj2);
+
      //cout << obj1->hasExtension(typeid(HealthExtension)) << '\n';
      //cout << obj1->hasExtension(typeid(AiExtension)) << '\n';
      //cout << obj1->hasExtension(typeid(AttackExtension)) << '\n';
@@ -98,18 +127,24 @@ int main(int argc, char* argv[]) {
 
 					//std::cout << "doExtensions\n";
 					if (obj->hasExtension(typeid(MoveExtension))) {
-						std::cout << "hasMoveExtension\n";
+						//std::cout << "hasMoveExtension\n";
 						//auto onzin = obj->getExtension(typeid(MoveExtension));
 						shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
 						moveExtenstion->move();
 					}
-					if (obj->physicalBody.body.position.x >= 1000) {
+					if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
+						//std::cout << "hasCheckPhysicsExtension\n";
+						shared_ptr<CheckPhysicsExtension> checkPhysicsExtension = dynamic_pointer_cast<CheckPhysicsExtension>(obj->getExtension(typeid(CheckPhysicsExtension)));
+						checkPhysicsExtension->doPhysics(gameObjectList);
+
+					}
+					/*if (obj->physicalBody.body.position.x >= 1000) {
 						PhysicsFacade phys;
 						Vec2 newPos;
 						newPos.x = 0;
 						newPos.y = 0;
 						phys.setPosition(obj, newPos);
-					}
+					}*/
 				}
 				//accumulator -= dt;
 
@@ -122,7 +157,7 @@ int main(int argc, char* argv[]) {
 			//foreach game object;
 			for (auto& obj : gameObjectList)
 			{
-				std::cout << "x: " << obj->physicalBody.body.position.x << " y: " << obj->physicalBody.body.position.x << "\n" ;
+				//std::cout << "x: " << obj->physicalBody.body.position.x << " y: " << obj->physicalBody.body.position.x << "\n" ;
 				window.render(obj);
 			}
 

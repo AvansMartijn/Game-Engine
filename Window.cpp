@@ -62,7 +62,7 @@ void Window::render(const shared_ptr<GameObject>& gameObject) {
 	pos.y = gameObject->physicalBody.body.position.y;
 	size.x = gameObject->physicalBody.shape.max.x - gameObject->physicalBody.shape.min.x;
 	size.y = gameObject->physicalBody.shape.max.y - gameObject->physicalBody.shape.min.y;
-	SDL_Color color = { 255, 0, 0, 255 };
+	SDL_Color color = { 255, 0, 0, 100 };
 	g_ShapeDrawer.drawCube(_renderer, color, pos.x, pos.y, size.x, size.y);
 
 	//SDL_RenderCopy(_renderer, NULL, rect)

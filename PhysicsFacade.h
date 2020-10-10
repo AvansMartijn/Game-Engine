@@ -8,6 +8,7 @@ private:
 public:
 	void setPosition(shared_ptr<GameObject> gameObject, Vec2 position);
 	void updatePosition(shared_ptr<GameObject> gameObject);
+	void resolveCollision(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB);
 	vector<shared_ptr<GameObject>> getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList);
 };
 
