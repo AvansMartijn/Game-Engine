@@ -8,7 +8,7 @@ public:
 	CollisionResolutionDefaultExtension();
 
 	bool isDefault();
-	void resolveCollision(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB);
+	void resolveCollision(shared_ptr<GameObject> otherObject);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new CollisionResolutionDefaultExtension(); }
 };

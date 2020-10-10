@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
 
 	 Vec2 newPos;
 	 newPos.x = 0;
-	 newPos.y = 645;
+	 newPos.y = 0;
 	 Vec2 newVel;
 	 newVel.x = 1;
 	 newVel.y = 1;
@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
      builder.buildGameObject();
 
      //Add extensions
-     extensionNames = { "CollisionResolutionDefaultExtension" };
+     extensionNames = { "CollisionResolutionPortalExtension" };
      builder.addExtension(extensionNames);
 
      //Get the results
@@ -103,7 +103,21 @@ int main(int argc, char* argv[]) {
 		// main loop
 		//std::cout << "beforeLoop\n";
 		bool running = true;
+		unsigned int a = SDL_GetTicks();
+		unsigned int b = SDL_GetTicks();
+		double delta = 0;
 		while (running) {
+			a = SDL_GetTicks();
+			delta = a - b;
+			if (delta > 1000 / 60.0)
+			{
+				std::cout << "fps: " << 1000 / delta << std::endl;
+
+				b = a;
+
+				/*Update();
+				Render();*/
+			
 		//while (true) {
 			
 			//const float currentTime = GetCurrentTime();
@@ -167,6 +181,7 @@ int main(int argc, char* argv[]) {
 				if (event.type == SDL_QUIT) {
 					running = false;
 				}
+			}
 			}
 		}
 		window.cleanUp();
