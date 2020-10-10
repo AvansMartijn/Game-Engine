@@ -6,6 +6,7 @@
 #include <iostream>
 
 //Shapes g_ShapeDrawer;
+SDL_Texture* Krool;
 
 Window::Window(const char* title, int width, int height): _window(NULL), _renderer(NULL) {
 
@@ -17,6 +18,7 @@ Window::Window(const char* title, int width, int height): _window(NULL), _render
 
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 
+	Krool = loadTexture("res/gfx/KINGKROOL.png");
 
 	//_closed = !init();
 }
@@ -56,16 +58,22 @@ void Window::clear() {
 }
 
 void Window::render(const shared_ptr<GameObject>& gameObject) {
-	Vec2 pos;
+	/*Vec2 pos;
 	Vec2 size;
 	pos.x = gameObject->physicalBody.body.position.x;
 	pos.y = gameObject->physicalBody.body.position.y;
 	size.x = gameObject->physicalBody.shape.getWidth();
 	size.y = gameObject->physicalBody.shape.getHeight();
-	SDL_Color color = { 255, 0, 0, 100 };
-	g_ShapeDrawer.drawCube(_renderer, color, pos.x, pos.y, size.x, size.y);
+	SDL_Color color = { 255, 0, 0, 255 };*/
+	//g_ShapeDrawer.drawCube(_renderer, color, pos.x, pos.y, size.x, size.y);
 
-	//SDL_RenderCopy(_renderer, NULL, rect)
+	SDL_Rect dst;
+	dst.x = gameObject->physicalBody.body.position.x;
+	dst.y = gameObject->physicalBody.body.position.y;
+	dst.w = gameObject->physicalBody.shape.getWidth();
+	dst.h = gameObject->physicalBody.shape.getHeight();
+
+	SDL_RenderCopy(_renderer, Krool, NULL, &dst);
 }
 
 void Window::display() {
