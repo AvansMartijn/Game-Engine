@@ -203,6 +203,9 @@
     <ClInclude Include="SoundFacade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -324,6 +327,9 @@
     </ClCompile>
     <ClCompile Include="SoundFacade.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
