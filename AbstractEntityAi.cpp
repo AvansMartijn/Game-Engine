@@ -1,1 +1,2 @@
-#include "AbstractEntityAi.h"
+#include "AbstractEntityAI.h"
+AbstractEntityAI::AbstractEntityAI() {}

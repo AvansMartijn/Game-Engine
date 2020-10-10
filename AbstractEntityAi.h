@@ -5,5 +5,6 @@
 class AbstractEntityAI
 {
 public:
-	virtual void createBehaviourTree(GameObject* self, std::list<GameObject>* scene) = 0;
+	AbstractEntityAI();
+	virtual void createBehaviourTree(shared_ptr<GameObject> self, shared_ptr<vector<GameObject>> scene) = 0;
 };

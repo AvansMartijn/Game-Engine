@@ -181,6 +181,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
+    <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="FluixEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
+    <ClInclude Include="DefaultEntityAI.h" />
     <ClInclude Include="FluixEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectBuilder.h" />

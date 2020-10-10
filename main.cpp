@@ -1,9 +1,11 @@
-﻿#include "main.h"
+#include "main.h"
 #include <iostream>
 #include "Windows.h"
 #include "SDL.h"
 #include "Window.h"
 #include "GameObjectExtensionFactory.h"
+#include "AbstractEntityAi.h"
+#include "AbstractBehaviour.h"
 #include "GameObjectBuilder.h"
 #include "AttackExtension.h"
 #include "MoveExtension.h"
@@ -12,21 +14,26 @@
 #include "CheckPhysicsExtension.h"
 #include "IEMath.h"
 
-int main(int argc, char* argv[]) {
+#include <list>
+#include <thread>
+#include "DefaultEntityAI.h"
 
-    std::cout << "Started \n";
+int main(int argc, char* argv[]) {
+  std::cout << "Started \n";
 	Window window("FluixEngine", 1080, 720);
+
 
 	SDL_Event event;
 	vector<shared_ptr<GameObject>> gameObjectList;
 	GameObjectBuilder builder;
 
 	shared_ptr<GameObject> obj1;
-    builder.buildGameObject();
-    vector<string> extensionNames{ "MoveExtension", "CollisionResolutionDefaultExtension", "CheckPhysicsExtension" };
-    builder.addExtension(extensionNames);
+  builder.buildGameObject();
+  vector<string> extensionNames{ "MoveExtension", "CollisionResolutionDefaultExtension", "CheckPhysicsExtension" };
+  builder.addExtension(extensionNames);
 
 	obj1 = builder.getResult();
+
 
 	Vec2 newPos;
 	newPos.x = 0;
@@ -43,9 +50,9 @@ int main(int argc, char* argv[]) {
 	gameObjectList.push_back(obj1);
 
 	shared_ptr<GameObject> obj2;
-    builder.buildGameObject();
-    extensionNames = { "CollisionResolutionPortalExtension" };
-    builder.addExtension(extensionNames);
+  builder.buildGameObject();
+  extensionNames = { "CollisionResolutionPortalExtension" };
+  builder.addExtension(extensionNames);
 
 	obj2 = builder.getResult();
 
