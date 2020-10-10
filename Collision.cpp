@@ -7,13 +7,15 @@ std::vector<shared_ptr<GameObject>> Collision::getCollisions(shared_ptr<GameObje
 	for (int i = 0; i < objectList.size(); i++) 
 		if (isColliding(objectA, objectList[i])) 
 			collisions.push_back(objectList[i]);
-		
 	
 	return collisions;
 }
 
 bool Collision::isColliding(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB)
 {
+	if (objectA == objectB) {
+		return false;
+	}
 	Shape shapeA = objectA->physicalBody.shape;
 	Shape shapeB = objectB->physicalBody.shape;
 	if (shapeA.max.x < shapeB.min.x || shapeA.min.x > shapeB.max.x)
@@ -23,7 +25,6 @@ bool Collision::isColliding(shared_ptr<GameObject> objectA, shared_ptr<GameObjec
 	if (shapeA.max.y < shapeB.min.y || shapeA.min.y > shapeB.max.y)
 		return false;
 	
-
 	// No separating axis found, therefor there is at least one overlapping axis
 	return true;
 }

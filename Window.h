@@ -1,28 +1,25 @@
 #pragma once
+
+#define byte win_byte_override
+
 #include "string"
 #include "SDL.h"
+#include "GameObject.h"
+#include "Shapes.h"
+
+#undef byte
 
 class Window {
 public:
-	Window(const std::string& title, int width, int height);
+	Window(const char* title, int width, int height);
+	SDL_Texture* loadTexture(const char* p_filePath);
+	void cleanUp();
+	void clear();
+	void render(shared_ptr<GameObject> gameObject);
+	void display();
 	~Window();
-
-	// Dat inline hoeft niet maar is makkelijker om te lezen
-	inline bool isClosed() const { return _closed; };
-
-	void pollEvents();
-	void clear() const;
-
 private:
-	bool init();
-
-private:
-	std::string _title;
-	int _width;
-	int _height;
-
-	bool _closed;
-
-	SDL_Window* _window = nullptr;
-	SDL_Renderer* _renderer = nullptr;
+	SDL_Window* _window;
+	SDL_Renderer* _renderer;
 };
+

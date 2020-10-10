@@ -1,4 +1,4 @@
-﻿#include "main.h"
+#include "main.h"
 #include <iostream>
 #include "Windows.h"
 #include "SDL.h"
@@ -8,8 +8,10 @@
 #include "AbstractBehaviour.h"
 #include "GameObjectBuilder.h"
 #include "AttackExtension.h"
+#include "MoveExtension.h"
 #include "AiExtension.h"
 #include "HealthExtension.h"
+#include "CheckPhysicsExtension.h"
 #include "IEMath.h"
 
 #include <list>
@@ -17,103 +19,96 @@
 #include "DefaultEntityAI.h"
 
 int main(int argc, char* argv[]) {
-	//OutputDebugString("Sandbox running");
-    std::cout << "JOOD \n";
-	Window window("FluixEngine", 500, 500);
+  std::cout << "Started \n";
+	Window window("FluixEngine", 1080, 720);
+
 
 	SDL_Event event;
+	vector<shared_ptr<GameObject>> gameObjectList;
+	GameObjectBuilder builder;
 
-	while (!window.isClosed()) {
-		while (SDL_PollEvent(&event)) {
-			window.pollEvents();
+	shared_ptr<GameObject> obj1;
+  builder.buildGameObject();
+  vector<string> extensionNames{ "MoveExtension", "CollisionResolutionDefaultExtension", "CheckPhysicsExtension" };
+  builder.addExtension(extensionNames);
+
+	obj1 = builder.getResult();
+
+
+	Vec2 newPos;
+	newPos.x = 0;
+	newPos.y = 0;
+	Vec2 newVel;
+	newVel.x = 0;
+	newVel.y = 0;
+
+	obj1->physicalBody.shape.min = newPos;
+	obj1->physicalBody.shape.max = newPos + 50;
+	obj1->physicalBody.body.position = newPos;
+	obj1->physicalBody.body.velocity = newVel;
+
+	gameObjectList.push_back(obj1);
+
+	shared_ptr<GameObject> obj2;
+  builder.buildGameObject();
+  extensionNames = { "CollisionResolutionPortalExtension" };
+  builder.addExtension(extensionNames);
+
+	obj2 = builder.getResult();
+
+	newPos.x = 0;
+	newPos.y = 700;
+	newVel.x = 0;
+	newVel.y = 0;
+
+	obj2->physicalBody.shape.min = newPos;
+	obj2->physicalBody.shape.max.x = 1080;
+	obj2->physicalBody.shape.max.y = 720;
+	obj2->physicalBody.body.position = newPos;
+	obj2->physicalBody.body.velocity = newVel;
+
+	gameObjectList.push_back(obj2);
+
+	bool running = true;
+	unsigned int a = SDL_GetTicks();
+	unsigned int b = SDL_GetTicks();
+	double delta = 0;
+	while (running) {
+		a = SDL_GetTicks();
+		delta = a - b;
+		if (delta > 1000 / 60.0)
+		{
+			std::cout << "fps: " << 1000 / delta << std::endl;
+			b = a;
+
+			for (auto& obj : gameObjectList)
+			{
+				if (obj->hasExtension(typeid(MoveExtension))) {
+					shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
+					moveExtenstion->move();
+				}
+				if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
+					shared_ptr<CheckPhysicsExtension> checkPhysicsExtension = dynamic_pointer_cast<CheckPhysicsExtension>(obj->getExtension(typeid(CheckPhysicsExtension)));
+					checkPhysicsExtension->doPhysics(gameObjectList);
+				}
+			}
+				
 			window.clear();
+
+			for (auto& obj : gameObjectList)
+			{
+				window.render(obj);
+			}
+
+			window.display();
+			while (SDL_PollEvent(&event)) {
+				if (event.type == SDL_QUIT) {
+					running = false;
+				}
+			}
 		}
 	}
-
+	window.cleanUp();
 	return 0;
-
 }
 
-// int main(int argc, char* argv[]) {
-
-   
-//     shared_ptr<GameObject> Gameobj;
-//     GameObjectBuilder builder;
-
-//     //Build gameobject
-//     builder.buildGameObject();
-
-//     //Add extensions
-//     vector<string> extensionNames{ "AiExtension","AttackExtension" };
-//     builder.addExtension(extensionNames);
-
-//     //Get the results
-//     Gameobj = builder.getResult();
-//     cout << Gameobj->hasExtension(typeid(HealthExtension)) << '\n';
-//     cout << Gameobj->hasExtension(typeid(AiExtension)) << '\n';
-//     cout << Gameobj->hasExtension(typeid(AttackExtension)) << '\n';
-
-
-
-//     if (Gameobj->hasExtension(typeid(AiExtension)))
-//     {
-//         shared_ptr<AiExtension> test = dynamic_pointer_cast<AiExtension>(Gameobj->GetExtension(typeid(AiExtension)));
-//         test->DoAi();
-//     }
-
-//     Gameobj.reset();
-//     std::system("pause");
-
-//     return 0;
-// }
-
-
-// Test code to make sure the architecture works correctly.
-/*
-
-GameObject player;
-GameObject tile1;
-vector<GameObject> createScene() {
-	vector<GameObject> scene = {};
-
-	player = GameObject();
-	tile1 = GameObject();
-
-	tile1.gridPositionX = 10;
-	tile1.gridPositionY = 0;
-
-	scene.push_back(tile1);
-	scene.push_back(player);
-
-	return scene;
-}
-
-GameObject enemy;
-vector<GameObject> scene;
-void testAi() {
-	shared_ptr<DefaultEntityAI> ai1 = make_shared<DefaultEntityAI>(DefaultEntityAI{});
-
-	//enemy = Enemy(0, 0, 100, false);
-	enemy = GameObject();
-	scene = createScene();
-
-	shared_ptr<GameObject> enemyPtr = make_shared<GameObject>(enemy);
-	shared_ptr<vector<GameObject>> scenePtr = make_shared<vector<GameObject>>(scene);
-
-	thread behaviourThread([ai1, enemyPtr, scenePtr] {
-		ai1->createBehaviourTree(enemyPtr, scenePtr);
-	});
-
-	thread playerThread([] {
-		while (true) {
-			*&player.gridPositionX = player.gridPositionX + 1;
-			using namespace std::this_thread;     // sleep_for, sleep_until
-
-			sleep_for(std::chrono::milliseconds(1000));
-		}
-	});
-
-	behaviourThread.join();
-	playerThread.join();
-}
-*/

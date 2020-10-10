@@ -37,7 +37,11 @@ struct Vec2
         };
     };
 
-    Vec2() {}
+    Vec2() {
+        x = 0;
+        y = 0;
+        
+    }
     Vec2(real x_, real y_)
         : x(x_)
         , y(y_)

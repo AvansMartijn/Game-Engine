@@ -13,7 +13,6 @@ struct Body
 
 	Vec2 force;
 
-	// Set by shape
 	real I;  // moment of inertia
 	real iI; // inverse inertia
 	real m;  // mass

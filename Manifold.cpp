@@ -56,6 +56,7 @@ bool Manifold::AABBvsAABB()
 		float bExtent = (_bodyB.shape.max.y - _bodyB.shape.min.y) / 2;
 
 		//calculate overlap on x axis
+		auto test = abs(n.y);
 		float yOverlap = aExtent + bExtent - abs(n.y);
 		//if collision on y axis (overlap)
 		if (yOverlap > 0) {
