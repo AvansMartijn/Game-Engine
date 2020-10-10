@@ -83,14 +83,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
-    <LibraryPath>.\Lib\SDL2\lib\x64;.\Lib\SDL2_ttf\lib\x64;.\Lib\SDL2_image\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;.\Lib\SDL2_mixer\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Lib\SDL2\lib\x64;.\Lib\SDL2_ttf\lib\x64;.\Lib\SDL2_image\lib\x64;.\Lib\SDL2_mixer\lib\x64;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Configuration)\Build\\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
-    <LibraryPath>.\Lib\SDL2\lib\x64;.\Lib\SDL2_ttf\lib\x64;.\Lib\SDL2_image\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\Lib\SDL2\include;.\Lib\SDL2_ttf\include;.\Lib\SDL2_mixer\include;.\Lib\SDL2_image\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Lib\SDL2\lib\x64;.\Lib\SDL2_ttf\lib\x64;.\Lib\SDL2_image\lib\x64;.\Lib\SDL2_mixer\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -137,7 +137,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -198,9 +198,10 @@
     <ClCompile Include="PhysicsFacade.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="SoundExtension.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
-    <ClCompile Include="ThirdPartyFacade.cpp" />
+    <ClCompile Include="SoundFacade.cpp" />
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -242,9 +243,10 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="SoundExtension.h" />
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
-    <ClInclude Include="ThirdPartyFacade.h" />
+    <ClInclude Include="SoundFacade.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
