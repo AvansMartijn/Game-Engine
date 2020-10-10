@@ -8,7 +8,6 @@ private:
 
 public:
 	void changeState();
-
 	static AbstractGameObjectExtension* __stdcall create() { return new StateExtension(); }
 };
 

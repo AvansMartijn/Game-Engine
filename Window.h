@@ -19,14 +19,7 @@ public:
 	void display();
 	~Window();
 private:
-	//std::string _title;
-	//int _width;
-	//int _height;
-
-	//bool _closed;
-
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 };
 
-//extern Shapes g_ShapeDrawer;

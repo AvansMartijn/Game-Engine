@@ -3,7 +3,8 @@
 #include "PhysicsFacade.h"
 class CollisionResolutionDefaultExtension : public AbstractCollisionResolutionExtension
 {
-	//physics do something(subject, subject)
+private:
+	PhysicsFacade _physicsFacade;
 public:
 	CollisionResolutionDefaultExtension();
 

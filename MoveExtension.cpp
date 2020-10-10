@@ -6,6 +6,5 @@ MoveExtension::MoveExtension()
 }
 
 void MoveExtension::move() {
-	PhysicsFacade physics;
-	physics.updatePosition(_subject);
+	_physicsFacade.updatePosition(_subject);
 }

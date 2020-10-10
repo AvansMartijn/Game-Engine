@@ -10,6 +10,5 @@ private:
 	GameObjectFacade _gameObjectFacade;
 	PhysicsFacade _physicsFacade;
 public:
-	//alle onzin van first party
 };
 

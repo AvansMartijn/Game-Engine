@@ -4,6 +4,8 @@
 
 class CollisionResolutionPortalExtension : public AbstractCollisionResolutionExtension
 {
+private: 	
+	PhysicsFacade _physicsFacade;
 public:
 
 	CollisionResolutionPortalExtension();

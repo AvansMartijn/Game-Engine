@@ -12,6 +12,5 @@ bool CollisionResolutionDefaultExtension::isDefault()
 
 void CollisionResolutionDefaultExtension::resolveCollision(shared_ptr<GameObject> otherObject)
 {
-	PhysicsFacade physics;
-	physics.resolveCollision(_subject, otherObject);
+	_physicsFacade.resolveCollision(_subject, otherObject);
 }
