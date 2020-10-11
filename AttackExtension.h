@@ -1,6 +1,9 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
+/// <summary>
+/// Attack capabilities
+/// </summary>
 class AttackExtension : public AbstractGameObjectExtension
 {
 public:

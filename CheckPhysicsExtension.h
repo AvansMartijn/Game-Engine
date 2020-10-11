@@ -3,6 +3,9 @@
 #include "AbstractCollisionResolutionExtension.h"
 #include "PhysicsFacade.h"
 
+/// <summary>
+/// Physics
+/// </summary>
 class CheckPhysicsExtension : public AbstractGameObjectExtension
 {
 private: 

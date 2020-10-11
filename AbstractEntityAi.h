@@ -2,6 +2,9 @@
 #include <list>
 #include "GameObject.h"
 
+/// <summary>
+/// Abstract class for entity ai
+/// </summary>
 class AbstractEntityAI
 {
 public:

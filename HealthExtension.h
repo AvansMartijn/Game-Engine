@@ -1,6 +1,9 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
+/// <summary>
+/// Health
+/// </summary>
 class HealthExtension : AbstractGameObjectExtension
 {
 public:
