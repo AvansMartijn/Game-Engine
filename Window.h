@@ -5,6 +5,7 @@
 #include "string"
 #include "SDL.h"
 #include "GameObject.h"
+#include "AbstractUiElement.h"
 #include "Shapes.h"
 
 #undef byte
@@ -16,6 +17,7 @@ public:
 	void cleanUp();
 	void clear();
 	void render(shared_ptr<GameObject> gameObject);
+	void render(shared_ptr<AbstractUiElement> uiElements);
 	void display();
 	~Window();
 private:

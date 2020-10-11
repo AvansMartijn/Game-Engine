@@ -70,6 +70,18 @@
     <Filter Include="Source Files\Sandbox">
       <UniqueIdentifier>{0cbe7807-ebc0-4414-b3d0-8a378e507022}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{58bbc6f1-1328-44d8-99fe-0de425c48905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{2d1d217a-5400-4bbe-b4ff-b22255d53726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UiElements">
+      <UniqueIdentifier>{06cf5dc9-a829-4187-a170-74c4af4fce56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UiElements">
+      <UniqueIdentifier>{7d0472fe-a07d-451c-8b72-bf79a5b8d7b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine.cd">
@@ -203,6 +215,27 @@
     <ClInclude Include="DefaultEntityAI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractGame.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractScreen.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -324,6 +357,27 @@
     </ClCompile>
     <ClCompile Include="DefaultEntityAI.cpp">
       <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractScreen.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractGame.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

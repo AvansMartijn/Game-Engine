@@ -13,8 +13,6 @@ private:
 	vector<shared_ptr<AbstractGameObjectExtension> > _gameObjectExtensions;
 public:
 	PhysicalBody physicalBody;
-	int gridPositionX;
-	int gridPositionY;
 
 	GameObject();
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
