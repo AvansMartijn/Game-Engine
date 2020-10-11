@@ -1,6 +1,9 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
+/// <summary>
+/// Vision capabilities
+/// </summary>
 class VisionExtension : public AbstractGameObjectExtension
 {
 private:

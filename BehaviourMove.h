@@ -1,6 +1,9 @@
 #pragma once
 #include "AbstractBehaviour.h"
 
+/// <summary>
+/// Move ai behavior
+/// </summary>
 class BehaviourMove: public AbstractBehaviour
 {
 public:

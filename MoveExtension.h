@@ -2,7 +2,9 @@
 #include "AbstractGameObjectExtension.h"
 #include "PhysicsFacade.h"
 
-
+/// <summary>
+/// Movement capabilities
+/// </summary>
 class MoveExtension : public AbstractGameObjectExtension
 {
 private:

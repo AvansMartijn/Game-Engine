@@ -1,6 +1,9 @@
 #pragma once
 #include "AbstractBehaviour.h"
 
+/// <summary>
+/// Attack behavior
+/// </summary>
 class BehaviourAttack: public AbstractBehaviour
 {
 public:

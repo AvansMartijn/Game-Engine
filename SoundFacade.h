@@ -5,7 +5,9 @@
 
 class SoundFacade
 {
-	//The music that will be played
+	/// <summary>
+	/// Background Music
+	/// </summary>
 	Mix_Music* gMusic = NULL;
 
 	//The sound effects that will be used
@@ -15,7 +17,14 @@ class SoundFacade
 	Mix_Chunk* gLow = NULL;*/
 
 	SoundFacade();
+	/// <summary>
+	/// Load the music files.
+	/// </summary>
+	/// <returns>true if success, false if fail.</returns>
 	bool loadMedia();
+	/// <summary>
+	/// Free all resources.
+	/// </summary>
 	void close();
 };
 
