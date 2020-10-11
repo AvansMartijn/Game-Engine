@@ -22,7 +22,9 @@ typedef double f64;
 
 const real PI = 3.141592741f;
 const real EPSILON = 0.0001f;
-
+/// <summary>
+/// Helper class for complex operations & calculations.
+/// </summary>
 struct Vec2
 {
     union
