@@ -53,14 +53,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectBuilder">
-    <Position X="20.75" Y="2.75" Width="1.5" />
+    <Position X="23.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAABCAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectBuilder.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameObjectFacade">
-    <Position X="18.5" Y="3.25" Width="1.5" />
+    <Position X="21" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectFacade.h</FileName>
@@ -221,14 +221,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collision">
-    <Position X="11" Y="15.75" Width="1.5" />
+    <Position X="14.5" Y="15.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Collision.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Manifold">
-    <Position X="14.5" Y="15.75" Width="1.5" />
+    <Position X="11" Y="15.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQIAAgEAAEAAAAAAQgAAAAAEAASAAAAEAAAEAA=</HashCode>
       <FileName>Manifold.h</FileName>
@@ -241,22 +241,22 @@
       <FileName>Game.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GameScreen" Collapsed="true">
-    <Position X="15" Y="5.75" Width="1.5" />
+  <Class Name="GameScreen">
+    <Position X="14.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAACAAIBAAAAAgAAAgAAAAkAAA=</HashCode>
       <FileName>GameScreen.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="main" Collapsed="true">
-    <Position X="16" Y="3" Width="1.5" />
+    <Position X="16.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>main.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PauseScreen" Collapsed="true">
-    <Position X="17" Y="5.75" Width="1.5" />
+  <Class Name="PauseScreen">
+    <Position X="18.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAIBAEAAAgAAAgAAAAkAAA=</HashCode>
       <FileName>PauseScreen.h</FileName>
@@ -290,11 +290,18 @@
       <FileName>AbstractGame.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AbstractScreen" Collapsed="true">
-    <Position X="16" Y="3.75" Width="1.5" />
+  <Class Name="AbstractScreen">
+    <Position X="16.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAABQAAAAAAAAAIDAAABAgAAAgAAAAkAAQ=</HashCode>
       <FileName>AbstractScreen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundFacade">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAIAAAAAAAgA=</HashCode>
+      <FileName>SoundFacade.h</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="Body">
