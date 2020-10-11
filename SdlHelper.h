@@ -1,13 +1,14 @@
 #pragma once
-#include <SDL_image.h>
-#include <iostream>
 #include "SDL.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
 #include <string>
+#include <iostream>
 
-// TODO: Make it so we don't need to create a new instance everytime.
 class SdlHelper
 {
 public:
 	SDL_Texture* getTexture(std::string filePath, SDL_Renderer* renderer);
+	void renderText(std::string text, TTF_Font* font, SDL_Rect* rectangle, SDL_Renderer* renderer, SDL_Surface* surface, SDL_Texture* texture, bool center);
 };
 

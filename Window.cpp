@@ -4,7 +4,6 @@
 
 #include <iostream>
 
-
 Window::Window(const char* title, int width, int height): _window(NULL), _renderer(NULL) {
 
 	_window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
@@ -46,7 +45,6 @@ void Window::render(shared_ptr<GameObject> gameObject) {
 void Window::render(shared_ptr<AbstractUiElement> uiElement) {
 	uiElement->render(_renderer);
 }
-
 
 void Window::preRender(shared_ptr<GameObject> gameObject) {
 	gameObject->preRender(_renderer);

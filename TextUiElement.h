@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractUiElement.h"
+#include "SdlHelper.h"
 
 #include <string>
 #include <iostream>
@@ -12,6 +13,8 @@ private:
 	SDL_Color _backgroundColor;
 	int _fontSize;
 	bool _center;
+	TTF_Font* _font;
+	SdlHelper _sdlHelper;
 public:
 	TextUiElement(std::string txt, int fontSize, SDL_Rect rect, SDL_Color fgColor, SDL_Color bgColor, bool center);
 	~TextUiElement();

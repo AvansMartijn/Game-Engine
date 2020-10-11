@@ -1,7 +1,6 @@
 #pragma once
 #include "AbstractUiElement.h"
 #include "AbstractGame.h"
-#include "TextUiElement.h"
 
 #include <string>
 #include <iostream>
@@ -16,10 +15,13 @@ private:
 	string _text;
 	SDL_Color _backgroundColor;
 	SDL_Color _foregroundColor;
+	TTF_Font* _font;
+	int _fontSize;
+	SdlHelper _sdlHelper;
 public:
 	using AbstractUiElement::AbstractUiElement;
 
-	ButtonUiElement(std::string text, SDL_Rect rect, SDL_Color bgColor, SDL_Color fgColor);
+	ButtonUiElement(std::string text, SDL_Rect rect, SDL_Color bgColor, SDL_Color fgColor, int fontSize);
 	~ButtonUiElement();
 
 	void preRender(SDL_Renderer* renderer);

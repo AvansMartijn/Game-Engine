@@ -8,9 +8,9 @@ void PauseScreen::onInit() {
 
 	SDL_Rect rect = { 0, 0, 100, 100 };
 	SDL_Color bgColor = { 255, 0, 0, 255 };
-	ButtonUiElement button = ButtonUiElement("Resume", rect, bgColor, { 0, 0, 0 });
-	button.registerGame(_game);
 
+	ButtonUiElement button = ButtonUiElement("Resume", rect, bgColor, { 0, 0, 0 }, 12);
+	button.registerGame(_game);
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
 	TextUiElement text = TextUiElement("Hello World", 32, { 300, 200, 0, 0 }, { 255, 0, 0 }, { 0, 0, 255 }, true);
