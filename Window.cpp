@@ -1,40 +1,27 @@
 #pragma once
 #include "Window.h"
 #include "Windows.h"
-#include "Shapes.h"
-#include "SDL_image.h"
+
 #include <iostream>
 
-SDL_Texture* Krool;
 
 Window::Window(const char* title, int width, int height): _window(NULL), _renderer(NULL) {
 
 	_window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
 
-	if (_window == NULL) {
+	if (_window == NULL)
 		std::cout << "Window failed to init. Error: " << SDL_GetError() << "\n";
-	}
+
+	if (TTF_Init() < 0)
+		printf("TTF_Init: %s\n", TTF_GetError());
 
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-	Krool = loadTexture("res/gfx/KINGKROOL.png");
-
 }
 
-Window::~Window()
-{
+Window::~Window(){
 	SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
 	SDL_Quit();
-}
-
-SDL_Texture* Window::loadTexture(const char* filePath) {
-	SDL_Texture* texture = NULL;
-	texture = IMG_LoadTexture(_renderer, filePath);
-	if (texture == NULL) {
-		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
-	}
-	return texture;
-	
 }
 
 void Window::cleanUp() {
@@ -53,7 +40,11 @@ void Window::render(shared_ptr<GameObject> gameObject) {
 	dst.w = gameObject->physicalBody.shape.getWidth();
 	dst.h = gameObject->physicalBody.shape.getHeight();
 
-	SDL_RenderCopy(_renderer, Krool, NULL, &dst);
+	SDL_RenderCopy(_renderer, SdlHelper{}.getTexture(gameObject->texturePath, _renderer), NULL, &dst);
+}
+
+void Window::render(shared_ptr<AbstractUiElement> uiElements) {
+	uiElements->render(_renderer);
 }
 
 void Window::display() {
