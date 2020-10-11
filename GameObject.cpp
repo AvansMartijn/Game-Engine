@@ -28,8 +28,6 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
-
-
 	for (auto& extension : _gameObjectExtensions)
 	{
 		string givenName = type.name();
@@ -41,4 +39,7 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 	return nullptr;
 }
 
+void GameObject::preRender(SDL_Renderer* renderer) {
+	texture = SdlHelper{}.getTexture(texturePath, renderer);
+}
 

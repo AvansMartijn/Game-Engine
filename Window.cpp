@@ -40,11 +40,20 @@ void Window::render(shared_ptr<GameObject> gameObject) {
 	dst.w = gameObject->physicalBody.shape.getWidth();
 	dst.h = gameObject->physicalBody.shape.getHeight();
 
-	SDL_RenderCopy(_renderer, SdlHelper{}.getTexture(gameObject->texturePath, _renderer), NULL, &dst);
+	SDL_RenderCopy(_renderer, gameObject->texture, NULL, &dst);
 }
 
-void Window::render(shared_ptr<AbstractUiElement> uiElements) {
-	uiElements->render(_renderer);
+void Window::render(shared_ptr<AbstractUiElement> uiElement) {
+	uiElement->render(_renderer);
+}
+
+
+void Window::preRender(shared_ptr<GameObject> gameObject) {
+	gameObject->preRender(_renderer);
+}
+
+void Window::preRender(shared_ptr<AbstractUiElement> uiElement) {
+	uiElement->preRender(_renderer);
 }
 
 void Window::display() {

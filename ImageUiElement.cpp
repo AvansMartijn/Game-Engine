@@ -8,13 +8,15 @@ ImageUiElement::ImageUiElement(std::string filePath, SDL_Rect rect) {
 
 ImageUiElement::~ImageUiElement() {}
 
-void ImageUiElement::render(SDL_Renderer* renderer) {
-    SDL_RenderCopy(renderer, SdlHelper{}.getTexture(_filePath.c_str(), renderer), NULL, &_rectangle);
+void ImageUiElement::preRender(SDL_Renderer* renderer) {
+    _texture = SdlHelper{}.getTexture(_filePath, renderer);
 }
 
-void ImageUiElement::onClick() {
-    cout << "YOU CLICKED ME \n";
+void ImageUiElement::render(SDL_Renderer* renderer) {
+    SDL_RenderCopy(renderer, _texture, NULL, &_rectangle);
 }
+
+void ImageUiElement::onClick() {}
 
 bool ImageUiElement::isInBound(int mouseX, int mouseY) {
     return false;

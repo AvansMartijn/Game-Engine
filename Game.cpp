@@ -6,9 +6,18 @@ Game::~Game() {}
 
 void Game::onInit() {
 	// 0 = Game | 1 = Settings
+	// TODO: Maybe use type instead of id
 	switchScreen(0);
 
 	Window window = Window("FluixEngine", 1080, 720);
+
+	for (auto& screen : screens) {
+		for (auto& obj : screen->gameObjects)
+			window.preRender(obj);
+
+		for (auto& obj : screen->uiElements)
+			window.preRender(obj);
+	}
 
 	SDL_Event event;
 
@@ -20,15 +29,14 @@ void Game::onInit() {
 		a = SDL_GetTicks();
 		delta = a - b;
 		if (delta > 1000 / 60.0) {
-			// TODO: Commented this out, not sure if we still need this.
-			//cout << "FPS: " << 1000 / delta << std::endl;
+			// TODO: This is really low at the moment, we need to optimize this next (3) sprint.
+			cout << "FPS: " << 1000 / delta << std::endl;
 			b = a;
 
 			screens.at(_activeScreen)->onTick();
 
 			window.clear();
 
-			// This has to be here. When moved to scene the window closes.
 			for (auto& obj : screens.at(_activeScreen)->gameObjects)
 				window.render(obj);
 

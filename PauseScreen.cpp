@@ -8,12 +8,12 @@ void PauseScreen::onInit() {
 
 	SDL_Rect rect = { 0, 0, 100, 100 };
 	SDL_Color bgColor = { 255, 0, 0, 255 };
-	ButtonUiElement button = ButtonUiElement(rect, bgColor);
+	ButtonUiElement button = ButtonUiElement("Resume", rect, bgColor, { 0, 0, 0 });
 	button.registerGame(_game);
 
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
-	TextUiElement text = TextUiElement("Hello World", 12, { 200, 0, 100, 100 }, { 255, 0, 0 }, { 255, 255, 255 });
+	TextUiElement text = TextUiElement("Hello World", 32, { 300, 200, 0, 0 }, { 255, 0, 0 }, { 0, 0, 255 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(text));
 
 	ImageUiElement img = ImageUiElement("res/gfx/KINGKROOL.png", { 200, 200, 100, 100 });

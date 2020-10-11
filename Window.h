@@ -18,6 +18,8 @@ public:
 	void clear();
 	void render(shared_ptr<GameObject> gameObject);
 	void render(shared_ptr<AbstractUiElement> uiElements);
+	void preRender(shared_ptr<GameObject> gameObjects);
+	void preRender(shared_ptr<AbstractUiElement> uiElements);
 	void display();
 	~Window();
 private:
