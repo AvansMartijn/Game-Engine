@@ -1,0 +1,113 @@
+\hypertarget{class_manifold}{}\section{Manifold Class Reference}
+\label{class_manifold}\index{Manifold@{Manifold}}
+
+
+Calculation for collision resolution between game objects  
+
+
+
+
+{\ttfamily \#include $<$Manifold.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_manifold_a7a30f055ee040a7ac00284fb08b3c347}{Manifold}} (\mbox{\hyperlink{class_physical_body}{Physical\+Body}} bodyA, \mbox{\hyperlink{class_physical_body}{Physical\+Body}} bodyB)
+\begin{DoxyCompactList}\small\item\em Constructor\+: set pointers for both physicalbodies \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_manifold_a27080a445e565949f9e15b8fea69f6c0}{Apply\+Impulse}} ()
+\begin{DoxyCompactList}\small\item\em Calculate and apply new velocities for both physical bodies. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_manifold_a9d3187192136eac849265f7d386f617e}{Positional\+Correction}} ()
+\begin{DoxyCompactList}\small\item\em Correct position deviation introduced by floating point errors. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_manifold_a09f7dd163c965856905247bb15a1ee99}{A\+A\+B\+Bvs\+A\+A\+BB}} ()
+\begin{DoxyCompactList}\small\item\em Check for overlap and update manifold with penetration and normal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_manifold_a058391b5a2e745467c3da071408e631f}\label{class_manifold_a058391b5a2e745467c3da071408e631f}} 
+real {\bfseries penetration}
+\item 
+\mbox{\Hypertarget{class_manifold_a08837c3bbf15c2dd1cb51d984698ab46}\label{class_manifold_a08837c3bbf15c2dd1cb51d984698ab46}} 
+\mbox{\hyperlink{struct_vec2}{Vec2}} {\bfseries normal}
+\item 
+\mbox{\Hypertarget{class_manifold_a0f3863f327800fdf7b5bfab8db88a6dc}\label{class_manifold_a0f3863f327800fdf7b5bfab8db88a6dc}} 
+\mbox{\hyperlink{struct_vec2}{Vec2}} {\bfseries contacts} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_manifold_af98bbea7321829c3547ec8365f40f068}\label{class_manifold_af98bbea7321829c3547ec8365f40f068}} 
+uint32 {\bfseries contact\+\_\+count}
+\item 
+\mbox{\Hypertarget{class_manifold_a7eb7fecdb3dbac0ad387ac9893f91180}\label{class_manifold_a7eb7fecdb3dbac0ad387ac9893f91180}} 
+real {\bfseries e}
+\item 
+\mbox{\Hypertarget{class_manifold_ac8b98d3211f99d8997b96a5c95ba80f1}\label{class_manifold_ac8b98d3211f99d8997b96a5c95ba80f1}} 
+real {\bfseries df}
+\item 
+\mbox{\Hypertarget{class_manifold_ad7ccd59e59bb27f236ea6a2d05a765e4}\label{class_manifold_ad7ccd59e59bb27f236ea6a2d05a765e4}} 
+real {\bfseries sf}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculation for collision resolution between game objects 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_manifold_a7a30f055ee040a7ac00284fb08b3c347}\label{class_manifold_a7a30f055ee040a7ac00284fb08b3c347}} 
+\index{Manifold@{Manifold}!Manifold@{Manifold}}
+\index{Manifold@{Manifold}!Manifold@{Manifold}}
+\subsubsection{\texorpdfstring{Manifold()}{Manifold()}}
+{\footnotesize\ttfamily Manifold\+::\+Manifold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physical_body}{Physical\+Body}}}]{bodyA,  }\item[{\mbox{\hyperlink{class_physical_body}{Physical\+Body}}}]{bodyB }\end{DoxyParamCaption})}
+
+
+
+Constructor\+: set pointers for both physicalbodies 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bodyA} & \mbox{\hyperlink{class_physical_body}{Physical\+Body}} A\\
+\hline
+{\em bodyB} & \mbox{\hyperlink{class_physical_body}{Physical\+Body}} B\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_manifold_a09f7dd163c965856905247bb15a1ee99}\label{class_manifold_a09f7dd163c965856905247bb15a1ee99}} 
+\index{Manifold@{Manifold}!A\+A\+B\+Bvs\+A\+A\+BB@{A\+A\+B\+Bvs\+A\+A\+BB}}
+\index{A\+A\+B\+Bvs\+A\+A\+BB@{A\+A\+B\+Bvs\+A\+A\+BB}!Manifold@{Manifold}}
+\subsubsection{\texorpdfstring{A\+A\+B\+Bvs\+A\+A\+B\+B()}{AABBvsAABB()}}
+{\footnotesize\ttfamily bool Manifold\+::\+A\+A\+B\+Bvs\+A\+A\+BB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check for overlap and update manifold with penetration and normal. 
+
+\begin{DoxyReturn}{Returns}
+True if a collision occured. False if not.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manifold_a27080a445e565949f9e15b8fea69f6c0}\label{class_manifold_a27080a445e565949f9e15b8fea69f6c0}} 
+\index{Manifold@{Manifold}!Apply\+Impulse@{Apply\+Impulse}}
+\index{Apply\+Impulse@{Apply\+Impulse}!Manifold@{Manifold}}
+\subsubsection{\texorpdfstring{Apply\+Impulse()}{ApplyImpulse()}}
+{\footnotesize\ttfamily void Manifold\+::\+Apply\+Impulse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculate and apply new velocities for both physical bodies. 
+
+\mbox{\Hypertarget{class_manifold_a9d3187192136eac849265f7d386f617e}\label{class_manifold_a9d3187192136eac849265f7d386f617e}} 
+\index{Manifold@{Manifold}!Positional\+Correction@{Positional\+Correction}}
+\index{Positional\+Correction@{Positional\+Correction}!Manifold@{Manifold}}
+\subsubsection{\texorpdfstring{Positional\+Correction()}{PositionalCorrection()}}
+{\footnotesize\ttfamily void Manifold\+::\+Positional\+Correction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Correct position deviation introduced by floating point errors. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Manifold.\+h\item 
+Manifold.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,103 @@
+\hypertarget{class_physics_facade}{}\section{Physics\+Facade Class Reference}
+\label{class_physics_facade}\index{Physics\+Facade@{Physics\+Facade}}
+
+
+Facade for physics subsystem.  
+
+
+
+
+{\ttfamily \#include $<$Physics\+Facade.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_physics_facade_a1a74ada6cb5fd3cac339165dbc506b8d}{set\+Position}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ game\+Object, \mbox{\hyperlink{struct_vec2}{Vec2}} position)
+\begin{DoxyCompactList}\small\item\em Set the position of an object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_facade_aabef1158811a4aae1bc786c7269ce794}{update\+Position}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ game\+Object)
+\begin{DoxyCompactList}\small\item\em Update the position of an object, applying it\textquotesingle{}s velocity to it\textquotesingle{}s position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_facade_a9d42e28b45cd542571e6f68cbefc41ff}{resolve\+Collision}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ objectA, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ objectB)
+\begin{DoxyCompactList}\small\item\em Resolve collision between 2 objects, updating their velocities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_facade_a0db40f3388826df2d9093f6a9ca90bd2}{add\+Gravity\+Force}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ game\+Object)
+\begin{DoxyCompactList}\small\item\em Add the force of gravity to an objects velocity \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_physics_facade_aaa92507f3546d858efdd7809f93750e1}\label{class_physics_facade_aaa92507f3546d858efdd7809f93750e1}} 
+vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ $>$ {\bfseries get\+Collisions} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ objectA, std\+::vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$$>$ object\+List)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Facade for physics subsystem. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_physics_facade_a0db40f3388826df2d9093f6a9ca90bd2}\label{class_physics_facade_a0db40f3388826df2d9093f6a9ca90bd2}} 
+\index{Physics\+Facade@{Physics\+Facade}!add\+Gravity\+Force@{add\+Gravity\+Force}}
+\index{add\+Gravity\+Force@{add\+Gravity\+Force}!Physics\+Facade@{Physics\+Facade}}
+\subsubsection{\texorpdfstring{add\+Gravity\+Force()}{addGravityForce()}}
+{\footnotesize\ttfamily void Physics\+Facade\+::add\+Gravity\+Force (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{game\+Object }\end{DoxyParamCaption})}
+
+
+
+Add the force of gravity to an objects velocity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Object} & The object to which gravity should be added.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_facade_a9d42e28b45cd542571e6f68cbefc41ff}\label{class_physics_facade_a9d42e28b45cd542571e6f68cbefc41ff}} 
+\index{Physics\+Facade@{Physics\+Facade}!resolve\+Collision@{resolve\+Collision}}
+\index{resolve\+Collision@{resolve\+Collision}!Physics\+Facade@{Physics\+Facade}}
+\subsubsection{\texorpdfstring{resolve\+Collision()}{resolveCollision()}}
+{\footnotesize\ttfamily void Physics\+Facade\+::resolve\+Collision (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{objectA,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{objectB }\end{DoxyParamCaption})}
+
+
+
+Resolve collision between 2 objects, updating their velocities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em objectA} & Object A\\
+\hline
+{\em objectB} & Object B\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_facade_a1a74ada6cb5fd3cac339165dbc506b8d}\label{class_physics_facade_a1a74ada6cb5fd3cac339165dbc506b8d}} 
+\index{Physics\+Facade@{Physics\+Facade}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Physics\+Facade@{Physics\+Facade}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Physics\+Facade\+::set\+Position (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{game\+Object,  }\item[{\mbox{\hyperlink{struct_vec2}{Vec2}}}]{position }\end{DoxyParamCaption})}
+
+
+
+Set the position of an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Object} & The object to set a position of.\\
+\hline
+{\em position} & The destination position.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_facade_aabef1158811a4aae1bc786c7269ce794}\label{class_physics_facade_aabef1158811a4aae1bc786c7269ce794}} 
+\index{Physics\+Facade@{Physics\+Facade}!update\+Position@{update\+Position}}
+\index{update\+Position@{update\+Position}!Physics\+Facade@{Physics\+Facade}}
+\subsubsection{\texorpdfstring{update\+Position()}{updatePosition()}}
+{\footnotesize\ttfamily void Physics\+Facade\+::update\+Position (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{game\+Object }\end{DoxyParamCaption})}
+
+
+
+Update the position of an object, applying it\textquotesingle{}s velocity to it\textquotesingle{}s position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Object} & The object of which the position should be updated.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Physics\+Facade.\+h\item 
+Physics\+Facade.\+cpp\end{DoxyCompactItemize}
