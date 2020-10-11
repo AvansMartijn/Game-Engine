@@ -24,6 +24,9 @@ public:
 	ButtonUiElement(std::string text, SDL_Rect rect, SDL_Color bgColor, SDL_Color fgColor, int fontSize);
 	~ButtonUiElement();
 
+	/// This is called one time before going into the render loop.
+	/// </summary>
+	/// <param name="renderer">The renderer</param>
 	void preRender(SDL_Renderer* renderer);
 	/// <summary>
 	/// Render the element on the screen.

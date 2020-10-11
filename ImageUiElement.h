@@ -16,6 +16,9 @@ public:
 	ImageUiElement(std::string filePath, SDL_Rect rect);
 	~ImageUiElement();
 
+	/// This is called one time before going into the render loop.
+	/// </summary>
+	/// <param name="renderer">The renderer</param>
 	void preRender(SDL_Renderer* renderer);
 	/// <summary>
 	/// Render the element on the screen.

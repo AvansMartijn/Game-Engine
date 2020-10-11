@@ -18,7 +18,11 @@ private:
 public:
 	TextUiElement(std::string txt, int fontSize, SDL_Rect rect, SDL_Color fgColor, SDL_Color bgColor, bool center);
 	~TextUiElement();
-
+	
+	/// <summary>
+	/// This is called one time before going into the render loop.
+	/// </summary>
+	/// <param name="renderer">The renderer</param>
 	void preRender(SDL_Renderer* renderer);
 	/// <summary>
 	/// Render the element on the screen.

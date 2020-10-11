@@ -15,8 +15,10 @@ public:
 	AbstractUiElement();
 	~AbstractUiElement();
 
+	/// This is called one time before going into the render loop.
+	/// </summary>
+	/// <param name="renderer">The renderer</param>
 	virtual void preRender(SDL_Renderer* renderer) = 0;
-	
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
