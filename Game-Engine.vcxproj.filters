@@ -137,9 +137,6 @@
     <ClInclude Include="FluixEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdPartyFacade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicalBody.h">
       <Filter>Header Files\GameObjects\PhysicalObject</Filter>
     </ClInclude>
@@ -245,6 +242,12 @@
     <ClInclude Include="SdlHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundFacade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -290,9 +293,6 @@
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="FluixEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdPartyFacade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PhysicalBody.cpp">
@@ -396,6 +396,12 @@
     </ClCompile>
     <ClCompile Include="SdlHelper.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundFacade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
