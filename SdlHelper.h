@@ -3,6 +3,8 @@
 #include <iostream>
 #include "SDL.h"
 #include <string>
+
+// TODO: Make it so we don't need to create a new instance everytime.
 class SdlHelper
 {
 public:

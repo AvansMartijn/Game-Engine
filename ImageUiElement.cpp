@@ -9,8 +9,6 @@ ImageUiElement::ImageUiElement(std::string filePath, SDL_Rect rect) {
 ImageUiElement::~ImageUiElement() {}
 
 void ImageUiElement::render(SDL_Renderer* renderer) {
-    
-    // TODO: Make it so we don't have to create a new instance every time.
     SDL_RenderCopy(renderer, SdlHelper{}.getTexture(_filePath.c_str(), renderer), NULL, &_rectangle);
 }
 

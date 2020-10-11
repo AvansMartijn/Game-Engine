@@ -7,13 +7,13 @@
 #include "GameObject.h"
 #include "AbstractUiElement.h"
 #include "Shapes.h"
-
+#include "SdlHelper.h"
+#include "SDL_image.h"
 #undef byte
 
 class Window {
 public:
 	Window(const char* title, int width, int height);
-	SDL_Texture* loadTexture(const char* p_filePath);
 	void cleanUp();
 	void clear();
 	void render(shared_ptr<GameObject> gameObject);

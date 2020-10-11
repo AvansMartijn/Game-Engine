@@ -1,13 +1,9 @@
 #pragma once
 #include "Window.h"
 #include "Windows.h"
-#include "Shapes.h"
-#include "SDL_image.h"
-#include <iostream>
-#include "AbstractUiElement.h"
-#include "SdlHelper.h"
 
-SDL_Texture* Krool;
+#include <iostream>
+
 
 Window::Window(const char* title, int width, int height): _window(NULL), _renderer(NULL) {
 
@@ -20,7 +16,6 @@ Window::Window(const char* title, int width, int height): _window(NULL), _render
 		printf("TTF_Init: %s\n", TTF_GetError());
 
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-	Krool = SdlHelper{}.getTexture("res/gfx/KINGKROOL.png", _renderer);
 }
 
 Window::~Window(){
@@ -45,10 +40,9 @@ void Window::render(shared_ptr<GameObject> gameObject) {
 	dst.w = gameObject->physicalBody.shape.getWidth();
 	dst.h = gameObject->physicalBody.shape.getHeight();
 
-	SDL_RenderCopy(_renderer, Krool, NULL, &dst);
+	SDL_RenderCopy(_renderer, SdlHelper{}.getTexture(gameObject->texturePath, _renderer), NULL, &dst);
 }
 
-// TODO: The render gets redirected to the uiElement, this gives us more design options. Does not work at this moment, not sure why
 void Window::render(shared_ptr<AbstractUiElement> uiElements) {
 	uiElements->render(_renderer);
 }
