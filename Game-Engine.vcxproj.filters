@@ -87,6 +87,7 @@
     <None Include="Engine.cd">
       <Filter>ClassDiagrams</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObjectFacade.h">

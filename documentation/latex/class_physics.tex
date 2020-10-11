@@ -1,0 +1,100 @@
+\hypertarget{class_physics}{}\section{Physics Class Reference}
+\label{class_physics}\index{Physics@{Physics}}
+
+
+\mbox{\hyperlink{class_physics}{Physics}} Helper for \mbox{\hyperlink{class_game}{Game}} \mbox{\hyperlink{class_physics}{Physics}}  
+
+
+
+
+{\ttfamily \#include $<$Physics.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_physics_a3baa430406c9017c1de92ed9c35dc9a2}{change\+Velocity}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ object, \mbox{\hyperlink{struct_vec2}{Vec2}} velocity)
+\begin{DoxyCompactList}\small\item\em Change the velocity of a game object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_aef3b1d8a37d4eea381dfe48779188b38}{set\+Position}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ object, \mbox{\hyperlink{struct_vec2}{Vec2}} position)
+\begin{DoxyCompactList}\small\item\em Set the position of a game object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_acd65e09cdd0dbb9648956c8d174bb621}{update\+Position}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ object)
+\begin{DoxyCompactList}\small\item\em Update the position of a game object, applying all physics forces like gravity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_a00639bda7da3c9e8c8b726de6104c64d}{add\+Gravity\+Force}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ object)
+\begin{DoxyCompactList}\small\item\em Add gravity to a game object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_physics}{Physics}} Helper for \mbox{\hyperlink{class_game}{Game}} \mbox{\hyperlink{class_physics}{Physics}} 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_physics_a00639bda7da3c9e8c8b726de6104c64d}\label{class_physics_a00639bda7da3c9e8c8b726de6104c64d}} 
+\index{Physics@{Physics}!add\+Gravity\+Force@{add\+Gravity\+Force}}
+\index{add\+Gravity\+Force@{add\+Gravity\+Force}!Physics@{Physics}}
+\subsubsection{\texorpdfstring{add\+Gravity\+Force()}{addGravityForce()}}
+{\footnotesize\ttfamily void Physics\+::add\+Gravity\+Force (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{object }\end{DoxyParamCaption})}
+
+
+
+Add gravity to a game object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & The game object to get Gravity\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_a3baa430406c9017c1de92ed9c35dc9a2}\label{class_physics_a3baa430406c9017c1de92ed9c35dc9a2}} 
+\index{Physics@{Physics}!change\+Velocity@{change\+Velocity}}
+\index{change\+Velocity@{change\+Velocity}!Physics@{Physics}}
+\subsubsection{\texorpdfstring{change\+Velocity()}{changeVelocity()}}
+{\footnotesize\ttfamily void Physics\+::change\+Velocity (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{object,  }\item[{\mbox{\hyperlink{struct_vec2}{Vec2}}}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Change the velocity of a game object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & The object to be changed\\
+\hline
+{\em velocity} & The new velocity\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_aef3b1d8a37d4eea381dfe48779188b38}\label{class_physics_aef3b1d8a37d4eea381dfe48779188b38}} 
+\index{Physics@{Physics}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Physics@{Physics}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Physics\+::set\+Position (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{object,  }\item[{\mbox{\hyperlink{struct_vec2}{Vec2}}}]{position }\end{DoxyParamCaption})}
+
+
+
+Set the position of a game object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & The object to be changed\\
+\hline
+{\em position} & The new position\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_acd65e09cdd0dbb9648956c8d174bb621}\label{class_physics_acd65e09cdd0dbb9648956c8d174bb621}} 
+\index{Physics@{Physics}!update\+Position@{update\+Position}}
+\index{update\+Position@{update\+Position}!Physics@{Physics}}
+\subsubsection{\texorpdfstring{update\+Position()}{updatePosition()}}
+{\footnotesize\ttfamily void Physics\+::update\+Position (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{object }\end{DoxyParamCaption})}
+
+
+
+Update the position of a game object, applying all physics forces like gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & The object to be updated\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Physics.\+h\item 
+Physics.\+cpp\end{DoxyCompactItemize}

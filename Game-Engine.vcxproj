@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Engine.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractBehaviour.cpp" />
