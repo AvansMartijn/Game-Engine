@@ -1,18 +1,19 @@
 #pragma once
 #include "AbstractUiElement.h"
+#include "AbstractGame.h"
+
+#include <iostream>
+using namespace std;
 
 class ButtonUiElement: public AbstractUiElement
 {
+private:
+	SDL_Color _backgroundColor;
 public:
 	using AbstractUiElement::AbstractUiElement;
 
-	ButtonUiElement();
+	ButtonUiElement(SDL_Rect rect, SDL_Color bgColor);
 	~ButtonUiElement();
-
-	int x;
-	int y;
-	int width;
-	int height;
 
 	void render(SDL_Renderer* renderer);
 	void onClick();

@@ -2,21 +2,34 @@
 #include <iostream>
 #include "AbstractGame.h"
 #include "ButtonUiElement.h"
-using namespace std;
+#include "TextUiElement.h"
+#include "ImageUiElement.h"
 
-void PauseScreen::init() {
+PauseScreen::PauseScreen() {}
+PauseScreen::~PauseScreen() {}
+
+void PauseScreen::onInit() {
 	cout << "PAUSE\n";
 
-	ButtonUiElement button = ButtonUiElement{};
-	button.x = 0;
-	button.y = 0;
-	button.width = 100;
-	button.height = 100;
+	SDL_Rect rect = { 0, 0, 100, 100 };
+	SDL_Color bgColor = { 255, 0, 0, 255 };
+	ButtonUiElement button = ButtonUiElement(rect, bgColor);
+	button.registerGame(_game);
 
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
+
+	TextUiElement text = TextUiElement("Hello World", 12, { 200, 0, 100, 100 }, { 255, 0, 0 }, { 255, 255, 255 });
+	uiElements.push_back(make_shared<TextUiElement>(text));
+
+	ImageUiElement img = ImageUiElement("res/gfx/KINGKROOL.png", { 200, 200, 100, 100 });
+	uiElements.push_back(make_shared<ImageUiElement>(img));
 }
 
-void PauseScreen::tick() {
+void PauseScreen::onTick() {
+
+}
+
+void PauseScreen::onScreenShowed() {
 
 }
 

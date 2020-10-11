@@ -1,14 +1,8 @@
 #include "GameScreen.h"
-#include <iostream>
-#include "GameObjectBuilder.h"
-#include "MoveExtension.h"
-#include "CheckPhysicsExtension.h"
-#include "AbstractGame.h"
-using namespace std;
 
 GameScreen::GameScreen() {}
 
-void GameScreen::init() {
+void GameScreen::onInit() {
 
 	cout << "GAME\n";
 	std::cout << "Started \n";
@@ -76,7 +70,7 @@ void GameScreen::init() {
 	gameObjects.push_back(obj2);
 }
 
-void GameScreen::tick() {
+void GameScreen::onTick() {
 
 	for (auto& obj : gameObjects)
 	{
@@ -91,8 +85,12 @@ void GameScreen::tick() {
 	}
 }
 
+void GameScreen::onScreenShowed() {
+
+}
+
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	PhysicsFacade facade = PhysicsFacade{};
+	PhysicsFacade physicsFacade = PhysicsFacade{};
 	Vec2 pos = _player->physicalBody.body.position;
 
 	switch (e.keysym.sym)
@@ -124,7 +122,8 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	default:
 		break;
 	}
-	facade.setPosition(_player, pos);
+
+	physicsFacade.setPosition(_player, pos);
 
 }
 

@@ -28,15 +28,16 @@ int main(int argc, char* argv[]) {
 
 	// The screens have to be created outside the Game class, using "this" will create problems.
 	GameScreen gameScreen = GameScreen{};
-	gameScreen.registerGame(make_shared<Game>(game));
+	gameScreen.registerGame(&game);
+	gameScreen.onInit();
 	game.screens.push_back(make_shared<GameScreen>(gameScreen));
 
-	PauseScreen pauseScreen = PauseScreen();
-	pauseScreen.registerGame(make_shared<Game>(game));
+	PauseScreen pauseScreen = PauseScreen{};
+	pauseScreen.registerGame(&game);
+	pauseScreen.onInit();
 	game.screens.push_back(make_shared<PauseScreen>(pauseScreen));
 
-	game.init();
+	game.onInit();
 
 	return 0;
 }
-

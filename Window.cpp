@@ -5,6 +5,7 @@
 #include "SDL_image.h"
 #include <iostream>
 #include "AbstractUiElement.h"
+#include "SdlHelper.h"
 
 SDL_Texture* Krool;
 
@@ -15,24 +16,17 @@ Window::Window(const char* title, int width, int height): _window(NULL), _render
 	if (_window == NULL)
 		std::cout << "Window failed to init. Error: " << SDL_GetError() << "\n";
 
+	if (TTF_Init() < 0)
+		printf("TTF_Init: %s\n", TTF_GetError());
+
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-	Krool = loadTexture("res/gfx/KINGKROOL.png");
+	Krool = SdlHelper{}.getTexture("res/gfx/KINGKROOL.png", _renderer);
 }
 
 Window::~Window(){
 	SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
 	SDL_Quit();
-}
-
-SDL_Texture* Window::loadTexture(const char* filePath) {
-	SDL_Texture* texture = NULL;
-	texture = IMG_LoadTexture(_renderer, filePath);
-	if (texture == NULL)
-		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
-
-	return texture;
-	
 }
 
 void Window::cleanUp() {

@@ -28,7 +28,7 @@ public:
 	/// <summary>
 	/// Prepare the game.
 	/// </summary>
-	virtual void init() = 0;
+	virtual void onInit() = 0;
 
 	/// <summary>
 	/// Switch the current screen to the screen with the given index

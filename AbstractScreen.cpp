@@ -3,6 +3,6 @@ AbstractScreen::AbstractScreen() {}
 
 AbstractScreen::~AbstractScreen() {}
 
-void AbstractScreen::registerGame(shared_ptr<AbstractGame> game) {
+void AbstractScreen::registerGame(AbstractGame* game) {
 	_game = game;
 }

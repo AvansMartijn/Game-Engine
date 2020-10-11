@@ -236,6 +236,15 @@
     <ClInclude Include="ButtonUiElement.h">
       <Filter>Header Files\UiElements</Filter>
     </ClInclude>
+    <ClInclude Include="ImageUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="TextUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="SdlHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -378,6 +387,15 @@
     </ClCompile>
     <ClCompile Include="ButtonUiElement.cpp">
       <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="TextUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="SdlHelper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

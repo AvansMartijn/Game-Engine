@@ -1,12 +1,12 @@
 #include "Game.h"
-#include "AbstractGame.h"
-#include "AbstractScreen.h"
-#include "GameScreen.h"
-#include "PauseScreen.h"
 
-void Game::init() {
+Game::Game() {}
+
+Game::~Game() {}
+
+void Game::onInit() {
 	// 0 = Game | 1 = Settings
-	switchScreen(1);
+	switchScreen(0);
 
 	Window window = Window("FluixEngine", 1080, 720);
 
@@ -24,8 +24,7 @@ void Game::init() {
 			//cout << "FPS: " << 1000 / delta << std::endl;
 			b = a;
 
-			// TODO: If you change screen (from 1 -> 0, this does not update)
-			screens.at(_activeScreen)->tick();
+			screens.at(_activeScreen)->onTick();
 
 			window.clear();
 
@@ -67,6 +66,5 @@ void Game::init() {
 void Game::switchScreen(int screenIndex) {
 	_activeScreen = screenIndex;
 
-	// TODO: Why is this empty on KEY -> ESCAPE.
-	screens.at(_activeScreen)->init();
+	screens.at(_activeScreen)->onScreenShowed();
 }
