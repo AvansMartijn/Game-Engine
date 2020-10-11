@@ -1,66 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="AbstractCollisionResolutionExtension" Collapsed="true">
-    <Position X="14.75" Y="11.25" Width="1.5" />
+  <Class Name="AbstractCollisionResolutionExtension">
+    <Position X="7.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AbstractCollisionResolutionExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AbstractGameObjectExtension">
-    <Position X="16" Y="5.25" Width="1.5" />
+    <Position X="16.75" Y="10.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACABAAAAAAAgAAAAAAA=</HashCode>
       <FileName>AbstractGameObjectExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AiExtension" Collapsed="true">
-    <Position X="14.75" Y="8.25" Width="1.5" />
+  <Class Name="AiExtension">
+    <Position X="15.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>AiExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AttackExtension" Collapsed="true">
-    <Position X="14.75" Y="10.25" Width="1.5" />
+  <Class Name="AttackExtension">
+    <Position X="9.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>AttackExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CanWieldExtension" Collapsed="true">
-    <Position X="17.25" Y="8.25" Width="1.5" />
+  <Class Name="CanWieldExtension">
+    <Position X="17.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAiAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>CanWieldExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CheckPhysicsExtension" Collapsed="true">
-    <Position X="14.75" Y="7.25" Width="1.5" />
+  <Class Name="CheckPhysicsExtension">
+    <Position X="13.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAABAAEAAAAA=</HashCode>
       <FileName>CheckPhysicsExtension.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_physicsfacade" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="GameObject">
-    <Position X="19.5" Y="5.25" Width="1.5" />
+    <Position X="7" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACBAAAAAAAAAAAAAAAAAAAAAABgCAAAAgAQIAAAA=</HashCode>
+      <HashCode>AAAgCBAAAAAAAEAAAAAAAAAAAAAAAgCAAAAgAQIAAAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="physicalBody" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="GameObjectBuilder">
-    <Position X="20" Y="3" Width="1.5" />
+    <Position X="20.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAABCAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectBuilder.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameObjectFacade">
-    <Position X="17.25" Y="1.75" Width="1.5" />
+    <Position X="18.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjectFacade.h</FileName>
@@ -69,53 +69,43 @@
       <Field Name="_gameObjectBuilder" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="GameObjectFactory">
-    <Position X="16.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAACAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjectFactory.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_gameObject" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="HealthExtension" Collapsed="true">
-    <Position X="17.25" Y="9.25" Width="1.5" />
+  <Class Name="HealthExtension">
+    <Position X="21.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>HealthExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MoveExtension" Collapsed="true">
-    <Position X="17.25" Y="11.25" Width="1.5" />
+  <Class Name="MoveExtension">
+    <Position X="25.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIACAAAAAAAAAAAAQAAAAAABAAAAAAAA=</HashCode>
       <FileName>MoveExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StateExtension" Collapsed="true">
-    <Position X="14.75" Y="9.25" Width="1.5" />
+  <Class Name="StateExtension">
+    <Position X="19.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>StateExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SwitchExtension" Collapsed="true">
-    <Position X="17.25" Y="7.25" Width="1.5" />
+  <Class Name="SwitchExtension">
+    <Position X="11.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>SwitchExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VisionExtension" Collapsed="true">
-    <Position X="17.25" Y="10.25" Width="1.5" />
+  <Class Name="VisionExtension">
+    <Position X="23.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
       <FileName>VisionExtension.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PhysicalBody">
-    <Position X="22" Y="6.75" Width="1.5" />
+    <Position X="7" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAQAAAAAACAAAAAAABAA=</HashCode>
       <FileName>PhysicalBody.h</FileName>
@@ -123,45 +113,46 @@
     <ShowAsAssociation>
       <Field Name="_material" />
       <Field Name="_massData" />
+      <Field Name="shape" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="MassData" Collapsed="true">
-    <Position X="24" Y="8.25" Width="1.5" />
+  <Class Name="MassData">
+    <Position X="8.75" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MassData.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Material" Collapsed="true">
-    <Position X="20.5" Y="8.25" Width="1.5" />
+  <Class Name="Material">
+    <Position X="5.25" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Material.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CollisionResolutionDefaultExtension" Collapsed="true">
-    <Position X="13.75" Y="12.75" Width="1.5" />
+  <Class Name="CollisionResolutionDefaultExtension">
+    <Position X="3.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEAAABAIAAAAAAAAAAQAAAAAABAAAAAAAA=</HashCode>
       <FileName>CollisionResolutionDefaultExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CollisionResolutionPortalExtension" Collapsed="true">
-    <Position X="15.75" Y="12.75" Width="1.5" />
+  <Class Name="CollisionResolutionPortalExtension">
+    <Position X="5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAEAAABAAAAAAAAAAAAQAAAAAABAAAAAAAA=</HashCode>
       <FileName>CollisionResolutionPortalExtension.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Physics" Collapsed="true">
-    <Position X="11" Y="5.5" Width="1.5" />
+  <Class Name="Physics">
+    <Position X="12.75" Y="15.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAACAACAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Physics.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Shape">
-    <Position X="22.25" Y="8.25" Width="1.5" />
+    <Position X="7" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAEAAAAAAQAAAAAAAAAAAAAQAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
@@ -170,27 +161,8 @@
       <Field Name="body" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="FluixEngine">
-    <Position X="17.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAACAAEAAAAAAA=</HashCode>
-      <FileName>FluixEngine.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_thirdPartyFacade" />
-      <Field Name="_gameObjectFacade" />
-      <Field Name="_physicsFacade" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="ThirdPartyFacade" Collapsed="true">
-    <Position X="28.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ThirdPartyFacade.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="PhysicsFacade">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="12.75" Y="12.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAEAACAACAACAAAACABAAAAAA=</HashCode>
       <FileName>PhysicsFacade.h</FileName>
@@ -199,57 +171,134 @@
       <Field Name="_physics" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="AbstractEntityAI" Collapsed="true">
-    <Position X="10" Y="8" Width="1.5" />
+  <Class Name="AbstractEntityAI">
+    <Position X="23" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>AbstractEntityAI.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AbstractBehaviour">
-    <Position X="7.25" Y="8" Width="1.5" />
+    <Position X="21.25" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAEAAAAAgAAAACgAAIAAAAAAAQ=</HashCode>
       <FileName>AbstractBehaviour.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BehaviourAttack" Collapsed="true">
-    <Position X="7.25" Y="10.25" Width="1.5" />
+  <Class Name="BehaviourAttack">
+    <Position X="21.25" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BehaviourAttack.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BehaviourIdle" Collapsed="true">
-    <Position X="3.5" Y="10.25" Width="1.5" />
+  <Class Name="BehaviourIdle">
+    <Position X="17.5" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BehaviourIdle.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BehaviourMove" Collapsed="true">
-    <Position X="9" Y="10.25" Width="1.5" />
+  <Class Name="BehaviourMove">
+    <Position X="23" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>BehaviourMove.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BehaviourRotate" Collapsed="true">
-    <Position X="11" Y="10.25" Width="1.5" />
+  <Class Name="BehaviourRotate">
+    <Position X="25" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BehaviourRotate.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BehaviourSeesEnemy" Collapsed="true">
-    <Position X="5.25" Y="10.25" Width="1.75" />
+  <Class Name="BehaviourSeesEnemy">
+    <Position X="19.25" Y="16.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BehaviourSeesEnemy.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="Body" Collapsed="true">
-    <Position X="22.25" Y="10" Width="1.5" />
+  <Class Name="Collision">
+    <Position X="11" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manifold">
+    <Position X="14.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQIAAgEAAEAAAAAAQgAAAAAEAASAAAAEAAAEAA=</HashCode>
+      <FileName>Manifold.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game">
+    <Position X="11.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAABAiAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameScreen" Collapsed="true">
+    <Position X="15" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAACAAIBAAAAAgAAAgAAAAkAAA=</HashCode>
+      <FileName>GameScreen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="main" Collapsed="true">
+    <Position X="16" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>main.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseScreen" Collapsed="true">
+    <Position X="17" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAIBAEAAAgAAAgAAAAkAAA=</HashCode>
+      <FileName>PauseScreen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Window">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAAAAAAgAAAEAAAAAAAAAAEQEAAAAAAAAACAAQAAA=</HashCode>
+      <FileName>Window.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shapes">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAYAQSAAAAAAAAAAAAAABAAAAAAAAAAAIAAAAI=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SdlHelper">
+    <Position X="7.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SdlHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractGame">
+    <Position X="11.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAACAAAAAAAAAAAAABAAAwAAAAAAAACAAAAA=</HashCode>
+      <FileName>AbstractGame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractScreen" Collapsed="true">
+    <Position X="16" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAABQAAAAAAAAAIDAAABAgAAAgAAAAkAAQ=</HashCode>
+      <FileName>AbstractScreen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Body">
+    <Position X="7" Y="19" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABgAAQAAAAAAEAAAAAAAIAAAAAkAAQAAAgQAACAAAAA=</HashCode>
       <FileName>Body.h</FileName>
