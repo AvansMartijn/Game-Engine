@@ -22,7 +22,10 @@ void ButtonUiElement::render(SDL_Renderer* renderer){
     SDL_Surface* surface = TTF_RenderText_Shaded(_font, _text.c_str(), _foregroundColor, _backgroundColor);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
-   _sdlHelper.renderText(_text, _font, &_rectangle, renderer, surface, texture, false);
+    SDL_Rect txtRect = _rectangle;
+    txtRect.x = (1080 / 2);
+    txtRect.y = txtRect.y + txtRect.h / 4;
+   _sdlHelper.renderText(_text, _font, &txtRect, renderer, surface, texture, false);
 }
 
 void ButtonUiElement::onClick() {

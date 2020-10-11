@@ -4,19 +4,17 @@ PauseScreen::PauseScreen() {}
 PauseScreen::~PauseScreen() {}
 
 void PauseScreen::onInit() {
-	cout << "PAUSE\n";
-
 	SDL_Rect rect = { 0, 0, 100, 100 };
-	SDL_Color bgColor = { 255, 0, 0, 255 };
+	SDL_Color bgColor = { 192, 192, 192 };
 
-	ButtonUiElement button = ButtonUiElement("Resume", rect, bgColor, { 0, 0, 0 }, 12);
+	TextUiElement text = TextUiElement("Engine Demo", 48, { 0, 0, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
+	uiElements.push_back(make_shared<TextUiElement>(text));
+
+	ButtonUiElement button = ButtonUiElement("Resume", { (1080 / 2) - 200, 100, 500, 100 }, bgColor, { 0, 0, 0 }, 32);
 	button.registerGame(_game);
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
-	TextUiElement text = TextUiElement("Hello World", 32, { 300, 200, 0, 0 }, { 255, 0, 0 }, { 0, 0, 255 }, true);
-	uiElements.push_back(make_shared<TextUiElement>(text));
-
-	ImageUiElement img = ImageUiElement("res/gfx/KINGKROOL.png", { 200, 200, 100, 100 });
+	ImageUiElement img = ImageUiElement("res/gfx/KINGKROOL.png", { 0 , 0, 100, 100 });
 	uiElements.push_back(make_shared<ImageUiElement>(img));
 }
 
@@ -32,7 +30,6 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
-		cout << "ESCAPE\n";
 		_game->switchScreen(0);
 
 		break;

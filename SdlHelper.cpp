@@ -16,12 +16,9 @@ void SdlHelper::renderText(std::string text, TTF_Font* font, SDL_Rect* rectangle
     rect.w = surface->w;
     rect.h = surface->h;
 
-    if (center) {
-        SDL_DisplayMode dm;
-        SDL_GetCurrentDisplayMode(0, &dm);
-
-        rect.x = dm.w / 2;
-    }
+    // TODO: Move the resolution to a different class.
+    if (center)
+        rect.x = (1080 / 2) - (rect.w / 3);
 
     SDL_RenderCopy(renderer, texture, NULL, &rect);
     SDL_FreeSurface(surface);

@@ -99,26 +99,21 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
-		cout << "w\n";
 		pos.y -= 5;
 		break;
 	case SDLK_s:
-		cout << "s\n";
 		pos.y += 5;
 
 		break;
 	case SDLK_a:
-		cout << "a\n";
 		pos.x -= 5;
 
 		break;
 	case SDLK_d:
-		cout << "D\n";
 		pos.x += 5;
 
 		break;
 	case SDLK_ESCAPE:
-		cout << "ESCAPE\n";
 		_game->switchScreen(1);
 
 		break;
