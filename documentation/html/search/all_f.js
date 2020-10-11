@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['updateposition',['updatePosition',['../class_physics.html#acd65e09cdd0dbb9648956c8d174bb621',1,'Physics']]]
+  ['textuielement',['TextUiElement',['../class_text_ui_element.html',1,'']]],
+  ['torque',['torque',['../struct_body.html#a269761d1be497882d3f3a2aef4847152',1,'Body']]]
 ];

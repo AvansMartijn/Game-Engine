@@ -70,16 +70,61 @@ $(function() {
 <div class="title">Collision Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_collision.html" title="Collision detection and resolution ">Collision</a> detection and resolution  
+ <a href="class_collision.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_collision_8h_source.html">Collision.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a326e71d8960461f00b118f1688f61e81"><td class="memItemLeft" align="right" valign="top"><a id="a326e71d8960461f00b118f1688f61e81"></a>
 std::vector&lt; shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCollisions</b> (shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; objectA, std::vector&lt; shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt;&gt; objectList)</td></tr>
 <tr class="separator:a326e71d8960461f00b118f1688f61e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9af0ec7e3829efcec43bf94e5911f1ae"><td class="memItemLeft" align="right" valign="top"><a id="a9af0ec7e3829efcec43bf94e5911f1ae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resolveCollision</b> (shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; objectA, shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; objectB)</td></tr>
+<tr class="memitem:a9af0ec7e3829efcec43bf94e5911f1ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision.html#a9af0ec7e3829efcec43bf94e5911f1ae">resolveCollision</a> (shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; objectA, shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; objectB)</td></tr>
+<tr class="memdesc:a9af0ec7e3829efcec43bf94e5911f1ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve collision between 2 game objects.  <a href="#a9af0ec7e3829efcec43bf94e5911f1ae">More...</a><br /></td></tr>
 <tr class="separator:a9af0ec7e3829efcec43bf94e5911f1ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_collision.html" title="Collision detection and resolution ">Collision</a> detection and resolution </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9af0ec7e3829efcec43bf94e5911f1ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af0ec7e3829efcec43bf94e5911f1ae">&#9670;&nbsp;</a></span>resolveCollision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Collision::resolveCollision </td>
+          <td>(</td>
+          <td class="paramtype">shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt;&#160;</td>
+          <td class="paramname"><em>objectA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt;&#160;</td>
+          <td class="paramname"><em>objectB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolve collision between 2 game objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">objectA</td><td>GameObjectA</td></tr>
+    <tr><td class="paramname">objectB</td><td>GameObjectB</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_collision_8h_source.html">Collision.h</a></li>
 <li>Collision.cpp</li>

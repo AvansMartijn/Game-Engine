@@ -1,13 +1,7 @@
 var searchData=
 [
-  ['screens',['screens',['../class_abstract_game.html#add5999d1c4190a9ad25dfdb51327720b',1,'AbstractGame']]],
-  ['sdlhelper',['SdlHelper',['../class_sdl_helper.html',1,'']]],
-  ['setposition',['setPosition',['../class_physics.html#aef3b1d8a37d4eea381dfe48779188b38',1,'Physics']]],
-  ['shape',['Shape',['../class_shape.html',1,'']]],
-  ['shapes',['Shapes',['../class_shapes.html',1,'']]],
-  ['soundextension',['SoundExtension',['../class_sound_extension.html',1,'']]],
-  ['soundfacade',['SoundFacade',['../class_sound_facade.html',1,'']]],
-  ['stateextension',['StateExtension',['../class_state_extension.html',1,'']]],
-  ['switchextension',['SwitchExtension',['../class_switch_extension.html',1,'']]],
-  ['switchscreen',['switchScreen',['../class_abstract_game.html#afd50e09c9b23aff40c752990947f07ce',1,'AbstractGame::switchScreen()'],['../class_game.html#a0e1dd146112c54290e11d3e5f0a36fdd',1,'Game::switchScreen()']]]
+  ['registergame',['registerGame',['../class_abstract_ui_element.html#aea8a32a77e77f601ca114b8738072079',1,'AbstractUiElement']]],
+  ['render',['render',['../class_abstract_ui_element.html#afacedc89a5805d95d3bdcf20619b1c06',1,'AbstractUiElement::render()'],['../class_button_ui_element.html#ad319e20e8abedefe07aef58a38ae9a81',1,'ButtonUiElement::render()'],['../class_image_ui_element.html#a422fc1d3b4c1451f656e7470e575577b',1,'ImageUiElement::render()'],['../class_text_ui_element.html#a7931ba283acdf102442a9181b3ddf276',1,'TextUiElement::render()']]],
+  ['resolvecollision',['resolveCollision',['../class_collision.html#a9af0ec7e3829efcec43bf94e5911f1ae',1,'Collision::resolveCollision()'],['../class_physics_facade.html#a9d42e28b45cd542571e6f68cbefc41ff',1,'PhysicsFacade::resolveCollision()']]],
+  ['restitution',['restitution',['../struct_body.html#aa57d627e73de706e87540b07b61d867a',1,'Body']]]
 ];

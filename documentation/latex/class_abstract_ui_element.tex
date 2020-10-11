@@ -9,18 +9,14 @@ Inheritance diagram for Abstract\+Ui\+Element\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}\label{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}} 
-virtual void {\bfseries render} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)=0
-\item 
-\mbox{\Hypertarget{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}\label{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}} 
-virtual void {\bfseries on\+Click} ()=0
-\item 
-\mbox{\Hypertarget{class_abstract_ui_element_ad2c415461cd7e8c1ee50b1105eb84685}\label{class_abstract_ui_element_ad2c415461cd7e8c1ee50b1105eb84685}} 
-virtual bool {\bfseries is\+In\+Bound} (int mouseX, int mouseY)=0
-\item 
-\mbox{\Hypertarget{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}\label{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}} 
-virtual void {\bfseries register\+Game} (\mbox{\hyperlink{class_abstract_game}{Abstract\+Game}} $\ast$game)
-\end{DoxyCompactItemize}
+virtual void \mbox{\hyperlink{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}{render}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)=0
+\begin{DoxyCompactList}\small\item\em Render the element on the screen. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}{on\+Click}} ()=0
+\begin{DoxyCompactList}\small\item\em The function executed when the element is clicked on. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_abstract_ui_element_ad2c415461cd7e8c1ee50b1105eb84685}{is\+In\+Bound}} (int mouseX, int mouseY)=0
+\begin{DoxyCompactList}\small\item\em Checks if the mouse is within the bounds of the element. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}{register\+Game}} (\mbox{\hyperlink{class_abstract_game}{Abstract\+Game}} $\ast$game)
+\begin{DoxyCompactList}\small\item\em Register the game to the element. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,6 +26,81 @@ virtual void {\bfseries register\+Game} (\mbox{\hyperlink{class_abstract_game}{A
 \mbox{\Hypertarget{class_abstract_ui_element_a91aa849cd7db2aac4b7dd36d6094961d}\label{class_abstract_ui_element_a91aa849cd7db2aac4b7dd36d6094961d}} 
 S\+D\+L\+\_\+\+Rect {\bfseries \+\_\+rectangle}
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_abstract_ui_element_ad2c415461cd7e8c1ee50b1105eb84685}\label{class_abstract_ui_element_ad2c415461cd7e8c1ee50b1105eb84685}} 
+\index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!is\+In\+Bound@{is\+In\+Bound}}
+\index{is\+In\+Bound@{is\+In\+Bound}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
+\subsubsection{\texorpdfstring{is\+In\+Bound()}{isInBound()}}
+{\footnotesize\ttfamily virtual bool Abstract\+Ui\+Element\+::is\+In\+Bound (\begin{DoxyParamCaption}\item[{int}]{mouseX,  }\item[{int}]{mouseY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Checks if the mouse is within the bounds of the element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouseX} & X coordinate of the mouse\\
+\hline
+{\em mouseY} & Y coordinate of the mouse\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_button_ui_element_ab321d646770df66f7ea58a7246d7bf28}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_a6d0f66cf68c5f035f5a9bfeaba3028f4}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_aaf04a9d0a67e77e2ba2a306e1ec7aeed}{Text\+Ui\+Element}}.
+
+\mbox{\Hypertarget{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}\label{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}} 
+\index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!on\+Click@{on\+Click}}
+\index{on\+Click@{on\+Click}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
+\subsubsection{\texorpdfstring{on\+Click()}{onClick()}}
+{\footnotesize\ttfamily virtual void Abstract\+Ui\+Element\+::on\+Click (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+The function executed when the element is clicked on. 
+
+
+
+Implemented in \mbox{\hyperlink{class_button_ui_element_a06c748ef9e81216f76d7db936d320365}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_ab3c388de0807d86016a2ff43fd6d337e}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_a984d8bcd627f43c1bd858a707df2c042}{Text\+Ui\+Element}}.
+
+\mbox{\Hypertarget{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}\label{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}} 
+\index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!register\+Game@{register\+Game}}
+\index{register\+Game@{register\+Game}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
+\subsubsection{\texorpdfstring{register\+Game()}{registerGame()}}
+{\footnotesize\ttfamily void Abstract\+Ui\+Element\+::register\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_abstract_game}{Abstract\+Game}} $\ast$}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Register the game to the element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & The \mbox{\hyperlink{class_game}{Game}}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}\label{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}} 
+\index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!render@{render}}
+\index{render@{render}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
+\subsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily virtual void Abstract\+Ui\+Element\+::render (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Render the element on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & The renderer\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_button_ui_element_ad319e20e8abedefe07aef58a38ae9a81}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_a422fc1d3b4c1451f656e7470e575577b}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_a7931ba283acdf102442a9181b3ddf276}{Text\+Ui\+Element}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
