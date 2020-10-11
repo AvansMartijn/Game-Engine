@@ -1,5 +1,10 @@
 #pragma once
 #include "AbstractScreen.h"
+#include <iostream>
+#include "AbstractGame.h"
+#include "ButtonUiElement.h"
+#include "TextUiElement.h"
+#include "ImageUiElement.h"
 
 class PauseScreen : public AbstractScreen
 {

@@ -1,9 +1,4 @@
 #include "PauseScreen.h"
-#include <iostream>
-#include "AbstractGame.h"
-#include "ButtonUiElement.h"
-#include "TextUiElement.h"
-#include "ImageUiElement.h"
 
 PauseScreen::PauseScreen() {}
 PauseScreen::~PauseScreen() {}
