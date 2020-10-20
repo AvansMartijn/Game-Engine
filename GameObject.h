@@ -11,6 +11,7 @@
 
 using namespace std;
 
+class Window;
 class GameObject
 {
 private:
@@ -27,6 +28,6 @@ public:
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 	bool hasExtension(const std::type_info& type);
 	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
-	void preRender(SDL_Renderer* renderer);
+	void preRender(Window* window);
 };
 

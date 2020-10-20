@@ -1,10 +1,12 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_ttf.h"
+#include "Window.h"
 
 /// <summary>
 /// Element to be rendered on the screen.
 /// </summary>
+class Window;
 class AbstractGame;
 class AbstractUiElement
 {
@@ -18,12 +20,12 @@ public:
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	virtual void preRender(SDL_Renderer* renderer) = 0;
+	virtual void preRender(Window* window) = 0;
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	virtual void render(SDL_Renderer* renderer) = 0;
+	virtual void render(Window* window) = 0;
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>

@@ -8,7 +8,7 @@
 class SdlHelper
 {
 public:
-	SDL_Texture* getTexture(std::string filePath, SDL_Renderer* renderer);
-	void renderText(std::string text, TTF_Font* font, SDL_Rect* rectangle, SDL_Renderer* renderer, SDL_Surface* surface, SDL_Texture* texture, bool center);
+	//SDL_Texture* getTexture(std::string filePath, SDL_Renderer* renderer);
+	//void renderText(std::string text, TTF_Font* font, SDL_Rect* rectangle, SDL_Renderer* renderer, SDL_Surface* surface, SDL_Texture* texture, bool center);
 };
 

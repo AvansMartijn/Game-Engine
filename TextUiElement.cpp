@@ -15,16 +15,16 @@ TextUiElement::~TextUiElement() {
         TTF_CloseFont(_font);
 }
 
-void TextUiElement::preRender(SDL_Renderer* renderer) {
+void TextUiElement::preRender(Window* window) {
     _sdlHelper = SdlHelper{};
     _font = TTF_OpenFont("res/fonts/OpenSans-Regular.ttf", _fontSize);
 }
 
-void TextUiElement::render(SDL_Renderer* renderer) {
+void TextUiElement::render(Window* window) {
     SDL_Surface* surface = TTF_RenderText_Shaded(_font, _text.c_str(), _foregroundColor, _backgroundColor);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(window->getRenderer(), surface);
 
-    _sdlHelper.renderText(_text, _font, &_rectangle, renderer, surface, texture, _center);
+    //_sdlHelper.renderText(_text, _font, &_rectangle, renderer, surface, texture, _center);
 }
 
 void TextUiElement::onClick() {}

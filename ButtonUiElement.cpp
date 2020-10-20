@@ -10,22 +10,22 @@ ButtonUiElement::ButtonUiElement(std::string text, SDL_Rect rect, SDL_Color bgCo
 
 ButtonUiElement::~ButtonUiElement() {}
 
-void ButtonUiElement::preRender(SDL_Renderer* renderer) {
+void ButtonUiElement::preRender(Window* window) {
     _sdlHelper = SdlHelper{};
     _font = TTF_OpenFont("res/fonts/OpenSans-Regular.ttf", _fontSize);
 }
 
-void ButtonUiElement::render(SDL_Renderer* renderer){
-    SDL_SetRenderDrawColor(renderer, _backgroundColor.r, _backgroundColor.g, _backgroundColor.b, _backgroundColor.a);
-    SDL_RenderFillRect(renderer, &_rectangle);
+void ButtonUiElement::render(Window* window){
+    SDL_SetRenderDrawColor(window->getRenderer(), _backgroundColor.r, _backgroundColor.g, _backgroundColor.b, _backgroundColor.a);
+    SDL_RenderFillRect(window->getRenderer(), &_rectangle);
 
     SDL_Surface* surface = TTF_RenderText_Shaded(_font, _text.c_str(), _foregroundColor, _backgroundColor);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(window->getRenderer(), surface);
 
     SDL_Rect txtRect = _rectangle;
     txtRect.x = (1080 / 2);
     txtRect.y = txtRect.y + txtRect.h / 4;
-   _sdlHelper.renderText(_text, _font, &txtRect, renderer, surface, texture, false);
+   //_sdlHelper.renderText(_text, _font, &txtRect, renderer, surface, texture, false);
 }
 
 void ButtonUiElement::onClick() {

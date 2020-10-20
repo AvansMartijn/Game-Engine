@@ -23,12 +23,12 @@ public:
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void preRender(SDL_Renderer* renderer);
+	void preRender(Window* window);
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void render(SDL_Renderer* renderer);
+	void render(Window* window);
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>

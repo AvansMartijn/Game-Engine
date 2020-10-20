@@ -1,8 +1,10 @@
 #pragma once
 #include <memory>
-
+#include "SDLWrapper.h"
+#include "SDLImageWrapper.h"
 #include "AbstractScreen.h"
 #include <vector>
+#include "Window.h"
 
 using namespace std;
 
@@ -11,11 +13,6 @@ using namespace std;
 /// </summary>
 class AbstractGame
 {
-protected:
-	/// <summary>
-	/// The index of the visible screen.
-	/// </summary>
-	int _activeScreen;
 public:
 	AbstractGame();
 	~AbstractGame();
@@ -35,5 +32,14 @@ public:
 	/// </summary>
 	/// <param name="screenIndex">The index of the screen we want to display</param>
 	virtual void switchScreen(int screenIndex) = 0;
+protected:
+	/// <summary>
+	/// The index of the visible screen.
+	/// </summary>
+	int _activeScreen;
+
+	SDLWrapper _sdl;
+	SDLImageWrapper _sdlImage;
+	Window* _window;
 };
 

@@ -205,6 +205,8 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PhysicsFacade.cpp" />
     <ClCompile Include="SdlHelper.cpp" />
+    <ClCompile Include="SDLImageWrapper.cpp" />
+    <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="SoundExtension.cpp" />
@@ -260,6 +262,8 @@
     <ClInclude Include="PhysicsFacade.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SdlHelper.h" />
+    <ClInclude Include="SDLImageWrapper.h" />
+    <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="SoundExtension.h" />

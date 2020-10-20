@@ -39,7 +39,7 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 	return nullptr;
 }
 
-void GameObject::preRender(SDL_Renderer* renderer) {
-	texture = SdlHelper{}.getTexture(texturePath, renderer);
+void GameObject::preRender(Window* window) {
+	//texture = SdlHelper{}.getTexture(texturePath, renderer);
 }
 

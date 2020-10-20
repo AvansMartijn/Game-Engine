@@ -5,19 +5,20 @@ Game::Game() {}
 Game::~Game() {}
 
 void Game::onInit() {
+	Window win = Window("FluixEngine", 1080, 720);
+	_window = &win;
+
 	// 0 = Game | 1 = Settings
 	// TODO: Maybe use type instead of id
 	switchScreen(0);
 
-	Window window = Window("FluixEngine", 1080, 720);
+	//for (auto& screen : screens) {
+	//	for (auto& obj : screen->gameObjects)
+	//		obj->preRender(_window);
 
-	for (auto& screen : screens) {
-		for (auto& obj : screen->gameObjects)
-			window.preRender(obj);
-
-		for (auto& obj : screen->uiElements)
-			window.preRender(obj);
-	}
+	//	for (auto& obj : screen->uiElements)
+	//		obj->preRender(_window);
+	//}
 
 	SDL_Event event;
 
@@ -29,21 +30,20 @@ void Game::onInit() {
 		a = SDL_GetTicks();
 		delta = a - b;
 		if (delta > 1000 / 60.0) {
-			// TODO: This is really low at the moment, we need to optimize this next (3) sprint.
-			cout << "FPS: " << 1000 / delta << std::endl;
+			//cout << "FPS: " << 1000 / delta << std::endl;
 			b = a;
 
 			screens.at(_activeScreen)->onTick();
 
-			window.clear();
+			_window->clear();
 
-			for (auto& obj : screens.at(_activeScreen)->gameObjects)
-				window.render(obj);
+			//for (auto& obj : screens.at(_activeScreen)->gameObjects)
+			//	_window->render(obj);
 
-			for (auto& obj : screens.at(_activeScreen)->uiElements)
-				window.render(obj);
+			//for (auto& obj : screens.at(_activeScreen)->uiElements)
+			//	obj->render(_window);
 
-			window.display();
+			_window->display();
 
 			while (SDL_PollEvent(&event)) {
 				switch (event.type)
@@ -68,7 +68,7 @@ void Game::onInit() {
 			}
 		}
 	}
-	window.cleanUp();
+	//_window->cleanUp();
 }
 
 void Game::switchScreen(int screenIndex) {
