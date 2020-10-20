@@ -2,10 +2,10 @@
 #include <memory>
 #include "SDLWrapper.h"
 #include "SDLImageWrapper.h"
+#include "SDLTtfWrapper.h"
 #include "AbstractScreen.h"
 #include <vector>
 #include "Window.h"
-#include "SDLTtfWrapper.h"
 
 using namespace std;
 

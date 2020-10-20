@@ -20,7 +20,15 @@ int Window::getHeight() const {
 	return _height;
 }
 
-SDL_Texture* Window::getTexture(std::string filePath) {
+void Window::registerTexture(std::string textureKey, std::string texturePath) {
+	_assetRegistry.registerTexture(textureKey, getTexture(texturePath));
+}
+
+void Window::registerFont(std::string fontKey, std::string fontPath) {
+	_assetRegistry.registerFont(fontKey, fontPath);
+}
+
+SDL_Texture* Window::getTexture(std::string filePath) const {
 	SDL_Texture* texture = NULL;
 	texture = IMG_LoadTexture(_renderer.get(), filePath.c_str());
 	if (texture == NULL)

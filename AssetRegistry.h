@@ -1,9 +1,7 @@
 #pragma once
 #include <map>
-#include <SDL_render.h>
-#include <iostream>
 #include <SDL_image.h>
-#include <SDL_ttf.h>
+#include <iostream>
 
 class Window;
 class AssetRegistry
@@ -12,11 +10,11 @@ public:
 	AssetRegistry();
 	~AssetRegistry();
 
-	void registerTexture(Window* window, std::string key, std::string texture);
-	SDL_Texture* getTexture(std::string key);
+	void registerTexture(std::string textureKey, SDL_Texture* texture);
+	SDL_Texture* getTexture(std::string textureKey);
 
-	void registerFont(std::string key, std::string fontLocation);
-	std::string getFontPath(std::string key);
+	void registerFont(std::string fontKey, std::string fontPath);
+	std::string getFontPath(std::string fontKey);
 private:
 	std::map<std::string, SDL_Texture*> _textures;
 	std::map<std::string, std::string> _fonts;

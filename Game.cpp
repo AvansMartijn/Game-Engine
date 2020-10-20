@@ -7,8 +7,8 @@ Game::~Game() {}
 void Game::onInit() {
 	Window win = Window("FluixEngine", 1080, 720);
 	_window = &win;
-	_window->_assetRegistry.registerTexture(_window, "Krool", "res/gfx/KINGKROOL.png");
-	_window->_assetRegistry.registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
+	_window->registerTexture("Krool", "res/gfx/KINGKROOL.png");
+	_window->registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 
 	// 0 = Game | 1 = Settings
 	// TODO: Maybe use type instead of id

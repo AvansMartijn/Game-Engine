@@ -211,7 +211,6 @@
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="SoundExtension.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
@@ -271,7 +270,6 @@
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Shape.h" />
-    <ClInclude Include="Shapes.h" />
     <ClInclude Include="SoundExtension.h" />
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />

@@ -16,18 +16,6 @@ void ButtonUiElement::preRender(Window* window) {
 }
 
 void ButtonUiElement::render(Window* window){
-    // TOOD: Move to window
-    //SDL_SetRenderDrawColor(window->getRenderer(), _backgroundColor.r, _backgroundColor.g, _backgroundColor.b, _backgroundColor.a);
-    //SDL_RenderFillRect(window->getRenderer(), &_rectangle);
-
-    //SDL_Surface* surface = TTF_RenderText_Shaded(_font, _text.c_str(), _foregroundColor, _backgroundColor);
-    //SDL_Texture* texture = SDL_CreateTextureFromSurface(window->getRenderer(), surface);
-
-    //SDL_Rect txtRect = _rectangle;
-    //txtRect.x = (1080 / 2);
-    //txtRect.y = txtRect.y + txtRect.h / 4;
-    //window->renderText(_text, _font, &txtRect, surface, texture, false);
-
     window->renderRectangle(_rect, _backgroundColor);
 
     Rect txtRect = _rect;
@@ -35,7 +23,6 @@ void ButtonUiElement::render(Window* window){
     txtRect.y = txtRect.y + txtRect.h / 4;
     
     window->renderText(_text, _font, txtRect, _foregroundColor, _backgroundColor, false);
-
 }
 
 void ButtonUiElement::onClick() {

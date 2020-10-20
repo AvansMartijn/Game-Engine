@@ -207,9 +207,6 @@
     <ClInclude Include="GameObjectExtensionFactory.h">
       <Filter>Header Files\GameObjects\Creation</Filter>
     </ClInclude>
-    <ClInclude Include="Shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractManageableItem.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
@@ -376,9 +373,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectExtensionFactory.cpp">
       <Filter>Source Files\GameObjects\Creation</Filter>
-    </ClCompile>
-    <ClCompile Include="Shapes.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AbstractManageableItem.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
