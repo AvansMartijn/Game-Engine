@@ -1,19 +1,17 @@
 #include "ImageUiElement.h"
 
 using namespace std;
-ImageUiElement::ImageUiElement(std::string filePath, SDL_Rect rect) {
-    _rectangle = rect;
-    _filePath = filePath;
+ImageUiElement::ImageUiElement(std::string textureKey, Rect rect) {
+    _rect = rect;
+    _textureKey = textureKey;
 }
 
 ImageUiElement::~ImageUiElement() {}
 
-void ImageUiElement::preRender(SDL_Renderer* renderer) {
-    _texture = SdlHelper{}.getTexture(_filePath, renderer);
-}
+void ImageUiElement::preRender(Window* window) {}
 
-void ImageUiElement::render(SDL_Renderer* renderer) {
-    SDL_RenderCopy(renderer, _texture, NULL, &_rectangle);
+void ImageUiElement::render(Window* window) {
+    window->renderTexture(_textureKey, _rect);
 }
 
 void ImageUiElement::onClick() {}

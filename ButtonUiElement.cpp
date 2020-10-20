@@ -1,31 +1,28 @@
 #include "ButtonUiElement.h"
 
-ButtonUiElement::ButtonUiElement(std::string text, SDL_Rect rect, SDL_Color bgColor, SDL_Color fgColor, int fontSize) {
+ButtonUiElement::ButtonUiElement(std::string text, Rect rect, Color bgColor, Color fgColor, std::string fontKey, int fontSize) {
     _text = text;
-    _rectangle = rect;
+    _rect = rect;
     _backgroundColor = bgColor;
     _foregroundColor = fgColor;
     _fontSize = fontSize;
+    _fontKey = fontKey;
 }
 
 ButtonUiElement::~ButtonUiElement() {}
 
-void ButtonUiElement::preRender(SDL_Renderer* renderer) {
-    _sdlHelper = SdlHelper{};
-    _font = TTF_OpenFont("res/fonts/OpenSans-Regular.ttf", _fontSize);
+void ButtonUiElement::preRender(Window* window) {
+    _font = window->getFont(_fontKey, _fontSize);
 }
 
-void ButtonUiElement::render(SDL_Renderer* renderer){
-    SDL_SetRenderDrawColor(renderer, _backgroundColor.r, _backgroundColor.g, _backgroundColor.b, _backgroundColor.a);
-    SDL_RenderFillRect(renderer, &_rectangle);
+void ButtonUiElement::render(Window* window){
+    window->renderRectangle(_rect, _backgroundColor);
 
-    SDL_Surface* surface = TTF_RenderText_Shaded(_font, _text.c_str(), _foregroundColor, _backgroundColor);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-
-    SDL_Rect txtRect = _rectangle;
-    txtRect.x = (1080 / 2);
+    Rect txtRect = _rect;
+    txtRect.x = window->getWidth() / 2;
     txtRect.y = txtRect.y + txtRect.h / 4;
-   _sdlHelper.renderText(_text, _font, &txtRect, renderer, surface, texture, false);
+    
+    window->renderText(_text, _font, txtRect, _foregroundColor, _backgroundColor, false);
 }
 
 void ButtonUiElement::onClick() {
@@ -33,5 +30,5 @@ void ButtonUiElement::onClick() {
 }
 
 bool ButtonUiElement::isInBound(int mouseX, int mouseY) {
-    return (mouseX >= _rectangle.x && mouseX <= _rectangle.x + _rectangle.w) && (mouseY > _rectangle.y && mouseY < _rectangle.y + _rectangle.h);
+    return (mouseX >= _rect.x && mouseX <= _rect.x + _rect.w) && (mouseY > _rect.y && mouseY < _rect.y + _rect.h);
 }
