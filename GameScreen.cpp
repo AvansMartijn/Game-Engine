@@ -26,7 +26,7 @@ void GameScreen::onInit() {
 	_player->physicalBody.shape.max = newPos + 50;
 	_player->physicalBody.body.position = newPos;
 	_player->physicalBody.body.velocity = newVel;
-	_player->texturePath = "res/gfx/KINGKROOL.png";
+	_player->textureKey = "Krool";
 	gameObjects.push_back(_player);
 
 	// Moving
@@ -46,7 +46,7 @@ void GameScreen::onInit() {
 	obj1->physicalBody.shape.max = newPos + 50;
 	obj1->physicalBody.body.position = newPos;
 	obj1->physicalBody.body.velocity = newVel;
-	obj1->texturePath = "res/gfx/KINGKROOL.png";
+	obj1->textureKey = "Krool";
 
 	gameObjects.push_back(obj1);
 
@@ -68,7 +68,7 @@ void GameScreen::onInit() {
 	obj2->physicalBody.shape.max.y = 720;
 	obj2->physicalBody.body.position = newPos;
 	obj2->physicalBody.body.velocity = newVel;
-	obj2->texturePath = "res/gfx/KINGKROOL.png";
+	obj2->textureKey = "Krool";
 
 	gameObjects.push_back(obj2);
 }

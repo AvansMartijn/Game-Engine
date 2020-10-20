@@ -3,6 +3,7 @@
 #include "AbstractScreen.h"
 #include "GameScreen.h"
 #include "PauseScreen.h"
+#include "AssetRegistry.h"
 
 class Game : public AbstractGame
 {

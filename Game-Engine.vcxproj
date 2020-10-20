@@ -173,6 +173,7 @@
     <ClCompile Include="AbstractScreen.cpp" />
     <ClCompile Include="AbstractUiElement.cpp" />
     <ClCompile Include="AiExtension.cpp" />
+    <ClCompile Include="AssetRegistry.cpp" />
     <ClCompile Include="AttackExtension.cpp" />
     <ClCompile Include="BehaviourAttack.cpp" />
     <ClCompile Include="BehaviourIdle.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -204,8 +206,9 @@
     <ClCompile Include="PhysicalBody.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PhysicsFacade.cpp" />
-    <ClCompile Include="SdlHelper.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
+    <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Shapes.cpp" />
@@ -227,6 +230,7 @@
     <ClInclude Include="AbstractScreen.h" />
     <ClInclude Include="AbstractUiElement.h" />
     <ClInclude Include="AiExtension.h" />
+    <ClInclude Include="AssetRegistry.h" />
     <ClInclude Include="AttackExtension.h" />
     <ClInclude Include="BehaviourAttack.h" />
     <ClInclude Include="BehaviourIdle.h" />
@@ -240,6 +244,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="DefaultEntityAI.h" />
     <ClInclude Include="FluixEngine.h" />
     <ClInclude Include="Game.h" />
@@ -260,9 +265,10 @@
     <ClInclude Include="PhysicalBody.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsFacade.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SdlHelper.h" />
     <ClInclude Include="SDLImageWrapper.h" />
+    <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Shapes.h" />

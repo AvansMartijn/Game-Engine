@@ -7,18 +7,17 @@ Game::~Game() {}
 void Game::onInit() {
 	Window win = Window("FluixEngine", 1080, 720);
 	_window = &win;
+	_window->_assetRegistry.registerTexture(_window, "Krool", "res/gfx/KINGKROOL.png");
+	_window->_assetRegistry.registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 
 	// 0 = Game | 1 = Settings
 	// TODO: Maybe use type instead of id
 	switchScreen(0);
 
-	//for (auto& screen : screens) {
-	//	for (auto& obj : screen->gameObjects)
-	//		obj->preRender(_window);
-
-	//	for (auto& obj : screen->uiElements)
-	//		obj->preRender(_window);
-	//}
+	for (auto& screen : screens) {
+		for (auto& obj : screen->uiElements)
+			obj->preRender(_window);
+	}
 
 	SDL_Event event;
 
@@ -37,11 +36,11 @@ void Game::onInit() {
 
 			_window->clear();
 
-			//for (auto& obj : screens.at(_activeScreen)->gameObjects)
-			//	_window->render(obj);
+			for (auto& obj : screens.at(_activeScreen)->gameObjects)
+				obj->render(_window);
 
-			//for (auto& obj : screens.at(_activeScreen)->uiElements)
-			//	obj->render(_window);
+			for (auto& obj : screens.at(_activeScreen)->uiElements)
+				obj->render(_window);
 
 			_window->display();
 
@@ -68,7 +67,6 @@ void Game::onInit() {
 			}
 		}
 	}
-	//_window->cleanUp();
 }
 
 void Game::switchScreen(int screenIndex) {

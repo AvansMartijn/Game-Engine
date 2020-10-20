@@ -1,25 +1,16 @@
 #pragma once
 #include "AbstractUiElement.h"
-#include "SdlHelper.h"
+#include "Color.h"
 
 #include <string>
 #include <iostream>
 
 class TextUiElement: public AbstractUiElement
 {
-private:
-	std::string _text;
-	SDL_Color _foregroundColor;
-	SDL_Color _backgroundColor;
-	int _fontSize;
-	bool _center;
-	TTF_Font* _font;
-	SdlHelper _sdlHelper;
 public:
-	TextUiElement(std::string txt, int fontSize, SDL_Rect rect, SDL_Color fgColor, SDL_Color bgColor, bool center);
+	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center);
 	~TextUiElement();
-	
-	/// <summary>
+
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
@@ -40,5 +31,15 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
+private:
+	std::string _text;
+	std::string _fontKey;
+	int _fontSize;
+	Color _foregroundColor;
+	Color _backgroundColor;
+	bool _center;
+
+	// This has to be here, otherwise we have to add every possible fontSize to the registry.
+	TTF_Font* _font;
 };
 

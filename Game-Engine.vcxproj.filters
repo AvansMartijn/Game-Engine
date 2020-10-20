@@ -88,6 +88,12 @@
     <Filter Include="Header Files\Wrappers">
       <UniqueIdentifier>{8d5491af-e973-464a-a562-ff347c922cb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DataTypes">
+      <UniqueIdentifier>{6177a795-1c91-4303-b88a-ebee25e0fb38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataTypes">
+      <UniqueIdentifier>{6facbdb0-74d1-49aa-ba6c-10ea1eecad35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine.cd">
@@ -243,9 +249,6 @@
     <ClInclude Include="TextUiElement.h">
       <Filter>Header Files\UiElements</Filter>
     </ClInclude>
-    <ClInclude Include="SdlHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SoundFacade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -260,6 +263,18 @@
     </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetRegistry.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLTtfWrapper.h">
+      <Filter>Header Files\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Header Files\DataTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -401,9 +416,6 @@
     <ClCompile Include="ImageUiElement.cpp">
       <Filter>Source Files\UiElements</Filter>
     </ClCompile>
-    <ClCompile Include="SdlHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SoundFacade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -418,6 +430,18 @@
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetRegistry.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLTtfWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Source Files\DataTypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

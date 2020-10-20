@@ -7,14 +7,11 @@ GameObject::GameObject() {
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
 {
-	shared_ptr<GameObject> temp(this);
 	_gameObjectExtensions.push_back(extension);
-	extension->registerSubject(temp);
 }
 
 bool GameObject::hasExtension(const std::type_info& type)
 {
-	
 	for (auto const& extension : _gameObjectExtensions) 
 	{
 		string givenName = type.name();
@@ -25,6 +22,10 @@ bool GameObject::hasExtension(const std::type_info& type)
 	}
 
 	return false;
+}
+
+void GameObject::render(Window* window) {
+	window->renderTexture(textureKey, { (int)physicalBody.body.position.x, (int)physicalBody.body.position.y, physicalBody.shape.getWidth(), physicalBody.shape.getHeight() });
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
@@ -38,8 +39,3 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 	}
 	return nullptr;
 }
-
-void GameObject::preRender(Window* window) {
-	//texture = SdlHelper{}.getTexture(texturePath, renderer);
-}
-

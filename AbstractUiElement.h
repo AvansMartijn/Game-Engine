@@ -1,7 +1,6 @@
 #pragma once
-#include "SDL.h"
-#include "SDL_ttf.h"
 #include "Window.h"
+#include "Rect.h"
 
 /// <summary>
 /// Element to be rendered on the screen.
@@ -10,9 +9,6 @@ class Window;
 class AbstractGame;
 class AbstractUiElement
 {
-protected:
-	AbstractGame* _game;
-	SDL_Rect _rectangle;
 public:
 	AbstractUiElement();
 	~AbstractUiElement();
@@ -42,5 +38,7 @@ public:
 	/// </summary>
 	/// <param name="game">The Game</param>
 	virtual void registerGame(AbstractGame* game);
+protected:
+	AbstractGame* _game;
+	Rect _rect;
 };
-

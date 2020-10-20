@@ -9,6 +9,7 @@ Shapes::~Shapes()
 	SDL_DestroyTexture(_texture);
 }
 
+// TODO: Shapes
 void Shapes::drawCube(SDL_Renderer* renderer, SDL_Color color, int x, int y, int width, int height)
 {
 	_cube.w = width;

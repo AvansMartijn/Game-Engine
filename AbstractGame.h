@@ -5,6 +5,7 @@
 #include "AbstractScreen.h"
 #include <vector>
 #include "Window.h"
+#include "SDLTtfWrapper.h"
 
 using namespace std;
 
@@ -40,6 +41,7 @@ protected:
 
 	SDLWrapper _sdl;
 	SDLImageWrapper _sdlImage;
+	SDLTtfWrapper _sdlTtf;
 	Window* _window;
 };
 
