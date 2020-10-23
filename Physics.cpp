@@ -1,10 +1,10 @@
 #include "Physics.h"
 
-void Physics::changeVelocity(shared_ptr<GameObject> object, Vec2 velocity) {
+void Physics::changeVelocity(shared_ptr<GameObject> object, const Vec2& velocity) {
 	object->physicalBody.body.velocity = velocity;
 }
 
-void Physics::setPosition(shared_ptr<GameObject> gameObject, Vec2 position) {
+void Physics::setPosition(shared_ptr<GameObject> gameObject, const Vec2& position) {
 	//todo: refactor to single statement after AABB refactored to polygonShapes
 	int width = gameObject->physicalBody.shape.getWidth();
 	int height = gameObject->physicalBody.shape.getHeight();

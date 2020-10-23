@@ -1,6 +1,6 @@
 #include "PhysicsFacade.h"
 
-void PhysicsFacade::setPosition(shared_ptr<GameObject> gameObject, Vec2 position)
+void PhysicsFacade::setPosition(shared_ptr<GameObject> gameObject, const Vec2& position)
 {
 	_physics.setPosition(gameObject, position);
 }

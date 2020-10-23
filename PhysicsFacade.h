@@ -15,7 +15,7 @@ public:
 	/// </summary>
 	/// <param name="gameObject">The object to set a position of.</param>
 	/// <param name="position">The destination position.</param>
-	void setPosition(shared_ptr<GameObject> gameObject, Vec2 position);
+	void setPosition(shared_ptr<GameObject> gameObject, const Vec2& position);
 	/// <summary>
 	/// Update the position of an object, applying it's velocity to it's position.
 	/// </summary>

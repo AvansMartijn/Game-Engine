@@ -15,13 +15,13 @@ public:
 	/// </summary>
 	/// <param name="object">The object to be changed</param>
 	/// <param name="velocity">The new velocity</param>
-	void changeVelocity(shared_ptr<GameObject> object, Vec2 velocity);
+	void changeVelocity(shared_ptr<GameObject> object, const Vec2& velocity);
 	/// <summary>
 	/// Set the position of a game object
 	/// </summary>
 	/// <param name="object">The object to be changed</param>
 	/// <param name="position">The new position</param>
-	void setPosition(shared_ptr<GameObject> object, Vec2 position);
+	void setPosition(shared_ptr<GameObject> object, const Vec2& position);
 	/// <summary>
 	/// Update the position of a game object, applying it's velocity to it's position
 	/// </summary>
