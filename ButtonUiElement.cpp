@@ -11,11 +11,11 @@ ButtonUiElement::ButtonUiElement(std::string text, Rect rect, Color bgColor, Col
 
 ButtonUiElement::~ButtonUiElement() {}
 
-void ButtonUiElement::preRender(Window* window) {
+void ButtonUiElement::preRender(const unique_ptr<Window>& window) {
     _font = window->getFont(_fontKey, _fontSize);
 }
 
-void ButtonUiElement::render(Window* window){
+void ButtonUiElement::render(const unique_ptr<Window>& window){
     window->renderRectangle(_rect, _backgroundColor);
 
     Rect txtRect = _rect;

@@ -17,15 +17,16 @@ public:
 	ButtonUiElement(std::string text, Rect rect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
 	~ButtonUiElement();
 
-	/// This is called one time before going into the render loop.
+	/// <summary>
+	/// pre render the element
 	/// </summary>
-	/// <param name="renderer">The renderer</param>
-	void preRender(Window* window);
+	/// <param name="window"></param>
+	void preRender(const unique_ptr<Window>& window);
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void render(Window* window);
+	void render(const unique_ptr<Window>& window);
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>

@@ -6,15 +6,15 @@ void GameObjectBuilder::buildGameObject()
 	_gameObject.reset(new GameObject());
 }
 
-void GameObjectBuilder::addExtension(std::vector<string> extensionNames)
+void GameObjectBuilder::addExtension(const std::vector<string>& extensionNames)
 {
-	for (string& extensionName : extensionNames)
+	for (const string& extensionName : extensionNames)
 	{
-		shared_ptr<AbstractGameObjectExtension> extension(GameObjectExtensionFactory::get()->createExtension(extensionName));
+		unique_ptr<AbstractGameObjectExtension> extension(GameObjectExtensionFactory::get()->createExtension(extensionName));
 		if (extension) {
 			extension->registerSubject(_gameObject);
 
-			_gameObject->addExtension(extension);
+			_gameObject->addExtension(move(extension));
 		}
 	}
 }

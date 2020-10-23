@@ -11,15 +11,16 @@ public:
 	ImageUiElement(std::string imageKey, Rect rect);
 	~ImageUiElement();
 
-	/// This is called one time before going into the render loop.
+	/// <summary>
+	/// preredner
 	/// </summary>
-	/// <param name="renderer">The renderer</param>
-	void preRender(Window* window);
+	/// <param name="window"></param>
+	void preRender(const unique_ptr<Window>& window);
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void render(Window* window);
+	void render(const unique_ptr<Window>& window);
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>
