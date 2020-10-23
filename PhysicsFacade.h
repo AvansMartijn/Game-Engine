@@ -32,6 +32,6 @@ public:
 	/// </summary>
 	/// <param name="gameObject">The object to which gravity should be added.</param>
 	void addGravityForce(shared_ptr<GameObject> gameObject);
-	vector<shared_ptr<GameObject>> getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList);
+	vector<shared_ptr<GameObject>> getCollisions(shared_ptr<GameObject> objectA, const std::vector<shared_ptr<GameObject>>& objectList);
 };
 
