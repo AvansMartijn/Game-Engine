@@ -25,7 +25,8 @@ public:
 		MainGame = 0,
 		Pause,
 		Credits,
-		Help
+		Help,
+		MainMenu
 	};
 
 
