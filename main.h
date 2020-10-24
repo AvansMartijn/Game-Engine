@@ -5,6 +5,7 @@
 #include "PauseScreen.h"
 #include "CreditsScreen.h"
 #include "HelpScreen.h"
+#include "MainMenuScreen.h"
 
 class main {
 };

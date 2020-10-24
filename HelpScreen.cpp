@@ -5,9 +5,10 @@ HelpScreen::~HelpScreen() {}
 
 void HelpScreen::onInit() {
 	Color bgColor = { 192, 192, 192 };
+	ImageUiElement img = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	uiElements.push_back(make_shared<ImageUiElement>(img));
 
-
-	TextUiElement title = TextUiElement("Help", "OpenSans", 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 255, 255, 255 }, true);
+	TextUiElement title = TextUiElement("Help", "OpenSans", 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 7, 16, 29 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(title));
 
 	//TODO: Een keer helemaal mooi maken voor nu tijd saven

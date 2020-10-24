@@ -16,10 +16,19 @@ void ButtonUiElement::preRender(Window* window) {
 }
 
 void ButtonUiElement::render(Window* window){
+
+    // Draw a line arround the box
+    Rect _border = _rect;
+    _border.x -= 3;
+    _border.y -= 3;
+    _border.h += 6;
+    _border.w += 6;
+    window->renderRectangle(_border, Color{ 0, 0, 0, 255 });
+
     window->renderRectangle(_rect, _backgroundColor);
 
     Rect txtRect = _rect;
-    txtRect.x = window->getWidth() / 2;
+    txtRect.x = window->getWidth() / 2 - 60;
     txtRect.y = txtRect.y + txtRect.h / 4;
     
     window->renderText(_text, _font, txtRect, _foregroundColor, _backgroundColor, false);

@@ -279,6 +279,9 @@
     <ClInclude Include="HelpScreen.h">
       <Filter>Header Files\Sandbox</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -447,6 +450,9 @@
       <Filter>Source Files\Sandbox</Filter>
     </ClCompile>
     <ClCompile Include="HelpScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScreen.cpp">
       <Filter>Source Files\Sandbox</Filter>
     </ClCompile>
   </ItemGroup>

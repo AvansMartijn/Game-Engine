@@ -6,6 +6,7 @@ PauseScreen::~PauseScreen() {}
 void PauseScreen::onInit() {
 	Color bgColor = { 192, 192, 192 };
 
+
 	TextUiElement text = TextUiElement("Engine Demo", "OpenSans", 48, { 0, 0, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(text));
 
@@ -44,6 +45,10 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	case SDLK_h:
 		// GO TO HELP
 		_game->switchScreen(Screens::Help);
+		break;
+	case SDLK_m:
+		// GO TO HELP
+		_game->switchScreen(Screens::MainMenu);
 		break;
 	default:
 		break;
