@@ -13,6 +13,10 @@ void PauseScreen::onInit() {
 	button.registerGame(_game);
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
+	ButtonUiElement mainMenuButton = ButtonUiElement("MainMenu", { (1080 / 2) - 200, 100, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
+	mainMenuButton.registerGame(_game);
+	uiElements.push_back(make_shared<ButtonUiElement>(mainMenuButton));
+
 	ImageUiElement img = ImageUiElement("Krool", { 0 , 0, 100, 100 });
 	uiElements.push_back(make_shared<ImageUiElement>(img));
 }
@@ -30,6 +34,11 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	{
 	case SDLK_ESCAPE:
 		_game->switchScreen(0);
+
+		break;
+
+	case SDLK_q:
+		_game->switchScreen(5);
 
 		break;
 	default:
