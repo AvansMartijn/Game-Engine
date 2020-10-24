@@ -13,6 +13,7 @@ public:
 	AbstractUiElement();
 	~AbstractUiElement();
 
+
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>

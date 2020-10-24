@@ -15,6 +15,16 @@ int main(int argc, char* argv[]) {
 	pauseScreen.onInit();
 	game.screens.push_back(make_shared<PauseScreen>(pauseScreen));
 
+	CreditsScreen creditsScreen = CreditsScreen{};
+	creditsScreen.registerGame(&game);
+	creditsScreen.onInit();
+	game.screens.push_back(make_shared<CreditsScreen>(creditsScreen));
+
+	HelpScreen helpScreen = HelpScreen{};
+	helpScreen.registerGame(&game);
+	helpScreen.onInit();
+	game.screens.push_back(make_shared<HelpScreen>(helpScreen));
+
 	game.onInit();
 
 	return 0;

@@ -17,6 +17,8 @@ public:
 	ButtonUiElement(std::string text, Rect rect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
 	~ButtonUiElement();
 
+
+
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
@@ -37,6 +39,7 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
+
 private:
 	std::string _text;
 	Color _backgroundColor;

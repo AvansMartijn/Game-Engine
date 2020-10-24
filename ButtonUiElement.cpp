@@ -25,8 +25,8 @@ void ButtonUiElement::render(Window* window){
     window->renderText(_text, _font, txtRect, _foregroundColor, _backgroundColor, false);
 }
 
+
 void ButtonUiElement::onClick() {
-    _game->switchScreen(0);
 }
 
 bool ButtonUiElement::isInBound(int mouseX, int mouseY) {
