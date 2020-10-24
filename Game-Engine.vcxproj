@@ -198,6 +198,7 @@
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="Manifold.cpp" />
     <ClCompile Include="MassData.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -256,6 +257,7 @@
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="Manifold.h" />
     <ClInclude Include="MassData.h" />
     <ClInclude Include="Material.h" />
