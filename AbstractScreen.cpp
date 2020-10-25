@@ -1,5 +1,7 @@
 #include "AbstractScreen.h"
-AbstractScreen::AbstractScreen() {}
+AbstractScreen::AbstractScreen() {
+	_game = NULL;
+}
 
 AbstractScreen::~AbstractScreen() {}
 

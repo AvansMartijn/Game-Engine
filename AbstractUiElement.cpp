@@ -1,5 +1,8 @@
 #include "AbstractUiElement.h"
-AbstractUiElement::AbstractUiElement() {}
+AbstractUiElement::AbstractUiElement() {
+	_game = NULL;
+	_rect = {};
+}
 
 AbstractUiElement::~AbstractUiElement() {}
 

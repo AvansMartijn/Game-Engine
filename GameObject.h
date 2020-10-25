@@ -5,12 +5,11 @@
 #include <memory>
 #include <iostream>
 #include <string>
-#include "SdlHelper.h"
-#include <SDL.h>
 #include "Window.h"
 
 using namespace std;
 
+class Window;
 class GameObject
 {
 private:
@@ -19,14 +18,13 @@ public:
 	GameObject();
 
 	PhysicalBody physicalBody;
-	// TODO: Move texturePath to an extension, we might need multiple
-	std::string texturePath;
-	// TODO: Use facade instead of direct texture.
-	SDL_Texture* texture;
+	// TODO: Move textureKey to an extension, we might need multiple
+	std::string textureKey;
 
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 	bool hasExtension(const std::type_info& type);
+	void render(Window* window);
+
 	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
-	void preRender(SDL_Renderer* renderer);
 };
 

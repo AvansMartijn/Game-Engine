@@ -11,28 +11,23 @@ using namespace std;
 /// </summary>
 class ButtonUiElement: public AbstractUiElement
 {
-private:
-	string _text;
-	SDL_Color _backgroundColor;
-	SDL_Color _foregroundColor;
-	TTF_Font* _font;
-	int _fontSize;
-	SdlHelper _sdlHelper;
 public:
 	using AbstractUiElement::AbstractUiElement;
 
-	ButtonUiElement(std::string text, SDL_Rect rect, SDL_Color bgColor, SDL_Color fgColor, int fontSize);
+	ButtonUiElement(std::string text, Rect rect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
 	~ButtonUiElement();
+
+
 
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void preRender(SDL_Renderer* renderer);
+	void preRender(Window* window);
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void render(SDL_Renderer* renderer);
+	void render(Window* window);
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>
@@ -44,5 +39,15 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
+
+private:
+	std::string _text;
+	Color _backgroundColor;
+	Color _foregroundColor;
+	std::string _fontKey;
+	int _fontSize;
+
+	// This has to be here, otherwise we have to add every possible fontSize to the registry.
+	TTF_Font* _font;
 };
 

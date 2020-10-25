@@ -1,14 +1,14 @@
 #pragma once
 #include <SDL.h>
-#include <SDL_mixer.h>
+//#include <SDL_mixer.h>
 #include <iostream>
-
+//TODO: Even die comments weg halen 
 class SoundFacade
 {
 	/// <summary>
 	/// Background Music
 	/// </summary>
-	Mix_Music* gMusic = NULL;
+	//Mix_Music* gMusic = NULL;
 
 	//The sound effects that will be used
 	/*Mix_Chunk* gScratch = NULL;

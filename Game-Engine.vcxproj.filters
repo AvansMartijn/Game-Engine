@@ -82,6 +82,18 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{58bbc6f1-1328-44d8-99fe-0de425c48905}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Wrappers">
+      <UniqueIdentifier>{08c47ff4-1c6a-4668-81f1-f349fd2efaff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wrappers">
+      <UniqueIdentifier>{8d5491af-e973-464a-a562-ff347c922cb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataTypes">
+      <UniqueIdentifier>{6177a795-1c91-4303-b88a-ebee25e0fb38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataTypes">
+      <UniqueIdentifier>{6facbdb0-74d1-49aa-ba6c-10ea1eecad35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine.cd">
@@ -195,12 +207,6 @@
     <ClInclude Include="GameObjectExtensionFactory.h">
       <Filter>Header Files\GameObjects\Creation</Filter>
     </ClInclude>
-    <ClInclude Include="Shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractManageableItem.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
@@ -240,14 +246,41 @@
     <ClInclude Include="TextUiElement.h">
       <Filter>Header Files\UiElements</Filter>
     </ClInclude>
-    <ClInclude Include="SdlHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SoundFacade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLWrapper.h">
+      <Filter>Header Files\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLImageWrapper.h">
+      <Filter>Header Files\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetRegistry.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLTtfWrapper.h">
+      <Filter>Header Files\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,12 +383,6 @@
     <ClCompile Include="GameObjectExtensionFactory.cpp">
       <Filter>Source Files\GameObjects\Creation</Filter>
     </ClCompile>
-    <ClCompile Include="Shapes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractManageableItem.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
@@ -392,14 +419,41 @@
     <ClCompile Include="ImageUiElement.cpp">
       <Filter>Source Files\UiElements</Filter>
     </ClCompile>
-    <ClCompile Include="SdlHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SoundFacade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SoundExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLImageWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetRegistry.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLTtfWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
