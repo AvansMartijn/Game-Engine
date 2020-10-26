@@ -1,14 +1,14 @@
 #pragma once
 
 #ifdef GAMEENGINE_EXPORTS
-#define GAMEENGINE_API __declspec(dllexport)
+#define GAMEENGINE_TALKER __declspec(dllexport)
 #else
-#define GAMEENGINE_API __declspec(dllimport)
+#define GAMEENGINE_TALKER __declspec(dllimport)
 #endif
 
 #include <string>
 
-class GAMEENGINE_API Talker
+class GAMEENGINE_TALKER Talker
 {
 
 public:

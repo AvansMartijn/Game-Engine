@@ -1,4 +1,5 @@
 #pragma once
+
 #include <memory>
 #include "SDLWrapper.h"
 #include "SDLImageWrapper.h"

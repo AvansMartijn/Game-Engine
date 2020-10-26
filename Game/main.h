@@ -1,11 +1,16 @@
-#pragma once
-#include <iostream>
+//#pragma once
+//#include <iostream>
 #include "Game.h"
-#include "GameScreen.h"
-#include "PauseScreen.h"
-#include "CreditsScreen.h"
-#include "HelpScreen.h"
-#include "MainMenuScreen.h"
+//#include "GameScreen.h"
+//#include "PauseScreen.h"
+//#include "CreditsScreen.h"
+//#include "HelpScreen.h"
+//#include "MainMenuScreen.h"
+//
+//class main {
+//};
 
-class main {
-};
+
+//#include <iostream>
+//class main {
+//};

@@ -9,5 +9,7 @@
 
 #include <string>
 
- std::string EngineDoSomthing();
- std::string EngineDoSomthingElse();
+
+
+GAMEENGINE_API std::string EngineDoSomthing();
+GAMEENGINE_API std::string EngineDoSomthingElse();
