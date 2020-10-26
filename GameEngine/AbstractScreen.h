@@ -1,5 +1,9 @@
 #pragma once
-
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_AbstractScreen __declspec(dllexport)
+#else
+#define GAMEENGINE_AbstractScreen __declspec(dllimport)
+#endif
 
 #include <memory>
 #include <vector>
@@ -8,7 +12,7 @@
 using namespace std;
 
 class AbstractGame;
-class AbstractScreen
+class GAMEENGINE_AbstractScreen AbstractScreen
 {
 protected:
 	AbstractGame* _game;

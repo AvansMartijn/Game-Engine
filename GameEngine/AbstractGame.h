@@ -1,4 +1,9 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_AbstractGame __declspec(dllexport)
+#else
+#define GAMEENGINE_AbstractGame __declspec(dllimport)
+#endif
 
 #include <memory>
 #include "SDLWrapper.h"
@@ -13,7 +18,7 @@ using namespace std;
 /// <summary>
 /// The game class needs to be based of this class.
 /// </summary>
-class AbstractGame
+ class GAMEENGINE_AbstractGame AbstractGame
 {
 public:
 	AbstractGame();

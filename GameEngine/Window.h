@@ -1,5 +1,11 @@
 #pragma once
 
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_WINDOW __declspec(dllexport)
+#else
+#define GAMEENGINE_WINDOW __declspec(dllimport)
+#endif
+
 #define byte win_byte_override
 
 #include "GameObject.h"
@@ -15,7 +21,7 @@
 #include <SDL_image.h>
 #undef byte
 
-class Window {
+class GAMEENGINE_WINDOW Window {
 public:
 	Window(const char* title, int width, int height);
 

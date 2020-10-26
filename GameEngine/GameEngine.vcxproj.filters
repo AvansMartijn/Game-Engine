@@ -19,9 +19,6 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{991a9277-4814-40ea-95e3-d5a20d75233c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\DataTypes">
-      <UniqueIdentifier>{c9e02af8-ffed-440d-9617-1b945779813a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\GameObjects">
       <UniqueIdentifier>{15a91fd1-a1ba-4385-9d9a-928a1cb128ba}</UniqueIdentifier>
     </Filter>
@@ -85,6 +82,9 @@
     <Filter Include="Source Files\GameObjects\Extensions\CollisionResolution">
       <UniqueIdentifier>{07bde15e-2922-4073-a98f-d3d5766e8179}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\DataTypes">
+      <UniqueIdentifier>{c9e02af8-ffed-440d-9617-1b945779813a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -145,10 +145,10 @@
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Header Files\DataTypes</Filter>
+      <Filter>Header Files\Core\DataTypes</Filter>
     </ClInclude>
     <ClInclude Include="Rect.h">
-      <Filter>Header Files\DataTypes</Filter>
+      <Filter>Header Files\Core\DataTypes</Filter>
     </ClInclude>
     <ClInclude Include="AbstractEntityAI.h">
       <Filter>Header Files\AI</Filter>

@@ -1,11 +1,17 @@
 #pragma once
 
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_AssetRegistry __declspec(dllexport)
+#else
+#define GAMEENGINE_AssetRegistry __declspec(dllimport)
+#endif
+
 #include <map>
 #include <SDL_image.h>
 #include <iostream>
 
 class Window;
-class AssetRegistry
+class GAMEENGINE_AssetRegistry AssetRegistry
 {
 public:
 	AssetRegistry();
