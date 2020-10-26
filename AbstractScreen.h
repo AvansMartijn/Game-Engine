@@ -29,7 +29,6 @@ public:
 		MainMenu
 	};
 
-
 	/// <summary>
 	/// Called one time to create all objects.
 	/// </summary>

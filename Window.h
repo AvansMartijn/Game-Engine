@@ -34,7 +34,6 @@ public:
 	void renderRectangle(Rect rect, Color color);
 	void renderTexture(std::string textureKey, Rect rect);
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center);
-
 private:
 	int _width;
 	int _height;
