@@ -9,7 +9,9 @@ Inheritance diagram for Abstract\+Ui\+Element\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \mbox{\hyperlink{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}{render}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)=0
+virtual void \mbox{\hyperlink{class_abstract_ui_element_a859f627ab385e9d3bf6ce8db40607cdb}{pre\+Render}} (\mbox{\hyperlink{class_window}{Window}} $\ast$window)=0
+\item 
+virtual void \mbox{\hyperlink{class_abstract_ui_element_aea66ce333323cf2d5e12d4de9515de7b}{render}} (\mbox{\hyperlink{class_window}{Window}} $\ast$window)=0
 \begin{DoxyCompactList}\small\item\em Render the element on the screen. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}{on\+Click}} ()=0
 \begin{DoxyCompactList}\small\item\em The function executed when the element is clicked on. \end{DoxyCompactList}\item 
@@ -23,8 +25,8 @@ virtual void \mbox{\hyperlink{class_abstract_ui_element_aea8a32a77e77f601ca114b8
 \mbox{\Hypertarget{class_abstract_ui_element_ad80a25aa84eb844afd1c5e091063e8fb}\label{class_abstract_ui_element_ad80a25aa84eb844afd1c5e091063e8fb}} 
 \mbox{\hyperlink{class_abstract_game}{Abstract\+Game}} $\ast$ {\bfseries \+\_\+game}
 \item 
-\mbox{\Hypertarget{class_abstract_ui_element_a91aa849cd7db2aac4b7dd36d6094961d}\label{class_abstract_ui_element_a91aa849cd7db2aac4b7dd36d6094961d}} 
-S\+D\+L\+\_\+\+Rect {\bfseries \+\_\+rectangle}
+\mbox{\Hypertarget{class_abstract_ui_element_a4017d556668e164cd2f34a975db3d924}\label{class_abstract_ui_element_a4017d556668e164cd2f34a975db3d924}} 
+\mbox{\hyperlink{struct_rect}{Rect}} {\bfseries \+\_\+rect}
 \end{DoxyCompactItemize}
 
 
@@ -67,6 +69,23 @@ The function executed when the element is clicked on.
 
 Implemented in \mbox{\hyperlink{class_button_ui_element_a06c748ef9e81216f76d7db936d320365}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_ab3c388de0807d86016a2ff43fd6d337e}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_a984d8bcd627f43c1bd858a707df2c042}{Text\+Ui\+Element}}.
 
+\mbox{\Hypertarget{class_abstract_ui_element_a859f627ab385e9d3bf6ce8db40607cdb}\label{class_abstract_ui_element_a859f627ab385e9d3bf6ce8db40607cdb}} 
+\index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!pre\+Render@{pre\+Render}}
+\index{pre\+Render@{pre\+Render}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
+\subsubsection{\texorpdfstring{pre\+Render()}{preRender()}}
+{\footnotesize\ttfamily virtual void Abstract\+Ui\+Element\+::pre\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_window}{Window}} $\ast$}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+This is called one time before going into the render loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & The renderer\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_button_ui_element_a035c8beddc1ff6d47b94953025f68422}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_a15c523c82400b74f2f5713c6510f8c7a}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_afe15a4085bc4b7c2cf8668cb6d7fd45d}{Text\+Ui\+Element}}.
+
 \mbox{\Hypertarget{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}\label{class_abstract_ui_element_aea8a32a77e77f601ca114b8738072079}} 
 \index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!register\+Game@{register\+Game}}
 \index{register\+Game@{register\+Game}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
@@ -82,11 +101,11 @@ Register the game to the element.
 {\em game} & The \mbox{\hyperlink{class_game}{Game}}\\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}\label{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}} 
+\mbox{\Hypertarget{class_abstract_ui_element_aea66ce333323cf2d5e12d4de9515de7b}\label{class_abstract_ui_element_aea66ce333323cf2d5e12d4de9515de7b}} 
 \index{Abstract\+Ui\+Element@{Abstract\+Ui\+Element}!render@{render}}
 \index{render@{render}!Abstract\+Ui\+Element@{Abstract\+Ui\+Element}}
 \subsubsection{\texorpdfstring{render()}{render()}}
-{\footnotesize\ttfamily virtual void Abstract\+Ui\+Element\+::render (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual void Abstract\+Ui\+Element\+::render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_window}{Window}} $\ast$}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -99,7 +118,7 @@ Render the element on the screen.
 \end{DoxyParams}
 
 
-Implemented in \mbox{\hyperlink{class_button_ui_element_ad319e20e8abedefe07aef58a38ae9a81}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_a422fc1d3b4c1451f656e7470e575577b}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_a7931ba283acdf102442a9181b3ddf276}{Text\+Ui\+Element}}.
+Implemented in \mbox{\hyperlink{class_button_ui_element_ad97fc68e9279a36182c66b07dfa28817}{Button\+Ui\+Element}}, \mbox{\hyperlink{class_image_ui_element_af0928d725565618d6a9c8a2f557c1709}{Image\+Ui\+Element}}, and \mbox{\hyperlink{class_text_ui_element_a636883070224511baea505f4ad4655d9}{Text\+Ui\+Element}}.
 
 
 

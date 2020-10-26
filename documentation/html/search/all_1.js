@@ -13,5 +13,6 @@ var searchData=
   ['aiextension',['AiExtension',['../class_ai_extension.html',1,'']]],
   ['angularvelocity',['angularVelocity',['../struct_body.html#a78f0f4d1c6a6b9efaefd5a03bd8de598',1,'Body']]],
   ['applyimpulse',['ApplyImpulse',['../class_manifold.html#a27080a445e565949f9e15b8fea69f6c0',1,'Manifold']]],
+  ['assetregistry',['AssetRegistry',['../class_asset_registry.html',1,'']]],
   ['attackextension',['AttackExtension',['../class_attack_extension.html',1,'']]]
 ];

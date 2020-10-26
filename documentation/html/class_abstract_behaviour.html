@@ -97,8 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a3a9217b3179f949a1d6a32f340c00c"><td class="memItemLeft" align="right" valign="top"><a id="a8a3a9217b3179f949a1d6a32f340c00c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>AbstractBehaviour</b> (shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; self, shared_ptr&lt; vector&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt;&gt; scene)</td></tr>
 <tr class="separator:a8a3a9217b3179f949a1d6a32f340c00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab99fb55a3b001e759e24d5b9721a742f"><td class="memItemLeft" align="right" valign="top"><a id="ab99fb55a3b001e759e24d5b9721a742f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>execute</b> ()=0</td></tr>
+<tr class="memitem:ab99fb55a3b001e759e24d5b9721a742f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_behaviour.html#ab99fb55a3b001e759e24d5b9721a742f">execute</a> ()=0</td></tr>
+<tr class="memdesc:ab99fb55a3b001e759e24d5b9721a742f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the behaviour.  <a href="#ab99fb55a3b001e759e24d5b9721a742f">More...</a><br /></td></tr>
 <tr class="separator:ab99fb55a3b001e759e24d5b9721a742f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -112,8 +112,8 @@ shared_ptr&lt; <a class="el" href="class_abstract_behaviour.html">AbstractBehavi
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a931021cf02c0a2dd40fac4a86d1d5d25"><td class="memItemLeft" align="right" valign="top"><a id="a931021cf02c0a2dd40fac4a86d1d5d25"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>executeNextBehaviour</b> (bool isTrue)</td></tr>
+<tr class="memitem:a931021cf02c0a2dd40fac4a86d1d5d25"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_behaviour.html#a931021cf02c0a2dd40fac4a86d1d5d25">executeNextBehaviour</a> (bool isTrue)</td></tr>
+<tr class="memdesc:a931021cf02c0a2dd40fac4a86d1d5d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the next behaviour.  <a href="#a931021cf02c0a2dd40fac4a86d1d5d25">More...</a><br /></td></tr>
 <tr class="separator:a931021cf02c0a2dd40fac4a86d1d5d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -127,7 +127,71 @@ shared_ptr&lt; vector&lt; <a class="el" href="class_game_object.html">GameObject
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract class for ai behavior </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab99fb55a3b001e759e24d5b9721a742f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab99fb55a3b001e759e24d5b9721a742f">&#9670;&nbsp;</a></span>execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractBehaviour::execute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute the behaviour. </p>
+
+<p>Implemented in <a class="el" href="class_behaviour_attack.html#aca669f46a6d32e5e41e7b477be1ee4cf">BehaviourAttack</a>, <a class="el" href="class_behaviour_idle.html#ac810c315b1ea41772060b216ecdc2e11">BehaviourIdle</a>, <a class="el" href="class_behaviour_move.html#a4cccd6dbe5ccf37b1522fc71a807f080">BehaviourMove</a>, <a class="el" href="class_behaviour_rotate.html#aa01153f4a487813580ecb5d5145da47c">BehaviourRotate</a>, and <a class="el" href="class_behaviour_sees_enemy.html#afddbf2ca7396c9fd7b24f4be60edb84c">BehaviourSeesEnemy</a>.</p>
+
+</div>
+</div>
+<a id="a931021cf02c0a2dd40fac4a86d1d5d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931021cf02c0a2dd40fac4a86d1d5d25">&#9670;&nbsp;</a></span>executeNextBehaviour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractBehaviour::executeNextBehaviour </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isTrue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute the next behaviour. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isTrue</td><td>The state of the next behaviour.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_abstract_behaviour_8h_source.html">AbstractBehaviour.h</a></li>
 <li>AbstractBehaviour.cpp</li>
 </ul>

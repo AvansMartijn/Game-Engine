@@ -1,0 +1,135 @@
+\hypertarget{class_main_menu_screen}{}\section{Main\+Menu\+Screen Class Reference}
+\label{class_main_menu_screen}\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+Inheritance diagram for Main\+Menu\+Screen\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_main_menu_screen}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_main_menu_screen_a700bf80fbcb9d6f4110347f73b8c6e09}{on\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Called one time to create all objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_main_menu_screen_aed1487c5d901c0a94ff960681f141024}{on\+Tick}} ()
+\begin{DoxyCompactList}\small\item\em Called every tick to update properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_main_menu_screen_a484fb745ff8ad64b2533ff31f38c7a0c}{on\+Screen\+Showed}} ()
+\begin{DoxyCompactList}\small\item\em Called when the user switches to this screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_main_menu_screen_a05a9d0a6723772ceaa6ab78f80bbee79}{handle\+Keyboard\+Input}} (S\+D\+L\+\_\+\+Keyboard\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when the user uses their keyboard. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_main_menu_screen_a5f00aa37c3ebe01824e3d23af9b55bae}{handle\+Mouse\+Motion\+Input}} (S\+D\+L\+\_\+\+Mouse\+Motion\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when the user moves their mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_main_menu_screen_acd91967ce0abc90ef3d4c70099a8a4f8}{handle\+Mouse\+Click\+Input}} (S\+D\+L\+\_\+\+Mouse\+Button\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when the user click their mouse. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_main_menu_screen_a9c46f578b910897d268ce46b5057bf50}\label{class_main_menu_screen_a9c46f578b910897d268ce46b5057bf50}} 
+{\bfseries Abstract\+Screen} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_main_menu_screen_a05a9d0a6723772ceaa6ab78f80bbee79}\label{class_main_menu_screen_a05a9d0a6723772ceaa6ab78f80bbee79}} 
+\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}!handle\+Keyboard\+Input@{handle\+Keyboard\+Input}}
+\index{handle\+Keyboard\+Input@{handle\+Keyboard\+Input}!Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+\subsubsection{\texorpdfstring{handle\+Keyboard\+Input()}{handleKeyboardInput()}}
+{\footnotesize\ttfamily void Main\+Menu\+Screen\+::handle\+Keyboard\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keyboard\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user uses their keyboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The keyboard event.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_ad618b78e55faf59bab580e920461b790}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_main_menu_screen_acd91967ce0abc90ef3d4c70099a8a4f8}\label{class_main_menu_screen_acd91967ce0abc90ef3d4c70099a8a4f8}} 
+\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}!handle\+Mouse\+Click\+Input@{handle\+Mouse\+Click\+Input}}
+\index{handle\+Mouse\+Click\+Input@{handle\+Mouse\+Click\+Input}!Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+\subsubsection{\texorpdfstring{handle\+Mouse\+Click\+Input()}{handleMouseClickInput()}}
+{\footnotesize\ttfamily void Main\+Menu\+Screen\+::handle\+Mouse\+Click\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Mouse\+Button\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user click their mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The mouse click event.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a9f9631ff1a9078b96bcf31e062f7379e}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_main_menu_screen_a5f00aa37c3ebe01824e3d23af9b55bae}\label{class_main_menu_screen_a5f00aa37c3ebe01824e3d23af9b55bae}} 
+\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}!handle\+Mouse\+Motion\+Input@{handle\+Mouse\+Motion\+Input}}
+\index{handle\+Mouse\+Motion\+Input@{handle\+Mouse\+Motion\+Input}!Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+\subsubsection{\texorpdfstring{handle\+Mouse\+Motion\+Input()}{handleMouseMotionInput()}}
+{\footnotesize\ttfamily void Main\+Menu\+Screen\+::handle\+Mouse\+Motion\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Mouse\+Motion\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user moves their mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The mouse mouse event.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_ab05039a94ee494811800187787636d2b}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_main_menu_screen_a700bf80fbcb9d6f4110347f73b8c6e09}\label{class_main_menu_screen_a700bf80fbcb9d6f4110347f73b8c6e09}} 
+\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}!on\+Init@{on\+Init}}
+\index{on\+Init@{on\+Init}!Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+\subsubsection{\texorpdfstring{on\+Init()}{onInit()}}
+{\footnotesize\ttfamily void Main\+Menu\+Screen\+::on\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called one time to create all objects. 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a7ab389bd33f4824d3d353b5a9e1616de}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_main_menu_screen_a484fb745ff8ad64b2533ff31f38c7a0c}\label{class_main_menu_screen_a484fb745ff8ad64b2533ff31f38c7a0c}} 
+\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}!on\+Screen\+Showed@{on\+Screen\+Showed}}
+\index{on\+Screen\+Showed@{on\+Screen\+Showed}!Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+\subsubsection{\texorpdfstring{on\+Screen\+Showed()}{onScreenShowed()}}
+{\footnotesize\ttfamily void Main\+Menu\+Screen\+::on\+Screen\+Showed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user switches to this screen. 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a219687a34e6aed15a9eaf0d4414d1783}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_main_menu_screen_aed1487c5d901c0a94ff960681f141024}\label{class_main_menu_screen_aed1487c5d901c0a94ff960681f141024}} 
+\index{Main\+Menu\+Screen@{Main\+Menu\+Screen}!on\+Tick@{on\+Tick}}
+\index{on\+Tick@{on\+Tick}!Main\+Menu\+Screen@{Main\+Menu\+Screen}}
+\subsubsection{\texorpdfstring{on\+Tick()}{onTick()}}
+{\footnotesize\ttfamily void Main\+Menu\+Screen\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called every tick to update properties. 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a3861213630fd23d4a3ff392191614ec2}{Abstract\+Screen}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Main\+Menu\+Screen.\+h\item 
+Main\+Menu\+Screen.\+cpp\end{DoxyCompactItemize}

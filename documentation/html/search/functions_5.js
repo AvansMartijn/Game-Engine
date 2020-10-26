@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['positionalcorrection',['PositionalCorrection',['../class_manifold.html#a9d3187192136eac849265f7d386f617e',1,'Manifold']]]
+  ['manifold',['Manifold',['../class_manifold.html#a7a30f055ee040a7ac00284fb08b3c347',1,'Manifold']]]
 ];

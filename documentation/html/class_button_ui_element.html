@@ -87,12 +87,14 @@ Inheritance diagram for ButtonUiElement:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1347bd46d314e4c08e499d1d65bc85c1"><td class="memItemLeft" align="right" valign="top"><a id="a1347bd46d314e4c08e499d1d65bc85c1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ButtonUiElement</b> (SDL_Rect rect, SDL_Color bgColor)</td></tr>
-<tr class="separator:a1347bd46d314e4c08e499d1d65bc85c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad319e20e8abedefe07aef58a38ae9a81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button_ui_element.html#ad319e20e8abedefe07aef58a38ae9a81">render</a> (SDL_Renderer *renderer)</td></tr>
-<tr class="memdesc:ad319e20e8abedefe07aef58a38ae9a81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the element on the screen.  <a href="#ad319e20e8abedefe07aef58a38ae9a81">More...</a><br /></td></tr>
-<tr class="separator:ad319e20e8abedefe07aef58a38ae9a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc16623af7c8c568f99689dafd4dc0f"><td class="memItemLeft" align="right" valign="top"><a id="abbc16623af7c8c568f99689dafd4dc0f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ButtonUiElement</b> (std::string text, <a class="el" href="struct_rect.html">Rect</a> rect, <a class="el" href="struct_color.html">Color</a> bgColor, <a class="el" href="struct_color.html">Color</a> fgColor, std::string fontKey, int fontSize)</td></tr>
+<tr class="separator:abbc16623af7c8c568f99689dafd4dc0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a035c8beddc1ff6d47b94953025f68422"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button_ui_element.html#a035c8beddc1ff6d47b94953025f68422">preRender</a> (<a class="el" href="class_window.html">Window</a> *window)</td></tr>
+<tr class="separator:a035c8beddc1ff6d47b94953025f68422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad97fc68e9279a36182c66b07dfa28817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button_ui_element.html#ad97fc68e9279a36182c66b07dfa28817">render</a> (<a class="el" href="class_window.html">Window</a> *window)</td></tr>
+<tr class="memdesc:ad97fc68e9279a36182c66b07dfa28817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the element on the screen.  <a href="#ad97fc68e9279a36182c66b07dfa28817">More...</a><br /></td></tr>
+<tr class="separator:ad97fc68e9279a36182c66b07dfa28817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06c748ef9e81216f76d7db936d320365"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button_ui_element.html#a06c748ef9e81216f76d7db936d320365">onClick</a> ()</td></tr>
 <tr class="memdesc:a06c748ef9e81216f76d7db936d320365"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function executed when the element is clicked on.  <a href="#a06c748ef9e81216f76d7db936d320365">More...</a><br /></td></tr>
 <tr class="separator:a06c748ef9e81216f76d7db936d320365"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +115,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ad80a25aa84eb844afd1c5e091063e8fb inherit pro_attribs_class_abstract_ui_element"><td class="memItemLeft" align="right" valign="top"><a id="ad80a25aa84eb844afd1c5e091063e8fb"></a>
 <a class="el" href="class_abstract_game.html">AbstractGame</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_game</b></td></tr>
 <tr class="separator:ad80a25aa84eb844afd1c5e091063e8fb inherit pro_attribs_class_abstract_ui_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91aa849cd7db2aac4b7dd36d6094961d inherit pro_attribs_class_abstract_ui_element"><td class="memItemLeft" align="right" valign="top"><a id="a91aa849cd7db2aac4b7dd36d6094961d"></a>
-SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></td></tr>
-<tr class="separator:a91aa849cd7db2aac4b7dd36d6094961d inherit pro_attribs_class_abstract_ui_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4017d556668e164cd2f34a975db3d924 inherit pro_attribs_class_abstract_ui_element"><td class="memItemLeft" align="right" valign="top"><a id="a4017d556668e164cd2f34a975db3d924"></a>
+<a class="el" href="struct_rect.html">Rect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_rect</b></td></tr>
+<tr class="separator:a4017d556668e164cd2f34a975db3d924 inherit pro_attribs_class_abstract_ui_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Button element </p>
@@ -197,8 +199,43 @@ SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></t
 
 </div>
 </div>
-<a id="ad319e20e8abedefe07aef58a38ae9a81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad319e20e8abedefe07aef58a38ae9a81">&#9670;&nbsp;</a></span>render()</h2>
+<a id="a035c8beddc1ff6d47b94953025f68422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a035c8beddc1ff6d47b94953025f68422">&#9670;&nbsp;</a></span>preRender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ButtonUiElement::preRender </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This is called one time before going into the render loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>The renderer</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_abstract_ui_element.html#a859f627ab385e9d3bf6ce8db40607cdb">AbstractUiElement</a>.</p>
+
+</div>
+</div>
+<a id="ad97fc68e9279a36182c66b07dfa28817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad97fc68e9279a36182c66b07dfa28817">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,8 +246,8 @@ SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></t
         <tr>
           <td class="memname">void ButtonUiElement::render </td>
           <td>(</td>
-          <td class="paramtype">SDL_Renderer *&#160;</td>
-          <td class="paramname"><em>renderer</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -229,7 +266,7 @@ SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></t
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_abstract_ui_element.html#afacedc89a5805d95d3bdcf20619b1c06">AbstractUiElement</a>.</p>
+<p>Implements <a class="el" href="class_abstract_ui_element.html#aea66ce333323cf2d5e12d4de9515de7b">AbstractUiElement</a>.</p>
 
 </div>
 </div>

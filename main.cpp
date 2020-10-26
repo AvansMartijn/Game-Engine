@@ -15,20 +15,20 @@ int main(int argc, char* argv[]) {
 	pauseScreen->onInit();
 	game.screens.push_back(move(pauseScreen));
 
-	CreditsScreen creditsScreen = CreditsScreen{};
-	creditsScreen.registerGame(&game);
-	creditsScreen.onInit();
-	game.screens.push_back(make_shared<CreditsScreen>(creditsScreen));
+	unique_ptr<CreditsScreen> creditsScreen(new CreditsScreen);
+	creditsScreen->registerGame(&game);
+	creditsScreen->onInit();
+	game.screens.push_back(move(creditsScreen));
 
-	HelpScreen helpScreen = HelpScreen{};
-	helpScreen.registerGame(&game);
-	helpScreen.onInit();
-	game.screens.push_back(make_shared<HelpScreen>(helpScreen));
+	unique_ptr<HelpScreen> helpScreen(new HelpScreen);
+	helpScreen->registerGame(&game);
+	helpScreen->onInit();
+	game.screens.push_back(move(helpScreen));
 
-	MainMenuScreen mainMenuScreen = MainMenuScreen{};
-	mainMenuScreen.registerGame(&game);
-	mainMenuScreen.onInit();
-	game.screens.push_back(make_shared<MainMenuScreen>(mainMenuScreen));
+	unique_ptr<MainMenuScreen> mainMenuScreen(new MainMenuScreen);
+	mainMenuScreen->registerGame(&game);
+	mainMenuScreen->onInit();
+	game.screens.push_back(move(mainMenuScreen));
 
 	game.onInit();
 

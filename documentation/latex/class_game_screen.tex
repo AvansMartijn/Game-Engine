@@ -9,28 +9,124 @@ Inheritance diagram for Game\+Screen\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_game_screen_a2748a44cf5e9ebe46f4e2e603bbfbae3}\label{class_game_screen_a2748a44cf5e9ebe46f4e2e603bbfbae3}} 
-void {\bfseries on\+Init} ()
-\item 
-\mbox{\Hypertarget{class_game_screen_a0e2549c9c0198f925df16203998bb53b}\label{class_game_screen_a0e2549c9c0198f925df16203998bb53b}} 
-void {\bfseries on\+Tick} ()
-\item 
-\mbox{\Hypertarget{class_game_screen_a1dfaea8cc8d0edb3bd2711d20e97ebeb}\label{class_game_screen_a1dfaea8cc8d0edb3bd2711d20e97ebeb}} 
-void {\bfseries on\+Screen\+Showed} ()
-\item 
-\mbox{\Hypertarget{class_game_screen_ae0cb9f2e2ca4016debdffa7f778f5627}\label{class_game_screen_ae0cb9f2e2ca4016debdffa7f778f5627}} 
-void {\bfseries handle\+Keyboard\+Input} (S\+D\+L\+\_\+\+Keyboard\+Event e)
-\item 
-\mbox{\Hypertarget{class_game_screen_af2fbc9a94d5b522870a9bfceea0f1da5}\label{class_game_screen_af2fbc9a94d5b522870a9bfceea0f1da5}} 
-void {\bfseries handle\+Mouse\+Motion\+Input} (S\+D\+L\+\_\+\+Mouse\+Motion\+Event e)
-\item 
-\mbox{\Hypertarget{class_game_screen_abe56a9ed6eaac0df7459f681265e0dd2}\label{class_game_screen_abe56a9ed6eaac0df7459f681265e0dd2}} 
-void {\bfseries handle\+Mouse\+Click\+Input} (S\+D\+L\+\_\+\+Mouse\+Button\+Event e)
-\item 
+void \mbox{\hyperlink{class_game_screen_a2748a44cf5e9ebe46f4e2e603bbfbae3}{on\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Called one time to create all objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_screen_a0e2549c9c0198f925df16203998bb53b}{on\+Tick}} ()
+\begin{DoxyCompactList}\small\item\em Called every tick to update properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_screen_a1dfaea8cc8d0edb3bd2711d20e97ebeb}{on\+Screen\+Showed}} ()
+\begin{DoxyCompactList}\small\item\em Called when the user switches to this screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_screen_ae0cb9f2e2ca4016debdffa7f778f5627}{handle\+Keyboard\+Input}} (S\+D\+L\+\_\+\+Keyboard\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when the user uses their keyboard. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_screen_af2fbc9a94d5b522870a9bfceea0f1da5}{handle\+Mouse\+Motion\+Input}} (S\+D\+L\+\_\+\+Mouse\+Motion\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when the user moves their mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_screen_abe56a9ed6eaac0df7459f681265e0dd2}{handle\+Mouse\+Click\+Input}} (S\+D\+L\+\_\+\+Mouse\+Button\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when the user click their mouse. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_game_screen_a9c46f578b910897d268ce46b5057bf50}\label{class_game_screen_a9c46f578b910897d268ce46b5057bf50}} 
 {\bfseries Abstract\+Screen} ()
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_screen_ae0cb9f2e2ca4016debdffa7f778f5627}\label{class_game_screen_ae0cb9f2e2ca4016debdffa7f778f5627}} 
+\index{Game\+Screen@{Game\+Screen}!handle\+Keyboard\+Input@{handle\+Keyboard\+Input}}
+\index{handle\+Keyboard\+Input@{handle\+Keyboard\+Input}!Game\+Screen@{Game\+Screen}}
+\subsubsection{\texorpdfstring{handle\+Keyboard\+Input()}{handleKeyboardInput()}}
+{\footnotesize\ttfamily void Game\+Screen\+::handle\+Keyboard\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Keyboard\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user uses their keyboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The keyboard event.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_ad618b78e55faf59bab580e920461b790}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_game_screen_abe56a9ed6eaac0df7459f681265e0dd2}\label{class_game_screen_abe56a9ed6eaac0df7459f681265e0dd2}} 
+\index{Game\+Screen@{Game\+Screen}!handle\+Mouse\+Click\+Input@{handle\+Mouse\+Click\+Input}}
+\index{handle\+Mouse\+Click\+Input@{handle\+Mouse\+Click\+Input}!Game\+Screen@{Game\+Screen}}
+\subsubsection{\texorpdfstring{handle\+Mouse\+Click\+Input()}{handleMouseClickInput()}}
+{\footnotesize\ttfamily void Game\+Screen\+::handle\+Mouse\+Click\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Mouse\+Button\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user click their mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The mouse click event.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a9f9631ff1a9078b96bcf31e062f7379e}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_game_screen_af2fbc9a94d5b522870a9bfceea0f1da5}\label{class_game_screen_af2fbc9a94d5b522870a9bfceea0f1da5}} 
+\index{Game\+Screen@{Game\+Screen}!handle\+Mouse\+Motion\+Input@{handle\+Mouse\+Motion\+Input}}
+\index{handle\+Mouse\+Motion\+Input@{handle\+Mouse\+Motion\+Input}!Game\+Screen@{Game\+Screen}}
+\subsubsection{\texorpdfstring{handle\+Mouse\+Motion\+Input()}{handleMouseMotionInput()}}
+{\footnotesize\ttfamily void Game\+Screen\+::handle\+Mouse\+Motion\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Mouse\+Motion\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user moves their mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The mouse mouse event.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_ab05039a94ee494811800187787636d2b}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_game_screen_a2748a44cf5e9ebe46f4e2e603bbfbae3}\label{class_game_screen_a2748a44cf5e9ebe46f4e2e603bbfbae3}} 
+\index{Game\+Screen@{Game\+Screen}!on\+Init@{on\+Init}}
+\index{on\+Init@{on\+Init}!Game\+Screen@{Game\+Screen}}
+\subsubsection{\texorpdfstring{on\+Init()}{onInit()}}
+{\footnotesize\ttfamily void Game\+Screen\+::on\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called one time to create all objects. 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a7ab389bd33f4824d3d353b5a9e1616de}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_game_screen_a1dfaea8cc8d0edb3bd2711d20e97ebeb}\label{class_game_screen_a1dfaea8cc8d0edb3bd2711d20e97ebeb}} 
+\index{Game\+Screen@{Game\+Screen}!on\+Screen\+Showed@{on\+Screen\+Showed}}
+\index{on\+Screen\+Showed@{on\+Screen\+Showed}!Game\+Screen@{Game\+Screen}}
+\subsubsection{\texorpdfstring{on\+Screen\+Showed()}{onScreenShowed()}}
+{\footnotesize\ttfamily void Game\+Screen\+::on\+Screen\+Showed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when the user switches to this screen. 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a219687a34e6aed15a9eaf0d4414d1783}{Abstract\+Screen}}.
+
+\mbox{\Hypertarget{class_game_screen_a0e2549c9c0198f925df16203998bb53b}\label{class_game_screen_a0e2549c9c0198f925df16203998bb53b}} 
+\index{Game\+Screen@{Game\+Screen}!on\+Tick@{on\+Tick}}
+\index{on\+Tick@{on\+Tick}!Game\+Screen@{Game\+Screen}}
+\subsubsection{\texorpdfstring{on\+Tick()}{onTick()}}
+{\footnotesize\ttfamily void Game\+Screen\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called every tick to update properties. 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_screen_a3861213630fd23d4a3ff392191614ec2}{Abstract\+Screen}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

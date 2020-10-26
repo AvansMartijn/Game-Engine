@@ -76,21 +76,42 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a315084d17424d10fe4a77c581084b65a"><td class="memItemLeft" align="right" valign="top"><a id="a315084d17424d10fe4a77c581084b65a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Window</b> (const char *title, int width, int height)</td></tr>
 <tr class="separator:a315084d17424d10fe4a77c581084b65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67aa17a1206fac5155419b2190a92f79"><td class="memItemLeft" align="right" valign="top"><a id="a67aa17a1206fac5155419b2190a92f79"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cleanUp</b> ()</td></tr>
-<tr class="separator:a67aa17a1206fac5155419b2190a92f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27f9206967e022a50e0471fe43fcf73c"><td class="memItemLeft" align="right" valign="top"><a id="a27f9206967e022a50e0471fe43fcf73c"></a>
+SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><b>getWindow</b> () const</td></tr>
+<tr class="separator:a27f9206967e022a50e0471fe43fcf73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee31a875d654a8c8f7d796d072657791"><td class="memItemLeft" align="right" valign="top"><a id="aee31a875d654a8c8f7d796d072657791"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getWidth</b> () const</td></tr>
+<tr class="separator:aee31a875d654a8c8f7d796d072657791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60757b2b0dbcec9889e3a09f5655adbe"><td class="memItemLeft" align="right" valign="top"><a id="a60757b2b0dbcec9889e3a09f5655adbe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getHeight</b> () const</td></tr>
+<tr class="separator:a60757b2b0dbcec9889e3a09f5655adbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38bc43bdd1a97e5de7f346ba4c3957ef"><td class="memItemLeft" align="right" valign="top"><a id="a38bc43bdd1a97e5de7f346ba4c3957ef"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
 <tr class="separator:a38bc43bdd1a97e5de7f346ba4c3957ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66d21dab1d69940a7ab94ada4b4de2ef"><td class="memItemLeft" align="right" valign="top"><a id="a66d21dab1d69940a7ab94ada4b4de2ef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; gameObject)</td></tr>
-<tr class="separator:a66d21dab1d69940a7ab94ada4b4de2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbae8e1c26c028628d14d8b97c03b424"><td class="memItemLeft" align="right" valign="top"><a id="acbae8e1c26c028628d14d8b97c03b424"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (shared_ptr&lt; <a class="el" href="class_abstract_ui_element.html">AbstractUiElement</a> &gt; uiElements)</td></tr>
-<tr class="separator:acbae8e1c26c028628d14d8b97c03b424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afadfafa5a0b9472554759004aafb327e"><td class="memItemLeft" align="right" valign="top"><a id="afadfafa5a0b9472554759004aafb327e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> ()</td></tr>
 <tr class="separator:afadfafa5a0b9472554759004aafb327e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a876e244f06eb219cb8c6ce1bb70b2631"><td class="memItemLeft" align="right" valign="top"><a id="a876e244f06eb219cb8c6ce1bb70b2631"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>registerTexture</b> (std::string textureKey, std::string texturePath)</td></tr>
+<tr class="separator:a876e244f06eb219cb8c6ce1bb70b2631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6774de63023e68fd6bb101667bab9c1"><td class="memItemLeft" align="right" valign="top"><a id="ae6774de63023e68fd6bb101667bab9c1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>registerFont</b> (std::string fontKey, std::string fontPath)</td></tr>
+<tr class="separator:ae6774de63023e68fd6bb101667bab9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64492bfdd5d0a57809a2a654588c280f"><td class="memItemLeft" align="right" valign="top"><a id="a64492bfdd5d0a57809a2a654588c280f"></a>
+SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><b>getTexture</b> (std::string filePath) const</td></tr>
+<tr class="separator:a64492bfdd5d0a57809a2a654588c280f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b85acfb08ad3ab526bbe71158c7dcc"><td class="memItemLeft" align="right" valign="top"><a id="a13b85acfb08ad3ab526bbe71158c7dcc"></a>
+TTF_Font *&#160;</td><td class="memItemRight" valign="bottom"><b>getFont</b> (std::string fontKey, int fontSize)</td></tr>
+<tr class="separator:a13b85acfb08ad3ab526bbe71158c7dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94011a77192e38baa21bb3e86ffabf8c"><td class="memItemLeft" align="right" valign="top"><a id="a94011a77192e38baa21bb3e86ffabf8c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>renderRectangle</b> (<a class="el" href="struct_rect.html">Rect</a> rect, <a class="el" href="struct_color.html">Color</a> color)</td></tr>
+<tr class="separator:a94011a77192e38baa21bb3e86ffabf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac523b07058eac58d3c4dd27d52aba51d"><td class="memItemLeft" align="right" valign="top"><a id="ac523b07058eac58d3c4dd27d52aba51d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>renderTexture</b> (std::string textureKey, <a class="el" href="struct_rect.html">Rect</a> rect)</td></tr>
+<tr class="separator:ac523b07058eac58d3c4dd27d52aba51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a460a8d85af7da21fabb4ee2d24169"><td class="memItemLeft" align="right" valign="top"><a id="ae9a460a8d85af7da21fabb4ee2d24169"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>renderText</b> (std::string text, TTF_Font *font, <a class="el" href="struct_rect.html">Rect</a> rect, <a class="el" href="struct_color.html">Color</a> foregroundColor, <a class="el" href="struct_color.html">Color</a> backgroundColor, bool center)</td></tr>
+<tr class="separator:ae9a460a8d85af7da21fabb4ee2d24169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_window_8h_source.html">Window.h</a></li>

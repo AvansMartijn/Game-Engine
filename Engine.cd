@@ -45,7 +45,7 @@
   <Class Name="GameObject">
     <Position X="7" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgCBAAAAAAAEAAAAAAAAAAAAAAAgCAAAAgAQIAAAA=</HashCode>
+      <HashCode>AAAACBAAAAAAAAAAAAAAAAAAAAAAAACAAAAgAQIQAgA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -265,33 +265,26 @@
   <Class Name="Window">
     <Position X="7.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QEAAAAAAAgAAAEAAAAAAAAAAEQEAAAAAAAAACAAQAAA=</HashCode>
+      <HashCode>QMAAAAAgAwCAAgAAAAAAAEIAEBEAQAAIBAAACAAgAAA=</HashCode>
       <FileName>Window.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Shapes">
-    <Position X="9.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAYAQSAAAAAAAAAAAAAABAAAAAAAAAAAIAAAAI=</HashCode>
-      <FileName>Shapes.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SdlHelper">
-    <Position X="7.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SdlHelper.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AbstractGame">
     <Position X="11.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAACAAAAAAAAAAAAABAAAwAAAAAAAACAAAAA=</HashCode>
+      <HashCode>RAAAAAAAAhCAAAAAAAAAAAAABAAAwAAAAAAAACAAAAA=</HashCode>
       <FileName>AbstractGame.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AbstractScreen">
     <Position X="16.5" Y="2" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="AbstractScreen::Screens" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>AbstractScreen.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAABQAAAAAAAAAIDAAABAgAAAgAAAAkAAQ=</HashCode>
       <FileName>AbstractScreen.h</FileName>
@@ -300,7 +293,7 @@
   <Class Name="SoundFacade">
     <Position X="5.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAIAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAIAAAAAAAgA=</HashCode>
       <FileName>SoundFacade.h</FileName>
     </TypeIdentifier>
   </Class>

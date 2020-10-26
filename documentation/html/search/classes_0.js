@@ -9,5 +9,6 @@ var searchData=
   ['abstractscreen',['AbstractScreen',['../class_abstract_screen.html',1,'']]],
   ['abstractuielement',['AbstractUiElement',['../class_abstract_ui_element.html',1,'']]],
   ['aiextension',['AiExtension',['../class_ai_extension.html',1,'']]],
+  ['assetregistry',['AssetRegistry',['../class_asset_registry.html',1,'']]],
   ['attackextension',['AttackExtension',['../class_attack_extension.html',1,'']]]
 ];

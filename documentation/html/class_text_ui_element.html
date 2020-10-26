@@ -82,12 +82,14 @@ Inheritance diagram for TextUiElement:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9386fa02eac98da9c8f71b6e2b2a88fb"><td class="memItemLeft" align="right" valign="top"><a id="a9386fa02eac98da9c8f71b6e2b2a88fb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TextUiElement</b> (std::string txt, int fontSize, SDL_Rect rect, SDL_Color fgColor, SDL_Color bgColor)</td></tr>
-<tr class="separator:a9386fa02eac98da9c8f71b6e2b2a88fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7931ba283acdf102442a9181b3ddf276"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_ui_element.html#a7931ba283acdf102442a9181b3ddf276">render</a> (SDL_Renderer *renderer)</td></tr>
-<tr class="memdesc:a7931ba283acdf102442a9181b3ddf276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the element on the screen.  <a href="#a7931ba283acdf102442a9181b3ddf276">More...</a><br /></td></tr>
-<tr class="separator:a7931ba283acdf102442a9181b3ddf276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa973b38864461eec5942975ad901f0d2"><td class="memItemLeft" align="right" valign="top"><a id="aa973b38864461eec5942975ad901f0d2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TextUiElement</b> (std::string txt, std::string fontKey, int fontSize, <a class="el" href="struct_rect.html">Rect</a> rect, <a class="el" href="struct_color.html">Color</a> fgColor, <a class="el" href="struct_color.html">Color</a> bgColor, bool center)</td></tr>
+<tr class="separator:aa973b38864461eec5942975ad901f0d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe15a4085bc4b7c2cf8668cb6d7fd45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_ui_element.html#afe15a4085bc4b7c2cf8668cb6d7fd45d">preRender</a> (<a class="el" href="class_window.html">Window</a> *window)</td></tr>
+<tr class="separator:afe15a4085bc4b7c2cf8668cb6d7fd45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a636883070224511baea505f4ad4655d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_ui_element.html#a636883070224511baea505f4ad4655d9">render</a> (<a class="el" href="class_window.html">Window</a> *window)</td></tr>
+<tr class="memdesc:a636883070224511baea505f4ad4655d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the element on the screen.  <a href="#a636883070224511baea505f4ad4655d9">More...</a><br /></td></tr>
+<tr class="separator:a636883070224511baea505f4ad4655d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a984d8bcd627f43c1bd858a707df2c042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_ui_element.html#a984d8bcd627f43c1bd858a707df2c042">onClick</a> ()</td></tr>
 <tr class="memdesc:a984d8bcd627f43c1bd858a707df2c042"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function executed when the element is clicked on.  <a href="#a984d8bcd627f43c1bd858a707df2c042">More...</a><br /></td></tr>
 <tr class="separator:a984d8bcd627f43c1bd858a707df2c042"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,9 +107,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ad80a25aa84eb844afd1c5e091063e8fb inherit pro_attribs_class_abstract_ui_element"><td class="memItemLeft" align="right" valign="top"><a id="ad80a25aa84eb844afd1c5e091063e8fb"></a>
 <a class="el" href="class_abstract_game.html">AbstractGame</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_game</b></td></tr>
 <tr class="separator:ad80a25aa84eb844afd1c5e091063e8fb inherit pro_attribs_class_abstract_ui_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91aa849cd7db2aac4b7dd36d6094961d inherit pro_attribs_class_abstract_ui_element"><td class="memItemLeft" align="right" valign="top"><a id="a91aa849cd7db2aac4b7dd36d6094961d"></a>
-SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></td></tr>
-<tr class="separator:a91aa849cd7db2aac4b7dd36d6094961d inherit pro_attribs_class_abstract_ui_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4017d556668e164cd2f34a975db3d924 inherit pro_attribs_class_abstract_ui_element"><td class="memItemLeft" align="right" valign="top"><a id="a4017d556668e164cd2f34a975db3d924"></a>
+<a class="el" href="struct_rect.html">Rect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_rect</b></td></tr>
+<tr class="separator:a4017d556668e164cd2f34a975db3d924 inherit pro_attribs_class_abstract_ui_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf04a9d0a67e77e2ba2a306e1ec7aeed"></a>
@@ -187,8 +189,43 @@ SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></t
 
 </div>
 </div>
-<a id="a7931ba283acdf102442a9181b3ddf276"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7931ba283acdf102442a9181b3ddf276">&#9670;&nbsp;</a></span>render()</h2>
+<a id="afe15a4085bc4b7c2cf8668cb6d7fd45d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe15a4085bc4b7c2cf8668cb6d7fd45d">&#9670;&nbsp;</a></span>preRender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TextUiElement::preRender </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This is called one time before going into the render loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>The renderer</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_abstract_ui_element.html#a859f627ab385e9d3bf6ce8db40607cdb">AbstractUiElement</a>.</p>
+
+</div>
+</div>
+<a id="a636883070224511baea505f4ad4655d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a636883070224511baea505f4ad4655d9">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,8 +236,8 @@ SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></t
         <tr>
           <td class="memname">void TextUiElement::render </td>
           <td>(</td>
-          <td class="paramtype">SDL_Renderer *&#160;</td>
-          <td class="paramname"><em>renderer</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -219,7 +256,7 @@ SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>_rectangle</b></t
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_abstract_ui_element.html#afacedc89a5805d95d3bdcf20619b1c06">AbstractUiElement</a>.</p>
+<p>Implements <a class="el" href="class_abstract_ui_element.html#aea66ce333323cf2d5e12d4de9515de7b">AbstractUiElement</a>.</p>
 
 </div>
 </div>

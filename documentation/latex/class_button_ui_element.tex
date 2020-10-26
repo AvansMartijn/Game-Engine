@@ -18,10 +18,12 @@ Inheritance diagram for Button\+Ui\+Element\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_button_ui_element_a1347bd46d314e4c08e499d1d65bc85c1}\label{class_button_ui_element_a1347bd46d314e4c08e499d1d65bc85c1}} 
-{\bfseries Button\+Ui\+Element} (S\+D\+L\+\_\+\+Rect rect, S\+D\+L\+\_\+\+Color bg\+Color)
+\mbox{\Hypertarget{class_button_ui_element_abbc16623af7c8c568f99689dafd4dc0f}\label{class_button_ui_element_abbc16623af7c8c568f99689dafd4dc0f}} 
+{\bfseries Button\+Ui\+Element} (std\+::string text, \mbox{\hyperlink{struct_rect}{Rect}} rect, \mbox{\hyperlink{struct_color}{Color}} bg\+Color, \mbox{\hyperlink{struct_color}{Color}} fg\+Color, std\+::string font\+Key, int font\+Size)
 \item 
-void \mbox{\hyperlink{class_button_ui_element_ad319e20e8abedefe07aef58a38ae9a81}{render}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)
+void \mbox{\hyperlink{class_button_ui_element_a035c8beddc1ff6d47b94953025f68422}{pre\+Render}} (\mbox{\hyperlink{class_window}{Window}} $\ast$window)
+\item 
+void \mbox{\hyperlink{class_button_ui_element_ad97fc68e9279a36182c66b07dfa28817}{render}} (\mbox{\hyperlink{class_window}{Window}} $\ast$window)
 \begin{DoxyCompactList}\small\item\em Render the element on the screen. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_button_ui_element_a06c748ef9e81216f76d7db936d320365}{on\+Click}} ()
 \begin{DoxyCompactList}\small\item\em The function executed when the element is clicked on. \end{DoxyCompactList}\item 
@@ -77,11 +79,28 @@ The function executed when the element is clicked on.
 
 Implements \mbox{\hyperlink{class_abstract_ui_element_a42296c15c9e70b6ac7fda0b1862612af}{Abstract\+Ui\+Element}}.
 
-\mbox{\Hypertarget{class_button_ui_element_ad319e20e8abedefe07aef58a38ae9a81}\label{class_button_ui_element_ad319e20e8abedefe07aef58a38ae9a81}} 
+\mbox{\Hypertarget{class_button_ui_element_a035c8beddc1ff6d47b94953025f68422}\label{class_button_ui_element_a035c8beddc1ff6d47b94953025f68422}} 
+\index{Button\+Ui\+Element@{Button\+Ui\+Element}!pre\+Render@{pre\+Render}}
+\index{pre\+Render@{pre\+Render}!Button\+Ui\+Element@{Button\+Ui\+Element}}
+\subsubsection{\texorpdfstring{pre\+Render()}{preRender()}}
+{\footnotesize\ttfamily void Button\+Ui\+Element\+::pre\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_window}{Window}} $\ast$}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This is called one time before going into the render loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & The renderer\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_abstract_ui_element_a859f627ab385e9d3bf6ce8db40607cdb}{Abstract\+Ui\+Element}}.
+
+\mbox{\Hypertarget{class_button_ui_element_ad97fc68e9279a36182c66b07dfa28817}\label{class_button_ui_element_ad97fc68e9279a36182c66b07dfa28817}} 
 \index{Button\+Ui\+Element@{Button\+Ui\+Element}!render@{render}}
 \index{render@{render}!Button\+Ui\+Element@{Button\+Ui\+Element}}
 \subsubsection{\texorpdfstring{render()}{render()}}
-{\footnotesize\ttfamily void Button\+Ui\+Element\+::render (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Button\+Ui\+Element\+::render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_window}{Window}} $\ast$}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -94,7 +113,7 @@ Render the element on the screen.
 \end{DoxyParams}
 
 
-Implements \mbox{\hyperlink{class_abstract_ui_element_afacedc89a5805d95d3bdcf20619b1c06}{Abstract\+Ui\+Element}}.
+Implements \mbox{\hyperlink{class_abstract_ui_element_aea66ce333323cf2d5e12d4de9515de7b}{Abstract\+Ui\+Element}}.
 
 
 
