@@ -5,8 +5,7 @@ Game::Game() {}
 Game::~Game() {}
 
 void Game::onInit() {
-	Window win = Window("FluixEngine", 1080, 720);
-	_window = &win;
+	_window = unique_ptr<Window>(new Window("FluixEngine", 1080, 720));
 	_window->registerTexture("Krool", "res/gfx/KINGKROOL.png");
 	_window->registerTexture("Border", "res/gfx/Border.png");
 	_window->registerTexture("Background", "res/gfx/bg.png");
@@ -19,10 +18,9 @@ void Game::onInit() {
 	switchScreen(0);
 
 	for (auto& screen : screens) {
-		for (auto& obj : screen->uiElements)
-			obj->preRender(_window);
+		for (auto& uiElement : screen->uiElements)
+			uiElement->preRender(_window);
 	}
-
 	SDL_Event event;
 
 	bool running = true;
@@ -37,14 +35,13 @@ void Game::onInit() {
 			b = a;
 
 			screens.at(_activeScreen)->onTick();
-
 			_window->clear();
 
-			for (auto& obj : screens.at(_activeScreen)->gameObjects)
-				obj->render(_window);
+			for (auto& gameObject : screens.at(_activeScreen)->gameObjects)
+				gameObject->render(_window);
 
-			for (auto& obj : screens.at(_activeScreen)->uiElements)
-				obj->render(_window);
+			for (auto& uiElement : screens.at(_activeScreen)->uiElements)
+				uiElement->render(_window);
 
 			_window->display();
 
@@ -56,11 +53,9 @@ void Game::onInit() {
 					break;
 				case SDL_MOUSEMOTION:
 					screens.at(_activeScreen)->handleMouseMotionInput(event.motion);
-					
 					break;
 				case SDL_MOUSEBUTTONDOWN:
 					screens.at(_activeScreen)->handleMouseClickInput(event.button);
-					
 					break;
 				case SDL_QUIT:
 					running = false;
@@ -75,6 +70,5 @@ void Game::onInit() {
 
 void Game::switchScreen(int screenIndex) {
 	_activeScreen = screenIndex;
-
 	screens.at(_activeScreen)->onScreenShowed();
 }

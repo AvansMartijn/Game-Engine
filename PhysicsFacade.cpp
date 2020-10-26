@@ -1,6 +1,6 @@
 #include "PhysicsFacade.h"
 
-void PhysicsFacade::setPosition(shared_ptr<GameObject> gameObject, Vec2 position)
+void PhysicsFacade::setPosition(shared_ptr<GameObject> gameObject, const Vec2& position)
 {
 	_physics.setPosition(gameObject, position);
 }
@@ -20,7 +20,7 @@ void PhysicsFacade::addGravityForce(shared_ptr<GameObject> gameObject)
 	_physics.addGravityForce(gameObject);
 }
 
-vector<shared_ptr<GameObject>> PhysicsFacade::getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList)
+vector<shared_ptr<GameObject>> PhysicsFacade::getCollisions(shared_ptr<GameObject> objectA, const std::vector<shared_ptr<GameObject>>& objectList)
 {
 	return _collision.getCollisions(objectA, objectList);
 }

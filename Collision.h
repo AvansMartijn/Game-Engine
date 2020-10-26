@@ -11,7 +11,7 @@
 class Collision
 {
 public:
-	std::vector<shared_ptr<GameObject>> getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList);
+	std::vector<shared_ptr<GameObject>> getCollisions(shared_ptr<GameObject> objectA, const std::vector<shared_ptr<GameObject>>& objectList);
 	/// <summary>
 	/// Resolve collision between 2 game objects.
 	/// </summary>

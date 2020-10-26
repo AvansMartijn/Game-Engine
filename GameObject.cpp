@@ -24,7 +24,7 @@ bool GameObject::hasExtension(const std::type_info& type)
 	return false;
 }
 
-void GameObject::render(Window* window) {
+void GameObject::render(const unique_ptr<Window>& window) {
 	window->renderTexture(textureKey, { (int)physicalBody.body.position.x, (int)physicalBody.body.position.y, physicalBody.shape.getWidth(), physicalBody.shape.getHeight() });
 }
 

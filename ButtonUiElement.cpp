@@ -11,20 +11,11 @@ ButtonUiElement::ButtonUiElement(std::string text, Rect rect, Color bgColor, Col
 
 ButtonUiElement::~ButtonUiElement() {}
 
-void ButtonUiElement::preRender(Window* window) {
+void ButtonUiElement::preRender(const unique_ptr<Window>& window) {
     _font = window->getFont(_fontKey, _fontSize);
 }
 
-void ButtonUiElement::render(Window* window){
-
-    // Draw a line arround the box
-    Rect _border = _rect;
-    _border.x -= 3;
-    _border.y -= 3;
-    _border.h += 6;
-    _border.w += 6;
-    window->renderRectangle(_border, Color{ 0, 0, 0, 255 });
-
+void ButtonUiElement::render(const unique_ptr<Window>& window){
     window->renderRectangle(_rect, _backgroundColor);
 
     Rect txtRect = _rect;

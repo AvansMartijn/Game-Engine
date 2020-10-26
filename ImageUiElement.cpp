@@ -8,9 +8,9 @@ ImageUiElement::ImageUiElement(std::string textureKey, Rect rect) {
 
 ImageUiElement::~ImageUiElement() {}
 
-void ImageUiElement::preRender(Window* window) {}
+void ImageUiElement::preRender(const unique_ptr<Window>& window) {}
 
-void ImageUiElement::render(Window* window) {
+void ImageUiElement::render(const unique_ptr<Window>& window) {
     window->renderTexture(_textureKey, _rect);
 }
 

@@ -1,7 +1,7 @@
 #include "Collision.h"
 
 
-std::vector<shared_ptr<GameObject>> Collision::getCollisions(shared_ptr<GameObject> objectA, std::vector<shared_ptr<GameObject>> objectList)
+std::vector<shared_ptr<GameObject>> Collision::getCollisions(shared_ptr<GameObject> objectA, const std::vector<shared_ptr<GameObject>>& objectList)
 {
 	std::vector<shared_ptr<GameObject>> collisions;
 	for (int i = 0; i < objectList.size(); i++) 
@@ -30,9 +30,9 @@ bool Collision::isColliding(shared_ptr<GameObject> objectA, shared_ptr<GameObjec
 }
 
 void Collision::resolveCollision(shared_ptr<GameObject> objectA, shared_ptr<GameObject> objectB) {
-	Manifold *m = new Manifold(objectA->physicalBody, objectB->physicalBody);
-	if (m->AABBvsAABB()) 
-		m->ApplyImpulse();
+	Manifold m = Manifold(objectA->physicalBody, objectB->physicalBody);
+	if (m.AABBvsAABB()) 
+		m.ApplyImpulse();
 	
 	
 }

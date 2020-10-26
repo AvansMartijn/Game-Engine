@@ -10,13 +10,13 @@ TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize,
     _center = center;
 }
 
-void TextUiElement::preRender(Window* window) {
+void TextUiElement::preRender(const unique_ptr<Window>& window) {
     _font = window->getFont(_fontKey, _fontSize);
 }
 
 TextUiElement::~TextUiElement() {}
 
-void TextUiElement::render(Window* window) {
+void TextUiElement::render(const unique_ptr<Window>& window) {
     window->renderText(_text, _font, _rect, _foregroundColor, _backgroundColor, _center);
 }
 

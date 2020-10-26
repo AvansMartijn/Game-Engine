@@ -11,15 +11,16 @@ public:
 	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center);
 	~TextUiElement();
 
-	/// This is called one time before going into the render loop.
+	/// <summary>
+	/// prerender
 	/// </summary>
-	/// <param name="renderer">The renderer</param>
-	void preRender(Window* window);
+	/// <param name="window"></param>
+	void preRender(const unique_ptr<Window>& window);
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	void render(Window* window);
+	void render(const unique_ptr<Window>& window);
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>

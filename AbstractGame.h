@@ -21,7 +21,7 @@ public:
 	/// <summary>
 	/// All the possible screens the game has.
 	/// </summary>
-	vector<shared_ptr<AbstractScreen>> screens;
+	vector<unique_ptr<AbstractScreen>> screens;
 
 	/// <summary>
 	/// Prepare the game.
@@ -42,6 +42,6 @@ protected:
 	SDLWrapper _sdl;
 	SDLImageWrapper _sdlImage;
 	SDLTtfWrapper _sdlTtf;
-	Window* _window;
+	unique_ptr<Window> _window;
 };
 

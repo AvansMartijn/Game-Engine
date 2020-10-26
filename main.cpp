@@ -2,20 +2,18 @@
 
 
 int main(int argc, char* argv[]) {
-	Game game = Game{};
+	Game game;
 
 	// The screens have to be created outside the Game class, using "this" will create problems.
-
-	// Dont change this order or change the enums too @everyone
-	GameScreen gameScreen = GameScreen{};
-	gameScreen.registerGame(&game);
-	gameScreen.onInit();
-	game.screens.push_back(make_shared<GameScreen>(gameScreen));
-
-	PauseScreen pauseScreen = PauseScreen{};
-	pauseScreen.registerGame(&game);
-	pauseScreen.onInit();
-	game.screens.push_back(make_shared<PauseScreen>(pauseScreen));
+	unique_ptr<GameScreen> gameScreen(new GameScreen);
+	gameScreen->registerGame(&game);
+	gameScreen->onInit();
+	// move screen + ownership to game instance
+	game.screens.push_back(move(gameScreen));
+	unique_ptr<PauseScreen> pauseScreen(new PauseScreen);
+	pauseScreen->registerGame(&game);
+	pauseScreen->onInit();
+	game.screens.push_back(move(pauseScreen));
 
 	CreditsScreen creditsScreen = CreditsScreen{};
 	creditsScreen.registerGame(&game);

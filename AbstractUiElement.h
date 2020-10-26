@@ -13,16 +13,16 @@ public:
 	AbstractUiElement();
 	~AbstractUiElement();
 
-
-	/// This is called one time before going into the render loop.
+	/// <summary>
+	/// prerender
 	/// </summary>
-	/// <param name="renderer">The renderer</param>
-	virtual void preRender(Window* window) = 0;
+	/// <param name="window"></param>
+	virtual void preRender(const unique_ptr<Window>& window) = 0;
 	/// <summary>
 	/// Render the element on the screen.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
-	virtual void render(Window* window) = 0;
+	virtual void render(const unique_ptr<Window>& window) = 0;
 	/// <summary>
 	/// The function executed when the element is clicked on.
 	/// </summary>
