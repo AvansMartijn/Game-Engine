@@ -13,19 +13,20 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement startButton = ButtonUiElement("Start New Game", { (1080 / 2) - 220, 100, 500, 100 }, bgColor, {180, 102, 13 }, "Portal", 40);
 	startButton.registerGame(_game);
+	// TODO: New Game
+	startButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { (1080 / 2) - 220, 250, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	loadButton.registerGame(_game);
+	// TODO: Load Game
+	loadButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 
 	ButtonUiElement creditButton = ButtonUiElement("Credits", { (1080 / 2) - 220, 400, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	creditButton.registerGame(_game);
+	creditButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
 	uiElements.push_back(make_shared<ButtonUiElement>(creditButton));
-
-
-
-
 }
 
 void MainMenuScreen::onTick() {
@@ -37,21 +38,17 @@ void MainMenuScreen::onScreenShowed() {
 }
 
 void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	switch (e.keysym.sym)
+	{
+	case SDLK_ESCAPE: // GO BACK TO PAUZE
+		_game->switchScreen(1);
 
+		break;
+	default:
+		break;
+	}
 }
 
 void MainMenuScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
 
-}
-
-void MainMenuScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
-	if (e.button == SDL_BUTTON_LEFT) {
-		for (auto& element : uiElements) {
-			if (element->isInBound(e.x, e.y)) {
-				element->onClick();
-
-				break;
-			}
-		}
-	}
 }

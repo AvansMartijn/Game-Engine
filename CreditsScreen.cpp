@@ -35,8 +35,6 @@ void CreditsScreen::onScreenShowed()
 {
 }
 
-
-
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
@@ -51,16 +49,4 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 void CreditsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
 
-}
-
-void CreditsScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
-	if (e.button == SDL_BUTTON_LEFT) {
-		for (auto& element : uiElements) {
-			if (element->isInBound(e.x, e.y)) {
-				element->onClick();
-
-				break;
-			}
-		}
-	}
 }

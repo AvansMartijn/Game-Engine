@@ -35,9 +35,4 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
-	/// <summary>
-	/// Called when the user click their mouse.
-	/// </summary>
-	/// <param name="e">The mouse click event.</param>
-	void handleMouseClickInput(SDL_MouseButtonEvent e);
 };

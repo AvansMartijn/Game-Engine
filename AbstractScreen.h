@@ -56,7 +56,7 @@ public:
 	/// Called when the user click their mouse.
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
-	virtual void handleMouseClickInput(SDL_MouseButtonEvent e) = 0;
+	virtual void handleMouseClickInput(SDL_MouseButtonEvent e);
 	/// <summary>
 	/// Adds a reference to the game.
 	/// </summary>

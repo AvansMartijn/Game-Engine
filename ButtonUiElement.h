@@ -17,8 +17,6 @@ public:
 	ButtonUiElement(std::string text, Rect rect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
 	~ButtonUiElement();
 
-
-
 	/// This is called one time before going into the render loop.
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
@@ -28,10 +26,6 @@ public:
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
 	void render(Window* window);
-	/// <summary>
-	/// The function executed when the element is clicked on.
-	/// </summary>
-	void onClick();
 	/// <summary>
 	/// Checks if the mouse is within the bounds of the element.
 	/// </summary>

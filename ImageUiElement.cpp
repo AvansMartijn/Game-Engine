@@ -14,8 +14,6 @@ void ImageUiElement::render(Window* window) {
     window->renderTexture(_textureKey, _rect);
 }
 
-void ImageUiElement::onClick() {}
-
 bool ImageUiElement::isInBound(int mouseX, int mouseY) {
     return false;
 }

@@ -26,8 +26,6 @@ void HelpScreen::onScreenShowed()
 {
 }
 
-
-
 void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
@@ -42,16 +40,4 @@ void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
 
-}
-
-void HelpScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
-	if (e.button == SDL_BUTTON_LEFT) {
-		for (auto& element : uiElements) {
-			if (element->isInBound(e.x, e.y)) {
-				element->onClick();
-
-				break;
-			}
-		}
-	}
 }

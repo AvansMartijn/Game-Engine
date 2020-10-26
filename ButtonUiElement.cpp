@@ -34,10 +34,6 @@ void ButtonUiElement::render(Window* window){
     window->renderText(_text, _font, txtRect, _foregroundColor, _backgroundColor, false);
 }
 
-
-void ButtonUiElement::onClick() {
-}
-
 bool ButtonUiElement::isInBound(int mouseX, int mouseY) {
     return (mouseX >= _rect.x && mouseX <= _rect.x + _rect.w) && (mouseY > _rect.y && mouseY < _rect.y + _rect.h);
 }

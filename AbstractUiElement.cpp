@@ -2,6 +2,8 @@
 AbstractUiElement::AbstractUiElement() {
 	_game = NULL;
 	_rect = {};
+
+	onClick = [](AbstractGame* game) {std::cout << "No OnClick\n"; };
 }
 
 AbstractUiElement::~AbstractUiElement() {}

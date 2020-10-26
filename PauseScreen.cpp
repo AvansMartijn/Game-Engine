@@ -12,16 +12,16 @@ void PauseScreen::onInit() {
 
 	ButtonUiElement button = ButtonUiElement("Resume", { (1080 / 2) - 200, 100, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
 	button.registerGame(_game);
+	button.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
 	ButtonUiElement showCreditsButton = ButtonUiElement("Credits", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
 	showCreditsButton.registerGame(_game);
+	showCreditsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
 	uiElements.push_back(make_shared<ButtonUiElement>(showCreditsButton));
 
 	ImageUiElement img = ImageUiElement("Krool", { 0 , 0, 100, 100 });
 	uiElements.push_back(make_shared<ImageUiElement>(img));
-
-
 }
 
 void PauseScreen::onTick() {
@@ -57,17 +57,4 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 void PauseScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
 
-}
-
-
-void PauseScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
-	if (e.button == SDL_BUTTON_LEFT) {
-		for (auto& element : uiElements) {
-			if (element->isInBound(e.x, e.y)) {
-				element->onClick();
-
-				break;
-			}
-		}
-	}
 }
