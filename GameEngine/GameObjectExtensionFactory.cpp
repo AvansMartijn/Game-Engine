@@ -28,6 +28,7 @@ AbstractGameObjectExtension* GameObjectExtensionFactory::createExtension(const s
     FactoryMap::iterator it = _m_FactoryMap.find(extensionName);
     if (it != _m_FactoryMap.end())
     {
+        // TODO: AUTO, geen flauw idee wat hier moet komen te staan.
         auto obj = it->second();
         //obj->type = extensionName;
         return obj;

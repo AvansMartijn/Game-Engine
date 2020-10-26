@@ -12,7 +12,7 @@ void AbstractScreen::registerGame(AbstractGame* game) {
 
 void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	if (e.button == SDL_BUTTON_LEFT) {
-		for (auto& element : uiElements) {
+		for (shared_ptr<AbstractUiElement>& element : uiElements) {
 			if (element->isInBound(e.x, e.y)) {
 				element->onClick(_game);
 

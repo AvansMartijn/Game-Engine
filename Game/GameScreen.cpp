@@ -74,8 +74,7 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::onTick() {
-	// TODO: Haal AUTO weg
-	for (auto& obj : gameObjects)
+	for (shared_ptr<GameObject>& obj : gameObjects)
 	{
 		if (obj->hasExtension(typeid(MoveExtension))) {
 			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));

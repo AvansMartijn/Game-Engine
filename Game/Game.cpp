@@ -14,9 +14,8 @@ void Game::onInit() {
 
 	switchScreen(0);
 
-	// TODO: AUTO
-	for (auto& screen : screens) {
-		for (auto& uiElement : screen->uiElements)
+	for (int i = 0; i < screens.size(); i++) {
+		for (shared_ptr<AbstractUiElement>& uiElement : screens[i]->uiElements)
 			uiElement->preRender(_window);
 	}
 

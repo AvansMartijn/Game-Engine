@@ -13,7 +13,7 @@ void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> exten
 
 bool GameObject::hasExtension(const std::type_info& type)
 {
-	for (auto const& extension : _gameObjectExtensions)
+	for (shared_ptr<AbstractGameObjectExtension> const& extension : _gameObjectExtensions)
 	{
 		string givenName = type.name();
 		givenName.erase(0, 6);
@@ -30,7 +30,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
-	for (auto& extension : _gameObjectExtensions)
+	for (shared_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions)
 	{
 		string givenName = type.name();
 		givenName.erase(0, 6);
