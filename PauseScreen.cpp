@@ -6,6 +6,7 @@ PauseScreen::~PauseScreen() {}
 void PauseScreen::onInit() {
 	Color bgColor = { 192, 192, 192 };
 
+
 	TextUiElement text = TextUiElement("Engine Demo", "OpenSans", 48, { 0, 0, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(text));
 
@@ -13,8 +14,14 @@ void PauseScreen::onInit() {
 	button.registerGame(_game);
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
+	ButtonUiElement showCreditsButton = ButtonUiElement("Credits", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
+	showCreditsButton.registerGame(_game);
+	uiElements.push_back(make_shared<ButtonUiElement>(showCreditsButton));
+
 	ImageUiElement img = ImageUiElement("Krool", { 0 , 0, 100, 100 });
 	uiElements.push_back(make_shared<ImageUiElement>(img));
+
+
 }
 
 void PauseScreen::onTick() {
@@ -29,8 +36,19 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
-		_game->switchScreen(0);
-
+		_game->switchScreen(Screens::MainGame);
+		break;
+	case SDLK_SPACE:
+		// GO TO CREDITS
+		_game->switchScreen(Screens::Credits);
+		break;
+	case SDLK_h:
+		// GO TO HELP
+		_game->switchScreen(Screens::Help);
+		break;
+	case SDLK_m:
+		// GO TO HELP
+		_game->switchScreen(Screens::MainMenu);
 		break;
 	default:
 		break;
@@ -40,6 +58,7 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void PauseScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
 
 }
+
 
 void PauseScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	if (e.button == SDL_BUTTON_LEFT) {

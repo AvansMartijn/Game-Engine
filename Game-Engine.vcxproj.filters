@@ -273,6 +273,15 @@
     <ClInclude Include="Rect.h">
       <Filter>Header Files\DataTypes</Filter>
     </ClInclude>
+    <ClInclude Include="CreditsScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScreen.h">
+      <Filter>Header Files\Sandbox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -436,6 +445,15 @@
     </ClCompile>
     <ClCompile Include="Rect.cpp">
       <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScreen.cpp">
+      <Filter>Source Files\Sandbox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

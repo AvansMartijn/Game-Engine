@@ -19,14 +19,14 @@ void ButtonUiElement::render(const unique_ptr<Window>& window){
     window->renderRectangle(_rect, _backgroundColor);
 
     Rect txtRect = _rect;
-    txtRect.x = window->getWidth() / 2;
+    txtRect.x = window->getWidth() / 2 - 60;
     txtRect.y = txtRect.y + txtRect.h / 4;
     
     window->renderText(_text, _font, txtRect, _foregroundColor, _backgroundColor, false);
 }
 
+
 void ButtonUiElement::onClick() {
-    _game->switchScreen(0);
 }
 
 bool ButtonUiElement::isInBound(int mouseX, int mouseY) {

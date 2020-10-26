@@ -18,6 +18,19 @@ public:
 	vector<shared_ptr<AbstractUiElement>> uiElements;
 
 	/// <summary>
+	/// Screen enums has to be in right order
+	/// the order the screens get created
+	/// </summary>
+	enum Screens {
+		MainGame = 0,
+		Pause,
+		Credits,
+		Help,
+		MainMenu
+	};
+
+
+	/// <summary>
 	/// Called one time to create all objects.
 	/// </summary>
 	virtual void onInit() = 0;

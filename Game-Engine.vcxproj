@@ -188,6 +188,7 @@
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -196,8 +197,10 @@
     <ClCompile Include="GameObjectExtensionFactory.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
+    <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="Manifold.cpp" />
     <ClCompile Include="MassData.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -215,7 +218,12 @@
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />
-    <ClCompile Include="SoundFacade.cpp" />
+    <ClCompile Include="SoundFacade.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -244,6 +252,7 @@
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="DefaultEntityAI.h" />
     <ClInclude Include="FluixEngine.h" />
     <ClInclude Include="Game.h" />
@@ -253,9 +262,11 @@
     <ClInclude Include="GameObjectExtensionFactory.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="HealthExtension.h" />
+    <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="Manifold.h" />
     <ClInclude Include="MassData.h" />
     <ClInclude Include="Material.h" />
@@ -274,7 +285,12 @@
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="TextUiElement.h" />
-    <ClInclude Include="SoundFacade.h" />
+    <ClInclude Include="SoundFacade.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

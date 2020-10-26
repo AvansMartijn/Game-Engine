@@ -38,6 +38,7 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
+
 private:
 	std::string _text;
 	Color _backgroundColor;
