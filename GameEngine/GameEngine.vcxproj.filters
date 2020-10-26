@@ -13,6 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\AI">
+      <UniqueIdentifier>{47c3d188-0ca4-4536-b041-7623462b6598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{991a9277-4814-40ea-95e3-d5a20d75233c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataTypes">
+      <UniqueIdentifier>{c9e02af8-ffed-440d-9617-1b945779813a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{15a91fd1-a1ba-4385-9d9a-928a1cb128ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{0b84d980-272b-418c-92dc-3c44ba711a19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UiElements">
+      <UniqueIdentifier>{d12ba1c9-937b-4840-bdff-d2f878b22fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wrapper">
+      <UniqueIdentifier>{ec7ff4ed-ef97-42ca-bca5-5c45cb9da872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ai">
+      <UniqueIdentifier>{2ffff285-a25f-4e54-8c3d-1f71385bacd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{55915954-1c7c-4b82-a617-c6d0ddceedf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{05f4ad6d-827e-411e-afa3-2a89a89f21de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataTypes">
+      <UniqueIdentifier>{1f9abacf-02fd-42a3-8b50-41a347cca87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{d82c9469-f2b9-4cea-b5ac-d96b8d6fd74c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UiElements">
+      <UniqueIdentifier>{ca989de3-fc4a-4ac4-8a76-34ec3c05244c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Wrappers">
+      <UniqueIdentifier>{a83e4952-b23f-462b-b09f-67a78ed209e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Behaviours">
+      <UniqueIdentifier>{36736b82-28ef-444a-8a0d-2e05dda09a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ai\Behaviours">
+      <UniqueIdentifier>{c5d5ce85-30f7-498f-bf3c-fc1089f0d55a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Creation">
+      <UniqueIdentifier>{5ba19569-92bc-4146-a70b-eef251489bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Extensions">
+      <UniqueIdentifier>{ec168694-6404-448d-a603-a3bb6ae07589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\PhysicalObject">
+      <UniqueIdentifier>{e1c30bd5-3c9a-47c1-9d47-63e171db5382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Extensions\CollisionResolution">
+      <UniqueIdentifier>{2b85ae65-9702-46ab-88c5-390b24dc9b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Creation">
+      <UniqueIdentifier>{0f23b1c6-1fc9-4b75-9dfd-8b21cebfac86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Extensions">
+      <UniqueIdentifier>{44687b2b-0c8f-45aa-b7a7-ca01ed8c506e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\PhysicalObject">
+      <UniqueIdentifier>{43d252b2-480e-48f8-a184-c3bb5b307282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Extensions\CollisionResolution">
+      <UniqueIdentifier>{07bde15e-2922-4073-a98f-d3d5766e8179}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,6 +99,156 @@
     <ClInclude Include="Talker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractGame.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractScreen.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetRegistry.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="TextUiElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLImageWrapper.h">
+      <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLTtfWrapper.h">
+      <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLWrapper.h">
+      <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsFacade.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractEntityAI.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractBehaviour.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourAttack.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourIdle.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourMove.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourRotate.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourSeesEnemy.h">
+      <Filter>Header Files\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectExtensionFactory.h">
+      <Filter>Header Files\GameObjects\Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectBuilder.h">
+      <Filter>Header Files\GameObjects\Creation</Filter>
+    </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MassData.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalBody.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionPortalExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollisionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractCollisionResolutionExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollisionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionDefaultExtension.h">
+      <Filter>Header Files\GameObjects\Extensions\CollisionResolution</Filter>
+    </ClInclude>
+    <ClInclude Include="VisionExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="StateExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckPhysicsExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="CanWieldExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AiExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractManageableItem.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractGameObjectExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFacade.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IEMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultEntityAI.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -40,6 +262,153 @@
     </ClCompile>
     <ClCompile Include="Talker.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractGame.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractScreen.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetRegistry.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="TextUiElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLImageWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLTtfWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLWrapper.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsFacade.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractEntityAI.cpp">
+      <Filter>Source Files\Ai</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultEntity.cpp">
+      <Filter>Source Files\Ai</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractBehaviour.cpp">
+      <Filter>Source Files\Ai\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourAttack.cpp">
+      <Filter>Source Files\Ai\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourIdle.cpp">
+      <Filter>Source Files\Ai\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourMove.cpp">
+      <Filter>Source Files\Ai\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourRotate.cpp">
+      <Filter>Source Files\Ai\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourSeesEnemy.cpp">
+      <Filter>Source Files\Ai\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectExtensionFactory.cpp">
+      <Filter>Source Files\GameObjects\Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectBuilder.cpp">
+      <Filter>Source Files\GameObjects\Creation</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalBody.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MassData.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Body.cpp">
+      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionResolutionPortalExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisionResolution</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractCollisionResolutionExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisionResolution</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionResolutionDefaultExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions\CollisionResolution</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractGameObjectExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractManageableItem.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AiExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckPhysicsExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="CanWieldExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="StateExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="VisionExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFacade.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

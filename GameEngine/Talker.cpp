@@ -3,5 +3,5 @@
 
 std::string Talker::Talk()
 {
-    return "FATOE";
+	return "FATOE";
 }

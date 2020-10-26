@@ -72,15 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2\lib_mixer\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2\lib_ttf\$(PlatformTarget)\SDL2_ttf.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2\lib_mixer\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2\lib_ttf\$(PlatformTarget)\SDL2_ttf.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2\lib_mixer\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2\lib_ttf\$(PlatformTarget)\SDL2_ttf.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2\lib_mixer\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2\lib_ttf\$(PlatformTarget)\SDL2_ttf.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,7 +102,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,7 +121,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,7 +136,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,11 +155,26 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="HelpScreen.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="HelpScreen.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="PauseScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
