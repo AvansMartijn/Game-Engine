@@ -4,7 +4,7 @@
 #else
 #define GAMEENGINE_GameObject __declspec(dllimport)
 #endif
-// TODO: Mischien deze niet exposen
+// TODO: Mischien kan hier een facade voor worden gebruikt?
 #include "PhysicalBody.h"
 #include "AbstractGameObjectExtension.h"
 #include <vector>
