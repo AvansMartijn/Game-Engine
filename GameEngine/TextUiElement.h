@@ -1,11 +1,17 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_TextUiElement __declspec(dllexport)
+#else
+#define GAMEENGINE_TextUiElement __declspec(dllimport)
+#endif
+// TODO: Standaard UiElements moeten allemaal exposed worden.
 #include "AbstractUiElement.h"
 #include "Color.h"
 
 #include <string>
 #include <iostream>
 
-class TextUiElement : public AbstractUiElement
+class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement
 {
 public:
 	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center);
@@ -21,10 +27,6 @@ public:
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
 	void render(const unique_ptr<Window>& window);
-	/// <summary>
-	/// The function executed when the element is clicked on.
-	/// </summary>
-	void onClick();
 	/// <summary>
 	/// Checks if the mouse is within the bounds of the element.
 	/// </summary>

@@ -21,7 +21,7 @@ using namespace std;
  class GAMEENGINE_AbstractGame AbstractGame
 {
 public:
-	AbstractGame();
+	AbstractGame(const char* title, int width, int height);
 	~AbstractGame();
 
 	/// <summary>
@@ -35,10 +35,30 @@ public:
 	virtual void onInit() = 0;
 
 	/// <summary>
+	/// Runs the basic game loop.
+	/// </summary>
+	/// <param name="game"></param>
+	virtual void gameLoop();
+
+	/// <summary>
 	/// Switch the current screen to the screen with the given index
 	/// </summary>
 	/// <param name="screenIndex">The index of the screen we want to display</param>
 	virtual void switchScreen(int screenIndex) = 0;
+
+	/// <summary>
+	/// Registers a texture in the registry.
+	/// </summary>
+	/// <param name="textureKey">The texture registry key.</param>
+	/// <param name="texturePath">The path to the texture.</param>
+	void registerTexture(std::string textureKey, std::string texturePath);
+
+	/// <summary>
+	/// Registers a font in the registry.
+	/// </summary>
+	/// <param name="fontKey">The font registry key.</param>
+	/// <param name="fontPath">The path to the font.</param>
+	void registerFont(std::string fontKey, std::string fontPath);
 protected:
 	/// <summary>
 	/// The index of the visible screen.

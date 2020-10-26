@@ -1,4 +1,10 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_GameObject __declspec(dllexport)
+#else
+#define GAMEENGINE_GameObject __declspec(dllimport)
+#endif
+// TODO: Mischien deze niet exposen
 #include "PhysicalBody.h"
 #include "AbstractGameObjectExtension.h"
 #include <vector>
@@ -10,7 +16,7 @@
 using namespace std;
 
 class Window;
-class GameObject
+class GAMEENGINE_GameObject GameObject
 {
 private:
 	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;

@@ -1,13 +1,20 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_AbstractUiElement __declspec(dllexport)
+#else
+#define GAMEENGINE_AbstractUiElement __declspec(dllimport)
+#endif
+// TODO: Exposen want abstract
 #include "Window.h"
 #include "Rect.h"
+#include <functional>
 
 /// <summary>
 /// Element to be rendered on the screen.
 /// </summary>
 class Window;
 class AbstractGame;
-class AbstractUiElement
+class GAMEENGINE_AbstractUiElement AbstractUiElement
 {
 public:
 	AbstractUiElement();
@@ -24,10 +31,6 @@ public:
 	/// <param name="renderer">The renderer</param>
 	virtual void render(const unique_ptr<Window>& window) = 0;
 	/// <summary>
-	/// The function executed when the element is clicked on.
-	/// </summary>
-	virtual void onClick() = 0;
-	/// <summary>
 	/// Checks if the mouse is within the bounds of the element.
 	/// </summary>
 	/// <param name="mouseX">X coordinate of the mouse</param>
@@ -39,6 +42,10 @@ public:
 	/// </summary>
 	/// <param name="game">The Game</param>
 	virtual void registerGame(AbstractGame* game);
+	/// <summary>
+	/// The onclick function. This function needs to be changed so it calls a function.
+	/// </summary>
+	std::function<void(AbstractGame*)> onClick;
 protected:
 	AbstractGame* _game;
 	Rect _rect;

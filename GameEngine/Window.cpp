@@ -99,4 +99,3 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 void Window::display() {
 	SDL_RenderPresent(_renderer.get());
 }
-

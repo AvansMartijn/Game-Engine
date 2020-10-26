@@ -21,8 +21,6 @@ void TextUiElement::render(const unique_ptr<Window>& window) {
     window->renderText(_text, _font, _rect, _foregroundColor, _backgroundColor, _center);
 }
 
-void TextUiElement::onClick() {}
-
 bool TextUiElement::isInBound(int mouseX, int mouseY) {
     return false;
 }

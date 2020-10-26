@@ -1,11 +1,17 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_ImageUiElement __declspec(dllexport)
+#else
+#define GAMEENGINE_ImageUiElement __declspec(dllimport)
+#endif
+// TODO: Standaard UiElements moeten allemaal exposed worden.
 #include "AbstractUiElement.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-class ImageUiElement : public AbstractUiElement
+class GAMEENGINE_ImageUiElement ImageUiElement : public AbstractUiElement
 {
 public:
 	ImageUiElement(std::string imageKey, Rect rect);
@@ -21,10 +27,6 @@ public:
 	/// </summary>
 	/// <param name="renderer">The renderer</param>
 	void render(const unique_ptr<Window>& window);
-	/// <summary>
-	/// The function executed when the element is clicked on.
-	/// </summary>
-	void onClick();
 	/// <summary>
 	/// Checks if the mouse is within the bounds of the element.
 	/// </summary>

@@ -1,10 +1,17 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_PhysicsFacade __declspec(dllexport)
+#else
+#define GAMEENGINE_PhysicsFacade __declspec(dllimport)
+#endif
+// TODO: 99% zeker dat we deze moeten exposen.
+
 #include "Physics.h"
 #include "Collision.h"
 /// <summary>
 /// Facade for physics subsystem.
 /// </summary>
-class PhysicsFacade
+class GAMEENGINE_PhysicsFacade PhysicsFacade
 {
 private:
 	Physics _physics;

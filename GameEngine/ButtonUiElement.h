@@ -1,4 +1,10 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_ButtonUiElement __declspec(dllexport)
+#else
+#define GAMEENGINE_ButtonUiElement __declspec(dllimport)
+#endif
+// TODO: Standaard UiElements moeten allemaal exposed worden.
 #include "AbstractUiElement.h"
 #include "AbstractGame.h"
 
@@ -9,7 +15,7 @@ using namespace std;
 /// <summary>
 /// Button element
 /// </summary>
-class ButtonUiElement : public AbstractUiElement
+class GAMEENGINE_ButtonUiElement ButtonUiElement : public AbstractUiElement
 {
 public:
 	using AbstractUiElement::AbstractUiElement;
@@ -28,17 +34,12 @@ public:
 	/// <param name="renderer">The renderer</param>
 	void render(const unique_ptr<Window>& window);
 	/// <summary>
-	/// The function executed when the element is clicked on.
-	/// </summary>
-	void onClick();
-	/// <summary>
 	/// Checks if the mouse is within the bounds of the element.
 	/// </summary>
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
-
 private:
 	std::string _text;
 	Color _backgroundColor;

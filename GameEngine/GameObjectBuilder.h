@@ -1,8 +1,14 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_GameObjectBuilder __declspec(dllexport)
+#else
+#define GAMEENGINE_GameObjectBuilder __declspec(dllimport)
+#endif
+// TODO: De facade is nog niet af, dus voor nu deze hier.
 #include "GameObjectExtensionFactory.h"
 #include <memory>
 
-class GameObjectBuilder
+class GAMEENGINE_GameObjectBuilder GameObjectBuilder
 {
 protected:
 	std::shared_ptr<GameObject> _gameObject;

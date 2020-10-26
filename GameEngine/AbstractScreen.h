@@ -4,6 +4,7 @@
 #else
 #define GAMEENGINE_AbstractScreen __declspec(dllimport)
 #endif
+// TODO: Abstract moeten we sowieso exposen.
 
 #include <memory>
 #include <vector>
@@ -62,7 +63,7 @@ public:
 	/// Called when the user click their mouse.
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
-	virtual void handleMouseClickInput(SDL_MouseButtonEvent e) = 0;
+	virtual void handleMouseClickInput(SDL_MouseButtonEvent e);
 	/// <summary>
 	/// Adds a reference to the game.
 	/// </summary>
