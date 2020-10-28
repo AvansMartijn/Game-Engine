@@ -24,20 +24,17 @@ void CreditsScreen::onInit() {
 		TextUiElement lineOfC = TextUiElement(teamMembers[i], "Paint", 28, { posy, posx, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
 		uiElements.push_back(make_shared<TextUiElement>(lineOfC));
 	}
-
 }
 
 void CreditsScreen::onTick(){}
 
 void CreditsScreen::onScreenShowed(){}
 
-
-
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE: // GO BACK TO PAUZE
-		_game->switchScreen(1);
+		_game->switchScreen(4);
 
 		break;
 	default:

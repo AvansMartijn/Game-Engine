@@ -14,13 +14,13 @@ void PauseScreen::onInit() {
 	button.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	uiElements.push_back(make_shared<ButtonUiElement>(button));
 
-	ButtonUiElement showCreditsButton = ButtonUiElement("Credits", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
+	/*ButtonUiElement showCreditsButton = ButtonUiElement("Credits", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
 	showCreditsButton.registerGame(_game);
 	showCreditsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
-	uiElements.push_back(make_shared<ButtonUiElement>(showCreditsButton));
+	uiElements.push_back(make_shared<ButtonUiElement>(showCreditsButton));*/
 
 
-	ButtonUiElement quitGameButton= ButtonUiElement("Quit game", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
+	ButtonUiElement quitGameButton= ButtonUiElement("Quit game", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
 	uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));

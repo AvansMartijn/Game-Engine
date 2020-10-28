@@ -260,9 +260,6 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Talker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractGame.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>

@@ -9,9 +9,7 @@ int main(int argc, char* argv[]) {
 	unique_ptr<GameScreen> gameScreen(new GameScreen);
 	gameScreen->registerGame(&game);
 	gameScreen->onInit();
-	// move screen + ownership to game instance
 	game.screens.push_back(move(gameScreen));
-
 
 	unique_ptr<PauseScreen> pauseScreen(new PauseScreen);
 	pauseScreen->registerGame(&game);
