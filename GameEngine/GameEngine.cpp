@@ -1,12 +1,7 @@
 #include "pch.h"
 #include "GameEngine.h"
 
-std::string EngineDoSomthing()
+shared_ptr<GameObject> GameEngine::CreateGameObject(vector<string> extensionNames)
 {
-	return "Game engine is doing somthing";
-}
-
-std::string EngineDoSomthingElse()
-{
-	return "Game engine is doing somthing else";
+	return gameObjectFacde.CreateGameObject(extensionNames);
 }

@@ -1,4 +1,5 @@
 #include "GameScreen.h"
+#include <GameEngine.h>
 
 GameScreen::GameScreen() {}
 
@@ -7,13 +8,13 @@ void GameScreen::onInit() {
 	cout << "GAME\n";
 	std::cout << "Started \n";
 
-	GameObjectBuilder builder;
+	//GameObjectBuilder builder;
+
+	GameEngine gameEngine;
 
 	//// Player
-	builder.buildGameObject();
 	vector<string> extensionNames{ "InputExtension" };
-	builder.addExtension(extensionNames);
-	_player = builder.getResult();
+	_player = gameEngine.CreateGameObject(extensionNames);
 
 	Vec2 newPos;
 	newPos.x = 100;
@@ -31,11 +32,8 @@ void GameScreen::onInit() {
 
 	// Moving
 	shared_ptr<GameObject> obj1;
-	builder.buildGameObject();
 	extensionNames = { "MoveExtension", "CollisionResolutionDefaultExtension", "CheckPhysicsExtension" };
-	builder.addExtension(extensionNames);
-
-	obj1 = builder.getResult();
+	obj1 = gameEngine.CreateGameObject(extensionNames);
 
 	newPos.x = 0;
 	newPos.y = 0;
@@ -52,11 +50,8 @@ void GameScreen::onInit() {
 
 	// Portal
 	shared_ptr<GameObject> obj2;
-	builder.buildGameObject();
 	extensionNames = { "CollisionResolutionPortalExtension" };
-	builder.addExtension(extensionNames);
-
-	obj2 = builder.getResult();
+	obj2 = gameEngine.CreateGameObject(extensionNames);
 
 	newPos.x = 0;
 	newPos.y = 700;
