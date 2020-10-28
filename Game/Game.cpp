@@ -12,7 +12,7 @@ void Game::onInit() {
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
 
-	switchScreen(0);
+	switchScreen(4);
 
 	for (int i = 0; i < screens.size(); i++) {
 		for (shared_ptr<AbstractUiElement>& uiElement : screens[i]->uiElements)

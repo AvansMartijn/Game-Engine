@@ -19,6 +19,12 @@ void PauseScreen::onInit() {
 	showCreditsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
 	uiElements.push_back(make_shared<ButtonUiElement>(showCreditsButton));
 
+
+	ButtonUiElement quitGameButton= ButtonUiElement("Quit game", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
+	quitGameButton.registerGame(_game);
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
+	uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+
 	ImageUiElement img = ImageUiElement("Krool", { 0 , 0, 100, 100 });
 	uiElements.push_back(make_shared<ImageUiElement>(img));
 }
