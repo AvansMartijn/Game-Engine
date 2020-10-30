@@ -47,10 +47,7 @@ public:
 	/// <param name="screenIndex">The index of the screen we want to display</param>
 	virtual void switchScreen(int screenIndex) = 0;
 
-	/// <summary>
-	/// Switch the current screen to the screen with the given index
-	/// </summary>
-	virtual int getPreviousScreen() = 0;
+
 
 	/// <summary>
 	/// Registers a texture in the registry.
@@ -66,6 +63,12 @@ public:
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
 protected:
+
+	/// <summary>
+/// Switch the current screen to the screen with the given index
+/// </summary>
+	virtual int getPreviousScreen() = 0;
+
 	/// <summary>
 	/// The index of the visible screen.
 	/// </summary>
