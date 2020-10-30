@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Game.h"
+#include "GameOverScreen.h"
 
 
 //class main {

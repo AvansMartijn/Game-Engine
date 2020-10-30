@@ -162,8 +162,10 @@
   <ItemGroup>
     <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
+    <ClCompile Include="KeyBindingsHelpScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
@@ -171,8 +173,10 @@
   <ItemGroup>
     <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="HelpScreen.h" />
+    <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
