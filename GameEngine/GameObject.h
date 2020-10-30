@@ -5,16 +5,16 @@
 #define GAMEENGINE_GameObject __declspec(dllimport)
 #endif
 // TODO: Mischien kan hier een facade voor worden gebruikt?
-#include "PhysicalBody.h"
+//#include "PhysicalBody.h"
 #include "AbstractGameObjectExtension.h"
 #include <vector>
 #include <memory>
 #include <iostream>
 #include <string>
 #include "Window.h"
+#include <Box2d/Box2D.h>
 
 using namespace std;
-
 class Window;
 class GAMEENGINE_GameObject GameObject
 {
@@ -22,8 +22,8 @@ private:
 	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
 public:
 	GameObject();
-
-	PhysicalBody physicalBody;
+	b2Body* b2body;
+	//PhysicalBody physicalBody;
 	// TODO: Move textureKey to an extension, we might need multiple
 	std::string textureKey;
 

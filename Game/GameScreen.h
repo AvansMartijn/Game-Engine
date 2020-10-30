@@ -46,5 +46,6 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
 	void handleMouseClickInput(SDL_MouseButtonEvent e);
+	Physics physics;
 };
 

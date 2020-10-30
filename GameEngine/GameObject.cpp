@@ -3,7 +3,7 @@
 
 
 GameObject::GameObject() {
-
+	
 }
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
@@ -40,3 +40,5 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 	}
 	return nullptr;
 }
+
+
