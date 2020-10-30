@@ -28,24 +28,20 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement helpButton = ButtonUiElement("Help", { (1080 / 2) - 220, 300, 500, 75 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	helpButton.registerGame(_game);
-	helpButton.registerGame(_game);
 	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
 	uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
 	ButtonUiElement highScoreButton = ButtonUiElement("Highscores", { (1080 / 2) - 220, 400, 500, 75 }, bgColor, { 180, 102, 13 }, "Portal", 40);
-	highScoreButton.registerGame(_game);
 	highScoreButton.registerGame(_game);
 	highScoreButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::HighScores); };
 	uiElements.push_back(make_shared<ButtonUiElement>(highScoreButton));
 
 	ButtonUiElement creditButton = ButtonUiElement("Credits", { (1080 / 2) - 220, 500, 500, 75 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	creditButton.registerGame(_game);
-	creditButton.registerGame(_game);
 	creditButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
 	uiElements.push_back(make_shared<ButtonUiElement>(creditButton));
 
 	ButtonUiElement exitbutton = ButtonUiElement("Exit", { (1080 / 2) - 220, 600, 500, 75 }, bgColor, { 180, 102, 13 }, "Portal", 40);
-	exitbutton.registerGame(_game);
 	exitbutton.registerGame(_game);
 	exitbutton.onClick = [](AbstractGame* game) { exit(0); };
 	uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));
