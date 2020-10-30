@@ -4,7 +4,8 @@ HelpScreen::HelpScreen() {}
 HelpScreen::~HelpScreen() {}
 
 void HelpScreen::onInit() {
-	Color bgColor = { 66, 99, 116 };
+	const Color bgColor = { 66, 99, 116 };
+	const string font = "";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
@@ -19,12 +20,10 @@ void HelpScreen::onInit() {
 
 	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { (1080 / 2) - 220, 400, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	keyBindingsButton.registerGame(_game);
-	keyBindingsButton.registerGame(_game);
 	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
 	uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
-	backButton.registerGame(_game);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	uiElements.push_back(make_shared<ButtonUiElement>(backButton));

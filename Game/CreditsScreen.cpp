@@ -4,22 +4,22 @@ CreditsScreen::CreditsScreen() {}
 CreditsScreen::~CreditsScreen() {}
 
 void CreditsScreen::onInit() {
-	Color bgColor = { 192, 192, 192 };
+	const Color bgColor = { 192, 192, 192 };
+	const string font = "Paint";
 
-	string teamMembers[]{ "Lars (laari)", "Wesley (bob)", "Martijn (mardy.tk/wonenzoals)", "Xandor (jeboyx)", "Mike (King K Rool)", "Chiel (MC Vaper)" };
+	const string teamMembers[]{ "Lars (laari)", "Wesley (bob)", "Martijn (mardy.tk/wonenzoals)", "Xandor (jeboyx)", "Mike (King K Rool)", "Chiel (MC Vaper)" };
 	int posy = 100, posx = 100;
 
 
-	TextUiElement title = TextUiElement("Credits", "Paint", 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 255, 255, 255 }, true);
+	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 255, 255, 255 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(title));
 
 	//TODO: Een keer helemaal mooi maken voor nu tijd saven
-	TextUiElement line = TextUiElement("Team Mike", "Paint", 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
+	TextUiElement line = TextUiElement("Team Mike", font, 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(line));
 
 
-	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
-	backButton.registerGame(_game);
+	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	uiElements.push_back(make_shared<ButtonUiElement>(backButton));
