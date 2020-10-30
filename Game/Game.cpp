@@ -14,7 +14,7 @@ void Game::onInit() {
 
 	switchScreen(4);
 
-	for (int i = 0; i < screens.size(); i++) {
+	for (size_t i = 0; i < screens.size(); i++) {
 		for (shared_ptr<AbstractUiElement>& uiElement : screens[i]->uiElements)
 			uiElement->preRender(_window);
 	}
@@ -34,18 +34,15 @@ int Game::getPreviousScreen() {
 
 void Game::switchScreen(int screenIndex) {
 
-	if (screenIndex == -1)
-	{
-		screenIndex = this->getPreviousScreen();
-	}
+	size_t index = screenIndex;
+	if (index == -1)
+		index = this->getPreviousScreen();
 	else if (_activeScreen)
-	{
 		_previousScreens.push(_activeScreen);
-	}
 
 
-	if (screenIndex + 1 <= screens.size()) {
-		_activeScreen = screenIndex;
+	if (index + 1 <= screens.size()) {
+		_activeScreen = index;
 		screens.at(_activeScreen)->onScreenShowed();
 	}
 }
