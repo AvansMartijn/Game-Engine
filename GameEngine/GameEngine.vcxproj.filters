@@ -132,18 +132,6 @@
     <ClInclude Include="SDLWrapper.h">
       <Filter>Header Files\Wrapper</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Manifold.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsFacade.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files\Core\DataTypes</Filter>
     </ClInclude>
@@ -176,21 +164,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectBuilder.h">
       <Filter>Header Files\GameObjects\Creation</Filter>
-    </ClInclude>
-    <ClInclude Include="Body.h">
-      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
-    </ClInclude>
-    <ClInclude Include="MassData.h">
-      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicalBody.h">
-      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files\GameObjects\PhysicalObject</Filter>
     </ClInclude>
     <ClInclude Include="CollisionResolutionPortalExtension.h">
       <Filter>Header Files\GameObjects\Extensions\CollisionResolution</Filter>
@@ -293,18 +266,6 @@
     <ClCompile Include="SDLWrapper.cpp">
       <Filter>Source Files\Wrappers</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Manifold.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsFacade.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Physics.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>Source Files\DataTypes</Filter>
     </ClCompile>
@@ -340,21 +301,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectBuilder.cpp">
       <Filter>Source Files\GameObjects\Creation</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicalBody.cpp">
-      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
-    </ClCompile>
-    <ClCompile Include="MassData.cpp">
-      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Body.cpp">
-      <Filter>Source Files\GameObjects\PhysicalObject</Filter>
     </ClCompile>
     <ClCompile Include="CollisionResolutionPortalExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions\CollisionResolution</Filter>

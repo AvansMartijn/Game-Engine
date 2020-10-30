@@ -1,11 +1,11 @@
 #pragma once
 #include "AbstractCollisionResolutionExtension.h"
-#include "PhysicsFacade.h"
+//#include "PhysicsFacade.h"
 
 class CollisionResolutionPortalExtension : public AbstractCollisionResolutionExtension
 {
 private:
-	PhysicsFacade _physicsFacade;
+	//PhysicsFacade _physicsFacade;
 public:
 
 	CollisionResolutionPortalExtension();

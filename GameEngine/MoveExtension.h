@@ -6,7 +6,7 @@
 #endif
 // TODO: We moeten in de game kunnen checken of iets een extensie heeft, voor nu gebruiken we alleen deze extensions, maar vrij zeker dat we ze straks allemaal moeten exposen.
 #include "AbstractGameObjectExtension.h"
-#include "PhysicsFacade.h"
+//#include "PhysicsFacade.h"
 
 /// <summary>
 /// Movement capabilities
@@ -14,7 +14,7 @@
 class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension
 {
 private:
-	PhysicsFacade _physicsFacade;
+	//PhysicsFacade _physicsFacade;
 public:
 	MoveExtension();
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }

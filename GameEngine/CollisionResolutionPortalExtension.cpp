@@ -15,7 +15,7 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
 {
 
     //TODO: update so newpos is outside of other portal
-    Vec2 newPos = { 0, 0 };
-    _physicsFacade.setPosition(otherObject, newPos);
+  /*  Vec2 newPos = { 0, 0 };
+    _physicsFacade.setPosition(otherObject, newPos);*/
 }
 

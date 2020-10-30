@@ -196,11 +196,9 @@
     <ClInclude Include="BehaviourMove.h" />
     <ClInclude Include="BehaviourRotate.h" />
     <ClInclude Include="BehaviourSeesEnemy.h" />
-    <ClInclude Include="Body.h" />
     <ClInclude Include="ButtonUiElement.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
-    <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
@@ -214,19 +212,12 @@
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
-    <ClInclude Include="Manifold.h" />
-    <ClInclude Include="MassData.h" />
-    <ClInclude Include="Material.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="PhysicalBody.h" />
-    <ClInclude Include="Physics.h" />
-    <ClInclude Include="PhysicsFacade.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SDLImageWrapper.h" />
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
-    <ClInclude Include="Shape.h" />
     <ClInclude Include="SoundExtension.h" />
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
@@ -252,11 +243,9 @@
     <ClCompile Include="BehaviourMove.cpp" />
     <ClCompile Include="BehaviourRotate.cpp" />
     <ClCompile Include="BehaviourSeesEnemy.cpp" />
-    <ClCompile Include="Body.cpp" />
     <ClCompile Include="ButtonUiElement.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
-    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -269,9 +258,6 @@
     <ClCompile Include="GameObjectFacade.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
-    <ClCompile Include="Manifold.cpp" />
-    <ClCompile Include="MassData.cpp" />
-    <ClCompile Include="Material.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -279,14 +265,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PhysicalBody.cpp" />
-    <ClCompile Include="Physics.cpp" />
-    <ClCompile Include="PhysicsFacade.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
-    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SoundExtension.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
