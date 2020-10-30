@@ -6,7 +6,7 @@ public:
 	Body();
 
 	b2Body* b2body;
-	int width;
-	int height;
+	float32 width;
+	float32 height;
 };
 

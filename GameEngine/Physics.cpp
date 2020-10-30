@@ -2,11 +2,11 @@
 #include "Physics.h"
 
 Physics::Physics(){
-    gravity = { 0.0f, 40.0f };
+    gravity = { 0.0f, 10.0f };
     world = new b2World(gravity);
 }
 
-void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, int width, int height, bool fixed) {
+void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, float32 height, bool fixed) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -21,13 +21,13 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, int width, int h
 
     if (fixed) {
         b2PolygonShape box;
-        box.SetAsBox((float32)obj->body.height / 2, (float32)obj->body.width / 2);
+        box.SetAsBox(obj->body.width/ 2, obj->body.height / 2);
         obj->body.b2body->CreateFixture(&box, 0.0f);
 
     }
     else {
         b2PolygonShape dynamicBox;
-        dynamicBox.SetAsBox((float32)obj->body.height / 2, (float32)obj->body.width / 2);
+        dynamicBox.SetAsBox(obj->body.width / 2, obj->body.height / 2);
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &dynamicBox;
         fixtureDef.density = 1.0f;

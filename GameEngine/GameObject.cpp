@@ -26,7 +26,7 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
-	window->renderTexture(textureKey, { (int)body.b2body->GetPosition().x, (int)body.b2body->GetPosition().y, body.width, body.height});
+	window->renderTexture(textureKey, { (int)body.b2body->GetPosition().x, (int)body.b2body->GetPosition().y, (int)body.width, (int)body.height});
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {

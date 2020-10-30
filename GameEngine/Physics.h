@@ -16,7 +16,7 @@ public:
 	b2World* world;
 	b2Vec2 gravity;
 	Physics();
-	void AddBody(shared_ptr<GameObject> obj, int x, int y, int width, int height, bool fixed);
+	void AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, float32 height, bool fixed);
 	
 };
 

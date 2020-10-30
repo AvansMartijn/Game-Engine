@@ -13,17 +13,23 @@ void GameScreen::onInit() {
 	GameEngine gameEngine;
 
 	//// Player
-	vector<string> extensionNames{ "InputExtension" };
+	vector<string> extensionNames{ "InputExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = gameEngine.CreateGameObject(extensionNames);
 	_player->textureKey = "Krool";
 	physics.AddBody(_player, 0, 0, 50, 50, false);
 	gameObjects.push_back(_player);
 
-	 extensionNames = { };
+	extensionNames = {"CheckPhysicsExtension" };
 	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
 	floor->textureKey = "Krool";
-	physics.AddBody(floor, 0, 500, 50, 50, true);
+	physics.AddBody(floor, 0, 500, 500, 50, true);
 	gameObjects.push_back(floor);
+
+	/*extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension"};
+	shared_ptr<GameObject> portal = gameEngine.CreateGameObject(extensionNames);
+	portal->textureKey = "Krool";
+	physics.AddBody(portal, 120, 500, true);
+	gameObjects.push_back(portal);*/
 
 	//// Moving
 	//shared_ptr<GameObject> obj1;
@@ -87,23 +93,24 @@ void GameScreen::onScreenShowed() {}
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	//PhysicsFacade physicsFacade = PhysicsFacade{};
 	//Vec2 pos = _player->physicalBody.body.position;
+	b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
 
 
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
-		//pos.y -= 5;
 		break;
 	case SDLK_s:
 		//pos.y += 5;
-
+		//vel.y = vel.y + 50;
 		break;
 	case SDLK_a:
 		//pos.x -= 5;
-
+		vel.x = vel.x - 50;
 		break;
 	case SDLK_d:
 		//pos.x += 5;
+		vel.x = vel.x + 50;
 
 		break;
 	case SDLK_ESCAPE:
@@ -114,6 +121,7 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	}
 
+	_player->body.b2body->SetLinearVelocity(vel);
 	//physicsFacade.setPosition(_player, pos);
 
 }
