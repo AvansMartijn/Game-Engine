@@ -5,10 +5,11 @@ MainMenuScreen::~MainMenuScreen() {}
 
 void MainMenuScreen::onInit() {
 	Color bgColor = { 66, 99, 116 };
-	ImageUiElement img = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	uiElements.push_back(make_shared<ImageUiElement>(img));
 
-	TextUiElement text = TextUiElement("  LAPTROP 2   ", "Portal", 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+
+	TextUiElement text = TextUiElement("  LATROP 2   ", "Portal", 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(text));
 
 	ButtonUiElement startButton = ButtonUiElement("Start New Game", { (1080 / 2) - 220, 100, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
