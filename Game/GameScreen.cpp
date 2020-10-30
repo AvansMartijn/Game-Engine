@@ -22,15 +22,15 @@ void GameScreen::onInit() {
 	extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
 	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
 	floor->textureKey = "Krool";
-	physics.AddBody(floor, 250, 500, 500, 50, true);
+	physics.AddBody(floor, 250, 200, 500, 50, true);
 	gameObjects.push_back(floor);
 
 	//extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension"};
-	extensionNames = {};
-	shared_ptr<GameObject> portal = gameEngine.CreateGameObject(extensionNames);
-	portal->textureKey = "Krool";
-	physics.AddBody(portal, 760, 500, 500, 50, true);
-	gameObjects.push_back(portal);
+	//extensionNames = {};
+	//shared_ptr<GameObject> portal = gameEngine.CreateGameObject(extensionNames);
+	//portal->textureKey = "Krool";
+	//physics.AddBody(portal, 760, 500, 500, 50, true);
+	//gameObjects.push_back(portal);
 
 	//// Moving
 	//shared_ptr<GameObject> obj1;
@@ -75,18 +75,18 @@ void GameScreen::onTick() {
 	physics.world->Step(timeStep, 6, 2);
 
 	std::cout << "x: " <<  _player->body.b2body->GetPosition().x << " Y: " << _player->body.b2body->GetPosition().y << "\n";
-	for (shared_ptr<GameObject>& obj : gameObjects)
-	{
-		/*if (obj->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
-			moveExtenstion->move();
-		}*/
-		
-		if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
-			shared_ptr<CheckPhysicsExtension> checkPhysicsExtension = dynamic_pointer_cast<CheckPhysicsExtension>(obj->getExtension(typeid(CheckPhysicsExtension)));
-			checkPhysicsExtension->doPhysics();
-		}
-	}
+	//for (shared_ptr<GameObject>& obj : gameObjects)
+	//{
+	//	/*if (obj->hasExtension(typeid(MoveExtension))) {
+	//		shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
+	//		moveExtenstion->move();
+	//	}*/
+	//	
+	//	/*if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
+	//		shared_ptr<CheckPhysicsExtension> checkPhysicsExtension = dynamic_pointer_cast<CheckPhysicsExtension>(obj->getExtension(typeid(CheckPhysicsExtension)));
+	//		checkPhysicsExtension->doPhysics();
+	//	}*/
+	//}
 }
 
 void GameScreen::onScreenShowed() {}

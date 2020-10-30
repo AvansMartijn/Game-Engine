@@ -9,7 +9,7 @@ CheckPhysicsExtension::CheckPhysicsExtension() {
 
 void CheckPhysicsExtension::doPhysics()
 {
-	//_subject->body.b2body-.
+	//_subject->body.b2body->GetContactList();
 	//gravity
 	//_physicsfacade.addGravityForce(_subject);
 	////collision

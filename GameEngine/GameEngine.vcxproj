@@ -200,6 +200,7 @@
     <ClInclude Include="ButtonUiElement.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
+    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />

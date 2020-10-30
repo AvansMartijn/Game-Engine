@@ -1,17 +1,22 @@
 #include "pch.h"
 #include "Physics.h"
+#include "CollisionListener.h"
 
 Physics::Physics(){
     gravity = { 0.0f, 10.0f };
     world = new b2World(gravity);
+    world->SetContactListener(&colListener);
+
 }
 
 void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, float32 height, bool fixed) {
     obj->body.width = width;
     obj->body.height = height;
+    
 
     b2BodyDef bodyDef;
     bodyDef.position.Set((float32)x, (float32)y);
+    bodyDef.userData = obj.get();
 
     if(!fixed)
         bodyDef.type = b2_dynamicBody;
