@@ -43,6 +43,12 @@ void MainMenuScreen::onInit() {
 	creditButton.registerGame(_game);
 	creditButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
 	uiElements.push_back(make_shared<ButtonUiElement>(creditButton));
+
+	ButtonUiElement exitbutton = ButtonUiElement("Exit", { (1080 / 2) - 220, 600, 500, 75 }, bgColor, { 180, 102, 13 }, "Portal", 40);
+	exitbutton.registerGame(_game);
+	exitbutton.registerGame(_game);
+	exitbutton.onClick = [](AbstractGame* game) { exit(1); };
+	uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));
 }
 
 void MainMenuScreen::onTick() {}
