@@ -35,13 +35,9 @@ int Game::getPreviousScreen() {
 void Game::switchScreen(int screenIndex) {
 
 	if (screenIndex == -1)
-	{
 		screenIndex = this->getPreviousScreen();
-	}
 	else if (_activeScreen)
-	{
 		_previousScreens.push(_activeScreen);
-	}
 
 
 	if (screenIndex + 1 <= screens.size()) {
