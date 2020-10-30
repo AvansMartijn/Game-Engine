@@ -10,7 +10,7 @@ AbstractGame::~AbstractGame() {
 }
 
 void AbstractGame::gameLoop() {
-	for (int i = 0; i < screens.size(); i++) {
+	for (size_t i = 0; i < screens.size(); i++) {
 		for (shared_ptr<AbstractUiElement>& obj : screens[i]->uiElements)
 			obj->preRender(_window);
 	}

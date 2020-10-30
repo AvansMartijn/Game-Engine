@@ -5,7 +5,7 @@
 std::vector<shared_ptr<GameObject>> Collision::getCollisions(shared_ptr<GameObject> objectA, const std::vector<shared_ptr<GameObject>>& objectList)
 {
 	std::vector<shared_ptr<GameObject>> collisions;
-	for (int i = 0; i < objectList.size(); i++)
+	for (size_t i = 0; i < objectList.size(); i++)
 		if (isColliding(objectA, objectList[i]))
 			collisions.push_back(objectList[i]);
 
