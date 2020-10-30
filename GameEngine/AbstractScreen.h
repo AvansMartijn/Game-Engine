@@ -36,7 +36,8 @@ public:
 		Help,
 		MainMenu,
 		GameOver,
-		KeyBindings
+		KeyBindings,
+		HighScores
 	};
 
 

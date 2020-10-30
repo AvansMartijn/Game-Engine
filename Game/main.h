@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Game.h"
 #include "GameOverScreen.h"
+#include "HighScoreScreen.h"
 
 
 //class main {

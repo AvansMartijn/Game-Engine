@@ -1,7 +1,6 @@
 #include "main.h"
 
 
-
 #undef main
 
 int main(int argc, char* argv[]) {
@@ -42,6 +41,11 @@ int main(int argc, char* argv[]) {
 	keyBindingsHelpScreen->registerGame(&game);
 	keyBindingsHelpScreen->onInit();
 	game.screens.push_back(move(keyBindingsHelpScreen));
+
+	unique_ptr<HighScoreScreen> highScoreScreen(new HighScoreScreen);
+	highScoreScreen->registerGame(&game);
+	highScoreScreen->onInit();
+	game.screens.push_back(move(highScoreScreen));
 
 	game.onInit();
 
