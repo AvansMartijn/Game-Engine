@@ -8,7 +8,7 @@ class CollisionListener : public b2ContactListener
 {
 public:
 
-	void PreSolve(b2Contact* contact){
+	void BeginContact(b2Contact* contact){
 		b2Fixture* fixtureA = contact->GetFixtureA();
 		b2Fixture* fixtureB = contact->GetFixtureB();
 
