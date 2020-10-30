@@ -13,6 +13,7 @@
 #include <string>
 #include "Window.h"
 #include <Box2D/Box2D.h>
+#include "Body.h"
 
 using namespace std;
 class Window;
@@ -22,7 +23,7 @@ private:
 	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
 public:
 	GameObject();
-	b2Body* b2body;
+	Body body;
 	//PhysicalBody physicalBody;
 	// TODO: Move textureKey to an extension, we might need multiple
 	std::string textureKey;

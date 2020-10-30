@@ -16,13 +16,13 @@ void GameScreen::onInit() {
 	vector<string> extensionNames{ "InputExtension" };
 	_player = gameEngine.CreateGameObject(extensionNames);
 	_player->textureKey = "Krool";
-	physics.AddBody(_player, 0, 0, false);
+	physics.AddBody(_player, 0, 0, 50, 50, false);
 	gameObjects.push_back(_player);
 
 	 extensionNames = { };
 	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
 	floor->textureKey = "Krool";
-	physics.AddBody(floor, 0, 500, true);
+	physics.AddBody(floor, 0, 500, 50, 50, true);
 	gameObjects.push_back(floor);
 
 	//// Moving
@@ -69,7 +69,7 @@ void GameScreen::onTick() {
 
 	for (shared_ptr<GameObject>& obj : gameObjects)
 	{
-		std::cout << obj->b2body->GetPosition().y << "\n";
+		std::cout << obj->body.b2body->GetPosition().y << "\n";
 		/*if (obj->hasExtension(typeid(MoveExtension))) {
 			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
 			moveExtenstion->move();

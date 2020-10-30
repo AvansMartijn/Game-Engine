@@ -98,7 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26495</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -196,6 +196,7 @@
     <ClInclude Include="BehaviourMove.h" />
     <ClInclude Include="BehaviourRotate.h" />
     <ClInclude Include="BehaviourSeesEnemy.h" />
+    <ClInclude Include="Body.h" />
     <ClInclude Include="ButtonUiElement.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
@@ -244,6 +245,7 @@
     <ClCompile Include="BehaviourMove.cpp" />
     <ClCompile Include="BehaviourRotate.cpp" />
     <ClCompile Include="BehaviourSeesEnemy.cpp" />
+    <ClCompile Include="Body.cpp" />
     <ClCompile Include="ButtonUiElement.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
