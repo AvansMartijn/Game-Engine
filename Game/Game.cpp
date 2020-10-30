@@ -22,7 +22,21 @@ void Game::onInit() {
 	gameLoop();
 }
 
+int Game::getPreviousScreen() {
+	if (_previousScreens.size() > 0)
+	{
+		int value = _previousScreens.top();
+		_previousScreens.pop();
+		return value;
+	}
+	return -1;
+}
+
 void Game::switchScreen(int screenIndex) {
+
+	if (_activeScreen)
+		_previousScreens.push(_activeScreen);
+
 	if (screenIndex + 1 <= screens.size()) {
 		_activeScreen = screenIndex;
 		screens.at(_activeScreen)->onScreenShowed();

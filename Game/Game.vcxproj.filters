@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Screens">
       <UniqueIdentifier>{725d6bd4-2577-46f0-a3fe-9a911cda32ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Screens\HelpScreen">
+      <UniqueIdentifier>{3ccecd3f-a405-444b-87a4-beb721f175ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,14 +36,14 @@
     <ClCompile Include="GameScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
-    <ClCompile Include="HelpScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenuScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScreen.cpp">
+      <Filter>Source Files\Screens\HelpScreen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

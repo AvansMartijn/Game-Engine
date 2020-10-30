@@ -39,15 +39,6 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::MainGame);
 		break;
-	case SDLK_SPACE:
-		_game->switchScreen(Screens::Credits);
-		break;
-	case SDLK_h:
-		_game->switchScreen(Screens::Help);
-		break;
-	case SDLK_m:
-		_game->switchScreen(Screens::MainMenu);
-		break;
 	default:
 		break;
 	}

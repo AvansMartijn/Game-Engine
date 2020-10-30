@@ -23,7 +23,13 @@ void MainMenuScreen::onInit() {
 	loadButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 
-	ButtonUiElement creditButton = ButtonUiElement("Credits", { (1080 / 2) - 220, 400, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
+	ButtonUiElement helpButton = ButtonUiElement("Help", { (1080 / 2) - 220, 400, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
+	helpButton.registerGame(_game);
+	helpButton.registerGame(_game);
+	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
+	uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
+
+	ButtonUiElement creditButton = ButtonUiElement("Credits", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	creditButton.registerGame(_game);
 	creditButton.registerGame(_game);
 	creditButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };

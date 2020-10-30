@@ -24,7 +24,7 @@ void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
-		_game->switchScreen(Screens::Pause);
+		_game->switchScreen(_game->getPreviousScreen());
 
 		break;
 	default:

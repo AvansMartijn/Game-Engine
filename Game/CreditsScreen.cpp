@@ -17,6 +17,13 @@ void CreditsScreen::onInit() {
 	TextUiElement line = TextUiElement("Team Mike", "Paint", 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
 	uiElements.push_back(make_shared<TextUiElement>(line));
 
+
+	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
+	backButton.registerGame(_game);
+	backButton.registerGame(_game);
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(game->getPreviousScreen()); };
+	uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+
 	for (int i = 0; i < 6; i++)
 	{
 		posy += 50;
@@ -34,7 +41,7 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE: // GO BACK TO PAUZE
-		_game->switchScreen(4);
+		_game->switchScreen(Screens::MainMenu);
 
 		break;
 	default:
