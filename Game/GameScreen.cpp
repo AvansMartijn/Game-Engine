@@ -16,13 +16,13 @@ void GameScreen::onInit() {
 	vector<string> extensionNames{ "InputExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = gameEngine.CreateGameObject(extensionNames);
 	_player->textureKey = "Krool";
-	physics.AddBody(_player, 0, 0, 50, 50, false);
+	physics.AddBody(_player, 25, 100, 50, 50, false);
 	gameObjects.push_back(_player);
 
 	extensionNames = {"CheckPhysicsExtension" };
 	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
 	floor->textureKey = "Krool";
-	physics.AddBody(floor, 0, 500, 500, 50, true);
+	physics.AddBody(floor, 250, 500, 500, 50, true);
 	gameObjects.push_back(floor);
 
 	/*extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension"};

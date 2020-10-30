@@ -21,7 +21,7 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, f
 
     if (fixed) {
         b2PolygonShape box;
-        box.SetAsBox(obj->body.width/ 2, obj->body.height / 2);
+        box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
         obj->body.b2body->CreateFixture(&box, 0.0f);
 
     }
