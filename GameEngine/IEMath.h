@@ -138,6 +138,84 @@ struct Vec2
     }
 };
 
+struct Mat2
+{
+    union
+    {
+        struct
+        {
+            real m00, m01;
+            real m10, m11;
+        };
+
+        real m[2][2];
+        real v[4];
+    };
+
+    Mat2() {}
+    Mat2(real radians)
+    {
+        real c = std::cos(radians);
+        real s = std::sin(radians);
+
+        m00 = c; m01 = -s;
+        m10 = s; m11 = c;
+    }
+
+    Mat2(real a, real b, real c, real d)
+        : m00(a), m01(b)
+        , m10(c), m11(d)
+    {
+    }
+
+    void Set(real radians)
+    {
+        real c = std::cos(radians);
+        real s = std::sin(radians);
+
+        m00 = c; m01 = -s;
+        m10 = s; m11 = c;
+    }
+
+    Mat2 Abs(void) const
+    {
+        return Mat2(std::abs(m00), std::abs(m01), std::abs(m10), std::abs(m11));
+    }
+
+    Vec2 AxisX(void) const
+    {
+        return Vec2(m00, m10);
+    }
+
+    Vec2 AxisY(void) const
+    {
+        return Vec2(m01, m11);
+    }
+
+    Mat2 Transpose(void) const
+    {
+        return Mat2(m00, m10, m01, m11);
+    }
+
+    const Vec2 operator*(const Vec2& rhs) const
+    {
+        return Vec2(m00 * rhs.x + m01 * rhs.y, m10 * rhs.x + m11 * rhs.y);
+    }
+
+    const Mat2 operator*(const Mat2& rhs) const
+    {
+        // [00 01]  [00 01]
+        // [10 11]  [10 11]
+
+        return Mat2(
+            m[0][0] * rhs.m[0][0] + m[0][1] * rhs.m[1][0],
+            m[0][0] * rhs.m[0][1] + m[0][1] * rhs.m[1][1],
+            m[1][0] * rhs.m[0][0] + m[1][1] * rhs.m[1][0],
+            m[1][0] * rhs.m[0][1] + m[1][1] * rhs.m[1][1]
+        );
+    }
+};
+
 inline Vec2 operator*(float s, const Vec2& v)
 {
     return Vec2(s * v.x, s * v.y);
@@ -221,4 +299,5 @@ inline bool BiasGreaterThan(real a, real b)
 const f32 gravityScale = 5.0f;
 const Vec2 gravity(0, 10.0f * gravityScale);
 const float dt = 1.0f / 60.0f;
+
 

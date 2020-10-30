@@ -26,7 +26,15 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
-	window->renderTexture(textureKey, { (int)physicalBody.body.position.x, (int)physicalBody.body.position.y, physicalBody.shape.getWidth(), physicalBody.shape.getHeight() });
+	if (physicalBody.shape.m_vertexCount > 0) {
+		//window->renderTexture(textureKey, { (int)physicalBody.body.position.x, (int)physicalBody.body.position.y, physicalBody.shape.getWidthFromVertice(), physicalBody.shape.getHeightFromVertice() });
+		Color col{255, 0, 0, 1};
+		window->renderRectangle({ (int)physicalBody.body.position.x, (int)physicalBody.body.position.y, physicalBody.shape.getWidthFromVertice(), physicalBody.shape.getHeightFromVertice() }, col);
+	}
+	else {
+		window->renderTexture(textureKey, { (int)physicalBody.body.position.x, (int)physicalBody.body.position.y, physicalBody.shape.getWidth(), physicalBody.shape.getHeight() });
+	}
+	
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {

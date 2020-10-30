@@ -32,11 +32,17 @@ public:
 	/// Correct position deviation introduced by floating point errors.
 	/// </summary>
 	void PositionalCorrection();
+	void Initialize();
+	void InfiniteMassCorrection();
 	/// <summary>
 	/// Check for overlap and update manifold with penetration and normal.
 	/// </summary>
 	/// <returns>True if a collision occured. False if not.</returns>
-	bool AABBvsAABB();
+	//bool AABBvsAABB();
+	void PolygontoPolygon();
+	int32 Clip(Vec2 n, real c, Vec2* face);
+	real FindAxisLeastPenetration(uint32* faceIndex);
+	void FindIncidentFace(Vec2* v, Shape *RefPoly, Shape *IncPoly, uint32 referenceIndex);
 
 };
 

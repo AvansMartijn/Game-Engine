@@ -49,5 +49,38 @@ struct Body
 	/// Restitution.
 	/// </summary>
 	real restitution;
+	real staticFriction;
+	real dynamicFriction;
+	bool canRotate;
+
+	void SetOrient(real orient);
+	void CanRotate(bool canrotate);
+
+	void ApplyImpulse(const Vec2& impulse, const Vec2& contactVector)
+	{
+		velocity += im * impulse;
+		angularVelocity += iI * Cross(contactVector, impulse);
+	}
+
+	void IntegrateForces()
+	{
+		if (im == 0.0f)
+			return;
+
+		velocity += (force * im + gravity) * (2.0f);
+		angularVelocity += torque * iI * (2.0f);
+	}
+
+	void IntegrateVelocity()
+	{
+		if (im == 0.0f)
+			return;
+
+		position += velocity * dt;
+		orient += angularVelocity * dt;
+		SetOrient(orient);
+		IntegrateForces();
+	}
+
 };
 
