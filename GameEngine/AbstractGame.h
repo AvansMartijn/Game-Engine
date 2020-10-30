@@ -47,8 +47,6 @@ public:
 	/// <param name="screenIndex">The index of the screen we want to display</param>
 	virtual void switchScreen(int screenIndex) = 0;
 
-
-
 	/// <summary>
 	/// Registers a texture in the registry.
 	/// </summary>
