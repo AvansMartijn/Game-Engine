@@ -33,7 +33,8 @@ public:
 		Pause,
 		Credits,
 		Help,
-		MainMenu
+		MainMenu,
+		GameOver
 	};
 
 

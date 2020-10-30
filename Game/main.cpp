@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 #undef main
 
 int main(int argc, char* argv[]) {
@@ -30,6 +31,11 @@ int main(int argc, char* argv[]) {
 	mainMenuScreen->registerGame(&game);
 	mainMenuScreen->onInit();
 	game.screens.push_back(move(mainMenuScreen));
+
+	unique_ptr<GameOverScreen> gameOverScreen(new GameOverScreen);
+	gameOverScreen->registerGame(&game);
+	gameOverScreen->onInit();
+	game.screens.push_back(move(gameOverScreen));
 
 	game.onInit();
 

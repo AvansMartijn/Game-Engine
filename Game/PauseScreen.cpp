@@ -22,9 +22,9 @@ void PauseScreen::onInit() {
 	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
 	uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
-	ButtonUiElement quitGameButton= ButtonUiElement("Quit game", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
+	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
 	uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 
 	ImageUiElement kroolImg = ImageUiElement("Krool", { 10 , 10, 100, 100 });
