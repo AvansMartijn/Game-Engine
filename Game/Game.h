@@ -10,6 +10,7 @@
 #include "CreditsScreen.h"
 #include "HelpScreen.h"
 #include "MainMenuScreen.h"  
+#include "KeyBindingsHelpScreen.h"
 
 //engine
 #include "GameEngine.h" 

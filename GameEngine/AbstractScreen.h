@@ -34,7 +34,8 @@ public:
 		Credits,
 		Help,
 		MainMenu,
-		GameOver
+		GameOver,
+		KeyBindings
 	};
 
 

@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Screens\HelpScreen">
       <UniqueIdentifier>{3ccecd3f-a405-444b-87a4-beb721f175ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Screens\Help">
+      <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="GameOverScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
+    <ClCompile Include="KeyBindingsHelpScreen.cpp">
+      <Filter>Source Files\Screens\HelpScreen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -62,9 +68,6 @@
     <ClInclude Include="PauseScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="HelpScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
     <ClInclude Include="GameScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
@@ -73,6 +76,12 @@
     </ClInclude>
     <ClInclude Include="GameOverScreen.h">
       <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBindingsHelpScreen.h">
+      <Filter>Header Files\Screens\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScreen.h">
+      <Filter>Header Files\Screens\Help</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
