@@ -29,7 +29,8 @@ public:
 	/// the order the screens get created
 	/// </summary>
 	enum Screens {
-		MainGame = 0,
+		GoBack = -1,
+		MainGame,
 		Pause,
 		Credits,
 		Help,

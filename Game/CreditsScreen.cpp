@@ -21,7 +21,7 @@ void CreditsScreen::onInit() {
 	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	backButton.registerGame(_game);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(game->getPreviousScreen()); };
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	for (int i = 0; i < 6; i++)
