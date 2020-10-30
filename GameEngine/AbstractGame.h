@@ -13,6 +13,9 @@
 #include <vector>
 #include "Window.h"
 #include <stack>
+#include <fstream>
+#include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -60,11 +63,19 @@ public:
 	/// <param name="fontKey">The font registry key.</param>
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
+
+	/// <summary>
+	/// Saves the highscore to a file in which every highscore is collected
+	/// </summary>
+	void saveHighscoreToFile(std::string currentLevel, double highscore);
+
+	vector<std::string> getHighscoresFromFile(std::string currentLevel);
+
 protected:
 
 	/// <summary>
-/// Switch the current screen to the screen with the given index
-/// </summary>
+	/// Switch the current screen to the screen with the given index
+	/// </summary>
 	virtual int getPreviousScreen() = 0;
 
 	/// <summary>

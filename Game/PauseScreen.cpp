@@ -24,7 +24,7 @@ void PauseScreen::onInit() {
 
 	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); /* TODO SAVE HIGHSCORE*/};
 	uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 
 	ImageUiElement kroolImg = ImageUiElement("Krool", { 10 , 10, 100, 100 });

@@ -47,7 +47,7 @@ void MainMenuScreen::onInit() {
 	ButtonUiElement exitbutton = ButtonUiElement("Exit", { (1080 / 2) - 220, 600, 500, 75 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	exitbutton.registerGame(_game);
 	exitbutton.registerGame(_game);
-	exitbutton.onClick = [](AbstractGame* game) { exit(1); };
+	exitbutton.onClick = [](AbstractGame* game) { exit(1);  };
 	uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));
 }
 
