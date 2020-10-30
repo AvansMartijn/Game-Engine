@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CheckPhysicsExtension.h"
 #include "CollisionResolutionDefaultExtension.h"
+#include "Physics.h";
 
 CheckPhysicsExtension::CheckPhysicsExtension() {
 	type = "CheckPhysicsExtension";
@@ -8,6 +9,7 @@ CheckPhysicsExtension::CheckPhysicsExtension() {
 
 void CheckPhysicsExtension::doPhysics()
 {
+	//_subject->body.b2body-.
 	//gravity
 	//_physicsfacade.addGravityForce(_subject);
 	////collision
