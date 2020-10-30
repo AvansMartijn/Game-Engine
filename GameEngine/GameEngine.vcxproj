@@ -214,6 +214,7 @@
     <ClInclude Include="ImageUiElement.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SDLImageWrapper.h" />
     <ClInclude Include="SDLTtfWrapper.h" />
@@ -265,6 +266,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
     <ClCompile Include="SDLTtfWrapper.cpp" />

@@ -6,7 +6,7 @@
 #include "MoveExtension.h"
 #include "CheckPhysicsExtension.h"
 #include "AbstractGame.h"
-
+#include "Physics.h"
 #include <iostream>
 
 using namespace std;

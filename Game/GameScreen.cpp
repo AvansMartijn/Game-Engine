@@ -19,6 +19,12 @@ void GameScreen::onInit() {
 	physics.AddBody(_player, 0, 0, false);
 	gameObjects.push_back(_player);
 
+	 extensionNames = { };
+	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
+	floor->textureKey = "Krool";
+	physics.AddBody(floor, 0, 500, true);
+	gameObjects.push_back(floor);
+
 	//// Moving
 	//shared_ptr<GameObject> obj1;
 	//extensionNames = { "MoveExtension", "CollisionResolutionDefaultExtension", "CheckPhysicsExtension" };
@@ -58,40 +64,46 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::onTick() {
+	float timeStep = 1.0f / 60.0f;
+	physics.world->Step(timeStep, 6, 2);
+
 	for (shared_ptr<GameObject>& obj : gameObjects)
 	{
-		if (obj->hasExtension(typeid(MoveExtension))) {
+		std::cout << obj->b2body->GetPosition().y << "\n";
+		/*if (obj->hasExtension(typeid(MoveExtension))) {
 			shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
 			moveExtenstion->move();
-		}
-		if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
+		}*/
+		
+	/*	if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
 			shared_ptr<CheckPhysicsExtension> checkPhysicsExtension = dynamic_pointer_cast<CheckPhysicsExtension>(obj->getExtension(typeid(CheckPhysicsExtension)));
 			checkPhysicsExtension->doPhysics(gameObjects);
-		}
+		}*/
 	}
 }
 
 void GameScreen::onScreenShowed() {}
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	PhysicsFacade physicsFacade = PhysicsFacade{};
-	Vec2 pos = _player->physicalBody.body.position;
+	//PhysicsFacade physicsFacade = PhysicsFacade{};
+	//Vec2 pos = _player->physicalBody.body.position;
+
 
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
-		pos.y -= 5;
+		//pos.y -= 5;
 		break;
 	case SDLK_s:
-		pos.y += 5;
+		//pos.y += 5;
 
 		break;
 	case SDLK_a:
-		pos.x -= 5;
+		//pos.x -= 5;
 
 		break;
 	case SDLK_d:
-		pos.x += 5;
+		//pos.x += 5;
 
 		break;
 	case SDLK_ESCAPE:
@@ -102,7 +114,7 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	}
 
-	physicsFacade.setPosition(_player, pos);
+	//physicsFacade.setPosition(_player, pos);
 
 }
 
