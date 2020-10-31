@@ -18,20 +18,20 @@ public:
 		GameObject* objA = (GameObject*)bodyA->GetUserData();
 		GameObject* objB = (GameObject*)bodyB->GetUserData();
 
-		if (objA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-			shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objA->getExtension(typeid(AbstractCollisionResolutionExtension)));
-			if (!resolution->isDefault()) {
-				shared_ptr<GameObject> sharedobj(objB);
-				resolution->resolveCollision(sharedobj);
-			}
-		}
-		if (objB->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-			shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objB->getExtension(typeid(AbstractCollisionResolutionExtension)));
-			if (!resolution->isDefault()) {
-				shared_ptr<GameObject> sharedobj(objA);
-				resolution->resolveCollision(sharedobj);
-			}
-		}
+		//if (objA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
+		//	shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objA->getExtension(typeid(AbstractCollisionResolutionExtension)));
+		//	if (!resolution->isDefault()) {
+		//		shared_ptr<GameObject> sharedobj(objB);
+		//		resolution->resolveCollision(sharedobj);
+		//	}
+		//}
+		//if (objB->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
+		//	shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objB->getExtension(typeid(AbstractCollisionResolutionExtension)));
+		//	if (!resolution->isDefault()) {
+		//		shared_ptr<GameObject> sharedobj(objA);
+		//		resolution->resolveCollision(sharedobj);
+		//	}
+		//}
 
 	}
 };
