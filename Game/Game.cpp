@@ -40,7 +40,6 @@ void Game::switchScreen(int screenIndex) {
 	else if (_activeScreen)
 		_previousScreens.push(_activeScreen);
 
-
 	if (index + 1 <= screens.size()) {
 		_activeScreen = index;
 		screens.at(_activeScreen)->onScreenShowed();

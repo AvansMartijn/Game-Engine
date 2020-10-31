@@ -14,16 +14,34 @@ void GameScreen::onInit() {
 
 	//// Player
 	vector<string> extensionNames{ "InputExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
-	_player = gameEngine.CreateGameObject(extensionNames);
-	_player->textureKey = "Krool";
-	physics.AddBody(_player, 25, 100, 50, 50, false);
-	gameObjects.push_back(_player);
+	//_player = gameEngine.CreateGameObject(extensionNames);
+	//_player->textureKey = "Krool";
+	//physics.AddBody(_player, 25, 100, 50, 50, false);
+	//gameObjects.push_back(_player);
 
-	extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
-	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
-	floor->textureKey = "Krool";
-	physics.AddBody(floor, 250, 200, 500, 50, true);
-	gameObjects.push_back(floor);
+	////extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
+	////shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
+	////floor->textureKey = "Krool";
+	////physics.AddBody(floor, 250, 200, 500, 50, true);
+	////gameObjects.push_back(floor);
+
+	extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
+	shared_ptr<GameObject> floor2 = gameEngine.CreateGameObject(extensionNames);
+	floor2->textureKey = "Krool";
+	physics.AddBody(floor2, 500, 200, 50, 500, true);
+	gameObjects.push_back(floor2);
+
+	extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
+	shared_ptr<GameObject> floor3 = gameEngine.CreateGameObject(extensionNames);
+	floor3->textureKey = "Krool";
+	physics.AddBody(floor3, 500, 200, 50, 500, true);
+	gameObjects.push_back(floor3);
+
+	extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
+	shared_ptr<GameObject> floor4 = gameEngine.CreateGameObject(extensionNames);
+	floor4->textureKey = "Krool";
+	physics.AddBody(floor4, 500, 200, 50, 500, false);
+	gameObjects.push_back(floor4);
 
 	//extensionNames = {"CheckPhysicsExtension", "CollisionResolutionPortalExtension"};
 	//extensionNames = {};
@@ -72,6 +90,7 @@ void GameScreen::onInit() {
 
 void GameScreen::onTick() {
 	float timeStep = 1.0f / 60.0f;
+
 	physics.world->Step(timeStep, 6, 2);
 
 	std::cout << "x: " <<  _player->body.b2body->GetPosition().x << " Y: " << _player->body.b2body->GetPosition().y << "\n";

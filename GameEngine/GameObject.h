@@ -24,6 +24,7 @@ private:
 public:
 	GameObject();
 	Body body;
+
 	//PhysicalBody physicalBody;
 	// TODO: Move textureKey to an extension, we might need multiple
 	std::string textureKey;

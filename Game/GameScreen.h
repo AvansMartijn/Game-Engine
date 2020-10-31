@@ -18,7 +18,6 @@ private:
 public:
 	using AbstractScreen::AbstractScreen;
 	GameScreen();
-
 	/// <summary>
 	/// Called one time to create all objects.
 	/// </summary>
