@@ -37,3 +37,9 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, f
     }
 }
 
+//void Physics::UpdatePositions() {
+//    for (shared_ptr<GameObject>& obj : updatePositionList) {
+//        obj->body.b2body->SetTransform({ 0, 0 }, 0);
+//    }
+//}
+

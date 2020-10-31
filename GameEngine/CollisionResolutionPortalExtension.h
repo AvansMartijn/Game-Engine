@@ -8,7 +8,6 @@ class CollisionResolutionPortalExtension : public AbstractCollisionResolutionExt
 private:
 	//PhysicsFacade _physicsFacade;
 public:
-
 	CollisionResolutionPortalExtension();
 
 	bool isDefault();

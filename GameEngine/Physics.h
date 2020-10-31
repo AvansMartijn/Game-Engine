@@ -17,7 +17,9 @@ public:
 	b2World* world;
 	b2Vec2 gravity;
 	CollisionListener colListener;
+	vector<shared_ptr<GameObject>> updatePositionList;
 	Physics();
+	//void UpdatePositions();
 	void AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, float32 height, bool fixed);
 	
 };
