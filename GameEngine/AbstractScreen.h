@@ -24,6 +24,7 @@ public:
 	vector<shared_ptr<GameObject>> gameObjects;
 	vector<shared_ptr<AbstractUiElement>> uiElements;
 
+	// TODO: NOT IN ENGINE
 	/// <summary>
 	/// Screen enums has to be in right order
 	/// the order the screens get created

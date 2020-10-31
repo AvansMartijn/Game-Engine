@@ -1,12 +1,12 @@
 #pragma once
-#include <Box2D.h>
+#include <box2d/box2d.h>
 class Body
 {
 public:
 	Body();
 
 	b2Body* b2body;
-	float32 width;
-	float32 height;
+	float width;
+	float height;
 };
 

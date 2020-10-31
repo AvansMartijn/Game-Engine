@@ -6,7 +6,7 @@
 #define GAMEENGINE_Physics __declspec(dllimport)
 #endif
 
-#include <Box2D/Box2D.h>
+#include <box2d/box2d.h>
 #include <memory>
 #include "GameObject.h"
 #include "CollisionListener.h"
@@ -20,7 +20,7 @@ public:
 	vector<shared_ptr<GameObject>> updatePositionList;
 	Physics();
 	//void UpdatePositions();
-	void AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, float32 height, bool fixed);
+	void AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, bool fixed);
 	
 };
 

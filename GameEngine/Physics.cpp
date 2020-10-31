@@ -9,13 +9,13 @@ Physics::Physics(){
 
 }
 
-void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, float32 height, bool fixed) {
+void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, bool fixed) {
     obj->body.width = width;
     obj->body.height = height;
     
 
     b2BodyDef bodyDef;
-    bodyDef.position.Set((float32)x, (float32)y);
+    bodyDef.position.Set(x, y);
     bodyDef.userData = obj.get();
 
     if(!fixed)
