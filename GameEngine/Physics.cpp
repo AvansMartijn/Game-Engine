@@ -29,7 +29,6 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float32 width, f
     if (fixed)
         obj->body.b2body->CreateFixture(&box, 0.0f);
     else {
-        box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &box;
         fixtureDef.density = 1.0f;
