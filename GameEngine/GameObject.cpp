@@ -39,8 +39,8 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	double degrees = radians * (180.0 / 3.141592653589793238463);
 	bool flipLeft = false;
 	if (hasExtension(typeid(MoveExtension))) {
-		Physics ph;
-		flipLeft = ph.IsMovingLeft(body);
+		
+		flipLeft = Physics::getInstance().IsMovingLeft(body);
 	}
 	window->renderTexture(textureKey, rect, degrees, flipLeft);
 }

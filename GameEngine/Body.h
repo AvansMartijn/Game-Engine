@@ -8,5 +8,6 @@ public:
 	b2Body* b2body;
 	float width;
 	float height;
+	int canJump;
 };
 
