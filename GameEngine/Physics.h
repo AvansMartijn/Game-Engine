@@ -20,7 +20,7 @@ public:
 	vector<shared_ptr<GameObject>> updatePositionList;
 	Physics();
 	//void UpdatePositions();
-	void AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, bool fixed);
-	
+	void AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	bool IsMovingLeft(Body body);
 };
 

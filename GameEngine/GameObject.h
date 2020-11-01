@@ -32,6 +32,7 @@ public:
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 	bool hasExtension(const std::type_info& type);
 	void render(const unique_ptr<Window>& window);
+	int MetersToPixels(float value);
 
 	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
 };

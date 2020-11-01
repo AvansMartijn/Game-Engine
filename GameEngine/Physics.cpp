@@ -9,7 +9,7 @@ Physics::Physics(){
 
 }
 
-void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, bool fixed) {
+void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, float friction, bool fixed, bool fixedRotation) {
     obj->body.width = width;
     obj->body.height = height;
     
@@ -21,20 +21,28 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
     if(!fixed)
         bodyDef.type = b2_dynamicBody;
 
+    if (fixedRotation)
+        bodyDef.fixedRotation = true;
+
     b2Body* body = world->CreateBody(&bodyDef);
     obj->body.b2body = body;
 
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
-    if (fixed)
-        obj->body.b2body->CreateFixture(&box, 0.0f);
-    else {
-        b2FixtureDef fixtureDef;
-        fixtureDef.shape = &box;
-        fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.3f;
-        body->CreateFixture(&fixtureDef);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &box;
+    fixtureDef.density = 1.0f;
+    fixtureDef.friction = friction;
+
+    body->CreateFixture(&fixtureDef);
+    
+}
+
+bool Physics::IsMovingLeft(Body body) {
+    if (body.b2body->GetLinearVelocity().x < -2) {
+        return true;
     }
+    return false;
 }
 
 //void Physics::UpdatePositions() {

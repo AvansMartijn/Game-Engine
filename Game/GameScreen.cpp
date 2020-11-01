@@ -9,35 +9,57 @@ void GameScreen::onInit() {
 	cout << "GAME\n";
 	std::cout << "Started \n";
 
-	//GameObjectBuilder builder;
-
 	GameEngine gameEngine;
 
 	//// Player
-	vector<string> extensionNames{ "InputExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
+	vector<string> extensionNames{ "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = gameEngine.CreateGameObject(extensionNames);
-	_player->textureKey = "Krool";
-	physics.AddBody(_player, 10, 100, 5, 5, false);
+	_player->textureKey = "Dummy_cropped";
+	physics.AddBody(_player, 5, 5, 0.8f, 2.0f, 0.3f, false, true);
 	gameObjects.push_back(_player);
 
 	extensionNames = {"CheckPhysicsExtension" };
 	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
-	floor->textureKey = "Krool";
-	physics.AddBody(floor, 205, 200, 250, 5, true);
+	floor->textureKey = "Tile_Interior_Ground_Center";
+	physics.AddBody(floor, 5, 10, 21.6f, 5.0f, 5.0f, true, true);
 	gameObjects.push_back(floor);
 
 	extensionNames = { "CheckPhysicsExtension" };
-	shared_ptr<GameObject> floor2 = gameEngine.CreateGameObject(extensionNames);
-	floor2->textureKey = "Krool";
-	physics.AddBody(floor2, 400, 200, 250, 5, true);
-	gameObjects.push_back(floor2);
-
+	shared_ptr<GameObject> crate = gameEngine.CreateGameObject(extensionNames);
+	crate->textureKey = "Crate_Metal";
+	physics.AddBody(crate, 5, 5, 1.0f, 1.0f, 0.3f, false, false);
+	gameObjects.push_back(crate);
 
 	extensionNames = { "CheckPhysicsExtension" };
-	shared_ptr<GameObject> floor3 = gameEngine.CreateGameObject(extensionNames);
-	floor3->textureKey = "Krool";
-	physics.AddBody(floor3, 400, 200, 250, 5, true);
-	gameObjects.push_back(floor3);
+	shared_ptr<GameObject> crate2 = gameEngine.CreateGameObject(extensionNames);
+	crate2->textureKey = "Crate_Metal";
+	physics.AddBody(crate2, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
+	gameObjects.push_back(crate2);
+
+	extensionNames = { "CheckPhysicsExtension" };
+	shared_ptr<GameObject> crate3 = gameEngine.CreateGameObject(extensionNames);
+	crate3->textureKey = "Crate_Metal";
+	physics.AddBody(crate3, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
+	gameObjects.push_back(crate3);
+
+	extensionNames = { "CheckPhysicsExtension" };
+	shared_ptr<GameObject> portal = gameEngine.CreateGameObject(extensionNames);
+	portal->textureKey = "Mystical_Crystal_Flipped";
+	physics.AddBody(portal, 18, 10, 3.0f, 1.0f, 0.3f, true, true);
+	gameObjects.push_back(portal);
+
+	//extensionNames = { "CheckPhysicsExtension" };
+	//shared_ptr<GameObject> floor2 = gameEngine.CreateGameObject(extensionNames);
+	//floor2->textureKey = "Krool";
+	//physics.AddBody(floor2, 400, 200, 250, 5, true);
+	//gameObjects.push_back(floor2);
+
+
+	//extensionNames = { "CheckPhysicsExtension" };
+	//shared_ptr<GameObject> floor3 = gameEngine.CreateGameObject(extensionNames);
+	//floor3->textureKey = "Krool";
+	//physics.AddBody(floor3, 400, 200, 250, 5, true);
+	//gameObjects.push_back(floor3);
 
 	//extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
 	//shared_ptr<GameObject> floor4 = gameEngine.CreateGameObject(extensionNames);
@@ -139,6 +161,7 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
+		vel.y = vel.y - 5;
 		break;
 	case SDLK_s:
 		//pos.y += 5;
@@ -146,12 +169,11 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	case SDLK_a:
 		//pos.x -= 5;
-		vel.x = vel.x - 50;
+		vel.x = -5;
 		break;
 	case SDLK_d:
 		//pos.x += 5;
-		vel.x = vel.x + 50;
-
+		vel.x = 5;
 		break;
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::Pause);
