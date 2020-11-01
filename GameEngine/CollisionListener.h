@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Box2D/Box2D.h>
+#include <Box2D.h>
 #include "GameObject.h"
 #include "AbstractCollisionResolutionExtension.h"
 
@@ -9,14 +9,14 @@ class CollisionListener : public b2ContactListener
 public:
 
 	void BeginContact(b2Contact* contact){
-		b2Fixture* fixtureA = contact->GetFixtureA();
+		/*b2Fixture* fixtureA = contact->GetFixtureA();
 		b2Fixture* fixtureB = contact->GetFixtureB();
 
 		b2Body* bodyA = fixtureA->GetBody();
 		b2Body* bodyB = fixtureB->GetBody();
 
 		GameObject* objA = (GameObject*)bodyA->GetUserData();
-		GameObject* objB = (GameObject*)bodyB->GetUserData();
+		GameObject* objB = (GameObject*)bodyB->GetUserData();*/
 
 		//if (objA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
 		//	shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objA->getExtension(typeid(AbstractCollisionResolutionExtension)));

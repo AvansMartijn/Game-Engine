@@ -6,7 +6,7 @@
 #define GAMEENGINE_Physics __declspec(dllimport)
 #endif
 
-#include <box2d/box2d.h>
+#include <Box2D.h>
 #include <memory>
 #include "GameObject.h"
 #include "CollisionListener.h"

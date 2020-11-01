@@ -12,7 +12,7 @@
 #include <iostream>
 #include <string>
 #include "Window.h"
-#include <Box2D/Box2D.h>
+#include <Box2D.h>
 #include "Body.h"
 
 using namespace std;

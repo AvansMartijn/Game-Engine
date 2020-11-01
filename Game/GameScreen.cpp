@@ -33,12 +33,11 @@ void GameScreen::onInit() {
 	gameObjects.push_back(floor2);
 
 
-
-	//extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
-	//shared_ptr<GameObject> floor3 = gameEngine.CreateGameObject(extensionNames);
-	//floor3->textureKey = "Krool";
-	//physics.AddBody(floor3, 500, 200, 50, 500, true);
-	//gameObjects.push_back(floor3);
+	extensionNames = { "CheckPhysicsExtension" };
+	shared_ptr<GameObject> floor3 = gameEngine.CreateGameObject(extensionNames);
+	floor3->textureKey = "Krool";
+	physics.AddBody(floor3, 400, 200, 250, 5, true);
+	gameObjects.push_back(floor3);
 
 	//extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
 	//shared_ptr<GameObject> floor4 = gameEngine.CreateGameObject(extensionNames);

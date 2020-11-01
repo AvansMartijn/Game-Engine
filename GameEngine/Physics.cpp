@@ -16,7 +16,7 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
 
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
-    bodyDef.userData = obj.get();
+    //bodyDef.userData = obj.get();
 
     if(!fixed)
         bodyDef.type = b2_dynamicBody;
