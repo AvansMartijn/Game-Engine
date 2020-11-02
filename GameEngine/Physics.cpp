@@ -8,7 +8,7 @@ Physics Physics::instance;
 Physics::Physics(){
     gravity = { 0.0f, 10.0f };
     world = new b2World(gravity);
-    world->SetContactListener(colListener);
+    world->SetContactListener(&colListener);
 
 }
 
