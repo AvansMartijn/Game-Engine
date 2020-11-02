@@ -4,14 +4,16 @@
 #else
 #define GAMEENGINE_AbstractScreen __declspec(dllimport)
 #endif
-// TODO: Abstract moeten we sowieso exposen.
 
 #include <memory>
 #include <vector>
 #include "Window.h"
 #include "AbstractUiElement.h"
+#include "Physics.h"
+
 using namespace std;
 
+class GameEngine;
 class AbstractGame;
 class GAMEENGINE_AbstractScreen AbstractScreen
 {
@@ -23,23 +25,6 @@ public:
 
 	vector<shared_ptr<GameObject>> gameObjects;
 	vector<shared_ptr<AbstractUiElement>> uiElements;
-
-	// TODO: NOT IN ENGINE
-	/// <summary>
-	/// Screen enums has to be in right order
-	/// the order the screens get created
-	/// </summary>
-	enum Screens {
-		GoBack = -1,
-		MainGame,
-		Pause,
-		Credits,
-		Help,
-		MainMenu,
-		GameOver,
-		KeyBindings
-	};
-
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -73,5 +58,34 @@ public:
 	/// </summary>
 	/// <param name="game">A refrence to the game.</param>
 	virtual void registerGame(AbstractGame* game);
+
+	/// <summary>
+	/// Creates a new entity.
+	/// </summary>
+	/// <param name="gameEngine">The game engine.</param>
+	/// <param name="extensions">The extensions which this game object will use.</param>
+	/// <param name="textureKey">The texture we want to use.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The object width.</param>
+	/// <param name="height">The object height.</param>
+	/// <returns>The created entity.</returns>
+	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height);
+
+	/// <summary>
+	/// Creates a new game object.
+	/// </summary>
+	/// <param name="gameEngine">The game engine.</param>
+	/// <param name="extensions">The extensions which this game object will use.</param>
+	/// <param name="textureKey">The texture we want to use.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The object width.</param>
+	/// <param name="height">The object height.</param>
+	/// <param name="friction">The friction value.</param>
+	/// <param name="fixed">If this object should use fixtures.</param>
+	/// <param name="fixedRotation"></param>
+	/// <returns>The created game object.</returns>
+	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
 };
 

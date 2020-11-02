@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_GameObject __declspec(dllimport)
 #endif
-// TODO: Mischien kan hier een facade voor worden gebruikt?
 //#include "PhysicalBody.h"
 #include "AbstractGameObjectExtension.h"
 #include <vector>
@@ -14,6 +13,7 @@
 #include "Window.h"
 #include <Box2D.h>
 #include "Body.h"
+#include "MoveExtension.h"
 
 using namespace std;
 class Window;
@@ -27,6 +27,7 @@ public:
 
 	//PhysicalBody physicalBody;
 	// TODO: Move textureKey to an extension, we might need multiple
+	// TODO: State to texture map
 	std::string textureKey;
 
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);

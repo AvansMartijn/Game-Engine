@@ -83,6 +83,9 @@
     <ClInclude Include="HelpScreen.h">
       <Filter>Header Files\Screens\Help</Filter>
     </ClInclude>
+    <ClInclude Include="Screens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

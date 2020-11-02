@@ -15,18 +15,15 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
 }
 
 void Physics::increaseCanJumpCounter() {
-    canJumpCounter++;
+    _canJumpCounter++;
 }
 
 void Physics::decreaseCanJumpCounter() {
-    canJumpCounter--;
+    _canJumpCounter--;
 }
 
 bool Physics::playerCanJump() {
-    if (canJumpCounter > 0) {
-        return true;
-    }
-    return false;
+    return _canJumpCounter > 0;
 }
 
 shared_ptr<GameObject> Physics::getGameObject(int index) {
@@ -36,7 +33,6 @@ shared_ptr<GameObject> Physics::getGameObject(int index) {
 void Physics::addGameObject(int index, shared_ptr<GameObject> obj){
     _gameObjects.insert(std::pair<int, shared_ptr<GameObject>>(index, obj));
 }
-
 
 void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
     obj->body.width = width;
@@ -73,8 +69,6 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     body->CreateFixture(&fixtureDef);
 
     addGameObject(userData->index, obj);
-
-
 }
 
 void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
@@ -110,15 +104,10 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
 
     body->CreateFixture(&fixtureDef);
     addGameObject(userData->index, obj);
-
-    
 }
 
 bool Physics::isMovingLeft(Body body) {
-    if (body.b2body->GetLinearVelocity().x < -2) {
-        return true;
-    }
-    return false;
+    return body.b2body->GetLinearVelocity().x < -2;
 }
 
 void Physics::executeTeleportQueue() {

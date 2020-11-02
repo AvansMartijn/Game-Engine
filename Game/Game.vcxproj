@@ -180,6 +180,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
+    <ClInclude Include="Screens.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

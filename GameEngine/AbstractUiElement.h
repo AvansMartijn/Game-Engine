@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_AbstractUiElement __declspec(dllimport)
 #endif
-// TODO: Exposen want abstract
 #include "Window.h"
 #include "Rect.h"
 #include <functional>

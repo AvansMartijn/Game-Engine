@@ -3,6 +3,7 @@
 #include <ImageUiElement.h>
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
+#include "Screens.h"
 
 class GameOverScreen : public AbstractScreen
 {

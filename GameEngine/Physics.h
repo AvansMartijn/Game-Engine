@@ -20,16 +20,16 @@
 class CollisionListener;
 class GAMEENGINE_Physics Physics
 {
-
 private:
-	static Physics instance;
 	Physics();
+	static Physics instance;
+
 	shared_ptr<GameObject> _player;
-	int canJumpCounter;
-	map<int, shared_ptr<GameObject>> _gameObjects;
+	int _canJumpCounter;
 	b2World* _world;
 	b2Vec2 _gravity;
 	CollisionListener _colListener;
+	std::map<int, shared_ptr<GameObject>> _gameObjects;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -38,7 +38,6 @@ public:
 	Physics(Physics&&) = delete;
 	Physics& operator=(const Physics&) = delete;
 	Physics& operator=(Physics&&) = delete;
-
 	
 	//void UpdatePositions();
 	void step(float timeStep, int velocityIterations, int positionIterations);

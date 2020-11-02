@@ -4,6 +4,7 @@
 #include "ButtonUiElement.h"
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
+#include "Screens.h"
 
 class CreditsScreen : public AbstractScreen
 {
