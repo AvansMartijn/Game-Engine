@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CheckPhysicsExtension.h"
 #include "CollisionResolutionDefaultExtension.h"
-#include "Physics.h";
+#include "Physics.h"
 
 CheckPhysicsExtension::CheckPhysicsExtension() {
 	type = "CheckPhysicsExtension";

@@ -6,9 +6,6 @@
 GameScreen::GameScreen() {}
 
 void GameScreen::onInit() {
-	cout << "GAME\n";
-	std::cout << "Started \n";
-
 	GameEngine gameEngine;
 
 	//// Player
@@ -54,8 +51,8 @@ void GameScreen::onInit() {
 	Physics::getInstance().addBody(portal2, 18, 1.5f, 3.0f, 1.0f, 0.3f, true, true);
 	gameObjects.push_back(portal2);
 
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->linkedPortal = portal2;
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->linkedPortal = portal1;
+	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
+	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
 
 
 	//extensionNames = { "CheckPhysicsExtension" };
@@ -128,7 +125,9 @@ void GameScreen::onTick() {
 
 
 	Physics::getInstance().step(timeStep, 6, 2);
-	handleControls();
+
+	// TODO: Move to abstract
+	handlePlayerControls();
 	
 
 	//b2Contact* contactList = physics.world->GetContactList();
@@ -166,31 +165,22 @@ void GameScreen::onTick() {
 
 void GameScreen::onScreenShowed() {}
 
-void GameScreen::handleControls() {
+void GameScreen::handlePlayerControls() {
 	b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	//continuous-response keys
-	if (keystate[SDL_SCANCODE_LEFT])
-	{
+	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT])
 		vel.x = -5;
-	}
-	if (keystate[SDL_SCANCODE_RIGHT])
-	{
+
+	if (keystate[SDL_SCANCODE_D] || keystate[SDL_SCANCODE_RIGHT])
 		vel.x = 5;
-	}
-	if (keystate[SDL_SCANCODE_UP])
-	{
-		if (Physics::getInstance().playerCanJump()) {
+
+	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W])
+		if (Physics::getInstance().playerCanJump())
 			vel.y = vel.y - 5;
-		}
-	}
-	if (keystate[SDL_SCANCODE_DOWN])
-	{
-	}
 
 	_player->body.b2body->SetLinearVelocity(vel);
-
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

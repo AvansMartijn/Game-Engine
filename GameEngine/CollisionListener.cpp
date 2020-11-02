@@ -21,15 +21,13 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 
 	//if playerFeetFixture, increase collision counter to know if player can jump
 	if (valA != nullptr) {
-		if (valA->type == "jumpSensor") {
+		if (valA->type == "jumpSensor")
 			Physics::getInstance().increaseCanJumpCounter();
-		}
 	}
 
 	if (valB != nullptr) {
-		if (valB->type == "jumpSensor") {
+		if (valB->type == "jumpSensor")
 			Physics::getInstance().increaseCanJumpCounter();
-		}
 	}
 
 	//TODO:: Fix shared pointers
@@ -39,9 +37,8 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 			shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(gameObjectA->getExtension(typeid(AbstractCollisionResolutionExtension)));
 			if (!resolution->isDefault()) {
 				if (gameObjectB != nullptr) {
-					if (gameObjectB->body.b2body->GetType() == b2_dynamicBody) {
+					if (gameObjectB->body.b2body->GetType() == b2_dynamicBody)
 						resolution->resolveCollision(gameObjectB);
-					}
 				}
 			}
 		}
@@ -52,9 +49,8 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 			shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(gameObjectB->getExtension(typeid(AbstractCollisionResolutionExtension)));
 			if (!resolution->isDefault()) {
 				if (gameObjectA != nullptr) {
-					if (gameObjectA->body.b2body->GetType() == b2_dynamicBody) {
+					if (gameObjectA->body.b2body->GetType() == b2_dynamicBody)
 						resolution->resolveCollision(gameObjectA);
-					}
 				}
 			}
 		}
@@ -75,14 +71,12 @@ void CollisionListener::EndContact(b2Contact* contact) {
 	GameObject* objB = (GameObject*)bodyB->GetUserData().pointer;
 
 	if (valA != nullptr) {
-		if (valA->type == "jumpSensor") {
+		if (valA->type == "jumpSensor")
 			Physics::getInstance().decreaseCanJumpCounter();
-		}
 	}
 
 	if (valB != nullptr) {
-		if (valB->type == "jumpSensor") {
+		if (valB->type == "jumpSensor")
 			Physics::getInstance().decreaseCanJumpCounter();
-		}
 	}
 }

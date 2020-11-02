@@ -36,17 +36,16 @@ void GameObject::render(const unique_ptr<Window>& window) {
 		MetersToPixels(body.height)
 	};
 	float radians = body.b2body->GetAngle();
-	double degrees = radians * (180.0 / 3.141592653589793238463);
+	float degrees = radians * (180.0f / 3.141592653589793238463f);
 	bool flipLeft = false;
-	if (hasExtension(typeid(MoveExtension))) {
-		
+	if (hasExtension(typeid(MoveExtension)))
 		flipLeft = Physics::getInstance().isMovingLeft(body);
-	}
+
 	window->renderTexture(textureKey, rect, degrees, flipLeft);
 }
 
 int GameObject::MetersToPixels(float value) {
-	return (int)50.0f * value;
+	return (int)(50.0f * value);
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {

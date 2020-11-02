@@ -30,7 +30,10 @@ public:
 	/// Called when the user switches to this screen.
 	/// </summary>
 	void onScreenShowed();
-	void handleControls();
+	/// <summary>
+	/// Handles the player controls.
+	/// </summary>
+	void handlePlayerControls();
 	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>
