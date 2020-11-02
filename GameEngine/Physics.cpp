@@ -12,15 +12,20 @@ Physics::Physics(){
 
 }
 
-void Physics::IncreaseCanJumpCounter() {
+void Physics::step(float timeStep, int velocityIterations, int positionIterations) {
+    world->Step(timeStep, velocityIterations, positionIterations);
+    executeTeleportQueue();
+}
+
+void Physics::increaseCanJumpCounter() {
     canJumpCounter++;
 }
 
-void Physics::DecreaseCanJumpCounter() {
+void Physics::decreaseCanJumpCounter() {
     canJumpCounter--;
 }
 
-bool Physics::PlayerCanJump() {
+bool Physics::playerCanJump() {
     if (canJumpCounter > 0) {
         return true;
     }
@@ -36,7 +41,7 @@ void Physics::addGameObject(int index, shared_ptr<GameObject> obj){
 }
 
 
-void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height) {
+void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -75,7 +80,7 @@ void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, f
 
 }
 
-void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, float friction, bool fixed, bool fixedRotation) {
+void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
     obj->body.width = width;
     obj->body.height = height;
     
@@ -112,13 +117,29 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
     
 }
 
-bool Physics::IsMovingLeft(Body body) {
+bool Physics::isMovingLeft(Body body) {
     if (body.b2body->GetLinearVelocity().x < -2) {
         return true;
     }
     return false;
 }
 
+void Physics::executeTeleportQueue() {
+    for (size_t i = 0; i < teleportQueue.size(); i++) {
+        TeleportObject teleportObject = teleportQueue.back();
+
+        teleportQueue.pop_back();
+
+        b2Vec2 newPosition = { teleportObject.to->body.b2body->GetPosition().x, teleportObject.to->body.b2body->GetPosition().y };
+        
+        // TODO: Decide which side we have to fall though.
+        // TODO: Keep the velocity.
+        // TODO: Decide exact height
+        newPosition.y += teleportObject.from->body.height + (teleportObject.to->body.height / 4);
+
+        teleportObject.from->body.b2body->SetTransform(newPosition, teleportObject.from->body.b2body->GetAngle());
+    }
+}
 //void Physics::UpdatePositions() {
 //    for (shared_ptr<GameObject>& obj : updatePositionList) {
 //        obj->body.b2body->SetTransform({ 0, 0 }, 0);

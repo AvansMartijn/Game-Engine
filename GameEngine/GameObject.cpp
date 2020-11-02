@@ -40,7 +40,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	bool flipLeft = false;
 	if (hasExtension(typeid(MoveExtension))) {
 		
-		flipLeft = Physics::getInstance().IsMovingLeft(body);
+		flipLeft = Physics::getInstance().isMovingLeft(body);
 	}
 	window->renderTexture(textureKey, rect, degrees, flipLeft);
 }

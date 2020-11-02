@@ -22,13 +22,13 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 	//if playerFeetFixture, increase collision counter to know if player can jump
 	if (valA != nullptr) {
 		if (valA->type == "jumpSensor") {
-			Physics::getInstance().IncreaseCanJumpCounter();
+			Physics::getInstance().increaseCanJumpCounter();
 		}
 	}
 
 	if (valB != nullptr) {
 		if (valB->type == "jumpSensor") {
-			Physics::getInstance().IncreaseCanJumpCounter();
+			Physics::getInstance().increaseCanJumpCounter();
 		}
 	}
 
@@ -76,13 +76,13 @@ void CollisionListener::EndContact(b2Contact* contact) {
 
 	if (valA != nullptr) {
 		if (valA->type == "jumpSensor") {
-			Physics::getInstance().DecreaseCanJumpCounter();
+			Physics::getInstance().decreaseCanJumpCounter();
 		}
 	}
 
 	if (valB != nullptr) {
 		if (valB->type == "jumpSensor") {
-			Physics::getInstance().DecreaseCanJumpCounter();
+			Physics::getInstance().decreaseCanJumpCounter();
 		}
 	}
 }
