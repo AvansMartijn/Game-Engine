@@ -24,6 +24,7 @@ private:
 	Physics();
 	shared_ptr<GameObject> _player;
 	int canJumpCounter;
+	map<int, shared_ptr<GameObject>> _gameObjects;
 	vector<shared_ptr<GameObject>> teleportList;
 public:
 	static Physics& getInstance() {
@@ -44,6 +45,7 @@ public:
 	void IncreaseCanJumpCounter();
 	void DecreaseCanJumpCounter();
 	bool PlayerCanJump();
+	shared_ptr<GameObject> getGameObject(int index);
 	void AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, float friction, bool fixed, bool fixedRotation);
 	bool IsMovingLeft(Body body);
 };

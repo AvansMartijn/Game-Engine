@@ -26,8 +26,11 @@ public:
 		CustomUserData* valA = (CustomUserData*)fixtureA->GetUserData().pointer;
 		CustomUserData* valB = (CustomUserData*)fixtureB->GetUserData().pointer;
 
-		GameObject* objA = (GameObject*)bodyA->GetUserData().pointer;
-		GameObject* objB = (GameObject*)bodyB->GetUserData().pointer;
+		CustomUserData* objA = (CustomUserData*)bodyA->GetUserData().pointer;
+		CustomUserData* objB = (CustomUserData*)bodyB->GetUserData().pointer;
+
+		shared_ptr<GameObject> gameObjectA = Physics::getInstance().getGameObject(objA->index);
+		shared_ptr<GameObject> gameObjectB = Physics::getInstance().getGameObject(objB->index);
 
 
 		//if playerFeetFixture, increase collision counter to know if player can jump
@@ -43,34 +46,35 @@ public:
 			}
 		}
 
-		//TODO:: Fix shared pointers 
-		if (objA != nullptr) {
-			if (objA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-				shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objA->getExtension(typeid(AbstractCollisionResolutionExtension)));
+		//TODO:: Fix shared pointers
+
+		if (gameObjectA != nullptr) {
+			if (gameObjectA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
+				shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(gameObjectA->getExtension(typeid(AbstractCollisionResolutionExtension)));
 				if (!resolution->isDefault()) {
-					if (objB != nullptr) {
-						if (objB->body.b2body->GetType() == b2_dynamicBody) {
-							shared_ptr<GameObject> jood1(objB);
-							resolution->resolveCollision(jood1);
+					if (gameObjectB != nullptr) {
+						if (gameObjectB->body.b2body->GetType() == b2_dynamicBody) {
+							resolution->resolveCollision(gameObjectB);
 						}
 					}
 				}
 			}
 		}
 
-		if (objB != nullptr) {
-			if (objB->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-				shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objB->getExtension(typeid(AbstractCollisionResolutionExtension)));
+		if (gameObjectB != nullptr) {
+			if (gameObjectB->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
+				shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(gameObjectB->getExtension(typeid(AbstractCollisionResolutionExtension)));
 				if (!resolution->isDefault()) {
-					if (objA != nullptr) {
-						if (objA->body.b2body->GetType() == b2_dynamicBody) {
-							shared_ptr<GameObject> jood(objA);
-							resolution->resolveCollision(jood);
+					if (gameObjectA != nullptr) {
+						if (gameObjectA->body.b2body->GetType() == b2_dynamicBody) {
+							resolution->resolveCollision(gameObjectA);
 						}
 					}
 				}
 			}
 		}
+
+		
 	}
 	//check for collision extensions on gameobject
 	//perform collision extensions

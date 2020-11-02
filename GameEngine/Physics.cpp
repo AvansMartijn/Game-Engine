@@ -27,6 +27,10 @@ bool Physics::PlayerCanJump() {
     return false;
 }
 
+shared_ptr<GameObject> Physics::getGameObject(int index) {
+    return _gameObjects[index];
+}
+
 
 void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height) {
     obj->body.width = width;
@@ -36,7 +40,9 @@ void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, f
     bodyDef.position.Set(x, y);
     bodyDef.type = b2_dynamicBody;
     bodyDef.fixedRotation = true;
-    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(obj.get());
+    CustomUserData* userData = new CustomUserData;
+    userData->index = _gameObjects.size() + 1;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     b2Body* body = world->CreateBody(&bodyDef);
     obj->body.b2body = body;
@@ -70,7 +76,9 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
 
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
-    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(obj.get());
+    CustomUserData* userData = new CustomUserData;
+    userData->index = _gameObjects.size() + 1;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     if(!fixed)
         bodyDef.type = b2_dynamicBody;
