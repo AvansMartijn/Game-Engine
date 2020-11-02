@@ -56,6 +56,9 @@ void GameScreen::handlePlayerControls() {
 	if (keystate[SDL_SCANCODE_D] || keystate[SDL_SCANCODE_RIGHT])
 		vel.x = 5;
 
+	if (keystate[SDL_SCANCODE_F])
+		vel.x = -50;
+
 	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W])
 		if (Physics::getInstance().playerCanJump())
 			vel.y = -5;
