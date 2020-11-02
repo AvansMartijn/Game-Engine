@@ -9,6 +9,7 @@
 #include "Physics.h"
 #include <iostream>
 #include "Screens.h"
+#include "CollisionResolutionPortalExtension.h"
 
 using namespace std;
 
@@ -62,8 +63,8 @@ public:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created entity.</returns>
-	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height);
-	shared_ptr<GameObject> createPortal(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height);
+	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height);
+	shared_ptr<GameObject> createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Creates a new game object.
@@ -79,7 +80,7 @@ public:
 	/// <param name="fixed">If this object should use fixtures.</param>
 	/// <param name="fixedRotation"></param>
 	/// <returns>The created game object.</returns>
-	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
 	/// <summary>
 	/// Renders all the objects on the screen.
 	/// </summary>
