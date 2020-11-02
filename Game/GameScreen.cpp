@@ -134,7 +134,7 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height) {
 	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
 	gameObject->textureKey = textureKey;
-	//Physics::getInstance().addPortal(gameObject, x, y, width, height);
+	Physics::getInstance().addPortal(gameObject, x, y, width, height);
 
 
 	_gameObjects.push_back(gameObject);
