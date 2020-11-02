@@ -71,6 +71,33 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     addGameObject(userData->index, obj);
 }
 
+void Physics::addPortal(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
+    obj->body.width = width;
+    obj->body.height = height;
+
+    b2BodyDef bodyDef;
+    bodyDef.position.Set(x, y);
+    bodyDef.type = b2_staticBody;
+    CustomUserData* userData = new CustomUserData;
+    userData->index = _gameObjects.size() + 1;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
+
+    b2Body* body = _world->CreateBody(&bodyDef);
+    obj->body.b2body = body;
+
+    b2PolygonShape box;
+    box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &box;
+    fixtureDef.isSensor = true;
+    CustomUserData* data1 = new CustomUserData;
+    data1->type = "portalSensor";
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
+    body->CreateFixture(&fixtureDef);
+
+    addGameObject(userData->index, obj);
+}
+
 void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
     obj->body.width = width;
     obj->body.height = height;

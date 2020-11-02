@@ -62,6 +62,7 @@ public:
 	/// <param name="height">The object height.</param>
 	/// <returns>The created entity.</returns>
 	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height);
+	shared_ptr<GameObject> createPortal(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Creates a new game object.

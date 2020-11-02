@@ -25,11 +25,11 @@ void GameScreen::onInit() {
 	shared_ptr<GameObject> crate3 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
 		5, 5, 1, 1, 0.3f, false, false);
 
-	shared_ptr<GameObject> portal1 = createGameObject(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
-		18, 10, 3, 1, 0.3f, true, true);
+	shared_ptr<GameObject> portal1 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
+		18, 10, 3, 1);
 
-	shared_ptr<GameObject> portal2 = createGameObject(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
-		18, 1.5, 3, 1, 0.3f, true, true);
+	shared_ptr<GameObject> portal2 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
+		18, 1.5, 3, 1);
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
@@ -125,6 +125,16 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
 	else
 		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
+
+	gameObjects.push_back(gameObject);
+	return gameObject;
+}
+
+shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height) {
+	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
+	gameObject->textureKey = textureKey;
+	Physics::getInstance().addPortal(gameObject, x, y, width, height);
+	
 
 	gameObjects.push_back(gameObject);
 	return gameObject;

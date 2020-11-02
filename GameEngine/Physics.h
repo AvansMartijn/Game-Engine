@@ -42,6 +42,7 @@ public:
 	//void UpdatePositions();
 	void step(float timeStep, int velocityIterations, int positionIterations);
 	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void addPortal(shared_ptr<GameObject> obj, float x, float y, float width, float height);
 	void increaseCanJumpCounter();
 	void decreaseCanJumpCounter();
 	bool playerCanJump();
