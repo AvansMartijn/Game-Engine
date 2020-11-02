@@ -16,9 +16,10 @@ class GameScreen : public AbstractScreen
 {
 private:
 	shared_ptr<GameObject> _player;
+	vector<shared_ptr<GameObject>> _gameObjects;
 public:
-	using AbstractScreen::AbstractScreen;
 	GameScreen();
+
 	/// <summary>
 	/// Called one time to create all objects.
 	/// </summary>
@@ -79,6 +80,10 @@ public:
 	/// <param name="fixedRotation"></param>
 	/// <returns>The created game object.</returns>
 	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
-
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void render(const unique_ptr<Window>& window);
 };
 

@@ -126,16 +126,23 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 	else
 		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
 
-	gameObjects.push_back(gameObject);
+	_gameObjects.push_back(gameObject);
+
 	return gameObject;
 }
 
 shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<string> extensions, std::string textureKey, float x, float y, float width, float height) {
 	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
 	gameObject->textureKey = textureKey;
-	Physics::getInstance().addPortal(gameObject, x, y, width, height);
-	
+	//Physics::getInstance().addPortal(gameObject, x, y, width, height);
 
-	gameObjects.push_back(gameObject);
+
+	_gameObjects.push_back(gameObject);
 	return gameObject;
+}
+
+void GameScreen::render(const unique_ptr<Window>& window) {
+	AbstractScreen::render(window);
+	for (shared_ptr<GameObject>& obj : _gameObjects)
+		obj->render(window);
 }
