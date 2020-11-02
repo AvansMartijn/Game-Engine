@@ -41,39 +41,6 @@ void GameScreen::onTick() {
 	Physics::getInstance().step(timeStep, 6, 2);
 
 	handlePlayerControls();
-	
-
-	//b2Contact* contactList = physics.world->GetContactList();
-	//for (b2Contact* c = physics.world->GetContactList(); c; c = c->GetNext())
-	//{
-	//	auto fix = c->GetFixtureA();
-	//	auto bod = fix->GetBody();
-
-	//	// process c
-	//	GameObject* objA = (GameObject*)c->GetFixtureA()->GetBody()->GetUserData();
-	//	GameObject* objB = (GameObject*)c->GetFixtureA()->GetBody()->GetUserData();
-	//	if (objA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-	//		objB->body.b2body->SetTransform({ 0, 0 }, 0);
-	//	}
-	//	else if (objB->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-	//		objA->body.b2body->SetTransform({ 0, 0 }, 0);
-
-	//	}
-	//}
-
-	//std::cout << "x: " <<  _player->body.b2body->GetPosition().x << " Y: " << _player->body.b2body->GetPosition().y << "\n";
-	//for (shared_ptr<GameObject>& obj : gameObjects)
-	//{
-	//	/*if (obj->hasExtension(typeid(MoveExtension))) {
-	//		shared_ptr<MoveExtension> moveExtenstion = dynamic_pointer_cast<MoveExtension>(obj->getExtension(typeid(MoveExtension)));
-	//		moveExtenstion->move();
-	//	}*/
-	//	
-	//	/*if (obj->hasExtension(typeid(CheckPhysicsExtension))) {
-	//		shared_ptr<CheckPhysicsExtension> checkPhysicsExtension = dynamic_pointer_cast<CheckPhysicsExtension>(obj->getExtension(typeid(CheckPhysicsExtension)));
-	//		checkPhysicsExtension->doPhysics();
-	//	}*/
-	//}
 }
 
 void GameScreen::onScreenShowed() {}
