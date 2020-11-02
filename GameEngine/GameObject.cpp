@@ -4,9 +4,7 @@
 #include "MoveExtension.h"
 
 
-GameObject::GameObject() {
-	
-}
+GameObject::GameObject() {}
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
 {

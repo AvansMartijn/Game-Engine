@@ -1,19 +1,16 @@
 #include "pch.h"
 #include "Physics.h"
 
-
-
 Physics Physics::instance;
 
 Physics::Physics(){
-    gravity = { 0.0f, 10.0f };
-    world = new b2World(gravity);
-    world->SetContactListener(&colListener);
-
+    _gravity = { 0.0f, 10.0f };
+    _world = new b2World(_gravity);
+    _world->SetContactListener(&_colListener);
 }
 
 void Physics::step(float timeStep, int velocityIterations, int positionIterations) {
-    world->Step(timeStep, velocityIterations, positionIterations);
+    _world->Step(timeStep, velocityIterations, positionIterations);
     executeTeleportQueue();
 }
 
@@ -53,7 +50,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     userData->index = _gameObjects.size() + 1;
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
-    b2Body* body = world->CreateBody(&bodyDef);
+    b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
     
     b2PolygonShape box;
@@ -97,7 +94,7 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
     if (fixedRotation)
         bodyDef.fixedRotation = true;
 
-    b2Body* body = world->CreateBody(&bodyDef);
+    b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
 
     b2PolygonShape box;

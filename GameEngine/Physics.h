@@ -27,19 +27,18 @@ private:
 	shared_ptr<GameObject> _player;
 	int canJumpCounter;
 	map<int, shared_ptr<GameObject>> _gameObjects;
+	b2World* _world;
+	b2Vec2 _gravity;
+	CollisionListener _colListener;
 public:
-	static Physics& getInstance() {
-		return instance;
-	};
+	static Physics& getInstance() { return instance; }
+
 	// prohibit copy & move
 	Physics(const Physics&) = delete;
 	Physics(Physics&&) = delete;
 	Physics& operator=(const Physics&) = delete;
 	Physics& operator=(Physics&&) = delete;
 
-	b2World* world;
-	b2Vec2 gravity;
-	CollisionListener colListener;
 	
 	//void UpdatePositions();
 	void step(float timeStep, int velocityIterations, int positionIterations);
