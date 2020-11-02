@@ -31,6 +31,10 @@ shared_ptr<GameObject> Physics::getGameObject(int index) {
     return _gameObjects[index];
 }
 
+void Physics::addGameObject(int index, shared_ptr<GameObject> obj){
+    _gameObjects.insert(std::pair<int, shared_ptr<GameObject>>(index, obj));
+}
+
 
 void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height) {
     obj->body.width = width;
@@ -65,6 +69,8 @@ void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, f
     data2->type = "jumpSensor";
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data2);
     body->CreateFixture(&fixtureDef);
+
+    addGameObject(userData->index, obj);
 
 
 }
@@ -101,6 +107,8 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data);
 
     body->CreateFixture(&fixtureDef);
+    addGameObject(userData->index, obj);
+
     
 }
 
