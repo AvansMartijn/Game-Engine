@@ -15,7 +15,7 @@
 #include "GameObject.h"
 #include "CollisionListener.h"
 #include "CustomUserData.h"
-//class CollisionListener;
+class CollisionListener;
 class GAMEENGINE_Physics Physics
 {
 
@@ -38,7 +38,7 @@ public:
 
 	b2World* world;
 	b2Vec2 gravity;
-	CollisionListener colListener;
+	CollisionListener* colListener;
 	
 	//void UpdatePositions();
 	void AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height);
