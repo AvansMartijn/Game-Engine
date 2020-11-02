@@ -58,7 +58,7 @@ void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, f
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 
-    box.SetAsBox(obj->body.width / 4, obj->body.height / 2, b2Vec2(0, 2), 0);
+    box.SetAsBox(obj->body.width / 4, obj->body.height / 2, b2Vec2(0, 0.01f), 0);
     fixtureDef.isSensor = true;
 
     CustomUserData* data2 = new CustomUserData;

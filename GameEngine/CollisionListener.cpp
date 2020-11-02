@@ -76,13 +76,13 @@ void CollisionListener::EndContact(b2Contact* contact) {
 
 	if (valA != nullptr) {
 		if (valA->type == "jumpSensor") {
-			//Physics::getInstance().DecreaseCanJumpCounter();
+			Physics::getInstance().DecreaseCanJumpCounter();
 		}
 	}
 
 	if (valB != nullptr) {
 		if (valB->type == "jumpSensor") {
-			//Physics::getInstance().DecreaseCanJumpCounter();
+			Physics::getInstance().DecreaseCanJumpCounter();
 		}
 	}
 }
