@@ -42,7 +42,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 }
 
 int GameObject::MetersToPixels(float value) {
-	return (int)(50.0f * value);
+	return (int)(40.0f * value);
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {

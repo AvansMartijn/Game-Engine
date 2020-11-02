@@ -14,22 +14,31 @@ void GameScreen::onInit() {
 		5, 5, 0.8f, 2.0f);
 
 	shared_ptr<GameObject> floor = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Tile_Interior_Ground_Center",
-		5, 10, 21.6f, 5, 5, true, true);
+		15, 20, 30.6f, 5, 5, true, true);
+
+	shared_ptr<GameObject> wall = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Tile_Interior_Ground_Center",
+		15, 12, 1.0f, 12.0f, 5, true, true);
+
+	shared_ptr<GameObject> stage = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Tile_Interior_Ground_Center",
+		23, 17, 3.0f, 2.0f, 5, true, true);
 
 	shared_ptr<GameObject> crate = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
-		5, 5, 1, 1, 0.3f, false, false);
+		10, 3, 1, 1, 0.3f, false, false);
 
 	shared_ptr<GameObject> crate2 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
-		5, 5, 1, 1, 0.3f, false, false);
+		10, 4, 1, 1, 0.3f, false, false);
 
 	shared_ptr<GameObject> crate3 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
-		5, 5, 1, 1, 0.3f, false, false);
+		10, 2, 1, 1, 0.3f, false, false);
+
+	shared_ptr<GameObject> plat = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Tile_Interior_Ground_Center",
+		10, 7, 1, 1, 0.3f, true, true);
 
 	shared_ptr<GameObject> portal1 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
-		18, 10, 3, 1);
+		12, 17.5, 3, 1);
 
 	shared_ptr<GameObject> portal2 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
-		18, 1.5, 3, 1);
+		15, 1.5, 3, 1);
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
@@ -88,6 +97,9 @@ void GameScreen::handlePlayerControls() {
 
 	if (keystate[SDL_SCANCODE_D] || keystate[SDL_SCANCODE_RIGHT])
 		vel.x = 5;
+
+	if (keystate[SDL_SCANCODE_S] || keystate[SDL_SCANCODE_DOWN])
+		vel.x = 0;
 
 	if (keystate[SDL_SCANCODE_F])
 		vel.x = -50;
