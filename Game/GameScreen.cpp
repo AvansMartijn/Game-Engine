@@ -161,7 +161,9 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
-		vel.y = vel.y - 5;
+		if (Physics::getInstance().PlayerCanJump()) {
+			vel.y = vel.y - 5;
+		}
 		break;
 	case SDLK_s:
 		//pos.y += 5;

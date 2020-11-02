@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Physics.h"
-#include "CollisionListener.h"
+
 
 
 Physics Physics::instance;
@@ -12,6 +12,21 @@ Physics::Physics(){
 
 }
 
+void Physics::IncreaseCanJumpCounter() {
+    canJumpCounter++;
+}
+
+void Physics::DecreaseCanJumpCounter() {
+    canJumpCounter--;
+}
+
+bool Physics::PlayerCanJump() {
+    if (canJumpCounter > 0) {
+        return true;
+    }
+    return false;
+}
+
 
 void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height) {
     obj->body.width = width;
@@ -21,6 +36,7 @@ void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, f
     bodyDef.position.Set(x, y);
     bodyDef.type = b2_dynamicBody;
     bodyDef.fixedRotation = true;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(obj.get());
 
     b2Body* body = world->CreateBody(&bodyDef);
     obj->body.b2body = body;
@@ -31,14 +47,17 @@ void Physics::AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, f
     fixtureDef.shape = &box;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
+    CustomUserData* data1 = new CustomUserData;
+    data1->type = "fixture";
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 
-    box.SetAsBox(obj->body.width / 4, obj->body.height / 2, b2Vec2(0, -2), 0);
+    box.SetAsBox(obj->body.width / 4, obj->body.height / 2, b2Vec2(0, 2), 0);
     fixtureDef.isSensor = true;
 
-
-
-    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>((void*)3);
+    CustomUserData* data2 = new CustomUserData;
+    data2->type = "jumpSensor";
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data2);
     body->CreateFixture(&fixtureDef);
 
 
@@ -51,7 +70,7 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
 
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
-    //bodyDef.userData = obj.get();
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(obj.get());
 
     if(!fixed)
         bodyDef.type = b2_dynamicBody;
@@ -68,6 +87,10 @@ void Physics::AddBody(shared_ptr<GameObject> obj, int x, int y, float width, flo
     fixtureDef.shape = &box;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = friction;
+
+    CustomUserData* data = new CustomUserData;
+    data->type = "fixture";
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data);
 
     body->CreateFixture(&fixtureDef);
     

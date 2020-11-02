@@ -208,6 +208,7 @@
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
