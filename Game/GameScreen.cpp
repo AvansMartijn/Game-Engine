@@ -15,38 +15,48 @@ void GameScreen::onInit() {
 	vector<string> extensionNames{ "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = gameEngine.CreateGameObject(extensionNames);
 	_player->textureKey = "Dummy_cropped";
-	Physics::getInstance().AddPlayer(_player, 5, 5, 0.8f, 2.0f);
+	Physics::getInstance().addPlayer(_player, 5, 5, 0.8f, 2.0f);
 	gameObjects.push_back(_player);
 
 	extensionNames = {"CheckPhysicsExtension" };
 	shared_ptr<GameObject> floor = gameEngine.CreateGameObject(extensionNames);
 	floor->textureKey = "Tile_Interior_Ground_Center";
-	Physics::getInstance().AddBody(floor, 5, 10, 21.6f, 5.0f, 5.0f, true, true);
+	Physics::getInstance().addBody(floor, 5, 10, 21.6f, 5.0f, 5.0f, true, true);
 	gameObjects.push_back(floor);
 
 	extensionNames = { "CheckPhysicsExtension" };
 	shared_ptr<GameObject> crate = gameEngine.CreateGameObject(extensionNames);
 	crate->textureKey = "Crate_Metal";
-	Physics::getInstance().AddBody(crate, 5, 5, 1.0f, 1.0f, 0.3f, false, false);
+	Physics::getInstance().addBody(crate, 5, 5, 1.0f, 1.0f, 0.3f, false, false);
 	gameObjects.push_back(crate);
 
 	extensionNames = { "CheckPhysicsExtension" };
 	shared_ptr<GameObject> crate2 = gameEngine.CreateGameObject(extensionNames);
 	crate2->textureKey = "Crate_Metal";
-	Physics::getInstance().AddBody(crate2, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
+	Physics::getInstance().addBody(crate2, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
 	gameObjects.push_back(crate2);
 
 	extensionNames = { "CheckPhysicsExtension" };
 	shared_ptr<GameObject> crate3 = gameEngine.CreateGameObject(extensionNames);
 	crate3->textureKey = "Crate_Metal";
-	Physics::getInstance().AddBody(crate3, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
+	Physics::getInstance().addBody(crate3, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
 	gameObjects.push_back(crate3);
 
 	extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
-	shared_ptr<GameObject> portal = gameEngine.CreateGameObject(extensionNames);
-	portal->textureKey = "Mystical_Crystal_Flipped";
-	Physics::getInstance().AddBody(portal, 18, 10, 3.0f, 1.0f, 0.3f, true, true);
-	gameObjects.push_back(portal);
+	shared_ptr<GameObject> portal1 = gameEngine.CreateGameObject(extensionNames);
+	portal1->textureKey = "Mystical_Crystal_Flipped";
+	Physics::getInstance().addBody(portal1, 18, 10, 3.0f, 1.0f, 0.3f, true, true);
+	gameObjects.push_back(portal1);
+
+	extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
+	shared_ptr<GameObject> portal2 = gameEngine.CreateGameObject(extensionNames);
+	portal2->textureKey = "Mystical_Crystal_Flipped";
+	Physics::getInstance().addBody(portal2, 18, 1.5f, 3.0f, 1.0f, 0.3f, true, true);
+	gameObjects.push_back(portal2);
+
+	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->linkedPortal = portal2;
+	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->linkedPortal = portal1;
+
 
 	//extensionNames = { "CheckPhysicsExtension" };
 	//shared_ptr<GameObject> floor2 = gameEngine.CreateGameObject(extensionNames);
@@ -115,8 +125,12 @@ void GameScreen::onInit() {
 void GameScreen::onTick() {
 	float timeStep = 1.0f / 60.0f;
 
-	Physics::getInstance().world->Step(timeStep, 6, 2);
+
+
+	Physics::getInstance().step(timeStep, 6, 2);
 	handleControls();
+	
+
 	//b2Contact* contactList = physics.world->GetContactList();
 	//for (b2Contact* c = physics.world->GetContactList(); c; c = c->GetNext())
 	//{
@@ -135,7 +149,7 @@ void GameScreen::onTick() {
 	//	}
 	//}
 
-	std::cout << "x: " <<  _player->body.b2body->GetPosition().x << " Y: " << _player->body.b2body->GetPosition().y << "\n";
+	//std::cout << "x: " <<  _player->body.b2body->GetPosition().x << " Y: " << _player->body.b2body->GetPosition().y << "\n";
 	//for (shared_ptr<GameObject>& obj : gameObjects)
 	//{
 	//	/*if (obj->hasExtension(typeid(MoveExtension))) {
@@ -190,7 +204,11 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
+
 		/*if (Physics::getInstance().PlayerCanJump()) {
+
+		if (Physics::getInstance().playerCanJump()) {
+
 			vel.y = vel.y - 5;
 		}*/
 		break;

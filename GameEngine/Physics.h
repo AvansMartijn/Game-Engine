@@ -15,6 +15,8 @@
 #include "GameObject.h"
 #include "CollisionListener.h"
 #include "CustomUserData.h"
+#include "TeleportObject.h"
+
 class CollisionListener;
 class GAMEENGINE_Physics Physics
 {
@@ -25,7 +27,6 @@ private:
 	shared_ptr<GameObject> _player;
 	int canJumpCounter;
 	map<int, shared_ptr<GameObject>> _gameObjects;
-	vector<shared_ptr<GameObject>> teleportList;
 public:
 	static Physics& getInstance() {
 		return instance;
@@ -41,14 +42,18 @@ public:
 	CollisionListener colListener;
 	
 	//void UpdatePositions();
-	void AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height);
-	void IncreaseCanJumpCounter();
-	void DecreaseCanJumpCounter();
-	bool PlayerCanJump();
+	void step(float timeStep, int velocityIterations, int positionIterations);
+	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void increaseCanJumpCounter();
+	void decreaseCanJumpCounter();
+	bool playerCanJump();
 	void addGameObject(int index, shared_ptr<GameObject> obj);
+
 	shared_ptr<GameObject> getGameObject(int index);
-	void AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, float friction, bool fixed, bool fixedRotation);
-	bool IsMovingLeft(Body body);
+	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	bool isMovingLeft(Body body);
+	void executeTeleportQueue();
+	vector<TeleportObject> teleportQueue;
 };
 
 #endif

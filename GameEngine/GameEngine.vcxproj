@@ -230,6 +230,7 @@
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="Talker.h" />
+    <ClInclude Include="TeleportObject.h" />
     <ClInclude Include="TextUiElement.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />

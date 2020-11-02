@@ -15,7 +15,11 @@ bool CollisionResolutionPortalExtension::isDefault()
 
 void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> otherObject)
 {
-    //Physics::getInstance().AddToTeleportList();
+    TeleportObject tpObject;
+    tpObject.from = otherObject;
+    tpObject.to = linkedPortal;
+    //std::cout << otherObject->textureKey;
+    Physics::getInstance().teleportQueue.push_back(tpObject);
   // /* b2Vec2 pos = { 0, 0 };
   //  otherObject->body.b2body->SetTransform(pos, 0);*/
   //  TODO: update so newpos is outside of other portal

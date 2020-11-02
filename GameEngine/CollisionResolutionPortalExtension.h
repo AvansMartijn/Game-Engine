@@ -10,6 +10,7 @@ private:
 public:
 	CollisionResolutionPortalExtension();
 
+	shared_ptr<GameObject> linkedPortal;
 	bool isDefault();
 	void resolveCollision(shared_ptr<GameObject> otherObject);
 
