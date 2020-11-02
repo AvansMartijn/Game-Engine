@@ -11,25 +11,25 @@ void CreditsScreen::onInit() {
 
 
 	TextUiElement title = TextUiElement("Credits", "Paint", 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 255, 255, 255 }, true);
-	uiElements.push_back(make_shared<TextUiElement>(title));
+	_uiElements.push_back(make_shared<TextUiElement>(title));
 
 	//TODO: Een keer helemaal mooi maken voor nu tijd saven
 	TextUiElement line = TextUiElement("Team Mike", "Paint", 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
-	uiElements.push_back(make_shared<TextUiElement>(line));
+	_uiElements.push_back(make_shared<TextUiElement>(line));
 
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	backButton.registerGame(_game);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
-	uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	for (int i = 0; i < 6; i++)
 	{
 		posy += 50;
 		posx += 50;
 		TextUiElement lineOfC = TextUiElement(teamMembers[i], "Paint", 28, { posy, posx, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
-		uiElements.push_back(make_shared<TextUiElement>(lineOfC));
+		_uiElements.push_back(make_shared<TextUiElement>(lineOfC));
 	}
 }
 
