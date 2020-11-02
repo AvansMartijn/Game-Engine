@@ -42,7 +42,7 @@ void GameScreen::onInit() {
 	Physics::getInstance().AddBody(crate3, 10, 5, 1.0f, 1.0f, 0.3f, false, false);
 	gameObjects.push_back(crate3);
 
-	extensionNames = { "CheckPhysicsExtension" };
+	extensionNames = { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" };
 	shared_ptr<GameObject> portal = gameEngine.CreateGameObject(extensionNames);
 	portal->textureKey = "Mystical_Crystal_Flipped";
 	Physics::getInstance().AddBody(portal, 18, 10, 3.0f, 1.0f, 0.3f, true, true);

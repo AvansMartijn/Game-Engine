@@ -11,7 +11,7 @@ public:
 	CollisionResolutionPortalExtension();
 
 	bool isDefault();
-	void resolveCollision(shared_ptr<GameObject>& otherObject);
+	void resolveCollision(shared_ptr<GameObject> otherObject);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new CollisionResolutionPortalExtension(); }
 };

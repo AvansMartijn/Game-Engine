@@ -14,7 +14,7 @@ class CollisionListener : public b2ContactListener
 {
 public:
 
-	void BeginContact(b2Contact* contact){
+	void BeginContact(b2Contact* contact) {
 
 
 		b2Fixture* fixtureA = contact->GetFixtureA();
@@ -25,11 +25,11 @@ public:
 
 		CustomUserData* valA = (CustomUserData*)fixtureA->GetUserData().pointer;
 		CustomUserData* valB = (CustomUserData*)fixtureB->GetUserData().pointer;
-		
+
 		GameObject* objA = (GameObject*)bodyA->GetUserData().pointer;
 		GameObject* objB = (GameObject*)bodyB->GetUserData().pointer;
 
-		
+
 		//if playerFeetFixture, increase collision counter to know if player can jump
 		if (valA != nullptr) {
 			if (valA->type == "jumpSensor") {
@@ -42,10 +42,38 @@ public:
 				//Physics::getInstance().IncreaseCanJumpCounter();
 			}
 		}
-		//check for collision extensions on gameobject
-		//perform collision extensions
-			
+
+		//TODO:: Fix shared pointers 
+		if (objA != nullptr) {
+			if (objA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
+				shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objA->getExtension(typeid(AbstractCollisionResolutionExtension)));
+				if (!resolution->isDefault()) {
+					if (objB != nullptr) {
+						if (objB->body.b2body->GetType() == b2_dynamicBody) {
+							shared_ptr<GameObject> jood1(objB);
+							resolution->resolveCollision(jood1);
+						}
+					}
+				}
+			}
+		}
+
+		if (objB != nullptr) {
+			if (objB->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
+				shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(objB->getExtension(typeid(AbstractCollisionResolutionExtension)));
+				if (!resolution->isDefault()) {
+					if (objA != nullptr) {
+						if (objA->body.b2body->GetType() == b2_dynamicBody) {
+							shared_ptr<GameObject> jood(objA);
+							resolution->resolveCollision(jood);
+						}
+					}
+				}
+			}
+		}
 	}
+	//check for collision extensions on gameobject
+	//perform collision extensions
 
 	void EndContact(b2Contact* contact) {
 		b2Fixture* fixtureA = contact->GetFixtureA();

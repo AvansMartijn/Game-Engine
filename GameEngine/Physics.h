@@ -24,6 +24,7 @@ private:
 	Physics();
 	shared_ptr<GameObject> _player;
 	int canJumpCounter;
+	vector<shared_ptr<GameObject>> teleportList;
 public:
 	static Physics& getInstance() {
 		return instance;
@@ -37,7 +38,6 @@ public:
 	b2World* world;
 	b2Vec2 gravity;
 	CollisionListener colListener;
-	vector<shared_ptr<GameObject>> updatePositionList;
 	
 	//void UpdatePositions();
 	void AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height);
