@@ -19,12 +19,10 @@ class GAMEENGINE_AbstractScreen AbstractScreen
 {
 protected:
 	AbstractGame* _game;
+	vector<shared_ptr<AbstractUiElement>> _uiElements;
 public:
 	AbstractScreen();
 	~AbstractScreen();
-
-	vector<shared_ptr<GameObject>> gameObjects;
-	vector<shared_ptr<AbstractUiElement>> uiElements;
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -58,5 +56,15 @@ public:
 	/// </summary>
 	/// <param name="game">A refrence to the game.</param>
 	virtual void registerGame(AbstractGame* game);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	virtual void render(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	virtual void preRender(const unique_ptr<Window>& window);
 };
 
