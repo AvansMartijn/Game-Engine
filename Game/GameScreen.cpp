@@ -181,7 +181,7 @@ void GameScreen::handleControls() {
 	}
 	if (keystate[SDL_SCANCODE_UP])
 	{
-		if (Physics::getInstance().PlayerCanJump()) {
+		if (Physics::getInstance().playerCanJump()) {
 			vel.y = vel.y - 5;
 		}
 	}
