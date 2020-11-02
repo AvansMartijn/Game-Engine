@@ -37,5 +37,6 @@ shared_ptr<GameObject> AbstractScreen::createGameObject(GameEngine gameEngine, v
 	else
 		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
 
+	gameObjects.push_back(gameObject);
 	return gameObject;
 }

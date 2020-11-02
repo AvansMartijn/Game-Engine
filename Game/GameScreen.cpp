@@ -12,31 +12,24 @@ void GameScreen::onInit() {
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = createEntity(gameEngine, extensionNames, "Dummy_cropped",
 		5, 5, 0.8f, 2.0f);
-	gameObjects.push_back(_player);
 
 	shared_ptr<GameObject> floor = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Tile_Interior_Ground_Center",
 		5, 10, 21.6f, 5, 5, true, true);
-	gameObjects.push_back(floor);
 
 	shared_ptr<GameObject> crate = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
 		5, 5, 1, 1, 0.3f, false, false);
-	gameObjects.push_back(crate);
 
 	shared_ptr<GameObject> crate2 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
 		5, 5, 1, 1, 0.3f, false, false);
-	gameObjects.push_back(crate2);
 
 	shared_ptr<GameObject> crate3 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Crate_Metal",
 		5, 5, 1, 1, 0.3f, false, false);
-	gameObjects.push_back(crate3);
 
 	shared_ptr<GameObject> portal1 = createGameObject(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
 		18, 10, 3, 1, 0.3f, true, true);
-	gameObjects.push_back(portal1);
 
 	shared_ptr<GameObject> portal2 = createGameObject(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Mystical_Crystal_Flipped",
 		18, 1.5, 3, 1, 0.3f, true, true);
-	gameObjects.push_back(portal2);
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
@@ -44,8 +37,6 @@ void GameScreen::onInit() {
 
 void GameScreen::onTick() {
 	float timeStep = 1.0f / 60.0f;
-
-
 
 	Physics::getInstance().step(timeStep, 6, 2);
 
