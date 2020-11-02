@@ -116,7 +116,7 @@ void GameScreen::onTick() {
 	float timeStep = 1.0f / 60.0f;
 
 	Physics::getInstance().world->Step(timeStep, 6, 2);
-
+	handleControls();
 	//b2Contact* contactList = physics.world->GetContactList();
 	//for (b2Contact* c = physics.world->GetContactList(); c; c = c->GetNext())
 	//{
@@ -152,18 +152,47 @@ void GameScreen::onTick() {
 
 void GameScreen::onScreenShowed() {}
 
+void GameScreen::handleControls() {
+	b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
+	const Uint8* keystate = SDL_GetKeyboardState(NULL);
+
+	//continuous-response keys
+	if (keystate[SDL_SCANCODE_LEFT])
+	{
+		vel.x = -5;
+	}
+	if (keystate[SDL_SCANCODE_RIGHT])
+	{
+		vel.x = 5;
+	}
+	if (keystate[SDL_SCANCODE_UP])
+	{
+		if (Physics::getInstance().PlayerCanJump()) {
+			vel.y = vel.y - 5;
+		}
+	}
+	if (keystate[SDL_SCANCODE_DOWN])
+	{
+	}
+
+	_player->body.b2body->SetLinearVelocity(vel);
+
+}
+
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	//PhysicsFacade physicsFacade = PhysicsFacade{};
 	//Vec2 pos = _player->physicalBody.body.position;
-	b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
+	//b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
+
+
 
 
 	switch (e.keysym.sym)
 	{
 	case SDLK_w:
-		if (Physics::getInstance().PlayerCanJump()) {
+		/*if (Physics::getInstance().PlayerCanJump()) {
 			vel.y = vel.y - 5;
-		}
+		}*/
 		break;
 	case SDLK_s:
 		//pos.y += 5;
@@ -171,11 +200,11 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	case SDLK_a:
 		//pos.x -= 5;
-		vel.x = -5;
+		//vel.x = -5;
 		break;
 	case SDLK_d:
 		//pos.x += 5;
-		vel.x = 5;
+		//vel.x = 5;
 		break;
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::Pause);
@@ -185,7 +214,7 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	}
 
-	_player->body.b2body->SetLinearVelocity(vel);
+	//_player->body.b2body->SetLinearVelocity(vel);
 	//physicsFacade.setPosition(_player, pos);
 
 }
