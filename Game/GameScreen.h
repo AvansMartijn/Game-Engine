@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Screens.h"
 #include "CollisionResolutionPortalExtension.h"
+#include "ImageUiElement.h"
 
 using namespace std;
 

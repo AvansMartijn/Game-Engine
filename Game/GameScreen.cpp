@@ -6,6 +6,9 @@ GameScreen::GameScreen() {}
 void GameScreen::onInit() {
 	GameEngine gameEngine;
 
+	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+
 	//// Player
 	std::map<int, std::string> textures;
 	textures.insert(pair<int, std::string>(0, "Dummy_cropped"));
