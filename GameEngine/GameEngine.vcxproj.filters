@@ -234,6 +234,9 @@
     <ClInclude Include="CustomUserData.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="HudUIElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -370,6 +373,9 @@
     </ClCompile>
     <ClCompile Include="Body.cpp">
       <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="HudUIElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

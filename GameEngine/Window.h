@@ -40,6 +40,7 @@ public:
 	void renderRectangle(Rect rect, Color color);
 	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true);
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center);
+	void renderHud();
 private:
 	int _width;
 	int _height;

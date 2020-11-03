@@ -119,6 +119,22 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	SDL_DestroyTexture(texture);
 }
 
+void Window::renderHud()
+{
+	//Top left corner viewport
+	SDL_Rect topLeftViewport;
+	topLeftViewport.x = 0;
+	topLeftViewport.y = 0;
+	topLeftViewport.w = 720 / 2;
+	topLeftViewport.h = 1920 / 2;
+	//SDL_SetRenderDrawColor(_renderer.get(), 0, 0, 0, 255);
+	SDL_RenderSetViewport(_renderer.get(), &topLeftViewport);
+
+
+	//Render texture to screen
+	SDL_RenderCopy(_renderer.get(), NULL, NULL, NULL);
+}
+
 void Window::display() {
 	SDL_RenderPresent(_renderer.get());
 }

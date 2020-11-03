@@ -1,6 +1,7 @@
 #include "GameScreen.h"
 #include <GameEngine.h>
 #include "CollisionResolutionPortalExtension.h"
+#include <HudUIElement.h>
 
 
 GameScreen::GameScreen() {}
@@ -110,6 +111,7 @@ void GameScreen::onInit() {
 	//obj2->textureKey = "Krool";
 
 	//gameObjects.push_back(obj2);
+
 }
 
 void GameScreen::onTick() {

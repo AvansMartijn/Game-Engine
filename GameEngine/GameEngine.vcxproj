@@ -217,6 +217,7 @@
     <ClInclude Include="GameObjectExtensionFactory.h" />
     <ClInclude Include="GameObjectFacade.h" />
     <ClInclude Include="HealthExtension.h" />
+    <ClInclude Include="HudUIElement.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
     <ClInclude Include="MoveExtension.h" />
@@ -266,6 +267,7 @@
     <ClCompile Include="GameObjectExtensionFactory.cpp" />
     <ClCompile Include="GameObjectFacade.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
+    <ClCompile Include="HudUIElement.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="pch.cpp">
