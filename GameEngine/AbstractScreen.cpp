@@ -33,3 +33,5 @@ void AbstractScreen::preRender(const unique_ptr<Window>& window) {
 	for (shared_ptr<AbstractUiElement>& obj : _uiElements)
 		obj->preRender(window);
 }
+
+void AbstractScreen::reset() {}

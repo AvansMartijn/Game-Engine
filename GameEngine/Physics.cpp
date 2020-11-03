@@ -5,8 +5,7 @@ Physics Physics::instance;
 
 Physics::Physics(){
     _gravity = { 0.0f, 10.0f };
-    _world = new b2World(_gravity);
-    _world->SetContactListener(&_colListener);
+    reset();
 }
 
 void Physics::step(float timeStep, int velocityIterations, int positionIterations) {
@@ -152,6 +151,12 @@ void Physics::executeTeleportQueue() {
 
         teleportObject.from->body.b2body->SetTransform(newPosition, teleportObject.from->body.b2body->GetAngle());
     }
+}
+
+void Physics::reset() {
+    _canJumpCounter = 0;
+    _world = new b2World(_gravity);
+    _world->SetContactListener(&_colListener);
 }
 //void Physics::UpdatePositions() {
 //    for (shared_ptr<GameObject>& obj : updatePositionList) {

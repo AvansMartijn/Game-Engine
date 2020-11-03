@@ -87,5 +87,9 @@ public:
 	/// </summary>
 	/// <param name="window">The window.</param>
 	void render(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Resets the game.
+	/// </summary>
+	void reset();
 };
 

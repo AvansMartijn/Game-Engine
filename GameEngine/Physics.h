@@ -47,6 +47,7 @@ public:
 	void decreaseCanJumpCounter();
 	bool playerCanJump();
 	void addGameObject(int index, shared_ptr<GameObject> obj);
+	void reset();
 
 	shared_ptr<GameObject> getGameObject(int index);
 	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);

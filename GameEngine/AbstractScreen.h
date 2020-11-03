@@ -66,5 +66,9 @@ public:
 	/// </summary>
 	/// <param name="window">The window.</param>
 	virtual void preRender(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Resets the game.
+	/// </summary>
+	virtual void reset();
 };
 

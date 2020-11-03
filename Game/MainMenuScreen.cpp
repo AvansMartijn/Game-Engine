@@ -14,8 +14,10 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement startButton = ButtonUiElement("Start New Game", { (1080 / 2) - 220, 100, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	startButton.registerGame(_game);
-	// TODO: New Game 
-	startButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	startButton.onClick = [](AbstractGame* game) { 
+		game->reset();
+		game->switchScreen(Screens::MainGame); 
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { (1080 / 2) - 220, 250, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);

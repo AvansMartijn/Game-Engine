@@ -65,6 +65,11 @@ public:
 	/// <param name="fontKey">The font registry key.</param>
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
+
+	/// <summary>
+	/// Resets the game.
+	/// </summary>
+	void reset();
 protected:
 	/// <summary>
 	/// The index of the visible screen.

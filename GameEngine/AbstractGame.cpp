@@ -61,3 +61,8 @@ void AbstractGame::registerTexture(std::string textureKey, std::string texturePa
 void AbstractGame::registerFont(std::string fontKey, std::string fontPath) {
 	_window->registerFont(fontKey, fontPath);
 }
+
+void AbstractGame::reset() {
+	for (size_t i = 0; i < screens.size(); i++)
+		screens[i]->reset();
+}

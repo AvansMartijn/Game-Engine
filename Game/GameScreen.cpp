@@ -6,6 +6,8 @@ GameScreen::GameScreen() {}
 void GameScreen::onInit() {
 	GameEngine gameEngine;
 
+	Physics::getInstance().reset();
+	_gameObjects.clear();
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
@@ -170,4 +172,10 @@ void GameScreen::render(const unique_ptr<Window>& window) {
 	AbstractScreen::render(window);
 	for (shared_ptr<GameObject>& obj : _gameObjects)
 		obj->render(window);
+}
+
+void GameScreen::reset() {
+	AbstractScreen::reset();
+
+	onInit();
 }
