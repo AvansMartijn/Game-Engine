@@ -21,6 +21,11 @@ void GameScreen::onInit() {
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
+	shared_ptr<GameObject> roof = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+		15, 0, 30.6f, 1.0f, 5, true, true);
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> plat = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
 		10, 7, 1, 1, 0.3f, true, true);
 
@@ -28,6 +33,16 @@ void GameScreen::onInit() {
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> wall = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
 		15, 12, 1.0f, 12.0f, 5, true, true);
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
+	shared_ptr<GameObject> boundLeft = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+		0, 10, 1.0f, 20.0f, 5, true, true);
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
+	shared_ptr<GameObject> boundRight = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+		27, 10, 1.0f, 20.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
