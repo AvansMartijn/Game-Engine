@@ -31,6 +31,11 @@ void GameScreen::onInit() {
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
+	shared_ptr<GameObject> wall2 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+		20, 5, 1.0f, 12.0f, 5, true, true);
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> stage = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
 		23, 17, 3.0f, 2.0f, 5, true, true);
 
