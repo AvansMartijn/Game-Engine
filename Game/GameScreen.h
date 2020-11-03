@@ -19,7 +19,6 @@ using namespace std;
 class GameScreen : public AbstractScreen
 {
 private:
-	int score;
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
 public:

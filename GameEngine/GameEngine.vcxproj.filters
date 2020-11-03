@@ -240,6 +240,9 @@
     <ClInclude Include="Scene.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -381,6 +384,9 @@
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>

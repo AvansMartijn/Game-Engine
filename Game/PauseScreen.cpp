@@ -29,7 +29,7 @@ void PauseScreen::onInit() {
 
 	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { (1080 / 2) - 200, 550, 500, 100 }, bgColor, { 180, 102, 13 }, "Portal", 40);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [&](AbstractGame* game) { game->switchScreen(Screens::GameOver, { _score }); };
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 }
 
@@ -44,13 +44,6 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	default:
 		break;
 	}
-}
-
-void PauseScreen::onScreenShowed(vector<std::string> args) {
-	if (args.size() == 0)
-		return;
-
-	_score = args[0];
 }
 
 void PauseScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

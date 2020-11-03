@@ -3,7 +3,9 @@
 
 Scene Scene::instance;
 
-Scene::Scene() {}
+Scene::Scene() {
+    score = 1000;
+}
 
 shared_ptr<GameObject> Scene::getGameObject(int index) {
     return _gameObjects[index];
@@ -22,6 +24,7 @@ int Scene::getNextAvailableId() {
 }
 
 void Scene::reset() {
+    score = 1000;
     _gameObjects.clear();
 }
 

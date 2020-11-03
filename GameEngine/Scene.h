@@ -25,6 +25,7 @@ public:
 	Scene& operator=(Scene&&) = delete;
 
 	shared_ptr<GameObject> player;
+	int score;
 
 	/// <summary>
 	/// Adds a game object to the registry.

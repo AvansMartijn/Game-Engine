@@ -8,16 +8,13 @@ enum PlayerMoves {
 	FALL_RIGHT
 };
 
-GameScreen::GameScreen() {
-	score = 1000;
-}
+GameScreen::GameScreen() {}
 
 void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
 
 	setupScreen();
 	setupGame();
-
 }
 
 void GameScreen::setupScreen() {
@@ -26,8 +23,6 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupGame() {
-	Scene::getInstance().reset();
-
 	//// Player
 	std::map<int, std::string> textures;
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
@@ -125,13 +120,13 @@ void GameScreen::onTick() {
 	if (timePassed >= 1)
 	{
 		begin = std::chrono::steady_clock::now();
-		if (score >= 1)
-			score--;
+		if (Scene::getInstance().score >= 1)
+			Scene::getInstance().score--;
 	}
 
 	//TODO: Dont have gamestate in physics, put in repository
 	if (Physics::getInstance().gameOver) {
-		_game->switchScreen(Screens::GameOver, { to_string(score) });
+		_game->switchScreen(Screens::GameOver);
 		Physics::getInstance().gameOver = false;
 	}
 
@@ -175,7 +170,7 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
-		_game->switchScreen(Screens::Pause, { to_string(score) });
+		_game->switchScreen(Screens::Pause);
 
 		break;
 	case SDLK_p:
@@ -229,7 +224,7 @@ void GameScreen::render(const unique_ptr<Window>& window) {
 
 void GameScreen::reset() {
 	AbstractScreen::reset();
-	score = 1000;
+	Scene::getInstance().reset();
 
 	Physics::getInstance().reset();
 	setupGame();
