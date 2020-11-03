@@ -82,8 +82,31 @@ public:
 	/// <returns>The font.</returns>
 	TTF_Font* getFont(std::string fontKey, int fontSize);
 
+	/// <summary>
+	/// Renders a rectangle on the screen.
+	/// </summary>
+	/// <param name="rect">The rectangle we want to draw.</param>
+	/// <param name="color">The color we want to fill the rectangle with.</param>
 	void renderRectangle(Rect rect, Color color);
+
+	/// <summary>
+	/// Renders a texture on the screen.
+	/// </summary>
+	/// <param name="textureKey">The texture key.</param>
+	/// <param name="rect">The rectangle.</param>
+	/// <param name="angle">The angle.</param>
+	/// <param name="flipRight">If we need to flip right.</param>
 	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true);
+	
+	/// <summary>
+	/// Renders text on the screen.
+	/// </summary>
+	/// <param name="text">The text we want to render.</param>
+	/// <param name="font">The font we want to use.</param>
+	/// <param name="rect">The rectangle.</param>
+	/// <param name="foregroundColor">The foreground color.</param>
+	/// <param name="backgroundColor">The background color.</param>
+	/// <param name="center">If we want to center the text.</param>
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center);
 private:
 	int _width;
