@@ -1,10 +1,14 @@
 #include "GameScreen.h"
 #include <GameEngine.h>
 
-GameScreen::GameScreen() {}
+GameScreen::GameScreen() {
+	score = 1000;
+}
 
 void GameScreen::onInit() {
 	GameEngine gameEngine;
+
+	begin = std::chrono::steady_clock::now();
 
 	Physics::getInstance().reset();
 	_gameObjects.clear();
@@ -95,6 +99,19 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::onTick() {
+
+	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+
+	if (timePassed >= 1)
+	{
+		begin = std::chrono::steady_clock::now();
+		if (score >= 1)
+		{
+			score--;
+		}
+	}
+
+
 	float timeStep = 1.0f / 60.0f;
 
 	Physics::getInstance().step(timeStep, 6, 2);
@@ -132,8 +149,8 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
+		_game->score = score;
 		_game->switchScreen(Screens::Pause);
-
 		break;
 	case SDLK_p:
 		_game->reset();
@@ -184,6 +201,7 @@ void GameScreen::render(const unique_ptr<Window>& window) {
 
 void GameScreen::reset() {
 	AbstractScreen::reset();
+	score = 1000;
 
 	onInit();
 }

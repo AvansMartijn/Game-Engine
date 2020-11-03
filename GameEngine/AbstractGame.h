@@ -25,6 +25,8 @@ public:
 	AbstractGame(const char* title, int width, int height);
 	~AbstractGame();
 
+	int score;
+
 	/// <summary>
 	/// All the possible screens the game has.
 	/// </summary>
