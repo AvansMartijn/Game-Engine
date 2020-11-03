@@ -9,8 +9,6 @@ AbstractGame::AbstractGame(const char* title, int width, int height) {
 AbstractGame::~AbstractGame() {}
 
 void AbstractGame::gameLoop() {
-	screens.at(_activeScreen)->preRender(_window);
-
 	SDL_Event event;
 
 	bool running = true;
