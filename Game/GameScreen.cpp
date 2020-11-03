@@ -135,6 +135,10 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		_game->switchScreen(Screens::Pause);
 
 		break;
+	case SDLK_p:
+		_game->reset();
+
+		break;
 	default:
 		break;
 	}
