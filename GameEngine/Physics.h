@@ -33,7 +33,6 @@ private:
 public:
 	static Physics& getInstance() { return instance; }
 
-	bool gameOver = false;
 	// prohibit copy & move
 	Physics(const Physics&) = delete;
 	Physics(Physics&&) = delete;

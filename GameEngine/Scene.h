@@ -26,6 +26,7 @@ public:
 
 	shared_ptr<GameObject> player;
 	int score;
+	bool gameOver;
 
 	/// <summary>
 	/// Adds a game object to the registry.

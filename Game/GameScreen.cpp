@@ -124,10 +124,9 @@ void GameScreen::onTick() {
 			Scene::getInstance().score--;
 	}
 
-	//TODO: Dont have gamestate in physics, put in repository
-	if (Physics::getInstance().gameOver) {
+	if (Scene::getInstance().gameOver) {
 		_game->switchScreen(Screens::GameOver);
-		Physics::getInstance().gameOver = false;
+		Scene::getInstance().gameOver = false;
 	}
 
 	float timeStep = 1.0f / 60.0f;
