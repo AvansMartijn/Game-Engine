@@ -14,7 +14,7 @@ void GameScreen::onInit() {
 	textures.insert(pair<int, std::string>(0, "Dummy_cropped"));
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = createEntity(gameEngine, extensionNames, textures,
-		5, 5, 0.8f, 2.0f);
+		2, 8, 0.8f, 2.0f);
 
 
 	textures.clear();
@@ -30,6 +30,11 @@ void GameScreen::onInit() {
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> plat = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+		6, 7, 1, 1, 0.3f, true, true);
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
+	shared_ptr<GameObject> jumpplat = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
 		10, 7, 1, 1, 0.3f, true, true);
 
 	textures.clear();
@@ -60,17 +65,17 @@ void GameScreen::onInit() {
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
 	shared_ptr<GameObject> crate = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
-		10, 3, 1, 1, 0.3f, false, false);
+		6, 3, 1, 1, 0.3f, false, false);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
 	shared_ptr<GameObject> crate2 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
-		10, 4, 1, 1, 0.3f, false, false);
+		6, 4, 1, 1, 0.3f, false, false);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
 	shared_ptr<GameObject> crate3 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
-		10, 2, 1, 1, 0.3f, false, false);
+		6, 2, 1, 1, 0.3f, false, false);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
