@@ -1,11 +1,9 @@
 #include "pch.h"
 #include "GameObject.h"
 #include "Physics.h"
-#include "MoveExtension.h"
-
 
 GameObject::GameObject() {
-	
+	currentState = 0;
 }
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
@@ -30,23 +28,22 @@ bool GameObject::hasExtension(const std::type_info& type)
 void GameObject::render(const unique_ptr<Window>& window) {
 	b2Vec2 position = body.b2body->GetPosition();
 	Rect rect = {
-		MetersToPixels((position.x - (body.width / 2))),
-		MetersToPixels((position.y - (body.height / 2))),
-		MetersToPixels(body.width),
-		MetersToPixels(body.height)
+		metersToPixels((position.x - (body.width / 2))),
+		metersToPixels((position.y - (body.height / 2))),
+		metersToPixels(body.width),
+		metersToPixels(body.height)
 	};
 	float radians = body.b2body->GetAngle();
-	double degrees = radians * (180.0 / 3.141592653589793238463);
+	float degrees = radians * (180.0f / 3.141592653589793238463f);
 	bool flipLeft = false;
-	if (hasExtension(typeid(MoveExtension))) {
-		
-		flipLeft = Physics::getInstance().IsMovingLeft(body);
-	}
-	window->renderTexture(textureKey, rect, degrees, flipLeft);
+	if (hasExtension(typeid(MoveExtension)))
+		flipLeft = Physics::getInstance().isMovingLeft(body);
+
+	window->renderTexture(textures[currentState], rect, degrees, flipLeft);
 }
 
-int GameObject::MetersToPixels(float value) {
-	return (int)50.0f * value;
+int GameObject::metersToPixels(float value) {
+	return (int)(40.0f * value);
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
@@ -59,6 +56,10 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 			return extension;
 	}
 	return nullptr;
+}
+
+void GameObject::addTexture(int state, std::string textureKey) {
+	textures.insert(std::pair<int, std::string>(state, textureKey));
 }
 
 

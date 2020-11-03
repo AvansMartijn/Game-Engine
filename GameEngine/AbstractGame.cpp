@@ -6,14 +6,10 @@ AbstractGame::AbstractGame(const char* title, int width, int height) {
 	_activeScreen = 0;
 }
 
-AbstractGame::~AbstractGame() {
-}
+AbstractGame::~AbstractGame() {}
 
 void AbstractGame::gameLoop() {
-	for (size_t i = 0; i < screens.size(); i++) {
-		for (shared_ptr<AbstractUiElement>& obj : screens[i]->uiElements)
-			obj->preRender(_window);
-	}
+	screens.at(_activeScreen)->preRender(_window);
 
 	SDL_Event event;
 
@@ -32,11 +28,7 @@ void AbstractGame::gameLoop() {
 
 			_window->clear();
 
-			for (shared_ptr<GameObject>& obj : screens.at(_activeScreen)->gameObjects)
-				obj->render(_window);
-
-			for (shared_ptr<AbstractUiElement>& obj : screens.at(_activeScreen)->uiElements)
-				obj->render(_window);
+			screens.at(_activeScreen)->render(_window);
 
 			_window->display();
 			while (SDL_PollEvent(&event)) {

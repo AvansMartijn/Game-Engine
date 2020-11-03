@@ -15,39 +15,44 @@
 #include "GameObject.h"
 #include "CollisionListener.h"
 #include "CustomUserData.h"
-//class CollisionListener;
+#include "TeleportObject.h"
+
+class CollisionListener;
 class GAMEENGINE_Physics Physics
 {
-
 private:
-	static Physics instance;
 	Physics();
+	static Physics instance;
+
 	shared_ptr<GameObject> _player;
-	int canJumpCounter;
-	map<int, shared_ptr<GameObject>> _gameObjects;
-	vector<shared_ptr<GameObject>> teleportList;
+	int _canJumpCounter;
+	b2World* _world;
+	b2Vec2 _gravity;
+	CollisionListener _colListener;
+	std::map<int, shared_ptr<GameObject>> _gameObjects;
 public:
-	static Physics& getInstance() {
-		return instance;
-	};
+	static Physics& getInstance() { return instance; }
+
 	// prohibit copy & move
 	Physics(const Physics&) = delete;
 	Physics(Physics&&) = delete;
 	Physics& operator=(const Physics&) = delete;
 	Physics& operator=(Physics&&) = delete;
-
-	b2World* world;
-	b2Vec2 gravity;
-	CollisionListener colListener;
 	
 	//void UpdatePositions();
-	void AddPlayer(shared_ptr<GameObject> obj, int x, int y, float width, float height);
-	void IncreaseCanJumpCounter();
-	void DecreaseCanJumpCounter();
-	bool PlayerCanJump();
+	void step(float timeStep, int velocityIterations, int positionIterations);
+	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void addPortal(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void increaseCanJumpCounter();
+	void decreaseCanJumpCounter();
+	bool playerCanJump();
+	void addGameObject(int index, shared_ptr<GameObject> obj);
+
 	shared_ptr<GameObject> getGameObject(int index);
-	void AddBody(shared_ptr<GameObject> obj, int x, int y, float width, float height, float friction, bool fixed, bool fixedRotation);
-	bool IsMovingLeft(Body body);
+	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	bool isMovingLeft(Body body);
+	void executeTeleportQueue();
+	vector<TeleportObject> teleportQueue;
 };
 
 #endif

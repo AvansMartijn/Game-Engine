@@ -238,6 +238,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="Talker.h" />
+    <ClInclude Include="TeleportObject.h" />
     <ClInclude Include="TextUiElement.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
@@ -263,6 +264,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="ButtonUiElement.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
+    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="Color.cpp" />

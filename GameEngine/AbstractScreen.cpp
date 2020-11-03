@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "AbstractScreen.h"
+#include "GameEngine.h"
+
 AbstractScreen::AbstractScreen() {
 	_game = NULL;
 }
@@ -12,7 +14,7 @@ void AbstractScreen::registerGame(AbstractGame* game) {
 
 void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	if (e.button == SDL_BUTTON_LEFT) {
-		for (shared_ptr<AbstractUiElement>& element : uiElements) {
+		for (shared_ptr<AbstractUiElement>& element : _uiElements) {
 			if (element->isInBound(e.x, e.y)) {
 				element->onClick(_game);
 
@@ -20,4 +22,14 @@ void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 			}
 		}
 	}
+}
+
+void AbstractScreen::render(const unique_ptr<Window>& window) {
+	for (shared_ptr<AbstractUiElement>& obj : _uiElements)
+		obj->render(window);
+}
+
+void AbstractScreen::preRender(const unique_ptr<Window>& window) {
+	for (shared_ptr<AbstractUiElement>& obj : _uiElements)
+		obj->preRender(window);
 }
