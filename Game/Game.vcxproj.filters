@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Screens\Help">
       <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{b3c90d31-3ba9-4393-be32-8b2b8cc155b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,7 +87,7 @@
       <Filter>Header Files\Screens\Help</Filter>
     </ClInclude>
     <ClInclude Include="Screens.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

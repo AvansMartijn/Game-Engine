@@ -1,6 +1,13 @@
 #include "GameScreen.h"
 #include <GameEngine.h>
 
+enum PlayerMoves {
+	LOOK_RIGHT,
+	RUN_RIGHT,
+	JUMP_RIGHT,
+	FALL_RIGHT
+};
+
 GameScreen::GameScreen() {
 	score = 1000;
 }
@@ -17,11 +24,14 @@ void GameScreen::onInit() {
 
 	//// Player
 	std::map<int, std::string> textures;
-	textures.insert(pair<int, std::string>(0, "Dummy_cropped"));
+	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
+	textures.insert(pair<int, std::string>(PlayerMoves::RUN_RIGHT, "Player_Running_Right"));
+	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_RIGHT, "Player_Jump_Right"));
+	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
+
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	_player = createEntity(gameEngine, extensionNames, textures,
 		2, 8, 0.8f, 2.0f);
-
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
@@ -92,7 +102,6 @@ void GameScreen::onInit() {
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal2 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
 		15, 1.5, 3, 1);
-
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);

@@ -13,6 +13,7 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
     executeTeleportQueue();
 }
 
+// TODO: We should direct this to another class.
 void Physics::increaseCanJumpCounter() {
     _canJumpCounter++;
 }

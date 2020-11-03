@@ -5,8 +5,10 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
-	registerTexture("Krool", "res/gfx/KINGKROOL.png");
-	registerTexture("Dummy_cropped", "res/gfx/Assets/Misc/Dummy_cropped.png");
+	registerTexture("Player_Look_Right", "res/gfx/Assets/Entity/Player/Looking_Right.png");
+	registerTexture("Player_Jump_Right", "res/gfx/Assets/Entity/Player/Jumping_Right.png");
+	registerTexture("Player_Fall_Right", "res/gfx/Assets/Entity/Player/Falling_Right.png");
+
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
 	registerTexture("Tile_Interior_Ground_Center", "res/gfx/Assets/Tiles/Interior/Ground_Center.png");
