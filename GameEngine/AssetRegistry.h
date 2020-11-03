@@ -13,9 +13,20 @@
 class Window;
 class GAMEENGINE_AssetRegistry AssetRegistry
 {
-public:
+private:
 	AssetRegistry();
-	~AssetRegistry();
+
+	static AssetRegistry instance;
+
+	std::map<std::string, SDL_Texture*> _textures;
+	std::map<std::string, std::string> _fonts;
+public:
+	static AssetRegistry& getInstance() { return instance; }
+
+	AssetRegistry(const AssetRegistry&) = delete;
+	AssetRegistry(AssetRegistry&&) = delete;
+	AssetRegistry& operator=(const AssetRegistry&) = delete;
+	AssetRegistry& operator=(AssetRegistry&&) = delete;
 
 	/// <summary>
 	/// Adds a texture to the registry.
@@ -41,8 +52,5 @@ public:
 	/// <param name="fontKey">The font key.</param>
 	/// <returns>The font path.</returns>
 	std::string getFontPath(std::string fontKey);
-private:
-	std::map<std::string, SDL_Texture*> _textures;
-	std::map<std::string, std::string> _fonts;
 };
 

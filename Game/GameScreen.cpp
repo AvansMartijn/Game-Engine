@@ -1,5 +1,5 @@
 #include "GameScreen.h"
-#include <GameEngine.h>
+#include <TextUiElement.h>
 
 enum PlayerMoves {
 	LOOK_RIGHT,
@@ -13,14 +13,20 @@ GameScreen::GameScreen() {
 }
 
 void GameScreen::onInit() {
-	GameEngine gameEngine;
-
 	begin = std::chrono::steady_clock::now();
 
-	Physics::getInstance().reset();
-	_gameObjects.clear();
+	setupScreen();
+	setupGame();
+
+}
+
+void GameScreen::setupScreen() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+}
+
+void GameScreen::setupGame() {
+	_gameObjects.clear();
 
 	//// Player
 	std::map<int, std::string> textures;
@@ -30,82 +36,82 @@ void GameScreen::onInit() {
 	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
 
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
-	_player = createEntity(gameEngine, extensionNames, textures,
+	_player = createEntity(_gameEngine, extensionNames, textures,
 		2, 8, 0.8f, 2.0f);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> floor = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> floor = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		15, 20, 30.6f, 5, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> roof = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> roof = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		15, 0, 30.6f, 1.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> plat = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> plat = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		6, 7, 1, 1, 0.3f, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> jumpplat = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> jumpplat = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		10, 7, 1, 1, 0.3f, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> wall = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> wall = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		15, 12, 1.0f, 12.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> boundLeft = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> boundLeft = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		0, 10, 1.0f, 20.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> boundRight = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> boundRight = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		27, 10, 1.0f, 20.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> wall2 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> wall2 = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		20, 5, 1.0f, 12.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> stage = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> stage = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		23, 17, 3.0f, 2.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
-	shared_ptr<GameObject> crate = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> crate = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		6, 3, 1, 1, 0.3f, false, false);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
-	shared_ptr<GameObject> crate2 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> crate2 = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		6, 4, 1, 1, 0.3f, false, false);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
-	shared_ptr<GameObject> crate3 = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
+	shared_ptr<GameObject> crate3 = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
 		6, 2, 1, 1, 0.3f, false, false);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
-	shared_ptr<GameObject> portal1 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
+	shared_ptr<GameObject> portal1 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
 		12, 17.5, 3, 1, "portalSensor");
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
-	shared_ptr<GameObject> portal2 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
+	shared_ptr<GameObject> portal2 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
 		15, 1.5, 3, 1, "portalSensor");
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Gate_Cropped"));
-	shared_ptr<GameObject> exit = createPortal(gameEngine, {}, textures,
+	shared_ptr<GameObject> exit = createNonRigidBody(_gameEngine, {}, textures,
 		23, 14.8, 2.5, 2.5, "exitSensor");
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
@@ -120,9 +126,7 @@ void GameScreen::onTick() {
 	{
 		begin = std::chrono::steady_clock::now();
 		if (score >= 1)
-		{
 			score--;
-		}
 	}
 
 	//TODO: Dont have gamestate in physics, put in repository
@@ -205,7 +209,7 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 	return gameObject;
 }
 
-shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
+shared_ptr<GameObject> GameScreen::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
 	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
 	gameObject->textures = textures;
 
@@ -217,6 +221,7 @@ shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<st
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	AbstractScreen::render(window);
+
 	for (shared_ptr<GameObject>& obj : _gameObjects)
 		obj->render(window);
 }
@@ -225,5 +230,6 @@ void GameScreen::reset() {
 	AbstractScreen::reset();
 	score = 1000;
 
-	onInit();
+	Physics::getInstance().reset();
+	setupGame();
 }

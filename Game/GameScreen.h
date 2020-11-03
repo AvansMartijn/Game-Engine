@@ -12,6 +12,7 @@
 #include "CollisionResolutionPortalExtension.h"
 #include "ImageUiElement.h"
 #include <chrono>
+#include <GameEngine.h>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ private:
 	vector<shared_ptr<GameObject>> _gameObjects;
 	int score;
 	std::chrono::steady_clock::time_point begin;
+	GameEngine _gameEngine;
 public:
 	GameScreen();
 
@@ -29,6 +31,14 @@ public:
 	/// Called one time to create all objects.
 	/// </summary>
 	void onInit();
+	/// <summary>
+	/// Sets the game up.
+	/// </summary>
+	void setupGame();
+	/// <summary>
+	/// Set's the screen up.
+	/// </summary>
+	void setupScreen();
 	/// <summary>
 	/// Called every tick to update properties.
 	/// </summary>
@@ -65,7 +75,7 @@ public:
 	/// <returns>The created entity.</returns>
 	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height);
 	/// <summary>
-	/// Creates a new portal.
+	/// Creates a new non ridgid.
 	/// </summary>
 	/// <param name="gameEngine">The game engine.</param>
 	/// <param name="extensions">The extensions which this game object will use.</param>
@@ -75,7 +85,7 @@ public:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created portal.</returns>
-	shared_ptr<GameObject> createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType);
+	shared_ptr<GameObject> createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType);
 	/// <summary>
 	/// Creates a new game object.
 	/// </summary>

@@ -111,7 +111,6 @@ public:
 private:
 	int _width;
 	int _height;
-	AssetRegistry _assetRegistry;
 
 	std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> _window{ nullptr, SDL_DestroyWindow };
 	std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> _renderer{ nullptr, SDL_DestroyRenderer };

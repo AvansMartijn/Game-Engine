@@ -23,11 +23,11 @@ int Window::getHeight() const {
 }
 
 void Window::registerTexture(std::string textureKey, std::string texturePath) {
-	_assetRegistry.registerTexture(textureKey, getTexture(texturePath));
+	AssetRegistry::getInstance().registerTexture(textureKey, getTexture(texturePath));
 }
 
 void Window::registerFont(std::string fontKey, std::string fontPath) {
-	_assetRegistry.registerFont(fontKey, fontPath);
+	AssetRegistry::getInstance().registerFont(fontKey, fontPath);
 }
 
 SDL_Texture* Window::getTexture(std::string filePath) const {
@@ -40,7 +40,7 @@ SDL_Texture* Window::getTexture(std::string filePath) const {
 }
 
 TTF_Font* Window::getFont(std::string fontKey, int fontSize) {
-	return TTF_OpenFont(_assetRegistry.getFontPath(fontKey.c_str()).c_str(), fontSize);
+	return TTF_OpenFont(AssetRegistry::getInstance().getFontPath(fontKey.c_str()).c_str(), fontSize);
 }
 
 void Window::clear() {
@@ -67,12 +67,10 @@ void Window::renderTexture(std::string textureKey, Rect rect,float angle, bool f
 	sdlRect.h = rect.h;
 	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
 	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
-	if (!flipLeft) {
+	if (!flipLeft)
 		 flip = SDL_FLIP_NONE;
-	}
 
-	//SDL_RenderCopy(_renderer.get(), _assetRegistry.getTexture(textureKey), NULL, &sdlRect);
-	SDL_RenderCopyEx(_renderer.get(), _assetRegistry.getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
+	SDL_RenderCopyEx(_renderer.get(), AssetRegistry::getInstance().getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
 	Color color1 = { 255, 0, 0, 1 };
 	Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
 	renderRectangle(centerrect, color1);
