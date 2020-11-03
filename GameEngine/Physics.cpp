@@ -56,7 +56,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
     CustomUserData* data1 = new CustomUserData;
-    data1->type = "fixture";
+    data1->type = "playerFixture";
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 
@@ -71,7 +71,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     addGameObject(userData->index, obj);
 }
 
-void Physics::addPortal(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
+void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -91,7 +91,7 @@ void Physics::addPortal(shared_ptr<GameObject> obj, float x, float y, float widt
     fixtureDef.shape = &box;
     fixtureDef.isSensor = true;
     CustomUserData* data1 = new CustomUserData;
-    data1->type = "portalSensor";
+    data1->type = userDataType;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 

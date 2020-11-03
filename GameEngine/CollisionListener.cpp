@@ -23,12 +23,34 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 	if (valA != nullptr) {
 		if (valA->type == "jumpSensor")
 			Physics::getInstance().increaseCanJumpCounter();
+
+		if (valA->type == "exitSensor") {
+			if (valB != nullptr) {
+				if (valB->type == "playerFixture") {
+					//won game
+					//TODO: User repository and store there instead of physics
+					Physics::getInstance().gameOver = true;
+				}
+			}
+		}
 	}
 
 	if (valB != nullptr) {
 		if (valB->type == "jumpSensor")
 			Physics::getInstance().increaseCanJumpCounter();
+
+		if (valB->type == "exitSensor") {
+			if (valA != nullptr) {
+				if (valA->type == "playerFixture") {
+					//won game
+					//TODO: User repository and store there instead of physics
+					Physics::getInstance().gameOver = true;
+				}
+			}
+		}
 	}
+
+
 
 	//TODO:: Fix shared pointers
 
@@ -42,6 +64,7 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 				}
 			}
 		}
+
 	}
 
 	if (gameObjectB != nullptr) {
@@ -55,6 +78,8 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 			}
 		}
 	}
+
+	
 }
 
 void CollisionListener::EndContact(b2Contact* contact) {

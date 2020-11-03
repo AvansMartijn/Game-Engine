@@ -96,12 +96,17 @@ void GameScreen::onInit() {
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal1 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		12, 17.5, 3, 1);
+		12, 17.5, 3, 1, "portalSensor");
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal2 = createPortal(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		15, 1.5, 3, 1);
+		15, 1.5, 3, 1, "portalSensor");
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Gate_Cropped"));
+	shared_ptr<GameObject> exit = createPortal(gameEngine, {}, textures,
+		23, 14.8, 2.5, 2.5, "exitSensor");
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
@@ -120,6 +125,11 @@ void GameScreen::onTick() {
 		}
 	}
 
+	//TODO: Dont have gamestate in physics, put in repository
+	if (Physics::getInstance().gameOver) {
+		_game->switchScreen(Screens::GameOver, { to_string(score) });
+		Physics::getInstance().gameOver = false;
+	}
 
 	float timeStep = 1.0f / 60.0f;
 
@@ -195,11 +205,11 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 	return gameObject;
 }
 
-shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
+shared_ptr<GameObject> GameScreen::createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
 	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
 	gameObject->textures = textures;
 
-	Physics::getInstance().addPortal(gameObject, x, y, width, height);
+	Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, userDataType);
 
 	_gameObjects.push_back(gameObject);
 	return gameObject;

@@ -11,6 +11,7 @@ void Game::onInit() {
 
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
+	registerTexture("Gate_Cropped", "res/gfx/Assets/Enviroment/Gate_Cropped.png");
 	registerTexture("Tile_Interior_Ground_Center", "res/gfx/Assets/Tiles/Interior/Ground_Center.png");
 	registerTexture("Border", "res/gfx/Border.png");
 	registerTexture("Background", "res/gfx/bg.png");

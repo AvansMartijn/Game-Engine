@@ -33,6 +33,7 @@ private:
 public:
 	static Physics& getInstance() { return instance; }
 
+	bool gameOver = false;
 	// prohibit copy & move
 	Physics(const Physics&) = delete;
 	Physics(Physics&&) = delete;
@@ -67,7 +68,7 @@ public:
 	/// <param name="y">The y-coordinate.</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
-	void addPortal(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType);
 
 	/// <summary>
 	/// Adds a body to the world.

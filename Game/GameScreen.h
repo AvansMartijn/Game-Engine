@@ -75,7 +75,7 @@ public:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created portal.</returns>
-	shared_ptr<GameObject> createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height);
+	shared_ptr<GameObject> createPortal(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType);
 	/// <summary>
 	/// Creates a new game object.
 	/// </summary>
