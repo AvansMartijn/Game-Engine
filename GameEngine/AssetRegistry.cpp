@@ -4,9 +4,8 @@
 
 AssetRegistry AssetRegistry::instance;
 
-AssetRegistry::AssetRegistry() {
+AssetRegistry::AssetRegistry() {}
 
-}
 void AssetRegistry::registerTexture(std::string textureKey, SDL_Texture* texture) {
 	_textures.insert(std::pair<std::string, SDL_Texture*>(textureKey, texture));
 }

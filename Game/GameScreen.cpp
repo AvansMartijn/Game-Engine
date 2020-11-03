@@ -26,7 +26,7 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupGame() {
-	_gameObjects.clear();
+	Scene::getInstance().reset();
 
 	//// Player
 	std::map<int, std::string> textures;
@@ -36,7 +36,7 @@ void GameScreen::setupGame() {
 	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
 
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
-	_player = createEntity(_gameEngine, extensionNames, textures,
+	Scene::getInstance().player = createEntity(_gameEngine, extensionNames, textures,
 		2, 8, 0.8f, 2.0f);
 
 	textures.clear();
@@ -102,17 +102,17 @@ void GameScreen::setupGame() {
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal1 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		12, 17.5, 3, 1, "portalSensor");
+		12, 17.5f, 3, 1, "portalSensor");
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal2 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		15, 1.5, 3, 1, "portalSensor");
+		15, 1.5f, 3, 1, "portalSensor");
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Gate_Cropped"));
 	shared_ptr<GameObject> exit = createNonRigidBody(_gameEngine, {}, textures,
-		23, 14.8, 2.5, 2.5, "exitSensor");
+		23, 14.8f, 2.5f, 2.5f, "exitSensor");
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
@@ -143,7 +143,7 @@ void GameScreen::onTick() {
 }
 
 void GameScreen::handlePlayerControls() {
-	b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
+	b2Vec2 vel = Scene::getInstance().player->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	//continuous-response keys
@@ -167,7 +167,7 @@ void GameScreen::handlePlayerControls() {
 		if (Physics::getInstance().playerCanJump())
 			vel.y = -5;
 
-	_player->body.b2body->SetLinearVelocity(vel);
+	Scene::getInstance().player->body.b2body->SetLinearVelocity(vel);
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
@@ -198,13 +198,14 @@ shared_ptr<GameObject> GameScreen::createEntity(GameEngine gameEngine, vector<st
 shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures , float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
 	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
 	gameObject->textures = textures;
+	gameObject->id = Scene::getInstance().getNextAvailableId();
 
 	if (friction == -1 && !fixed && !fixedRotation)
 		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
 	else
 		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
 
-	_gameObjects.push_back(gameObject);
+	Scene::getInstance().addGameObject(gameObject);
 
 	return gameObject;
 }
@@ -212,18 +213,18 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 shared_ptr<GameObject> GameScreen::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
 	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
 	gameObject->textures = textures;
+	gameObject->id = Scene::getInstance().getNextAvailableId();
 
 	Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, userDataType);
 
-	_gameObjects.push_back(gameObject);
+	Scene::getInstance().addGameObject(gameObject);
 	return gameObject;
 }
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	AbstractScreen::render(window);
 
-	for (shared_ptr<GameObject>& obj : _gameObjects)
-		obj->render(window);
+	Scene::getInstance().render(window);
 }
 
 void GameScreen::reset() {

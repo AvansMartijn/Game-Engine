@@ -26,14 +26,6 @@ bool Physics::playerCanJump() {
     return _canJumpCounter > 0;
 }
 
-shared_ptr<GameObject> Physics::getGameObject(int index) {
-    return _gameObjects[index];
-}
-
-void Physics::addGameObject(int index, shared_ptr<GameObject> obj){
-    _gameObjects.insert(std::pair<int, shared_ptr<GameObject>>(index, obj));
-}
-
 void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
     obj->body.width = width;
     obj->body.height = height;
@@ -43,7 +35,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     bodyDef.type = b2_dynamicBody;
     bodyDef.fixedRotation = true;
     CustomUserData* userData = new CustomUserData;
-    userData->index = _gameObjects.size() + 1;
+    userData->index = obj->id;
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     b2Body* body = _world->CreateBody(&bodyDef);
@@ -67,8 +59,6 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     data2->type = "jumpSensor";
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data2);
     body->CreateFixture(&fixtureDef);
-
-    addGameObject(userData->index, obj);
 }
 
 void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
@@ -79,7 +69,7 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     bodyDef.position.Set(x, y);
     bodyDef.type = b2_staticBody;
     CustomUserData* userData = new CustomUserData;
-    userData->index = _gameObjects.size() + 1;
+    userData->index = obj->id;
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     b2Body* body = _world->CreateBody(&bodyDef);
@@ -94,8 +84,6 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     data1->type = userDataType;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
-
-    addGameObject(userData->index, obj);
 }
 
 void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
@@ -106,7 +94,7 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
     CustomUserData* userData = new CustomUserData;
-    userData->index = _gameObjects.size() + 1;
+    userData->index = obj->id;
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     if(!fixed)
@@ -130,7 +118,6 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data);
 
     body->CreateFixture(&fixtureDef);
-    addGameObject(userData->index, obj);
 }
 
 bool Physics::isMovingLeft(Body body) {

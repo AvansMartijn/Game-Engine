@@ -24,7 +24,9 @@ private:
 	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
 public:
 	GameObject();
+
 	Body body;
+	int id;
 
 	int currentState;
 	std::map<int, std::string> textures;

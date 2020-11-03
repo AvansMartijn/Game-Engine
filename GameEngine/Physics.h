@@ -16,6 +16,7 @@
 #include "CollisionListener.h"
 #include "CustomUserData.h"
 #include "TeleportObject.h"
+#include "Scene.h"
 
 class CollisionListener;
 class GAMEENGINE_Physics Physics
@@ -29,7 +30,6 @@ private:
 	b2World* _world;
 	b2Vec2 _gravity;
 	CollisionListener _colListener;
-	std::map<int, shared_ptr<GameObject>> _gameObjects;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -99,24 +99,11 @@ public:
 	/// <returns>If the player can jump.</returns>
 	bool playerCanJump();
 
-	/// <summary>
-	/// Adds a game object to the registry.
-	/// </summary>
-	/// <param name="index">The index in the registry.</param>
-	/// <param name="obj">The object we want to register.</param>
-	void addGameObject(int index, shared_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Reset the physics.
 	/// </summary>
 	void reset();
-
-	/// <summary>
-	/// Get's a gameobject from the registry.
-	/// </summary>
-	/// <param name="index">The id of the gameobject</param>
-	/// <returns>The game object.</returns>
-	shared_ptr<GameObject> getGameObject(int index);
 
 	/// <summary>
 	/// Checks if a body is faced to the left.

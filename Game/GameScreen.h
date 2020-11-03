@@ -19,8 +19,6 @@ using namespace std;
 class GameScreen : public AbstractScreen
 {
 private:
-	shared_ptr<GameObject> _player;
-	vector<shared_ptr<GameObject>> _gameObjects;
 	int score;
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;

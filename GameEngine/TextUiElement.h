@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_TextUiElement __declspec(dllimport)
 #endif
-// TODO: Standaard UiElements moeten allemaal exposed worden.
 #include "AbstractUiElement.h"
 #include "Color.h"
 

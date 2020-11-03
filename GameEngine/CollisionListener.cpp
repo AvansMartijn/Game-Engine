@@ -15,9 +15,8 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 	CustomUserData* objA = (CustomUserData*)bodyA->GetUserData().pointer;
 	CustomUserData* objB = (CustomUserData*)bodyB->GetUserData().pointer;
 
-	shared_ptr<GameObject> gameObjectA = Physics::getInstance().getGameObject(objA->index);
-	shared_ptr<GameObject> gameObjectB = Physics::getInstance().getGameObject(objB->index);
-
+	shared_ptr<GameObject> gameObjectA = Scene::getInstance().getGameObject(objA->index);
+	shared_ptr<GameObject> gameObjectB = Scene::getInstance().getGameObject(objB->index);
 
 	//if playerFeetFixture, increase collision counter to know if player can jump
 	if (valA != nullptr) {
