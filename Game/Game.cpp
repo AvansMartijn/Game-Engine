@@ -16,6 +16,10 @@ void Game::onInit() {
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
 
+	for (size_t i = 0; i < screens.size(); i++) {
+		screens[i]->preRender(_window);
+	}
+
 	switchScreen(Screens::MainMenu);
 
 	gameLoop();
