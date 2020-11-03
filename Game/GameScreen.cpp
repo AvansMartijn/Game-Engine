@@ -148,7 +148,6 @@ void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {}
 
-
 shared_ptr<GameObject> GameScreen::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
 	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);
 }

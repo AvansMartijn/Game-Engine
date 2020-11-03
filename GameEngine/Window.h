@@ -25,16 +25,61 @@ class GAMEENGINE_WINDOW Window {
 public:
 	Window(const char* title, int width, int height);
 
+	/// <summary>
+	/// Get's the window pointer.
+	/// </summary>
+	/// <returns>The window pointer.</returns>
 	SDL_Window* getWindow() const { return _window.get(); }
+
+	/// <summary>
+	/// Get's the width 
+	/// </summary>
+	/// <returns>The width.</returns>
 	int getWidth() const;
+
+	/// <summary>
+	/// Get's the height.
+	/// </summary>
+	/// <returns>The height.</returns>
 	int getHeight() const;
+
+	/// <summary>
+	/// Clears the window.
+	/// </summary>
 	void clear();
+
+	/// <summary>
+	/// Renders the screen.
+	/// </summary>
 	void display();
 
+	/// <summary>
+	/// Register the texture in the asset registry.
+	/// </summary>
+	/// <param name="textureKey">The texture key./param>
+	/// <param name="texturePath">The path to the texture.</param>
 	void registerTexture(std::string textureKey, std::string texturePath);
+
+	/// <summary>
+	/// Registers the font in the asset registry.
+	/// </summary>
+	/// <param name="fontKey">The font key.</param>
+	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
 
+	/// <summary>
+	/// Get's the texture from the given path.
+	/// </summary>
+	/// <param name="filePath">The path to the texture</param>
+	/// <returns>The texture.</returns>
 	SDL_Texture* getTexture(std::string filePath) const;
+
+	/// <summary>
+	/// Get's the font from the given path.
+	/// </summary>
+	/// <param name="fontKey">The font key</param>
+	/// <param name="fontSize">The size of the font.</param>
+	/// <returns>The font.</returns>
 	TTF_Font* getFont(std::string fontKey, int fontSize);
 
 	void renderRectangle(Rect rect, Color color);
