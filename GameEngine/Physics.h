@@ -39,8 +39,23 @@ public:
 	Physics& operator=(const Physics&) = delete;
 	Physics& operator=(Physics&&) = delete;
 	
-	//void UpdatePositions();
+	//TODO: COMMENTAAR VERDER
+	/// <summary>
+	/// Executes a step in the wordl.
+	/// </summary>
+	/// <param name="timeStep">The time step we want to use.</param>
+	/// <param name="velocityIterations">The amount of velocity iterations.</param>
+	/// <param name="positionIterations">The amount of position iterations.</param>
 	void step(float timeStep, int velocityIterations, int positionIterations);
+
+	/// <summary>
+	/// Adds a player to the world.
+	/// </summary>
+	/// <param name="obj"></param>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <param name="width"></param>
+	/// <param name="height"></param>
 	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
 	void addPortal(shared_ptr<GameObject> obj, float x, float y, float width, float height);
 	void increaseCanJumpCounter();
