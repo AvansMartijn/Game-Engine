@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -105,11 +105,13 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,11 +132,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,11 +155,13 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -176,11 +182,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -286,35 +294,6 @@
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets" Condition="Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" />
-    <Import Project="..\packages\sdl2.2.0.5\build\native\sdl2.targets" Condition="Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" />
-    <Import Project="..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets" Condition="Exists('..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets')" />
-    <Import Project="..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets" Condition="Exists('..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" />
-    <Import Project="..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets" Condition="Exists('..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets')" />
-    <Import Project="..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets" Condition="Exists('..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets')" />
-    <Import Project="..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets" Condition="Exists('..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets')" />
-    <Import Project="..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets" Condition="Exists('..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets')" />
-    <Import Project="..\packages\sdl2.nuget.redist.2.0.12\build\native\sdl2.nuget.redist.targets" Condition="Exists('..\packages\sdl2.nuget.redist.2.0.12\build\native\sdl2.nuget.redist.targets')" />
-    <Import Project="..\packages\sdl2.nuget.2.0.12\build\native\sdl2.nuget.targets" Condition="Exists('..\packages\sdl2.nuget.2.0.12\build\native\sdl2.nuget.targets')" />
-  </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.2.0.5\build\native\sdl2.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2.nuget.redist.2.0.12\build\native\sdl2.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.redist.2.0.12\build\native\sdl2.nuget.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sdl2.nuget.2.0.12\build\native\sdl2.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.2.0.12\build\native\sdl2.nuget.targets'))" />
-  </Target>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
