@@ -7,6 +7,8 @@
 
 class GameOverScreen : public AbstractScreen
 {
+private:
+	shared_ptr<TextUiElement> _bodyText;
 public:
 	using AbstractScreen::AbstractScreen;
 	GameOverScreen();
