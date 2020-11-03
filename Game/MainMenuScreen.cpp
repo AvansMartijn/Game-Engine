@@ -41,8 +41,6 @@ void MainMenuScreen::onInit() {
 
 void MainMenuScreen::onTick() {}
 
-void MainMenuScreen::onScreenShowed() {}
-
 void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void MainMenuScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

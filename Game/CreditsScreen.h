@@ -22,10 +22,6 @@ public:
 	/// </summary>
 	void onTick();
 	/// <summary>
-	/// Called when the user switches to this screen.
-	/// </summary>
-	void onScreenShowed();
-	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>

@@ -35,12 +35,10 @@ void CreditsScreen::onInit() {
 
 void CreditsScreen::onTick(){}
 
-void CreditsScreen::onScreenShowed(){}
-
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
-	case SDLK_ESCAPE: // GO BACK TO PAUZE
+	case SDLK_ESCAPE: // GO BACK TO PAUSE
 		_game->switchScreen(Screens::MainMenu);
 
 		break;

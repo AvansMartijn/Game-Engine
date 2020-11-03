@@ -25,8 +25,6 @@ public:
 	AbstractGame(const char* title, int width, int height);
 	~AbstractGame();
 
-	int score;
-
 	/// <summary>
 	/// All the possible screens the game has.
 	/// </summary>
@@ -47,7 +45,8 @@ public:
 	/// Switch the current screen to the screen with the given index
 	/// </summary>
 	/// <param name="screenIndex">The index of the screen we want to display</param>
-	virtual void switchScreen(int screenIndex) = 0;
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	virtual void switchScreen(int screenIndex, vector<std::string> args = {}) = 0;
 
 	/// <summary>
 	/// Switch the current screen to the screen with the given index

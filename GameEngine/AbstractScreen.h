@@ -35,7 +35,8 @@ public:
 	/// <summary>
 	/// Called when the user switches to this screen.
 	/// </summary>
-	virtual void onScreenShowed() = 0;
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	virtual void onScreenShowed(vector<std::string> args = {});
 	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>

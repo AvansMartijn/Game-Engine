@@ -35,3 +35,5 @@ void AbstractScreen::preRender(const unique_ptr<Window>& window) {
 }
 
 void AbstractScreen::reset() {}
+
+void AbstractScreen::onScreenShowed(vector<std::string> args) {}

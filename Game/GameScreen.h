@@ -34,10 +34,6 @@ public:
 	/// </summary>
 	void onTick();
 	/// <summary>
-	/// Called when the user switches to this screen.
-	/// </summary>
-	void onScreenShowed();
-	/// <summary>
 	/// Handles the player controls.
 	/// </summary>
 	void handlePlayerControls();

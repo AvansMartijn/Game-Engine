@@ -16,9 +16,8 @@ void Game::onInit() {
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
 
-	for (size_t i = 0; i < screens.size(); i++) {
+	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->preRender(_window);
-	}
 
 	switchScreen(Screens::MainMenu);
 
@@ -35,8 +34,7 @@ int Game::getPreviousScreen() {
 	return -1;
 }
 
-void Game::switchScreen(int screenIndex) {
-
+void Game::switchScreen(int screenIndex, vector<std::string> args) {
 	size_t index = screenIndex;
 	if (index == -1)
 		index = this->getPreviousScreen();
@@ -45,6 +43,6 @@ void Game::switchScreen(int screenIndex) {
 
 	if (index + 1 <= screens.size()) {
 		_activeScreen = index;
-		screens.at(_activeScreen)->onScreenShowed();
+		screens.at(_activeScreen)->onScreenShowed(args);
 	}
 }

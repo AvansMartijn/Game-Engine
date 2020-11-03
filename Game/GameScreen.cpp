@@ -119,8 +119,6 @@ void GameScreen::onTick() {
 	handlePlayerControls();
 }
 
-void GameScreen::onScreenShowed() {}
-
 void GameScreen::handlePlayerControls() {
 	b2Vec2 vel = _player->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
@@ -150,11 +148,12 @@ void GameScreen::handlePlayerControls() {
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
-		_game->score = score;
-		_game->switchScreen(Screens::Pause);
+		_game->switchScreen(Screens::Pause, { to_string(score) });
+
 		break;
 	case SDLK_p:
 		_game->reset();
