@@ -8,7 +8,6 @@
 #include <vector>
 #include <memory>
 #include "GameObject.h"
-#include "PlayerData.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -28,7 +27,6 @@ public:
 	shared_ptr<GameObject> player;
 	int score;
 	bool gameOver;
-	PlayerData playerData;
 
 	/// <summary>
 	/// Adds a game object to the registry.
@@ -66,5 +64,11 @@ public:
 	/// </summary>
 	/// <param name="window">The window.</param>
 	void render(const unique_ptr<Window>& window);
+
+	/// <summary>
+	/// Get's the move extension for the player.
+	/// </summary>
+	/// <returns>The move extension for the player.</returns>
+	shared_ptr<MoveExtension> getPlayerMoveExtension();
 };
 

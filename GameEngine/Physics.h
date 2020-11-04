@@ -86,13 +86,6 @@ public:
 	void reset();
 
 	/// <summary>
-	/// Checks if a body is faced to the left.
-	/// </summary>
-	/// <param name="body">The body we want to check.</param>
-	/// <returns>If the body is faced to the left.</returns>
-	bool isMovingLeft(Body body);
-
-	/// <summary>
 	/// Executes the queued teleports.
 	/// </summary>
 	void executeTeleportQueue();

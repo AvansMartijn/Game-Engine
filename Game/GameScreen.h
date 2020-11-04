@@ -45,6 +45,10 @@ public:
 	/// </summary>
 	void handlePlayerControls();
 	/// <summary>
+	/// Calculates which texture we have to use.
+	/// </summary>
+	void calculatePlayerTexture();
+	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>

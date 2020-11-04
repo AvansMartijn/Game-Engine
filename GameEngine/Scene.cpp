@@ -23,13 +23,18 @@ int Scene::getNextAvailableId() {
     return _gameObjects.size() + 1;
 }
 
+shared_ptr<MoveExtension> Scene::getPlayerMoveExtension() {
+    return dynamic_pointer_cast<MoveExtension>(player->getExtension(typeid(MoveExtension)));
+}
+
 void Scene::reset() {
     score = 1000;
     _gameObjects.clear();
-    playerData.reset();
+    getPlayerMoveExtension()->reset();
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
     for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects)
         x.second->render(window);
 }
+

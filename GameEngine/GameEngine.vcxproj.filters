@@ -85,6 +85,9 @@
     <Filter Include="Header Files\Core\DataTypes">
       <UniqueIdentifier>{c9e02af8-ffed-440d-9617-1b945779813a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObjects\Extensions\Movement">
+      <UniqueIdentifier>{00a84f6d-5273-4430-a09c-726e8344515e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -240,8 +243,8 @@
     <ClInclude Include="Scene.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerData.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="MovementType.h">
+      <Filter>Header Files\GameObjects\Extensions\Movement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -384,9 +387,6 @@
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerData.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>

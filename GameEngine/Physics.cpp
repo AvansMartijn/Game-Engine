@@ -107,10 +107,6 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
     body->CreateFixture(&fixtureDef);
 }
 
-bool Physics::isMovingLeft(Body body) {
-    return body.b2body->GetLinearVelocity().x < -2;
-}
-
 void Physics::executeTeleportQueue() {
     for (size_t i = 0; i < teleportQueue.size(); i++) {
         TeleportObject teleportObject = teleportQueue.back();
@@ -130,9 +126,3 @@ void Physics::reset() {
     _world = new b2World(_gravity);
     _world->SetContactListener(&_colListener);
 }
-//void Physics::UpdatePositions() {
-//    for (shared_ptr<GameObject>& obj : updatePositionList) {
-//        obj->body.b2body->SetTransform({ 0, 0 }, 0);
-//    }
-//}
-

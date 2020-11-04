@@ -5,7 +5,11 @@ enum PlayerMoves {
 	LOOK_RIGHT,
 	RUN_RIGHT,
 	JUMP_RIGHT,
-	FALL_RIGHT
+	FALL_RIGHT,
+	LOOK_LEFT,
+	RUN_LEFT,
+	JUMP_LEFT,
+	FALL_LEFT
 };
 
 GameScreen::GameScreen() {}
@@ -28,7 +32,12 @@ void GameScreen::setupGame() {
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::RUN_RIGHT, "Player_Running_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_RIGHT, "Player_Jump_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
+	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"))
+		;
+	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_LEFT, "Player_Look_Left"));
+	textures.insert(pair<int, std::string>(PlayerMoves::RUN_LEFT, "Player_Running_Left"));
+	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_LEFT, "Player_Jump_Left"));
+	textures.insert(pair<int, std::string>(PlayerMoves::FALL_LEFT, "Player_Fall_Left"));
 
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
 	Scene::getInstance().player = createEntity(_gameEngine, extensionNames, textures,
@@ -134,6 +143,7 @@ void GameScreen::onTick() {
 	Physics::getInstance().step(timeStep, 6, 2);
 
 	handlePlayerControls();
+	calculatePlayerTexture();
 }
 
 void GameScreen::handlePlayerControls() {
@@ -141,26 +151,65 @@ void GameScreen::handlePlayerControls() {
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	//continuous-response keys
-	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT])
+	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT]) {
 		vel.x = -5;
+		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
+	}
 
-	if (keystate[SDL_SCANCODE_D] || keystate[SDL_SCANCODE_RIGHT])
+	if (keystate[SDL_SCANCODE_D] || keystate[SDL_SCANCODE_RIGHT]) {
 		vel.x = 5;
+
+		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
+	}
 
 	if (keystate[SDL_SCANCODE_S] || keystate[SDL_SCANCODE_DOWN])
 		vel.x = 0;
 
 	if (keystate[SDL_SCANCODE_F])
-		vel.x = -50;
+		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
 
-	if (keystate[SDL_SCANCODE_G])
-		vel.x = 50;
-
-	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W])
-		if (Scene::getInstance().playerData.canJump())
+	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W]) {
+		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
 			vel.y = -5;
-
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::JUMPING;
+		}
+	}
 	Scene::getInstance().player->body.b2body->SetLinearVelocity(vel);
+}
+
+void GameScreen::calculatePlayerTexture() {
+	shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayerMoveExtension();
+
+	if (moveExtension->isLookingToRight) {
+		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
+			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().y == 0)
+				Scene::getInstance().player->currentState = PlayerMoves::LOOK_RIGHT;
+			else
+				Scene::getInstance().player->currentState = PlayerMoves::JUMP_RIGHT;
+		}
+		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
+			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().x == 0)
+				Scene::getInstance().player->currentState = PlayerMoves::LOOK_RIGHT;
+			else
+				Scene::getInstance().player->currentState = PlayerMoves::RUN_RIGHT;
+		}
+	}
+	else {
+		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
+			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().y == 0)
+				Scene::getInstance().player->currentState = PlayerMoves::LOOK_LEFT;
+			else
+				Scene::getInstance().player->currentState = PlayerMoves::JUMP_LEFT;
+		}
+		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
+			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().x == 0)
+				Scene::getInstance().player->currentState = PlayerMoves::LOOK_LEFT;
+			else
+				Scene::getInstance().player->currentState = PlayerMoves::RUN_LEFT;
+		}
+	}
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

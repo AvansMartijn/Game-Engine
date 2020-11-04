@@ -6,8 +6,17 @@ Game::~Game() {}
 
 void Game::onInit() {
 	registerTexture("Player_Look_Right", "res/gfx/Assets/Entity/Player/Looking_Right.png");
+	registerTexture("Player_Look_Left", "res/gfx/Assets/Entity/Player/Looking_Left.png");
+
 	registerTexture("Player_Jump_Right", "res/gfx/Assets/Entity/Player/Jumping_Right.png");
+	registerTexture("Player_Jump_Left", "res/gfx/Assets/Entity/Player/Jumping_Left.png");
+
 	registerTexture("Player_Fall_Right", "res/gfx/Assets/Entity/Player/Falling_Right.png");
+	registerTexture("Player_Fall_Left", "res/gfx/Assets/Entity/Player/Falling_Left.png");
+
+
+	registerTexture("Player_Running_Right", "res/gfx/Assets/Entity/Player/Running_Right.png");
+	registerTexture("Player_Running_Left", "res/gfx/Assets/Entity/Player/Running_Left.png");
 
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
