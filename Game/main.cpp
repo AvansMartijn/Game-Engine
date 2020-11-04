@@ -43,6 +43,11 @@ int main(int argc, char* argv[]) {
 	keyBindingsHelpScreen->onInit();
 	game.screens.push_back(move(keyBindingsHelpScreen));
 
+	unique_ptr<HighScoreScreen> HighScoreScreen(new HighScoreScreen);
+	HighScoreScreen->registerGame(&game);
+	HighScoreScreen->onInit();
+	game.screens.push_back(move(HighScoreScreen));
+
 	game.onInit();
 
 	return 0;

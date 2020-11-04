@@ -36,7 +36,7 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement highscoreButton = ButtonUiElement("Highscores", { (1080 / 2) - 220, 400, width, height }, bgColor, { 180, 102, 13 }, font, 40);
 	highscoreButton.registerGame(_game);
-	highscoreButton.onClick = [](AbstractGame* game) {  };
+	highscoreButton.onClick = [](AbstractGame* game) {   game->switchScreen(Screens::HighScore); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(highscoreButton));
 
 	ButtonUiElement creditButton = ButtonUiElement("Credits", { (1080 / 2) - 220, 500, width, height }, bgColor, { 180, 102, 13 }, font, 40);

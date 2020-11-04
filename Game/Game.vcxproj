@@ -165,6 +165,7 @@
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
+    <ClCompile Include="HighscoreScreen.cpp" />
     <ClCompile Include="KeyBindingsHelpScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="HelpScreen.h" />
+    <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />

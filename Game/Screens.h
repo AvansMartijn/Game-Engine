@@ -7,5 +7,6 @@ enum Screens {
 	Help,
 	MainMenu,
 	GameOver,
-	KeyBindings
+	KeyBindings,
+	HighScore
 };
