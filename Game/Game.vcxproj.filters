@@ -57,6 +57,9 @@
     <ClCompile Include="KeyBindingsHelpScreen.cpp">
       <Filter>Source Files\Screens\HelpScreen</Filter>
     </ClCompile>
+    <ClCompile Include="HighscoreScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Screens.h">
       <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreScreen.h">
+      <Filter>Header Files\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

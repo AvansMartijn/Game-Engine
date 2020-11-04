@@ -12,6 +12,8 @@
 #include "MainMenuScreen.h"  
 #include "KeyBindingsHelpScreen.h"
 #include "Screens.h"
+#include "HighscoreScreen.h"
+#include "GameOverScreen.h"
 
 //engine
 #include "GameEngine.h" 
