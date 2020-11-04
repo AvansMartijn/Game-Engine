@@ -4,7 +4,7 @@ CreditsScreen::CreditsScreen() {}
 CreditsScreen::~CreditsScreen() {}
 
 void CreditsScreen::onInit() {
-	const Color bgColor = { 192, 192, 192 };
+	const Color bgColor = { 66, 99, 116 };
 	const string font = "Paint";
 	const string fontPortal = "Portal";
 
@@ -15,11 +15,12 @@ void CreditsScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 255, 255, 255 }, true);
+
+	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
 	//TODO: Een keer helemaal mooi maken voor nu tijd saven
-	TextUiElement line = TextUiElement("Team Mike", font, 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
+	TextUiElement line = TextUiElement("Team Mike", font, 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(line));
 
 
@@ -32,7 +33,7 @@ void CreditsScreen::onInit() {
 	{
 		posy += 50;
 		posx += 50;
-		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 28, { posy, posx, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
+		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 28, { posy, posx, 0, 0 }, { 0, 0, 0 }, bgColor, true);
 		_uiElements.push_back(make_shared<TextUiElement>(lineOfC));
 	}
 }
