@@ -4,38 +4,25 @@
 #else
 #define GAMEENGINE_AbstractScreen __declspec(dllimport)
 #endif
-// TODO: Abstract moeten we sowieso exposen.
 
 #include <memory>
 #include <vector>
 #include "Window.h"
 #include "AbstractUiElement.h"
+#include "Physics.h"
+
 using namespace std;
 
+class GameEngine;
 class AbstractGame;
 class GAMEENGINE_AbstractScreen AbstractScreen
 {
 protected:
 	AbstractGame* _game;
+	vector<shared_ptr<AbstractUiElement>> _uiElements;
 public:
 	AbstractScreen();
 	~AbstractScreen();
-
-	vector<shared_ptr<GameObject>> gameObjects;
-	vector<shared_ptr<AbstractUiElement>> uiElements;
-
-	/// <summary>
-	/// Screen enums has to be in right order
-	/// the order the screens get created
-	/// </summary>
-	enum Screens {
-		MainGame = 0,
-		Pause,
-		Credits,
-		Help,
-		MainMenu
-	};
-
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -48,7 +35,8 @@ public:
 	/// <summary>
 	/// Called when the user switches to this screen.
 	/// </summary>
-	virtual void onScreenShowed() = 0;
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	virtual void onScreenShowed(vector<std::string> args = {});
 	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>
@@ -69,5 +57,19 @@ public:
 	/// </summary>
 	/// <param name="game">A refrence to the game.</param>
 	virtual void registerGame(AbstractGame* game);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	virtual void render(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	virtual void preRender(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Resets the game.
+	/// </summary>
+	virtual void reset();
 };
 

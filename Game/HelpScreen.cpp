@@ -4,34 +4,33 @@ HelpScreen::HelpScreen() {}
 HelpScreen::~HelpScreen() {}
 
 void HelpScreen::onInit() {
-	Color bgColor = { 192, 192, 192 };
-	ImageUiElement img = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	uiElements.push_back(make_shared<ImageUiElement>(img));
+	const Color bgColor = { 66, 99, 116 };
+	const string font = "Portal";
 
-	TextUiElement title = TextUiElement("Help", "OpenSans", 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 7, 16, 29 }, true);
-	uiElements.push_back(make_shared<TextUiElement>(title));
+	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+
+	TextUiElement headerText = TextUiElement("Help", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, { 7, 16, 29 }, true);
+	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
 	//TODO: Een keer helemaal mooi maken voor nu tijd saven
-	TextUiElement line = TextUiElement("Help wat komt er op het help scherm???", "OpenSans", 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
-	uiElements.push_back(make_shared<TextUiElement>(line));
+	TextUiElement line = TextUiElement("hierkomt een uitleg over hoe het spel werkt zodra er meer functionaliteit is ", font, 34, { 0, 100, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	_uiElements.push_back(make_shared<TextUiElement>(line));
+
+
+	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { (1080 / 2) - 220, 400, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	keyBindingsButton.registerGame(_game);
+	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
+
+	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	backButton.registerGame(_game);
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
 void HelpScreen::onTick(){}
 
-void HelpScreen::onScreenShowed(){}
+void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
-void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	switch (e.keysym.sym)
-	{
-	case SDLK_ESCAPE:
-		_game->switchScreen(Screens::Pause);
-
-		break;
-	default:
-		break;
-	}
-}
-
-void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
-
-}
+void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

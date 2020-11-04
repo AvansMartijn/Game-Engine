@@ -11,11 +11,13 @@ bool CollisionResolutionPortalExtension::isDefault()
     return false;
 }
 
-void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> otherObject)
+void CollisionResolutionPortalExtension::link(shared_ptr<GameObject> linkedPortal) 
 {
+    _linkedPortal = linkedPortal;
+}
 
-    //TODO: update so newpos is outside of other portal
-    Vec2 newPos = { 0, 0 };
-    _physicsFacade.setPosition(otherObject, newPos);
+void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject)
+{
+    Physics::getInstance().teleportQueue.push_back({ inputObject, _linkedPortal });
 }
 

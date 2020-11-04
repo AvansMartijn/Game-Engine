@@ -19,6 +19,15 @@
     <Filter Include="Source Files\Screens">
       <UniqueIdentifier>{725d6bd4-2577-46f0-a3fe-9a911cda32ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Screens\HelpScreen">
+      <UniqueIdentifier>{3ccecd3f-a405-444b-87a4-beb721f175ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Help">
+      <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{b3c90d31-3ba9-4393-be32-8b2b8cc155b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,13 +42,22 @@
     <ClCompile Include="GameScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
-    <ClCompile Include="HelpScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenuScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScreen.cpp">
+      <Filter>Source Files\Screens\HelpScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBindingsHelpScreen.cpp">
+      <Filter>Source Files\Screens\HelpScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,13 +74,25 @@
     <ClInclude Include="PauseScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="HelpScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
     <ClInclude Include="GameScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
     <ClInclude Include="CreditsScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBindingsHelpScreen.h">
+      <Filter>Header Files\Screens\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScreen.h">
+      <Filter>Header Files\Screens\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
   </ItemGroup>

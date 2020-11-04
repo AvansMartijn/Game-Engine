@@ -9,13 +9,19 @@
 #include "PauseScreen.h"
 #include "CreditsScreen.h"
 #include "HelpScreen.h"
-#include "MainMenuScreen.h"
+#include "MainMenuScreen.h"  
+#include "KeyBindingsHelpScreen.h"
+#include "Screens.h"
+#include "HighscoreScreen.h"
+#include "GameOverScreen.h"
 
 //engine
 #include "GameEngine.h" 
 
+
 class Game : public AbstractGame
 {
+
 public:
 	using AbstractGame::AbstractGame;
 
@@ -26,7 +32,15 @@ public:
 	/// Prepare the game.
 	/// </summary>
 	void onInit();
-
-	void switchScreen(int screenIndex);
+	/// <summary>
+	/// Switch the current screen to the screen with the given index
+	/// </summary>
+	int getPreviousScreen();
+	/// <summary>
+	/// Switch the current screen to the screen with the given index
+	/// </summary>
+	/// <param name="screenIndex">The index of the screen we want to display</param>
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	void switchScreen(int screenIndex, vector<std::string> args = {});
 };
 

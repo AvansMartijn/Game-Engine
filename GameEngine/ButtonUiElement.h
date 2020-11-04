@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_ButtonUiElement __declspec(dllimport)
 #endif
-// TODO: Standaard UiElements moeten allemaal exposed worden.
 #include "AbstractUiElement.h"
 #include "AbstractGame.h"
 

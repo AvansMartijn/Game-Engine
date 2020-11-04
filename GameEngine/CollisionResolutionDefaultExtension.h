@@ -1,10 +1,10 @@
 #pragma once
 #include "AbstractCollisionResolutionExtension.h"
-#include "PhysicsFacade.h"
+//#include "PhysicsFacade.h"
 class CollisionResolutionDefaultExtension : public AbstractCollisionResolutionExtension
 {
 private:
-	PhysicsFacade _physicsFacade;
+	//PhysicsFacade _physicsFacade;
 public:
 	CollisionResolutionDefaultExtension();
 
