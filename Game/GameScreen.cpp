@@ -156,9 +156,8 @@ void GameScreen::handlePlayerControls() {
 	if (keystate[SDL_SCANCODE_G])
 		vel.x = 50;
 
-
 	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W])
-		if (Physics::getInstance().playerCanJump())
+		if (Scene::getInstance().playerData.canJump())
 			vel.y = -5;
 
 	Scene::getInstance().player->body.b2body->SetLinearVelocity(vel);

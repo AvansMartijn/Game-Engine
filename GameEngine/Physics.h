@@ -26,7 +26,6 @@ private:
 	static Physics instance;
 
 	shared_ptr<GameObject> _player;
-	int _canJumpCounter;
 	b2World* _world;
 	b2Vec2 _gravity;
 	CollisionListener _colListener;
@@ -81,23 +80,6 @@ public:
 	/// <param name="fixed">If this body should be affected by collisions.</param>
 	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
 	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
-
-	/// <summary>
-	/// Increase the jump counter.
-	/// </summary>
-	void increaseCanJumpCounter();
-
-	/// <summary>
-	/// Decrease the jump counter.
-	/// </summary>
-	void decreaseCanJumpCounter();
-
-	/// <summary>
-	/// Checks if the player can jump.
-	/// </summary>
-	/// <returns>If the player can jump.</returns>
-	bool playerCanJump();
-
 
 	/// <summary>
 	/// Reset the physics.

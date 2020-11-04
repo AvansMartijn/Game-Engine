@@ -48,7 +48,6 @@ public:
 	/// <returns>The value in pixels.</returns>
 	int metersToPixels(float value);
 
-
 	/// <summary>
 	/// Adds a texture to the texture list.
 	/// </summary>

@@ -26,6 +26,7 @@ int Scene::getNextAvailableId() {
 void Scene::reset() {
     score = 1000;
     _gameObjects.clear();
+    playerData.reset();
 }
 
 void Scene::render(const unique_ptr<Window>& window) {

@@ -13,19 +13,6 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
     executeTeleportQueue();
 }
 
-// TODO: We should direct this to another class.
-void Physics::increaseCanJumpCounter() {
-    _canJumpCounter++;
-}
-
-void Physics::decreaseCanJumpCounter() {
-    _canJumpCounter--;
-}
-
-bool Physics::playerCanJump() {
-    return _canJumpCounter > 0;
-}
-
 void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
     obj->body.width = width;
     obj->body.height = height;
@@ -133,8 +120,6 @@ void Physics::executeTeleportQueue() {
         b2Vec2 newPosition = { teleportObject.to->body.b2body->GetPosition().x, teleportObject.to->body.b2body->GetPosition().y };
         
         // TODO: Decide which side we have to fall though.
-        // TODO: Keep the velocity.
-        // TODO: Decide exact height
         newPosition.y += teleportObject.from->body.height + (teleportObject.to->body.height / 4);
 
         teleportObject.from->body.b2body->SetTransform(newPosition, teleportObject.from->body.b2body->GetAngle());
@@ -142,7 +127,6 @@ void Physics::executeTeleportQueue() {
 }
 
 void Physics::reset() {
-    _canJumpCounter = 0;
     _world = new b2World(_gravity);
     _world->SetContactListener(&_colListener);
 }

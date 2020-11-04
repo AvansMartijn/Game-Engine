@@ -8,6 +8,7 @@
 #include <vector>
 #include <memory>
 #include "GameObject.h"
+#include "PlayerData.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -27,6 +28,7 @@ public:
 	shared_ptr<GameObject> player;
 	int score;
 	bool gameOver;
+	PlayerData playerData;
 
 	/// <summary>
 	/// Adds a game object to the registry.
