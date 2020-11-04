@@ -25,7 +25,6 @@ private:
 	Physics();
 	static Physics instance;
 
-	shared_ptr<GameObject> _player;
 	b2World* _world;
 	b2Vec2 _gravity;
 	CollisionListener _colListener;
