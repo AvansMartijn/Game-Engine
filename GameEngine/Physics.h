@@ -1,37 +1,94 @@
 #pragma once
 
-#include "GameObject.h"
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_Physics __declspec(dllexport)
+#else
+#define GAMEENGINE_Physics __declspec(dllimport)
+#endif
 
-/// <summary>
-/// Physics Helper for the physics of the game
-/// </summary>
-class Physics
+#ifndef Physics_h
+#define Physics_h
+
+
+#include <Box2D.h>
+#include <memory>
+#include "GameObject.h"
+#include "CollisionListener.h"
+#include "CustomUserData.h"
+#include "TeleportObject.h"
+#include "Scene.h"
+
+class CollisionListener;
+class GAMEENGINE_Physics Physics
 {
 private:
-	//std::vector<shared_ptr<GameObject>> _gameObjects;
-public:
-	/// <summary>
-	/// Change the velocity of a game object
-	/// </summary>
-	/// <param name="object">The object to be changed</param>
-	/// <param name="velocity">The new velocity</param>
-	void changeVelocity(shared_ptr<GameObject> object, const Vec2& velocity);
-	/// <summary>
-	/// Set the position of a game object
-	/// </summary>
-	/// <param name="object">The object to be changed</param>
-	/// <param name="position">The new position</param>
-	void setPosition(shared_ptr<GameObject> object, const Vec2& position);
-	/// <summary>
-	/// Update the position of a game object, applying it's velocity to it's position
-	/// </summary>
-	/// <param name="object">The object to be updated</param>
-	void updatePosition(shared_ptr<GameObject> object);
-	/// <summary>
-	/// Add the force of gravity to an objects velocity value.
-	/// </summary>
-	/// <param name="object">The game object to get Gravity</param>
-	void addGravityForce(shared_ptr<GameObject> object);
+	Physics();
+	static Physics instance;
 
+	b2World* _world;
+	b2Vec2 _gravity;
+	CollisionListener _colListener;
+public:
+	static Physics& getInstance() { return instance; }
+
+	// prohibit copy & move
+	Physics(const Physics&) = delete;
+	Physics(Physics&&) = delete;
+	Physics& operator=(const Physics&) = delete;
+	Physics& operator=(Physics&&) = delete;
+	
+	vector<TeleportObject> teleportQueue;
+
+	/// <summary>
+	/// Executes a step in the wordl.
+	/// </summary>
+	/// <param name="timeStep">The time step we want to use.</param>
+	/// <param name="velocityIterations">The amount of velocity iterations.</param>
+	/// <param name="positionIterations">The amount of position iterations.</param>
+	void step(float timeStep, int velocityIterations, int positionIterations);
+
+	/// <summary>
+	/// Adds a player to the world.
+	/// </summary>
+	/// <param name="obj">The player.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The width</param>
+	/// <param name="height">The height.</param>
+	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+
+	/// <summary>
+	/// Adds a portal to the world.
+	/// </summary>
+	/// <param name="obj">The player.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The width</param>
+	/// <param name="height">The height.</param>
+	void addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType);
+
+	/// <summary>
+	/// Adds a body to the world.
+	/// </summary>
+	/// <param name="obj">The player.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The width</param>
+	/// <param name="height">The height.</param>
+	/// <param name="friction">The friction.</param>
+	/// <param name="fixed">If this body should be affected by collisions.</param>
+	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
+	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+
+	/// <summary>
+	/// Reset the physics.
+	/// </summary>
+	void reset();
+
+	/// <summary>
+	/// Executes the queued teleports.
+	/// </summary>
+	void executeTeleportQueue();
 };
 
+#endif

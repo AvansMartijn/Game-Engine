@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_TextUiElement __declspec(dllimport)
 #endif
-// TODO: Standaard UiElements moeten allemaal exposed worden.
 #include "AbstractUiElement.h"
 #include "Color.h"
 
@@ -16,6 +15,7 @@ class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement
 public:
 	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center);
 	~TextUiElement();
+	std::string text;
 
 	/// <summary>
 	/// prerender
@@ -35,7 +35,6 @@ public:
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
 private:
-	std::string _text;
 	std::string _fontKey;
 	int _fontSize;
 	Color _foregroundColor;

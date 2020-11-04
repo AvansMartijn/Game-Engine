@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_GameObjectBuilder __declspec(dllimport)
 #endif
-// TODO: De facade is nog niet af, dus voor nu deze hier.
 #include "GameObjectExtensionFactory.h"
 #include <memory>
 

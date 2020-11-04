@@ -4,9 +4,8 @@
 #else
 #define GAMEENGINE_MoveExtension __declspec(dllimport)
 #endif
-// TODO: We moeten in de game kunnen checken of iets een extensie heeft, voor nu gebruiken we alleen deze extensions, maar vrij zeker dat we ze straks allemaal moeten exposen.
 #include "AbstractGameObjectExtension.h"
-#include "PhysicsFacade.h"
+#include "MovementType.h"
 
 /// <summary>
 /// Movement capabilities
@@ -14,10 +13,28 @@
 class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension
 {
 private:
-	PhysicsFacade _physicsFacade;
+	//PhysicsFacade _physicsFacade;
 public:
+
 	MoveExtension();
-	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
+	int jumpCounter;
+
+	MovementTypes currentMovementType;
+	bool isLookingToRight;
+
+	/// <summary>
+	/// Checks if the player can jump.
+	/// </summary>
+	/// <returns>If the player can jump.</returns>
+	bool canJump();
+
+	/// <summary>
+	/// Resets the player data.
+	/// </summary>
+	void reset();
+
 	void move();
+
+	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
 };
 

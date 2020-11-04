@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_AbstractGameObjectExtension __declspec(dllimport)
 #endif
-// TODO: Abstract altijd exposen.
 
 #include <memory>
 #include <iostream>

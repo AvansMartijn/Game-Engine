@@ -4,49 +4,43 @@ PauseScreen::PauseScreen() {}
 PauseScreen::~PauseScreen() {}
 
 void PauseScreen::onInit() {
-	Color bgColor = { 192, 192, 192 };
+	const Color bgColor = { 66, 99, 116 };
+	const string font = "Portal";
 
-	TextUiElement text = TextUiElement("Engine Demo", "OpenSans", 48, { 0, 0, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true);
-	uiElements.push_back(make_shared<TextUiElement>(text));
+	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	ButtonUiElement button = ButtonUiElement("Resume", { (1080 / 2) - 200, 100, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
-	button.registerGame(_game);
-	button.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
-	uiElements.push_back(make_shared<ButtonUiElement>(button));
+	TextUiElement text = TextUiElement("  PAUSE   ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	_uiElements.push_back(make_shared<TextUiElement>(text));
 
-	/*ButtonUiElement showCreditsButton = ButtonUiElement("Credits", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
-	showCreditsButton.registerGame(_game);
-	showCreditsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
-	uiElements.push_back(make_shared<ButtonUiElement>(showCreditsButton));*/
+	ButtonUiElement resumeButton = ButtonUiElement("Resume", { (1080 / 2) - 200, 100, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	resumeButton.registerGame(_game);
+	resumeButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(resumeButton));
 
+	ButtonUiElement helpButton = ButtonUiElement("Help", { (1080 / 2) - 200, 250, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	helpButton.registerGame(_game);
+	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
-	ButtonUiElement quitGameButton= ButtonUiElement("Quit game", { (1080 / 2) - 200, 300, 500, 100 }, bgColor, { 0, 0, 0 }, "OpenSans", 32);
+	ButtonUiElement RestartButton = ButtonUiElement("Restart", { (1080 / 2) - 200, 400, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	RestartButton.registerGame(_game);
+	RestartButton.onClick = [](AbstractGame* game) {  game->reset(); game->switchScreen(Screens::MainGame);};
+	_uiElements.push_back(make_shared<ButtonUiElement>(RestartButton));
+
+	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { (1080 / 2) - 200, 550, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
-	uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
-
-	ImageUiElement img = ImageUiElement("Krool", { 0 , 0, 100, 100 });
-	uiElements.push_back(make_shared<ImageUiElement>(img));
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 }
 
 void PauseScreen::onTick() {}
-
-void PauseScreen::onScreenShowed() {}
 
 void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::MainGame);
-		break;
-	case SDLK_SPACE:
-		_game->switchScreen(Screens::Credits);
-		break;
-	case SDLK_h:
-		_game->switchScreen(Screens::Help);
-		break;
-	case SDLK_m:
-		_game->switchScreen(Screens::MainMenu);
 		break;
 	default:
 		break;

@@ -4,6 +4,7 @@
 #include "ButtonUiElement.h"
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
+#include "Screens.h"
 
 class HelpScreen : public AbstractScreen
 {
@@ -20,10 +21,6 @@ public:
 	/// Called every tick to update properties.
 	/// </summary>
 	void onTick();
-	/// <summary>
-	/// Called when the user switches to this screen.
-	/// </summary>
-	void onScreenShowed();
 	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>

@@ -12,6 +12,7 @@
 #include "AbstractScreen.h"
 #include <vector>
 #include "Window.h"
+#include <stack>
 
 using namespace std;
 
@@ -44,7 +45,13 @@ public:
 	/// Switch the current screen to the screen with the given index
 	/// </summary>
 	/// <param name="screenIndex">The index of the screen we want to display</param>
-	virtual void switchScreen(int screenIndex) = 0;
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	virtual void switchScreen(int screenIndex, vector<std::string> args = {}) = 0;
+
+	/// <summary>
+	/// Switch the current screen to the screen with the given index
+	/// </summary>
+	virtual int getPreviousScreen() = 0;
 
 	/// <summary>
 	/// Registers a texture in the registry.
@@ -59,11 +66,21 @@ public:
 	/// <param name="fontKey">The font registry key.</param>
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
+
+	/// <summary>
+	/// Resets the game.
+	/// </summary>
+	void reset();
 protected:
 	/// <summary>
 	/// The index of the visible screen.
 	/// </summary>
 	int _activeScreen;
+
+	/// <summary>
+	/// Previous visted screens for back functionalitie
+	/// </summary>
+	std::stack<int> _previousScreens;
 
 	SDLWrapper _sdl;
 	SDLImageWrapper _sdlImage;
