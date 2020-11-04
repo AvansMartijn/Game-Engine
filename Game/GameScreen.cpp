@@ -1,5 +1,6 @@
 #include "GameScreen.h"
 #include <GameEngine.h>
+#include <TextUiElement.h>
 
 enum PlayerMoves {
 	LOOK_RIGHT,
@@ -21,6 +22,9 @@ void GameScreen::onInit() {
 	_gameObjects.clear();
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+
+	TextUiElement line = TextUiElement("Team Mike", "Paint", 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, { 255, 255, 255 }, true);
+	_uiElements.push_back(make_shared<TextUiElement>(line));
 
 	//// Player
 	std::map<int, std::string> textures;
@@ -110,6 +114,7 @@ void GameScreen::onInit() {
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
+
 }
 
 void GameScreen::onTick() {
