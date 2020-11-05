@@ -222,8 +222,13 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	case SDLK_p:
 		_game->reset();
-
+	case SDLK_KP_PLUS:
+		if(Scene::getInstance().zoom < 60)
+			Scene::getInstance().zoom += 3.0f;
 		break;
+	case SDLK_KP_MINUS:
+	if (Scene::getInstance().zoom > 10)
+		Scene::getInstance().zoom -= 3.0f;
 	default:
 		break;
 	}
@@ -232,6 +237,22 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {}
+
+void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+	if (e.y > 0) // scroll up
+	{
+		// Put code for handling "scroll up" here!
+		if (Scene::getInstance().zoom < 60)
+			Scene::getInstance().zoom += 3.0f;
+	}
+	else if (e.y < 0) // scroll down
+	{
+		// Put code for handling "scroll down" here!
+		if (Scene::getInstance().zoom > 10)
+			Scene::getInstance().zoom -= 3.0f;
+	}
+
+}
 
 shared_ptr<GameObject> GameScreen::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
 	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);

@@ -43,6 +43,10 @@ void AbstractGame::gameLoop() {
 					screens.at(_activeScreen)->handleMouseClickInput(event.button);
 
 					break;
+				case SDL_MOUSEWHEEL:
+					screens.at(_activeScreen)->handleMouseWheelInput(event.wheel);
+
+					break;
 				case SDL_QUIT:
 					running = false;
 					break;

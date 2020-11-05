@@ -31,5 +31,6 @@ public:
 	/// </summary>
 	/// <param name="e"></param>
 	virtual void handleMouseMotionInput(SDL_MouseMotionEvent e) override;
+	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };
 
