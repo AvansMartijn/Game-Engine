@@ -71,12 +71,12 @@ void GameScreen::setupGame() {
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> boundLeft = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		0, 10, 1.0f, 20.0f, 5, true, true);
+		0, 11, 1.0f, 23.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> boundRight = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		27, 10, 1.0f, 20.0f, 5, true, true);
+		27, 11, 1.0f, 23.0f, 5, true, true);
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
