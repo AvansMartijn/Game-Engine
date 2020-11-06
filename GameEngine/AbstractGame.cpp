@@ -2,7 +2,7 @@
 #include "AbstractGame.h"
 
 AbstractGame::AbstractGame(const char* title, int width, int height) {
-	_window = unique_ptr<Window>(new Window("Fluix", 1080, 720));
+	_window = unique_ptr<Window>(new Window("Latrop 2", 1080, 720));
 	_activeScreen = 0;
 }
 
