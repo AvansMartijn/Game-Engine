@@ -127,11 +127,14 @@ void GameScreen::setupGame() {
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
 
 	// Items
+	// TODO: Each level we need to add the needed weapons.
 	shared_ptr<DummyManagableItem> dummyItem = std::make_shared<DummyManagableItem>();
 	Scene::getInstance().addItem(dummyItem);
 
 	// Item Binding
 	dynamic_pointer_cast<PickupExtension>(weaponDummy->getExtension(typeid(PickupExtension)))->setItem(dummyItem);
+
+	// TODO: Remove this is just for testing the system.
 	Scene::getInstance().getWieldExtension()->addItem(dummyItem);
 }
 
@@ -181,7 +184,7 @@ void GameScreen::handlePlayerControls() {
 		vel.x = 0;
 
 	if (keystate[SDL_SCANCODE_F])
-		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
+		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50.0f : -50.0f;
 
 	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {

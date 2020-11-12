@@ -14,6 +14,8 @@ void CanWieldExtension::clearItems() {
 }
 
 std::shared_ptr<AbstractManageableItem> CanWieldExtension::getCurrentItem() {
+	if (_currentItemIndex >= _items.size())
+		return nullptr;
 	return _items[_currentItemIndex];
 }
 
@@ -29,9 +31,15 @@ void CanWieldExtension::setCurrentItemIndex(int index) {
 }
 
 void CanWieldExtension::onLeftClick(int x, int y) {
-	getCurrentItem()->onLeftClick(x, y);
+	std::shared_ptr<AbstractManageableItem> item = getCurrentItem();
+
+	if (item != nullptr)
+		getCurrentItem()->onLeftClick(x, y);
 }
 
 void CanWieldExtension::onRightClick(int x, int y) {
-	getCurrentItem()->onRightClick(x, y);
+	std::shared_ptr<AbstractManageableItem> item = getCurrentItem();
+
+	if (item != nullptr)
+		getCurrentItem()->onRightClick(x, y);
 }
