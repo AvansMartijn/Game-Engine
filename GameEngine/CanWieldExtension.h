@@ -23,6 +23,7 @@ public:
 
 	std::shared_ptr<AbstractManageableItem> getCurrentItem();
 	std::vector<std::shared_ptr<AbstractManageableItem>> getItems();
+	void setCurrentItemIndex(int index);
 
 	void onLeftClick(int x, int y);
 	void onRightClick(int x, int y);

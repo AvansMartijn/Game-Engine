@@ -233,6 +233,42 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		_game->switchScreen(Screens::Pause);
 
 		break;
+	case SDLK_1:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
+
+		break;
+	case SDLK_2:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
+
+		break;
+	case SDLK_3:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
+
+		break;
+	case SDLK_4:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(3);
+
+		break;
+	case SDLK_5:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(4);
+
+		break;
+	case SDLK_6:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(5);
+
+		break;
+	case SDLK_7:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(6);
+
+		break;
+	case SDLK_8:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(7);
+
+		break;
+	case SDLK_9:
+		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
+
+		break;
 	case SDLK_p:
 		_game->reset();
 

@@ -21,6 +21,13 @@ std::vector<std::shared_ptr<AbstractManageableItem>> CanWieldExtension::getItems
 	return _items;
 }
 
+void CanWieldExtension::setCurrentItemIndex(int index) {
+	if (index >= _items.size())
+		return;
+
+	_currentItemIndex = index;
+}
+
 void CanWieldExtension::onLeftClick(int x, int y) {
 	getCurrentItem()->onLeftClick(x, y);
 }
