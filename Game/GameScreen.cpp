@@ -166,7 +166,6 @@ void GameScreen::handlePlayerControls() {
 	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
-	//continuous-response keys
 	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT]) {
 		vel.x = -5;
 		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
