@@ -29,6 +29,10 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 					Scene::getInstance().gameOver = true;
 			}
 		}
+
+		if (valA->type == "pickupSensor") {
+
+		}
 	}
 
 	if (valB != nullptr) {
@@ -40,6 +44,10 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 				if (valA->type == "playerFixture")
 					Scene::getInstance().gameOver = true;
 			}
+		}
+
+		if (valB->type == "pickupSensor") {
+
 		}
 	}
 

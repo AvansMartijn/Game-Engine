@@ -14,7 +14,6 @@ void Game::onInit() {
 	registerTexture("Player_Fall_Right", "res/gfx/Assets/Entity/Player/Falling_Right.png");
 	registerTexture("Player_Fall_Left", "res/gfx/Assets/Entity/Player/Falling_Left.png");
 
-
 	registerTexture("Player_Running_Right", "res/gfx/Assets/Entity/Player/Running_Right.png");
 	registerTexture("Player_Running_Left", "res/gfx/Assets/Entity/Player/Running_Left.png");
 
@@ -24,6 +23,8 @@ void Game::onInit() {
 	registerTexture("Tile_Interior_Ground_Center", "res/gfx/Assets/Tiles/Interior/Ground_Center.png");
 	registerTexture("Border", "res/gfx/Border.png");
 	registerTexture("Background", "res/gfx/bg.png");
+	registerTexture("Krool", "res/gfx/KINGKROOL.png");
+
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");

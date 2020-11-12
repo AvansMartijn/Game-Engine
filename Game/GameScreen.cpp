@@ -1,5 +1,5 @@
 #include "GameScreen.h"
-#include <TextUiElement.h>
+#include <CanWieldExtension.h>
 
 enum PlayerMoves {
 	LOOK_RIGHT,
@@ -27,22 +27,27 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupGame() {
-	//// Player
+	// Player
 	std::map<int, std::string> textures;
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::RUN_RIGHT, "Player_Running_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_RIGHT, "Player_Jump_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"))
-		;
+	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_LEFT, "Player_Look_Left"));
 	textures.insert(pair<int, std::string>(PlayerMoves::RUN_LEFT, "Player_Running_Left"));
 	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_LEFT, "Player_Jump_Left"));
 	textures.insert(pair<int, std::string>(PlayerMoves::FALL_LEFT, "Player_Fall_Left"));
 
-	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension" };
-	Scene::getInstance().player = createEntity(_gameEngine, extensionNames, textures,
-		2, 8, 0.8f, 2.0f);
+	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };
+	Scene::getInstance().setPlayer(createEntity(_gameEngine, extensionNames, textures,
+		2, 8, 0.8f, 2.0f));
 
+	// Weapon Block
+	textures.clear();
+	shared_ptr<GameObject> weaponDummy = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
+		8, 17.5f, 3, 1, "pickupSensor");
+
+	// Normal Blocks
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
 	shared_ptr<GameObject> floor = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
@@ -120,6 +125,14 @@ void GameScreen::setupGame() {
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
+
+	// Items
+	shared_ptr<DummyManagableItem> dummyItem = std::make_shared<DummyManagableItem>();
+	Scene::getInstance().addItem(dummyItem);
+
+	// Item Binding
+	dynamic_pointer_cast<PickupExtension>(weaponDummy->getExtension(typeid(PickupExtension)))->setItem(dummyItem);
+	Scene::getInstance().getWieldExtension()->addItem(dummyItem);
 }
 
 void GameScreen::onTick() {
@@ -147,7 +160,7 @@ void GameScreen::onTick() {
 }
 
 void GameScreen::handlePlayerControls() {
-	b2Vec2 vel = Scene::getInstance().player->body.b2body->GetLinearVelocity();
+	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	//continuous-response keys
@@ -176,7 +189,7 @@ void GameScreen::handlePlayerControls() {
 			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::JUMPING;
 		}
 	}
-	Scene::getInstance().player->body.b2body->SetLinearVelocity(vel);
+	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
 }
 
 void GameScreen::calculatePlayerTexture() {
@@ -184,30 +197,30 @@ void GameScreen::calculatePlayerTexture() {
 
 	if (moveExtension->isLookingToRight) {
 		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_RIGHT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::JUMP_RIGHT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
 		}
 		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_RIGHT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::RUN_RIGHT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
 		}
 	}
 	else {
 		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_LEFT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::JUMP_LEFT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
 		}
 		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_LEFT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::RUN_LEFT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
 		}
 	}
 }
@@ -231,14 +244,29 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
-void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {}
+void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		shared_ptr<CanWieldExtension> wieldExtension = Scene::getInstance().getWieldExtension();
+
+		switch (e.button) {
+		case SDL_BUTTON_LEFT:
+			wieldExtension->onLeftClick(e.x, e.y);
+
+			break;
+		case SDL_BUTTON_RIGHT:
+			wieldExtension->onRightClick(e.x, e.y);
+
+			break;
+		}
+	}
+}
 
 shared_ptr<GameObject> GameScreen::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
 	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);
 }
 
 shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures , float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
-	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
+	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->textures = textures;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
@@ -253,7 +281,7 @@ shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vecto
 }
 
 shared_ptr<GameObject> GameScreen::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
-	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
+	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->textures = textures;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 

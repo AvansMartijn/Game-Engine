@@ -218,6 +218,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="DummyManagableItem.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -231,6 +232,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="PickupExtension.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
@@ -272,6 +274,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DefaultEntity.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="DummyManagableItem.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
@@ -287,6 +290,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PickupExtension.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />

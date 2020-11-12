@@ -23,13 +23,34 @@ int Scene::getNextAvailableId() {
     return _gameObjects.size() + 1;
 }
 
+void Scene::addItem(shared_ptr<AbstractManageableItem> item) {
+    _items.insert(std::pair<int, shared_ptr<AbstractManageableItem>>(_items.size() + 1, item));
+}
+
+shared_ptr<AbstractManageableItem> Scene::getItem(int index) {
+    return _items[index];
+}
+
+shared_ptr<GameObject> Scene::getPlayer() {
+    return _player;
+}
+
+void Scene::setPlayer(shared_ptr<GameObject> player) {
+    _player = player;
+}
+
 shared_ptr<MoveExtension> Scene::getPlayerMoveExtension() {
-    return dynamic_pointer_cast<MoveExtension>(player->getExtension(typeid(MoveExtension)));
+    return dynamic_pointer_cast<MoveExtension>(_player->getExtension(typeid(MoveExtension)));
+}
+
+shared_ptr<CanWieldExtension> Scene::getWieldExtension() {
+    return dynamic_pointer_cast<CanWieldExtension>(_player->getExtension(typeid(CanWieldExtension)));
 }
 
 void Scene::reset() {
     score = 1000;
     _gameObjects.clear();
+    _items.clear();
     getPlayerMoveExtension()->reset();
 }
 

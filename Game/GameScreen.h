@@ -13,6 +13,9 @@
 #include "ImageUiElement.h"
 #include <chrono>
 #include <GameEngine.h>
+#include <TextUiElement.h>
+#include "PickupExtension.h"
+#include <DummyManagableItem.h>
 
 using namespace std;
 
@@ -21,6 +24,8 @@ class GameScreen : public AbstractScreen
 private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
+	std::vector<std::shared_ptr<AbstractManageableItem>> _availableItems;
+
 public:
 	GameScreen();
 

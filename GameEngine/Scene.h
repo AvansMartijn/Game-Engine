@@ -8,6 +8,8 @@
 #include <vector>
 #include <memory>
 #include "GameObject.h"
+#include "AbstractManageableItem.h"
+#include "CanWieldExtension.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -16,6 +18,8 @@ private:
 	static Scene instance;
 
 	map<int, shared_ptr<GameObject>> _gameObjects;
+	map<int, shared_ptr<AbstractManageableItem>> _items;
+	shared_ptr<GameObject> _player;
 public:
 	static Scene& getInstance() { return instance; }
 
@@ -24,7 +28,6 @@ public:
 	Scene& operator=(const Scene&) = delete;
 	Scene& operator=(Scene&&) = delete;
 
-	shared_ptr<GameObject> player;
 	int score;
 	bool gameOver;
 
@@ -55,6 +58,31 @@ public:
 	int getNextAvailableId();
 
 	/// <summary>
+	/// Adds a item to the scene.
+	/// </summary>
+	/// <param name="item">The item.</param>
+	void addItem(shared_ptr<AbstractManageableItem> item);
+
+	/// <summary>
+	/// Get's the item with the given index.
+	/// </summary>
+	/// <param name="index">The index of the item.</param>
+	/// <returns>The item on the given index.</returns>
+	shared_ptr<AbstractManageableItem> getItem(int index);
+
+	/// <summary>
+	/// Set's the player.
+	/// </summary>
+	/// <param name="player">The player</param>
+	void setPlayer(shared_ptr<GameObject> player);
+
+	/// <summary>
+	/// Get's the player.
+	/// </summary>
+	/// <returns>The player.</returns>
+	shared_ptr<GameObject> getPlayer();
+
+	/// <summary>
 	/// Resets the scene.
 	/// </summary>
 	void reset();
@@ -70,5 +98,11 @@ public:
 	/// </summary>
 	/// <returns>The move extension for the player.</returns>
 	shared_ptr<MoveExtension> getPlayerMoveExtension();
+
+	/// <summary>
+	/// Get's the wield extension.
+	/// </summary>
+	/// <returns>The wield extension.</returns>
+	shared_ptr<CanWieldExtension> getWieldExtension();
 };
 
