@@ -47,9 +47,15 @@ public:
 	/// <summary>
 	/// Get's a gameobject from the registry.
 	/// </summary>
-	/// <param name="index">The id of the gameobject</param>
+	/// <param name="id">The id of the gameobject</param>
 	/// <returns>The game object.</returns>
-	shared_ptr<GameObject> getGameObject(int index);
+	shared_ptr<GameObject> getGameObject(int id);
+
+	/// <summary>
+	/// Removes a game object from the scene.
+	/// </summary>
+	/// <param name="id">The game object ID.</param>
+	void removeGameObject(int id);
 
 	/// <summary>
 	/// Get's the next available id.

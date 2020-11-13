@@ -7,8 +7,8 @@ Scene::Scene() {
     score = 1000;
 }
 
-shared_ptr<GameObject> Scene::getGameObject(int index) {
-    return _gameObjects[index];
+shared_ptr<GameObject> Scene::getGameObject(int id) {
+    return _gameObjects[id];
 }
 
 void Scene::addGameObject(int index, shared_ptr<GameObject> obj) {
@@ -21,6 +21,10 @@ void Scene::addGameObject(shared_ptr<GameObject> obj) {
 
 int Scene::getNextAvailableId() {
     return _gameObjects.size() + 1;
+}
+
+void Scene::removeGameObject(int id) {
+    _gameObjects.erase(id);
 }
 
 void Scene::addItem(shared_ptr<AbstractManageableItem> item) {

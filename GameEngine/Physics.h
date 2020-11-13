@@ -38,6 +38,7 @@ public:
 	Physics& operator=(Physics&&) = delete;
 	
 	vector<TeleportObject> teleportQueue;
+	vector<int> deleteQueue;
 
 	/// <summary>
 	/// Executes a step in the wordl.
@@ -89,6 +90,11 @@ public:
 	/// Executes the queued teleports.
 	/// </summary>
 	void executeTeleportQueue();
+
+	/// <summary>
+	/// Executes the queued deletes.
+	/// </summary>
+	void executeDeleteQueue();
 };
 
 #endif

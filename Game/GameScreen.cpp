@@ -135,7 +135,7 @@ void GameScreen::setupGame() {
 	dynamic_pointer_cast<PickupExtension>(weaponDummy->getExtension(typeid(PickupExtension)))->setItem(dummyItem);
 
 	// TODO: Remove this is just for testing the system.
-	Scene::getInstance().getWieldExtension()->addItem(dummyItem);
+	//Scene::getInstance().getWieldExtension()->addItem(dummyItem);
 }
 
 void GameScreen::onTick() {

@@ -6,6 +6,7 @@
 #include "AbstractCollisionResolutionExtension.h"
 #include "MoveExtension.h"
 #include "CustomUserData.h"
+#include "PickupExtension.h"
 
 class Physics;
 class CollisionListener : public b2ContactListener

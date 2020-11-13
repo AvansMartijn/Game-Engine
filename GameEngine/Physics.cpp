@@ -10,6 +10,7 @@ Physics::Physics(){
 
 void Physics::step(float timeStep, int velocityIterations, int positionIterations) {
     _world->Step(timeStep, velocityIterations, positionIterations);
+    executeDeleteQueue();
     executeTeleportQueue();
 }
 
@@ -119,6 +120,16 @@ void Physics::executeTeleportQueue() {
         newPosition.y += teleportObject.from->body.height + (teleportObject.to->body.height / 4);
 
         teleportObject.from->body.b2body->SetTransform(newPosition, teleportObject.from->body.b2body->GetAngle());
+    }
+}
+
+void Physics::executeDeleteQueue() {
+    for (size_t i = 0; i < deleteQueue.size(); i++) {
+        int id = deleteQueue.at(i);
+
+        deleteQueue.pop_back();
+        _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);
+        Scene::getInstance().removeGameObject(id);
     }
 }
 

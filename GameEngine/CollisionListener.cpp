@@ -31,7 +31,10 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 		}
 
 		if (valA->type == "pickupSensor") {
-
+			if (valB != nullptr && valB->type == "playerFixture") {
+				if (gameObjectA->hasExtension(typeid(PickupExtension)))
+					dynamic_pointer_cast<PickupExtension>(gameObjectA->getExtension(typeid(PickupExtension)))->onEntityCollision(gameObjectB);
+			}
 		}
 	}
 
@@ -47,11 +50,12 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 		}
 
 		if (valB->type == "pickupSensor") {
-
+			if (valA != nullptr && valA->type == "playerFixture") {
+				if(gameObjectB->hasExtension(typeid(PickupExtension)))
+					dynamic_pointer_cast<PickupExtension>(gameObjectB->getExtension(typeid(PickupExtension)))->onEntityCollision(gameObjectA);
+			}
 		}
 	}
-
-
 
 	//TODO:: Fix shared pointers
 
