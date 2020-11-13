@@ -18,5 +18,4 @@ void PickupExtension::onEntityCollision(shared_ptr<GameObject> gameObject) {
 	Scene::getInstance().getWieldExtension()->addItem(_item);
 
 	Physics::getInstance().deleteQueue.push_back(_subject->id);
-	//Scene::getInstance().removeGameObject(gameObject->id);
 }

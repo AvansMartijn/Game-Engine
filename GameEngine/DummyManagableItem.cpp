@@ -3,7 +3,7 @@
 #include <iostream>
 
 DummyManagableItem::DummyManagableItem() {
-	_textureKey = "Krool";
+	_textureKey = "DIY_Weapon";
 }
 
 void DummyManagableItem::onLeftClick(int x, int y) {

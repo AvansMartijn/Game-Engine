@@ -28,23 +28,17 @@ bool GameObject::hasExtension(const std::type_info& type)
 void GameObject::render(const unique_ptr<Window>& window) {
 	b2Vec2 position = body.b2body->GetPosition();
 	Rect rect = {
-		metersToPixels((position.x - (body.width / 2))),
-		metersToPixels((position.y - (body.height / 2))),
-		metersToPixels(body.width),
-		metersToPixels(body.height)
+		window->metersToPixels((position.x - (body.width / 2))),
+		window->metersToPixels((position.y - (body.height / 2))),
+		window->metersToPixels(body.width),
+		window->metersToPixels(body.height)
 	};
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
-	//bool flipLeft = false;
-	//if (hasExtension(typeid(MoveExtension)))
-	//	flipLeft = Physics::getInstance().isMovingLeft(body);
 
 	window->renderTexture(textures[currentState], rect, degrees, false);
 }
 
-int GameObject::metersToPixels(float value) {
-	return (int)(40.0f * value);
-}
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
 	for (shared_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions)

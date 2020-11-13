@@ -6,6 +6,7 @@ CanWieldExtension::CanWieldExtension() {
 }
 
 void CanWieldExtension::addItem(std::shared_ptr<AbstractManageableItem> item) {
+	item->setOwner(_subject);
 	_items.push_back(item);
 }
 

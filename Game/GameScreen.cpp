@@ -27,6 +27,10 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupGame() {
+	// Items
+	shared_ptr<DummyManagableItem> dummyItem = std::make_shared<DummyManagableItem>();
+	Scene::getInstance().addItem(dummyItem);
+
 	// Player
 	std::map<int, std::string> textures;
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
@@ -45,7 +49,7 @@ void GameScreen::setupGame() {
 	// Weapon Block
 	textures.clear();
 	shared_ptr<GameObject> weaponDummy = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
-		8, 17.5f, 3, 1, "pickupSensor");
+		8, 17.5f, dummyItem->getWidth(), dummyItem->getHeight(), "pickupSensor");
 
 	// Normal Blocks
 	textures.clear();
@@ -125,11 +129,6 @@ void GameScreen::setupGame() {
 
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
-
-	// Items
-	// TODO: Each level we need to add the needed weapons.
-	shared_ptr<DummyManagableItem> dummyItem = std::make_shared<DummyManagableItem>();
-	Scene::getInstance().addItem(dummyItem);
 
 	// Item Binding
 	dynamic_pointer_cast<PickupExtension>(weaponDummy->getExtension(typeid(PickupExtension)))->setItem(dummyItem);
@@ -333,6 +332,8 @@ void GameScreen::render(const unique_ptr<Window>& window) {
 	AbstractScreen::render(window);
 
 	Scene::getInstance().render(window);
+	if(Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
+		Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
 }
 
 void GameScreen::reset() {

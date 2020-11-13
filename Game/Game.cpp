@@ -25,6 +25,8 @@ void Game::onInit() {
 	registerTexture("Background", "res/gfx/bg.png");
 	registerTexture("Krool", "res/gfx/KINGKROOL.png");
 
+	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
+
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
