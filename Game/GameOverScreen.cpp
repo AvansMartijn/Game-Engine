@@ -36,3 +36,6 @@ void GameOverScreen::onScreenShowed(vector<string> args) {
 void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void GameOverScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+
+void GameOverScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
+

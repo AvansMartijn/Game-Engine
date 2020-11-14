@@ -34,3 +34,5 @@ void HelpScreen::onTick(){}
 void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+
+void HelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}

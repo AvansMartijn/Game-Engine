@@ -26,6 +26,13 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
+	// calc camera offset
+	b2Vec2 playerPos = Scene::getInstance().player->body.b2body->GetPosition();
+	playerPos.x = metersToPixels(playerPos.x);
+	playerPos.y = metersToPixels(playerPos.y);
+	b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
+
+	//get object position
 	b2Vec2 position = body.b2body->GetPosition();
 	Rect rect = {
 		window->metersToPixels((position.x - (body.width / 2))),
@@ -36,7 +43,17 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
 
+	//apply camera offset
+	rect.x -= diffs.x;
+	rect.y -= diffs.y;
+
+	//render
 	window->renderTexture(textures[currentState], rect, degrees, false);
+}
+
+
+int GameObject::metersToPixels(float value) {
+	return (int)(Scene::getInstance().zoom * value);
 }
 
 
