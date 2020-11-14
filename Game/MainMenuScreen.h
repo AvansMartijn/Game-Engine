@@ -32,4 +32,5 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };

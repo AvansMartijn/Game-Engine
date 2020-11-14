@@ -26,6 +26,13 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
+	// calc camera offset
+	b2Vec2 playerPos = Scene::getInstance().player->body.b2body->GetPosition();
+	playerPos.x = metersToPixels(playerPos.x);
+	playerPos.y = metersToPixels(playerPos.y);
+	b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
+
+	//get object position
 	b2Vec2 position = body.b2body->GetPosition();
 	Rect rect = {
 		metersToPixels((position.x - (body.width / 2))),
@@ -35,15 +42,17 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	};
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
-	//bool flipLeft = false;
-	//if (hasExtension(typeid(MoveExtension)))
-	//	flipLeft = Physics::getInstance().isMovingLeft(body);
 
+	//apply camera offset
+	rect.x -= diffs.x;
+	rect.y -= diffs.y;
+
+	//render
 	window->renderTexture(textures[currentState], rect, degrees, false);
 }
 
 int GameObject::metersToPixels(float value) {
-	return (int)(40.0f * value);
+	return (int)(Scene::getInstance().zoom * value);
 }
 
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {

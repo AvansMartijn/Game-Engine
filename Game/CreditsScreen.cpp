@@ -53,3 +53,6 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 }
 
 void CreditsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+
+void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
+

@@ -48,3 +48,5 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 }
 
 void PauseScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+
+void PauseScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}

@@ -55,3 +55,5 @@ void MainMenuScreen::onTick() {}
 void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void MainMenuScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+void MainMenuScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
+
