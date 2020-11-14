@@ -63,3 +63,12 @@ void Scene::render(const unique_ptr<Window>& window) {
         x.second->render(window);
 }
 
+float Scene::metersToPixels(float meters) {
+    return meters * zoom;
+}
+
+float Scene::pixelsToMeters(float pixels) {
+    return pixels / zoom;
+}
+
+

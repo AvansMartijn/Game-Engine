@@ -111,5 +111,17 @@ public:
 	/// </summary>
 	/// <returns>The wield extension.</returns>
 	shared_ptr<CanWieldExtension> getWieldExtension();
+	/// <summary>
+	/// convert meters to pixels
+	/// </summary>
+	/// <param name="meters"></param>
+	/// <returns>amount of pixels</returns>
+	float metersToPixels(float meters);
+	/// <summary>
+	/// convert pixels to meters
+	/// </summary>
+	/// <param name="pixels"></param>
+	/// <returns>amount of meters</returns>
+	float pixelsToMeters(float pixels);
 };
 
