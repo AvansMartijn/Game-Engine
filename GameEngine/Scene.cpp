@@ -16,11 +16,15 @@ void Scene::addGameObject(int index, shared_ptr<GameObject> obj) {
 }
 
 void Scene::addGameObject(shared_ptr<GameObject> obj) {
-    addGameObject(_gameObjects.size() + 1, obj);
+    addGameObject(obj->id, obj);
 }
 
 int Scene::getNextAvailableId() {
-    return _gameObjects.size() + 1;
+    int nextId = _gameObjects.size() + 1;
+    if (!_gameObjects.empty())
+        nextId = _gameObjects.rbegin()->first + 1;
+
+    return nextId;
 }
 
 void Scene::removeGameObject(int id) {
