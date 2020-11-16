@@ -19,7 +19,7 @@ using namespace std;
 /// <summary>
 /// The game class needs to be based of this class.
 /// </summary>
- class GAMEENGINE_AbstractGame AbstractGame
+class GAMEENGINE_AbstractGame AbstractGame
 {
 public:
 	AbstractGame(const char* title, int width, int height);

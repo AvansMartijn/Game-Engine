@@ -32,8 +32,7 @@ void GameScreen::setupGame() {
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::RUN_RIGHT, "Player_Running_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_RIGHT, "Player_Jump_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"))
-		;
+	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_LEFT, "Player_Look_Left"));
 	textures.insert(pair<int, std::string>(PlayerMoves::RUN_LEFT, "Player_Running_Left"));
 	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_LEFT, "Player_Jump_Left"));
@@ -252,36 +251,6 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 			Scene::getInstance().zoom -= 3.0f;
 	}
 
-}
-
-shared_ptr<GameObject> GameScreen::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
-	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);
-}
-
-shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures , float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
-	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
-	gameObject->textures = textures;
-	gameObject->id = Scene::getInstance().getNextAvailableId();
-
-	if (friction == -1 && !fixed && !fixedRotation)
-		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
-	else
-		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
-
-	Scene::getInstance().addGameObject(gameObject);
-
-	return gameObject;
-}
-
-shared_ptr<GameObject> GameScreen::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
-	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
-	gameObject->textures = textures;
-	gameObject->id = Scene::getInstance().getNextAvailableId();
-
-	Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, userDataType);
-
-	Scene::getInstance().addGameObject(gameObject);
-	return gameObject;
 }
 
 void GameScreen::render(const unique_ptr<Window>& window) {

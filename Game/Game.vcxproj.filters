@@ -28,6 +28,12 @@
     <Filter Include="Header Files\Misc">
       <UniqueIdentifier>{b3c90d31-3ba9-4393-be32-8b2b8cc155b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LevelLoader">
+      <UniqueIdentifier>{829ac85b-4f24-49db-8874-1f9686cd1d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LevelLoader">
+      <UniqueIdentifier>{9dbcfc8c-b7bc-4b42-8781-b46599502a0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +65,15 @@
     </ClCompile>
     <ClCompile Include="HighscoreScreen.cpp">
       <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractLevelLoader.cpp">
+      <Filter>Source Files\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledLevelLoader.cpp">
+      <Filter>Source Files\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultLevelLoader.cpp">
+      <Filter>Source Files\LevelLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +109,15 @@
     </ClInclude>
     <ClInclude Include="HighscoreScreen.h">
       <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractLevelLoader.h">
+      <Filter>Header Files\LevelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledLevelLoader.h">
+      <Filter>Header Files\LevelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultLevelLoader.h">
+      <Filter>Header Files\LevelLoader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
