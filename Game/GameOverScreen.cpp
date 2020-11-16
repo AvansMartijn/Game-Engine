@@ -6,8 +6,7 @@ GameOverScreen::GameOverScreen() {}
 
 GameOverScreen::~GameOverScreen() {}
 
-void GameOverScreen::onInit()
-{
+void GameOverScreen::onInit() {
 	const Color bgColor = { 66, 99, 116 };
 	const string font = "Portal";
 
@@ -32,7 +31,6 @@ void GameOverScreen::onInit()
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
-
 }
 
 void GameOverScreen::onTick() {}

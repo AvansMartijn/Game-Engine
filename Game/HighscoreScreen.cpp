@@ -10,8 +10,7 @@ HighScoreScreen::HighScoreScreen() {}
 
 HighScoreScreen::~HighScoreScreen() {}
 
-void HighScoreScreen::onInit()
-{
+void HighScoreScreen::onInit() {
 	const Color bgColor = { 66, 99, 116 };
 	const string font = "Portal";
 

@@ -6,8 +6,7 @@ GameFinishedScreen::GameFinishedScreen() {}
 
 GameFinishedScreen::~GameFinishedScreen() {}
 
-void GameFinishedScreen::onInit()
-{
+void GameFinishedScreen::onInit() {
 	const Color bgColor = { 66, 99, 116 };
 	const string font = "Portal";
 
@@ -29,15 +28,15 @@ void GameFinishedScreen::onInit()
 	_uiElements.push_back(_nameText);
 
 
-	ButtonUiElement NextLevelButton = ButtonUiElement("Next level", { (1080 / 2) - 200, 400, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
-	NextLevelButton.registerGame(_game);
-	NextLevelButton.onClick = [this](AbstractGame* game) {
+	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { (1080 / 2) - 200, 400, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	nextLevelButton.registerGame(_game);
+	nextLevelButton.onClick = [this](AbstractGame* game) {
 		IOFiles ioFiles;
 		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
 		ioFiles.writeToFile("Highscores", scoreRow, true);
 
 		game->switchScreen(Screens::MainMenu); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(NextLevelButton));
+	_uiElements.push_back(make_shared<ButtonUiElement>(nextLevelButton));
 
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { (1080 / 2) - 200, 600, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);

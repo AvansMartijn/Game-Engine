@@ -37,5 +37,6 @@ public:
 	/// <param name="FileName">the filename</param>
 	/// <returns>all the lines</returns>
 	std::vector<std::string> readFromFile(std::string fileName);
+
 };
 
