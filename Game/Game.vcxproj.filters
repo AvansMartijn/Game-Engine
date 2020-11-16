@@ -155,6 +155,9 @@
     <ClInclude Include="TiledTile.h">
       <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
     </ClInclude>
+    <ClInclude Include="TiledGameObject.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

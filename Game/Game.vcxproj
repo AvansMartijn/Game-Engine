@@ -191,6 +191,7 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="TiledGameObject.h" />
     <ClInclude Include="TiledGrid.h" />
     <ClInclude Include="TiledLayer.h" />
     <ClInclude Include="TiledLevel.h" />
