@@ -28,8 +28,12 @@ void GameScreen::setupScreen() {
 
 void GameScreen::setupGame() {
 	// Items
-	shared_ptr<GlueManagableItem> dummyItem = std::make_shared<GlueManagableItem>();
-	Scene::getInstance().addItem(dummyItem);
+	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
+	Scene::getInstance().addItem(glueItem);
+
+	// Items
+	shared_ptr<ThrusterManagableItem> thrusterItem = std::make_shared<ThrusterManagableItem>();
+	Scene::getInstance().addItem(thrusterItem);
 
 	// Player
 	std::map<int, std::string> textures;
@@ -48,8 +52,13 @@ void GameScreen::setupGame() {
 
 	// Weapon Block
 	textures.clear();
-	shared_ptr<GameObject> weaponDummy = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
-		8, 17.5f, dummyItem->getWidth(), dummyItem->getHeight(), "pickupSensor");
+	shared_ptr<GameObject> weaponGlue = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
+		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
+
+	// Weapon Block
+	textures.clear();
+	shared_ptr<GameObject> weaponThruster = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
+		6, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
 
 	// Normal Blocks
 	textures.clear();
@@ -131,7 +140,8 @@ void GameScreen::setupGame() {
 	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
 
 	// Item Binding
-	dynamic_pointer_cast<PickupExtension>(weaponDummy->getExtension(typeid(PickupExtension)))->setItem(dummyItem);
+	dynamic_pointer_cast<PickupExtension>(weaponGlue->getExtension(typeid(PickupExtension)))->setItem(glueItem);
+	dynamic_pointer_cast<PickupExtension>(weaponThruster->getExtension(typeid(PickupExtension)))->setItem(thrusterItem);
 
 	// TODO: Remove this is just for testing the system.
 	//Scene::getInstance().getWieldExtension()->addItem(dummyItem);
