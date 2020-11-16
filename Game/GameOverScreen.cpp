@@ -1,4 +1,5 @@
 #include "GameOverScreen.h"
+#include <IOFiles.h>
 
 
 GameOverScreen::GameOverScreen() {}
@@ -30,6 +31,10 @@ void GameOverScreen::onInit()
 void GameOverScreen::onTick() {}
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
+
+	IOFiles ioFiles;
+	ioFiles.writeToFile("Highscores", to_string(Scene::getInstance().score), true);
+
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
