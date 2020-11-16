@@ -58,7 +58,7 @@ void GameScreen::setupGame() {
 	// Weapon Block
 	textures.clear();
 	shared_ptr<GameObject> weaponThruster = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
-		6, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
+		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
 
 	// Normal Blocks
 	textures.clear();
