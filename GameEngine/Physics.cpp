@@ -124,8 +124,8 @@ void Physics::executeTeleportQueue() {
 }
 
 void Physics::executeDeleteQueue() {
-    for (size_t i = 0; i < deleteQueue.size(); i++) {
-        int id = deleteQueue.at(i);
+    while (!deleteQueue.empty()) {
+        int id = deleteQueue.back();
 
         deleteQueue.pop_back();
         _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);
