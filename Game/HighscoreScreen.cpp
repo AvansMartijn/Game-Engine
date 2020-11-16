@@ -56,7 +56,7 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
 
 
-	std::map<int, std::string, std::greater<int>> scores;
+	std::multimap<int, std::string, std::greater<int>> scores;
 	for (auto line : lines)
 	{
 		std::stringstream ss(line);
