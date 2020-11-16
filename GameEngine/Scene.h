@@ -27,6 +27,7 @@ public:
 	shared_ptr<GameObject> player;
 	int score;
 	bool gameOver;
+	float zoom = 40.0f;
 
 	/// <summary>
 	/// Adds a game object to the registry.

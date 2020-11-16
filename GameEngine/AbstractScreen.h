@@ -47,6 +47,7 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	virtual void handleMouseMotionInput(SDL_MouseMotionEvent e) = 0;
+	virtual void handleMouseWheelInput(SDL_MouseWheelEvent e) = 0;
 	/// <summary>
 	/// Called when the user click their mouse.
 	/// </summary>

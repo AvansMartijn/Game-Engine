@@ -39,3 +39,6 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void HighScoreScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+
+void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
+

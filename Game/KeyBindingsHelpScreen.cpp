@@ -38,3 +38,5 @@ void KeyBindingsHelpScreen::onTick() {}
 void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void KeyBindingsHelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
+
+void KeyBindingsHelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
