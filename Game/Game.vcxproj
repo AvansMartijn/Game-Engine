@@ -187,8 +187,10 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
+    <ClInclude Include="PlayerMoves.h" />
     <ClInclude Include="Screens.h" />
     <ClInclude Include="TiledLevelLoader.h" />
+    <ClInclude Include="tileson.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

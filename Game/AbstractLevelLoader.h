@@ -7,10 +7,7 @@
 
 class AbstractLevelLoader
 {
-private:
-public:
-	virtual void createLevel() = 0;
-	virtual void createPlayer() = 0;
+protected:
 	/// <summary>
 	/// Creates a new entity.
 	/// </summary>
@@ -51,5 +48,7 @@ public:
 	/// <returns>The created game object.</returns>
 	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
 
+public:
+	virtual void createLevel(GameEngine gameEngine) = 0;
 };
 

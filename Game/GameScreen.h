@@ -13,6 +13,9 @@
 #include "ImageUiElement.h"
 #include <chrono>
 #include <GameEngine.h>
+#include "AbstractLevelLoader.h"
+#include "DefaultLevelLoader.h"
+#include "PlayerMoves.h"
 
 using namespace std;
 

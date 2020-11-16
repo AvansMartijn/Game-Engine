@@ -1,6 +1,5 @@
 #include "AbstractLevelLoader.h"
 
-
 shared_ptr<GameObject> AbstractLevelLoader::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
 	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);
 }

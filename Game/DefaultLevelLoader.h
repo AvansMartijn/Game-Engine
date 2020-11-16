@@ -1,9 +1,11 @@
 #pragma once
 #include "AbstractLevelLoader.h"
+#include "PlayerMoves.h"
+#include <CollisionResolutionPortalExtension.h>
 
 class DefaultLevelLoader : public AbstractLevelLoader
 {
-private:
 public:
+	void createLevel(GameEngine gameEngine);
 };
 
