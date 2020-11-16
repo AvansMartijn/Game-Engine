@@ -3,6 +3,7 @@
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
+#include <IOFiles.h>
 
 HighScoreScreen::HighScoreScreen() {}
 
@@ -28,12 +29,25 @@ void HighScoreScreen::onInit()
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+
 }
 
 void HighScoreScreen::onTick() {}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+
+	IOFiles ioFiles;
+	std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
+	
+	std::string highscores;
+	for (auto line : lines)
+	{
+		highscores += line;
+		highscores += " ";
+	}
+
+	_bodyText->text = highscores;
+	//_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
 void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
