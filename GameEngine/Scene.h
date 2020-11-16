@@ -8,7 +8,6 @@
 #include <vector>
 #include <memory>
 #include "GameObject.h"
-#include "../Game/AbstractLevelLoader.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -29,7 +28,6 @@ public:
 	int score;
 	bool gameOver;
 	float zoom = 40.0f;
-	shared_ptr<AbstractLevelLoader> levelLoader;
 
 	/// <summary>
 	/// Adds a game object to the registry.

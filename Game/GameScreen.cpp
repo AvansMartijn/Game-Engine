@@ -1,5 +1,6 @@
 #include "GameScreen.h"
 #include <TextUiElement.h>
+#include "TiledLevelLoader.h"
 
 GameScreen::GameScreen() {}
 
@@ -16,7 +17,8 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupGame() {
-	Scene::getInstance().levelLoader->createLevel(_gameEngine);
+	_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
+	_levelLoader->createLevel(_gameEngine);
 }
 
 void GameScreen::onTick() {

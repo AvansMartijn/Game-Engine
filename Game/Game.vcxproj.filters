@@ -34,6 +34,15 @@
     <Filter Include="Source Files\LevelLoader">
       <UniqueIdentifier>{9dbcfc8c-b7bc-4b42-8781-b46599502a0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\LevelLoader\Tiled">
+      <UniqueIdentifier>{204fa313-c4ce-4fe5-8030-25572e1e5a24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevelLoader\Tiled">
+      <UniqueIdentifier>{3af56a32-7d09-40a3-a6ed-6a35c43f6ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevelLoader\Tiled\Data">
+      <UniqueIdentifier>{cc865ce4-2117-48a7-a37b-417191ba9e31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="DefaultLevelLoader.cpp">
       <Filter>Source Files\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledMapBuilder.cpp">
+      <Filter>Source Files\LevelLoader\Tiled</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,8 +134,29 @@
     <ClInclude Include="PlayerMoves.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="tileson.hpp">
-      <Filter>Header Files\Misc</Filter>
+    <ClInclude Include="json.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TiledMapBuilder.h">
+      <Filter>Header Files\LevelLoader\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledLevel.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledLayer.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledTileSet.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledGrid.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledTile.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

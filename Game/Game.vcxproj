@@ -173,6 +173,7 @@
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
+    <ClCompile Include="TiledMapBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractLevelLoader.h" />
@@ -183,14 +184,23 @@
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="HighscoreScreen.h" />
+    <ClInclude Include="json.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="TiledGrid.h" />
+    <ClInclude Include="TiledLayer.h" />
+    <ClInclude Include="TiledLevel.h" />
     <ClInclude Include="TiledLevelLoader.h" />
-    <ClInclude Include="tileson.hpp" />
+    <ClInclude Include="TiledMapBuilder.h" />
+    <ClInclude Include="TiledTile.h" />
+    <ClInclude Include="TiledTileSet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
