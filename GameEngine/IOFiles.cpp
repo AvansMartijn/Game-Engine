@@ -2,20 +2,20 @@
 #include "IOFiles.h"
 
 
-void IOFiles::writeToFile(std::string FileName, std::string Line, bool Append)
+void IOFiles::writeToFile(std::string fileName, std::string line, bool append)
 {
 	std::ofstream file;
 
 	//check if overwrite is needed or append
-	if (Append)
-		file.open("Highscores.txt", std::ios_base::app); // append instead of overwrite
+	if (append)
+		file.open(fileName+ ".txt", std::ios_base::app); // append instead of overwrite
 	else
-		file.open("Highscores.txt"); // overwrite instead of append
+		file.open(fileName+ ".txt"); // overwrite instead of append
 
 	//write the line
 	if (file.is_open())
 	{
-		file << Line << "\n";
+		file << line << "\n";
 		file.close();
 	}
 	else
@@ -24,22 +24,22 @@ void IOFiles::writeToFile(std::string FileName, std::string Line, bool Append)
 	}
 }
 
-void IOFiles::writeToFile(std::string FileName, std::vector<std::string> Lines, bool Append)
+void IOFiles::writeToFile(std::string fileName, std::vector<std::string> lines, bool append)
 {
 	std::ofstream file;
 
 	//check if overwrite is needed or append
-	if (Append)
-		file.open("Highscores.txt", std::ios_base::app); // append instead of overwrite
+	if (append)
+		file.open(fileName +".txt", std::ios_base::app); // append instead of overwrite
 	else
-		file.open("Highscores.txt"); // overwrite instead of append
+		file.open(fileName +".txt"); // overwrite instead of append
 
 
 	if (file.is_open())
 	{
-		for (std::string Line : Lines)
+		for (std::string line : lines)
 		{
-			file << Line << "\n";
+			file << line << "\n";
 		}
 		
 		file.close();
@@ -50,10 +50,10 @@ void IOFiles::writeToFile(std::string FileName, std::vector<std::string> Lines, 
 	}
 }
 
-std::vector<std::string> IOFiles::readFromFile(std::string FileName)
+std::vector<std::string> IOFiles::readFromFile(std::string fileName)
 {
 
-	std::ifstream file(FileName + ".txt");
+	std::ifstream file(fileName + ".txt");
 	std::vector<std::string> Lines;
 
 	if (file.is_open())

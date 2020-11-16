@@ -21,12 +21,28 @@ void HighScoreScreen::onInit()
 	TextUiElement headerText = TextUiElement("  HIGHSCORES   ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	TextUiElement bodyText = TextUiElement("  Score: ", "Portal", 48, { 100, 100, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
-	_bodyText = make_shared<TextUiElement>(bodyText);
-	_uiElements.push_back(_bodyText);
+	TextUiElement row1Text = TextUiElement(" - ", "Portal", 48, { 100, 100, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	_row1Text = make_shared<TextUiElement>(row1Text);
+	_uiElements.push_back(_row1Text);
+
+	TextUiElement row2Text = TextUiElement(" - ", "Portal", 48, { 100, 200, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	_row2Text = make_shared<TextUiElement>(row2Text);
+	_uiElements.push_back(_row2Text);
+
+	TextUiElement row3Text = TextUiElement(" - ", "Portal", 48, { 100, 300, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	_row3Text = make_shared<TextUiElement>(row3Text);
+	_uiElements.push_back(_row3Text);
+
+	TextUiElement row4Text = TextUiElement(" - ", "Portal", 48, { 100, 400, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	_row4Text = make_shared<TextUiElement>(row4Text);
+	_uiElements.push_back(_row4Text);
+
+	TextUiElement row5Text = TextUiElement(" - ", "Portal", 48, { 100, 500, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	_row5Text = make_shared<TextUiElement>(row5Text);
+	_uiElements.push_back(_row5Text);
 
 
-	ButtonUiElement quitGameButton = ButtonUiElement("Back", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement quitGameButton = ButtonUiElement("Back", { (1080 / 2) - 200, 600, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
@@ -38,8 +54,9 @@ void HighScoreScreen::onTick() {}
 void HighScoreScreen::onScreenShowed(vector<string> args) {
 	IOFiles ioFiles;
 	std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
-	std::map<int, std::string, std::greater<int>> scores;
 
+
+	std::map<int, std::string, std::greater<int>> scores;
 	for (auto line : lines)
 	{
 		std::stringstream ss(line);
@@ -55,27 +72,38 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	}
 
 	int counter = 0;
-	std::string highscores;
+	std::string highscore;
 	for (auto test : scores)
 	{
-		if (counter < 10)
+		highscore.clear();
+		if (counter < 5)
 		{
 			counter++;
-			highscores +=  to_string(counter) + "(";
-			highscores += to_string(test.first);
-			highscores += ", ";
-			highscores += test.second;
-			highscores += "), ";
-			highscores += " ";
+			highscore +=  to_string(counter) + ". ";
+			highscore += to_string(test.first);
+			highscore += ", ";
+			highscore += test.second;
+			highscore += " ";
+
+			if (counter == 1)
+				_row1Text->text = highscore;
+			if (counter == 2)
+				_row2Text->text = highscore;
+			if (counter == 3)
+				_row3Text->text = highscore;
+			if (counter == 4)
+				_row4Text->text = highscore;
+			if (counter == 5)
+				_row5Text->text = highscore;
+				
 		}
 		else
 			break;
 	}
 
-	if (highscores == "")
-		highscores = "No Highscores";
+	if (highscore == "")
+		highscore = "No Highscores";
 
-	_bodyText->text = highscores;
 	//_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
