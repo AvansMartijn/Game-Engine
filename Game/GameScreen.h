@@ -15,7 +15,7 @@
 #include <GameEngine.h>
 #include <TextUiElement.h>
 #include "PickupExtension.h"
-#include <DummyManagableItem.h>
+#include <ThrusterManagableItem.h>
 
 using namespace std;
 

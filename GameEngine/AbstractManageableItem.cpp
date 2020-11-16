@@ -35,12 +35,19 @@ void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 	else
 		x += _width / 3;
 	float y = position.y - (_height / 2);
+
+	position.x = window->metersToPixels(position.x);
+	position.y = window->metersToPixels(position.y);
+	b2Vec2 diffs = { position.x - (window->getWidth() / 2), position.y - (window->getHeight() / 2) };
 	Rect rect = {
 		window->metersToPixels(x),
 		window->metersToPixels(y),
 		window->metersToPixels(_width),
 		window->metersToPixels(_height)
 	};
+
+	rect.x -= diffs.x;
+	rect.y -= diffs.y;
 
 
 	window->renderTexture(_textureKey, rect, 0.0F, isLookingRight);

@@ -1,13 +1,13 @@
 #include "pch.h"
-#include "DummyManagableItem.h"
+#include "ThrusterManagableItem.h"
 #include "Scene.h"
 #include <iostream>
 
-DummyManagableItem::DummyManagableItem() {
+ThrusterManagableItem::ThrusterManagableItem() {
 	_textureKey = "DIY_Weapon";
 }
 
-void DummyManagableItem::onLeftClick(int x, int y) {
+void ThrusterManagableItem::onLeftClick(int x, int y) {
 	b2Vec2 playerPos = Scene::getInstance().getPlayer()->body.b2body->GetPosition();
 	playerPos.x = Scene::getInstance().metersToPixels(playerPos.x);
 	playerPos.y = Scene::getInstance().metersToPixels(playerPos.y);
@@ -20,8 +20,13 @@ void DummyManagableItem::onLeftClick(int x, int y) {
 	double angleDeg = angleRad * (180.0f / 3.141592653589793238463f);
 
 	std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
+
+	//apply impulse thrust
+	int force = -50;
+	b2Vec2 vect = b2Vec2(sin(angleDeg * (b2_pi / 180)) * force, cos(angleDeg * (b2_pi / 180)) * force);
+	Scene::getInstance().getPlayer()->body.b2body->ApplyLinearImpulseToCenter(vect, true);
 }
 
-void DummyManagableItem::onRightClick(int x, int y) {
+void ThrusterManagableItem::onRightClick(int x, int y) {
 	std::cout << "x: " << x << " | " << "y: " << y << std::endl;
 }

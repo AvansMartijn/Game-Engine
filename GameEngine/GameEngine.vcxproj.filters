@@ -258,6 +258,9 @@
     <ClInclude Include="DummyManagableItem.h">
       <Filter>Header Files\GameObjects\Items</Filter>
     </ClInclude>
+    <ClInclude Include="ThrusterManagableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -405,6 +408,9 @@
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="DummyManagableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrusterManagableItem.cpp">
       <Filter>Source Files\GameObjects\Items</Filter>
     </ClCompile>
   </ItemGroup>

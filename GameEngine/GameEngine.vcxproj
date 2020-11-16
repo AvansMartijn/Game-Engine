@@ -244,6 +244,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="Talker.h" />
     <ClInclude Include="TeleportObject.h" />
     <ClInclude Include="TextUiElement.h" />
+    <ClInclude Include="ThrusterManagableItem.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -300,6 +301,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />
+    <ClCompile Include="ThrusterManagableItem.cpp" />
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
