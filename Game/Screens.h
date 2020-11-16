@@ -8,5 +8,6 @@ enum Screens {
 	MainMenu,
 	GameOver,
 	KeyBindings,
-	HighScore
+	HighScore,
+	GameFinished
 };

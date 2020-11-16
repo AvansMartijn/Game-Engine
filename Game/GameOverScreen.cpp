@@ -14,13 +14,12 @@ void GameOverScreen::onInit()
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement headerText = TextUiElement("  GAME OVER   ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	TextUiElement headerText = TextUiElement("  GAME OVER: YOU LOSE  ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	TextUiElement bodyText = TextUiElement("  Score: ", font, 48, { 100, 100, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	TextUiElement bodyText = TextUiElement("  Score (DOESN'T COUNT): ", font, 48, { 100, 100, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
-
 
 	TextUiElement nameLabelText = TextUiElement("  Name:   ", font, 48, { 100, 200, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
@@ -31,14 +30,7 @@ void GameOverScreen::onInit()
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [this](AbstractGame* game) {
-		
-		IOFiles ioFiles;
-
-		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		ioFiles.writeToFile("Highscores", scoreRow, true);
-
-		game->switchScreen(Screens::MainMenu); };
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 
 }
@@ -47,7 +39,7 @@ void GameOverScreen::onTick() {}
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
 
-	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+	_bodyText->text = "  Score (DOESN'T COUNT): " + to_string(Scene::getInstance().score);
 }
 
 void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
