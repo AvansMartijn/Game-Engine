@@ -68,6 +68,15 @@ public:
 	void registerFont(std::string fontKey, std::string fontPath);
 
 	/// <summary>
+	/// Registers a soundtrack in the registry.
+	/// </summary>
+	/// <param name="musicTrackKey">Soundtrack key</param>
+	/// <param name="trackPath">Soundtrak path</param>
+	void registerMusicTrack(const std::string& musicTrackKey, const std::string& trackPath);
+
+	void playMusicTrack(const std::string& musicTrackKey);
+
+	/// <summary>
 	/// Resets the game.
 	/// </summary>
 	void reset();

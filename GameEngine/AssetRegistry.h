@@ -8,6 +8,7 @@
 
 #include <map>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <iostream>
 
 class Window;
@@ -20,6 +21,8 @@ private:
 
 	std::map<std::string, SDL_Texture*> _textures;
 	std::map<std::string, std::string> _fonts;
+	std::map<std::string, Mix_Music*> _musicTracks;
+	std::map<std::string, Mix_Chunk*> _sfx;
 public:
 	static AssetRegistry& getInstance() { return instance; }
 
@@ -55,5 +58,19 @@ public:
 	/// <param name="fontKey">The font key.</param>
 	/// <returns>The font path.</returns>
 	std::string getFontPath(std::string fontKey);
+
+	/// <summary>
+	/// Adds the music track to the registry.
+	/// </summary>
+	/// <param name="musicTrackKey">The track key</param>
+	/// <param name="musicTrack">The music track</param>
+	void registerMusicTrack(const std::string& musicTrackKey, Mix_Music* musicTrack);
+
+	/// <summary>
+	/// Gets the music track from the registry
+	/// </summary>
+	/// <param name="musicTrackKey">The track key</param>
+	/// <returns></returns>
+	Mix_Music* getMusicTrack(const std::string& musicTrackKey);
 };
 

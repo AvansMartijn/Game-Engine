@@ -14,7 +14,6 @@ void Game::onInit() {
 	registerTexture("Player_Fall_Right", "res/gfx/Assets/Entity/Player/Falling_Right.png");
 	registerTexture("Player_Fall_Left", "res/gfx/Assets/Entity/Player/Falling_Left.png");
 
-
 	registerTexture("Player_Running_Right", "res/gfx/Assets/Entity/Player/Running_Right.png");
 	registerTexture("Player_Running_Left", "res/gfx/Assets/Entity/Player/Running_Left.png");
 
@@ -28,10 +27,14 @@ void Game::onInit() {
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
 
+	registerMusicTrack("Background_1", "res/music/Game_Background_1.mp3");
+
 	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->preRender(_window);
 
 	switchScreen(Screens::MainMenu);
+
+	playMusicTrack("Background_1");
 
 	gameLoop();
 }

@@ -10,6 +10,12 @@ Window::Window(const char* title, int width, int height) {
 
 	SDL_Window* window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
 
+	//Initialize Mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+
 	_window.reset(window);
 	_renderer.reset(SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED));
 }
@@ -41,6 +47,20 @@ SDL_Texture* Window::getTexture(std::string filePath) const {
 
 TTF_Font* Window::getFont(std::string fontKey, int fontSize) {
 	return TTF_OpenFont(AssetRegistry::getInstance().getFontPath(fontKey.c_str()).c_str(), fontSize);
+}
+
+void Window::registerSoundTrack(const std::string& trackKey, const std::string trackPath)
+{
+	AssetRegistry::getInstance().registerMusicTrack(trackKey, Mix_LoadMUS(trackPath.c_str()));
+}
+
+Mix_Music* Window::getSoundTrack(const std::string& trackKey)
+{
+	Mix_Music* musicTrack = NULL;
+	musicTrack = AssetRegistry::getInstance().getMusicTrack(trackKey);
+	if (musicTrack == NULL)
+		std::cout << "failed to load music track. Error: " << SDL_GetError() << "\n";
+	return musicTrack;
 }
 
 void Window::clear() {

@@ -105,6 +105,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -124,6 +127,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,6 +145,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -158,6 +167,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CreditsScreen.cpp" />
