@@ -32,9 +32,7 @@ void GameFinishedScreen::onInit()
 	ButtonUiElement NextLevelButton = ButtonUiElement("Next level", { (1080 / 2) - 200, 400, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
 	NextLevelButton.registerGame(_game);
 	NextLevelButton.onClick = [this](AbstractGame* game) {
-
 		IOFiles ioFiles;
-
 		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
 		ioFiles.writeToFile("Highscores", scoreRow, true);
 
@@ -45,9 +43,7 @@ void GameFinishedScreen::onInit()
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { (1080 / 2) - 200, 600, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [this](AbstractGame* game) {
-
 		IOFiles ioFiles;
-
 		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
 		ioFiles.writeToFile("Highscores", scoreRow, true);
 

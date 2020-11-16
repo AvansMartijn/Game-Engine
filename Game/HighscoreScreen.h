@@ -10,6 +10,7 @@ private:
 	shared_ptr<TextUiElement> _row3Text;
 	shared_ptr<TextUiElement> _row4Text;
 	shared_ptr<TextUiElement> _row5Text;
+
 public:
 	using AbstractScreen::AbstractScreen;
 	HighScoreScreen();

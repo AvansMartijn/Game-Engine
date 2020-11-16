@@ -54,7 +54,7 @@ std::vector<std::string> IOFiles::readFromFile(std::string fileName)
 {
 
 	std::ifstream file(fileName + ".txt");
-	std::vector<std::string> Lines;
+	std::vector<std::string> lines;
 
 	if (file.is_open())
 	{
@@ -64,7 +64,7 @@ std::vector<std::string> IOFiles::readFromFile(std::string fileName)
 		{
 			// Line contains string of length > 0 then save it in vector
 			if (line.size() > 0)
-				Lines.push_back(line);
+				lines.push_back(line);
 		}
 		file.close();
 	}
@@ -72,5 +72,5 @@ std::vector<std::string> IOFiles::readFromFile(std::string fileName)
 	{
 		throw std::runtime_error("Unable to open file");
 	}
-	return Lines;
+	return lines;
 }
