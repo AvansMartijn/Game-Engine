@@ -12,6 +12,7 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
     _world->Step(timeStep, velocityIterations, positionIterations);
     executeDeleteQueue();
     executeTeleportQueue();
+    executeSetStaticQueue();
 }
 
 void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
@@ -74,7 +75,7 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     body->CreateFixture(&fixtureDef);
 }
 
-void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
+void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
     
@@ -102,7 +103,7 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
     fixtureDef.friction = friction;
 
     CustomUserData* data = new CustomUserData;
-    data->type = "fixture";
+    data->type = userDataType;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data);
 
     body->CreateFixture(&fixtureDef);
@@ -130,6 +131,13 @@ void Physics::executeDeleteQueue() {
         deleteQueue.pop_back();
         _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);
         Scene::getInstance().removeGameObject(id);
+    }
+}
+
+void Physics::executeSetStaticQueue() {
+    while (!setStaticQueue.empty()) {
+        setStaticQueue.back()->body.b2body->SetType(b2_staticBody);
+        setStaticQueue.pop_back();
     }
 }
 

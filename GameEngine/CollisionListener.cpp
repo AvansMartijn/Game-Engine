@@ -36,6 +36,14 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 					dynamic_pointer_cast<PickupExtension>(gameObjectA->getExtension(typeid(PickupExtension)))->onEntityCollision(gameObjectB);
 			}
 		}
+
+		if (valA->type == "glueBullet") {
+			if (valB != nullptr && valB->type == "fixture") {
+				//gameObjectB->body.b2body->SetType(b2_staticBody);
+				Physics::getInstance().setStaticQueue.push_back(gameObjectA);
+			}
+		}
+
 	}
 
 	if (valB != nullptr) {
@@ -53,6 +61,13 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 			if (valA != nullptr && valA->type == "playerFixture") {
 				if(gameObjectB->hasExtension(typeid(PickupExtension)))
 					dynamic_pointer_cast<PickupExtension>(gameObjectB->getExtension(typeid(PickupExtension)))->onEntityCollision(gameObjectA);
+			}
+		}
+
+		if (valB->type == "glueBullet") {
+			if (valA != nullptr && valA->type == "fixture") {
+				//gameObjectA->body.b2body->SetType(b2_staticBody);
+				Physics::getInstance().setStaticQueue.push_back(gameObjectB);
 			}
 		}
 	}

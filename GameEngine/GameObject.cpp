@@ -35,10 +35,10 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	//get object position
 	b2Vec2 position = body.b2body->GetPosition();
 	Rect rect = {
-		window->metersToPixels((position.x - (body.width / 2))),
-		window->metersToPixels((position.y - (body.height / 2))),
-		window->metersToPixels(body.width),
-		window->metersToPixels(body.height)
+		Scene::getInstance().metersToPixels((position.x - (body.width / 2))),
+		Scene::getInstance().metersToPixels((position.y - (body.height / 2))),
+		Scene::getInstance().metersToPixels(body.width),
+		Scene::getInstance().metersToPixels(body.height)
 	};
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);

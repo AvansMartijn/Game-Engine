@@ -26,14 +26,20 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject({});
 
 	std::map<int, std::string> textures;
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
+	textures.insert(pair<int, std::string>(0, "Blob"));
 
 	gameObject->textures = textures;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
-	Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);
-
+	//Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);
+	Physics::getInstance().addBody(gameObject, Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 1.0f, 1.0f, 0.3f, false, false, "glueBullet");
 	Scene::getInstance().addGameObject(gameObject);
+
+	int force = 50;
+	b2Vec2 vect = b2Vec2(sin(angleDeg * (b2_pi / 180)) * force, cos(angleDeg * (b2_pi / 180)) * force);
+	gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
+
+
 }
 
 void GlueManagableItem::onRightClick(int x, int y) {

@@ -38,6 +38,7 @@ public:
 	Physics& operator=(Physics&&) = delete;
 	
 	vector<TeleportObject> teleportQueue;
+	vector<shared_ptr<GameObject>> setStaticQueue;
 	vector<int> deleteQueue;
 
 	/// <summary>
@@ -79,7 +80,7 @@ public:
 	/// <param name="friction">The friction.</param>
 	/// <param name="fixed">If this body should be affected by collisions.</param>
 	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
-	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, std::string userDataType = "fixture");
 
 	/// <summary>
 	/// Reset the physics.
@@ -95,6 +96,11 @@ public:
 	/// Executes the queued deletes.
 	/// </summary>
 	void executeDeleteQueue();
+
+	/// <summary>
+	/// Executes the queued deletes.
+	/// </summary>
+	void executeSetStaticQueue();
 };
 
 #endif
