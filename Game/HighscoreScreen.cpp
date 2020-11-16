@@ -5,6 +5,7 @@
 #include "Screens.h"
 #include <IOFiles.h>
 
+
 HighScoreScreen::HighScoreScreen() {}
 
 HighScoreScreen::~HighScoreScreen() {}
@@ -35,16 +36,44 @@ void HighScoreScreen::onInit()
 void HighScoreScreen::onTick() {}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-
 	IOFiles ioFiles;
 	std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
-	
-	std::string highscores;
+	std::map<int, std::string, std::greater<int>> scores;
+
 	for (auto line : lines)
 	{
-		highscores += line;
-		highscores += " ";
+		std::stringstream ss(line);
+		std::vector<std::string> result;
+
+		while (ss.good())
+		{
+			string substr;
+			getline(ss, substr, ',');
+			result.push_back(substr);
+		}
+		scores.insert({ stoi(result[0]),result[1] });
 	}
+
+	int counter = 0;
+	std::string highscores;
+	for (auto test : scores)
+	{
+		if (counter < 10)
+		{
+			counter++;
+			highscores +=  to_string(counter) + "(";
+			highscores += to_string(test.first);
+			highscores += ", ";
+			highscores += test.second;
+			highscores += "), ";
+			highscores += " ";
+		}
+		else
+			break;
+	}
+
+	if (highscores == "")
+		highscores = "No Highscores";
 
 	_bodyText->text = highscores;
 	//_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);

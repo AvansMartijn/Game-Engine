@@ -33,7 +33,9 @@ void GameOverScreen::onTick() {}
 void GameOverScreen::onScreenShowed(vector<string> args) {
 
 	IOFiles ioFiles;
-	ioFiles.writeToFile("Highscores", to_string(Scene::getInstance().score), true);
+
+	std::string scoreRow = to_string(Scene::getInstance().score) + ",Xandor";
+	ioFiles.writeToFile("Highscores", scoreRow, true);
 
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
