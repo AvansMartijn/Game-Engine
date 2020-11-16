@@ -261,6 +261,9 @@
     <ClInclude Include="ThrusterManagableItem.h">
       <Filter>Header Files\GameObjects\Items</Filter>
     </ClInclude>
+    <ClInclude Include="GlueManageableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -411,6 +414,9 @@
       <Filter>Source Files\GameObjects\Items</Filter>
     </ClCompile>
     <ClCompile Include="ThrusterManagableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="GlueManageableItem.cpp">
       <Filter>Source Files\GameObjects\Items</Filter>
     </ClCompile>
   </ItemGroup>

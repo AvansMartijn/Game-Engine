@@ -15,8 +15,8 @@
 #include <GameEngine.h>
 #include <TextUiElement.h>
 #include "PickupExtension.h"
-#include <ThrusterManagableItem.h>
-
+#include "ThrusterManagableItem.h"
+#include "GlueManageableItem.h"
 using namespace std;
 
 class GameScreen : public AbstractScreen

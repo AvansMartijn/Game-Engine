@@ -28,7 +28,7 @@ void GameScreen::setupScreen() {
 
 void GameScreen::setupGame() {
 	// Items
-	shared_ptr<ThrusterManagableItem> dummyItem = std::make_shared<ThrusterManagableItem>();
+	shared_ptr<GlueManagableItem> dummyItem = std::make_shared<GlueManagableItem>();
 	Scene::getInstance().addItem(dummyItem);
 
 	// Player
