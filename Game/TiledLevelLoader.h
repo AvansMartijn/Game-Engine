@@ -8,6 +8,7 @@ class TiledLevelLoader : public AbstractLevelLoader
 {
 private:
 	DefaultTiledLevel _defaultTiledLevel;
+	std::string _currentName;
 public:
 	void createLevel(GameEngine gameEngine, std::string& name);
 	std::vector<TiledGameObject> getTiledGameObjects(std::string& name);

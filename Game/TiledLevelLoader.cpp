@@ -1,15 +1,20 @@
 #include "TiledLevelLoader.h"
 
 void TiledLevelLoader::createLevel(GameEngine gameEngine, std::string& name) {
-	std::vector<TiledGameObject> gameObjects = getTiledGameObjects(name);
+	// Don't reload data from the file if we already have the correct game objects.
+	if (name != _currentName) {
+		std::vector<TiledGameObject> gameObjects = getTiledGameObjects(name);
+		_defaultTiledLevel.gameObjects = gameObjects;
 
-	_defaultTiledLevel.gameObjects = gameObjects;
+		_currentName = name;
+	}
+
 	_defaultTiledLevel.createLevel(gameEngine);
 }
 
 std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(std::string& name) {
 	// TODO: Custom Properties
-	std::string fileDir = "D:\\Images\\LevelLoading\\Tilesets\\LevelTest.json";
+	std::string fileDir = AssetRegistry::getInstance().getBasePath() + "res\\levels\\" + name + ".json";
 
 	std::vector<TiledGameObject> gameObjects;
 	TiledLevel level = TiledMapBuilder().build(fileDir);
