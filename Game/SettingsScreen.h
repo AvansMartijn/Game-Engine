@@ -7,6 +7,7 @@ class SettingsScreen : public AbstractScreen
 {
 private:
 	shared_ptr<TextUiElement> _soundText;
+	shared_ptr<TextUiElement> _soundFxText;
 	
 public:
 	using AbstractScreen::AbstractScreen;

@@ -27,7 +27,7 @@ void SettingsScreen::onInit() {
 
 	
 
-	TextUiElement soundText = TextUiElement("Sound: " + to_string(SoundPlayer::getInstance().currentVolume), font, 40, { 470, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement soundText = TextUiElement("Sound Music: " + to_string(SoundPlayer::getInstance().currentVolume), font, 40, { 470, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_soundText = make_shared<TextUiElement>(soundText);
 	_uiElements.push_back(_soundText);
 
@@ -58,6 +58,48 @@ void SettingsScreen::onInit() {
 		_soundText->text = "Sound: " + to_string(SoundPlayer::getInstance().currentVolume);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
+
+
+
+
+
+	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
+	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	_soundFxText = make_shared<TextUiElement>(soundFxText);
+	_uiElements.push_back(_soundFxText);
+
+
+	ButtonUiElement soundFxPlus = ButtonUiElement("+", { 470, 350, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	soundFxPlus.registerGame(_game);
+	soundFxPlus.onClick = [this](AbstractGame* game) {
+
+		/*int volume = SoundPlayer::getInstance().currentVolume;
+
+		if (volume <= 118)
+			SoundPlayer::getInstance().changeMusicVolume(volume + 10);
+
+		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);*/
+
+	};
+	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxPlus));
+
+	ButtonUiElement soundFxMin = ButtonUiElement("-", { 470, 400, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	soundFxMin.registerGame(_game);
+	soundFxMin.onClick = [this](AbstractGame* game) {
+
+		/*int volume = SoundPlayer::getInstance().currentVolume;
+
+		if (volume >= 10)
+			SoundPlayer::getInstance().changeMusicVolume(volume - 10);
+
+		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);*/
+	};
+	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
+
+
+
+
+
 
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
