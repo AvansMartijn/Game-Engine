@@ -1,4 +1,8 @@
 #include "SettingsScreen.h"
+#include <ImageUiElement.h>
+#include <SoundPlayer.h>
+#include <ButtonUiElement.h>
+#include "Screens.h"
 
 
 SettingsScreen::SettingsScreen() {}
@@ -22,28 +26,36 @@ void SettingsScreen::onInit() {
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
 	
-	TextUiElement soundLabel = TextUiElement("Sound:", font, 40, { 470, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(soundLabel));
+
+	TextUiElement soundText = TextUiElement("Sound: " + to_string(SoundPlayer::getInstance().currentVolume), font, 40, { 470, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	_soundText = make_shared<TextUiElement>(soundText);
+	_uiElements.push_back(_soundText);
 
 
 	ButtonUiElement soundPlus = ButtonUiElement("+", { 470, 150, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundPlus.registerGame(_game);
-	soundPlus.onClick = [](AbstractGame* game) { 
-	
-		//TODO: MARTIJN
-		//sound PLUS
-		SoundPlayer::getInstance().changeMusicVolume(100);
+	soundPlus.onClick = [this](AbstractGame* game) { 
 
+		int volume = SoundPlayer::getInstance().currentVolume;
+
+		if(volume <= 118)
+			SoundPlayer::getInstance().changeMusicVolume(volume + 10);
+
+		_soundText->text = "Sound: " + to_string(SoundPlayer::getInstance().currentVolume);
+	
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundPlus));
 
 	ButtonUiElement soundMin = ButtonUiElement("-", { 470, 200, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundMin.registerGame(_game);
-	soundMin.onClick = [](AbstractGame* game) { 
+	soundMin.onClick = [this](AbstractGame* game) { 
 
-		//TODO: MARTIJN
-		SoundPlayer::getInstance().changeMusicVolume(20);
-			//sound MIN
+		int volume = SoundPlayer::getInstance().currentVolume;
+
+		if (volume >= 10)
+			SoundPlayer::getInstance().changeMusicVolume(volume - 10);
+
+		_soundText->text = "Sound: " + to_string(SoundPlayer::getInstance().currentVolume);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
 

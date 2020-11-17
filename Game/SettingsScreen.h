@@ -1,13 +1,13 @@
+#pragma once
 #include "AbstractScreen.h"
-#include <iostream>
-#include "AbstractGame.h"
-#include "ButtonUiElement.h"
-#include "TextUiElement.h"
-#include "ImageUiElement.h"
-#include "Screens.h"
+#include <TextUiElement.h>
+
 
 class SettingsScreen : public AbstractScreen
 {
+private:
+	shared_ptr<TextUiElement> _soundText;
+	
 public:
 	using AbstractScreen::AbstractScreen;
 	SettingsScreen();
