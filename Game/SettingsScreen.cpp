@@ -32,7 +32,8 @@ void SettingsScreen::onInit() {
 	
 		//TODO: MARTIJN
 		//sound PLUS
-	
+		SoundPlayer::getInstance().changeMusicVolume(100);
+
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundPlus));
 
@@ -41,7 +42,8 @@ void SettingsScreen::onInit() {
 	soundMin.onClick = [](AbstractGame* game) { 
 
 		//TODO: MARTIJN
-		//sound MIN
+		SoundPlayer::getInstance().changeMusicVolume(20);
+			//sound MIN
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
 
