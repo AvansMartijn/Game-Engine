@@ -40,6 +40,7 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 		if (valA->type == "glueBullet") {
 			if (valB != nullptr && valB->type == "fixture") {
 				//gameObjectB->body.b2body->SetType(b2_staticBody);
+				valA->type = "fixture";
 				Physics::getInstance().setStaticQueue.push_back(gameObjectA);
 			}
 		}
@@ -67,6 +68,7 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 		if (valB->type == "glueBullet") {
 			if (valA != nullptr && valA->type == "fixture") {
 				//gameObjectA->body.b2body->SetType(b2_staticBody);
+				valB->type = "fixture";
 				Physics::getInstance().setStaticQueue.push_back(gameObjectB);
 			}
 		}
