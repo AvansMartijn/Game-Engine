@@ -39,6 +39,7 @@ void IOFiles::writeToFile(std::string fileName, std::vector<std::string> lines, 
 }
 
 std::vector<std::string> IOFiles::readFromFile(std::string fileName) {
+
 	std::ifstream file(fileName + ".txt");
 	std::vector<std::string> lines;
 
@@ -51,8 +52,7 @@ std::vector<std::string> IOFiles::readFromFile(std::string fileName) {
 		}
 		file.close();
 	}
-	else {
-		throw std::runtime_error("Unable to open file");
-	}
+
+
 	return lines;
 }
