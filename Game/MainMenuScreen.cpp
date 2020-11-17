@@ -17,16 +17,17 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement startButton = ButtonUiElement("Start New Game", { (1080 / 2) - 220, 100, width, height }, bgColor, { 180, 102, 13 }, font, 40);
 	startButton.registerGame(_game);
-	startButton.onClick = [](AbstractGame* game) { 
-		game->reset();
-		game->switchScreen(Screens::MainGame); 
+	startButton.onClick = [](AbstractGame* game) {
+		game->switchScreen(Screens::MainGame, { "default" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { (1080 / 2) - 220, 200, width, height }, bgColor, { 180, 102, 13 }, font, 40);
 	loadButton.registerGame(_game);
 	// TODO: Load Game
-	loadButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	loadButton.onClick = [](AbstractGame* game) { 
+		game->switchScreen(Screens::MainGame, { "tiled" });
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 
 	ButtonUiElement helpButton = ButtonUiElement("Help", { (1080 / 2) - 220, 300 , width, height }, bgColor, { 180, 102, 13 }, font, 40);

@@ -8,7 +8,6 @@ void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
 
 	setupScreen();
-	setupGame();
 }
 
 void GameScreen::setupScreen() {
@@ -17,12 +16,24 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupGame() {
-	_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
-	_levelLoader->createLevel(_gameEngine);
+	if (_levelLoader)
+		_levelLoader->createLevel(_gameEngine);
+}
+
+void GameScreen::onScreenShowed(vector<std::string> args) {
+	for (size_t i = 0; i < args.size(); i++) {
+		std::string arg = args[i];
+
+		if (arg == "tiled")
+			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
+		else if (arg == "default")
+			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+	}
+
+	reset();
 }
 
 void GameScreen::onTick() {
-
 	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (timePassed >= 1)
@@ -41,11 +52,14 @@ void GameScreen::onTick() {
 
 	Physics::getInstance().step(timeStep, 6, 2);
 
-	handlePlayerControls();
-	calculatePlayerTexture();
+	if (Scene::getInstance().player) {
+		handlePlayerControls();
+		calculatePlayerTexture();
+	}
 }
 
 void GameScreen::handlePlayerControls() {
+
 	b2Vec2 vel = Scene::getInstance().player->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 

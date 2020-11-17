@@ -41,6 +41,11 @@ public:
 	/// </summary>
 	void setupScreen();
 	/// <summary>
+	/// Called when the user switches to this screen.
+	/// </summary>
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	virtual void onScreenShowed(vector<std::string> args = {});
+	/// <summary>
 	/// Called every tick to update properties.
 	/// </summary>
 	void onTick();

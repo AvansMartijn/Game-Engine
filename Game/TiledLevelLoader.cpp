@@ -3,6 +3,11 @@
 void TiledLevelLoader::createLevel(GameEngine gameEngine) {
 	
 	std::vector<TiledGameObject> gameObjects = getTiledGameObjects();
+
+	for (size_t gameObjectIndex = 0; gameObjectIndex < gameObjects.size(); gameObjectIndex++) {
+		TiledGameObject go = gameObjects[gameObjectIndex];
+
+	}
 	int a = 0;
 }
 
@@ -44,6 +49,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects() {
 
 	return gameObjects;
 }
+
 TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid) {
 
 	int correctTileSetIndex = -1;
