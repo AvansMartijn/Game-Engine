@@ -25,6 +25,7 @@ private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
 	shared_ptr<AbstractLevelLoader> _levelLoader;
+	std::string _name;
 public:
 	GameScreen();
 

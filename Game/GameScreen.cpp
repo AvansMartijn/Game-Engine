@@ -17,7 +17,7 @@ void GameScreen::setupScreen() {
 
 void GameScreen::setupGame() {
 	if (_levelLoader)
-		_levelLoader->createLevel(_gameEngine);
+		_levelLoader->createLevel(_gameEngine, _name);
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
@@ -28,6 +28,8 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
 		else if (arg == "default")
 			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+		else
+			_name = arg;
 	}
 
 	reset();

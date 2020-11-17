@@ -2,10 +2,15 @@
 #include "AbstractLevelLoader.h"
 #include "PlayerMoves.h"
 #include <CollisionResolutionPortalExtension.h>
+#include "DefaultLevel.h"
 
 class DefaultLevelLoader : public AbstractLevelLoader
 {
+private:
+	std::map<std::string, shared_ptr<AbstractLevel>> _levels;
 public:
-	void createLevel(GameEngine gameEngine);
+	DefaultLevelLoader();
+
+	void createLevel(GameEngine gameEngine, std::string& name);
 };
 

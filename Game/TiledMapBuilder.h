@@ -15,6 +15,6 @@ public:
 	TiledMapBuilder(TiledMapBuilder&&) = delete;
 	TiledMapBuilder& operator=(TiledMapBuilder&&) = delete;
 
-	TiledLevel build(std::string fileLocation);
+	TiledLevel build(std::string& fileLocation);
 };
 

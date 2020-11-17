@@ -2,14 +2,15 @@
 #include "AbstractLevelLoader.h"
 #include "TiledMapBuilder.h"
 #include "TiledGameObject.h"
+#include "DefaultTiledLevel.h"
 
 class TiledLevelLoader : public AbstractLevelLoader
 {
 private:
-
+	DefaultTiledLevel _defaultTiledLevel;
 public:
-	void createLevel(GameEngine gameEngine);
-	std::vector<TiledGameObject> getTiledGameObjects();
-	TiledTileSet findTileSetForGid(TiledLevel& level, uint32_t gid);
-	TiledTile findTileForGid(TiledTileSet& tileSet, uint32_t gid);
+	void createLevel(GameEngine gameEngine, std::string& name);
+	std::vector<TiledGameObject> getTiledGameObjects(std::string& name);
+	TiledTileSet findTileSetForGid(TiledLevel& level, uint32_t gid) const;
+	TiledTile findTileForGid(TiledTileSet& tileSet, uint32_t gid) const;
 };

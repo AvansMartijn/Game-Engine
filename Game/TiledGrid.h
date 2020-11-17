@@ -9,7 +9,6 @@ public:
 	int width;
 };
 
-
 inline void from_json(const nlohmann::json& j, TiledGrid& g) {
 	j.at("height").get_to(g.height);
 	j.at("orientation").get_to(g.orientation);

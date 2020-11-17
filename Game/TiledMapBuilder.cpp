@@ -6,7 +6,7 @@ TiledMapBuilder::~TiledMapBuilder() {
 		_inputStream.close();
 }
 
-TiledLevel TiledMapBuilder::build(std::string fileLocation) {
+TiledLevel TiledMapBuilder::build(std::string& fileLocation) {
 	_inputStream.open(fileLocation);
 
 	TiledLevel level = json::parse(_inputStream).get<TiledLevel>();

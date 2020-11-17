@@ -160,9 +160,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractLevel.cpp" />
     <ClCompile Include="AbstractLevelLoader.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="DefaultLevel.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
+    <ClCompile Include="DefaultTiledLevel.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
@@ -176,9 +179,12 @@
     <ClCompile Include="TiledMapBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractLevel.h" />
     <ClInclude Include="AbstractLevelLoader.h" />
     <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="DefaultLevel.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
+    <ClInclude Include="DefaultTiledLevel.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />

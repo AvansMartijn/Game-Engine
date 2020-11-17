@@ -43,6 +43,12 @@
     <Filter Include="Header Files\LevelLoader\Tiled\Data">
       <UniqueIdentifier>{cc865ce4-2117-48a7-a37b-417191ba9e31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LevelLoader\Levels">
+      <UniqueIdentifier>{b341d2a5-23d5-4b08-8d1f-84b7b83ec989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LevelLoader\Levels">
+      <UniqueIdentifier>{0dad9f2b-8764-4f5e-844a-82211abfbdca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,6 +92,15 @@
     </ClCompile>
     <ClCompile Include="TiledMapBuilder.cpp">
       <Filter>Source Files\LevelLoader\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultLevel.cpp">
+      <Filter>Source Files\LevelLoader\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractLevel.cpp">
+      <Filter>Source Files\LevelLoader\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultTiledLevel.cpp">
+      <Filter>Source Files\LevelLoader\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +172,15 @@
     </ClInclude>
     <ClInclude Include="TiledGameObject.h">
       <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultLevel.h">
+      <Filter>Header Files\LevelLoader\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractLevel.h">
+      <Filter>Header Files\LevelLoader\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultTiledLevel.h">
+      <Filter>Header Files\LevelLoader\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

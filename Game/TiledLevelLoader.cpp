@@ -1,20 +1,18 @@
 #include "TiledLevelLoader.h"
 
-void TiledLevelLoader::createLevel(GameEngine gameEngine) {
-	
-	std::vector<TiledGameObject> gameObjects = getTiledGameObjects();
+void TiledLevelLoader::createLevel(GameEngine gameEngine, std::string& name) {
+	std::vector<TiledGameObject> gameObjects = getTiledGameObjects(name);
 
-	for (size_t gameObjectIndex = 0; gameObjectIndex < gameObjects.size(); gameObjectIndex++) {
-		TiledGameObject go = gameObjects[gameObjectIndex];
-
-	}
-	int a = 0;
+	_defaultTiledLevel.gameObjects = gameObjects;
+	_defaultTiledLevel.createLevel(gameEngine);
 }
 
-std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects() {
+std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(std::string& name) {
 	// TODO: Custom Properties
+	std::string fileDir = "D:\\Images\\LevelLoading\\Tilesets\\LevelTest.json";
+
 	std::vector<TiledGameObject> gameObjects;
-	TiledLevel level = TiledMapBuilder().build("D:\\Images\\LevelLoading\\Tilesets\\LevelTest.json");
+	TiledLevel level = TiledMapBuilder().build(fileDir);
 
 	for (size_t layerIndex = 0; layerIndex < level.layers.size(); layerIndex++) {
 		TiledLayer layer = level.layers[layerIndex];
@@ -50,7 +48,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects() {
 	return gameObjects;
 }
 
-TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid) {
+TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid) const {
 
 	int correctTileSetIndex = -1;
 	for (size_t tileSetIndex = 0; tileSetIndex < level.tileSets.size(); tileSetIndex++) {
@@ -73,7 +71,7 @@ TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid
 	return level.tileSets[correctTileSetIndex];
 }
 
-TiledTile TiledLevelLoader::findTileForGid(TiledTileSet& tileSet, uint32_t gid) {
+TiledTile TiledLevelLoader::findTileForGid(TiledTileSet& tileSet, uint32_t gid) const {
 	int correctTileIndex = -1;
 	for (size_t tileIndex = 0; tileIndex < tileSet.tileCount; tileIndex++) {
 		TiledTile tile = tileSet.tiles[tileIndex];
