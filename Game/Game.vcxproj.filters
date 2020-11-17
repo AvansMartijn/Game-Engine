@@ -69,6 +69,9 @@
     <ClCompile Include="GameFinishedScreen.cpp">
       <Filter>Source Files\Screens\LevelEnd</Filter>
     </ClCompile>
+    <ClCompile Include="SettingsScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="GameFinishedScreen.h">
       <Filter>Header Files\Screens\LevelEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScreen.h">
+      <Filter>Header Files\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

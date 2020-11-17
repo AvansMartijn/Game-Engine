@@ -183,6 +183,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="SettingsScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreditsScreen.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="SettingsScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

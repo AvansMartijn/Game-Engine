@@ -53,6 +53,5 @@ std::vector<std::string> IOFiles::readFromFile(std::string fileName) {
 		file.close();
 	}
 
-
 	return lines;
 }

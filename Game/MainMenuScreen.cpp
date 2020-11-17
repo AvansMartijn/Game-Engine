@@ -47,7 +47,7 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement settingsButton = ButtonUiElement("Settings", { 700, 375, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	settingsButton.registerGame(_game);
-	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
+	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Settings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
 
 	ButtonUiElement exitbutton = ButtonUiElement("Exit", { 700, 425, width, height }, bgColor, { 255, 255, 255 }, font, 25);

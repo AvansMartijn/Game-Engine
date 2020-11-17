@@ -9,5 +9,6 @@ enum Screens {
 	GameOver,
 	KeyBindings,
 	HighScore,
-	GameFinished
+	GameFinished,
+	Settings
 };
