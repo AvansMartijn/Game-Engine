@@ -35,12 +35,40 @@ void SoundPlayer::pauseMusic() {
 	}
 }
 
+void SoundPlayer::changeMusicVolume(int volume){
+	if (volume > 128) {
+		volume = 128;
+	}
+	if (volume < 0) {
+		volume = 0;
+	}
+
+	Mix_VolumeMusic(volume);
+}
+
+void playTrackNow() {
+	Mix_Music* musicTrack = SoundPlayer::getInstance().getMusicTrack(SoundPlayer::getInstance().playingTrackKey);
+	Mix_FadeInMusic(musicTrack, -1, 500);
+}
+
 void SoundPlayer::playMusicTrack(const std::string& musicTrackKey){
-	
-	Mix_Music* musicTrack = getMusicTrack(musicTrackKey);
-	Mix_PlayMusic(musicTrack, -1);
+	// Add to playlist
+	playingTrackKey = musicTrackKey;
+
+	if (Mix_PlayingMusic() == 0)
+	{
+		playTrackNow();
+	}
+	//If music is being played
+	else
+	{
+		Mix_HookMusicFinished(playTrackNow);
+		Mix_FadeOutMusic(500);
+	}
 	
 }
+
+
 
 void SoundPlayer::playSFX(const std::string& sfxTrackKey){
 	Mix_Chunk* sfx = getSfxTrack(sfxTrackKey);

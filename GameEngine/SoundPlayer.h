@@ -17,7 +17,6 @@ private:
 	static SoundPlayer instance;
 	std::map<std::string, Mix_Music*> _musicTracks;
 	std::map<std::string, Mix_Chunk*> _sfx;
-	Mix_Music* getMusicTrack(const std::string& musicTrackKey);
 	Mix_Chunk* getSfxTrack(const std::string& sfxTrackKey);
 
 public:
@@ -28,6 +27,8 @@ public:
 	SoundPlayer& operator=(const SoundPlayer&) = delete;
 	SoundPlayer& operator=(SoundPlayer&&) = delete;
 
+	std::string playingTrackKey;
+	Mix_Music* getMusicTrack(const std::string& musicTrackKey);
 	/// <summary>
 	/// Adds the music track to the registry.
 	/// </summary>
@@ -45,11 +46,14 @@ public:
 
 	void playMusicTrack(const std::string& musicTrackKey);
 
+
 	void playSFX(const std::string& sfxTrackKey);
 
 	void openAudio();
 
 	void pauseMusic();
+
+	void changeMusicVolume(int volume);
 
 };
 

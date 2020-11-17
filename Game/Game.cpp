@@ -78,7 +78,7 @@ void Game::switchScreen(int screenIndex, vector<std::string> args) {
 
 	const std::string& trackKey = screens.at(_activeScreen)->backgroundTrackKey;
 	
-	if (trackKey != "") {
+	if (trackKey != "" && trackKey != SoundPlayer::getInstance().playingTrackKey) {
 		playMusicTrack(trackKey);
 	}
 }
