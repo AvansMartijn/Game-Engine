@@ -6,8 +6,9 @@ GameOverScreen::GameOverScreen() {}
 
 GameOverScreen::~GameOverScreen() {}
 
-void GameOverScreen::onInit() {
-	const Color bgColor = { 66, 99, 116 };
+void GameOverScreen::onInit()
+{
+	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 	backgroundTrackKey = "Game_Over";
 
@@ -15,21 +16,21 @@ void GameOverScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement headerText = TextUiElement("  GAME OVER: YOU LOSE  ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	TextUiElement headerText = TextUiElement("Game Over, you lost", font, 60, { 0, 0, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	TextUiElement bodyText = TextUiElement("  Score (DOESN'T COUNT): ", font, 48, { 100, 100, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	TextUiElement bodyText = TextUiElement("Score: 0", font, 40, { 100, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
 
-	TextUiElement nameLabelText = TextUiElement("  Name:   ", font, 48, { 100, 200, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	TextUiElement nameLabelText = TextUiElement("Name:", font, 40, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
 
-	TextUiElement nameText = TextUiElement(" ", font, 48, { 100, 300, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	TextUiElement nameText = TextUiElement(" ", font, 40, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
 
-	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
@@ -39,7 +40,7 @@ void GameOverScreen::onTick() {}
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
 
-	_bodyText->text = "  Score (DOESN'T COUNT): " + to_string(Scene::getInstance().score);
+	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
 void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

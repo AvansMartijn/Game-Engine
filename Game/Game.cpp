@@ -22,7 +22,12 @@ void Game::onInit() {
 	registerTexture("Gate_Cropped", "res/gfx/Assets/Enviroment/Gate_Cropped.png");
 	registerTexture("Tile_Interior_Ground_Center", "res/gfx/Assets/Tiles/Interior/Ground_Center.png");
 	registerTexture("Border", "res/gfx/Border.png");
-	registerTexture("Background", "res/gfx/bg.png");
+  
+	registerTexture("Background", "res/gfx/Background.png");
+	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");
+	registerTexture("Logo", "res/gfx/LatropLogo.png");
+	registerTexture("Line", "res/gfx/Line.png");
+	registerTexture("LogoWesley", "res/gfx/LatropLogoWesley.png");
 	//Font
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
