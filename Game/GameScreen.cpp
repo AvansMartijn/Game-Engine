@@ -16,7 +16,7 @@ GameScreen::GameScreen() {}
 
 void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
-
+	backgroundTrackKey = "Background_1";
 	setupScreen();
 	setupGame();
 }
@@ -167,13 +167,16 @@ void GameScreen::handlePlayerControls() {
 	if (keystate[SDL_SCANCODE_S] || keystate[SDL_SCANCODE_DOWN])
 		vel.x = 0;
 
-	if (keystate[SDL_SCANCODE_F])
+	if (keystate[SDL_SCANCODE_F]) {
 		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
+		SoundPlayer::getInstance().playSFX("Thruster_Sound");
+	}
 
 	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
 			vel.y = -5;
 			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::JUMPING;
+			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
 	Scene::getInstance().player->body.b2body->SetLinearVelocity(vel);

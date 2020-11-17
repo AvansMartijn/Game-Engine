@@ -238,6 +238,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="SoundExtension.h" />
+    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="Talker.h" />
@@ -295,6 +296,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="SoundExtension.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />

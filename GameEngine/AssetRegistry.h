@@ -20,6 +20,7 @@ private:
 
 	std::map<std::string, SDL_Texture*> _textures;
 	std::map<std::string, std::string> _fonts;
+
 public:
 	static AssetRegistry& getInstance() { return instance; }
 
@@ -55,5 +56,7 @@ public:
 	/// <param name="fontKey">The font key.</param>
 	/// <returns>The font path.</returns>
 	std::string getFontPath(std::string fontKey);
+
+
 };
 

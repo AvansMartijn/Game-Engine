@@ -21,3 +21,5 @@ SDL_Texture* AssetRegistry::getTexture(std::string textureKey) {
 std::string AssetRegistry::getFontPath(std::string fontKey) {
 	return _fonts[fontKey];
 }
+
+

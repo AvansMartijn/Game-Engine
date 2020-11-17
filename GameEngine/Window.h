@@ -81,7 +81,7 @@ public:
 	/// <param name="fontSize">The size of the font.</param>
 	/// <returns>The font.</returns>
 	TTF_Font* getFont(std::string fontKey, int fontSize);
-
+	
 	/// <summary>
 	/// Renders a rectangle on the screen.
 	/// </summary>

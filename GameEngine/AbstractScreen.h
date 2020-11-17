@@ -24,6 +24,8 @@ public:
 	AbstractScreen();
 	~AbstractScreen();
 
+	std::string backgroundTrackKey = "";
+
 	/// <summary>
 	/// Called one time to create all objects.
 	/// </summary>
@@ -72,5 +74,6 @@ public:
 	/// Resets the game.
 	/// </summary>
 	virtual void reset();
+
 };
 
