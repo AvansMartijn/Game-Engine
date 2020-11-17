@@ -42,7 +42,7 @@ void SoundPlayer::changeMusicVolume(int volume){
 	if (volume < 0) {
 		volume = 0;
 	}
-
+	currentVolume = volume;
 	Mix_VolumeMusic(volume);
 }
 

@@ -28,6 +28,8 @@ public:
 	SoundPlayer& operator=(SoundPlayer&&) = delete;
 
 	std::string playingTrackKey;
+	int currentVolume = 60;
+
 	Mix_Music* getMusicTrack(const std::string& musicTrackKey);
 	/// <summary>
 	/// Adds the music track to the registry.
