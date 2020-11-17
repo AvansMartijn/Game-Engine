@@ -17,6 +17,15 @@ void ButtonUiElement::preRender(const unique_ptr<Window>& window) {
 }
 
 void ButtonUiElement::render(const unique_ptr<Window>& window) {
+
+    // Draw a line arround the box // DEBUG OPTION
+    Rect _border = _rect;
+    _border.x -= 3;
+    _border.y -= 3;
+    _border.h += 6;
+    _border.w += 6;
+    window->renderRectangle(_border, Color{ 0, 0, 0, 255 });
+
     window->renderRectangle(_rect, _backgroundColor);
 
     Rect txtRect = _rect;
