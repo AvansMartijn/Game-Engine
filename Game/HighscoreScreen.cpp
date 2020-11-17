@@ -56,13 +56,11 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
 	std::multimap<int, std::string, std::greater<int>> scores;
 
-	for (auto line : lines)
-	{
+	for (auto line : lines) {
 		std::stringstream stringstream(line);
 		std::vector<std::string> result;
 
-		while (stringstream.good())
-		{
+		while (stringstream.good()) {
 			string substr;
 			getline(stringstream, substr, ',');
 			result.push_back(substr);
@@ -73,16 +71,14 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	int counter = 0;
 	std::string highscore;
 
-	for (auto test : scores)
-	{
+	for (auto score : scores) {
 		highscore.clear();
-		if (counter < 5)
-		{
+		if (counter < 5) {
 			counter++;
 			highscore +=  to_string(counter) + ". ";
-			highscore += to_string(test.first);
+			highscore += to_string(score.first);
 			highscore += ", ";
-			highscore += test.second;
+			highscore += score.second;
 			highscore += " ";
 
 			if (counter == 1)
@@ -96,8 +92,7 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 			if (counter == 5)
 				_row5Text->text = highscore;
 		}
-		else
-		{
+		else {
 			break;
 		}
 	}
