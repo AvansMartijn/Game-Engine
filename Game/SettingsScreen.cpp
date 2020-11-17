@@ -73,12 +73,12 @@ void SettingsScreen::onInit() {
 	soundFxPlus.registerGame(_game);
 	soundFxPlus.onClick = [this](AbstractGame* game) {
 
-		/*int volume = SoundPlayer::getInstance().currentVolume;
+		int volume = SoundPlayer::getInstance().currentVolume;
 
 		if (volume <= 118)
 			SoundPlayer::getInstance().changeMusicVolume(volume + 10);
 
-		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);*/
+		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);
 
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxPlus));
@@ -87,12 +87,12 @@ void SettingsScreen::onInit() {
 	soundFxMin.registerGame(_game);
 	soundFxMin.onClick = [this](AbstractGame* game) {
 
-		/*int volume = SoundPlayer::getInstance().currentVolume;
+		int volume = SoundPlayer::getInstance().currentVolume;
 
 		if (volume >= 10)
 			SoundPlayer::getInstance().changeMusicVolume(volume - 10);
 
-		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);*/
+		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
 
