@@ -6,6 +6,7 @@ MainMenuScreen::~MainMenuScreen() {}
 void MainMenuScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
+	backgroundTrackKey = "Background_Menu";
 	const int width = 200;
 	const int height = 40;
 
