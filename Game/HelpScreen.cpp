@@ -22,7 +22,7 @@ void HelpScreen::onInit() {
 	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
 
-	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
