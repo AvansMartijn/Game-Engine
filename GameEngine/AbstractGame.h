@@ -13,6 +13,7 @@
 #include <vector>
 #include "Window.h"
 #include <stack>
+#include "SoundPlayer.h"
 
 using namespace std;
 
@@ -73,6 +74,8 @@ public:
 	/// <param name="musicTrackKey">Soundtrack key</param>
 	/// <param name="trackPath">Soundtrak path</param>
 	void registerMusicTrack(const std::string& musicTrackKey, const std::string& trackPath);
+
+	void registerSFXTrack(const std::string& sfxTrackKey, const std::string& trackPath);
 
 	void playMusicTrack(const std::string& musicTrackKey);
 

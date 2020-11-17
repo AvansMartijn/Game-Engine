@@ -12,6 +12,8 @@ void HighScoreScreen::onInit()
 {
 	const Color bgColor = { 66, 99, 116 };
 	const string font = "Portal";
+	backgroundTrackKey = "Game_Over";
+
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));

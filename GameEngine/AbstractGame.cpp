@@ -4,6 +4,7 @@
 AbstractGame::AbstractGame(const char* title, int width, int height) {
 	_window = unique_ptr<Window>(new Window("Latrop 2", 1080, 720));
 	_activeScreen = 0;
+	SoundPlayer::getInstance().openAudio();
 }
 
 AbstractGame::~AbstractGame() {}
@@ -68,33 +69,17 @@ void AbstractGame::registerFont(std::string fontKey, std::string fontPath) {
 
 void AbstractGame::registerMusicTrack(const std::string& musicTrackKey, const std::string& trackPath)
 {
-	_window->registerSoundTrack(musicTrackKey, trackPath);
+	SoundPlayer::getInstance().registerMusicTrack(musicTrackKey, trackPath);
+}
+
+void AbstractGame::registerSFXTrack(const std::string& sfxTrackKey, const std::string& trackPath)
+{
+	SoundPlayer::getInstance().registerSFXTrack(sfxTrackKey, trackPath);
 }
 
 void AbstractGame::playMusicTrack(const std::string& musicTrackKey)
 {
-	Mix_Music* musicTrack = _window->getSoundTrack(musicTrackKey);
-	if (Mix_PlayingMusic() == 0)
-	{
-		//Play the music
-		Mix_PlayMusic(musicTrack, -1);
-	}
-	//If music is being played
-	else
-	{
-		//If the music is paused
-		if (Mix_PausedMusic() == 1)
-		{
-			//Resume the music
-			Mix_ResumeMusic();
-		}
-		//If the music is playing
-		else
-		{
-			//Pause the music
-			Mix_PauseMusic();
-		}
-	}
+	SoundPlayer::getInstance().playMusicTrack(musicTrackKey);
 }
 
 void AbstractGame::reset() {

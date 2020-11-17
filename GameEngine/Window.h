@@ -81,11 +81,7 @@ public:
 	/// <param name="fontSize">The size of the font.</param>
 	/// <returns>The font.</returns>
 	TTF_Font* getFont(std::string fontKey, int fontSize);
-
-	void registerSoundTrack(const std::string& trackKey, const std::string trackPath);
 	
-	Mix_Music* getSoundTrack(const std::string& trackKey);
-
 	/// <summary>
 	/// Renders a rectangle on the screen.
 	/// </summary>

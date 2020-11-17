@@ -13,6 +13,7 @@
 #include "ImageUiElement.h"
 #include <chrono>
 #include <GameEngine.h>
+#include "SoundPlayer.h";
 
 using namespace std;
 
