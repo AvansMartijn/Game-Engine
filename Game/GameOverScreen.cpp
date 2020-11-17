@@ -10,6 +10,8 @@ void GameOverScreen::onInit()
 {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
+	backgroundTrackKey = "Game_Over";
+
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));

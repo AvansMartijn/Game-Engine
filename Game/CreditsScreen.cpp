@@ -7,6 +7,8 @@ void CreditsScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 	const string fontPortal = "Portal";
+	backgroundTrackKey = "Game_Over";
+
 
 	const string teamMembers[]{ "Lars (laari)", "Wesley (bob)", "Martijn (mardy.tk/wonenzoals)", "Xandor (jeboyx)", "Mike (King K Rool)", "Chiel (MC Vaper)" };
 	int posy = 100, posx = 100;
