@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "Window.h"
 #include <windows.h>
+#include "dirent.h"
 
 Window::Window(const char* title, int width, int height) {
 	_width = width;
@@ -24,6 +25,17 @@ int Window::getHeight() const {
 
 void Window::registerTexture(std::string textureKey, std::string texturePath) {
 	AssetRegistry::getInstance().registerTexture(textureKey, getTexture(texturePath));
+}
+
+void Window::registerTextures(std::string prefix, std::string directory, bool isDeep) {
+	std::vector<FileData> files = AssetRegistry::getInstance().getFilesInDirectory(directory, isDeep);
+
+	for (size_t i = 0; i < files.size(); i++) {
+		if (prefix ==  "")
+			registerTexture(files[i].key, files[i].path);
+		else
+			registerTexture(prefix + "_" + files[i].key, files[i].path);
+	}
 }
 
 void Window::registerFont(std::string fontKey, std::string fontPath) {

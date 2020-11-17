@@ -88,6 +88,9 @@
     <Filter Include="Header Files\GameObjects\Extensions\Movement">
       <UniqueIdentifier>{00a84f6d-5273-4430-a09c-726e8344515e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{398d20c3-1841-4ef1-a6f4-1c201b6f3933}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -246,6 +249,12 @@
     <ClInclude Include="MovementType.h">
       <Filter>Header Files\GameObjects\Extensions\Movement</Filter>
     </ClInclude>
+    <ClInclude Include="dirent.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="FileData.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -388,6 +397,9 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FileData.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

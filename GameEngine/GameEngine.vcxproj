@@ -218,6 +218,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="dirent.h" />
+    <ClInclude Include="FileData.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -272,6 +274,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DefaultEntity.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />

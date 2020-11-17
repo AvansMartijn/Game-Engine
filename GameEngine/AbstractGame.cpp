@@ -66,6 +66,10 @@ void AbstractGame::registerFont(std::string fontKey, std::string fontPath) {
 	_window->registerFont(fontKey, fontPath);
 }
 
+void AbstractGame::registerTextures(std::string prefix, std::string directory, bool isDeep) {
+	_window->registerTextures(prefix, directory, isDeep);
+}
+
 void AbstractGame::reset() {
 	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->reset();

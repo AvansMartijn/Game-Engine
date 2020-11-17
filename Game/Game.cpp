@@ -27,6 +27,7 @@ void Game::onInit() {
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
+	registerTextures("Tiled", "res/levels/assets/", true);
 
 	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->preRender(_window);

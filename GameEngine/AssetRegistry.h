@@ -9,6 +9,9 @@
 #include <map>
 #include <SDL_image.h>
 #include <iostream>
+#include "dirent.h"
+#include <vector>
+#include "FileData.h"
 
 class Window;
 class GAMEENGINE_AssetRegistry AssetRegistry
@@ -55,5 +58,19 @@ public:
 	/// <param name="fontKey">The font key.</param>
 	/// <returns>The font path.</returns>
 	std::string getFontPath(std::string fontKey);
+
+	/// <summary>
+	/// Get's the base path.
+	/// </summary>
+	/// <returns>The base path.</returns>
+	std::string getBasePath() const;
+
+	/// <summary>
+	/// Get's all file locations in the given directory.
+	/// </summary>
+	/// <param name="directory">The directory.</param>
+	/// <param name="isDeep">If we should scan the directories within this directory.</param>
+	/// <returns>A list with all file data.</returns>
+	std::vector<FileData> getFilesInDirectory(std::string& directory, bool isDeep);
 };
 
