@@ -22,7 +22,7 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::setupScreen() {
-	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	ImageUiElement backgroundImg = ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 }
 
