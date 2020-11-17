@@ -10,30 +10,32 @@ HighScoreScreen::~HighScoreScreen() {}
 
 void HighScoreScreen::onInit()
 {
-	const Color bgColor = { 66, 99, 116 };
+	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement headerText = TextUiElement("  HIGHSCORES   ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
+	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	TextUiElement bodyText = TextUiElement("  Score: ", "Portal", 48, { 100, 100, 0, 0 }, { 180, 102, 13 }, { 7, 16, 29 }, true);
+	TextUiElement bodyText = TextUiElement("Level 1", font, 25, { 100, 160, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, true);
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
 
+	ImageUiElement backgroundImg2 = ImageUiElement("Line", { 230 , 200, 620, 1});
+	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg2));
 
-	ButtonUiElement quitGameButton = ButtonUiElement("Back", { (1080 / 2) - 200, 500, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
-	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	backButton.registerGame(_game);
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
 void HighScoreScreen::onTick() {}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+	//_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
 void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}

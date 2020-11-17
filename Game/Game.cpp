@@ -26,6 +26,7 @@ void Game::onInit() {
 	registerTexture("Background", "res/gfx/Background.png");
 	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");
 	registerTexture("Logo", "res/gfx/LatropLogo.png");
+	registerTexture("Line", "res/gfx/Line.png");
 	registerTexture("LogoWesley", "res/gfx/LatropLogoWesley.png");
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
