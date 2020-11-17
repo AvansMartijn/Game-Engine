@@ -5,7 +5,12 @@
 class HighScoreScreen : public AbstractScreen
 {
 private:
-	shared_ptr<TextUiElement> _bodyText;
+	shared_ptr<TextUiElement> _row1Text;
+	shared_ptr<TextUiElement> _row2Text;
+	shared_ptr<TextUiElement> _row3Text;
+	shared_ptr<TextUiElement> _row4Text;
+	shared_ptr<TextUiElement> _row5Text;
+
 public:
 	using AbstractScreen::AbstractScreen;
 	HighScoreScreen();

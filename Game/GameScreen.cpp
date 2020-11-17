@@ -134,7 +134,7 @@ void GameScreen::onTick() {
 	}
 
 	if (Scene::getInstance().gameOver) {
-		_game->switchScreen(Screens::GameOver);
+		_game->switchScreen(Screens::GameFinished);
 		Scene::getInstance().gameOver = false;
 	}
 
