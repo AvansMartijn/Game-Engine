@@ -5,15 +5,15 @@
 #include <ButtonUiElement.h>
 #include "Screens.h"
 
-class GameOverScreen : public AbstractScreen
+class GameFinishedScreen : public AbstractScreen
 {
 private:
 	shared_ptr<TextUiElement> _bodyText;
 	shared_ptr<TextUiElement> _nameText;
 public:
 	using AbstractScreen::AbstractScreen;
-	GameOverScreen();
-	~GameOverScreen();
+	GameFinishedScreen();
+	~GameFinishedScreen();
 
 	/// <summary>
 	/// Called one time to create all objects.
