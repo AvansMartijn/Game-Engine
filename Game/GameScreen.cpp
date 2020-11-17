@@ -19,11 +19,20 @@ void GameScreen::onInit() {
 
 	setupScreen();
 	setupGame();
+	setupHUD();
 }
 
 void GameScreen::setupScreen() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+}
+
+void GameScreen::setupHUD() {
+	const Color bgColor = { 66, 99, 116 };
+	const string font = "Paint";
+	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, bgColor, true);
+	_uiElements.push_back(make_shared<TextUiElement>(title));
+
 }
 
 void GameScreen::setupGame() {
