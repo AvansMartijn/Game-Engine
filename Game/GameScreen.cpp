@@ -83,7 +83,7 @@ void GameScreen::handlePlayerControls() {
 		vel.x = 0;
 
 	if (keystate[SDL_SCANCODE_F])
-		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
+		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50.0f : -50.0f;
 
 	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {

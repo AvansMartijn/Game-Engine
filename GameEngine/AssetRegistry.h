@@ -71,6 +71,6 @@ public:
 	/// <param name="directory">The directory.</param>
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	/// <returns>A list with all file data.</returns>
-	std::vector<FileData> getFilesInDirectory(std::string& directory, bool isDeep);
+	std::vector<FileData> getFilesInDirectory(std::string& directory, bool isDeep) const;
 };
 

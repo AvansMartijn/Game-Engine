@@ -3,21 +3,28 @@
 void TiledLevelLoader::createLevel(GameEngine gameEngine, std::string& name) {
 	// Don't reload data from the file if we already have the correct game objects.
 	if (name != _currentName) {
-		std::vector<TiledGameObject> gameObjects = getTiledGameObjects(name);
+		TiledLevel tiledLevel = getTiledLevel(name);
+		std::vector<TiledGameObject> gameObjects = getTiledGameObjects(tiledLevel);
 		_defaultTiledLevel.gameObjects = gameObjects;
-
+		_defaultTiledLevel.tileWidth = tiledLevel.tileWidth;
+		_defaultTiledLevel.tileHeight = tiledLevel.tileHeight;
 		_currentName = name;
 	}
 
 	_defaultTiledLevel.createLevel(gameEngine);
 }
 
-std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(std::string& name) {
+TiledLevel TiledLevelLoader::getTiledLevel(std::string& name) {
 	// TODO: Custom Properties
 	std::string fileDir = AssetRegistry::getInstance().getBasePath() + "res\\levels\\" + name + ".json";
 
-	std::vector<TiledGameObject> gameObjects;
 	TiledLevel level = TiledMapBuilder().build(fileDir);
+
+	return level;
+}
+
+std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(TiledLevel& level) {
+	std::vector<TiledGameObject> gameObjects;
 
 	for (size_t layerIndex = 0; layerIndex < level.layers.size(); layerIndex++) {
 		TiledLayer layer = level.layers[layerIndex];
@@ -41,7 +48,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(std::string& 
 				TiledTile tile = findTileForGid(tileSet, gid);
 
 				TiledGameObject tiledGameObject = { x, y, tile.imageWidth, tile.imageHeight, tile.image };
-
+		
 				gameObjects.push_back(tiledGameObject);
 			}
 
@@ -53,7 +60,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(std::string& 
 	return gameObjects;
 }
 
-TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid) const {
+TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, int gid) const {
 
 	int correctTileSetIndex = -1;
 	for (size_t tileSetIndex = 0; tileSetIndex < level.tileSets.size(); tileSetIndex++) {
@@ -65,9 +72,8 @@ TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid
 			if (tileSet.firstGid > correctTileSet.firstGid && tileSet.firstGid <= gid)
 				correctTileSetIndex = tileSetIndex;
 		}
-		else if (tileSet.firstGid <= gid) {
+		else if (tileSet.firstGid <= gid)
 			correctTileSetIndex = tileSetIndex;
-		}
 	}
 
 	if (correctTileSetIndex == -1)
@@ -76,10 +82,11 @@ TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, uint32_t gid
 	return level.tileSets[correctTileSetIndex];
 }
 
-TiledTile TiledLevelLoader::findTileForGid(TiledTileSet& tileSet, uint32_t gid) const {
+TiledTile TiledLevelLoader::findTileForGid(TiledTileSet& tileSet, int gid) const {
 	int correctTileIndex = -1;
-	for (size_t tileIndex = 0; tileIndex < tileSet.tileCount; tileIndex++) {
+	for (size_t tileIndex = 0; tileIndex < tileSet.tiles.size(); tileIndex++) {
 		TiledTile tile = tileSet.tiles[tileIndex];
+
 		if (tile.id == gid - tileSet.firstGid) {
 			correctTileIndex = tileIndex;
 

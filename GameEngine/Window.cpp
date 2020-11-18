@@ -83,6 +83,8 @@ void Window::renderTexture(std::string textureKey, Rect rect,float angle, bool f
 		 flip = SDL_FLIP_NONE;
 
 	SDL_RenderCopyEx(_renderer.get(), AssetRegistry::getInstance().getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
+
+	// TODO: Please add a debug variable, these can get really annoying.
 	Color color1 = { 255, 0, 0, 1 };
 	Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
 	renderRectangle(centerrect, color1);

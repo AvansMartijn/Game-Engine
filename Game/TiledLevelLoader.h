@@ -11,7 +11,8 @@ private:
 	std::string _currentName;
 public:
 	void createLevel(GameEngine gameEngine, std::string& name);
-	std::vector<TiledGameObject> getTiledGameObjects(std::string& name);
-	TiledTileSet findTileSetForGid(TiledLevel& level, uint32_t gid) const;
-	TiledTile findTileForGid(TiledTileSet& tileSet, uint32_t gid) const;
+	TiledLevel getTiledLevel(std::string& name);
+	std::vector<TiledGameObject> getTiledGameObjects(TiledLevel& tiledLevel);
+	TiledTileSet findTileSetForGid(TiledLevel& level, int gid) const;
+	TiledTile findTileForGid(TiledTileSet& tileSet, int gid) const;
 };
