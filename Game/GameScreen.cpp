@@ -35,6 +35,10 @@ void GameScreen::setupGame() {
 	shared_ptr<ThrusterManagableItem> thrusterItem = std::make_shared<ThrusterManagableItem>();
 	Scene::getInstance().addItem(thrusterItem);
 
+	// Items
+	shared_ptr<PortalManagableItem> portalItem = std::make_shared<PortalManagableItem>();
+	Scene::getInstance().addItem(portalItem);
+
 	// Player
 	std::map<int, std::string> textures;
 	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
@@ -59,6 +63,11 @@ void GameScreen::setupGame() {
 	textures.clear();
 	shared_ptr<GameObject> weaponThruster = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
+
+	// Weapon Block
+	textures.clear();
+	shared_ptr<GameObject> weaponPortal = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
+		8, 17.5f, portalItem->getWidth(), portalItem->getHeight(), "pickupSensor");
 
 	// Normal Blocks
 	textures.clear();
@@ -125,11 +134,14 @@ void GameScreen::setupGame() {
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal1 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
 		12, 17.5f, 3, 1, "portalSensor");
+	Scene::getInstance().portalA = portal1;
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
 	shared_ptr<GameObject> portal2 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
 		15, 1.5f, 3, 1, "portalSensor");
+	Scene::getInstance().portalB = portal2;
+
 
 	textures.clear();
 	textures.insert(pair<int, std::string>(0, "Gate_Cropped"));
@@ -142,6 +154,7 @@ void GameScreen::setupGame() {
 	// Item Binding
 	dynamic_pointer_cast<PickupExtension>(weaponGlue->getExtension(typeid(PickupExtension)))->setItem(glueItem);
 	dynamic_pointer_cast<PickupExtension>(weaponThruster->getExtension(typeid(PickupExtension)))->setItem(thrusterItem);
+	dynamic_pointer_cast<PickupExtension>(weaponPortal->getExtension(typeid(PickupExtension)))->setItem(portalItem);
 
 	// TODO: Remove this is just for testing the system.
 	//Scene::getInstance().getWieldExtension()->addItem(dummyItem);

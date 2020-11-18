@@ -17,6 +17,7 @@
 #include "PickupExtension.h"
 #include "ThrusterManagableItem.h"
 #include "GlueManageableItem.h"
+#include "PortalManagableItem.h"
 using namespace std;
 
 class GameScreen : public AbstractScreen

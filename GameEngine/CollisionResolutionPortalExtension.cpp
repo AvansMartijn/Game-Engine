@@ -18,6 +18,6 @@ void CollisionResolutionPortalExtension::link(shared_ptr<GameObject> linkedPorta
 
 void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject)
 {
-    Physics::getInstance().teleportQueue.push_back({ inputObject, _linkedPortal });
+    Physics::getInstance().teleportQueue.push_back({ inputObject, {_linkedPortal->body.b2body->GetPosition().x, _linkedPortal->body.b2body->GetPosition().y} });
 }
 

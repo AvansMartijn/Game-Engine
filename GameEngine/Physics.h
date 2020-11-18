@@ -80,7 +80,7 @@ public:
 	/// <param name="friction">The friction.</param>
 	/// <param name="fixed">If this body should be affected by collisions.</param>
 	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
-	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, std::string userDataType = "fixture");
+	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet = false, std::string userDataType = "fixture");
 
 	/// <summary>
 	/// Reset the physics.

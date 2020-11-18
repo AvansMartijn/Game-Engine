@@ -21,6 +21,8 @@ private:
 	map<int, shared_ptr<AbstractManageableItem>> _items;
 	shared_ptr<GameObject> _player;
 public:
+	shared_ptr<GameObject> portalA;
+	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }
 
 	Scene(const Scene&) = delete;

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Physics.h"
+#include "EntityCategory.h"
 
 Physics Physics::instance;
 
@@ -33,6 +34,8 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
     b2FixtureDef fixtureDef;
+    fixtureDef.filter.categoryBits = CHARACTER;
+    fixtureDef.filter.maskBits = SCENERY | CHARACTER;
     fixtureDef.shape = &box;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
@@ -41,7 +44,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 
-    box.SetAsBox(obj->body.width / 4, obj->body.height / 2, b2Vec2(0, 0.01f), 0);
+    box.SetAsBox(obj->body.width / 2.1f, obj->body.height / 2, b2Vec2(0, 0.01f), 0);
     fixtureDef.isSensor = true;
 
     CustomUserData* data2 = new CustomUserData;
@@ -67,6 +70,8 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
     b2FixtureDef fixtureDef;
+    fixtureDef.filter.categoryBits = SCENERY;
+    fixtureDef.filter.maskBits = -1;
     fixtureDef.shape = &box;
     fixtureDef.isSensor = true;
     CustomUserData* data1 = new CustomUserData;
@@ -75,7 +80,7 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     body->CreateFixture(&fixtureDef);
 }
 
-void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, std::string userDataType) {
+void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
     
@@ -95,9 +100,18 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
     b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
 
+
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
     b2FixtureDef fixtureDef;
+    if (isBullet) {
+        fixtureDef.filter.categoryBits = BULLET;
+        fixtureDef.filter.maskBits = SCENERY | BULLET;
+    }
+    else {
+        fixtureDef.filter.categoryBits = SCENERY;
+        fixtureDef.filter.maskBits = -1;
+    }
     fixtureDef.shape = &box;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = friction;
@@ -115,12 +129,12 @@ void Physics::executeTeleportQueue() {
 
         teleportQueue.pop_back();
 
-        b2Vec2 newPosition = { teleportObject.to->body.b2body->GetPosition().x, teleportObject.to->body.b2body->GetPosition().y };
+        b2Vec2 newPosition = { teleportObject.newPosition.x, teleportObject.newPosition.y };
         
         // TODO: Decide which side we have to fall though.
-        newPosition.y += teleportObject.from->body.height + (teleportObject.to->body.height / 4);
+      /*  newPosition.y += teleportObject.from->body.height + (teleportObject.to->body.height / 4);*/
 
-        teleportObject.from->body.b2body->SetTransform(newPosition, teleportObject.from->body.b2body->GetAngle());
+        teleportObject.obj->body.b2body->SetTransform(newPosition, teleportObject.obj->body.b2body->GetAngle());
     }
 }
 

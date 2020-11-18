@@ -15,4 +15,11 @@ public:
 	void BeginContact(b2Contact* contact);
 
 	void EndContact(b2Contact* contact);
+
+	void checkJumpSensor(const CustomUserData& val);
+	void checkExitSensor(const CustomUserData& valA, const CustomUserData& valB);
+	void checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
+	void checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObject, const CustomUserData& objA, b2Fixture& fixtureA);
+	void checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
+	void checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
 };
