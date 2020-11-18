@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractLevel.h"
 #include "TiledGameObject.h"
+#include <sstream>
 
 class DefaultTiledLevel : public AbstractLevel
 {

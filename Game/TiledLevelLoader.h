@@ -3,6 +3,7 @@
 #include "TiledMapBuilder.h"
 #include "TiledGameObject.h"
 #include "DefaultTiledLevel.h"
+#include "TiledProperty.h"
 
 class TiledLevelLoader : public AbstractLevelLoader
 {

@@ -65,3 +65,19 @@ std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string& directory,
 
 	return files;
 }
+
+std::vector<std::string> AssetRegistry::split(std::string& string, char delimiter) {
+	std::vector<std::string> result;
+
+	std::stringstream ss(string);
+
+
+	while (ss.good()) {
+		std::string substr;
+		getline(ss, substr, delimiter);
+
+		result.push_back(substr);
+	}
+
+	return result;
+}

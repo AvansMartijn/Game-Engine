@@ -11,9 +11,6 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		textures.clear();
 		textures.insert(pair<int, std::string>(0, textureKey));
 
-		//float x = go.x * go.width;
-		//float y = go.y * go.height;
-
 		float baseWidth = 1.0f / tileWidth;
 		float baseHeight = 1.0f / tileHeight;
 		float width = baseWidth * go.width;
@@ -21,8 +18,20 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		float x = go.x * 1.0f;
 		float y = go.y * 1.0f;
 
+		std::string extensionsString = go.properties["extensions"].valueString;
+		std::vector<std::string> extensions = AssetRegistry::getInstance().split(extensionsString, ',');
+
+		float friction = 2.5f;
+		if (go.properties.find("friction") != go.properties.end())
+			friction = go.properties["friction"].valueFloat;
+
+		bool isFixed = true;
+
+		if (go.properties.find("fixed") != go.properties.end())
+			isFixed = go.properties["fixed"].valueBool;
+
 		shared_ptr<GameObject> floor = createGameObject(gameEngine, { "CheckPhysicsExtension" }, textures,
-			x, y, width, height, 5, true, false);
+			x, y, width, height, friction, isFixed, false);
 
 	}
 }

@@ -12,6 +12,7 @@
 #include "dirent.h"
 #include <vector>
 #include "FileData.h"
+#include <sstream>
 
 class Window;
 class GAMEENGINE_AssetRegistry AssetRegistry
@@ -72,5 +73,13 @@ public:
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	/// <returns>A list with all file data.</returns>
 	std::vector<FileData> getFilesInDirectory(std::string& directory, bool isDeep) const;
+
+	/// <summary>
+	/// Split a string by the given delimiter.
+	/// </summary>
+	/// <param name="string">The string we want to split.</param>
+	/// <param name="delimiter">The character we want to use to split the string.</param>
+	/// <returns>The parts of the split string.</returns>
+	std::vector<std::string> split(std::string& string, char delimiter);
 };
 

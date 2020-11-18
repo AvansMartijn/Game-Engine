@@ -47,7 +47,13 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(TiledLevel& l
 
 				TiledTile tile = findTileForGid(tileSet, gid);
 
-				TiledGameObject tiledGameObject = { x, y, tile.imageWidth, tile.imageHeight, tile.image };
+				std::map<std::string, TiledProperty> properties;
+
+				for (size_t propertyIndex = 0; propertyIndex < tile.properties.size(); propertyIndex++) {
+					TiledProperty prop = tile.properties[propertyIndex];
+					properties.insert(std::make_pair(prop.name, prop));
+				}
+				TiledGameObject tiledGameObject = { x, y, tile.imageWidth, tile.imageHeight, tile.image, properties };
 		
 				gameObjects.push_back(tiledGameObject);
 			}
