@@ -203,6 +203,7 @@
     <ClInclude Include="TiledLevel.h" />
     <ClInclude Include="TiledLevelLoader.h" />
     <ClInclude Include="TiledMapBuilder.h" />
+    <ClInclude Include="TiledObject.h" />
     <ClInclude Include="TiledProperty.h" />
     <ClInclude Include="TiledTile.h" />
     <ClInclude Include="TiledTileSet.h" />
