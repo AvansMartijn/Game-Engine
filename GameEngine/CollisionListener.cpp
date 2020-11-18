@@ -118,13 +118,19 @@ void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared
 }
 
 void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
-	if (valA.type == "portalAbullet") {
+	if (valA.type == "portalAbullet" || valA.type == "portalBbullet") {
 		if (valB.type == "portalSensor" || valB.type == "glueBullet") {
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 		}
 		else if (valB.type == "fixture") {
-			TeleportObject teleportObj{ Scene::getInstance().portalA, gameObjectA->body.b2body->GetPosition() };
-			Physics::getInstance().teleportQueue.push_back(teleportObj);
+			if (valA.type == "portalAbullet") {
+				TeleportObject teleportObj{ Scene::getInstance().portalA, gameObjectA->body.b2body->GetPosition() };
+				Physics::getInstance().teleportQueue.push_back(teleportObj);
+			}
+			else if (valA.type == "portalBbullet" ) {
+				TeleportObject teleportObj{ Scene::getInstance().portalB, gameObjectA->body.b2body->GetPosition() };
+				Physics::getInstance().teleportQueue.push_back(teleportObj);
+			}
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 
 			float Aleft = gameObjectA->body.b2body->GetPosition().x - (gameObjectA->body.width / 2);
