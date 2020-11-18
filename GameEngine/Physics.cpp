@@ -14,6 +14,7 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
     executeDeleteQueue();
     executeTeleportQueue();
     executeSetStaticQueue();
+    executeRotateQueue();
 }
 
 void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
@@ -152,6 +153,14 @@ void Physics::executeSetStaticQueue() {
     while (!setStaticQueue.empty()) {
         setStaticQueue.back()->body.b2body->SetType(b2_staticBody);
         setStaticQueue.pop_back();
+    }
+}
+
+void Physics::executeRotateQueue() {
+    while (!rotateQueue.empty()) {
+        RotateObj rotateObj = rotateQueue.back();
+        rotateObj.obj->body.b2body->SetTransform(rotateObj.obj->body.b2body->GetPosition(), rotateObj.angleRad);
+        rotateQueue.pop_back();
     }
 }
 

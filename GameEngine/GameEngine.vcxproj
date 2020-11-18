@@ -237,6 +237,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="PickupExtension.h" />
     <ClInclude Include="PortalManagableItem.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="RotateObj.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
     <ClInclude Include="SDLTtfWrapper.h" />

@@ -17,6 +17,7 @@
 #include "CustomUserData.h"
 #include "TeleportObject.h"
 #include "Scene.h"
+#include "RotateObj.h"
 
 class CollisionListener;
 class GAMEENGINE_Physics Physics
@@ -38,6 +39,7 @@ public:
 	Physics& operator=(Physics&&) = delete;
 	
 	vector<TeleportObject> teleportQueue;
+	vector<RotateObj> rotateQueue;
 	vector<shared_ptr<GameObject>> setStaticQueue;
 	vector<int> deleteQueue;
 
@@ -101,6 +103,11 @@ public:
 	/// Executes the queued deletes.
 	/// </summary>
 	void executeSetStaticQueue();
+
+	/// <summary>
+	/// Executes the queued rotates.
+	/// </summary>
+	void executeRotateQueue();
 };
 
 #endif

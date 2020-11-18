@@ -2,6 +2,8 @@
 #include "pch.h"
 #include "Physics.h"
 #include "EntityCategory.h"
+#include "CollisionResolutionPortalExtension.h"
+
 
 void CollisionListener::BeginContact(b2Contact* contact) {
 	b2Fixture* fixtureA = contact->GetFixtureA();
@@ -123,14 +125,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 		}
 		else if (valB.type == "fixture") {
-			if (valA.type == "portalAbullet") {
-				TeleportObject teleportObj{ Scene::getInstance().portalA, gameObjectA->body.b2body->GetPosition() };
-				Physics::getInstance().teleportQueue.push_back(teleportObj);
-			}
-			else if (valA.type == "portalBbullet" ) {
-				TeleportObject teleportObj{ Scene::getInstance().portalB, gameObjectA->body.b2body->GetPosition() };
-				Physics::getInstance().teleportQueue.push_back(teleportObj);
-			}
+			
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 
 			float Aleft = gameObjectA->body.b2body->GetPosition().x - (gameObjectA->body.width / 2);
@@ -143,16 +138,31 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			float Btop = gameObjectB->body.b2body->GetPosition().y - (gameObjectB->body.height / 2);
 			float Bbottom = gameObjectB->body.b2body->GetPosition().y + (gameObjectB->body.height / 2);
 
+			TeleportObject teleportObj;
+			teleportObj.newPosition = gameObjectA->body.b2body->GetPosition();
+			if (valA.type == "portalAbullet") {
+				teleportObj.obj = Scene::getInstance().portalA;
+			}
+			else if (valA.type == "portalBbullet") {
+				teleportObj.obj = Scene::getInstance().portalB;
+			}
+			
+			auto extension = dynamic_pointer_cast<CollisionResolutionPortalExtension>(teleportObj.obj->getExtension(typeid(AbstractCollisionResolutionExtension)));
+			float angle = 0;
 			if (Aleft > Bleft && Aleft < Bright) {
 				//A left is in between B left and right
 				// it has to be bottom or top, check which one is closer
 				if (abs(Abottom - gameObjectB->body.b2body->GetPosition().y) < abs(Atop - gameObjectB->body.b2body->GetPosition().y)) {
 					// bottom is closer to object b
 					// portal must be on top of object B
+					extension->exitSide = "top";
 					std::cout << "bottom" << "\n";
+					angle = 180;
 				}
 				else {
 					//top is closer
+					extension->exitSide = "bottom";
+
 					std::cout << "top" << "\n";
 				}
 			}
@@ -162,11 +172,14 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 					// bottom is closer to object b
 					// portal must be on top of object B
 					std::cout << "bottom" << "\n";
+					extension->exitSide = "top";
+					angle = 180;
 
 				}
 				else {
 					//top is closer
 					std::cout << "top" << "\n";
+					extension->exitSide = "bottom";
 
 				}
 			}
@@ -176,11 +189,15 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 				if (abs(Aright - gameObjectB->body.b2body->GetPosition().x) < abs(Aleft - gameObjectB->body.b2body->GetPosition().x)) {
 					//right is closer
 					std::cout << "right" << "\n";
+					extension->exitSide = "left";
+					angle = 90;
 
 				}
 				else {
 					//left is closer
 					std::cout << "left" << "\n";
+					extension->exitSide = "right";
+					angle = -90;
 
 				}
 			}
@@ -189,14 +206,24 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 				if (abs(Aright - gameObjectB->body.b2body->GetPosition().x) < abs(Aleft - gameObjectB->body.b2body->GetPosition().x)) {
 					//right is closer
 					std::cout << "right" << "\n";
+					extension->exitSide = "left";
+					angle = 90;
 
 				}
 				else {
 					//left is closer
 					std::cout << "left" << "\n";
+					extension->exitSide = "right";
+					angle = -90;
 
 				}
 			}
+			//rotatequeue
+			float angleRadians = angle * (M_PI / 180);
+			//teleportObj.obj->body.b2body->SetTransform(teleportObj.obj->body.b2body->GetPosition(), angleRadians);*/
+			RotateObj rotateObj{ teleportObj.obj, angleRadians };
+			Physics::getInstance().rotateQueue.push_back(rotateObj);
+			Physics::getInstance().teleportQueue.push_back(teleportObj);
 		}
 	}
 }
