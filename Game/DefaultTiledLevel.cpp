@@ -16,12 +16,10 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		std::string extensionsString = go.properties["extensions"].valueString;
 		std::vector<std::string> extensions = AssetRegistry::getInstance().split(extensionsString, ',');
 
-		if (go.layer == "tilelayer") {
+		if (go.layer == "tilelayer")
 			createTile(gameEngine, go, textures, extensions, x, y, width, height);
-		}
-		else if (go.layer == "objectgroup") {
+		else if (go.layer == "objectgroup")
 			createObject(gameEngine, go, textures, extensions, x, y, width, height);
-		}
 	}
 }
 
