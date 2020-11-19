@@ -28,9 +28,11 @@ shared_ptr<MoveExtension> Scene::getPlayerMoveExtension() {
 }
 
 void Scene::reset() {
+    if (player && player->hasExtension(typeid(MoveExtension)))
+        getPlayerMoveExtension()->reset();
+
     score = 1000;
     _gameObjects.clear();
-    getPlayerMoveExtension()->reset();
 }
 
 void Scene::render(const unique_ptr<Window>& window) {

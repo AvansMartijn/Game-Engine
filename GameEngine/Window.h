@@ -61,6 +61,14 @@ public:
 	void registerTexture(std::string textureKey, std::string texturePath);
 
 	/// <summary>
+	/// Adds all textures within a directory to the registry.
+	/// </summary>
+	/// <param name="prefix">The prefix we want to use for these textures.</param>
+	/// <param name="directory">The directory which we want to add.</param>
+	/// <param name="isDeep">If we should scan the directories within this directory.</param>
+	void registerTextures(std::string prefix, std::string directory, bool isDeep);
+
+	/// <summary>
 	/// Registers the font in the asset registry.
 	/// </summary>
 	/// <param name="fontKey">The font key.</param>

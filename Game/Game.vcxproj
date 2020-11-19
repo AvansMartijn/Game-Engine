@@ -97,7 +97,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\GameEngine</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251;26495</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26495;26812</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -172,7 +172,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractLevel.cpp" />
+    <ClCompile Include="AbstractLevelLoader.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="DefaultLevel.cpp" />
+    <ClCompile Include="DefaultLevelLoader.cpp" />
+    <ClCompile Include="DefaultTiledLevel.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameFinishedScreen.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
@@ -183,21 +188,43 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="TiledLevelLoader.cpp" />
+    <ClCompile Include="TiledMapBuilder.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractLevel.h" />
+    <ClInclude Include="AbstractLevelLoader.h" />
     <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="DefaultLevel.h" />
+    <ClInclude Include="DefaultLevelLoader.h" />
+    <ClInclude Include="DefaultTiledLevel.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameFinishedScreen.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="HighscoreScreen.h" />
+    <ClInclude Include="json.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
+    <ClInclude Include="PlayerMoves.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="TiledGameObject.h" />
+    <ClInclude Include="TiledGrid.h" />
+    <ClInclude Include="TiledLayer.h" />
+    <ClInclude Include="TiledLevel.h" />
+    <ClInclude Include="TiledLevelLoader.h" />
+    <ClInclude Include="TiledMapBuilder.h" />
+    <ClInclude Include="TiledObject.h" />
+    <ClInclude Include="TiledProperty.h" />
+    <ClInclude Include="TiledTile.h" />
+    <ClInclude Include="TiledTileSet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
     <ClInclude Include="SettingsScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

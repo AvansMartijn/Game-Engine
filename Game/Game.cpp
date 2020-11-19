@@ -32,6 +32,7 @@ void Game::onInit() {
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");
+	registerTextures("Tiled", "res/levels/assets/", true);
 
 	//Music
 	registerMusicTrack("Background_Menu", "res/music/Main_Menu.mp3");
