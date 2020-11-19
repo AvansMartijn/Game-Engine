@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Physics.h"
 #include "EntityCategory.h"
+#include "CollisionResolutionPortalExtension.h"
 
 Physics Physics::instance;
 
@@ -36,7 +37,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
     b2FixtureDef fixtureDef;
     fixtureDef.filter.categoryBits = CHARACTER;
-    fixtureDef.filter.maskBits = SCENERY | CHARACTER;
+    fixtureDef.filter.maskBits = SCENERY | CHARACTER | PORTAL;
     fixtureDef.shape = &box;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
@@ -71,8 +72,14 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
     b2FixtureDef fixtureDef;
-    fixtureDef.filter.categoryBits = SCENERY;
-    fixtureDef.filter.maskBits = -1;
+    if (userDataType == "portalSensor") {
+        fixtureDef.filter.categoryBits = PORTAL;
+        fixtureDef.filter.maskBits = SCENERY | CHARACTER;
+    }
+    else {
+        fixtureDef.filter.categoryBits = SCENERY;
+        fixtureDef.filter.maskBits = -1;
+    }
     fixtureDef.shape = &box;
     fixtureDef.isSensor = true;
     CustomUserData* data1 = new CustomUserData;
@@ -125,9 +132,10 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
 }
 
 void Physics::executeTeleportQueue() {
+
     for (size_t i = 0; i < teleportQueue.size(); i++) {
         TeleportObject teleportObject = teleportQueue.back();
-
+        
         teleportQueue.pop_back();
 
         b2Vec2 newPosition = { teleportObject.newPosition.x, teleportObject.newPosition.y };
