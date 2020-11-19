@@ -6,6 +6,7 @@
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
 #include "Screens.h"
+#include "GameSettings.h"
 
 class MainMenuScreen : public AbstractScreen
 {

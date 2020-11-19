@@ -32,8 +32,9 @@ void GameScreen::setupHUD() {
 }
 
 void GameScreen::setupGame() {
-	if (_levelLoader)
+	if (_levelLoader) {
 		_levelLoader->createLevel(_gameEngine, _name);
+	}
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
@@ -49,9 +50,6 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 		else
 			_name = arg;
 	}
-
-	GameSettings::getInstance().currentLevel = _name;
-	GameSettings::getInstance().save();
 }
 
 void GameScreen::onTick() {

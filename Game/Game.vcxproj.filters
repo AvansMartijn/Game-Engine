@@ -230,5 +230,8 @@
     <ClInclude Include="GameSettings.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
+    <ClInclude Include="LevelData.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

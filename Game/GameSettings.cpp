@@ -28,3 +28,11 @@ void GameSettings::load() {
 		SoundPlayer::getInstance().changeSFXVolume(saveGame.settings.soundFx);
 	}
 }
+
+void GameSettings::addLevel(int number, LevelData levelData) {
+	_storyLevels.insert(std::make_pair(number, levelData));
+}
+
+LevelData GameSettings::getCurrentLevel() {
+	return _storyLevels[saveGame.currentLevel];
+}

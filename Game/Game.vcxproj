@@ -209,6 +209,7 @@
     <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
+    <ClInclude Include="LevelData.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />

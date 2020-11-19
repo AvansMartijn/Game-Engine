@@ -4,12 +4,15 @@
 #include "AssetRegistry.h"
 #include <fstream>
 #include <iomanip>
+#include "LevelData.h"
 class GameSettings
+
 {
 private:
 	GameSettings();
 
 	static GameSettings instance;
+	std::map<int, LevelData> _storyLevels;
 public:
 	static GameSettings& getInstance() { return instance; }
 
@@ -18,10 +21,12 @@ public:
 	GameSettings& operator=(const GameSettings&) = delete;
 	GameSettings& operator=(GameSettings&&) = delete;
 
-	std::string currentLevel;
 	SaveGame saveGame;
 
 	void save();
 	void load();
+
+	void addLevel(int number, LevelData levelData);
+	LevelData getCurrentLevel();
 };
 
