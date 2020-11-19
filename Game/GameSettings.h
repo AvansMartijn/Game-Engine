@@ -28,5 +28,6 @@ public:
 
 	void addLevel(int number, LevelData levelData);
 	LevelData getCurrentLevel();
+	LevelData getNextLevel();
 };
 

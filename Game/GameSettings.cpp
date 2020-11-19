@@ -36,3 +36,10 @@ void GameSettings::addLevel(int number, LevelData levelData) {
 LevelData GameSettings::getCurrentLevel() {
 	return _storyLevels[saveGame.currentLevel];
 }
+
+LevelData GameSettings::getNextLevel() {
+	if (saveGame.currentLevel >= (int)_storyLevels.size())
+		return {};
+
+	return _storyLevels[saveGame.currentLevel + 1];
+}
