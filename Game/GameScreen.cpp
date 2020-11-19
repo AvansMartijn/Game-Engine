@@ -19,11 +19,25 @@ void GameScreen::onInit() {
 	backgroundTrackKey = "Background_1";
 	setupScreen();
 	setupGame();
+	setupHUD();
 }
 
 void GameScreen::setupScreen() {
 	ImageUiElement backgroundImg = ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+}
+
+void GameScreen::setupHUD() {
+	const Color bgColor = { 0, 0, 0, 0.8 };
+	const Color fgColor = { 210, 190, 70 };
+	const string font = "Portal";
+	const int fontSize = 24;
+	TextUiElement lives = TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false);
+	_uiElements.push_back(make_shared<TextUiElement>(lives));
+
+	TextUiElement weapon = TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false);
+	_uiElements.push_back(make_shared<TextUiElement>(weapon));
+
 }
 
 void GameScreen::setupGame() {

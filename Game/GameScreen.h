@@ -38,6 +38,10 @@ public:
 	/// </summary>
 	void setupScreen();
 	/// <summary>
+	/// Set's the HUD up.
+	/// </summary>
+	void setupHUD();
+	/// <summary>
 	/// Called every tick to update properties.
 	/// </summary>
 	void onTick();
