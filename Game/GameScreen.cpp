@@ -1,6 +1,6 @@
 #include "GameScreen.h"
 #include <TextUiElement.h>
-#include "TiledLevelLoader.h"
+
 
 GameScreen::GameScreen() {}
 
@@ -43,11 +43,14 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
 		else if (arg == "default")
 			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+		else if (arg == "reset")
+			reset();
 		else
 			_name = arg;
 	}
 
-	reset();
+	GameSettings::getInstance().currentLevel = _name;
+	GameSettings::getInstance().save();
 }
 
 void GameScreen::onTick() {

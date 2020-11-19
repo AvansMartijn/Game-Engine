@@ -1,5 +1,4 @@
 #include "GameOverScreen.h"
-#include <IOFiles.h>
 
 
 GameOverScreen::GameOverScreen() {}

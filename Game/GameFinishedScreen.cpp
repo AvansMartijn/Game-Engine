@@ -1,5 +1,4 @@
 #include "GameFinishedScreen.h"
-#include <IOFiles.h>
 
 
 GameFinishedScreen::GameFinishedScreen() {}
@@ -31,9 +30,9 @@ void GameFinishedScreen::onInit() {
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
-		IOFiles ioFiles;
-		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		ioFiles.writeToFile("Highscores", scoreRow, true);
+		//IOFiles ioFiles;
+		//std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
+		//ioFiles.writeToFile("Highscores", scoreRow, true);
 
 		game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(nextLevelButton));
@@ -41,9 +40,9 @@ void GameFinishedScreen::onInit() {
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [this](AbstractGame* game) {
-		IOFiles ioFiles;
-		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		ioFiles.writeToFile("Highscores", scoreRow, true);
+		//IOFiles ioFiles;
+		//std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
+		//ioFiles.writeToFile("Highscores", scoreRow, true);
 
 		game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));

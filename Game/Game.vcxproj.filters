@@ -55,6 +55,12 @@
     <Filter Include="Header Files\Screens\LevelEnd">
       <UniqueIdentifier>{1e13ab3d-d670-4f57-9672-5a66559dd9ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Misc\SaveGame">
+      <UniqueIdentifier>{2ee07bc4-c0b8-414b-91af-ce39ac6d4647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{f1f3764a-90cf-4825-a6dc-2eea39de6acc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="SettingsScreen.cpp">
       <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSettings.cpp">
+      <Filter>Source Files\Misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +206,6 @@
     <ClInclude Include="TiledObject.h">
       <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
     </ClInclude>
-    <None Include="cpp.hint" />
     <ClInclude Include="GameOverScreen.h">
       <Filter>Header Files\Screens\LevelEnd</Filter>
     </ClInclude>
@@ -206,6 +214,21 @@
     </ClInclude>
     <ClInclude Include="SettingsScreen.h">
       <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveGame.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLevel.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveSettings.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveHighscore.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSettings.h">
+      <Filter>Header Files\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

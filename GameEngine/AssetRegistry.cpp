@@ -81,3 +81,11 @@ std::vector<std::string> AssetRegistry::split(std::string& string, char delimite
 
 	return result;
 }
+
+std::string AssetRegistry::getPrefPath(std::string org, std::string app) {
+	char* basePath = SDL_GetPrefPath(org.c_str(), app.c_str());
+	if (basePath)
+		return string(basePath);
+
+	return "";
+}

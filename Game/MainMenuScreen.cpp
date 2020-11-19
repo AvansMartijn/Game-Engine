@@ -19,7 +19,7 @@ void MainMenuScreen::onInit() {
 	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
 	startButton.onClick = [](AbstractGame* game) {
-		game->switchScreen(Screens::MainGame, { "default", "Default" });
+		game->switchScreen(Screens::MainGame, { "default", "Default", "reset" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
@@ -27,7 +27,7 @@ void MainMenuScreen::onInit() {
 	loadButton.registerGame(_game);
 	// TODO: Load Game
 	loadButton.onClick = [](AbstractGame* game) { 
-		game->switchScreen(Screens::MainGame, { "tiled", "LevelTest" });
+		game->switchScreen(Screens::MainGame, { "tiled", "LevelTest", "reset" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 

@@ -17,6 +17,8 @@
 #include "DefaultLevelLoader.h"
 #include "PlayerMoves.h"
 #include "SoundPlayer.h";
+#include "TiledLevelLoader.h"
+#include "GameSettings.h"
 
 using namespace std;
 

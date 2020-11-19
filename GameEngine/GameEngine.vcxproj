@@ -229,7 +229,6 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
-    <ClInclude Include="IOFiles.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
@@ -284,7 +283,6 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="GameObjectFacade.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
-    <ClCompile Include="IOFiles.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

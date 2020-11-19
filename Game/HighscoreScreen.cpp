@@ -3,7 +3,6 @@
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
-#include <IOFiles.h>
 
 
 HighScoreScreen::HighScoreScreen() {}
@@ -58,9 +57,9 @@ void HighScoreScreen::onInit()
 void HighScoreScreen::onTick() {}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-	IOFiles ioFiles;
+	//IOFiles ioFiles;
 
-	std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
+	/*std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto line : lines) {
@@ -73,39 +72,39 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 			result.push_back(substr);
 		}
 		scores.insert({ stoi(result[0]), result[1] });
-	}
+	}*/
 
-	int counter = 0;
-	std::string highscore;
+	//int counter = 0;
+	//std::string highscore;
 
-	for (auto score : scores) {
-		highscore.clear();
-		if (counter < 5) {
-			counter++;
-			highscore +=  to_string(counter) + ". ";
-			highscore += to_string(score.first);
-			highscore += ", ";
-			highscore += score.second;
-			highscore += " ";
+	//for (auto score : scores) {
+	//	highscore.clear();
+	//	if (counter < 5) {
+	//		counter++;
+	//		highscore +=  to_string(counter) + ". ";
+	//		highscore += to_string(score.first);
+	//		highscore += ", ";
+	//		highscore += score.second;
+	//		highscore += " ";
 
-			if (counter == 1)
-				_row1Text->text = highscore;
-			if (counter == 2)
-				_row2Text->text = highscore;
-			if (counter == 3)
-				_row3Text->text = highscore;
-			if (counter == 4)
-				_row4Text->text = highscore;
-			if (counter == 5)
-				_row5Text->text = highscore;
-		}
-		else {
-			break;
-		}
-	}
+	//		if (counter == 1)
+	//			_row1Text->text = highscore;
+	//		if (counter == 2)
+	//			_row2Text->text = highscore;
+	//		if (counter == 3)
+	//			_row3Text->text = highscore;
+	//		if (counter == 4)
+	//			_row4Text->text = highscore;
+	//		if (counter == 5)
+	//			_row5Text->text = highscore;
+	//	}
+	//	else {
+	//		break;
+	//	}
+	//}
 
-	if (highscore == "")
-		highscore = "No Highscores";
+	//if (highscore == "")
+	//	highscore = "No Highscores";
 }
 
 void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
