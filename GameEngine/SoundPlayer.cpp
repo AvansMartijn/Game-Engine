@@ -46,6 +46,19 @@ void SoundPlayer::changeMusicVolume(int volume){
 	Mix_VolumeMusic(volume);
 }
 
+void SoundPlayer::changeSFXVolume(int volume)
+{
+	if (volume > 128) {
+		volume = 128;
+	}
+	if (volume < 0) {
+		volume = 0;
+	}
+	currentSFXVolume = volume;
+	Mix_Volume(-1, volume);
+
+}
+
 void playTrackNow() {
 	Mix_Music* musicTrack = SoundPlayer::getInstance().getMusicTrack(SoundPlayer::getInstance().playingTrackKey);
 	Mix_FadeInMusic(musicTrack, -1, 500);
@@ -81,5 +94,7 @@ void SoundPlayer::openAudio(){
 	{
 		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 	}
-	Mix_VolumeMusic(60);
+	Mix_VolumeMusic(currentVolume);
+	Mix_Volume(-1, currentSFXVolume);
+
 }

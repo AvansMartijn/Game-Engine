@@ -29,6 +29,7 @@ public:
 
 	std::string playingTrackKey;
 	int currentVolume = 60;
+	int currentSFXVolume = 60;
 
 	Mix_Music* getMusicTrack(const std::string& musicTrackKey);
 	/// <summary>
@@ -56,6 +57,8 @@ public:
 	void pauseMusic();
 
 	void changeMusicVolume(int volume);
+
+	void changeSFXVolume(int volume);
 
 };
 

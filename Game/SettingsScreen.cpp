@@ -12,8 +12,6 @@ void SettingsScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 	const string fontPortal = "Portal";
-	backgroundTrackKey = "Game_Over";
-
 
 	int posy = 100, posx = 100;
 
@@ -64,7 +62,7 @@ void SettingsScreen::onInit() {
 
 
 	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
-	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_soundFxText = make_shared<TextUiElement>(soundFxText);
 	_uiElements.push_back(_soundFxText);
 
@@ -73,12 +71,12 @@ void SettingsScreen::onInit() {
 	soundFxPlus.registerGame(_game);
 	soundFxPlus.onClick = [this](AbstractGame* game) {
 
-		int volume = SoundPlayer::getInstance().currentVolume;
+		int volume = SoundPlayer::getInstance().currentSFXVolume;
 
 		if (volume <= 118)
-			SoundPlayer::getInstance().changeMusicVolume(volume + 10);
+			SoundPlayer::getInstance().changeSFXVolume(volume + 10);
 
-		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);
+		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
 
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxPlus));
@@ -87,12 +85,12 @@ void SettingsScreen::onInit() {
 	soundFxMin.registerGame(_game);
 	soundFxMin.onClick = [this](AbstractGame* game) {
 
-		int volume = SoundPlayer::getInstance().currentVolume;
+		int volume = SoundPlayer::getInstance().currentSFXVolume;
 
 		if (volume >= 10)
-			SoundPlayer::getInstance().changeMusicVolume(volume - 10);
+			SoundPlayer::getInstance().changeSFXVolume(volume - 10);
 
-		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentVolume);
+		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
 
