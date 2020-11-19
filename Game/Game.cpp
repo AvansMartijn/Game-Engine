@@ -6,7 +6,7 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
-	GameSettings::getInstance().load();
+
 	registerTexture("Player_Look_Right", "res/gfx/Assets/Entity/Player/Looking_Right.png");
 	registerTexture("Player_Look_Left", "res/gfx/Assets/Entity/Player/Looking_Left.png");
 
