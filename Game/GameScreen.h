@@ -16,6 +16,7 @@
 #include "AbstractLevelLoader.h"
 #include "DefaultLevelLoader.h"
 #include "PlayerMoves.h"
+#include "SoundPlayer.h";
 
 using namespace std;
 
@@ -46,6 +47,10 @@ public:
 	/// </summary>
 	/// <param name="args">The arguments we want to pass to the next screen</param>
 	virtual void onScreenShowed(vector<std::string> args = {});
+	/// <summary>
+	/// Set's the HUD up.
+	/// </summary>
+	void setupHUD();
 	/// <summary>
 	/// Called every tick to update properties.
 	/// </summary>

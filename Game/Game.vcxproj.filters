@@ -22,9 +22,6 @@
     <Filter Include="Source Files\Screens\HelpScreen">
       <UniqueIdentifier>{3ccecd3f-a405-444b-87a4-beb721f175ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Screens\Help">
-      <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Misc">
       <UniqueIdentifier>{b3c90d31-3ba9-4393-be32-8b2b8cc155b1}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,15 @@
     <Filter Include="Source Files\LevelLoader\Levels">
       <UniqueIdentifier>{0dad9f2b-8764-4f5e-844a-82211abfbdca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Screens\LevelEnd">
+      <UniqueIdentifier>{4493590e-5cc9-4877-9cdc-5ce5d0427542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\HelpScreen">
+      <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\LevelEnd">
+      <UniqueIdentifier>{1e13ab3d-d670-4f57-9672-5a66559dd9ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="HelpScreen.cpp">
       <Filter>Source Files\Screens\HelpScreen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOverScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="KeyBindingsHelpScreen.cpp">
       <Filter>Source Files\Screens\HelpScreen</Filter>
@@ -102,6 +105,15 @@
     <ClCompile Include="DefaultTiledLevel.cpp">
       <Filter>Source Files\LevelLoader\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="GameOverScreen.cpp">
+      <Filter>Source Files\Screens\LevelEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFinishedScreen.cpp">
+      <Filter>Source Files\Screens\LevelEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -122,14 +134,11 @@
     <ClInclude Include="CreditsScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="GameOverScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
     <ClInclude Include="KeyBindingsHelpScreen.h">
-      <Filter>Header Files\Screens\Help</Filter>
+      <Filter>Header Files\Screens\HelpScreen</Filter>
     </ClInclude>
     <ClInclude Include="HelpScreen.h">
-      <Filter>Header Files\Screens\Help</Filter>
+      <Filter>Header Files\Screens\HelpScreen</Filter>
     </ClInclude>
     <ClInclude Include="Screens.h">
       <Filter>Header Files\Misc</Filter>
@@ -188,8 +197,15 @@
     <ClInclude Include="TiledObject.h">
       <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cpp.hint" />
+    <ClInclude Include="GameOverScreen.h">
+      <Filter>Header Files\Screens\LevelEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFinishedScreen.h">
+      <Filter>Header Files\Screens\LevelEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

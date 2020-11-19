@@ -24,6 +24,7 @@ private:
 
 	std::map<std::string, SDL_Texture*> _textures;
 	std::map<std::string, std::string> _fonts;
+
 public:
 	static AssetRegistry& getInstance() { return instance; }
 
@@ -82,4 +83,3 @@ public:
 	/// <returns>The parts of the split string.</returns>
 	std::vector<std::string> split(std::string& string, char delimiter);
 };
-

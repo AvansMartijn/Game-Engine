@@ -13,6 +13,7 @@
 #include <vector>
 #include "Window.h"
 #include <stack>
+#include "SoundPlayer.h"
 
 using namespace std;
 
@@ -74,6 +75,16 @@ public:
 	/// <param name="directory">The directory which we want to add.</param>
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	void registerTextures(std::string prefix, std::string directory, bool isDeep);
+	/// <summary>
+	/// Registers a soundtrack in the registry.
+	/// </summary>
+	/// <param name="musicTrackKey">Soundtrack key</param>
+	/// <param name="trackPath">Soundtrak path</param>
+	void registerMusicTrack(const std::string& musicTrackKey, const std::string& trackPath);
+
+	void registerSFXTrack(const std::string& sfxTrackKey, const std::string& trackPath);
+
+	void playMusicTrack(const std::string& musicTrackKey);
 
 	/// <summary>
 	/// Resets the game.

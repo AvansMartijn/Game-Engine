@@ -1,4 +1,6 @@
 #include "main.h"
+#include "GameFinishedScreen.h"
+#include "SettingsScreen.h"
 
 
 
@@ -47,6 +49,17 @@ int main(int argc, char* argv[]) {
 	HighScoreScreen->registerGame(&game);
 	HighScoreScreen->onInit();
 	game.screens.push_back(move(HighScoreScreen));
+
+	unique_ptr<GameFinishedScreen> GameFinishedScreen(new GameFinishedScreen);
+	GameFinishedScreen->registerGame(&game);
+	GameFinishedScreen->onInit();
+	game.screens.push_back(move(GameFinishedScreen));
+
+	unique_ptr<SettingsScreen> SettingsScreen(new SettingsScreen);
+	SettingsScreen->registerGame(&game);
+	SettingsScreen->onInit();
+	game.screens.push_back(move(SettingsScreen));
+
 
 	game.onInit();
 

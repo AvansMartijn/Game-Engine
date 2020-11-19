@@ -105,6 +105,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -124,6 +127,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,6 +145,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -158,6 +167,9 @@
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractLevel.cpp" />
@@ -167,6 +179,7 @@
     <ClCompile Include="DefaultLevelLoader.cpp" />
     <ClCompile Include="DefaultTiledLevel.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameFinishedScreen.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
@@ -177,6 +190,7 @@
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
+    <ClCompile Include="SettingsScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractLevel.h" />
@@ -186,6 +200,7 @@
     <ClInclude Include="DefaultLevelLoader.h" />
     <ClInclude Include="DefaultTiledLevel.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameFinishedScreen.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="HelpScreen.h" />
@@ -210,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <ClInclude Include="SettingsScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
