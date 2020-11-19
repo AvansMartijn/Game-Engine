@@ -8,7 +8,8 @@
 
 int main(int argc, char* argv[]) {
 	Game game = { "Game", 1080, 720 };
-	
+	GameSettings::getInstance().load();
+
 	// The screens have to be created outside the Game class, using "this" will create problems.
 	unique_ptr<GameScreen> gameScreen(new GameScreen);
 	gameScreen->registerGame(&game);

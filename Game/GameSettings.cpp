@@ -1,4 +1,5 @@
 #include "GameSettings.h"
+#include <SoundPlayer.h>
 
 GameSettings GameSettings::instance;
 
@@ -22,5 +23,8 @@ void GameSettings::load() {
 		inputStream >> j;
 
 		saveGame = j.get<SaveGame>();
+
+		SoundPlayer::getInstance().changeMusicVolume(saveGame.settings.sound);
+		SoundPlayer::getInstance().changeSFXVolume(saveGame.settings.soundFx);
 	}
 }
