@@ -28,10 +28,15 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupHUD() {
-	const Color bgColor = { 66, 99, 116 };
-	const string font = "Paint";
-	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(title));
+	const Color bgColor = { 0, 0, 0, 0.8 };
+	const Color fgColor = { 210, 190, 70 };
+	const string font = "Portal";
+	const int fontSize = 24;
+	TextUiElement lives = TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false);
+	_uiElements.push_back(make_shared<TextUiElement>(lives));
+
+	TextUiElement weapon = TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false);
+	_uiElements.push_back(make_shared<TextUiElement>(weapon));
 
 }
 
