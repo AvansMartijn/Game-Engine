@@ -231,6 +231,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			RotateObj rotateObj{ teleportObj.obj, angleRadians };
 			Physics::getInstance().rotateQueue.push_back(rotateObj);
 			Physics::getInstance().teleportQueue.push_back(teleportObj);
+			extension->isActive = true;
 		}
 	}
 }

@@ -25,6 +25,9 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
     }
    
     shared_ptr<CollisionResolutionPortalExtension> otherPortalExtension = dynamic_pointer_cast<CollisionResolutionPortalExtension>(_linkedPortal->getExtension(typeid(AbstractCollisionResolutionExtension)));
+    if (!isActive || !otherPortalExtension->isActive) {
+        return;
+    }
     std::string otherExitSide = otherPortalExtension->exitSide;
     b2Vec2 newPos{ _linkedPortal->body.b2body->GetPosition().x,_linkedPortal->body.b2body->GetPosition().y };
     float diagonal = sqrt(pow(inputObject->body.width, 2) + pow(inputObject->body.height, 2));

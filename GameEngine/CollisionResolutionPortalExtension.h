@@ -16,6 +16,7 @@ private:
 	//PhysicsFacade _physicsFacade;	
 	shared_ptr<GameObject> _linkedPortal;
 public:
+	bool isActive = false;
 	float reverseFloat(float number);
 	CollisionResolutionPortalExtension();
 	std::string exitSide;
