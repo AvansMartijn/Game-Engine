@@ -18,6 +18,12 @@ void CollisionResolutionPortalExtension::link(shared_ptr<GameObject> linkedPorta
 
 void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject)
 {
+    //culling duplicate to prevent double operations
+    auto objectLocation = std::find_if(Physics::getInstance().teleportQueue.begin(), Physics::getInstance().teleportQueue.end(), [inputObject](TeleportObject tellie) {return tellie.obj == inputObject; });
+    if (objectLocation != Physics::getInstance().teleportQueue.end()) {
+        return;
+    }
+   
     shared_ptr<CollisionResolutionPortalExtension> otherPortalExtension = dynamic_pointer_cast<CollisionResolutionPortalExtension>(_linkedPortal->getExtension(typeid(AbstractCollisionResolutionExtension)));
     std::string otherExitSide = otherPortalExtension->exitSide;
     b2Vec2 newPos{ _linkedPortal->body.b2body->GetPosition().x,_linkedPortal->body.b2body->GetPosition().y };
@@ -40,7 +46,7 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
     float velX = inputObject->body.b2body->GetLinearVelocity().x;
     float velY = inputObject->body.b2body->GetLinearVelocity().y;
 
-    if (getEntrySide(exitSide) == "top") {
+    if (exitSide == "top") {
         if (otherExitSide == "top") {
             // reverse y axis
             velY = reverseFloat(velY);
@@ -60,7 +66,7 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
             velY = tempVel;
         }
     }
-    else  if (getEntrySide(exitSide) == "bottom") {
+    else  if (exitSide == "bottom") {
         if (otherExitSide == "bottom") {
             // reverse y axis
             velY = reverseFloat(velY);
@@ -120,8 +126,10 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
             velX = tempVel;
         }
     }
-
+    std::cout << inputObject->body.b2body->GetLinearVelocity().x << " | " << inputObject->body.b2body->GetLinearVelocity().y << "\n";
     inputObject->body.b2body->SetLinearVelocity({ velX, velY });
+    std::cout << inputObject->body.b2body->GetLinearVelocity().x << " | " << inputObject->body.b2body->GetLinearVelocity().y << "\n";
+
 
     
     Physics::getInstance().teleportQueue.push_back({ inputObject, newPos });

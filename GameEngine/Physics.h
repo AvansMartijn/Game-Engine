@@ -108,6 +108,7 @@ public:
 	/// Executes the queued rotates.
 	/// </summary>
 	void executeRotateQueue();
+
 };
 
 #endif

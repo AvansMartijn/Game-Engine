@@ -42,8 +42,8 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 	}
 
 	if (gameObjectA != nullptr && gameObjectB != nullptr) {
-		checkTeleport(gameObjectA, gameObjectB);
-		checkTeleport(gameObjectB, gameObjectA);
+		checkTeleport(gameObjectA, gameObjectB, *valA);
+		checkTeleport(gameObjectB, gameObjectA, *valB);
 	}
 	
 }
@@ -109,20 +109,27 @@ void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserDa
 	}
 }
 
-void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
+void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB, const CustomUserData& valB) {
 	if (gameObjectA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
 		shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(gameObjectA->getExtension(typeid(AbstractCollisionResolutionExtension)));
 		if (!resolution->isDefault()) {
-			if (gameObjectB->body.b2body->GetType() == b2_dynamicBody)
+			if (gameObjectB->body.b2body->GetType() == b2_dynamicBody && valB.type != "portalABullet" && valB.type != "portalBbullet" && valB.type != "glueBullet")
 				resolution->resolveCollision(gameObjectB);
 		}
 	}
 }
 
 void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
+	//culling duplicate to prevent double operations
+	auto objectLocation = std::find_if(Physics::getInstance().deleteQueue.begin(), Physics::getInstance().deleteQueue.end(), [objA](int id) {return id == objA.index; });
+	if (objectLocation != Physics::getInstance().deleteQueue.end()) {
+		return;
+	}
+
 	if (valA.type == "portalAbullet" || valA.type == "portalBbullet") {
 		if (valB.type == "portalSensor" || valB.type == "glueBullet") {
 			Physics::getInstance().deleteQueue.push_back(objA.index);
+			return;
 		}
 		else if (valB.type == "fixture") {
 			
