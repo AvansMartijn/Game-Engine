@@ -131,15 +131,15 @@ void GameScreen::setupGame() {
 		6, 2, 1, 1, 0.3f, false, false);
 
 	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
+	textures.insert(pair<int, std::string>(0, "Portal1"));
 	shared_ptr<GameObject> portal1 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		12, 17.5f, 3, 1, "portalSensor");
+		12, 17.5f, 3, 0.7, "portalSensor");
 	Scene::getInstance().portalA = portal1;
 
 	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
+	textures.insert(pair<int, std::string>(0, "Portal2"));
 	shared_ptr<GameObject> portal2 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		15, 1.5f, 3, 1, "portalSensor");
+		15, 1.5f, 3, 0.7, "portalSensor");
 	Scene::getInstance().portalB = portal2;
 
 
