@@ -28,5 +28,5 @@ void ThrusterManagableItem::onLeftClick(int x, int y) {
 }
 
 void ThrusterManagableItem::onRightClick(int x, int y) {
-	std::cout << "x: " << x << " | " << "y: " << y << std::endl;
+	onLeftClick(x, y);
 }

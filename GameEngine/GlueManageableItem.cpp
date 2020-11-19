@@ -43,5 +43,5 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 }
 
 void GlueManagableItem::onRightClick(int x, int y) {
-	std::cout << "x: " << x << " | " << "y: " << y << std::endl;
+	onLeftClick(x, y);
 }
