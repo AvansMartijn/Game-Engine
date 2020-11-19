@@ -10,9 +10,12 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		float baseHeight = 1.0f / tileHeight;
 		float width = baseWidth * go.width;
 		float height = baseHeight * go.height;
-		float x = ceil(go.x * 1.0f);
-		float y = ceil(go.y * 1.0f);
+		float x = go.x * 1.0f;
+		float y = go.y * 1.0f;
 
+		float yLeftOver = 1.0f - height;
+		if (height < 1)
+			y = y + (yLeftOver / 2);
 		std::string extensionsString = go.properties["extensions"].valueString;
 		std::vector<std::string> extensions = AssetRegistry::getInstance().split(extensionsString, ',');
 
