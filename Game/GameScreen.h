@@ -19,6 +19,7 @@
 #include "SoundPlayer.h";
 #include "TiledLevelLoader.h"
 #include "GameSettings.h"
+#include <TextUiElement.h>
 
 using namespace std;
 
@@ -28,6 +29,10 @@ private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
 	shared_ptr<AbstractLevelLoader> _levelLoader;
+	vector<shared_ptr<AbstractUiElement>> _gameUiElements;
+	shared_ptr<TextUiElement> _lives;
+	shared_ptr<TextUiElement> _weapon;
+	shared_ptr<ImageUiElement> _backgroundImg;
 	std::string _name;
 public:
 	GameScreen();
