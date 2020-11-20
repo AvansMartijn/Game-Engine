@@ -30,6 +30,23 @@ void GameSettings::load() {
 }
 
 void GameSettings::addLevel(int number, LevelData levelData) {
+	bool found = false;
+	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
+		
+		SaveLevel data = saveGame.levels[levelIndex];
+		if (data.name == levelData.levelName) {
+			found = true;
+			break;
+		}
+	}
+	
+	if (!found) {
+		SaveLevel saveLevel;
+		saveLevel.name = levelData.levelName;
+		saveGame.levels.push_back(saveLevel);
+		save();
+	}
+
 	_storyLevels.insert(std::make_pair(number, levelData));
 }
 
