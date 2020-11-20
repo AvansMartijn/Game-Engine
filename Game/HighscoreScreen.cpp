@@ -44,19 +44,13 @@ void HighScoreScreen::onTick() {}
 void HighScoreScreen::onScreenShowed(vector<string> args) {
 
 	scroll->text = "";
-
-
-	//get list from curFt level
 	std::vector<SaveLevel> levels = GameSettings::getInstance().saveGame.levels;
-
 	std::multimap<int, std::string, std::greater<int>> scores;
 
-	for (auto level : levels)
-	{
+	for (auto level : levels) {
 		scroll->text += "-";
 		scroll->text += level.name += "-                  ";
-		for (auto highScore : level.highscores)
-		{
+		for (auto highScore : level.highscores) {
 			scroll->text += highScore.name += ", ";
 			scroll->text += to_string(highScore.score) += "                    ";
 		}
