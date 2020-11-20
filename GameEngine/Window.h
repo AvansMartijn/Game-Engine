@@ -116,6 +116,13 @@ public:
 	/// <param name="backgroundColor">The background color.</param>
 	/// <param name="center">If we want to center the text.</param>
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center);
+
+	/// <summary>
+	/// Converts pixels to meters.
+	/// </summary>
+	/// <param name="value">The value in pixels.</param>
+	/// <returns>The value ins meters.</returns>
+	int metersToPixels(float value);
 private:
 	int _width;
 	int _height;

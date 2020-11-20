@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "GameEngine.h"
+#include "AbstractManageableItem.h"
 
-shared_ptr<GameObject> GameEngine::CreateGameObject(vector<string> extensionNames)
+shared_ptr<GameObject> GameEngine::createGameObject(vector<string> extensionNames)
 {
-	return gameObjectFacde.CreateGameObject(extensionNames);
+	return _gameObjectFacde.createGameObject(extensionNames);
 }

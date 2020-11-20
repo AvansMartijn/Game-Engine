@@ -16,8 +16,11 @@ private:
 	//PhysicsFacade _physicsFacade;	
 	shared_ptr<GameObject> _linkedPortal;
 public:
+	bool isActive = false;
+	float reverseFloat(float number);
 	CollisionResolutionPortalExtension();
-
+	std::string exitSide;
+	std::string getEntrySide(std::string exitSide);
 	bool isDefault();
 	void resolveCollision(shared_ptr<GameObject> inputObject);
 	void link(shared_ptr<GameObject> linkedPortal);

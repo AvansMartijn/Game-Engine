@@ -71,7 +71,7 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect,float angle, bool flipLeft) {
+void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -100,7 +100,6 @@ void Window::renderTexture(std::string textureKey, Rect rect,float angle, bool f
 	Color color5 = { 255, 0, 0, 1 };
 	Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
 	renderRectangle(rightdownrect, color5);
-
 }
 
 
@@ -129,6 +128,10 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	SDL_RenderCopy(_renderer.get(), texture, NULL, &sdlRect);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(texture);
+}
+
+int Window::metersToPixels(float value) {
+	return (int)(40.0f * value);
 }
 
 void Window::display() {

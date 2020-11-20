@@ -7,7 +7,7 @@
 class GameObjectFacade
 {
 private:
-	GameObjectBuilder builder;
+	GameObjectBuilder _builder;
 public:
-	shared_ptr<GameObject> CreateGameObject(vector<string> extensionNames);
+	shared_ptr<GameObject> createGameObject(vector<string> extensionNames);
 };
