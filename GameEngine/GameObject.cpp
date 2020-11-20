@@ -31,7 +31,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	playerPos.x = metersToPixels(playerPos.x);
 	playerPos.y = metersToPixels(playerPos.y);
 	b2Vec2 diffs = { playerPos.x - (window->getWidth() / 2), playerPos.y - (window->getHeight() / 2) };
-	std::shared_ptr<GameObject> player = Scene::getInstance().player;
+	std::shared_ptr<GameObject> player = Scene::getInstance().getPlayer();
 
 	//get object position
 	b2Vec2 position = body.b2body->GetPosition();

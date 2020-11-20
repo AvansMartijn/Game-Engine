@@ -27,7 +27,7 @@ void MainMenuScreen::onInit() {
 	loadButton.registerGame(_game);
 	// TODO: Load Game
 	loadButton.onClick = [](AbstractGame* game) { 
-		game->switchScreen(Screens::MainGame, { "tiled", "Level_2" });
+		game->switchScreen(Screens::MainGame, { "tiled", "Level_1" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 

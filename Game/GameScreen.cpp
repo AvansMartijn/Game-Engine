@@ -1,16 +1,6 @@
 #include "GameScreen.h"
 #include <CanWieldExtension.h>
 
-enum PlayerMoves {
-	LOOK_RIGHT,
-	RUN_RIGHT,
-	JUMP_RIGHT,
-	FALL_RIGHT,
-	LOOK_LEFT,
-	RUN_LEFT,
-	JUMP_LEFT,
-	FALL_LEFT
-};
 #include <TextUiElement.h>
 #include "TiledLevelLoader.h"
 
@@ -43,137 +33,6 @@ void GameScreen::setupHUD() {
 }
 
 void GameScreen::setupGame() {
-	// Items
-	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
-	Scene::getInstance().addItem(glueItem);
-
-	// Items
-	shared_ptr<ThrusterManagableItem> thrusterItem = std::make_shared<ThrusterManagableItem>();
-	Scene::getInstance().addItem(thrusterItem);
-
-	// Items
-	shared_ptr<PortalManagableItem> portalItem = std::make_shared<PortalManagableItem>();
-	Scene::getInstance().addItem(portalItem);
-
-	// Player
-	std::map<int, std::string> textures;
-	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::RUN_RIGHT, "Player_Running_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_RIGHT, "Player_Jump_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::FALL_RIGHT, "Player_Fall_Right"));
-	textures.insert(pair<int, std::string>(PlayerMoves::LOOK_LEFT, "Player_Look_Left"));
-	textures.insert(pair<int, std::string>(PlayerMoves::RUN_LEFT, "Player_Running_Left"));
-	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_LEFT, "Player_Jump_Left"));
-	textures.insert(pair<int, std::string>(PlayerMoves::FALL_LEFT, "Player_Fall_Left"));
-
-	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };
-	Scene::getInstance().setPlayer(createEntity(_gameEngine, extensionNames, textures,
-		2, 8, 0.8f, 2.0f));
-
-	// Weapon Block
-	textures.clear();
-	shared_ptr<GameObject> weaponGlue = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
-		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
-
-	// Weapon Block
-	textures.clear();
-	shared_ptr<GameObject> weaponThruster = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
-		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
-
-	// Weapon Block
-	textures.clear();
-	shared_ptr<GameObject> weaponPortal = createNonRigidBody(_gameEngine, { "PickupExtension" }, textures,
-		8, 17.5f, portalItem->getWidth(), portalItem->getHeight(), "pickupSensor");
-
-	// Normal Blocks
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> floor = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		15, 20, 30.6f, 5, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> roof = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		15, 0, 30.6f, 1.0f, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> plat = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		6, 7, 1, 1, 0.3f, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> jumpplat = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		10, 7, 1, 1, 0.3f, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> wall = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		15, 12, 1.0f, 12.0f, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> boundLeft = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		0, 11, 1.0f, 23.0f, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> boundRight = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		27, 11, 1.0f, 23.0f, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> wall2 = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		20, 5, 1.0f, 12.0f, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Tile_Interior_Ground_Center"));
-	shared_ptr<GameObject> stage = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		23, 17, 3.0f, 2.0f, 5, true, true);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
-	shared_ptr<GameObject> crate = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		6, 3, 1, 1, 0.3f, false, false);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
-	shared_ptr<GameObject> crate2 = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		6, 4, 1, 1, 0.3f, false, false);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Crate_Metal"));
-	shared_ptr<GameObject> crate3 = createGameObject(_gameEngine, { "CheckPhysicsExtension" }, textures,
-		6, 2, 1, 1, 0.3f, false, false);
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Portal1"));
-	shared_ptr<GameObject> portal1 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		-50, -50, 3, 0.7, "portalSensor");
-	Scene::getInstance().portalA = portal1;
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Portal2"));
-	shared_ptr<GameObject> portal2 = createNonRigidBody(_gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
-		-50, -50, 3, 0.7, "portalSensor");
-	Scene::getInstance().portalB = portal2;
-
-
-	textures.clear();
-	textures.insert(pair<int, std::string>(0, "Gate_Cropped"));
-	shared_ptr<GameObject> exit = createNonRigidBody(_gameEngine, {}, textures,
-		23, 14.8f, 2.5f, 2.5f, "exitSensor");
-
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
-
-	// Item Binding
-	dynamic_pointer_cast<PickupExtension>(weaponGlue->getExtension(typeid(PickupExtension)))->setItem(glueItem);
-	dynamic_pointer_cast<PickupExtension>(weaponThruster->getExtension(typeid(PickupExtension)))->setItem(thrusterItem);
-	dynamic_pointer_cast<PickupExtension>(weaponPortal->getExtension(typeid(PickupExtension)))->setItem(portalItem);
-
-	// TODO: Remove this is just for testing the system.
-	//Scene::getInstance().getWieldExtension()->addItem(dummyItem);
 	if (_levelLoader)
 		_levelLoader->createLevel(_gameEngine, _name);
 }
@@ -212,7 +71,7 @@ void GameScreen::onTick() {
 
 	Physics::getInstance().step(timeStep, 6, 2);
 
-	if (Scene::getInstance().player) {
+	if (Scene::getInstance().getPlayer()) {
 		handlePlayerControls();
 		calculatePlayerTexture();
 	}
@@ -220,8 +79,6 @@ void GameScreen::onTick() {
 
 void GameScreen::handlePlayerControls() {
 	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
-
-	b2Vec2 vel = Scene::getInstance().player->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT]) {
@@ -383,42 +240,14 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 
 }
 
-shared_ptr<GameObject> GameScreen::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
-	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);
-}
-
-shared_ptr<GameObject> GameScreen::createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures , float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
-	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
-	gameObject->textures = textures;
-	gameObject->id = Scene::getInstance().getNextAvailableId();
-
-	if (friction == -1 && !fixed && !fixedRotation)
-		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
-	else
-		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
-
-	Scene::getInstance().addGameObject(gameObject);
-
-	return gameObject;
-}
-
-shared_ptr<GameObject> GameScreen::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
-	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
-	gameObject->textures = textures;
-	gameObject->id = Scene::getInstance().getNextAvailableId();
-
-	Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, userDataType);
-
-	Scene::getInstance().addGameObject(gameObject);
-	return gameObject;
-}
-
 void GameScreen::render(const unique_ptr<Window>& window) {
 	AbstractScreen::render(window);
 
 	Scene::getInstance().render(window);
-	if(Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
-		Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		if (Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
+			Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
+	}
 }
 
 void GameScreen::reset() {

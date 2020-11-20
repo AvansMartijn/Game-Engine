@@ -56,13 +56,12 @@ shared_ptr<CanWieldExtension> Scene::getWieldExtension() {
 }
 
 void Scene::reset() {
-    if (player && player->hasExtension(typeid(MoveExtension)))
+    if (getPlayer() && getPlayer()->hasExtension(typeid(MoveExtension)))
         getPlayerMoveExtension()->reset();
 
     score = 1000;
     _gameObjects.clear();
     _items.clear();
-    getPlayerMoveExtension()->reset();
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
