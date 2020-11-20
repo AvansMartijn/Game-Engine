@@ -16,7 +16,7 @@ void LoadCustomLevelScreen::onInit() {
 	for (int i = 0; i < 20; i++)
 	{
 		shared_ptr<ButtonUiElement> _line;
-		ButtonUiElement lineOfC = ButtonUiElement("Mooi", { 0, y, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+		ButtonUiElement lineOfC = ButtonUiElement("Mooi", { 500, y, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 		lineOfC.registerGame(_game);
 		lineOfC.onClick = [](AbstractGame* game) { cout << "TTT"; };
 		_line = make_shared<ButtonUiElement>(lineOfC);
@@ -25,7 +25,7 @@ void LoadCustomLevelScreen::onInit() {
 		y += 35;
 	}
 
-	TextUiElement title = TextUiElement("Custom levels", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement title = TextUiElement("Custom levels", font, 60, { 5, 10, 100, 130 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
