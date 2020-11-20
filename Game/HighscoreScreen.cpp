@@ -5,7 +5,6 @@
 #include "Screens.h"
 #include "GameSettings.h"
 
-
 HighScoreScreen::HighScoreScreen() {}
 
 HighScoreScreen::~HighScoreScreen() {}
@@ -19,19 +18,12 @@ void HighScoreScreen::onInit()
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement scrollText = TextUiElement("-", "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, false, 200);
+	TextUiElement scrollText = TextUiElement("-", "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	scroll = make_shared<TextUiElement>(scrollText);
 	_uiElements.push_back(scroll);
 
 	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
-
-	TextUiElement _bodyText = TextUiElement("Level 1", font, 25, { 100, 160, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(_bodyText));
-
-	ImageUiElement backgroundImg2 = ImageUiElement("Line", { 230 , 200, 620, 1});
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg2));
-
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
@@ -48,12 +40,27 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto level : levels) {
-		scroll->text += "-";
-		scroll->text += level.name += "-                  ";
+
+		scroll->text += level.name;
+		scroll->text += "\n";
+		scroll->text += " - - - - - - -  ";
+		scroll->text += "\n";
+
+		std::sort(level.highscores.begin(), level.highscores.end(), [](SaveHighscore a, SaveHighscore b) { return a.score > b.score; });
+
+		int counter = 0;
 		for (auto highScore : level.highscores) {
-			scroll->text += highScore.name += ", ";
-			scroll->text += to_string(highScore.score) += "                    ";
+			if (counter == 5)
+				break;
+
+			scroll->text += highScore.name;
+			scroll->text += to_string(highScore.score);
+			scroll->text += "\n";
+			counter++;
 		}
+		scroll->text += "\n";
+		scroll->text += " ";
+		scroll->text += "\n";
 	}
 
 	//IOFiles ioFiles;

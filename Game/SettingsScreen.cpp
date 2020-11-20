@@ -66,9 +66,6 @@ void SettingsScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
 
 
-
-
-
 	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
 	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(GameSettings::getInstance().saveGame.settings.sound), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_soundFxText = make_shared<TextUiElement>(soundFxText);
@@ -86,7 +83,7 @@ void SettingsScreen::onInit() {
 
 		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
 
-		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentSFXVolume;
 		GameSettings::getInstance().save();
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxPlus));
@@ -101,16 +98,12 @@ void SettingsScreen::onInit() {
 			SoundPlayer::getInstance().changeSFXVolume(volume - 10);
 
 		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
-		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentSFXVolume;
 		GameSettings::getInstance().save();
+
+
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
-
-
-
-
-
-
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
