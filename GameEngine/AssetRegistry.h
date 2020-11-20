@@ -72,8 +72,9 @@ public:
 	/// </summary>
 	/// <param name="directory">The directory.</param>
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
+	/// <param name="shouldAddKey">If we should add the file name as key.</param>
 	/// <returns>A list with all file data.</returns>
-	std::vector<FileData> getFilesInDirectory(std::string& directory, bool isDeep) const;
+	std::vector<FileData> getFilesInDirectory(std::string directory, bool isDeep, bool shouldAddKey = true) const;
 
 	/// <summary>
 	/// Split a string by the given delimiter.
@@ -82,4 +83,12 @@ public:
 	/// <param name="delimiter">The character we want to use to split the string.</param>
 	/// <returns>The parts of the split string.</returns>
 	std::vector<std::string> split(std::string& string, char delimiter);
+
+	/// <summary>
+	/// Get's the pref dir from SDL.
+	/// </summary>
+	/// <param name="org">The organisation name.</param>
+	/// <param name="app">The app name.</param>
+	/// <returns>The pref dir.</returns>
+	std::string getPrefPath(std::string org, std::string app);
 };

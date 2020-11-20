@@ -15,8 +15,8 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::setupScreen() {
-	ImageUiElement backgroundImg = ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_backgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 }));
+	_uiElements.push_back(_backgroundImg);
 }
 
 void GameScreen::setupHUD() {
@@ -24,17 +24,20 @@ void GameScreen::setupHUD() {
 	const Color fgColor = { 210, 190, 70 };
 	const string font = "Portal";
 	const int fontSize = 24;
-	TextUiElement lives = TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false);
-	_uiElements.push_back(make_shared<TextUiElement>(lives));
+	_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_lives);
+	_gameUiElements.push_back(_lives);
 
-	TextUiElement weapon = TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false);
-	_uiElements.push_back(make_shared<TextUiElement>(weapon));
+	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_weapon);
+	_gameUiElements.push_back(_weapon);
 
 }
 
 void GameScreen::setupGame() {
-	if (_levelLoader)
+	if (_levelLoader) {
 		_levelLoader->createLevel(_gameEngine, _name);
+	}
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
@@ -45,11 +48,11 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
 		else if (arg == "default")
 			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+		else if (arg == "reset")
+			reset();
 		else
 			_name = arg;
 	}
-
-	reset();
 }
 
 void GameScreen::onTick() {
@@ -250,10 +253,14 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 }
 
 void GameScreen::render(const unique_ptr<Window>& window) {
-	AbstractScreen::render(window);
+	_backgroundImg->render(window);
 
 	Scene::getInstance().render(window);
-	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+
+	for (size_t gameUiElementIndex = 0; gameUiElementIndex < _gameUiElements.size(); gameUiElementIndex++)
+		_gameUiElements[gameUiElementIndex]->render(window);
+
+  if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		if (Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
 			Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
 	}

@@ -103,11 +103,19 @@ void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool 
 }
 
 
-void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center) {
+void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, int wrapAtPixel) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-	SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
+
+	SDL_Surface* surface;
+
+	if (wrapAtPixel > 0)
+		surface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), sdlForegroundColor, wrapAtPixel);
+	else
+		surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
+
+
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
 
 	SDL_Rect sdlRect;

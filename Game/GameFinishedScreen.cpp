@@ -1,5 +1,5 @@
 #include "GameFinishedScreen.h"
-#include <IOFiles.h>
+#include "GameSettings.h"
 
 
 GameFinishedScreen::GameFinishedScreen() {}
@@ -27,25 +27,58 @@ void GameFinishedScreen::onInit() {
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
 
-
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
-		IOFiles ioFiles;
-		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		ioFiles.writeToFile("Highscores", scoreRow, true);
 
-		game->switchScreen(Screens::MainMenu); };
+		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
+
+		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
+			int foundIndex = -1;
+			for (size_t levelIndex = 0; levelIndex < GameSettings::getInstance().saveGame.levels.size(); levelIndex++) {
+				SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
+
+				if (saveLevel.name == currentLevelData.levelName) {
+					foundIndex = levelIndex;
+
+					break;
+				}
+			}
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+			
+			GameSettings::getInstance().save();
+		}		
+
+
+		game->switchScreen(Screens::MainMenu); 
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(nextLevelButton));
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [this](AbstractGame* game) {
-		IOFiles ioFiles;
-		std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		ioFiles.writeToFile("Highscores", scoreRow, true);
 
-		game->switchScreen(Screens::MainMenu); };
+		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
+
+		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
+			int foundIndex = -1;
+			for (size_t levelIndex = 0; levelIndex < GameSettings::getInstance().saveGame.levels.size(); levelIndex++) {
+				SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
+
+				if (saveLevel.name == currentLevelData.levelName) {
+					foundIndex = levelIndex;
+
+					break;
+				}
+			}
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+
+			GameSettings::getInstance().save();
+		}
+
+
+		game->switchScreen(Screens::MainMenu);
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 
 }

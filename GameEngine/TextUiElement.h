@@ -13,7 +13,7 @@
 class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement
 {
 public:
-	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center);
+	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, int wrapAtPixel = 0);
 	~TextUiElement();
 	std::string text;
 
@@ -40,6 +40,7 @@ private:
 	Color _foregroundColor;
 	Color _backgroundColor;
 	bool _center;
+	int _wrapAtPixel;
 
 	// This has to be here, otherwise we have to add every possible fontSize to the registry.
 	TTF_Font* _font;

@@ -3,7 +3,7 @@
 #include <SoundPlayer.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
-
+#include "GameSettings.h"
 
 SettingsScreen::SettingsScreen() {}
 SettingsScreen::~SettingsScreen() {}
@@ -25,7 +25,7 @@ void SettingsScreen::onInit() {
 
 	
 
-	TextUiElement soundText = TextUiElement("Sound Music: " + to_string(SoundPlayer::getInstance().currentVolume), font, 40, { 470, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement soundText = TextUiElement("Sound Music: " + to_string(GameSettings::getInstance().saveGame.settings.sound), font, 40, { 470, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_soundText = make_shared<TextUiElement>(soundText);
 	_uiElements.push_back(_soundText);
 
@@ -34,12 +34,15 @@ void SettingsScreen::onInit() {
 	soundPlus.registerGame(_game);
 	soundPlus.onClick = [this](AbstractGame* game) { 
 
-		int volume = SoundPlayer::getInstance().currentVolume;
+		int volume = GameSettings::getInstance().saveGame.settings.sound;
 
 		if(volume <= 118)
 			SoundPlayer::getInstance().changeMusicVolume(volume + 10);
 
-		_soundText->text = "Sound: " + to_string(SoundPlayer::getInstance().currentVolume);
+		_soundText->text = "Sound Music: " + to_string(SoundPlayer::getInstance().currentVolume);
+
+		GameSettings::getInstance().saveGame.settings.sound = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().save();
 	
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundPlus));
@@ -53,7 +56,12 @@ void SettingsScreen::onInit() {
 		if (volume >= 10)
 			SoundPlayer::getInstance().changeMusicVolume(volume - 10);
 
-		_soundText->text = "Sound: " + to_string(SoundPlayer::getInstance().currentVolume);
+		_soundText->text = "Sound Music: " + to_string(SoundPlayer::getInstance().currentVolume);
+
+		GameSettings::getInstance().saveGame.settings.sound = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().save();
+
+
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
 
@@ -62,7 +70,7 @@ void SettingsScreen::onInit() {
 
 
 	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
-	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(GameSettings::getInstance().saveGame.settings.sound), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_soundFxText = make_shared<TextUiElement>(soundFxText);
 	_uiElements.push_back(_soundFxText);
 
@@ -71,13 +79,15 @@ void SettingsScreen::onInit() {
 	soundFxPlus.registerGame(_game);
 	soundFxPlus.onClick = [this](AbstractGame* game) {
 
-		int volume = SoundPlayer::getInstance().currentSFXVolume;
+		int volume = GameSettings::getInstance().saveGame.settings.soundFx;
 
 		if (volume <= 118)
 			SoundPlayer::getInstance().changeSFXVolume(volume + 10);
 
 		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
 
+		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().save();
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxPlus));
 
@@ -85,12 +95,14 @@ void SettingsScreen::onInit() {
 	soundFxMin.registerGame(_game);
 	soundFxMin.onClick = [this](AbstractGame* game) {
 
-		int volume = SoundPlayer::getInstance().currentSFXVolume;
+		int volume = GameSettings::getInstance().saveGame.settings.soundFx;
 
 		if (volume >= 10)
 			SoundPlayer::getInstance().changeSFXVolume(volume - 10);
 
 		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
+		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().save();
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
 

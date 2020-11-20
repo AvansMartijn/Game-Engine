@@ -19,15 +19,19 @@ void MainMenuScreen::onInit() {
 	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
 	startButton.onClick = [](AbstractGame* game) {
-		game->switchScreen(Screens::MainGame, { "default", "Default" });
+		GameSettings::getInstance().saveGame.currentLevel = 0;
+		GameSettings::getInstance().save();
+
+		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
+		game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadButton.registerGame(_game);
-	// TODO: Load Game
 	loadButton.onClick = [](AbstractGame* game) { 
-		game->switchScreen(Screens::MainGame, { "tiled", "Level_1" });
+		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
+		game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 
@@ -59,7 +63,19 @@ void MainMenuScreen::onInit() {
 
 void MainMenuScreen::onTick() {}
 
-void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	switch (e.keysym.sym)
+	{
+	case SDLK_d:
+		_game->switchScreen(Screens::MainGame, { "default", "Default", "reset" });
+
+		break;
+	case SDLK_F5:
+		GameSettings::getInstance().load();
+
+		break;
+	}
+}
 
 void MainMenuScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 void MainMenuScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}

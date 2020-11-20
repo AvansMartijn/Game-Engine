@@ -97,12 +97,6 @@
     <Filter Include="Header Files\Misc">
       <UniqueIdentifier>{398d20c3-1841-4ef1-a6f4-1c201b6f3933}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\IOFiles">
-      <UniqueIdentifier>{7f61d505-3a98-4979-9971-ad06962be772}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\IOFiles">
-      <UniqueIdentifier>{56e4c93a-a040-4347-bf61-5ee55de60225}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -291,9 +285,6 @@
     <ClInclude Include="SoundPlayer.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="IOFiles.h">
-      <Filter>Header Files\IOFiles</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -457,9 +448,6 @@
     </ClCompile>
     <ClCompile Include="SoundPlayer.cpp">
       <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="IOFiles.cpp">
-      <Filter>Source Files\IOFiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
