@@ -27,27 +27,28 @@ void GameFinishedScreen::onInit() {
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
 
-
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
 
-		auto test2 = GameSettings::getInstance().saveGame;
-
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
 		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
-			for (auto level : GameSettings::getInstance().saveGame.levels) {
-				if (level.name == currentLevelData.levelName) {
-					level.highscores.push_back({ _nameText->text ,Scene::getInstance().score });
-					break;
-				}	
-			}
-		}		
-	
-		auto test = GameSettings::getInstance().saveGame;
+			int foundIndex = -1;
+			for (size_t levelIndex = 0; levelIndex < GameSettings::getInstance().saveGame.levels.size(); levelIndex++) {
+				SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
 
-		GameSettings::getInstance().save();
+				if (saveLevel.name == currentLevelData.levelName) {
+					foundIndex = levelIndex;
+
+					break;
+				}
+			}
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+			
+			GameSettings::getInstance().save();
+		}		
+
 
 		game->switchScreen(Screens::MainMenu); 
 	};
