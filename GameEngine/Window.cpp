@@ -84,22 +84,22 @@ void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool 
 
 	SDL_RenderCopyEx(_renderer.get(), AssetRegistry::getInstance().getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
 
-	// TODO: Please add a debug variable, these can get really annoying.
-	Color color1 = { 255, 0, 0, 1 };
-	Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
-	renderRectangle(centerrect, color1);
-	Color color2 = { 255, 0, 0, 1 };
-	Rect leftuprect = { rect.x, rect.y, 2, 2 };
-	renderRectangle(leftuprect, color2);
-	Color color3 = { 255, 0, 0, 1 };
-	Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
-	renderRectangle(rightuprect, color3);
-	Color color4 = { 255, 0, 0, 1 };
-	Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
-	renderRectangle(leftdownrect, color4);
-	Color color5 = { 255, 0, 0, 1 };
-	Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
-	renderRectangle(rightdownrect, color5);
+	//// TODO: Please add a debug variable, these can get really annoying.
+	//Color color1 = { 255, 0, 0, 1 };
+	//Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
+	//renderRectangle(centerrect, color1);
+	//Color color2 = { 255, 0, 0, 1 };
+	//Rect leftuprect = { rect.x, rect.y, 2, 2 };
+	//renderRectangle(leftuprect, color2);
+	//Color color3 = { 255, 0, 0, 1 };
+	//Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
+	//renderRectangle(rightuprect, color3);
+	//Color color4 = { 255, 0, 0, 1 };
+	//Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
+	//renderRectangle(leftdownrect, color4);
+	//Color color5 = { 255, 0, 0, 1 };
+	//Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
+	//renderRectangle(rightdownrect, color5);
 }
 
 
