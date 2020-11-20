@@ -6,6 +6,7 @@
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
 #include "Screens.h"
+#include "GameSettings.h"
 
 class LoadCustomLevelScreen : public AbstractScreen
 {
@@ -14,10 +15,7 @@ public:
 	LoadCustomLevelScreen();
 	~LoadCustomLevelScreen();
 
-	//vector<TextUiElement> uiList;
 	vector<shared_ptr<ButtonUiElement>> uiList;
-
-	shared_ptr<TextUiElement> scroll;
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -42,6 +40,7 @@ public:
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 private:
+	std::vector<FileData> _files;
 	int offset = 0;
 	int y;
 };
