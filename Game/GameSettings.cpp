@@ -50,6 +50,19 @@ void GameSettings::addLevel(int number, LevelData levelData) {
 	_storyLevels.insert(std::make_pair(number, levelData));
 }
 
+bool GameSettings::isStoryLevel(LevelData levelData) {
+	bool found = false;
+	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
+		SaveLevel data = saveGame.levels[levelIndex];
+		if (data.name == levelData.levelName) {
+			found = true;
+			break;
+		}
+	}
+
+	return found;
+}
+
 LevelData GameSettings::getCurrentLevel() {
 	return _storyLevels[saveGame.currentLevel];
 }
