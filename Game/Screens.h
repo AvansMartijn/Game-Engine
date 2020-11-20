@@ -10,5 +10,6 @@ enum Screens {
 	KeyBindings,
 	HighScore,
 	GameFinished,
-	Settings
+	Settings,
+	LoadCustomMap
 };

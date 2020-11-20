@@ -47,6 +47,8 @@ public:
 	std::function<void(AbstractGame*)> onClick;
 
 	Rect _rect;
+protected:
+	AbstractGame* _game;
 
 protected:
 	AbstractGame* _game;

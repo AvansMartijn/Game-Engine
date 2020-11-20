@@ -16,7 +16,7 @@ void MainMenuScreen::onInit() {
 	ImageUiElement logoWesley = ImageUiElement("LogoWesley", { ((1080 - 700) / 2) , ((720 - 700) / 2), 700, 700 });
 	_uiElements.push_back(make_shared<ImageUiElement>(logoWesley));
 
-	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 75, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
 	startButton.onClick = [](AbstractGame* game) {
 		GameSettings::getInstance().saveGame.currentLevel = 0;
@@ -27,13 +27,21 @@ void MainMenuScreen::onInit() {
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
-	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadButton.registerGame(_game);
 	loadButton.onClick = [](AbstractGame* game) { 
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
 		game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
+
+	ButtonUiElement loadCustomButton = ButtonUiElement("Load Custom Map", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
+	loadCustomButton.registerGame(_game);
+	// TODO: Load Game
+	loadCustomButton.onClick = [](AbstractGame* game) {
+		game->switchScreen(Screens::LoadCustomMap);
+	};
+	_uiElements.push_back(make_shared<ButtonUiElement>(loadCustomButton));
 
 	ButtonUiElement helpButton = ButtonUiElement("Help", { 700, 225, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	helpButton.registerGame(_game);

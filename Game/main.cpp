@@ -1,7 +1,7 @@
 #include "main.h"
 #include "GameFinishedScreen.h"
 #include "SettingsScreen.h"
-
+#include "LoadCustomlevelScreen.h"
 
 
 #undef main
@@ -66,6 +66,10 @@ int main(int argc, char* argv[]) {
 	SettingsScreen->onInit();
 	game.screens.push_back(move(SettingsScreen));
 
+	unique_ptr<LoadCustomLevelScreen> LoadCustomlevelScreen(new LoadCustomLevelScreen);
+	LoadCustomlevelScreen->registerGame(&game);
+	LoadCustomlevelScreen->onInit();
+	game.screens.push_back(move(LoadCustomlevelScreen));
 
 	game.onInit();
 
