@@ -24,7 +24,6 @@ void Game::onInit() {
 	registerTexture("Gate_Cropped", "res/gfx/Assets/Enviroment/Gate_Cropped.png");
 	registerTexture("Tile_Interior_Ground_Center", "res/gfx/Assets/Tiles/Interior/Ground_Center.png");
 	registerTexture("Border", "res/gfx/Border.png");
-	registerTexture("Background", "res/gfx/bg.png");
 	registerTexture("Krool", "res/gfx/KINGKROOL.png");
 	registerTexture("Blob", "res/gfx/Assets/Items/Blob.png");
 
