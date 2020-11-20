@@ -14,6 +14,16 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().addLevel(0, { "Level0", LevelType::TILED });
 	GameSettings::getInstance().addLevel(1, { "Level1", LevelType::TILED });
 
+	// Register Items
+	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
+	Scene::getInstance().addItem("GlueGun", glueItem);
+
+	shared_ptr<ThrusterManagableItem> thrusterItem = std::make_shared<ThrusterManagableItem>();
+	Scene::getInstance().addItem("ThrusterGun", thrusterItem);
+
+	shared_ptr<PortalManagableItem> portalItem = std::make_shared<PortalManagableItem>();
+	Scene::getInstance().addItem("PortalGun", portalItem);
+
 	// The screens have to be created outside the Game class, using "this" will create problems.
 	unique_ptr<GameScreen> gameScreen(new GameScreen);
 	gameScreen->registerGame(&game);

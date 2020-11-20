@@ -24,6 +24,23 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		else if (go.layer == "objectgroup")
 			createObject(gameEngine, go, textures, extensions, x, y, width, height);
 	}
+
+	// Create Portals
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Portal1"));
+	shared_ptr<GameObject> portal1 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
+		-50, -50, 3, 0.7, "portalSensor");
+	Scene::getInstance().portalA = portal1;
+
+	textures.clear();
+	textures.insert(pair<int, std::string>(0, "Portal2"));
+	shared_ptr<GameObject> portal2 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, textures,
+		-50, -50, 3, 0.7, "portalSensor");
+	Scene::getInstance().portalB = portal2;
+
+	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
+	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
+
 }
 
 void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::map<int, std::string>& textures, std::vector<std::string>& extensions, float x, float y, float width, float height) {
@@ -53,7 +70,7 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 }
 
 void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::map<int, std::string>& textures, std::vector<std::string>& extensions, float x, float y, float width, float height) {
-	if (tiledGameObject.name == "Player") {
+	if (tiledGameObject.type == "Player") {
 		textures.clear();
 		textures.insert(pair<int, std::string>(PlayerMoves::LOOK_RIGHT, "Player_Look_Right"));
 		textures.insert(pair<int, std::string>(PlayerMoves::RUN_RIGHT, "Player_Running_Right"));
@@ -66,6 +83,17 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 
 		Scene::getInstance().setPlayer(createEntity(gameEngine, extensions, textures,
 			x, y, 0.7f, 1.8f));
+	}
+	else if (tiledGameObject.layerType == "Entities") {
+
+	}
+	else if (tiledGameObject.layerType == "Tools") {
+		std::string sensor = tiledGameObject.properties["sensor"].valueString;
+		shared_ptr<AbstractManageableItem> item = Scene::getInstance().getItem(tiledGameObject.type);
+		textures.clear();
+
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures, x, y, item->getWidth(), item->getHeight(), sensor);
+		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
 	}
 }
 

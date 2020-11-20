@@ -31,12 +31,19 @@ void Scene::removeGameObject(int id) {
     _gameObjects.erase(id);
 }
 
-void Scene::addItem(shared_ptr<AbstractManageableItem> item) {
-    _items.insert(std::pair<int, shared_ptr<AbstractManageableItem>>(_items.size() + 1, item));
+void Scene::addItem(std::string name, shared_ptr<AbstractManageableItem> item) {
+    int id = _items.size() + 1;
+    
+    _items.insert(std::pair<std::string, shared_ptr<AbstractManageableItem>>(name, item));
+    _keyRegistry.insert(std::pair<int, std::string>(id, name));
 }
 
 shared_ptr<AbstractManageableItem> Scene::getItem(int index) {
-    return _items[index];
+    return _items[_keyRegistry[index]];
+}
+
+shared_ptr<AbstractManageableItem> Scene::getItem(std::string name) {
+    return _items[name];
 }
 
 shared_ptr<GameObject> Scene::getPlayer() {
@@ -61,7 +68,6 @@ void Scene::reset() {
 
     score = 1000;
     _gameObjects.clear();
-    _items.clear();
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
