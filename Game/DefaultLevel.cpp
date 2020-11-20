@@ -95,17 +95,6 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	//dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
 	//dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
 
-	// Items
-	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
-	Scene::getInstance().addItem(glueItem);
-
-	// Items
-	shared_ptr<ThrusterManagableItem> thrusterItem = std::make_shared<ThrusterManagableItem>();
-	Scene::getInstance().addItem(thrusterItem);
-
-	// Items
-	shared_ptr<PortalManagableItem> portalItem = std::make_shared<PortalManagableItem>();
-	Scene::getInstance().addItem(portalItem);
 
 	// Player
 	std::map<int, std::string> textures;
@@ -124,16 +113,18 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 	// Weapon Block
 	textures.clear();
+
+	shared_ptr<AbstractManageableItem> glueItem = Scene::getInstance().getItem("GlueGun");
 	shared_ptr<GameObject> weaponGlue = createNonRigidBody(gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
 
-	// Weapon Block
 	textures.clear();
+	shared_ptr<AbstractManageableItem> thrusterItem = Scene::getInstance().getItem("ThrusterGun");
 	shared_ptr<GameObject> weaponThruster = createNonRigidBody(gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
 
-	// Weapon Block
 	textures.clear();
+	shared_ptr<AbstractManageableItem> portalItem = Scene::getInstance().getItem("PortalGun");
 	shared_ptr<GameObject> weaponPortal = createNonRigidBody(gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, portalItem->getWidth(), portalItem->getHeight(), "pickupSensor");
 

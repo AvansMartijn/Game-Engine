@@ -3,9 +3,10 @@
 #include "TiledProperty.h"
 
 struct TiledGameObject {
-	std::string type;
+	std::string layerType;
 	std::string layer;
 	std::string name;
+	std::string type;
 	int x;
 	int y;
 	int width;

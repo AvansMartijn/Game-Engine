@@ -18,7 +18,9 @@ private:
 	static Scene instance;
 
 	map<int, shared_ptr<GameObject>> _gameObjects;
-	map<int, shared_ptr<AbstractManageableItem>> _items;
+	map<std::string, shared_ptr<AbstractManageableItem>> _items;
+	map<int, std::string> _keyRegistry;
+
 	shared_ptr<GameObject> _player;
 public:
 	shared_ptr<GameObject> portalA;
@@ -69,8 +71,9 @@ public:
 	/// <summary>
 	/// Adds a item to the scene.
 	/// </summary>
+	/// <param name="name">The name.</param>
 	/// <param name="item">The item.</param>
-	void addItem(shared_ptr<AbstractManageableItem> item);
+	void addItem(std::string name, shared_ptr<AbstractManageableItem> item);
 
 	/// <summary>
 	/// Get's the item with the given index.
@@ -78,6 +81,13 @@ public:
 	/// <param name="index">The index of the item.</param>
 	/// <returns>The item on the given index.</returns>
 	shared_ptr<AbstractManageableItem> getItem(int index);
+
+	/// <summary>
+	/// Get's the item with the given name.
+	/// </summary>
+	/// <param name="name">The name of the item.</param>
+	/// <returns>The item with the given name.</returns>
+	shared_ptr<AbstractManageableItem> getItem(std::string name);
 
 	/// <summary>
 	/// Set's the player.
@@ -113,12 +123,14 @@ public:
 	/// </summary>
 	/// <returns>The wield extension.</returns>
 	shared_ptr<CanWieldExtension> getWieldExtension();
+
 	/// <summary>
 	/// convert meters to pixels
 	/// </summary>
 	/// <param name="meters"></param>
 	/// <returns>amount of pixels</returns>
 	float metersToPixels(float meters);
+
 	/// <summary>
 	/// convert pixels to meters
 	/// </summary>

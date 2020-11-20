@@ -54,7 +54,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(TiledLevel& l
 						TiledProperty prop = tile.properties[propertyIndex];
 						properties.insert(std::make_pair(prop.name, prop));
 					}
-					TiledGameObject tiledGameObject = { layer.name, layer.type, to_string(tile.id), x, y, tile.imageWidth, tile.imageHeight, tile.image, properties };
+					TiledGameObject tiledGameObject = { layer.name, layer.type, to_string(tile.id), "", x, y, tile.imageWidth, tile.imageHeight, tile.image, properties };
 
 					gameObjects.push_back(tiledGameObject);
 				}
@@ -79,7 +79,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(TiledLevel& l
 					properties.insert(std::make_pair(prop.name, prop));
 				}
 
-				TiledGameObject tiledGameObject = { layer.name, layer.type, tiledObject.name, x, y, 256, 256, "", properties };
+				TiledGameObject tiledGameObject = { layer.name, layer.type, tiledObject.name, tiledObject.type, x, y, 256, 256, "", properties };
 
 				gameObjects.push_back(tiledGameObject);
 			}

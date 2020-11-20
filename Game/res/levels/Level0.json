@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"LevelTest.json"
+         "target":"Level0.json"
         }
     },
  "height":100,
@@ -48,10 +48,10 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension"
+                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Player",
                  "visible":true,
                  "width":0,
                  "x":632,
@@ -62,9 +62,43 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":8,
+         "name":"Tools",
+         "objects":[
+                {
+                 "height":0,
+                 "id":18,
+                 "name":"PortalGun",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"extensions",
+                         "type":"string",
+                         "value":"PickupExtension"
+                        }, 
+                        {
+                         "name":"sensor",
+                         "type":"string",
+                         "value":"pickupSensor"
+                        }],
+                 "rotation":0,
+                 "type":"PortalGun",
+                 "visible":true,
+                 "width":0,
+                 "x":1392,
+                 "y":2472
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":15,
+ "nextlayerid":9,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",

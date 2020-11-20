@@ -35,9 +35,8 @@ void GameScreen::setupHUD() {
 }
 
 void GameScreen::setupGame() {
-	if (_levelLoader) {
+	if (_levelLoader)
 		_levelLoader->createLevel(_gameEngine, _name);
-	}
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
