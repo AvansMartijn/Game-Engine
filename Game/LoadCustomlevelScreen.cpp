@@ -4,7 +4,6 @@ LoadCustomLevelScreen::LoadCustomLevelScreen() {}
 LoadCustomLevelScreen::~LoadCustomLevelScreen() {}
 
 void LoadCustomLevelScreen::onInit() {
-	_files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false);
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 	const string fontPortal = "Portal";
@@ -14,19 +13,16 @@ void LoadCustomLevelScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
+	std::vector<FileData> _files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false, false);
 
-	for (int i = 0; i < _files.size(); i++)
-	{
-		//if (files[i].path.find("Level_") == string::npos) 
-		//	currentName.push_back(files[i].path);
-
+	for (size_t i = 0; i < _files.size(); i++) {
 		LevelData levelData = { _files[i].key, LevelType::TILED };
 
 		shared_ptr<ButtonUiElement> _line;
 		ButtonUiElement lineOfC = ButtonUiElement(levelData.levelName, { 430, y, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 		lineOfC.registerGame(_game);
-		lineOfC.onClick = [&, &i](AbstractGame* game) {
-			game->switchScreen(Screens::MainGame, { _files[i] == LevelType::TILED ? "default" : "tiled", key, "reset" });
+		lineOfC.onClick = [levelData](AbstractGame* game) {
+			game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 		};
 		_line = make_shared<ButtonUiElement>(lineOfC);
 		_uiElements.push_back(_line);

@@ -40,7 +40,6 @@ public:
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 private:
-	std::vector<FileData> _files;
 	int offset = 0;
 	int y;
 };
