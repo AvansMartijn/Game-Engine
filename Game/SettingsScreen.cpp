@@ -86,7 +86,7 @@ void SettingsScreen::onInit() {
 
 		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
 
-		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentSFXVolume;
 		GameSettings::getInstance().save();
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxPlus));
@@ -101,8 +101,10 @@ void SettingsScreen::onInit() {
 			SoundPlayer::getInstance().changeSFXVolume(volume - 10);
 
 		_soundFxText->text = "Sound FX: " + to_string(SoundPlayer::getInstance().currentSFXVolume);
-		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentVolume;
+		GameSettings::getInstance().saveGame.settings.soundFx = SoundPlayer::getInstance().currentSFXVolume;
 		GameSettings::getInstance().save();
+
+
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
 
