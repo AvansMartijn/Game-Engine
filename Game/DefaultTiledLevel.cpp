@@ -87,9 +87,13 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	else if (tiledGameObject.layerType == "Entities") {
 
 	}
-	else if (tiledGameObject.layer == "Tools") {
+	else if (tiledGameObject.layerType == "Tools") {
+		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 		shared_ptr<AbstractManageableItem> item = Scene::getInstance().getItem(tiledGameObject.type);
-		int a = 0;
+		textures.clear();
+
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures, x, y, item->getWidth(), item->getHeight(), sensor);
+		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
 	}
 }
 
