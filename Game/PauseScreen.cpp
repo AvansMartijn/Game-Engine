@@ -30,7 +30,7 @@ void PauseScreen::onInit() {
 
 	ButtonUiElement RestartButton = ButtonUiElement("Restart", { 470, 250, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	RestartButton.registerGame(_game);
-	RestartButton.onClick = [](AbstractGame* game) {  game->reset(); game->switchScreen(Screens::MainGame);};
+	RestartButton.onClick = [](AbstractGame* game) {  game->switchScreen(Screens::MainGame, { "reset" });};
 	_uiElements.push_back(make_shared<ButtonUiElement>(RestartButton));
 
 	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { 470, 300, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);

@@ -14,6 +14,8 @@
 #include "Screens.h"
 #include "HighscoreScreen.h"
 #include "GameOverScreen.h"
+#include "GameSettings.h"
+#include "LevelData.h"
 
 //engine
 #include "GameEngine.h" 

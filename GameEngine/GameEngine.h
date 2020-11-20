@@ -15,8 +15,8 @@
 class GAMEENGINE_API GameEngine
 {
 private:
-	GameObjectFacade gameObjectFacde;
+	GameObjectFacade _gameObjectFacde;
 public:
-	shared_ptr<GameObject> CreateGameObject(vector<string> extensionNames);
+	shared_ptr<GameObject> createGameObject(vector<string> extensionNames);
 
 };

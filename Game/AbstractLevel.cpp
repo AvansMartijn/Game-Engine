@@ -5,7 +5,7 @@ shared_ptr<GameObject> AbstractLevel::createEntity(GameEngine gameEngine, vector
 }
 
 shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
-	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
+	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->textures = textures;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
@@ -20,7 +20,7 @@ shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, ve
 }
 
 shared_ptr<GameObject> AbstractLevel::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
-	shared_ptr<GameObject> gameObject = gameEngine.CreateGameObject(extensions);
+	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->textures = textures;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 

@@ -1,4 +1,6 @@
 #include "GameScreen.h"
+#include <CanWieldExtension.h>
+
 #include <TextUiElement.h>
 #include "TiledLevelLoader.h"
 
@@ -13,8 +15,8 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::setupScreen() {
-	ImageUiElement backgroundImg = ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_backgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 }));
+	_uiElements.push_back(_backgroundImg);
 }
 
 void GameScreen::setupHUD() {
@@ -22,17 +24,20 @@ void GameScreen::setupHUD() {
 	const Color fgColor = { 210, 190, 70 };
 	const string font = "Portal";
 	const int fontSize = 24;
-	TextUiElement lives = TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false);
-	_uiElements.push_back(make_shared<TextUiElement>(lives));
+	_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_lives);
+	_gameUiElements.push_back(_lives);
 
-	TextUiElement weapon = TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false);
-	_uiElements.push_back(make_shared<TextUiElement>(weapon));
+	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_weapon);
+	_gameUiElements.push_back(_weapon);
 
 }
 
 void GameScreen::setupGame() {
-	if (_levelLoader)
+	if (_levelLoader) {
 		_levelLoader->createLevel(_gameEngine, _name);
+	}
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
@@ -43,11 +48,11 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
 		else if (arg == "default")
 			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+		else if (arg == "reset")
+			reset();
 		else
 			_name = arg;
 	}
-
-	reset();
 }
 
 void GameScreen::onTick() {
@@ -69,18 +74,16 @@ void GameScreen::onTick() {
 
 	Physics::getInstance().step(timeStep, 6, 2);
 
-	if (Scene::getInstance().player) {
+	if (Scene::getInstance().getPlayer()) {
 		handlePlayerControls();
 		calculatePlayerTexture();
 	}
 }
 
 void GameScreen::handlePlayerControls() {
-
-	b2Vec2 vel = Scene::getInstance().player->body.b2body->GetLinearVelocity();
+	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
-	//continuous-response keys
 	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT]) {
 		vel.x = -5;
 		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
@@ -97,6 +100,8 @@ void GameScreen::handlePlayerControls() {
 	if (keystate[SDL_SCANCODE_S] || keystate[SDL_SCANCODE_DOWN])
 		vel.x = 0;
 
+	if (keystate[SDL_SCANCODE_F])
+		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50.0f : -50.0f;
 	if (keystate[SDL_SCANCODE_F]) {
 		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
 		SoundPlayer::getInstance().playSFX("Thruster_Sound");
@@ -109,7 +114,7 @@ void GameScreen::handlePlayerControls() {
 			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
-	Scene::getInstance().player->body.b2body->SetLinearVelocity(vel);
+	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
 }
 
 void GameScreen::calculatePlayerTexture() {
@@ -117,30 +122,30 @@ void GameScreen::calculatePlayerTexture() {
 
 	if (moveExtension->isLookingToRight) {
 		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_RIGHT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::JUMP_RIGHT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
 		}
 		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_RIGHT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::RUN_RIGHT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
 		}
 	}
 	else {
 		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_LEFT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::JUMP_LEFT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
 		}
 		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().player->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().player->currentState = PlayerMoves::LOOK_LEFT;
+			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
 			else
-				Scene::getInstance().player->currentState = PlayerMoves::RUN_LEFT;
+				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
 		}
 	}
 }
@@ -151,6 +156,51 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	{
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::Pause);
+
+		break;
+	case SDLK_1:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
+
+		break;
+	case SDLK_2:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
+
+		break;
+	case SDLK_3:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
+
+		break;
+	case SDLK_4:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(3);
+
+		break;
+	case SDLK_5:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(4);
+
+		break;
+	case SDLK_6:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(5);
+
+		break;
+	case SDLK_7:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(6);
+
+		break;
+	case SDLK_8:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(7);
+
+		break;
+	case SDLK_9:
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
 
 		break;
 	case SDLK_p:
@@ -169,7 +219,22 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
-void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {}
+void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		shared_ptr<CanWieldExtension> wieldExtension = Scene::getInstance().getWieldExtension();
+
+		switch (e.button) {
+		case SDL_BUTTON_LEFT:
+			wieldExtension->onLeftClick(e.x, e.y);
+
+			break;
+		case SDL_BUTTON_RIGHT:
+			wieldExtension->onRightClick(e.x, e.y);
+
+			break;
+		}
+	}
+}
 
 void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	if (e.y > 0) // scroll up
@@ -188,9 +253,17 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 }
 
 void GameScreen::render(const unique_ptr<Window>& window) {
-	AbstractScreen::render(window);
+	_backgroundImg->render(window);
 
 	Scene::getInstance().render(window);
+
+	for (size_t gameUiElementIndex = 0; gameUiElementIndex < _gameUiElements.size(); gameUiElementIndex++)
+		_gameUiElements[gameUiElementIndex]->render(window);
+
+  if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		if (Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
+			Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
+	}
 }
 
 void GameScreen::reset() {

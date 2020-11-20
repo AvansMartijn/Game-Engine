@@ -49,4 +49,8 @@ public:
 	Rect _rect;
 protected:
 	AbstractGame* _game;
+
+protected:
+	AbstractGame* _game;
+
 };

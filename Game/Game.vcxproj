@@ -182,6 +182,7 @@
     <ClCompile Include="GameFinishedScreen.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="HighscoreScreen.cpp" />
     <ClCompile Include="KeyBindingsHelpScreen.cpp" />
@@ -204,15 +205,21 @@
     <ClInclude Include="GameFinishedScreen.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="GameSettings.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="LoadCustomlevelScreen.h" />
+    <ClInclude Include="LevelData.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
+    <ClInclude Include="SaveGame.h" />
+    <ClInclude Include="SaveHighscore.h" />
+    <ClInclude Include="SaveLevel.h" />
+    <ClInclude Include="SaveSettings.h" />
     <ClInclude Include="Screens.h" />
     <ClInclude Include="TiledGameObject.h" />
     <ClInclude Include="TiledGrid.h" />
@@ -226,7 +233,6 @@
     <ClInclude Include="TiledTileSet.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
     <ClInclude Include="SettingsScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

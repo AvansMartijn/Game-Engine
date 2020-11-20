@@ -71,7 +71,7 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect,float angle, bool flipLeft) {
+void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -84,31 +84,38 @@ void Window::renderTexture(std::string textureKey, Rect rect,float angle, bool f
 
 	SDL_RenderCopyEx(_renderer.get(), AssetRegistry::getInstance().getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
 
-	// TODO: Please add a debug variable, these can get really annoying.
-	Color color1 = { 255, 0, 0, 1 };
-	Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
-	renderRectangle(centerrect, color1);
-	Color color2 = { 255, 0, 0, 1 };
-	Rect leftuprect = { rect.x, rect.y, 2, 2 };
-	renderRectangle(leftuprect, color2);
-	Color color3 = { 255, 0, 0, 1 };
-	Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
-	renderRectangle(rightuprect, color3);
-	Color color4 = { 255, 0, 0, 1 };
-	Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
-	renderRectangle(leftdownrect, color4);
-	Color color5 = { 255, 0, 0, 1 };
-	Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
-	renderRectangle(rightdownrect, color5);
-
+	//// TODO: Please add a debug variable, these can get really annoying.
+	//Color color1 = { 255, 0, 0, 1 };
+	//Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
+	//renderRectangle(centerrect, color1);
+	//Color color2 = { 255, 0, 0, 1 };
+	//Rect leftuprect = { rect.x, rect.y, 2, 2 };
+	//renderRectangle(leftuprect, color2);
+	//Color color3 = { 255, 0, 0, 1 };
+	//Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
+	//renderRectangle(rightuprect, color3);
+	//Color color4 = { 255, 0, 0, 1 };
+	//Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
+	//renderRectangle(leftdownrect, color4);
+	//Color color5 = { 255, 0, 0, 1 };
+	//Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
+	//renderRectangle(rightdownrect, color5);
 }
 
 
-void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center) {
+void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, int wrapAtPixel) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-	SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
+
+	SDL_Surface* surface;
+
+	if (wrapAtPixel > 0)
+		surface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), sdlForegroundColor, wrapAtPixel);
+	else
+		surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
+
+
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
 
 	SDL_Rect sdlRect;
@@ -129,6 +136,10 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	SDL_RenderCopy(_renderer.get(), texture, NULL, &sdlRect);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(texture);
+}
+
+int Window::metersToPixels(float value) {
+	return (int)(40.0f * value);
 }
 
 void Window::display() {
