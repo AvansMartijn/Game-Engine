@@ -160,11 +160,14 @@ void Physics::executeTeleportQueue() {
         teleportQueue.pop_back();
 
         b2Vec2 newPosition = { teleportObject.newPosition.x, teleportObject.newPosition.y };
-        
         // TODO: Decide which side we have to fall though.
       /*  newPosition.y += teleportObject.from->body.height + (teleportObject.to->body.height / 4);*/
 
         teleportObject.obj->body.b2body->SetTransform(newPosition, teleportObject.obj->body.b2body->GetAngle());
+        if (teleportObject.hasSpeed) {
+            teleportObject.obj->body.b2body->SetLinearVelocity({ teleportObject.newSpeed.x, teleportObject.newSpeed.y });
+
+        }
     }
 }
 
