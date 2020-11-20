@@ -3,6 +3,7 @@
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
+#include "GameSettings.h"
 
 
 HighScoreScreen::HighScoreScreen() {}
@@ -18,7 +19,7 @@ void HighScoreScreen::onInit()
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement scrollText = TextUiElement(" JOOOOOOOOOOOOOD JOOOOOOOOD jooooD jooooD jooooD joooooD joooooD", "Portal", 25, { 100, 250, 200, 0 }, { 255, 255, 255 }, bgColor, true, 200);
+	TextUiElement scrollText = TextUiElement("-", "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, false, 200);
 	scroll = make_shared<TextUiElement>(scrollText);
 	_uiElements.push_back(scroll);
 
@@ -31,25 +32,6 @@ void HighScoreScreen::onInit()
 	ImageUiElement backgroundImg2 = ImageUiElement("Line", { 230 , 200, 620, 1});
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg2));
 
-	TextUiElement row1Text = TextUiElement(" - ", "Portal", 25, { 100, 250, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_row1Text = make_shared<TextUiElement>(row1Text);
-	_uiElements.push_back(_row1Text);
-
-	TextUiElement row2Text = TextUiElement(" - ", "Portal", 25, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_row2Text = make_shared<TextUiElement>(row2Text);
-	_uiElements.push_back(_row2Text);
-
-	TextUiElement row3Text = TextUiElement(" - ", "Portal", 25, { 100, 350, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_row3Text = make_shared<TextUiElement>(row3Text);
-	_uiElements.push_back(_row3Text);
-
-	TextUiElement row4Text = TextUiElement(" - ", "Portal", 25, { 100, 400, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_row4Text = make_shared<TextUiElement>(row4Text);
-	_uiElements.push_back(_row4Text);
-
-	TextUiElement row5Text = TextUiElement(" - ", "Portal", 25, { 100, 450, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_row5Text = make_shared<TextUiElement>(row5Text);
-	_uiElements.push_back(_row5Text);
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
@@ -61,9 +43,24 @@ void HighScoreScreen::onTick() {}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
 
-	
-	//get list from curFt level
+	scroll->text = "";
 
+
+	//get list from curFt level
+	std::vector<SaveLevel> levels = GameSettings::getInstance().saveGame.levels;
+
+	std::multimap<int, std::string, std::greater<int>> scores;
+
+	for (auto level : levels)
+	{
+		scroll->text += "-";
+		scroll->text += level.name += "-                  ";
+		for (auto highScore : level.highscores)
+		{
+			scroll->text += highScore.name += ", ";
+			scroll->text += to_string(highScore.score) += "                    ";
+		}
+	}
 
 	//IOFiles ioFiles;
 
