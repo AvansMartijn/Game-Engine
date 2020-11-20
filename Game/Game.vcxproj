@@ -185,6 +185,7 @@
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="HighscoreScreen.cpp" />
     <ClCompile Include="KeyBindingsHelpScreen.cpp" />
+    <ClCompile Include="LoadCustomlevelScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
+    <ClInclude Include="LoadCustomlevelScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />

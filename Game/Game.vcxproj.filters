@@ -114,6 +114,9 @@
     <ClCompile Include="SettingsScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
+    <ClCompile Include="LoadCustomlevelScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -205,6 +208,9 @@
       <Filter>Header Files\Screens\LevelEnd</Filter>
     </ClInclude>
     <ClInclude Include="SettingsScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadCustomlevelScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
   </ItemGroup>
