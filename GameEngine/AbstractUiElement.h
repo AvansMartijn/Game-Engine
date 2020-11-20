@@ -50,7 +50,4 @@ public:
 protected:
 	AbstractGame* _game;
 
-protected:
-	AbstractGame* _game;
-
 };
