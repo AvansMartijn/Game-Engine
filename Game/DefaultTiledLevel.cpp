@@ -61,8 +61,8 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		textures.insert(pair<int, std::string>(PlayerMoves::JUMP_LEFT, "Player_Jump_Left"));
 		textures.insert(pair<int, std::string>(PlayerMoves::FALL_LEFT, "Player_Fall_Left"));
 
-		Scene::getInstance().player = createEntity(gameEngine, extensions, textures,
-			x, y, 0.8f, 2.0f);
+		Scene::getInstance().setPlayer(createEntity(gameEngine, extensions, textures,
+			x, y, 0.7f, 1.8f));
 	}
 }
 
