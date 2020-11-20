@@ -14,16 +14,22 @@ void Game::onInit() {
 	registerTexture("Player_Fall_Right", "res/gfx/Assets/Entity/Player/Falling_Right.png");
 	registerTexture("Player_Fall_Left", "res/gfx/Assets/Entity/Player/Falling_Left.png");
 
-
 	registerTexture("Player_Running_Right", "res/gfx/Assets/Entity/Player/Running_Right.png");
 	registerTexture("Player_Running_Left", "res/gfx/Assets/Entity/Player/Running_Left.png");
 
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
+	registerTexture("Portal1", "res/gfx/Assets/Enviroment/Portal1.png");
+	registerTexture("Portal2", "res/gfx/Assets/Enviroment/Portal2.png");
 	registerTexture("Gate_Cropped", "res/gfx/Assets/Enviroment/Gate_Cropped.png");
 	registerTexture("Tile_Interior_Ground_Center", "res/gfx/Assets/Tiles/Interior/Ground_Center.png");
 	registerTexture("Border", "res/gfx/Border.png");
 	registerTexture("Background", "res/gfx/bg.png");
+	registerTexture("Krool", "res/gfx/KINGKROOL.png");
+	registerTexture("Blob", "res/gfx/Assets/Items/Blob.png");
+
+	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
+
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
 	registerFont("Portal", "res/fonts/PortalFont.ttf");

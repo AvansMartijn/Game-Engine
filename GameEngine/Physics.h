@@ -17,6 +17,7 @@
 #include "CustomUserData.h"
 #include "TeleportObject.h"
 #include "Scene.h"
+#include "RotateObj.h"
 
 class CollisionListener;
 class GAMEENGINE_Physics Physics
@@ -38,6 +39,9 @@ public:
 	Physics& operator=(Physics&&) = delete;
 	
 	vector<TeleportObject> teleportQueue;
+	vector<RotateObj> rotateQueue;
+	vector<shared_ptr<GameObject>> setStaticQueue;
+	vector<int> deleteQueue;
 
 	/// <summary>
 	/// Executes a step in the wordl.
@@ -78,7 +82,7 @@ public:
 	/// <param name="friction">The friction.</param>
 	/// <param name="fixed">If this body should be affected by collisions.</param>
 	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
-	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet = false, std::string userDataType = "fixture");
 
 	/// <summary>
 	/// Reset the physics.
@@ -89,6 +93,22 @@ public:
 	/// Executes the queued teleports.
 	/// </summary>
 	void executeTeleportQueue();
+
+	/// <summary>
+	/// Executes the queued deletes.
+	/// </summary>
+	void executeDeleteQueue();
+
+	/// <summary>
+	/// Executes the queued deletes.
+	/// </summary>
+	void executeSetStaticQueue();
+
+	/// <summary>
+	/// Executes the queued rotates.
+	/// </summary>
+	void executeRotateQueue();
+
 };
 
 #endif
