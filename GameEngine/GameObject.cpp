@@ -31,6 +31,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	playerPos.x = metersToPixels(playerPos.x);
 	playerPos.y = metersToPixels(playerPos.y);
 	b2Vec2 diffs = { playerPos.x - (window->getWidth() / 2), playerPos.y - (window->getHeight() / 2) };
+	std::shared_ptr<GameObject> player = Scene::getInstance().player;
 
 	//get object position
 	b2Vec2 position = body.b2body->GetPosition();
@@ -43,9 +44,17 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
 
-	//apply camera offset
-	rect.x -= diffs.x;
-	rect.y -= diffs.y;
+	if (player) {
+		// calc camera offset
+		b2Vec2 playerPos = player->body.b2body->GetPosition();
+		playerPos.x = metersToPixels(playerPos.x);
+		playerPos.y = metersToPixels(playerPos.y);
+		b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
+
+		//apply camera offset
+		rect.x -= diffs.x;
+		rect.y -= diffs.y;
+	}
 
 	//render
 	window->renderTexture(textures[currentState], rect, degrees, false);
@@ -72,5 +81,3 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 void GameObject::addTexture(int state, std::string textureKey) {
 	textures.insert(std::pair<int, std::string>(state, textureKey));
 }
-
-

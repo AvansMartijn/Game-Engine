@@ -4,47 +4,54 @@ MainMenuScreen::MainMenuScreen() {}
 MainMenuScreen::~MainMenuScreen() {}
 
 void MainMenuScreen::onInit() {
-	const Color bgColor = { 66, 99, 116 };
+	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
-	const int width = 500;
-	const int height = 75;
+	backgroundTrackKey = "Background_Menu";
+	const int width = 200;
+	const int height = 40;
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement text = TextUiElement("  LATROP 2   ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
-	_uiElements.push_back(make_shared<TextUiElement>(text));
+	ImageUiElement logoWesley = ImageUiElement("LogoWesley", { ((1080 - 700) / 2) , ((720 - 700) / 2), 700, 700 });
+	_uiElements.push_back(make_shared<ImageUiElement>(logoWesley));
 
-	ButtonUiElement startButton = ButtonUiElement("Start New Game", { (1080 / 2) - 220, 100, width, height }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
-	startButton.onClick = [](AbstractGame* game) { 
-		game->reset();
-		game->switchScreen(Screens::MainGame); 
+	startButton.onClick = [](AbstractGame* game) {
+		game->switchScreen(Screens::MainGame, { "default", "Default" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
-	ButtonUiElement loadButton = ButtonUiElement("Load Game", { (1080 / 2) - 220, 200, width, height }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadButton.registerGame(_game);
 	// TODO: Load Game
-	loadButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	loadButton.onClick = [](AbstractGame* game) { 
+		game->switchScreen(Screens::MainGame, { "tiled", "Level_2" });
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 
-	ButtonUiElement helpButton = ButtonUiElement("Help", { (1080 / 2) - 220, 300 , width, height }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement helpButton = ButtonUiElement("Help", { 700, 225, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	helpButton.registerGame(_game);
 	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
-	ButtonUiElement highscoreButton = ButtonUiElement("Highscores", { (1080 / 2) - 220, 400, width, height }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement highscoreButton = ButtonUiElement("Highscores", { 700, 275, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	highscoreButton.registerGame(_game);
 	highscoreButton.onClick = [](AbstractGame* game) {   game->switchScreen(Screens::HighScore); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(highscoreButton));
 
-	ButtonUiElement creditButton = ButtonUiElement("Credits", { (1080 / 2) - 220, 500, width, height }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement creditButton = ButtonUiElement("Credits", { 700, 325, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	creditButton.registerGame(_game);
 	creditButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(creditButton));
 
-	ButtonUiElement exitbutton = ButtonUiElement("Exit", { (1080 / 2) - 220, 600, width, height }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement settingsButton = ButtonUiElement("Settings", { 700, 375, width, height }, bgColor, { 255, 255, 255 }, font, 25);
+	settingsButton.registerGame(_game);
+	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Settings); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
+
+	ButtonUiElement exitbutton = ButtonUiElement("Exit", { 700, 425, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	exitbutton.registerGame(_game);
 	exitbutton.onClick = [](AbstractGame* game) { exit(0); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));

@@ -98,7 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <DisableSpecificWarnings>4251;26495</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26495;26812</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -220,6 +220,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="DefaultEntityAI.h" />
     <ClInclude Include="DummyManagableItem.h" />
     <ClInclude Include="EntityCategory.h" />
+    <ClInclude Include="dirent.h" />
+    <ClInclude Include="FileData.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -230,6 +232,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
+    <ClInclude Include="IOFiles.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
@@ -243,6 +246,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="SoundExtension.h" />
+    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="Talker.h" />
@@ -280,6 +284,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="DefaultEntity.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DummyManagableItem.cpp" />
+    <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
@@ -288,6 +293,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="GlueManageableItem.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
+    <ClCompile Include="IOFiles.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -304,6 +310,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="SoundExtension.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />

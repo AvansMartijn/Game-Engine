@@ -94,6 +94,15 @@
     <Filter Include="Header Files\GameObjects\Items">
       <UniqueIdentifier>{0277e037-a379-4096-ae7b-74b5f2482ebe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{398d20c3-1841-4ef1-a6f4-1c201b6f3933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IOFiles">
+      <UniqueIdentifier>{7f61d505-3a98-4979-9971-ad06962be772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IOFiles">
+      <UniqueIdentifier>{56e4c93a-a040-4347-bf61-5ee55de60225}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -273,6 +282,18 @@
     <ClInclude Include="RotateObj.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="dirent.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="FileData.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundPlayer.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IOFiles.h">
+      <Filter>Header Files\IOFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -430,6 +451,15 @@
     </ClCompile>
     <ClCompile Include="PortalManagableItem.cpp">
       <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FileData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundPlayer.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="IOFiles.cpp">
+      <Filter>Source Files\IOFiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

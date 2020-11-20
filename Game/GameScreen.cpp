@@ -11,19 +11,35 @@ enum PlayerMoves {
 	JUMP_LEFT,
 	FALL_LEFT
 };
+#include <TextUiElement.h>
+#include "TiledLevelLoader.h"
 
 GameScreen::GameScreen() {}
 
 void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
-
+	backgroundTrackKey = "Background_1";
 	setupScreen();
 	setupGame();
+	setupHUD();
 }
 
 void GameScreen::setupScreen() {
-	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
+	ImageUiElement backgroundImg = ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+}
+
+void GameScreen::setupHUD() {
+	const Color bgColor = { 0, 0, 0, 0.8 };
+	const Color fgColor = { 210, 190, 70 };
+	const string font = "Portal";
+	const int fontSize = 24;
+	TextUiElement lives = TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false);
+	_uiElements.push_back(make_shared<TextUiElement>(lives));
+
+	TextUiElement weapon = TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false);
+	_uiElements.push_back(make_shared<TextUiElement>(weapon));
+
 }
 
 void GameScreen::setupGame() {
@@ -158,10 +174,26 @@ void GameScreen::setupGame() {
 
 	// TODO: Remove this is just for testing the system.
 	//Scene::getInstance().getWieldExtension()->addItem(dummyItem);
+	if (_levelLoader)
+		_levelLoader->createLevel(_gameEngine, _name);
+}
+
+void GameScreen::onScreenShowed(vector<std::string> args) {
+	for (size_t i = 0; i < args.size(); i++) {
+		std::string arg = args[i];
+
+		if (arg == "tiled")
+			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
+		else if (arg == "default")
+			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+		else
+			_name = arg;
+	}
+
+	reset();
 }
 
 void GameScreen::onTick() {
-
 	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (timePassed >= 1)
@@ -172,7 +204,7 @@ void GameScreen::onTick() {
 	}
 
 	if (Scene::getInstance().gameOver) {
-		_game->switchScreen(Screens::GameOver);
+		_game->switchScreen(Screens::GameFinished);
 		Scene::getInstance().gameOver = false;
 	}
 
@@ -180,12 +212,16 @@ void GameScreen::onTick() {
 
 	Physics::getInstance().step(timeStep, 6, 2);
 
-	handlePlayerControls();
-	calculatePlayerTexture();
+	if (Scene::getInstance().player) {
+		handlePlayerControls();
+		calculatePlayerTexture();
+	}
 }
 
 void GameScreen::handlePlayerControls() {
 	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
+
+	b2Vec2 vel = Scene::getInstance().player->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT]) {
@@ -206,11 +242,16 @@ void GameScreen::handlePlayerControls() {
 
 	if (keystate[SDL_SCANCODE_F])
 		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50.0f : -50.0f;
+	if (keystate[SDL_SCANCODE_F]) {
+		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
+		SoundPlayer::getInstance().playSFX("Thruster_Sound");
+	}
 
 	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
 			vel.y = -5;
 			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::JUMPING;
+			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
 	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);

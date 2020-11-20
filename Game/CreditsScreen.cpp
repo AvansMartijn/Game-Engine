@@ -4,9 +4,11 @@ CreditsScreen::CreditsScreen() {}
 CreditsScreen::~CreditsScreen() {}
 
 void CreditsScreen::onInit() {
-	const Color bgColor = { 66, 99, 116 };
-	const string font = "Paint";
+	const Color bgColor = { 28, 28, 28 };
+	const string font = "Portal";
 	const string fontPortal = "Portal";
+	backgroundTrackKey = "Game_Over";
+
 
 	const string teamMembers[]{ "Lars (laari)", "Wesley (bob)", "Martijn (mardy.tk/wonenzoals)", "Xandor (jeboyx)", "Mike (King K Rool)", "Chiel (MC Vaper)" };
 	int posy = 100, posx = 100;
@@ -16,15 +18,14 @@ void CreditsScreen::onInit() {
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
 
-	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 210, 190, 70 }, bgColor, true);
+	TextUiElement title = TextUiElement("Credits", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
-	//TODO: Een keer helemaal mooi maken voor nu tijd saven
-	TextUiElement line = TextUiElement("Team Mike", font, 34, { 100, 100, 0, 0 }, { 255, 0, 0 }, bgColor, true);
+	TextUiElement line = TextUiElement("Team Mike", font, 40, { 100, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(line));
 
 
-	ButtonUiElement backButton = ButtonUiElement("Back", { (1080 / 2) - 220, 550, 500, 100 }, bgColor, { 180, 102, 13 }, fontPortal, 40);
+	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
@@ -33,7 +34,7 @@ void CreditsScreen::onInit() {
 	{
 		posy += 50;
 		posx += 50;
-		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 28, { posy, posx, 0, 0 }, { 0, 0, 0 }, bgColor, true);
+		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 25, { posy, posx, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 		_uiElements.push_back(make_shared<TextUiElement>(lineOfC));
 	}
 }

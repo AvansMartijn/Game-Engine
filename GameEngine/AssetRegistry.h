@@ -9,6 +9,10 @@
 #include <map>
 #include <SDL_image.h>
 #include <iostream>
+#include "dirent.h"
+#include <vector>
+#include "FileData.h"
+#include <sstream>
 
 class Window;
 class GAMEENGINE_AssetRegistry AssetRegistry
@@ -20,6 +24,7 @@ private:
 
 	std::map<std::string, SDL_Texture*> _textures;
 	std::map<std::string, std::string> _fonts;
+
 public:
 	static AssetRegistry& getInstance() { return instance; }
 
@@ -55,5 +60,26 @@ public:
 	/// <param name="fontKey">The font key.</param>
 	/// <returns>The font path.</returns>
 	std::string getFontPath(std::string fontKey);
-};
 
+	/// <summary>
+	/// Get's the base path.
+	/// </summary>
+	/// <returns>The base path.</returns>
+	std::string getBasePath() const;
+
+	/// <summary>
+	/// Get's all file locations in the given directory.
+	/// </summary>
+	/// <param name="directory">The directory.</param>
+	/// <param name="isDeep">If we should scan the directories within this directory.</param>
+	/// <returns>A list with all file data.</returns>
+	std::vector<FileData> getFilesInDirectory(std::string& directory, bool isDeep) const;
+
+	/// <summary>
+	/// Split a string by the given delimiter.
+	/// </summary>
+	/// <param name="string">The string we want to split.</param>
+	/// <param name="delimiter">The character we want to use to split the string.</param>
+	/// <returns>The parts of the split string.</returns>
+	std::vector<std::string> split(std::string& string, char delimiter);
+};
