@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "AbstractManageableItem.h"
+#include "Scene.h"
 
 AbstractManageableItem::AbstractManageableItem() {
 	_width = 0.8f;
@@ -36,14 +37,14 @@ void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 		x += _width / 3;
 	float y = position.y - (_height / 2);
 
-	position.x = window->metersToPixels(position.x);
-	position.y = window->metersToPixels(position.y);
+	position.x = Scene::getInstance().metersToPixels(position.x);
+	position.y = Scene::getInstance().metersToPixels(position.y);
 	b2Vec2 diffs = { position.x - (window->getWidth() / 2), position.y - (window->getHeight() / 2) };
 	Rect rect = {
-		window->metersToPixels(x),
-		window->metersToPixels(y),
-		window->metersToPixels(_width),
-		window->metersToPixels(_height)
+		Scene::getInstance().metersToPixels(x),
+		Scene::getInstance().metersToPixels(y),
+		Scene::getInstance().metersToPixels(_width),
+		Scene::getInstance().metersToPixels(_height)
 	};
 
 	rect.x -= diffs.x;
