@@ -156,39 +156,48 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 		break;
 	case SDLK_1:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
 
 		break;
 	case SDLK_2:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
 
 		break;
 	case SDLK_3:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
 
 		break;
 	case SDLK_4:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(3);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(3);
 
 		break;
 	case SDLK_5:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(4);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(4);
 
 		break;
 	case SDLK_6:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(5);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(5);
 
 		break;
 	case SDLK_7:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(6);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(6);
 
 		break;
 	case SDLK_8:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(7);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(7);
 
 		break;
 	case SDLK_9:
-		Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
 
 		break;
 	case SDLK_p:
