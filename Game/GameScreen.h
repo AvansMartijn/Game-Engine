@@ -13,6 +13,11 @@
 #include "ImageUiElement.h"
 #include <chrono>
 #include <GameEngine.h>
+#include <TextUiElement.h>
+#include "PickupExtension.h"
+#include "ThrusterManagableItem.h"
+#include "GlueManageableItem.h"
+#include "PortalManagableItem.h"
 #include "AbstractLevelLoader.h"
 #include "DefaultLevelLoader.h"
 #include "PlayerMoves.h"
@@ -28,6 +33,7 @@ class GameScreen : public AbstractScreen
 private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
+	std::vector<std::shared_ptr<AbstractManageableItem>> _availableItems;
 	shared_ptr<AbstractLevelLoader> _levelLoader;
 	vector<shared_ptr<AbstractUiElement>> _gameUiElements;
 	shared_ptr<TextUiElement> _lives;

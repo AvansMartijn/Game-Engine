@@ -88,6 +88,12 @@
     <Filter Include="Header Files\GameObjects\Extensions\Movement">
       <UniqueIdentifier>{00a84f6d-5273-4430-a09c-726e8344515e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObjects\Items">
+      <UniqueIdentifier>{bc4ab2ae-ce16-4f73-bee5-d69c00c35c01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Items">
+      <UniqueIdentifier>{0277e037-a379-4096-ae7b-74b5f2482ebe}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Misc">
       <UniqueIdentifier>{398d20c3-1841-4ef1-a6f4-1c201b6f3933}</UniqueIdentifier>
     </Filter>
@@ -210,9 +216,6 @@
     <ClInclude Include="AiExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractManageableItem.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractGameObjectExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
@@ -248,6 +251,30 @@
     </ClInclude>
     <ClInclude Include="MovementType.h">
       <Filter>Header Files\GameObjects\Extensions\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractManageableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PickupExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyManagableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrusterManagableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="GlueManageableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalManagableItem.h">
+      <Filter>Header Files\GameObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityCategory.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateObj.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="dirent.h">
       <Filter>Header Files\Misc</Filter>
@@ -350,9 +377,6 @@
     <ClCompile Include="AbstractGameObjectExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractManageableItem.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
     <ClCompile Include="AiExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
@@ -400,6 +424,24 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractManageableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PickupExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyManagableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrusterManagableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="GlueManageableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PortalManagableItem.cpp">
+      <Filter>Source Files\GameObjects\Items</Filter>
     </ClCompile>
     <ClCompile Include="FileData.cpp">
       <Filter>Source Files</Filter>

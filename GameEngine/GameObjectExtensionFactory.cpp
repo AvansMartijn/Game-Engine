@@ -6,7 +6,8 @@
 #include "CollisionResolutionDefaultExtension.h"
 #include "CollisionResolutionPortalExtension.h"
 #include "CheckPhysicsExtension.h"
-
+#include "CanWieldExtension.h"
+#include "PickupExtension.h"
 
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
@@ -16,6 +17,8 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("CheckPhysicsExtension", &CheckPhysicsExtension::create);
     registerExtension("CollisionResolutionDefaultExtension", &CollisionResolutionDefaultExtension::create);
     registerExtension("CollisionResolutionPortalExtension", &CollisionResolutionPortalExtension::create);
+    registerExtension("CanWieldExtension", &CanWieldExtension::create);
+    registerExtension("PickupExtension", &PickupExtension::create);
 }
 
 void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate)

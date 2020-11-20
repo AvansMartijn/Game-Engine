@@ -218,6 +218,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="DummyManagableItem.h" />
+    <ClInclude Include="EntityCategory.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="FileData.h" />
     <ClInclude Include="framework.h" />
@@ -226,6 +228,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="GameObjectBuilder.h" />
     <ClInclude Include="GameObjectExtensionFactory.h" />
     <ClInclude Include="GameObjectFacade.h" />
+    <ClInclude Include="GlueManageableItem.h" />
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
@@ -233,7 +236,10 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="PickupExtension.h" />
+    <ClInclude Include="PortalManagableItem.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="RotateObj.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
     <ClInclude Include="SDLTtfWrapper.h" />
@@ -245,6 +251,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="Talker.h" />
     <ClInclude Include="TeleportObject.h" />
     <ClInclude Include="TextUiElement.h" />
+    <ClInclude Include="ThrusterManagableItem.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -275,12 +282,14 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DefaultEntity.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="DummyManagableItem.cpp" />
     <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
     <ClCompile Include="GameObjectExtensionFactory.cpp" />
     <ClCompile Include="GameObjectFacade.cpp" />
+    <ClCompile Include="GlueManageableItem.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
@@ -291,6 +300,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PickupExtension.cpp" />
+    <ClCompile Include="PortalManagableItem.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
@@ -301,6 +312,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />
+    <ClCompile Include="ThrusterManagableItem.cpp" />
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

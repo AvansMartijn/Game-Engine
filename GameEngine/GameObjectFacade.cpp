@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "GameObjectFacade.h"
 
-shared_ptr<GameObject> GameObjectFacade::CreateGameObject(vector<string> extensionNames)
+shared_ptr<GameObject> GameObjectFacade::createGameObject(vector<string> extensionNames)
 {
-	builder.buildGameObject();
-	builder.addExtension(extensionNames);
-	return builder.getResult();
+	_builder.buildGameObject();
+	_builder.addExtension(extensionNames);
+	return _builder.getResult();
 }
