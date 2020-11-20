@@ -29,7 +29,7 @@ std::string AssetRegistry::getBasePath() const {
 	return std::string(currentDir) + "\\";
 }
 
-std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string& directory, bool isDeep) const {
+std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string directory, bool isDeep, bool shouldAddKey) const {
 	std::string basePath = AssetRegistry::getInstance().getBasePath();
 
 	DIR* dir;
@@ -52,7 +52,11 @@ std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string& directory,
 						directories.push_back(path + "/" + ent->d_name);
 				}
 				else if (ent->d_type != DT_DIR) {
-					std::string key = path.substr(path.rfind('/') + 1) + "_" + ent->d_name;
+					std::string key = ent->d_name;
+
+					if (shouldAddKey)
+						key = path.substr(path.rfind('/') + 1) + "_" + key;
+
 					key.erase(key.rfind('.'));
 
 					std::string filePath = path + "/" + ent->d_name;
