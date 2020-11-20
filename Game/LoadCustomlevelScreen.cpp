@@ -5,8 +5,8 @@ LoadCustomLevelScreen::~LoadCustomLevelScreen() {}
 
 void LoadCustomLevelScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
-	const string font = "Portal";
-	const string fontPortal = "Portal";
+	const std::string font = "Portal";
+	const std::string fontPortal = "Portal";
 	y = 100;
 	offset = 0;
 
@@ -19,7 +19,7 @@ void LoadCustomLevelScreen::onInit() {
 		LevelData levelData = { _files[i].key, LevelType::TILED };
 
 		shared_ptr<ButtonUiElement> _line;
-		ButtonUiElement lineOfC = ButtonUiElement(levelData.levelName, { 430, y, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+		ButtonUiElement lineOfC = ButtonUiElement(levelData.levelName, { 430, y, 720, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 		lineOfC.registerGame(_game);
 		lineOfC.onClick = [levelData](AbstractGame* game) {
 			game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
