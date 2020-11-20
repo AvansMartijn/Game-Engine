@@ -12,8 +12,7 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().load();
 
 	GameSettings::getInstance().addLevel(0, { "Level0", LevelType::TILED });
-	GameSettings::getInstance().addLevel(1, { "LevelTest", LevelType::TILED });
-	GameSettings::getInstance().addLevel(2, { "Default", LevelType::DEFAULT });
+	GameSettings::getInstance().addLevel(1, { "Level1", LevelType::TILED });
 
 	// The screens have to be created outside the Game class, using "this" will create problems.
 	unique_ptr<GameScreen> gameScreen(new GameScreen);

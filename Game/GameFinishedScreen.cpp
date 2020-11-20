@@ -49,10 +49,24 @@ void GameFinishedScreen::onInit() {
 			GameSettings::getInstance().save();
 		}		
 
+		auto test = GameSettings::getInstance().getNextLevel().levelName;
+		auto test2 = GameSettings::getInstance().getCurrentLevel().levelName;
+		//Checks for next level
+		if (!GameSettings::getInstance().getNextLevel().levelName.empty())
+		{
+			LevelData levelData = GameSettings::getInstance().getNextLevel();
 
-		game->switchScreen(Screens::MainMenu); 
+			game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+			GameSettings::getInstance().saveGame.currentLevel++;
+		}
+		else
+		{
+			//TODO Delete next level button
+			game->switchScreen(Screens::Credits);
+		}
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(nextLevelButton));
+	_nextLevelButton = make_shared<ButtonUiElement>(nextLevelButton);
+	_uiElements.push_back(_nextLevelButton);
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
@@ -88,6 +102,11 @@ void GameFinishedScreen::onTick() {}
 void GameFinishedScreen::onScreenShowed(vector<string> args) {
 
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+	
+	if (GameSettings::getInstance().getNextLevel().levelName.empty())
+	{
+		_nextLevelButton->_text = "Credits";
+	}
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
