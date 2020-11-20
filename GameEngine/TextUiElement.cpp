@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "TextUiElement.h"
 
-TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center) {
+TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, int wrapAtPixel) {
     text = txt;
     _fontKey = fontKey;
     _rect = rect;
@@ -9,6 +9,7 @@ TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize,
     _backgroundColor = bgColor;
     _fontSize = fontSize;
     _center = center;
+    _wrapAtPixel = wrapAtPixel;
 }
 
 void TextUiElement::preRender(const unique_ptr<Window>& window) {
@@ -18,7 +19,7 @@ void TextUiElement::preRender(const unique_ptr<Window>& window) {
 TextUiElement::~TextUiElement() {}
 
 void TextUiElement::render(const unique_ptr<Window>& window) {
-    window->renderText(text, _font, _rect, _foregroundColor, _backgroundColor, _center);
+    window->renderText(text, _font, _rect, _foregroundColor, _backgroundColor, _center, _wrapAtPixel);
 }
 
 bool TextUiElement::isInBound(int mouseX, int mouseY) {

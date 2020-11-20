@@ -1,4 +1,5 @@
 #include "GameFinishedScreen.h"
+#include "GameSettings.h"
 
 
 GameFinishedScreen::GameFinishedScreen() {}
@@ -30,21 +31,47 @@ void GameFinishedScreen::onInit() {
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
-		//IOFiles ioFiles;
-		//std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		//ioFiles.writeToFile("Highscores", scoreRow, true);
 
-		game->switchScreen(Screens::MainMenu); };
+		auto test2 = GameSettings::getInstance().saveGame;
+
+		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
+
+		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
+			for (auto level : GameSettings::getInstance().saveGame.levels) {
+				if (level.name == currentLevelData.levelName) {
+					level.highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+					break;
+				}	
+			}
+		}		
+	
+		auto test = GameSettings::getInstance().saveGame;
+
+		GameSettings::getInstance().save();
+
+		game->switchScreen(Screens::MainMenu); 
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(nextLevelButton));
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [this](AbstractGame* game) {
-		//IOFiles ioFiles;
-		//std::string scoreRow = to_string(Scene::getInstance().score) + "," + _nameText->text;
-		//ioFiles.writeToFile("Highscores", scoreRow, true);
 
-		game->switchScreen(Screens::MainMenu); };
+		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
+
+		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
+			for (auto level : GameSettings::getInstance().saveGame.levels) {
+				if (level.name == currentLevelData.levelName) {
+					level.highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+					break;
+				}
+					
+			}
+		}
+		GameSettings::getInstance().save();
+
+		game->switchScreen(Screens::MainMenu); 
+	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 
 }

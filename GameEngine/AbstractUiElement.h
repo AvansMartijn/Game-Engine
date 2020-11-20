@@ -45,7 +45,10 @@ public:
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
 	std::function<void(AbstractGame*)> onClick;
+
+	Rect _rect;
+
 protected:
 	AbstractGame* _game;
-	Rect _rect;
+
 };

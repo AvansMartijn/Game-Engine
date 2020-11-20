@@ -5,9 +5,6 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
-	GameSettings::getInstance().addLevel(0, { "Level0", LevelType::TILED });
-	GameSettings::getInstance().addLevel(1, { "LevelTest", LevelType::TILED });
-	GameSettings::getInstance().addLevel(2, { "Default", LevelType::DEFAULT});
 
 	registerTexture("Player_Look_Right", "res/gfx/Assets/Entity/Player/Looking_Right.png");
 	registerTexture("Player_Look_Left", "res/gfx/Assets/Entity/Player/Looking_Left.png");

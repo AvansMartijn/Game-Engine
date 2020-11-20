@@ -15,9 +15,12 @@ void HighScoreScreen::onInit()
 	const string font = "Portal";
 	backgroundTrackKey = "Game_Over";
 
-
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+
+	TextUiElement scrollText = TextUiElement(" JOOOOOOOOOOOOOD JOOOOOOOOD jooooD jooooD jooooD joooooD joooooD", "Portal", 25, { 100, 250, 200, 0 }, { 255, 255, 255 }, bgColor, true, 200);
+	scroll = make_shared<TextUiElement>(scrollText);
+	_uiElements.push_back(scroll);
 
 	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
@@ -57,6 +60,11 @@ void HighScoreScreen::onInit()
 void HighScoreScreen::onTick() {}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
+
+	
+	//get list from curFt level
+
+
 	//IOFiles ioFiles;
 
 	/*std::vector<std::string> lines = ioFiles.readFromFile("Highscores");
@@ -111,5 +119,21 @@ void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void HighScoreScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
-void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
+void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+
+	if (e.y > 0) // scroll up
+		offsett = 10;
+	else if (e.y < 0) // scroll down
+		offsett = -10;
+
+	scroll->_rect.y += offsett;
+
+	/*for (auto test : _uiElements)
+	{
+		if(test == scoll)
+			test->_rect.y += offsett;
+	}*/
+}
+
+
 
