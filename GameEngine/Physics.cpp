@@ -46,13 +46,34 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 
-    box.SetAsBox(obj->body.width / 2.1f, obj->body.height / 2, b2Vec2(0, 0.01f), 0);
+
+
+    box.SetAsBox(obj->body.width / 2.1f, obj->body.height / 2, b2Vec2(0, 0.05f), 0);
     fixtureDef.isSensor = true;
 
     CustomUserData* data2 = new CustomUserData;
     data2->type = "jumpSensor";
+    fixtureDef.shape = &box;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data2);
     body->CreateFixture(&fixtureDef);
+
+
+    b2CircleShape wheelShape;
+    wheelShape.m_radius = 0.05f;
+    wheelShape.m_p = { 0 - (obj->body.width / 2), 0 + (obj->body.height / 2) };
+    b2FixtureDef wheelFix;
+    wheelFix.shape = &wheelShape;
+    CustomUserData* data3 = new CustomUserData;
+    data3->type = "feetWheel";
+    wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
+    body->CreateFixture(&wheelFix);
+
+    b2CircleShape wheelShape2;
+    wheelShape2.m_radius = 0.05f;
+    wheelShape2.m_p = { 0 + (obj->body.width / 2), 0 + (obj->body.height / 2) };
+    wheelFix.shape = &wheelShape2;
+    wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
+    body->CreateFixture(&wheelFix);
 }
 
 void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {

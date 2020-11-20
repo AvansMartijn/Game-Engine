@@ -120,7 +120,7 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, textures,
-		2, 8, 0.8f, 2.0f));
+		2, 8, 0.7f, 1.8f));
 
 	// Weapon Block
 	textures.clear();
