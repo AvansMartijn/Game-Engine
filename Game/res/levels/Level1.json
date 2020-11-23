@@ -50,7 +50,7 @@
                          "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension"
                         }],
                  "rotation":90,
-                 "type":"",
+                 "type":"Player",
                  "visible":true,
                  "width":0,
                  "x":640,
