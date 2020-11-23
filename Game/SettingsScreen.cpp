@@ -67,7 +67,7 @@ void SettingsScreen::onInit() {
 
 
 	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
-	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(GameSettings::getInstance().saveGame.settings.sound), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(GameSettings::getInstance().saveGame.settings.soundFx), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_soundFxText = make_shared<TextUiElement>(soundFxText);
 	_uiElements.push_back(_soundFxText);
 
