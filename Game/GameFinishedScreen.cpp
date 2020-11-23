@@ -103,9 +103,11 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 	
-	if (GameSettings::getInstance().getNextLevel().levelName.empty())
-	{
+	if (GameSettings::getInstance().getNextLevel().levelName.empty()) {
 		_nextLevelButton->_text = "Credits";
+	}
+	else {
+		_nextLevelButton->_text = "Next level";
 	}
 }
 

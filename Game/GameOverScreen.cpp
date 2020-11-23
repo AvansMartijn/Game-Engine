@@ -22,12 +22,6 @@ void GameOverScreen::onInit()
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
 
-	TextUiElement nameLabelText = TextUiElement("Name:", font, 40, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
-
-	TextUiElement nameText = TextUiElement(" ", font, 40, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_nameText = make_shared<TextUiElement>(nameText);
-	_uiElements.push_back(_nameText);
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
@@ -42,23 +36,7 @@ void GameOverScreen::onScreenShowed(vector<string> args) {
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
-void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-
-	if (e.keysym.sym == SDLK_BACKSPACE){
-		if (_nameText->text.size() > 1)
-		{
-			_nameText->text.pop_back();
-		}
-	}
-	if (e.keysym.sym == SDLK_SPACE)
-	{
-		_nameText->text.push_back(' ');
-	}
-	if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-	{
-		_nameText->text.push_back((char)e.keysym.sym);
-	}
-}
+void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
 void GameOverScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 

@@ -54,6 +54,7 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 				break;
 
 			scroll->text += highScore.name;
+			scroll->text += ", ";
 			scroll->text += to_string(highScore.score);
 			scroll->text += "\n";
 			counter++;
