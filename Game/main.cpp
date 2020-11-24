@@ -11,8 +11,13 @@ int main(int argc, char* argv[]) {
 
 	GameSettings::getInstance().load();
 
-	GameSettings::getInstance().addLevel(0, { "Level0", LevelType::TILED });
-	GameSettings::getInstance().addLevel(1, { "Level1", LevelType::TILED });
+	GameSettings::getInstance().addLevel(0, { "Tutorial_Level_1", LevelType::TILED });
+	GameSettings::getInstance().addLevel(1, { "Tutorial_Level_2", LevelType::TILED });
+	GameSettings::getInstance().addLevel(2, { "Tutorial_Level_3", LevelType::TILED });
+	GameSettings::getInstance().addLevel(3, { "Level_1", LevelType::TILED });
+	GameSettings::getInstance().addLevel(4, { "Level_2", LevelType::TILED });
+	GameSettings::getInstance().addLevel(5, { "Level_3", LevelType::TILED });
+	GameSettings::getInstance().addLevel(6, { "Level_4", LevelType::TILED });
 
 	// Register Items
 	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
