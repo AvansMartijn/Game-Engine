@@ -13,6 +13,9 @@ void MainMenuScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
+	ImageUiElement AdImage = ImageUiElement("AdPlaceholder", { 60 , 120, 200, 500 });
+	_uiElements.push_back(make_shared<ImageUiElement>(AdImage));
+
 	ImageUiElement logoWesley = ImageUiElement("LogoWesley", { ((1080 - 700) / 2) , ((720 - 700) / 2), 700, 700 });
 	_uiElements.push_back(make_shared<ImageUiElement>(logoWesley));
 

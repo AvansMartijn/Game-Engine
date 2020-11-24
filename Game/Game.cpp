@@ -29,7 +29,7 @@ void Game::onInit() {
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
-  
+	registerTexture("AdPlaceholder", "res/gfx/AdPlaceholder.png");
 	registerTexture("Background", "res/gfx/Background.png");
 	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");
 	registerTexture("Logo", "res/gfx/LatropLogo.png");
