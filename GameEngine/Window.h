@@ -118,6 +118,18 @@ public:
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
 
 	/// <summary>
+	/// Render a hp bar
+	/// </summary>
+	/// <param name="x">x pos</param>
+	/// <param name="y">y pos</param>
+	/// <param name="w">width</param>
+	/// <param name="h">height</param>
+	/// <param name="Percent">Precent to fill the bar</param>
+	/// <param name="FGColor">Front color</param>
+	/// <param name="BGColor">Background color</param>
+	void renderHPBar(int x, int y, int w, int h, float Percent, Color FGColor, Color BGColor);
+
+	/// <summary>
 	/// Converts pixels to meters.
 	/// </summary>
 	/// <param name="value">The value in pixels.</param>

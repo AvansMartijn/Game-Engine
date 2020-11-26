@@ -285,6 +285,9 @@
     <ClInclude Include="SoundPlayer.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="HpBarUIElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -448,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="SoundPlayer.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBarUIElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

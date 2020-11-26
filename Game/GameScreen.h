@@ -14,6 +14,7 @@
 #include <chrono>
 #include <GameEngine.h>
 #include <TextUiElement.h>
+#include <HpBarUIElement.h>
 #include "PickupExtension.h"
 #include "ThrusterManagableItem.h"
 #include "GlueManageableItem.h"
@@ -39,6 +40,7 @@ private:
 	shared_ptr<TextUiElement> _lives;
 	shared_ptr<TextUiElement> _weapon;
 	shared_ptr<ImageUiElement> _backgroundImg;
+	shared_ptr<HpBarUIElement> _hpBar;
 	std::string _name;
 public:
 	GameScreen();

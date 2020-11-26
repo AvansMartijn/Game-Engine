@@ -1,7 +1,5 @@
 #include "GameScreen.h"
 #include <CanWieldExtension.h>
-
-#include <TextUiElement.h>
 #include "TiledLevelLoader.h"
 
 GameScreen::GameScreen() {}
@@ -20,17 +18,24 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupHUD() {
-	const Color bgColor = { 0, 0, 0, 0.8 };
+	const Color bgColor = { 28, 28, 28, 0.8 };
 	const Color fgColor = { 210, 190, 70 };
+	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
 	const int fontSize = 24;
-	_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_lives);
-	_gameUiElements.push_back(_lives);
+	//_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
+	//_uiElements.push_back(_lives);
+	//_gameUiElements.push_back(_lives);
 
-	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
+	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NONE", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
 	_uiElements.push_back(_weapon);
 	_gameUiElements.push_back(_weapon);
+
+	// int x, int y, int w, int h, float Percent, Color FGColor, Color BGColor
+
+	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(5, 70, 150, 20, 0.8f, hpColor, bgColor));
+	_uiElements.push_back(_hpBar);
+	_gameUiElements.push_back(_hpBar);
 
 }
 
@@ -77,6 +82,15 @@ void GameScreen::onTick() {
 		handlePlayerControls();
 		calculatePlayerTexture();
 	}
+
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
+		if (currentWeapon != NULL) {
+			std::string result = "CURRENT WEAPON: " + currentWeapon->getTextureKey();
+			_weapon->text = result;
+		}
+	}
+	
 }
 
 void GameScreen::handlePlayerControls() {
