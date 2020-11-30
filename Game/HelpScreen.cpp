@@ -14,7 +14,7 @@ void HelpScreen::onInit() {
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
 	//TODO: Een keer helemaal mooi maken voor nu tijd saven
-	TextUiElement line = TextUiElement("Traverse the levels using different weapons found in the map. ", font, 25, { 0, 100, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, true);
+	TextUiElement line = TextUiElement("hierkomt een uitleg over hoe het spel werkt zodra er meer functionaliteit is ", font, 25, { 0, 100, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, true);
 	_uiElements.push_back(make_shared<TextUiElement>(line));
 
 	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { 475, 600, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
