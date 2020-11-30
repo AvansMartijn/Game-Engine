@@ -15,6 +15,8 @@ protected:
 	shared_ptr<GameObject> _owner;
 	float _width;
 	float _height;
+	int _ammo;
+	float _cooldown;
 public:
 	AbstractManageableItem();
 	~AbstractManageableItem();
@@ -22,6 +24,10 @@ public:
 	std::string getTextureKey();	
 	float getWidth();
 	float getHeight();
+	int getAmmo();
+	float getCooldown();
+	void setAmmo(int amount);
+	void setCooldown(float amount);
 	void setOwner(shared_ptr<GameObject> owner);
 
 	virtual void render(const unique_ptr<Window>& window);

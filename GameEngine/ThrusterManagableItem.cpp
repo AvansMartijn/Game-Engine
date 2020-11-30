@@ -5,6 +5,9 @@
 
 ThrusterManagableItem::ThrusterManagableItem() {
 	_textureKey = "DIY_Weapon";
+	//default ammo and cooldown
+	_ammo = 0;
+	_cooldown = 0.5f;
 }
 
 void ThrusterManagableItem::onLeftClick(int x, int y) {
