@@ -2,6 +2,7 @@
 #include "GameFinishedScreen.h"
 #include "SettingsScreen.h"
 #include "LoadCustomlevelScreen.h"
+#include "LoadingScreen.h"
 
 
 #undef main
@@ -84,6 +85,11 @@ int main(int argc, char* argv[]) {
 	LoadCustomlevelScreen->registerGame(&game);
 	LoadCustomlevelScreen->onInit();
 	game.screens.push_back(move(LoadCustomlevelScreen));
+
+	unique_ptr<LoadingScreen> LoadingScreen(new LoadingScreen);
+	LoadingScreen->registerGame(&game);
+	LoadingScreen->onInit();
+	game.screens.push_back(move(LoadingScreen));
 
 	game.onInit();
 

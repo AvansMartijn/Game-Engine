@@ -26,6 +26,7 @@ void Game::onInit() {
 	registerTexture("Border", "res/gfx/Border.png");
 	registerTexture("Krool", "res/gfx/KINGKROOL.png");
 	registerTexture("Blob", "res/gfx/Assets/Items/Blob.png");
+	registerTexture("Loading", "res/gfx/LoadingImage.png");
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
