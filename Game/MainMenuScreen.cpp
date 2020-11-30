@@ -24,7 +24,6 @@ void MainMenuScreen::onInit() {
 
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
 		game->switchScreen(Screens::Loading, {to_string( Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
-		//game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 

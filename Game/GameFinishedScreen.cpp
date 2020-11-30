@@ -23,6 +23,9 @@ void GameFinishedScreen::onInit() {
 	TextUiElement nameLabelText = TextUiElement("Name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
 
+	ImageUiElement walu = ImageUiElement("Win", { 1080 - 350 , ((720 - 400) / 2) + 50, 400, 400 });
+	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+
 	TextUiElement nameText = TextUiElement(" ", font, 48, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
