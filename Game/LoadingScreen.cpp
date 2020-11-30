@@ -18,7 +18,7 @@ void LoadingScreen::onInit() {
 	TextUiElement headerText = TextUiElement("Loading . . . ", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	TextUiElement quoteTest = TextUiElement("Quote:", font, 18, { 10, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false, true);
+	TextUiElement quoteTest = TextUiElement("Quote:", font, 18, { 30, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false, true);
 	quoteText = make_shared<TextUiElement>(quoteTest);
 	_uiElements.push_back(quoteText);
 
