@@ -23,6 +23,9 @@ void GameFinishedScreen::onInit() {
 	TextUiElement nameLabelText = TextUiElement("Name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
 
+	ImageUiElement walu = ImageUiElement("Win", { 1080 - 350 , ((720 - 400) / 2) + 50, 400, 400 });
+	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+
 	TextUiElement nameText = TextUiElement(" ", font, 48, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
@@ -56,7 +59,7 @@ void GameFinishedScreen::onInit() {
 		{
 			LevelData levelData = GameSettings::getInstance().getNextLevel();
 
-			game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 			GameSettings::getInstance().saveGame.currentLevel++;
 		}
 		else
@@ -89,8 +92,6 @@ void GameFinishedScreen::onInit() {
 
 			GameSettings::getInstance().save();
 		}
-
-
 		game->switchScreen(Screens::MainMenu);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
@@ -114,19 +115,19 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 	if (e.keysym.sym == SDLK_BACKSPACE) {
-		if (_nameText->text.size() > 1)
-		{
+		if (_nameText->text.size() > 1) {
 			_nameText->text.pop_back();
 		}
 	}
-	if (e.keysym.sym == SDLK_SPACE)
-	{
-		_nameText->text.push_back(' ');
+	if (_nameText->text.length() < 20) {
+		if (e.keysym.sym == SDLK_SPACE) {
+			_nameText->text.push_back(' ');
+		}
+		if (e.keysym.sym >= 97 && e.keysym.sym <= 122) {
+			_nameText->text.push_back((char)e.keysym.sym);
+		}
 	}
-	if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-	{
-		_nameText->text.push_back((char)e.keysym.sym);
-	}
+	
 }
 
 void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

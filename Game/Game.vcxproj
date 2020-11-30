@@ -187,9 +187,11 @@
     <ClCompile Include="HighscoreScreen.cpp" />
     <ClCompile Include="KeyBindingsHelpScreen.cpp" />
     <ClCompile Include="LoadCustomlevelScreen.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="Quotes.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
@@ -212,10 +214,12 @@
     <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="LoadCustomlevelScreen.h" />
     <ClInclude Include="LevelData.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
+    <ClInclude Include="Quotes.h" />
     <ClInclude Include="SaveGame.h" />
     <ClInclude Include="SaveHighscore.h" />
     <ClInclude Include="SaveLevel.h" />
