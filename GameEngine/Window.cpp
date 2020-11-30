@@ -207,8 +207,6 @@ void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgC
 	SDL_SetRenderDrawColor(_renderer.get() , bgColor.r, bgColor.g, bgColor.b, bgColor.a);
 	SDL_RenderFillRect(_renderer.get(), &background);
 
-
-
 	SDL_SetRenderDrawColor(_renderer.get(), fgColor.r, fgColor.g, fgColor.b, fgColor.a);
 	int posW = (int)((float)w * percentage);
 	int posX = x + (w - posW); // 
