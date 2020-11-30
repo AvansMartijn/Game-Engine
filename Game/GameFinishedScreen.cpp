@@ -112,19 +112,19 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 	if (e.keysym.sym == SDLK_BACKSPACE) {
-		if (_nameText->text.size() > 1)
-		{
+		if (_nameText->text.size() > 1) {
 			_nameText->text.pop_back();
 		}
 	}
-	if (e.keysym.sym == SDLK_SPACE)
-	{
-		_nameText->text.push_back(' ');
+	if (_nameText->text.length() < 20) {
+		if (e.keysym.sym == SDLK_SPACE) {
+			_nameText->text.push_back(' ');
+		}
+		if (e.keysym.sym >= 97 && e.keysym.sym <= 122) {
+			_nameText->text.push_back((char)e.keysym.sym);
+		}
 	}
-	if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-	{
-		_nameText->text.push_back((char)e.keysym.sym);
-	}
+	
 }
 
 void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
