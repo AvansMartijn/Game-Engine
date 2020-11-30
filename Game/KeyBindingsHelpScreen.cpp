@@ -7,6 +7,7 @@ KeyBindingsHelpScreen::~KeyBindingsHelpScreen() {}
 void KeyBindingsHelpScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
+	const string fontPortal = "OpenSans";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
@@ -24,10 +25,6 @@ void KeyBindingsHelpScreen::onInit() {
 
 	TextUiElement lineText3 = TextUiElement("Jump: W ", font, 25, { 450, 220, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(lineText3)); 
-
-	TextUiElement lineText4 = TextUiElement("Left mouse: Shoot ", font, 25, { 450, 260, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
-	_uiElements.push_back(make_shared<TextUiElement>(lineText4));
-
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
