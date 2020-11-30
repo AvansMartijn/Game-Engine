@@ -43,6 +43,7 @@ Quotes::Quotes() {
 	_quotes.push_back("\"Goeie poep\" \n - Chiel 2020");
 	_quotes.push_back("\"vfvfvfvfvvfvfvfvfvfvfvfvfvfvfvfv\" \n - Chiel 2020");
 	_quotes.push_back("\"Kijk hoe mooi\" \n - Chiel 2020");
+	_quotes.push_back("\"Buuuuuuuuuuuuuurb\" \n - Chiel 2020");
 
 
 	//Wesley
