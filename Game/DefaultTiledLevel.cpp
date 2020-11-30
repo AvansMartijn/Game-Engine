@@ -92,6 +92,12 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		shared_ptr<AbstractManageableItem> item = Scene::getInstance().getItem(tiledGameObject.type);
 		textures.clear();
 
+		if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
+			item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+
+		if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
+			item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures, x, y, item->getWidth(), item->getHeight(), sensor);
 		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
 	}
