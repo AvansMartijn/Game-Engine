@@ -11,7 +11,7 @@ class LoadingScreen: public AbstractScreen
 private: 
 	std::vector<std::string> arguments;
 	int firstTickCounter;
-	shared_ptr<ImageUiElement> animation;
+	shared_ptr<TextUiElement> quoteText;
 
 public:
 	using AbstractScreen::AbstractScreen;

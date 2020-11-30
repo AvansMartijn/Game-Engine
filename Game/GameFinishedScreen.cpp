@@ -56,7 +56,7 @@ void GameFinishedScreen::onInit() {
 		{
 			LevelData levelData = GameSettings::getInstance().getNextLevel();
 
-			game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 			GameSettings::getInstance().saveGame.currentLevel++;
 		}
 		else
@@ -89,8 +89,6 @@ void GameFinishedScreen::onInit() {
 
 			GameSettings::getInstance().save();
 		}
-
-
 		game->switchScreen(Screens::MainMenu);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));

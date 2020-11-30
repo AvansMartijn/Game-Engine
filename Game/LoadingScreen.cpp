@@ -1,4 +1,5 @@
 #include "LoadingScreen.h"
+#include "Quotes.h"
 
 
 
@@ -17,6 +18,10 @@ void LoadingScreen::onInit() {
 	TextUiElement headerText = TextUiElement("Loading . . . ", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
+	TextUiElement quoteTest = TextUiElement("Quote:", font, 18, { 10, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false, true);
+	quoteText = make_shared<TextUiElement>(quoteTest);
+	_uiElements.push_back(quoteText);
+
 
 	ImageUiElement walu = ImageUiElement("Loading", { ((1080 - 700) / 2) + 100 , ((720 - 700) / 2), 700, 700 });
 	_uiElements.push_back(make_shared<ImageUiElement>(walu));
@@ -24,8 +29,7 @@ void LoadingScreen::onInit() {
 
 void LoadingScreen::onTick() {
 
-	if (firstTickCounter != 0)
-	{
+	if (firstTickCounter != 0) {
 		auto screen = stoi(arguments[0]);
 		arguments.erase(arguments.begin());
 		_game->switchScreen(screen, arguments);
@@ -44,4 +48,6 @@ void LoadingScreen::onScreenShowed(vector<std::string> args)
 {
 	arguments = args;
 	firstTickCounter = 0;
+
+	quoteText->text = Quotes::getInstance().getQuote();
 }
