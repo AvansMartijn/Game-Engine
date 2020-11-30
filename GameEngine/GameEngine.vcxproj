@@ -218,6 +218,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="DoesDamageExtension.h" />
     <ClInclude Include="DummyManagableItem.h" />
     <ClInclude Include="EntityCategory.h" />
     <ClInclude Include="dirent.h" />
@@ -232,6 +233,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
+    <ClInclude Include="IsPortableExtension.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
@@ -282,6 +284,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DefaultEntity.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="DoesDamageExtension.cpp" />
     <ClCompile Include="DummyManagableItem.cpp" />
     <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
@@ -292,6 +295,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="GlueManageableItem.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
+    <ClCompile Include="IsPortableExtension.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

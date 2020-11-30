@@ -8,7 +8,8 @@
 #include "CheckPhysicsExtension.h"
 #include "CanWieldExtension.h"
 #include "PickupExtension.h"
-
+#include "DoesDamageExtension.h"
+#include "IsPortableExtension.h"
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
     registerExtension("AiExtension", &AiExtension::create);
@@ -19,6 +20,8 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("CollisionResolutionPortalExtension", &CollisionResolutionPortalExtension::create);
     registerExtension("CanWieldExtension", &CanWieldExtension::create);
     registerExtension("PickupExtension", &PickupExtension::create);
+    registerExtension("DoesDamageExtension", &DoesDamageExtension::create);
+    registerExtension("IsPortableExtension", &IsPortableExtension::create);
 }
 
 void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate)
