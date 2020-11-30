@@ -7,12 +7,11 @@
 
 PortalManagableItem::PortalManagableItem() {
 	_textureKey = "DIY_Weapon";
+	_screenName = "PORTAL GUN";
 }
 
 void PortalManagableItem::onLeftClick(int x, int y) {
 	shootPortal("portalAbullet", x, y);
-
-
 }
 
 void PortalManagableItem::onRightClick(int x, int y) {

@@ -32,7 +32,9 @@ void KeyBindingsHelpScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void KeyBindingsHelpScreen::onTick() {}
+void KeyBindingsHelpScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 

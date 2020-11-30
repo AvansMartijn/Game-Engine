@@ -97,7 +97,9 @@ void GameFinishedScreen::onInit() {
 
 }
 
-void GameFinishedScreen::onTick() {}
+void GameFinishedScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {
 

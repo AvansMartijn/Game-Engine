@@ -37,9 +37,12 @@ void CreditsScreen::onInit() {
 		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 25, { posy, posx, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 		_uiElements.push_back(make_shared<TextUiElement>(lineOfC));
 	}
+
 }
 
-void CreditsScreen::onTick(){}
+void CreditsScreen::onTick(){
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)

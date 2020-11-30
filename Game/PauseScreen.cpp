@@ -37,9 +37,12 @@ void PauseScreen::onInit() {
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+
 }
 
-void PauseScreen::onTick() {}
+void PauseScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)

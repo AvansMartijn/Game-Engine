@@ -29,7 +29,9 @@ void GameOverScreen::onInit()
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 }
 
-void GameOverScreen::onTick() {}
+void GameOverScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
 

@@ -24,12 +24,21 @@ void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	}
 }
 
+void AbstractScreen::onTick() {
+	fps->text = "FPS";
+}
+
 void AbstractScreen::render(const unique_ptr<Window>& window) {
+
 	for (shared_ptr<AbstractUiElement>& obj : _uiElements)
 		obj->render(window);
 }
 
 void AbstractScreen::preRender(const unique_ptr<Window>& window) {
+
+	fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(fps);
+
 	for (shared_ptr<AbstractUiElement>& obj : _uiElements)
 		obj->preRender(window);
 }

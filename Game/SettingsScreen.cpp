@@ -112,7 +112,9 @@ void SettingsScreen::onInit() {
 
 }
 
-void SettingsScreen::onTick() {}
+void SettingsScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void SettingsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)

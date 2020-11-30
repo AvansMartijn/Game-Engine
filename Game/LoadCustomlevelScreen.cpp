@@ -13,7 +13,7 @@ void LoadCustomLevelScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	std::vector<FileData> _files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false, false);
+	_files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false, false);
 
 	for (size_t i = 0; i < _files.size(); i++) {
 		LevelData levelData = { _files[i].key, LevelType::TILED };
@@ -31,8 +31,6 @@ void LoadCustomLevelScreen::onInit() {
 
 	}
 
-	// Fixing the string
-
 
 	TextUiElement title = TextUiElement("Custom levels", font, 60, { 5, 10, 100, 130 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
@@ -43,7 +41,9 @@ void LoadCustomLevelScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void LoadCustomLevelScreen::onTick() {}
+void LoadCustomLevelScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)
@@ -59,14 +59,16 @@ void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void LoadCustomLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void LoadCustomLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-	if (e.y > 0) // scroll up
-		offset = 10;
-	else if (e.y < 0) // scroll down
-		offset = -10;
 
-	for(int i = 0; i <  uiList.size(); i++)
-		uiList[i]->_rect.y += offset;
-	
+	if (_files.size() > 20) {
+		if (e.y > 0) // scroll up
+			offset = 10;
+		else if (e.y < 0) // scroll down
+			offset = -10;
+
+		for (int i = 0; i < uiList.size(); i++)
+			uiList[i]->_rect.y += offset;
+	}
 }
 
 

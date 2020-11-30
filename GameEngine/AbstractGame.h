@@ -90,6 +90,33 @@ public:
 	/// Resets the game.
 	/// </summary>
 	void reset();
+
+	int currentFPS;
+private:
+	/// <summary>
+	/// Sets up values to calculate fps
+	/// </summary>
+	void initFps();
+
+	/// <summary>
+	/// Calculates the current fps
+	/// </summary>
+	void calculateFps();
+
+	#define FRAME_VALUES 10
+	// An array to store frame times:
+	Uint32 _frametimes[FRAME_VALUES];
+
+	// Last calculated SDL_GetTicks
+	Uint32 _frametimelast;
+
+	// total frames rendered
+	Uint32 _framecount;
+
+	// the value you want
+	int _framespersecond;
+
+
 protected:
 	/// <summary>
 	/// The index of the visible screen.

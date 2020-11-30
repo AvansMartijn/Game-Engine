@@ -39,6 +39,7 @@ private:
 	vector<shared_ptr<AbstractUiElement>> _gameUiElements;
 	shared_ptr<TextUiElement> _lives;
 	shared_ptr<TextUiElement> _weapon;
+	shared_ptr<TextUiElement> _fps;
 	shared_ptr<ImageUiElement> _backgroundImg;
 	shared_ptr<HpBarUIElement> _hpBar;
 	std::string _name;

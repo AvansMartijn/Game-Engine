@@ -18,8 +18,8 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupHUD() {
-	const Color bgColor = { 28, 28, 28, 0.8 };
-	const Color fgColor = { 210, 190, 70 };
+	const Color bgColor = { 28, 28, 28, 1 };
+	const Color fgColor = { 255, 255, 255 };
 	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
 	const int fontSize = 24;
@@ -30,6 +30,12 @@ void GameScreen::setupHUD() {
 	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NONE", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
 	_uiElements.push_back(_weapon);
 	_gameUiElements.push_back(_weapon);
+	
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+	_gameUiElements.push_back(_fps);
+
 
 	// int x, int y, int w, int h, float Percent, Color FGColor, Color BGColor
 
@@ -86,10 +92,12 @@ void GameScreen::onTick() {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
-			std::string result = "CURRENT WEAPON: " + currentWeapon->getTextureKey();
+			std::string result = "CURRENT WEAPON: " + currentWeapon->getScreemName();
 			_weapon->text = result;
 		}
 	}
+
+	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	
 }
 

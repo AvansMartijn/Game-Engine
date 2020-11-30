@@ -5,6 +5,7 @@
 
 ThrusterManagableItem::ThrusterManagableItem() {
 	_textureKey = "DIY_Weapon";
+	_screenName = "THRUSTER GUN";
 }
 
 void ThrusterManagableItem::onLeftClick(int x, int y) {

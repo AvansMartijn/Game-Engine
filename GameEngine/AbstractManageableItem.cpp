@@ -13,6 +13,11 @@ std::string AbstractManageableItem::getTextureKey() {
 	return _textureKey;
 }
 
+std::string AbstractManageableItem::getScreemName()
+{
+	return _screenName;
+}
+
 float AbstractManageableItem::getWidth() {
 	return _width; 
 }

@@ -69,7 +69,9 @@ void MainMenuScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));
 }
 
-void MainMenuScreen::onTick() {}
+void MainMenuScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	switch (e.keysym.sym)

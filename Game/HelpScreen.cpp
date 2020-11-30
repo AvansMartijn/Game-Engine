@@ -28,7 +28,9 @@ void HelpScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void HelpScreen::onTick(){}
+void HelpScreen::onTick(){
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 

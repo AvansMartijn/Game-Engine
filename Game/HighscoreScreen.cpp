@@ -31,7 +31,9 @@ void HighScoreScreen::onInit()
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void HighScoreScreen::onTick() {}
+void HighScoreScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
 

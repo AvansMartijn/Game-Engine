@@ -7,6 +7,7 @@
 
 GlueManagableItem::GlueManagableItem() {
 	_textureKey = "DIY_Weapon";
+	_screenName = "GLUE GUN";
 }
 
 void GlueManagableItem::onLeftClick(int x, int y) {
