@@ -92,7 +92,6 @@ void GameFinishedScreen::onInit() {
 
 				if (saveLevel.name == currentLevelData.levelName) {
 					foundIndex = levelIndex;
-
 					break;
 				}
 			}

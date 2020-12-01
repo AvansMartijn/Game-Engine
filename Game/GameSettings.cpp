@@ -80,11 +80,9 @@ LevelData GameSettings::getCurrentLevel() {
 		break;
 
 	default:
-		return _storyLevels[saveGame.slot1];
+		return {};
 		break;
 	}
-
-	
 }
 
 LevelData GameSettings::getLevelByIndex(int i) {
