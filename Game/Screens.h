@@ -12,5 +12,7 @@ enum Screens {
 	GameFinished,
 	Settings,
 	LoadCustomMap,
-	Loading
+	Loading,
+	NewGame,
+	LoadGame
 };
