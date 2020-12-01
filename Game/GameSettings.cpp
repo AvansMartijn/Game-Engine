@@ -23,10 +23,10 @@ void GameSettings::load() {
 		inputStream >> j;
 
 		saveGame = j.get<SaveGame>();
-
-		SoundPlayer::getInstance().changeMusicVolume(saveGame.settings.sound);
-		SoundPlayer::getInstance().changeSFXVolume(saveGame.settings.soundFx);
 	}
+
+	SoundPlayer::getInstance().changeMusicVolume(saveGame.settings.sound);
+	SoundPlayer::getInstance().changeSFXVolume(saveGame.settings.soundFx);
 }
 
 void GameSettings::addLevel(int number, LevelData levelData) {
