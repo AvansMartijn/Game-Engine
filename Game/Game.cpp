@@ -29,6 +29,7 @@ void Game::onInit() {
 	registerTexture("Loading", "res/gfx/LoadingImage.png");
 	registerTexture("Lose", "res/gfx/Sad.png");
 	registerTexture("Win", "res/gfx/Win.png");
+	registerTexture("Hat", "res/gfx/Pauze.png");
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
