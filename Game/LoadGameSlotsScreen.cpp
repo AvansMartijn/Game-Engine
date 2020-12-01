@@ -24,21 +24,41 @@ void LoadGameSlotsScreen::onInit() {
 	TextUiElement subTitle = TextUiElement("Select slot to load the game", font, 20, { 700, 120, width, height }, { 255, 255, 255 }, bgColor, false);
 	_uiElements.push_back(make_shared<TextUiElement>(subTitle));
 
-	ButtonUiElement slot1 = ButtonUiElement("Slot 1 - Test Slot load", { 700, 170, width, height }, bgColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement slot1 = ButtonUiElement("Slot 1", { 700, 170, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot1.registerGame(_game);
 	slot1.onClick = [](AbstractGame* game) {
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		if (GameSettings::getInstance().saveGame.slot1 != -1) {
+			GameSettings::getInstance().saveGame.currentSlot = 1;
+			LevelData levelData = GameSettings::getInstance().getCurrentLevel();
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		}
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(slot1));
+	slot1Button = make_shared<ButtonUiElement>(slot1);
+	_uiElements.push_back(slot1Button);
 
 	ButtonUiElement slot2 = ButtonUiElement("Slot 2", { 700, 220, width, height }, bgColor, { 255, 255, 255 }, font, 25);
-	slot2.onClick = [](AbstractGame* game) {};
-	_uiElements.push_back(make_shared<ButtonUiElement>(slot2));
+	slot2.registerGame(_game);
+	slot2.onClick = [](AbstractGame* game) {
+		if (GameSettings::getInstance().saveGame.slot2 != -1) {
+			GameSettings::getInstance().saveGame.currentSlot = 2;
+			LevelData levelData = GameSettings::getInstance().getCurrentLevel();
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		}
+	};
+	slot2Button = make_shared<ButtonUiElement>(slot2);
+	_uiElements.push_back(slot2Button);
 
 	ButtonUiElement slot3 = ButtonUiElement("Slot 3", { 700, 270, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot3.registerGame(_game);
-	_uiElements.push_back(make_shared<ButtonUiElement>(slot3));
+	slot3.onClick = [](AbstractGame* game) {
+		if (GameSettings::getInstance().saveGame.slot3 != -1) {
+			GameSettings::getInstance().saveGame.currentSlot = 3;
+			LevelData levelData = GameSettings::getInstance().getCurrentLevel();
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		}
+	};
+	slot3Button = make_shared<ButtonUiElement>(slot3);
+	_uiElements.push_back(slot3Button);
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 700, 400, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
@@ -46,6 +66,8 @@ void LoadGameSlotsScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 }
+
+
 
 void LoadGameSlotsScreen::onTick() {}
 
@@ -61,6 +83,24 @@ void LoadGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 		break;
 	}
+}
+
+void LoadGameSlotsScreen::onScreenShowed(vector<std::string> args)
+{
+	if(GameSettings::getInstance().saveGame.slot1 == -1)
+		slot1Button->_text = "Slot 1 - Empty";
+	else
+	slot1Button->_text = "Slot 1 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot1).levelName;
+
+	if (GameSettings::getInstance().saveGame.slot2 == -1)
+		slot2Button->_text = "Slot 2 - Empty";
+	else
+		slot2Button->_text = "Slot 2 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot2).levelName;
+
+	if (GameSettings::getInstance().saveGame.slot3 == -1)
+		slot3Button->_text = "Slot 3 - Empty";
+	else
+		slot3Button->_text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
 }
 
 void LoadGameSlotsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

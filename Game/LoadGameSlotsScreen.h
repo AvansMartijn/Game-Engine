@@ -7,6 +7,10 @@
 
 class LoadGameSlotsScreen : public AbstractScreen
 {
+private:
+	shared_ptr<ButtonUiElement>slot1Button;
+	shared_ptr<ButtonUiElement>slot2Button;
+	shared_ptr<ButtonUiElement>slot3Button;
 public:
 	using AbstractScreen::AbstractScreen;
 	LoadGameSlotsScreen();
@@ -25,6 +29,12 @@ public:
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
 	void handleKeyboardInput(SDL_KeyboardEvent e);
+
+	/// <summary>
+	/// Called when the user switches to this screen.
+	/// </summary>
+	/// <param name="args">The arguments we want to pass to the next screen</param
+	void onScreenShowed(vector<std::string> args);
 	/// <summary>
 	/// Called when the user moves their mouse.
 	/// </summary>
