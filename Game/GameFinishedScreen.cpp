@@ -112,7 +112,8 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-
+	auto test = e.keysym.scancode;
+	std::string test3 = SDL_GetScancodeName(test);
 	if (e.keysym.sym == SDLK_BACKSPACE) {
 		if (_nameText->text.size() > 1)
 		{
