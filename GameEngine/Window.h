@@ -68,6 +68,8 @@ public:
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	void registerTextures(std::string prefix, std::string directory, bool isDeep);
 
+	void registerTexture(std::string textureKey, std::string texturePath, SDL_Rect* clip);
+
 	/// <summary>
 	/// Registers the font in the asset registry.
 	/// </summary>
@@ -75,12 +77,6 @@ public:
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
 
-	/// <summary>
-	/// Get's the texture from the given path.
-	/// </summary>
-	/// <param name="filePath">The path to the texture</param>
-	/// <returns>The texture.</returns>
-	SDL_Texture* getTexture(std::string filePath) const;
 
 	/// <summary>
 	/// Get's the font from the given path.
@@ -129,6 +125,6 @@ private:
 
 	std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> _window{ nullptr, SDL_DestroyWindow };
 	std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> _renderer{ nullptr, SDL_DestroyRenderer };
-	std::unique_ptr<SDL_Texture, void(*)(SDL_Texture*)> _texture{ nullptr, SDL_DestroyTexture };
+	//std::unique_ptr<SDL_Texture, void(*)(SDL_Texture*)> _texture{ nullptr, SDL_DestroyTexture };
 };
 
