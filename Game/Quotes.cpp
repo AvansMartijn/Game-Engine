@@ -36,7 +36,7 @@ Quotes::Quotes() {
 	_quotes.push_back("\"Op kantoor kan ik me wel \"concentreren\" \" \n - Martijn 2020");
 	_quotes.push_back("\"Vinkel - EVVC - Ultra V - Side\" \n - Martijn 2020");
 	_quotes.push_back("\"Pietje Pur & Theo de Kit - Ik kom uit Vinkel\" \n - Martijn 2020");
-
+	_quotes.push_back("\"Ekkes op release bouwen\" \n - Mardy 2K20");
 	
 	//Chiel
 	_quotes.push_back("\"Martijn wat was je laatste task?\" \n - Chiel 2020");
