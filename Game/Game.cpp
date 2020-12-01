@@ -17,6 +17,11 @@ void Game::onInit() {
 	registerTexture("Player_Running_Right", "res/gfx/Assets/Entity/Player/Running_Right.png");
 	registerTexture("Player_Running_Left", "res/gfx/Assets/Entity/Player/Running_Left.png");
 
+	// Sprites
+	std::map<int, Rect> sprites;
+	sprites.insert(std::make_pair<int, Rect>(0, { 23, 0, 86, 76 }));
+	registerTexture("Goomba_SpriteSheet", "res/gfx/Assets/Entity/Goomba/Goomba.png", sprites);
+
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
 	registerTexture("Portal1", "res/gfx/Assets/Enviroment/Portal1.png");

@@ -84,8 +84,11 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		Scene::getInstance().setPlayer(createEntity(gameEngine, extensions, textures,
 			x, y, 0.7f, 1.8f));
 	}
-	else if (tiledGameObject.layerType == "Entities") {
+	else if (tiledGameObject.type == "Enemy") {
+		textures.clear();
+		textures.insert(pair<int, std::string>(0, "Goomba_SpriteSheet"));
 
+		shared_ptr<GameObject> enemy = createGameObject(gameEngine, extensions, textures, x, y, 0.7f, 1.0f, 0.3f, false, false);
 	}
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;

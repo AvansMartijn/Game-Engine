@@ -12,7 +12,7 @@ SDLTexture::~SDLTexture() {
 	// TODO: Destroy
 }
 
-void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft) {
+void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, int spriteId) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -23,8 +23,14 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 	if (!flipLeft)
 		flip = SDL_FLIP_NONE;
 
-	SDL_RenderCopyEx(renderer, _texture, NULL, &sdlRect, (double)angle, NULL, flip);
-	//_texture->
+	if (spriteId > -1) {
+		SDL_Rect srcRect = { sprites[spriteId].x, sprites[spriteId].y, sprites[spriteId].w, sprites[spriteId].h };
+
+		SDL_RenderCopyEx(renderer, _texture, &srcRect, &sdlRect, (double)angle, NULL, flip);
+	}
+	else
+		SDL_RenderCopyEx(renderer, _texture, NULL, &sdlRect, (double)angle, NULL, flip);
+
 	//// TODO: Please add a debug variable, these can get really annoying.
 	//Color color1 = { 255, 0, 0, 1 };
 	//Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };

@@ -57,7 +57,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	}
 
 	//render
-	window->renderTexture(textures[currentState], rect, degrees, false);
+	window->renderTexture(textures[textures.size() == 1 ? 0 : currentState], rect, degrees, false, textures.size() == 1 ? currentState : -1);
 }
 
 
