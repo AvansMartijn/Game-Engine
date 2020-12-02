@@ -12,6 +12,7 @@ void ControllManager::saveControlls()
 	kb.toggleFPSKey = this->toggleFPSKey;
 	kb.walkLeftKey = this->walkLeftKey;
 	kb.walkRightKey = this->walkRightKey;
+	kb.stopKey = this->stopKey;
 	kb.jumpKey = this->jumpKey;
 	kb.equipPortalKey = this->equipPortalKey;
 	kb.equipThrusterKey = this->equipThrusterKey;
@@ -21,20 +22,112 @@ void ControllManager::saveControlls()
 	GameSettings::getInstance().save();
 }
 
+bool ControllManager::validKey(SDL_Scancode key, std::string Action)
+{
+	bool valid = true;
+	std::vector<SDL_Scancode> InvalidKeys;
+	InvalidKeys.push_back(SDL_SCANCODE_ESCAPE);
+	
+	if (Action != "toggleFPS")
+	{
+		if (this->toggleFPSKey.isDefault)
+			InvalidKeys.push_back(this->toggleFPSKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->toggleFPSKey.userSDLKey);
+	} 
+	if (Action != "walkLeft") 
+	{
+		if (this->walkLeftKey.isDefault)
+			InvalidKeys.push_back(this->walkLeftKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->walkLeftKey.userSDLKey);
+	}
+	if (Action != "walkRight")
+	{
+		if (this->walkRightKey.isDefault)
+			InvalidKeys.push_back(this->walkRightKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->walkRightKey.userSDLKey);
+	}
+	if (Action != "stop")
+	{
+		if (this->stopKey.isDefault)
+			InvalidKeys.push_back(this->stopKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->stopKey.userSDLKey);
+	}
+	if (Action != "jump")
+	{
+		if (this->jumpKey.isDefault)
+			InvalidKeys.push_back(this->jumpKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->jumpKey.userSDLKey);
+	}
+	if (Action != "equipPortal")
+	{
+		if (this->equipPortalKey.isDefault)
+			InvalidKeys.push_back(this->equipPortalKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->equipPortalKey.userSDLKey);
+	}
+	if (Action != "equipThruster")
+	{
+		if (this->equipThrusterKey.isDefault)
+			InvalidKeys.push_back(this->equipThrusterKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->equipThrusterKey.userSDLKey);
+	}
+	if (Action != "equipGlue")
+	{
+		if (this->equipThrusterKey.isDefault)
+			InvalidKeys.push_back(this->equipGlueKey.defaultSDLKey);
+		else
+			InvalidKeys.push_back(this->equipGlueKey.userSDLKey);
+	}
+
+	for (int i = 0; i < InvalidKeys.size(); i++)
+	{
+		SDL_Scancode key2 = InvalidKeys[i];
+		if (key2 == key)
+		{
+			valid = false;
+			break;
+		}
+	}
+
+	return valid;
+}
+
 void ControllManager::initializeControlls()
 {
-	//TODO READ FROM SAVEFILE
-	this->toggleFPSKey = KeybindingData("F3",SDL_SCANCODE_F3);
-	this->walkLeftKey = KeybindingData("A", SDL_SCANCODE_A);
-	this->walkRightKey = KeybindingData("D", SDL_SCANCODE_D);
-	this->jumpKey = KeybindingData("SPACE", SDL_SCANCODE_SPACE);
-	this->equipPortalKey = KeybindingData("1", SDL_SCANCODE_1);
-	this->equipThrusterKey = KeybindingData("2", SDL_SCANCODE_2);
-	this->equipGlueKey = KeybindingData("3", SDL_SCANCODE_3);
+	SaveKeybindings Controlls = GameSettings::getInstance().saveGame.settings.cm;
+	if (GameSettings::getInstance().saveGame.settings.cm.toggleFPSKey.defaultKey != "") {
+		this->toggleFPSKey = KeybindingData(Controlls.toggleFPSKey.defaultKey, Controlls.toggleFPSKey.userKey, Controlls.toggleFPSKey.defaultSDLKey, Controlls.toggleFPSKey.userSDLKey, Controlls.toggleFPSKey.isDefault);
+		this->walkLeftKey = KeybindingData(Controlls.walkLeftKey.defaultKey, Controlls.walkLeftKey.userKey, Controlls.walkLeftKey.defaultSDLKey, Controlls.walkLeftKey.userSDLKey, Controlls.walkLeftKey.isDefault);
+		this->walkRightKey = KeybindingData(Controlls.walkRightKey.defaultKey, Controlls.walkRightKey.userKey, Controlls.walkRightKey.defaultSDLKey, Controlls.walkRightKey.userSDLKey, Controlls.walkRightKey.isDefault);
+		this->stopKey = KeybindingData(Controlls.stopKey.defaultKey, Controlls.stopKey.userKey, Controlls.stopKey.defaultSDLKey, Controlls.stopKey.userSDLKey, Controlls.stopKey.isDefault);
+		this->jumpKey = KeybindingData(Controlls.jumpKey.defaultKey, Controlls.jumpKey.userKey, Controlls.jumpKey.defaultSDLKey, Controlls.jumpKey.userSDLKey, Controlls.jumpKey.isDefault);
+		this->equipPortalKey = KeybindingData(Controlls.equipPortalKey.defaultKey, Controlls.equipPortalKey.userKey, Controlls.equipPortalKey.defaultSDLKey, Controlls.equipPortalKey.userSDLKey, Controlls.equipPortalKey.isDefault);
+		this->equipThrusterKey = KeybindingData(Controlls.equipThrusterKey.defaultKey, Controlls.equipThrusterKey.userKey, Controlls.equipThrusterKey.defaultSDLKey, Controlls.equipThrusterKey.userSDLKey, Controlls.equipThrusterKey.isDefault);
+		this->equipGlueKey = KeybindingData(Controlls.equipGlueKey.defaultKey, Controlls.equipGlueKey.userKey, Controlls.equipGlueKey.defaultSDLKey, Controlls.equipGlueKey.userSDLKey, Controlls.equipGlueKey.isDefault);
+	}
+	if (GameSettings::getInstance().saveGame.settings.cm.toggleFPSKey.defaultKey == "") {
+		this->toggleFPSKey = KeybindingData("F3", SDL_SCANCODE_F3);
+		this->walkLeftKey = KeybindingData("A", SDL_SCANCODE_A);
+		this->walkRightKey = KeybindingData("D", SDL_SCANCODE_D);
+		this->stopKey = KeybindingData("S", SDL_SCANCODE_S);
+		this->jumpKey = KeybindingData("SPACE", SDL_SCANCODE_SPACE);
+		this->equipPortalKey = KeybindingData("1", SDL_SCANCODE_1);
+		this->equipThrusterKey = KeybindingData("2", SDL_SCANCODE_2);
+		this->equipGlueKey = KeybindingData("3", SDL_SCANCODE_3);
+	}
 }
 
 void ControllManager::updateControll(std::string Action, std::string userKey, SDL_Scancode userSDLKey)
 {
+	if (!validKey(userSDLKey, Action))
+		return;
+
 	if (Action == "toggleFPS") {
 		this->toggleFPSKey.isDefault = false;
 		this->toggleFPSKey.userKey = userKey;
@@ -49,6 +142,11 @@ void ControllManager::updateControll(std::string Action, std::string userKey, SD
 		this->walkRightKey.isDefault = false;
 		this->walkRightKey.userKey = userKey;
 		this->walkRightKey.userSDLKey = userSDLKey;
+	}
+	else if (Action == "stop") {
+		this->stopKey.isDefault = false;
+		this->stopKey.userKey = userKey;
+		this->stopKey.userSDLKey = userSDLKey;
 	}
 	else if (Action == "jump") {
 		this->jumpKey.isDefault = false;

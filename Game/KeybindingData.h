@@ -14,16 +14,17 @@ public:
 
 	KeybindingData();
 
-	KeybindingData(std::string defaultKey, SDL_Scancode defaultSDLKey) {
-		defaultKey = defaultKey;
-		defaultSDLKey = defaultSDLKey;
+	KeybindingData(std::string _defaultKey, SDL_Scancode _defaultSDLKey) {
+		defaultKey = _defaultKey;
+		defaultSDLKey = _defaultSDLKey;
 	}
 
-	KeybindingData(std::string defaultKey, std::string userKey, SDL_Scancode defaultSDLKey, SDL_Scancode userSDLKey) {
-		defaultKey = defaultKey;
-		userKey = userKey;
-		defaultSDLKey = defaultSDLKey;
-		userSDLKey = userSDLKey;
+	KeybindingData(std::string _defaultKey, std::string _userKey, SDL_Scancode _defaultSDLKey, SDL_Scancode _userSDLKey, bool _isDefault) {
+		defaultKey = _defaultKey;
+		userKey = _userKey;
+		defaultSDLKey = _defaultSDLKey;
+		userSDLKey = _userSDLKey;
+		isDefault = _isDefault;
 	}
 };
 
@@ -32,7 +33,8 @@ inline void to_json(nlohmann::json& j, const KeybindingData& l) {
 		{ "defaultKey", l.defaultKey },
 		{ "userKey", l.userKey },
 		{ "defaultSDLKey", l.defaultSDLKey },
-		{ "userSDLKey", l.userSDLKey }
+		{ "userSDLKey", l.userSDLKey },
+		{ "isDefault", l.isDefault }
 	};
 }
 
@@ -41,5 +43,6 @@ inline void from_json(const nlohmann::json& j, KeybindingData& l) {
 	j.at("userKey").get_to(l.userKey);
 	j.at("defaultSDLKey").get_to(l.defaultSDLKey);
 	j.at("userSDLKey").get_to(l.userSDLKey);
+	j.at("isDefault").get_to(l.isDefault);
 }
 

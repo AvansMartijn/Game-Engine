@@ -15,12 +15,11 @@ private:
 	shared_ptr<TextUiElement> _fpsKey;
 	shared_ptr<TextUiElement> _walkLeftKey;
 	shared_ptr<TextUiElement> _walkRightKey;
+	shared_ptr<TextUiElement> _stopKey;
 	shared_ptr<TextUiElement> _jumpKey;
 	shared_ptr<TextUiElement> _equipPortalGunKey;
 	shared_ptr<TextUiElement> _equipThrusterGunKey;
 	shared_ptr<TextUiElement> _equipGlueGunKey;
-	shared_ptr<TextUiElement> _shootMainKey;
-	shared_ptr<TextUiElement> _shootOffKey;
 
 	/// <summary>
 	/// Loads the keybindings from saveFile
@@ -39,6 +38,11 @@ public:
 	/// Called one time to create all objects.
 	/// </summary>
 	void onInit();
+	/// <summary>
+	/// Called when the user switches to this screen.
+	/// </summary>
+	/// <param name="args">The arguments we want to pass to the next screen</param
+	void onScreenShowed(vector<std::string> args);
 	/// <summary>
 	/// Called every tick to update properties.
 	/// </summary>

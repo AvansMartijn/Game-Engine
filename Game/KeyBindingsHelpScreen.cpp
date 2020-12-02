@@ -23,6 +23,13 @@ void KeyBindingsHelpScreen::loadKeybinding()
 		_walkRightKey->text = ControllManager::getInstance().walkRightKey.userKey;
 	}
 
+	if (ControllManager::getInstance().stopKey.isDefault) {
+		_stopKey->text = ControllManager::getInstance().stopKey.defaultKey;
+	}
+	else {
+		_stopKey->text = ControllManager::getInstance().stopKey.userKey;
+	}
+
 	if (ControllManager::getInstance().jumpKey.isDefault) {
 		_jumpKey->text = ControllManager::getInstance().jumpKey.defaultKey;
 	}
@@ -50,9 +57,6 @@ void KeyBindingsHelpScreen::loadKeybinding()
 	else {
 		_equipGlueGunKey->text = ControllManager::getInstance().equipGlueKey.userKey;
 	}
-
-	_shootMainKey->text = "LEFT MOUSE";
-	_shootOffKey->text = "RIGHT MOUSE";
 }
 
 void KeyBindingsHelpScreen::changeText(shared_ptr<TextUiElement> text)
@@ -93,26 +97,23 @@ void KeyBindingsHelpScreen::onInit() {
 	TextUiElement walkRightText = TextUiElement("Walk Right", font, 20, { 375, 260, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(walkRightText));
 
-	TextUiElement jumpText = TextUiElement("Jump", font, 20, { 375, 300, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement stopText = TextUiElement("Stop", font, 20, { 375, 300, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	_uiElements.push_back(make_shared<TextUiElement>(stopText));
+
+	TextUiElement jumpText = TextUiElement("Jump", font, 20, { 375, 340, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(jumpText));
 
-	TextUiElement weaponsHeader = TextUiElement("WEAPONS", font, 25, { 350, 340, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement weaponsHeader = TextUiElement("WEAPONS", font, 25, { 350, 380, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(weaponsHeader));
 
-	TextUiElement equipPortalGunText = TextUiElement("Equip Portal Gun", font, 20, { 375, 380, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement equipPortalGunText = TextUiElement("Equip Portal Gun", font, 20, { 375, 420, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(equipPortalGunText));
 
-	TextUiElement equipThrusterGunText = TextUiElement("Equip Thruster Gun", font, 20, { 375, 420, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement equipThrusterGunText = TextUiElement("Equip Thruster Gun", font, 20, { 375, 460, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(equipThrusterGunText));
 
-	TextUiElement equipGlueGunText = TextUiElement("Equip Glue Gun", font, 20, { 375, 460, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement equipGlueGunText = TextUiElement("Equip Glue Gun", font, 20, { 375, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(equipGlueGunText));
-
-	TextUiElement shootMainText = TextUiElement("Shoot (Main)", font, 20, { 375, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
-	_uiElements.push_back(make_shared<TextUiElement>(shootMainText));
-
-	TextUiElement shootOffText = TextUiElement("Shoot (Off)", font, 20, { 375, 540, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
-	_uiElements.push_back(make_shared<TextUiElement>(shootOffText));
 
 	//LABELS RIGHT
 	_fpsKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 140, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
@@ -124,23 +125,20 @@ void KeyBindingsHelpScreen::onInit() {
 	_walkRightKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 260, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
 	_uiElements.push_back(_walkRightKey);
 
-	_jumpKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 300, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
+	_stopKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 300, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
+	_uiElements.push_back(_stopKey);
+
+	_jumpKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 340, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
 	_uiElements.push_back(_jumpKey);
 
-	_equipPortalGunKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 380, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
+	_equipPortalGunKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 420, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
 	_uiElements.push_back(_equipPortalGunKey);
 
-	_equipThrusterGunKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 420, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
+	_equipThrusterGunKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 460, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
 	_uiElements.push_back(_equipThrusterGunKey);
 
-	_equipGlueGunKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 460, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
+	_equipGlueGunKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
 	_uiElements.push_back(_equipGlueGunKey);
-
-	_shootMainKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
-	_uiElements.push_back(_shootMainKey);
-
-	_shootOffKey = make_shared<TextUiElement>(TextUiElement(" ", font, 20, { 600, 540, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false));
-	_uiElements.push_back(_shootOffKey);
 
 	//BUTTONS
 	ButtonUiElement toggleFPSButton = ButtonUiElement("Change", { 750, 135, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
@@ -155,35 +153,36 @@ void KeyBindingsHelpScreen::onInit() {
 	walkRightButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "walkRight"; changeText(_walkRightKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(walkRightButton));
 
-	ButtonUiElement jumpButton = ButtonUiElement("Change", { 750, 295, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
+	ButtonUiElement stopButton = ButtonUiElement("Change", { 750, 295, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
+	stopButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "stop"; changeText(_stopKey); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(stopButton));
+
+	ButtonUiElement jumpButton = ButtonUiElement("Change", { 750, 335, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
 	jumpButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "jump"; changeText(_jumpKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(jumpButton));
 
-	ButtonUiElement equipPortalButton = ButtonUiElement("Change", { 750, 375, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
+	ButtonUiElement equipPortalButton = ButtonUiElement("Change", { 750, 415, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
 	equipPortalButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipPortal"; changeText(_equipPortalGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipPortalButton));
 
-	ButtonUiElement equipThrusterButton = ButtonUiElement("Change", { 750, 415, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
+	ButtonUiElement equipThrusterButton = ButtonUiElement("Change", { 750, 455, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
 	equipThrusterButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipThruster"; changeText(_equipThrusterGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipThrusterButton));
 
-	ButtonUiElement equipGlueButton = ButtonUiElement("Change", { 750, 455, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
+	ButtonUiElement equipGlueButton = ButtonUiElement("Change", { 750, 495, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
 	jumpButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipGlue"; changeText(_equipGlueGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipGlueButton));
-
-	ButtonUiElement shootMainButton = ButtonUiElement("Change", { 750, 495, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	shootMainButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "shootMain"; changeText(_shootMainKey); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(shootMainButton));
-
-	ButtonUiElement shootOffButton = ButtonUiElement("Change", { 750, 535, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	shootOffButton.onClick = [this](AbstractGame* game) { _listingForInput = true, _currentAction = "shootOff"; changeText(_shootOffKey); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(shootOffButton));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControlls(); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
+	loadKeybinding();
+}
+
+void KeyBindingsHelpScreen::onScreenShowed(vector<std::string> args)
+{
 	loadKeybinding();
 }
 

@@ -11,6 +11,7 @@ public:
 	KeybindingData toggleFPSKey;
 	KeybindingData walkLeftKey;
 	KeybindingData walkRightKey;
+	KeybindingData stopKey;
 	KeybindingData jumpKey;
 	KeybindingData equipPortalKey;
 	KeybindingData equipThrusterKey;
@@ -24,6 +25,7 @@ public:
 	ControllManager& operator=(ControllManager&&) = delete;
 
 	void saveControlls();
+	bool validKey(SDL_Scancode key, std::string Action);
 	void initializeControlls();
 	void updateControll(std::string Action, std::string userKey, SDL_Scancode userSDLKey);
 };
