@@ -22,7 +22,9 @@ void LoadCustomLevelScreen::onInit() {
 		ButtonUiElement lineOfC = ButtonUiElement(levelData.levelName, { 430, y, 720, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 		lineOfC.registerGame(_game);
 		lineOfC.onClick = [levelData](AbstractGame* game) {
+			GameSettings::getInstance().saveGame.currentSlot = 0;
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+			
 		};
 		_line = make_shared<ButtonUiElement>(lineOfC);
 		_uiElements.push_back(_line);

@@ -60,7 +60,15 @@ void GameFinishedScreen::onInit() {
 			LevelData levelData = GameSettings::getInstance().getNextLevel();
 
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
-			GameSettings::getInstance().saveGame.currentLevel++;
+
+			if (GameSettings::getInstance().saveGame.currentSlot == 1)
+				GameSettings::getInstance().saveGame.slot1++;
+			if (GameSettings::getInstance().saveGame.currentSlot == 2) 
+				GameSettings::getInstance().saveGame.slot2++;
+			if (GameSettings::getInstance().saveGame.currentSlot == 3) 
+				GameSettings::getInstance().saveGame.slot3++;
+
+			GameSettings::getInstance().save();
 		}
 		else
 		{
@@ -84,7 +92,6 @@ void GameFinishedScreen::onInit() {
 
 				if (saveLevel.name == currentLevelData.levelName) {
 					foundIndex = levelIndex;
-
 					break;
 				}
 			}

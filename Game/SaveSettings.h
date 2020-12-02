@@ -5,8 +5,8 @@ class SaveSettings
 {
 private:
 public:
-	int sound;
-	int soundFx;
+	int sound = 60;
+	int soundFx = 60;
 };
 
 inline void to_json(nlohmann::json& j, const SaveSettings& s) {
