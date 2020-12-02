@@ -25,7 +25,7 @@ int AbstractManageableItem::getAmmo() {
 	return _ammo;
 }
 
-float AbstractManageableItem::getCooldown() {
+long AbstractManageableItem::getCooldown() {
 	return _cooldown;
 }
 
@@ -33,7 +33,7 @@ void AbstractManageableItem::setAmmo(int amount) {
 	_ammo = amount;
 }
 
-void AbstractManageableItem::setCooldown(float amount) {
+void AbstractManageableItem::setCooldown(long amount) {
 	_cooldown = amount;
 }
 

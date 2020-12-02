@@ -115,21 +115,21 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	textures.clear();
 
 	shared_ptr<AbstractManageableItem> glueItem = Scene::getInstance().getItem("GlueGun");
-	glueItem->setAmmo(10);
-	glueItem->setCooldown(1);
+	glueItem->setAmmo(-1);
+	glueItem->setCooldown(500);
 	shared_ptr<GameObject> weaponGlue = createNonRigidBody(gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
 
 	textures.clear();
 	shared_ptr<AbstractManageableItem> thrusterItem = Scene::getInstance().getItem("ThrusterGun");
-	thrusterItem->setAmmo(0);
-	thrusterItem->setCooldown(1);
+	thrusterItem->setAmmo(-1);
+	thrusterItem->setCooldown(1500);
 	shared_ptr<GameObject> weaponThruster = createNonRigidBody(gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
 
 	textures.clear();
 	shared_ptr<AbstractManageableItem> portalItem = Scene::getInstance().getItem("PortalGun");
-	portalItem->setAmmo(0);
+	portalItem->setAmmo(-1);
 	portalItem->setCooldown(0);
 	shared_ptr<GameObject> weaponPortal = createNonRigidBody(gameEngine, { "PickupExtension" }, textures,
 		8, 17.5f, portalItem->getWidth(), portalItem->getHeight(), "pickupSensor");

@@ -7,6 +7,7 @@
 #include <string>
 #include <memory>
 #include "Window.h"
+#include <chrono>
 
 class GAMEENGINE_AbstractManageableItem AbstractManageableItem
 {
@@ -16,7 +17,8 @@ protected:
 	float _width;
 	float _height;
 	int _ammo;
-	float _cooldown;
+	long _cooldown;
+	std::chrono::steady_clock::time_point _lastUsed;
 public:
 	AbstractManageableItem();
 	~AbstractManageableItem();
@@ -25,9 +27,9 @@ public:
 	float getWidth();
 	float getHeight();
 	int getAmmo();
-	float getCooldown();
+	long getCooldown();
 	void setAmmo(int amount);
-	void setCooldown(float amount);
+	void setCooldown(long amount);
 	void setOwner(shared_ptr<GameObject> owner);
 
 	virtual void render(const unique_ptr<Window>& window);
