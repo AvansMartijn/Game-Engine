@@ -23,6 +23,12 @@ void HighScoreScreen::onInit()
 	scroll = make_shared<TextUiElement>(scrollText);
 	_uiElements.push_back(scroll);
 
+	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
+	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
+
+	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2) - 100, 50, 200 });
+	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
+
 
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));

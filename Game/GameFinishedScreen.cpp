@@ -74,7 +74,6 @@ void GameFinishedScreen::onInit() {
 				_nameText->text = "Waluigi";
 			
 			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
-			
 			GameSettings::getInstance().save();
 		}		
 
@@ -129,7 +128,6 @@ void GameFinishedScreen::onInit() {
 				_nameText->text = "Waluigi";
 
 			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
-
 			GameSettings::getInstance().save();
 		}
 		game->switchScreen(Screens::MainMenu);

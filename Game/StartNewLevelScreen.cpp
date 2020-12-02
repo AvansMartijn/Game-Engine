@@ -30,7 +30,8 @@ void StartNewLevelScreen::onInit() {
 		"After some inquiries he knows the location of Masahiro Sakurai. \n"
 		"Its a super ultra secret secured facility. \n"
 		" \n"
-		"Waluigi is denied entry to the facility ... but he is determined to find a way to Masahiro Sakurai ... \n"
+		"Waluigi is denied entry to the facility ...  \n"
+		"But he is determined to find a way to Masahiro Sakurai ... \n"
 		" \n"
 		" \n"
 		"He sees a back door behind a bush and sneaks in ... \n";
@@ -47,6 +48,13 @@ void StartNewLevelScreen::onInit() {
 
 
 	//SCROLL END
+
+	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2)-100, 50, 200 });
+	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
+
+	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2)-100, 50, 200 });
+	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
+
 
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
