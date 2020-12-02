@@ -3,6 +3,10 @@
 #include "SettingsScreen.h"
 #include "LoadCustomlevelScreen.h"
 #include "ControllManager.h"
+#include "LoadingScreen.h"
+#include "NewGameSlotsScreen.h"
+#include "LoadGameSlotsScreen.h"
+
 
 #undef main
 
@@ -87,6 +91,21 @@ int main(int argc, char* argv[]) {
 	LoadCustomlevelScreen->registerGame(&game);
 	LoadCustomlevelScreen->onInit();
 	game.screens.push_back(move(LoadCustomlevelScreen));
+
+	unique_ptr<LoadingScreen> LoadingScreen(new LoadingScreen);
+	LoadingScreen->registerGame(&game);
+	LoadingScreen->onInit();
+	game.screens.push_back(move(LoadingScreen));
+
+	unique_ptr<NewGameSlotsScreen> NewGameSlotsScreen(new NewGameSlotsScreen);
+	NewGameSlotsScreen->registerGame(&game);
+	NewGameSlotsScreen->onInit();
+	game.screens.push_back(move(NewGameSlotsScreen));
+
+	unique_ptr<LoadGameSlotsScreen> LoadGameSlotsScreen(new LoadGameSlotsScreen);
+	LoadGameSlotsScreen->registerGame(&game);
+	LoadGameSlotsScreen->onInit();
+	game.screens.push_back(move(LoadGameSlotsScreen));
 
 	game.onInit();
 

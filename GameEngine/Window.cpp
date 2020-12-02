@@ -4,6 +4,7 @@
 #include "Window.h"
 #include <windows.h>
 #include "dirent.h"
+#include "SDLTexture.h"
 
 Window::Window(const char* title, int width, int height) {
 	_width = width;
@@ -24,7 +25,16 @@ int Window::getHeight() const {
 }
 
 void Window::registerTexture(std::string textureKey, std::string texturePath) {
-	AssetRegistry::getInstance().registerTexture(textureKey, getTexture(texturePath));
+	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
+
+	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
+}
+
+void Window::registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites) {
+	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
+	texture.isSpriteSheet = true;
+	texture.sprites = sprites;
+	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
 }
 
 void Window::registerTextures(std::string prefix, std::string directory, bool isDeep) {
@@ -40,15 +50,6 @@ void Window::registerTextures(std::string prefix, std::string directory, bool is
 
 void Window::registerFont(std::string fontKey, std::string fontPath) {
 	AssetRegistry::getInstance().registerFont(fontKey, fontPath);
-}
-
-SDL_Texture* Window::getTexture(std::string filePath) const {
-	SDL_Texture* texture = NULL;
-	texture = IMG_LoadTexture(_renderer.get(), filePath.c_str());
-	if (texture == NULL)
-		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
-
-	return texture;
 }
 
 TTF_Font* Window::getFont(std::string fontKey, int fontSize) {
@@ -71,35 +72,10 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft) {
-	SDL_Rect sdlRect;
-	sdlRect.x = rect.x;
-	sdlRect.y = rect.y;
-	sdlRect.w = rect.w;
-	sdlRect.h = rect.h;
-	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
-	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
-	if (!flipLeft)
-		 flip = SDL_FLIP_NONE;
+void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, std::string spriteKey) {
+	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
 
-	SDL_RenderCopyEx(_renderer.get(), AssetRegistry::getInstance().getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
-
-	//// TODO: Please add a debug variable, these can get really annoying.
-	//Color color1 = { 255, 0, 0, 1 };
-	//Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
-	//renderRectangle(centerrect, color1);
-	//Color color2 = { 255, 0, 0, 1 };
-	//Rect leftuprect = { rect.x, rect.y, 2, 2 };
-	//renderRectangle(leftuprect, color2);
-	//Color color3 = { 255, 0, 0, 1 };
-	//Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
-	//renderRectangle(rightuprect, color3);
-	//Color color4 = { 255, 0, 0, 1 };
-	//Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
-	//renderRectangle(leftdownrect, color4);
-	//Color color5 = { 255, 0, 0, 1 };
-	//Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
-	//renderRectangle(rightdownrect, color5);
+	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "");
 }
 
 std::vector<std::string> split_string(const std::string& str,

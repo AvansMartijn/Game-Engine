@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Misc\Keybindings">
       <UniqueIdentifier>{ca886303-7780-4d0b-94fe-d15b2253a86f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Screens\NewLoadGameScreen">
+      <UniqueIdentifier>{146ba1cb-e30e-445a-bb54-0593490f5e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\NewLoadGameScreen">
+      <UniqueIdentifier>{aa7907a7-5788-441a-ade5-6f011885dd90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +146,21 @@
     </ClCompile>
     <ClCompile Include="SaveKeybindings.cpp">
       <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Quotes.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMoves.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGameSlotsScreen.cpp">
+      <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadGameSlotsScreen.cpp">
+      <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +283,18 @@
     </ClInclude>
     <ClInclude Include="SaveKeybindings.h">
       <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Quotes.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameSlotsScreen.h">
+      <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadGameSlotsScreen.h">
+      <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

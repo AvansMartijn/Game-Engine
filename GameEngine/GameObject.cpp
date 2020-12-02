@@ -3,7 +3,7 @@
 #include "Physics.h"
 
 GameObject::GameObject() {
-	currentState = 0;
+	currentState = "";
 }
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
@@ -57,7 +57,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	}
 
 	//render
-	window->renderTexture(textures[currentState], rect, degrees, false);
+	window->renderTexture(texture, rect, degrees, false, currentState);
 }
 
 
@@ -76,8 +76,4 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 			return extension;
 	}
 	return nullptr;
-}
-
-void GameObject::addTexture(int state, std::string textureKey) {
-	textures.insert(std::pair<int, std::string>(state, textureKey));
 }

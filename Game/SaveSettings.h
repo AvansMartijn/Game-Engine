@@ -6,9 +6,9 @@ class SaveSettings
 {
 private:
 public:
-	int sound;
-	int soundFx;
 	SaveKeybindings cm;
+	int sound = 60;
+	int soundFx = 60;
 };
 
 inline void to_json(nlohmann::json& j, const SaveSettings& s) {
