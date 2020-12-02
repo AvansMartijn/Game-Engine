@@ -10,6 +10,7 @@
 #include "PickupExtension.h"
 #include "DoesDamageExtension.h"
 #include "IsPortableExtension.h"
+#include "TimerExtension.h"
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
     registerExtension("AiExtension", &AiExtension::create);
@@ -22,6 +23,7 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("PickupExtension", &PickupExtension::create);
     registerExtension("DoesDamageExtension", &DoesDamageExtension::create);
     registerExtension("IsPortableExtension", &IsPortableExtension::create);
+    registerExtension("TimerExtension", &TimerExtension::create);
 }
 
 void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate)

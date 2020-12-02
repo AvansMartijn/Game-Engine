@@ -291,6 +291,9 @@
     <ClInclude Include="DoesDamageExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="TimerExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -459,6 +462,9 @@
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="IsPortableExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
   </ItemGroup>
