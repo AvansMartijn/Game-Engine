@@ -12,6 +12,7 @@ HighScoreScreen::~HighScoreScreen() {}
 void HighScoreScreen::onInit()
 {
 	const Color bgColor = { 28, 28, 28 };
+	const Color TColor = { 51,51,51 };
 	const string font = "Portal";
 	backgroundTrackKey = "Game_Over";
 
@@ -22,10 +23,18 @@ void HighScoreScreen::onInit()
 	scroll = make_shared<TextUiElement>(scrollText);
 	_uiElements.push_back(scroll);
 
-	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+
+	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
+	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
+	
+	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, TColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	ButtonUiElement backButton = ButtonUiElement("Back", { 20, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+
+	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
+	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
+
+	ButtonUiElement backButton = ButtonUiElement("Back", { 20, 650, 70, 40 }, TColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));

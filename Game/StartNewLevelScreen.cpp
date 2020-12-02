@@ -47,12 +47,12 @@ void StartNewLevelScreen::onInit() {
 
 
 	//SCROLL END
+
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
 
 	TextUiElement title = TextUiElement("Waluigi", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, TColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
-
 
 	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
