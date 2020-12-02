@@ -6,6 +6,41 @@ ControllManager ControllManager::_instance;
 ControllManager::ControllManager() {
 }
 
+void ControllManager::resetControlls()
+{
+	this->toggleFPSKey.isDefault = true;
+	this->toggleFPSKey.userKey.clear();
+	this->toggleFPSKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->walkLeftKey.isDefault = true;
+	this->walkLeftKey.userKey.clear();
+	this->walkLeftKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->walkRightKey.isDefault = true;
+	this->walkRightKey.userKey.clear();
+	this->walkRightKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->stopKey.isDefault = true;
+	this->stopKey.userKey.clear();
+	this->stopKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->jumpKey.isDefault = true;
+	this->jumpKey.userKey.clear();
+	this->jumpKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->equipPortalKey.isDefault = true;
+	this->equipPortalKey.userKey.clear();
+	this->equipPortalKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->equipThrusterKey.isDefault = true;
+	this->equipThrusterKey.userKey.clear();
+	this->equipThrusterKey.userSDLKey = SDL_SCANCODE_0;
+
+	this->equipGlueKey.isDefault = true;
+	this->equipGlueKey.userKey.clear();
+	this->equipGlueKey.userSDLKey = SDL_SCANCODE_0;
+}
+
 void ControllManager::saveControlls()
 {
 	SaveKeybindings kb;

@@ -106,13 +106,13 @@ void KeyBindingsHelpScreen::onInit() {
 	TextUiElement weaponsHeader = TextUiElement("WEAPONS", font, 25, { 350, 380, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(weaponsHeader));
 
-	TextUiElement equipPortalGunText = TextUiElement("Equip Portal Gun", font, 20, { 375, 420, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement equipPortalGunText = TextUiElement("Equip First Gun", font, 20, { 375, 420, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(equipPortalGunText));
 
-	TextUiElement equipThrusterGunText = TextUiElement("Equip Thruster Gun", font, 20, { 375, 460, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement equipThrusterGunText = TextUiElement("Equip Second Gun", font, 20, { 375, 460, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(equipThrusterGunText));
 
-	TextUiElement equipGlueGunText = TextUiElement("Equip Glue Gun", font, 20, { 375, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
+	TextUiElement equipGlueGunText = TextUiElement("Equip Third Gun", font, 20, { 375, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
 	_uiElements.push_back(make_shared<TextUiElement>(equipGlueGunText));
 
 	//LABELS RIGHT
@@ -170,12 +170,16 @@ void KeyBindingsHelpScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipThrusterButton));
 
 	ButtonUiElement equipGlueButton = ButtonUiElement("Change", { 750, 495, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	jumpButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipGlue"; changeText(_equipGlueGunKey); };
+	equipGlueButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipGlue"; changeText(_equipGlueGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipGlueButton));
 
-	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement resetButton = ButtonUiElement("Reset All", { 350, 545, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
+	resetButton.onClick = [this](AbstractGame* game) { ControllManager::getInstance().resetControlls(); loadKeybinding();};
+	_uiElements.push_back(make_shared<ButtonUiElement>(resetButton));
+
+	ButtonUiElement backButton = ButtonUiElement("Save & Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControlls(); };
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControlls();};
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	loadKeybinding();

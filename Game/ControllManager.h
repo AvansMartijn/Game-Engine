@@ -24,6 +24,7 @@ public:
 	ControllManager& operator=(const ControllManager&) = delete;
 	ControllManager& operator=(ControllManager&&) = delete;
 
+	void resetControlls();
 	void saveControlls();
 	bool validKey(SDL_Scancode key, std::string Action);
 	void initializeControlls();
