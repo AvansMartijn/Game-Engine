@@ -5,6 +5,7 @@
 #include "LoadingScreen.h"
 #include "NewGameSlotsScreen.h"
 #include "LoadGameSlotsScreen.h"
+#include "StartNewLevelScreen.h"
 
 
 #undef main
@@ -102,6 +103,11 @@ int main(int argc, char* argv[]) {
 	LoadGameSlotsScreen->registerGame(&game);
 	LoadGameSlotsScreen->onInit();
 	game.screens.push_back(move(LoadGameSlotsScreen));
+
+	unique_ptr<StartNewLevelScreen> StartNewLevelScreen(new StartNewLevelScreen);
+	StartNewLevelScreen->registerGame(&game);
+	StartNewLevelScreen->onInit();
+	game.screens.push_back(move(StartNewLevelScreen));
 
 	game.onInit();
 

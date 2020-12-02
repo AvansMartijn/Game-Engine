@@ -144,6 +144,9 @@
     <ClCompile Include="LoadGameSlotsScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
     </ClCompile>
+    <ClCompile Include="StartNewLevelScreen.cpp">
+      <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -267,6 +270,9 @@
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
     </ClInclude>
     <ClInclude Include="LoadGameSlotsScreen.h">
+      <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="StartNewLevelScreen.h">
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
     </ClInclude>
   </ItemGroup>

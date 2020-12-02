@@ -14,5 +14,6 @@ enum Screens {
 	LoadCustomMap,
 	Loading,
 	NewGame,
-	LoadGame
+	LoadGame,
+	StartNewGame
 };

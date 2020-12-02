@@ -31,14 +31,18 @@ void Game::onInit() {
 	registerTexture("Win", "res/gfx/Win.png");
 	registerTexture("Hat", "res/gfx/Pauze.png");
 
+	registerTexture("Keybindings", "res/gfx/tutorialTest.png");
+
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
   
 	registerTexture("Background", "res/gfx/Background.png");
+	registerTexture("BackgroundTint", "res/gfx/BackgroundTint.png");
 	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");
 	registerTexture("Logo", "res/gfx/LatropLogo.png");
 	registerTexture("Line", "res/gfx/Line.png");
 	registerTexture("LogoWesley", "res/gfx/LatropLogoWesley.png");
+
 	//Font
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
