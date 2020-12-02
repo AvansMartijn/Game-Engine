@@ -1,6 +1,25 @@
 #include "GameFinishedScreen.h"
 #include "GameSettings.h"
 
+// trim from start (in place)
+static inline void ltrim(std::string& s) {
+	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}));
+}
+
+// trim from end (in place)
+static inline void rtrim(std::string& s) {
+	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}).base(), s.end());
+}
+
+// trim from both ends (in place)
+static inline void trim(std::string& s) {
+	ltrim(s);
+	rtrim(s);
+}
 
 GameFinishedScreen::GameFinishedScreen() {}
 
@@ -20,7 +39,7 @@ void GameFinishedScreen::onInit() {
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
 
-	TextUiElement nameLabelText = TextUiElement("Name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement nameLabelText = TextUiElement("Type your name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
 
 	ImageUiElement walu = ImageUiElement("Win", { 1080 - 350 , ((720 - 400) / 2) + 50, 400, 400 });
@@ -47,6 +66,13 @@ void GameFinishedScreen::onInit() {
 					break;
 				}
 			}
+
+			std::string name = _nameText->text;
+			trim(name);
+
+			if (name == "")
+				_nameText->text = "Waluigi";
+			
 			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 			
 			GameSettings::getInstance().save();
@@ -95,6 +121,13 @@ void GameFinishedScreen::onInit() {
 					break;
 				}
 			}
+
+			std::string name = _nameText->text;
+			trim(name);
+
+			if (name == "")
+				_nameText->text = "Waluigi";
+
 			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 
 			GameSettings::getInstance().save();

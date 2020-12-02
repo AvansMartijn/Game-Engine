@@ -49,11 +49,12 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto level : levels) {
-
+		scroll->text += "------------------------------------------";
+		scroll->text += " \n";
 		scroll->text += level.name;
-		scroll->text += "\n";
-		scroll->text += " - - - - - - -  ";
-		scroll->text += "\n";
+		scroll->text += " \n";
+		scroll->text += "------------------------------------------";
+		scroll->text += " \n";
 
 		std::sort(level.highscores.begin(), level.highscores.end(), [](SaveHighscore a, SaveHighscore b) { return a.score > b.score; });
 
@@ -65,12 +66,12 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 			scroll->text += highScore.name;
 			scroll->text += ", ";
 			scroll->text += to_string(highScore.score);
-			scroll->text += "\n";
+			scroll->text += " \n";
 			counter++;
 		}
-		scroll->text += "\n";
+		scroll->text += " \n";
 		scroll->text += " ";
-		scroll->text += "\n";
+		scroll->text += " \n";
 	}
 }
 
