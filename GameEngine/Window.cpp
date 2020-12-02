@@ -52,15 +52,6 @@ void Window::registerFont(std::string fontKey, std::string fontPath) {
 	AssetRegistry::getInstance().registerFont(fontKey, fontPath);
 }
 
-//SDL_Texture* Window::getTexture(std::string filePath) const {
-//	SDL_Texture* texture = NULL;
-//	texture = IMG_LoadTexture(_renderer.get(), filePath.c_str());
-//	if (texture == NULL)
-//		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
-//
-//	return texture;
-//}
-
 TTF_Font* Window::getFont(std::string fontKey, int fontSize) {
 	return TTF_OpenFont(AssetRegistry::getInstance().getFontPath(fontKey.c_str()).c_str(), fontSize);
 }
