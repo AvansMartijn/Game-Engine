@@ -192,6 +192,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="PlayerMoves.cpp" />
     <ClCompile Include="Quotes.cpp" />
     <ClCompile Include="NewGameSlotsScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />

@@ -63,6 +63,10 @@ void AbstractGame::registerTexture(std::string textureKey, std::string texturePa
 	_window->registerTexture(textureKey, texturePath);
 }
 
+void AbstractGame::registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites) {
+	_window->registerTexture(textureKey, texturePath, sprites);
+}
+
 void AbstractGame::registerFont(std::string fontKey, std::string fontPath) {
 	_window->registerFont(fontKey, fontPath);
 }

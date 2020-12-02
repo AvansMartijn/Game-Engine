@@ -35,10 +35,7 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 	GameObjectFacade gameEngine;
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject({});
 
-	std::map<int, std::string> textures;
-	textures.insert(pair<int, std::string>(0, "Mystical_Crystal_Flipped"));
-
-	gameObject->textures = textures;
+	gameObject->texture = "Mystical_Crystal_Flipped";
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
 	//Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);
