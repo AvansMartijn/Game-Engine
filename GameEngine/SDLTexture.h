@@ -11,13 +11,13 @@
 class SDLTexture
 {
 public:
-	std::map<int, Rect> sprites;
+	std::map<std::string, Rect> sprites;
 	bool isSpriteSheet;
 
 	SDLTexture(std::string filePath, SDL_Renderer* renderer);
 	~SDLTexture();
 
-	void renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, int spriteId = -1);
+	void renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey = "");
 private:
 	SDL_Texture* _texture;
 };

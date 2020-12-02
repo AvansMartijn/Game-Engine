@@ -12,7 +12,7 @@ SDLTexture::~SDLTexture() {
 	// TODO: Destroy
 }
 
-void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, int spriteId) {
+void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -23,8 +23,8 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 	if (!flipLeft)
 		flip = SDL_FLIP_NONE;
 
-	if (spriteId > -1) {
-		SDL_Rect srcRect = { sprites[spriteId].x, sprites[spriteId].y, sprites[spriteId].w, sprites[spriteId].h };
+	if (spriteKey != "") {
+		SDL_Rect srcRect = { sprites[spriteKey].x, sprites[spriteKey].y, sprites[spriteKey].w, sprites[spriteKey].h };
 
 		SDL_RenderCopyEx(renderer, _texture, &srcRect, &sdlRect, (double)angle, NULL, flip);
 	}

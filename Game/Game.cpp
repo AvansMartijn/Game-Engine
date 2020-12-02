@@ -5,21 +5,21 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
-	registerTexture("Player_Look_Right", "res/gfx/Assets/Entity/Player/Looking_Right.png");
-	registerTexture("Player_Look_Left", "res/gfx/Assets/Entity/Player/Looking_Left.png");
-
-	registerTexture("Player_Jump_Right", "res/gfx/Assets/Entity/Player/Jumping_Right.png");
-	registerTexture("Player_Jump_Left", "res/gfx/Assets/Entity/Player/Jumping_Left.png");
-
-	registerTexture("Player_Fall_Right", "res/gfx/Assets/Entity/Player/Falling_Right.png");
-	registerTexture("Player_Fall_Left", "res/gfx/Assets/Entity/Player/Falling_Left.png");
-
-	registerTexture("Player_Running_Right", "res/gfx/Assets/Entity/Player/Running_Right.png");
-	registerTexture("Player_Running_Left", "res/gfx/Assets/Entity/Player/Running_Left.png");
-
 	// Sprites
-	std::map<int, Rect> sprites;
-	sprites.insert(std::make_pair<int, Rect>(0, { 23, 0, 86, 76 }));
+	std::map<std::string, Rect> sprites;
+	sprites.insert(std::make_pair(PlayerMoves::LOOK_RIGHT, Rect{ 662, 78, 318, 456 }));
+	sprites.insert(std::make_pair(PlayerMoves::LOOK_LEFT, Rect{ 253, 78, 318, 456 }));
+
+	sprites.insert(std::make_pair(PlayerMoves::JUMP_RIGHT, Rect{ 2555, 676, 293, 496 }));
+	sprites.insert(std::make_pair(PlayerMoves::JUMP_LEFT, Rect{ 2058, 654, 385, 519}));
+
+	sprites.insert(std::make_pair(PlayerMoves::RUN_RIGHT, Rect{ 542, 735, 448, 448 }));
+	sprites.insert(std::make_pair(PlayerMoves::RUN_LEFT, Rect{ 44, 735, 448, 448 }));
+
+	registerTexture("Waluigi", "res/gfx/Assets/Entity/Player/Waluigi.png", sprites);
+
+	sprites.clear();
+	sprites.insert(std::make_pair<std::string, Rect>("Player_Look_Right", { 23, 0, 86, 76 }));
 	registerTexture("Goomba_SpriteSheet", "res/gfx/Assets/Entity/Goomba/Goomba.png", sprites);
 
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");

@@ -30,7 +30,7 @@ void Window::registerTexture(std::string textureKey, std::string texturePath) {
 	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
 }
 
-void Window::registerTexture(std::string textureKey, std::string texturePath, std::map<int, Rect> sprites) {
+void Window::registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites) {
 	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
 	texture.isSpriteSheet = true;
 	texture.sprites = sprites;
@@ -81,10 +81,10 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, int spriteId) {
+void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, std::string spriteKey) {
 	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
 
-	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteId : -1);
+	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "");
 }
 
 std::vector<std::string> split_string(const std::string& str,

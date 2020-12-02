@@ -63,7 +63,7 @@ void AbstractGame::registerTexture(std::string textureKey, std::string texturePa
 	_window->registerTexture(textureKey, texturePath);
 }
 
-void AbstractGame::registerTexture(std::string textureKey, std::string texturePath, std::map<int, Rect> sprites) {
+void AbstractGame::registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites) {
 	_window->registerTexture(textureKey, texturePath, sprites);
 }
 

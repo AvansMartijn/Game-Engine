@@ -11,7 +11,7 @@ shared_ptr<AbstractManageableItem> PickupExtension::getItem() {
 
 void PickupExtension::setItem(shared_ptr<AbstractManageableItem> item) {
 	_item = item;
-	_subject->addTexture(0, _item->getTextureKey());
+	_subject->texture = _item->getTextureKey();
 }
 
 void PickupExtension::onEntityCollision(shared_ptr<GameObject> gameObject) {
