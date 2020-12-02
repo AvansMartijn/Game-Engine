@@ -62,7 +62,8 @@ bool ControllManager::validKey(SDL_Scancode key, std::string Action)
 	bool valid = true;
 	std::vector<SDL_Scancode> InvalidKeys;
 	InvalidKeys.push_back(SDL_SCANCODE_ESCAPE);
-	
+	InvalidKeys.push_back(SDL_SCANCODE_GRAVE);
+
 	if (Action != "toggleFPS")
 	{
 		if (this->toggleFPSKey.isDefault)
