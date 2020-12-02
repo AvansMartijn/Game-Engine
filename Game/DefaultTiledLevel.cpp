@@ -1,8 +1,6 @@
 #include "DefaultTiledLevel.h"
 
 void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
-	std::map<int, std::string> textures;
-
 	for (size_t gameObjectIndex = 0; gameObjectIndex < gameObjects.size(); gameObjectIndex++) {
 		TiledGameObject go = gameObjects[gameObjectIndex];
 
@@ -20,9 +18,9 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		std::vector<std::string> extensions = AssetRegistry::getInstance().split(extensionsString, ',');
 
 		if (go.layer == "tilelayer")
-			createTile(gameEngine, go, textures, extensions, x, y, width, height);
+			createTile(gameEngine, go, extensions, x, y, width, height);
 		else if (go.layer == "objectgroup")
-			createObject(gameEngine, go, textures, extensions, x, y, width, height);
+			createObject(gameEngine, go, extensions, x, y, width, height);
 	}
 
 	// Create Portals
@@ -39,7 +37,7 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 
 }
 
-void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::map<int, std::string>& textures, std::vector<std::string>& extensions, float x, float y, float width, float height) {
+void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
 	std::string textureKey = getTextureKeyFromPath("Tiled", tiledGameObject.image);
 
 	float friction = 2.5f;
@@ -62,7 +60,7 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	}
 }
 
-void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::map<int, std::string>& textures, std::vector<std::string>& extensions, float x, float y, float width, float height) {
+void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
 	if (tiledGameObject.type == "Player") {
 		Scene::getInstance().setPlayer(createEntity(gameEngine, extensions, "Waluigi",
 			x, y, 0.7f, 1.8f));
@@ -79,6 +77,12 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
 		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+	}
+	else if (tiledGameObject.layerType == "Misc") {
+		if (tiledGameObject.type == "Text") {
+			std::string text = tiledGameObject.properties["text"].valueString;
+			int b = 0;
+		}
 	}
 }
 
