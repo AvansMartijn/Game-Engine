@@ -6,6 +6,8 @@
 #include "LoadingScreen.h"
 #include "NewGameSlotsScreen.h"
 #include "LoadGameSlotsScreen.h"
+#include "CheatScreen.h"
+#include "CheatHelpScreen.h"
 
 
 #undef main
@@ -106,6 +108,16 @@ int main(int argc, char* argv[]) {
 	LoadGameSlotsScreen->registerGame(&game);
 	LoadGameSlotsScreen->onInit();
 	game.screens.push_back(move(LoadGameSlotsScreen));
+
+	unique_ptr<CheatScreen> CheatScreen(new CheatScreen);
+	CheatScreen->registerGame(&game);
+	CheatScreen->onInit();
+	game.screens.push_back(move(CheatScreen));
+
+	unique_ptr<CheatHelpScreen> CheatHelpScreen(new CheatHelpScreen);
+	CheatHelpScreen->registerGame(&game);
+	CheatHelpScreen->onInit();
+	game.screens.push_back(move(CheatHelpScreen));
 
 	game.onInit();
 

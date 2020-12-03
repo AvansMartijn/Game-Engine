@@ -175,7 +175,6 @@ void GameScreen::calculatePlayerTexture() {
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	const SDL_Keycode Grave = SDL_SCANCODE_TO_KEYCODE(SDL_SCANCODE_GRAVE);
 
 	SDL_Keycode firstGun;
 	if (ControllManager::getInstance().equipPortalKey.isDefault)
@@ -244,8 +243,9 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
 
 		break;
-	case Grave:
+	case SDLK_TAB:
 		//TODO Open Cheat Window
+		_game->switchScreen(Screens::Cheat);
 		break;
 	case SDLK_p:
 		_game->reset();

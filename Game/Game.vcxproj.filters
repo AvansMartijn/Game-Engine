@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Screens\NewLoadGameScreen">
       <UniqueIdentifier>{aa7907a7-5788-441a-ade5-6f011885dd90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Screens\Cheats">
+      <UniqueIdentifier>{6b18b7bd-04c8-4b4c-8d27-ee2092357542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Cheats">
+      <UniqueIdentifier>{96277c52-0158-453a-9cfe-4d6f3217bd44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -161,6 +167,12 @@
     </ClCompile>
     <ClCompile Include="LoadGameSlotsScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatScreen.cpp">
+      <Filter>Source Files\Screens\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatHelpScreen.cpp">
+      <Filter>Source Files\Screens\Cheats</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +307,12 @@
     </ClInclude>
     <ClInclude Include="LoadGameSlotsScreen.h">
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatHelpScreen.h">
+      <Filter>Header Files\Screens\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatScreen.h">
+      <Filter>Header Files\Screens\Cheats</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
