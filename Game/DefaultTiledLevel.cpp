@@ -57,15 +57,20 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	if (tiledGameObject.properties.find("fixed") != tiledGameObject.properties.end())
 		isFixed = tiledGameObject.properties["fixed"].valueBool;
 
+
 	if (tiledGameObject.properties.find("sensor") != tiledGameObject.properties.end()) {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
-		createNonRigidBody(gameEngine, extensions, textures,
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures,
 			x, y, width, height, sensor);
 	}
 	else {
-		createGameObject(gameEngine, extensions, textures,
+		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textures,
 			x, y, width, height, friction, isFixed, false);
+
+
+		if (tiledGameObject.properties.find("damage") != tiledGameObject.properties.end())
+			dynamic_pointer_cast<DoesDamageExtension>(gameObject->getExtension(typeid(DoesDamageExtension)))->damage = tiledGameObject.properties["damage"].valueInt;
 	}
 }
 
