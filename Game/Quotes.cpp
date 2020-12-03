@@ -50,6 +50,7 @@ Quotes::Quotes() {
 	_quotes.push_back("\"Ik ben er in de middag bij\" \n - Wesley 2020");
 	_quotes.push_back("\"Ik krijg alle grote tasks\" \n - Wesley 2020");
 	_quotes.push_back("\"Ik ben in mijn eigen kanaal\" \n - Wesley 2020");
+	_quotes.push_back("\"Ik ben ook gewoon depressief van dit project\" \n - Wesley 2020");
 
 
 	//Mike
