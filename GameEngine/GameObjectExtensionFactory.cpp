@@ -9,8 +9,9 @@
 #include "CanWieldExtension.h"
 #include "PickupExtension.h"
 #include "DoesDamageExtension.h"
-#include "IsPortableExtension.h"
+#include "IsPortalableExtension.h"
 #include "TimerExtension.h"
+
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
     registerExtension("AiExtension", &AiExtension::create);
@@ -22,7 +23,7 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("CanWieldExtension", &CanWieldExtension::create);
     registerExtension("PickupExtension", &PickupExtension::create);
     registerExtension("DoesDamageExtension", &DoesDamageExtension::create);
-    registerExtension("IsPortableExtension", &IsPortableExtension::create);
+    registerExtension("IsPortalable", &IsPortalableExtension::create);
     registerExtension("TimerExtension", &TimerExtension::create);
 }
 
