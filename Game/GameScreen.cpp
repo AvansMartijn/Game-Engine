@@ -22,12 +22,11 @@ void GameScreen::setupHUD() {
 	const Color fgColor = { 255, 255, 255 };
 	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
-	const int fontSize = 24;
+	const int fontSize = 19;
 	//_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
 	//_uiElements.push_back(_lives);
 	//_gameUiElements.push_back(_lives);
-
-	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NONE", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
+	_weapon = make_shared<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 5, 640, 0, 0 }, fgColor, bgColor, false));
 	_uiElements.push_back(_weapon);
 	_gameUiElements.push_back(_weapon);
 	
@@ -92,7 +91,7 @@ void GameScreen::onTick() {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
-			std::string result = "CURRENT WEAPON: " + currentWeapon->getScreemName();
+			std::string result = "WEAPON: " + currentWeapon->getScreemName();
 			_weapon->text = result;
 		}
 	}
