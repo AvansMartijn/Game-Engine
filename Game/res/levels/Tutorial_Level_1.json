@@ -96,12 +96,41 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"Misc",
+         "objects":[
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"Text",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Eeey!?! Waluigi what are you doing here ?? ... still not invited to Super Smash ... neither am I :(\nLooks like we had the same idea, I can help you find Masahiro Sakurai!!\nPick up that weapon on the ground and use your mouse buttons to shoot portals to get to the end!!\nWhen you get to the next level I'll follow you!"
+                        }],
+                 "rotation":0,
+                 "type":"Text",
+                 "visible":true,
+                 "width":0,
+                 "x":4720,
+                 "y":696
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":20,
+ "nextlayerid":10,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"1.4.3",
  "tileheight":256,
  "tilesets":[
         {

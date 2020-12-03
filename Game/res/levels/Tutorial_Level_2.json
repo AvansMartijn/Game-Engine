@@ -36,6 +36,35 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
+         "name":"Misc",
+         "objects":[
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"Text",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"You made it!! Good for you ...\nUnfortunately you don't have a portal gun here.. Stupid developers ...\nHey what do I see lying there .. Is that a thruster gun ?? Try it  ;)"
+                        }],
+                 "rotation":0,
+                 "type":"Text",
+                 "visible":true,
+                 "width":0,
+                 "x":7048,
+                 "y":528
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":6,
          "name":"Entities",
          "objects":[
@@ -102,11 +131,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":20,
+ "nextlayerid":10,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"1.4.3",
  "tileheight":256,
  "tilesets":[
         {
@@ -1244,7 +1273,13 @@
                  "id":0,
                  "image":"Assets\/BandanaDee\/Bandana_Waddle_Dee.png",
                  "imageheight":256,
-                 "imagewidth":227
+                 "imagewidth":227,
+                 "properties":[
+                        {
+                         "name":"extensions",
+                         "type":"string",
+                         "value":""
+                        }]
                 }],
          "tilewidth":227
         }],

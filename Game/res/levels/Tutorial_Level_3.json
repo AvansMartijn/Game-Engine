@@ -36,6 +36,35 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
+         "name":"Misc",
+         "objects":[
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"Text",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Phew that was quick!!\nUnfortunately the developers have put together something else\nIt does stick a little.. I don't know what happened with it. ;)"
+                        }],
+                 "rotation":0,
+                 "type":"Text",
+                 "visible":true,
+                 "width":0,
+                 "x":2144,
+                 "y":2852
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":6,
          "name":"Entities",
          "objects":[
@@ -102,11 +131,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":20,
+ "nextlayerid":10,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"1.4.3",
  "tileheight":256,
  "tilesets":[
         {
