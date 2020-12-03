@@ -78,6 +78,11 @@
                          "name":"extensions",
                          "type":"string",
                          "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":100
                         }],
                  "rotation":0,
                  "type":"Player",
@@ -135,7 +140,7 @@
  "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.4.2",
  "tileheight":256,
  "tilesets":[
         {

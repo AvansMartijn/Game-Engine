@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"."
+         "target":"Level_3.json"
         }
     },
  "height":100,
@@ -49,6 +49,11 @@
                          "name":"extensions",
                          "type":"string",
                          "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":100
                         }],
                  "rotation":0,
                  "type":"Player",
