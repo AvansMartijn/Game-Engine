@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Misc">
       <UniqueIdentifier>{f1f3764a-90cf-4825-a6dc-2eea39de6acc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Misc\Keybindings">
+      <UniqueIdentifier>{773d3f38-58be-4024-b416-1a052a10d039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc\Keybindings">
+      <UniqueIdentifier>{ca886303-7780-4d0b-94fe-d15b2253a86f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Screens\NewLoadGameScreen">
       <UniqueIdentifier>{146ba1cb-e30e-445a-bb54-0593490f5e43}</UniqueIdentifier>
     </Filter>
@@ -132,10 +138,22 @@
     <ClCompile Include="GameSettings.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="ControllManager.cpp">
+      <Filter>Source Files\Misc\Keybindings</Filter>
+    </ClCompile>
+    <ClCompile Include="KeybindingData.cpp">
+      <Filter>Source Files\Misc\Keybindings</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveKeybindings.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
     <ClCompile Include="LoadingScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="Quotes.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMoves.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
     <ClCompile Include="NewGameSlotsScreen.cpp">
@@ -259,6 +277,15 @@
     </ClInclude>
     <ClInclude Include="LevelData.h">
       <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllManager.h">
+      <Filter>Header Files\Misc\Keybindings</Filter>
+    </ClInclude>
+    <ClInclude Include="KeybindingData.h">
+      <Filter>Header Files\Misc\Keybindings</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveKeybindings.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
     </ClInclude>
     <ClInclude Include="LoadingScreen.h">
       <Filter>Header Files\Screens</Filter>

@@ -19,7 +19,7 @@ protected:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created entity.</returns>
-	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height);
+	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
 	/// <summary>
 	/// Creates a new non ridgid.
 	/// </summary>
@@ -31,7 +31,7 @@ protected:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created portal.</returns>
-	shared_ptr<GameObject> createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType);
+	shared_ptr<GameObject> createNonRigidBody(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, std::string userDataType);
 	/// <summary>
 	/// Creates a new game object.
 	/// </summary>
@@ -46,7 +46,7 @@ protected:
 	/// <param name="fixed">If this object should use fixtures.</param>
 	/// <param name="fixedRotation"></param>
 	/// <returns>The created game object.</returns>
-	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
 
 public:
 	/// <summary>

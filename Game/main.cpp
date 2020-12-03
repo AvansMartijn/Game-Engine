@@ -2,6 +2,7 @@
 #include "GameFinishedScreen.h"
 #include "SettingsScreen.h"
 #include "LoadCustomlevelScreen.h"
+#include "ControllManager.h"
 #include "LoadingScreen.h"
 #include "NewGameSlotsScreen.h"
 #include "LoadGameSlotsScreen.h"
@@ -22,6 +23,9 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().addLevel(4, { "Level_2", LevelType::TILED });
 	GameSettings::getInstance().addLevel(5, { "Level_3", LevelType::TILED });
 	GameSettings::getInstance().addLevel(6, { "Level_4", LevelType::TILED });
+
+	//
+	ControllManager::getInstance().initializeControlls();
 
 	// Register Items
 	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
