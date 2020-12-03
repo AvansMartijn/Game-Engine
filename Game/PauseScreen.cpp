@@ -37,6 +37,9 @@ void PauseScreen::onInit() {
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+
+	ImageUiElement walu = ImageUiElement("Hat", { 1080 - 350 , (((720 - 400) - 100) / 2), 300, 300 });
+	_uiElements.push_back(make_shared<ImageUiElement>(walu));
 }
 
 void PauseScreen::onTick() {}

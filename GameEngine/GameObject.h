@@ -28,8 +28,9 @@ public:
 	Body body;
 	int id;
 
-	int currentState;
-	std::map<int, std::string> textures;
+	std::string currentState;
+	std::string texture;
+	//std::map<int, std::string> textures;
 
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 	bool hasExtension(const std::type_info& type);
@@ -47,13 +48,5 @@ public:
 	/// <param name="value">The amount of meters to convert.</param>
 	/// <returns>The value in pixels.</returns>
 	int metersToPixels(float value);
-
-	/// <summary>
-	/// Adds a texture to the texture list.
-	/// </summary>
-	/// <param name="state">The state when to use the texture.</param>
-	/// <param name="textureKey">The key of the texture</param>
-	void addTexture(int state, std::string textureKey);
-
 };
 

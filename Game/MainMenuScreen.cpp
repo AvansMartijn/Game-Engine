@@ -22,19 +22,14 @@ void MainMenuScreen::onInit() {
 	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 75, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
 	startButton.onClick = [](AbstractGame* game) {
-		GameSettings::getInstance().saveGame.currentLevel = 0;
-		GameSettings::getInstance().save();
-
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		game->switchScreen(Screens::NewGame);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadButton.registerGame(_game);
 	loadButton.onClick = [](AbstractGame* game) { 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		game->switchScreen(Screens::LoadGame);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
 

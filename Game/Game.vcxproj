@@ -174,6 +174,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractLevel.cpp" />
     <ClCompile Include="AbstractLevelLoader.cpp" />
+    <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="DefaultLevel.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
@@ -185,11 +186,18 @@
     <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="HighscoreScreen.cpp" />
+    <ClCompile Include="KeybindingData.cpp" />
     <ClCompile Include="KeyBindingsHelpScreen.cpp" />
     <ClCompile Include="LoadCustomlevelScreen.cpp" />
+    <ClCompile Include="LoadGameSlotsScreen.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="SaveKeybindings.cpp" />
+    <ClCompile Include="PlayerMoves.cpp" />
+    <ClCompile Include="Quotes.cpp" />
+    <ClCompile Include="NewGameSlotsScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
@@ -197,6 +205,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractLevel.h" />
     <ClInclude Include="AbstractLevelLoader.h" />
+    <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="DefaultLevel.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
@@ -209,15 +218,21 @@
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="json.h" />
+    <ClInclude Include="KeybindingData.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
     <ClInclude Include="LoadCustomlevelScreen.h" />
     <ClInclude Include="LevelData.h" />
+    <ClInclude Include="LoadGameSlotsScreen.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
+    <ClInclude Include="Quotes.h" />
     <ClInclude Include="SaveGame.h" />
+    <ClInclude Include="NewGameSlotsScreen.h" />
     <ClInclude Include="SaveHighscore.h" />
+    <ClInclude Include="SaveKeybindings.h" />
     <ClInclude Include="SaveLevel.h" />
     <ClInclude Include="SaveSettings.h" />
     <ClInclude Include="Screens.h" />

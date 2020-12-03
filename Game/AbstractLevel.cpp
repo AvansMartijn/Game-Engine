@@ -1,12 +1,12 @@
 #include "AbstractLevel.h"
 
-shared_ptr<GameObject> AbstractLevel::createEntity(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height) {
-	return createGameObject(gameEngine, extensions, textures, x, y, width, height, -1, false, false);
+shared_ptr<GameObject> AbstractLevel::createEntity(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
+	return createGameObject(gameEngine, extensions, texture, x, y, width, height, -1, false, false);
 }
 
-shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
+shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
-	gameObject->textures = textures;
+	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
 	if (friction == -1 && !fixed && !fixedRotation)
@@ -19,9 +19,9 @@ shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, ve
 	return gameObject;
 }
 
-shared_ptr<GameObject> AbstractLevel::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, map<int, std::string> textures, float x, float y, float width, float height, std::string userDataType = NULL) {
+shared_ptr<GameObject> AbstractLevel::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, std::string userDataType = NULL) {
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
-	gameObject->textures = textures;
+	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
 	Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, userDataType);
