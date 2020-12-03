@@ -1,16 +1,19 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_DefaultEntityAI __declspec(dllexport)
+#else
+#define GAMEENGINE_DefaultEntityAI __declspec(dllimport)
+#endif
 #include "AbstractEntityAI.h"
 
-class DefaultEntityAI : public AbstractEntityAI
+class GAMEENGINE_DefaultEntityAI DefaultEntityAI : public AbstractEntityAI
 {
 public:
-	using AbstractEntityAI::AbstractEntityAI;
 
 	/// <summary>
 	/// Create the behaviour tree.
 	/// </summary>
 	/// <param name="self">The player</param>
-	/// <param name="scene">All the game objects</param>
-	void createBehaviourTree(shared_ptr<GameObject> self, shared_ptr<vector<GameObject>> scene);
+	void createBehaviourTree(shared_ptr<GameObject> self);
 };
 

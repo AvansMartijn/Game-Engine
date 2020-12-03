@@ -18,6 +18,7 @@ private:
 	static Scene instance;
 
 	map<int, shared_ptr<GameObject>> _gameObjects;
+	std::vector<int> _entities;
 	map<std::string, shared_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
 
@@ -50,11 +51,30 @@ public:
 	void addGameObject(shared_ptr<GameObject> obj);
 
 	/// <summary>
+	/// Add an entity to the registry.
+	/// </summary>
+	/// <param name="obj">The entity we want to register.</param>
+	void addEntity(shared_ptr<GameObject> obj);
+
+	/// <summary>
 	/// Get's a gameobject from the registry.
 	/// </summary>
 	/// <param name="id">The id of the gameobject</param>
 	/// <returns>The game object.</returns>
 	shared_ptr<GameObject> getGameObject(int id);
+
+	/// <summary>
+	/// Get's the index at the given index.
+	/// </summary>
+	/// <param name="index">The entity index.</param>
+	/// <returns>The correct game object.</returns>
+	shared_ptr<GameObject> getEntityAtIndex(int index);
+
+	/// <summary>
+	/// Get's the size of the entities vector.
+	/// </summary>
+	/// <returns>The size of the entities vector.</returns>
+	size_t getEntitiesSize();
 
 	/// <summary>
 	/// Removes a game object from the scene.

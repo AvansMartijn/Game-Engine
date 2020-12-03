@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "AbstractBehaviour.h"
-AbstractBehaviour::AbstractBehaviour(shared_ptr<GameObject> self, shared_ptr<vector<GameObject>> scene) {
+AbstractBehaviour::AbstractBehaviour(shared_ptr<GameObject> self) {
 	this->_self = self;
-	this->_scene = scene;
 }
 
 void AbstractBehaviour::executeNextBehaviour(bool isTrue) {

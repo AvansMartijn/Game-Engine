@@ -1,14 +1,19 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_AbstractBehaviour __declspec(dllexport)
+#else
+#define GAMEENGINE_AbstractBehaviour __declspec(dllimport)
+#endif
 #include <list>
 #include "GameObject.h"
 
 /// <summary>
 /// Abstract class for ai behavior
 /// </summary>
-class AbstractBehaviour
+class GAMEENGINE_AbstractBehaviour AbstractBehaviour
 {
 public:
-	AbstractBehaviour(shared_ptr<GameObject> self, shared_ptr<vector<GameObject>> scene);
+	AbstractBehaviour(shared_ptr<GameObject> self);
 
 	/// <summary>
 	/// Execute the behaviour.
@@ -19,7 +24,6 @@ public:
 	shared_ptr<AbstractBehaviour> behaviourFalse = nullptr;
 protected:
 	shared_ptr<GameObject> _self = nullptr;
-	shared_ptr<vector<GameObject>> _scene;
 
 	/// <summary>
 	/// Execute the next behaviour.
