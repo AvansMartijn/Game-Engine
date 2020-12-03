@@ -16,6 +16,7 @@
 #include "GameOverScreen.h"
 #include "GameSettings.h"
 #include "LevelData.h"
+#include "LibCurl.h"
 
 //engine
 #include "GameEngine.h" 

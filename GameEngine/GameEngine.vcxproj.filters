@@ -288,6 +288,9 @@
     <ClInclude Include="SDLTexture.h">
       <Filter>Header Files\Wrapper</Filter>
     </ClInclude>
+    <ClInclude Include="LibCurl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -454,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="SDLTexture.cpp">
       <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="LibCurl.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
