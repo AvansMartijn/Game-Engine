@@ -68,11 +68,19 @@ void Scene::reset() {
 
     score = 1000;
     _gameObjects.clear();
+    textElements.clear();
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
     for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects)
         x.second->render(window);
+
+    for (auto textElement : textElements)
+    {
+        textElement->preRender(window);
+        textElement->render(window);
+    }
+       
 }
 
 float Scene::metersToPixels(float meters) {

@@ -142,6 +142,7 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	}
 	else
 	{
+
 		SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
 
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);

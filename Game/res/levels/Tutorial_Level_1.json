@@ -70,24 +70,22 @@
          "objects":[
                 {
                  "height":0,
-                 "id":20,
-                 "name":"BandanaDeeText",
+                 "id":29,
+                 "name":"Text",
                  "point":true,
                  "properties":[
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"Ik ben een text wolkje en ik ga een mooie tekst laten zien a fakka neef"
+                         "value":"Ik ben een wolk\nen ik heb meerder\nrijen tekst"
                         }],
                  "rotation":0,
                  "type":"Text",
                  "visible":true,
                  "width":0,
-                 "x":5275.75757575758,
-                 "y":624.242424242424
+                 "x":2424,
+                 "y":2548
                 }],
-         "offsetx":-390,
-         "offsety":140,
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -129,7 +127,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":29,
+ "nextobjectid":32,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",
