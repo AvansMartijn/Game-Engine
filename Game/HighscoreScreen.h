@@ -8,13 +8,6 @@ private:
 
 	shared_ptr<TextUiElement> scroll;
 
-	shared_ptr<TextUiElement> _row1Text;
-	shared_ptr<TextUiElement> _row2Text;
-	shared_ptr<TextUiElement> _row3Text;
-	shared_ptr<TextUiElement> _row4Text;
-	shared_ptr<TextUiElement> _row5Text;
-
-
 	int offsett = 0;
 
 public:

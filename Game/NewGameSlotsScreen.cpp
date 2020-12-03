@@ -33,8 +33,8 @@ void NewGameSlotsScreen::onInit() {
 		GameSettings::getInstance().saveGame.slot1 = 0;
 		GameSettings::getInstance().save();
 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+
+		game->switchScreen(Screens::StartNewGame);
 	};
 	slot1Button = make_shared<ButtonUiElement>(slot1);
 	_uiElements.push_back(slot1Button);
@@ -48,8 +48,7 @@ void NewGameSlotsScreen::onInit() {
 		GameSettings::getInstance().saveGame.slot2 = 0;
 		GameSettings::getInstance().save();
 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		game->switchScreen(Screens::StartNewGame);
 	};
 	slot2Button = make_shared<ButtonUiElement>(slot2);
 	_uiElements.push_back(slot2Button);
@@ -63,9 +62,9 @@ void NewGameSlotsScreen::onInit() {
 		GameSettings::getInstance().saveGame.slot3 = 0;
 		GameSettings::getInstance().save();
 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		game->switchScreen(Screens::StartNewGame);
 	};
+
 	slot3Button = make_shared<ButtonUiElement>(slot3);
 	_uiElements.push_back(slot3Button);
 

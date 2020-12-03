@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "AbstractManageableItem.h"
 #include "CanWieldExtension.h"
+#include "TextUiElement.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -18,11 +19,14 @@ private:
 	static Scene instance;
 
 	map<int, shared_ptr<GameObject>> _gameObjects;
+
 	map<std::string, shared_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
 
 	shared_ptr<GameObject> _player;
 public:
+	std::vector<shared_ptr<TextUiElement>> textElements;
+
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }

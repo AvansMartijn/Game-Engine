@@ -198,6 +198,7 @@
     <ClCompile Include="PlayerMoves.cpp" />
     <ClCompile Include="Quotes.cpp" />
     <ClCompile Include="NewGameSlotsScreen.cpp" />
+    <ClCompile Include="StartNewLevelScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="SaveLevel.h" />
     <ClInclude Include="SaveSettings.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="StartNewLevelScreen.h" />
     <ClInclude Include="TiledGameObject.h" />
     <ClInclude Include="TiledGrid.h" />
     <ClInclude Include="TiledLayer.h" />
