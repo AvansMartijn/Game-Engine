@@ -78,38 +78,27 @@ void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool 
 	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "");
 }
 
-std::vector<std::string> split_string(const std::string& str,
-	const std::string& delimiter)
-{
-	std::vector<std::string> strings;
-
-	std::string::size_type pos = 0;
-	std::string::size_type prev = 0;
-	while ((pos = str.find(delimiter, prev)) != std::string::npos)
-	{
-		strings.push_back(str.substr(prev, pos - prev));
-		prev = pos + 1;
-	}
-
-	// To get the last substring (or only, if delimiter is not found)
-	strings.push_back(str.substr(prev));
-
-	return strings;
-}
-
 void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-	
-
-	if (multiLine)
-	{
+	if (multiLine) {
 		int pixelcounter = 0;
-		std::vector<std::string> lines = split_string(text, "\n");
 
-		for (auto line : lines)
-		{
+
+		std::vector<std::string> lines;
+
+		std::string::size_type pos = 0;
+		std::string::size_type prev = 0;
+		while ((pos = text.find("\n", prev)) != std::string::npos) {
+			lines.push_back(text.substr(prev, pos - prev));
+			prev = pos + 1;
+		}
+
+		lines.push_back(text.substr(prev));
+
+
+		for (auto line : lines) {
 			if (line == "")
 				continue;
 
@@ -140,8 +129,7 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 		}
 
 	}
-	else
-	{
+	else {
 
 		SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
 
@@ -166,8 +154,6 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
 	}
-
-	
 }
 
 int Window::metersToPixels(float value) {
