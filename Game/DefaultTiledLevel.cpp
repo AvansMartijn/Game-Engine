@@ -82,7 +82,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		if (tiledGameObject.type == "Text") {
 			std::string text = tiledGameObject.properties["text"].valueString;
 
-			TextUiElement textBox = TextUiElement(text, "Portal", 20, { (1080 /2), 600, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255 }, true, true);
+			TextUiElement textBox = TextUiElement(text, "Portal", 20, { (1080 /2), 600, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255, 100 }, true, true);
 			Scene::getInstance().textElements.push_back(make_shared<TextUiElement>(textBox));
 		}
 	}
