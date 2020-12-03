@@ -28,6 +28,7 @@ public:
 
 	void addLevel(int number, LevelData levelData);
 	LevelData getCurrentLevel();
+	LevelData getLevelByIndex(int i);
 	LevelData getNextLevel();
 	bool isStoryLevel(LevelData levelData);
 };

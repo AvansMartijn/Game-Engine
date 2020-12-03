@@ -59,6 +59,14 @@ public:
 	/// <param name="textureKey">The texture key./param>
 	/// <param name="texturePath">The path to the texture.</param>
 	void registerTexture(std::string textureKey, std::string texturePath);
+	
+	/// <summary>
+	/// Register the texture in the asset registry.
+	/// </summary>
+	/// <param name="textureKey">The texture key./param>
+	/// <param name="texturePath">The path to the texture.</param>
+	/// <param name="sprites">The sprites positions in the spritesheet.</param>
+	void registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites);
 
 	/// <summary>
 	/// Adds all textures within a directory to the registry.
@@ -75,12 +83,6 @@ public:
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
 
-	/// <summary>
-	/// Get's the texture from the given path.
-	/// </summary>
-	/// <param name="filePath">The path to the texture</param>
-	/// <returns>The texture.</returns>
-	SDL_Texture* getTexture(std::string filePath) const;
 
 	/// <summary>
 	/// Get's the font from the given path.
@@ -104,7 +106,7 @@ public:
 	/// <param name="rect">The rectangle.</param>
 	/// <param name="angle">The angle.</param>
 	/// <param name="flipRight">If we need to flip right.</param>
-	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true);
+	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true, std::string spriteKey = "");
 	
 	/// <summary>
 	/// Renders text on the screen.
@@ -141,6 +143,5 @@ private:
 
 	std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> _window{ nullptr, SDL_DestroyWindow };
 	std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> _renderer{ nullptr, SDL_DestroyRenderer };
-	std::unique_ptr<SDL_Texture, void(*)(SDL_Texture*)> _texture{ nullptr, SDL_DestroyTexture };
 };
 

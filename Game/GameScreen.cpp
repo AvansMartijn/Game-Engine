@@ -1,6 +1,7 @@
 #include "GameScreen.h"
 #include <CanWieldExtension.h>
 #include "TiledLevelLoader.h"
+#include "ControllManager.h"
 
 GameScreen::GameScreen() {}
 
@@ -104,20 +105,38 @@ void GameScreen::handlePlayerControls() {
 	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
-	if (keystate[SDL_SCANCODE_A] || keystate[SDL_SCANCODE_LEFT]) {
+	SDL_Scancode walkLeft;
+	if (ControllManager::getInstance().walkLeftKey.isDefault)
+		walkLeft = ControllManager::getInstance().walkLeftKey.defaultSDLKey;
+	else
+		walkLeft = ControllManager::getInstance().walkLeftKey.userSDLKey;
+
+	if (keystate[walkLeft]) {
 		vel.x = -5;
 		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
 		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
 	}
 
-	if (keystate[SDL_SCANCODE_D] || keystate[SDL_SCANCODE_RIGHT]) {
+	SDL_Scancode walkRight;
+	if (ControllManager::getInstance().walkRightKey.isDefault)
+		walkRight = ControllManager::getInstance().walkRightKey.defaultSDLKey;
+	else
+		walkRight = ControllManager::getInstance().walkRightKey.userSDLKey;
+
+	if (keystate[walkRight]) {
 		vel.x = 5;
 
 		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
 		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
 	}
 
-	if (keystate[SDL_SCANCODE_S] || keystate[SDL_SCANCODE_DOWN])
+	SDL_Scancode stop;
+	if (ControllManager::getInstance().stopKey.isDefault)
+		stop = ControllManager::getInstance().stopKey.defaultSDLKey;
+	else
+		stop = ControllManager::getInstance().stopKey.userSDLKey;
+
+	if (keystate[stop])
 		vel.x = 0;
 
 	if (keystate[SDL_SCANCODE_F])
@@ -127,7 +146,13 @@ void GameScreen::handlePlayerControls() {
 		SoundPlayer::getInstance().playSFX("Thruster_Sound");
 	}
 
-	if (keystate[SDL_SCANCODE_SPACE] || keystate[SDL_SCANCODE_W]) {
+	SDL_Scancode jump;
+	if (ControllManager::getInstance().jumpKey.isDefault)
+		jump = ControllManager::getInstance().jumpKey.defaultSDLKey;
+	else
+		jump = ControllManager::getInstance().jumpKey.userSDLKey;
+
+	if (keystate[jump]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
 			vel.y = -5;
 			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::JUMPING;
@@ -172,25 +197,41 @@ void GameScreen::calculatePlayerTexture() {
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
+	SDL_Keycode firstGun;
+	if (ControllManager::getInstance().equipPortalKey.isDefault)
+		firstGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipPortalKey.defaultSDLKey);
+	else
+		firstGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipPortalKey.userSDLKey);
+
+	SDL_Keycode secondGun;
+	if (ControllManager::getInstance().equipThrusterKey.isDefault)
+		secondGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipThrusterKey.defaultSDLKey);
+	else
+		secondGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipThrusterKey.userSDLKey);
+
+	SDL_Keycode thirdGun;
+	if (ControllManager::getInstance().equipGlueKey.isDefault)
+		thirdGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipGlueKey.defaultSDLKey);
+	else
+		thirdGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipGlueKey.userSDLKey);
+
+	if (e.keysym.sym == firstGun) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
+	}
+	else if (e.keysym.sym == secondGun) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
+	}
+	else if (e.keysym.sym == thirdGun) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
+			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
+	}
+	
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::Pause);
-
-		break;
-	case SDLK_1:
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
-
-		break;
-	case SDLK_2:
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
-
-		break;
-	case SDLK_3:
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
 
 		break;
 	case SDLK_4:

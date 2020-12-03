@@ -4,6 +4,7 @@
 #include "Window.h"
 #include <windows.h>
 #include "dirent.h"
+#include "SDLTexture.h"
 
 Window::Window(const char* title, int width, int height) {
 	_width = width;
@@ -24,7 +25,16 @@ int Window::getHeight() const {
 }
 
 void Window::registerTexture(std::string textureKey, std::string texturePath) {
-	AssetRegistry::getInstance().registerTexture(textureKey, getTexture(texturePath));
+	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
+
+	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
+}
+
+void Window::registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites) {
+	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
+	texture.isSpriteSheet = true;
+	texture.sprites = sprites;
+	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
 }
 
 void Window::registerTextures(std::string prefix, std::string directory, bool isDeep) {
@@ -40,15 +50,6 @@ void Window::registerTextures(std::string prefix, std::string directory, bool is
 
 void Window::registerFont(std::string fontKey, std::string fontPath) {
 	AssetRegistry::getInstance().registerFont(fontKey, fontPath);
-}
-
-SDL_Texture* Window::getTexture(std::string filePath) const {
-	SDL_Texture* texture = NULL;
-	texture = IMG_LoadTexture(_renderer.get(), filePath.c_str());
-	if (texture == NULL)
-		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
-
-	return texture;
 }
 
 TTF_Font* Window::getFont(std::string fontKey, int fontSize) {
@@ -71,69 +72,33 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft) {
-	SDL_Rect sdlRect;
-	sdlRect.x = rect.x;
-	sdlRect.y = rect.y;
-	sdlRect.w = rect.w;
-	sdlRect.h = rect.h;
-	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
-	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
-	if (!flipLeft)
-		 flip = SDL_FLIP_NONE;
+void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, std::string spriteKey) {
+	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
 
-	SDL_RenderCopyEx(_renderer.get(), AssetRegistry::getInstance().getTexture(textureKey), NULL, &sdlRect, (double)angle, NULL,  flip);
-
-	//// TODO: Please add a debug variable, these can get really annoying.
-	//Color color1 = { 255, 0, 0, 1 };
-	//Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
-	//renderRectangle(centerrect, color1);
-	//Color color2 = { 255, 0, 0, 1 };
-	//Rect leftuprect = { rect.x, rect.y, 2, 2 };
-	//renderRectangle(leftuprect, color2);
-	//Color color3 = { 255, 0, 0, 1 };
-	//Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
-	//renderRectangle(rightuprect, color3);
-	//Color color4 = { 255, 0, 0, 1 };
-	//Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
-	//renderRectangle(leftdownrect, color4);
-	//Color color5 = { 255, 0, 0, 1 };
-	//Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
-	//renderRectangle(rightdownrect, color5);
-}
-
-std::vector<std::string> split_string(const std::string& str,
-	const std::string& delimiter)
-{
-	std::vector<std::string> strings;
-
-	std::string::size_type pos = 0;
-	std::string::size_type prev = 0;
-	while ((pos = str.find(delimiter, prev)) != std::string::npos)
-	{
-		strings.push_back(str.substr(prev, pos - prev));
-		prev = pos + 1;
-	}
-
-	// To get the last substring (or only, if delimiter is not found)
-	strings.push_back(str.substr(prev));
-
-	return strings;
+	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "");
 }
 
 void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-	
-
-	if (multiLine)
-	{
+	if (multiLine) {
 		int pixelcounter = 0;
-		std::vector<std::string> lines = split_string(text, "\n");
 
-		for (auto line : lines)
-		{
+
+		std::vector<std::string> lines;
+
+		std::string::size_type pos = 0;
+		std::string::size_type prev = 0;
+		while ((pos = text.find("\n", prev)) != std::string::npos) {
+			lines.push_back(text.substr(prev, pos - prev));
+			prev = pos + 1;
+		}
+
+		lines.push_back(text.substr(prev));
+
+
+		for (auto line : lines) {
 			if (line == "")
 				continue;
 
@@ -164,8 +129,8 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 		}
 
 	}
-	else
-	{
+	else {
+
 		SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
 
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
@@ -189,8 +154,6 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
 	}
-
-	
 }
 
 void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor)
