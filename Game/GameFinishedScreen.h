@@ -4,6 +4,8 @@
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
+#include "GameSettings.h"
+#include "ControllManager.h"
 
 class GameFinishedScreen : public AbstractScreen
 {

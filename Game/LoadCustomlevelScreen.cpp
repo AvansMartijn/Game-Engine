@@ -13,7 +13,7 @@ void LoadCustomLevelScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	std::vector<FileData> _files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false, false);
+	_files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false, false);
 
 	for (size_t i = 0; i < _files.size(); i++) {
 		LevelData levelData = { _files[i].key, LevelType::TILED };
@@ -33,8 +33,6 @@ void LoadCustomLevelScreen::onInit() {
 
 	}
 
-	// Fixing the string
-
 
 	TextUiElement title = TextUiElement("Custom levels", font, 60, { 5, 10, 100, 130 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
@@ -45,9 +43,23 @@ void LoadCustomLevelScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void LoadCustomLevelScreen::onTick() {}
+void LoadCustomLevelScreen::onTick() {
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
+}
 
 void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE: // GO BACK TO PAUSE
@@ -61,14 +73,16 @@ void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void LoadCustomLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void LoadCustomLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-	if (e.y > 0) // scroll up
-		offset = 10;
-	else if (e.y < 0) // scroll down
-		offset = -10;
 
-	for(int i = 0; i <  uiList.size(); i++)
-		uiList[i]->_rect.y += offset;
-	
+	if (_files.size() > 20) {
+		if (e.y > 0) // scroll up
+			offset = 10;
+		else if (e.y < 0) // scroll down
+			offset = -10;
+
+		for (int i = 0; i < uiList.size(); i++)
+			uiList[i]->_rect.y += offset;
+	}
 }
 
 

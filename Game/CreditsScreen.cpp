@@ -37,11 +37,26 @@ void CreditsScreen::onInit() {
 		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 25, { posy, posx, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 		_uiElements.push_back(make_shared<TextUiElement>(lineOfC));
 	}
+
 }
 
-void CreditsScreen::onTick(){}
+void CreditsScreen::onTick(){
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
+}
 
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE: // GO BACK TO PAUSE

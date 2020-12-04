@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractScreen.h"
 #include <TextUiElement.h>
+#include "ControllManager.h"
 
 class HighScoreScreen : public AbstractScreen
 {

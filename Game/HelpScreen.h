@@ -5,6 +5,7 @@
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
 #include "Screens.h"
+#include "ControllManager.h"
 
 class HelpScreen : public AbstractScreen
 {

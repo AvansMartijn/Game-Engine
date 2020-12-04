@@ -43,10 +43,10 @@ void Game::onInit() {
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
-  
 	registerTexture("Background", "res/gfx/Background.png");
 	registerTexture("BackgroundTint", "res/gfx/BackgroundTint.png");
 	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");
+	registerTexture("BackgroundHud", "res/gfx/BackgroundHud.png");
 	registerTexture("Logo", "res/gfx/LatropLogo.png");
 	registerTexture("Line", "res/gfx/Line.png");
 	registerTexture("LogoWesley", "res/gfx/LatropLogoWesley.png");

@@ -5,7 +5,7 @@
 #include "Screens.h"
 #include "LevelData.h"
 #include "GameSettings.h"
-
+#include "ControllManager.h"
 
 
 class StartNewLevelScreen : public AbstractScreen

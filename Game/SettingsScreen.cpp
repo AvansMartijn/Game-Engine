@@ -110,11 +110,32 @@ void SettingsScreen::onInit() {
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
+
+	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { 475, 600, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	keyBindingsButton.registerGame(_game);
+	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
+
+
 }
 
-void SettingsScreen::onTick() {}
+void SettingsScreen::onTick() {
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
+}
 
 void SettingsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+		SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE: // GO BACK 

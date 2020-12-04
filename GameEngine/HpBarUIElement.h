@@ -1,23 +1,26 @@
 #pragma once
 #ifdef GAMEENGINE_EXPORTS
-#define GAMEENGINE_ImageUiElement __declspec(dllexport)
+#define GAMEENGINE_HpBarUIElement __declspec(dllexport)
 #else
-#define GAMEENGINE_ImageUiElement __declspec(dllimport)
+#define GAMEENGINE_HpBarUIElement __declspec(dllimport)
 #endif
+#include "string"
+#include "pch.h"
 #include "AbstractUiElement.h"
-#include <string>
-#include <iostream>
 
 using namespace std;
 
-class GAMEENGINE_ImageUiElement ImageUiElement : public AbstractUiElement
+/// <summary>
+/// HP Bar element
+/// </summary>
+class GAMEENGINE_HpBarUIElement HpBarUIElement : public AbstractUiElement
 {
 public:
-	ImageUiElement(std::string imageKey, Rect rect, int alpha = 0);
-	~ImageUiElement();
+	HpBarUIElement(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor);
+	~HpBarUIElement();
 
 	/// <summary>
-	/// preredner
+	/// pre render the element
 	/// </summary>
 	/// <param name="window"></param>
 	void preRender(const unique_ptr<Window>& window);
@@ -33,8 +36,11 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
-	std::string _textureKey;
-	int _alpha;
+	float percent;
 private:
+	Color _fgColor;
+	Color _bgColor;
+	int _x, _y, _w, _h;
+
 };
 

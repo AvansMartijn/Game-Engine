@@ -190,7 +190,12 @@ void KeyBindingsHelpScreen::onScreenShowed(vector<std::string> args)
 	loadKeybinding();
 }
 
-void KeyBindingsHelpScreen::onTick() {}
+void KeyBindingsHelpScreen::onTick() {
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
+}
 
 void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (_listingForInput)
@@ -202,6 +207,15 @@ void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		ControllManager::getInstance().updateControll(_currentAction, keyPressed, KeyPressedSDL);
 		loadKeybinding();
 	}
+
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
 }
 
 void KeyBindingsHelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

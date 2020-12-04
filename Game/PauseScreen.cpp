@@ -42,9 +42,23 @@ void PauseScreen::onInit() {
 	_uiElements.push_back(make_shared<ImageUiElement>(walu));
 }
 
-void PauseScreen::onTick() {}
+void PauseScreen::onTick() {
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
+}
 
 void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:

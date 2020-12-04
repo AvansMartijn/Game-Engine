@@ -32,14 +32,28 @@ void GameOverScreen::onInit()
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 }
 
-void GameOverScreen::onTick() {}
+void GameOverScreen::onTick() {
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
+}
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
 
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
-void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void GameOverScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 

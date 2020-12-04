@@ -285,6 +285,9 @@
     <ClInclude Include="SoundPlayer.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="HpBarUIElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
     <ClInclude Include="DoesDamageExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="SoundPlayer.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBarUIElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
     </ClCompile>
     <ClCompile Include="DoesDamageExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>

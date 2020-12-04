@@ -7,6 +7,7 @@
 
 PortalManagableItem::PortalManagableItem() {
 	_textureKey = "DIY_Weapon";
+	_screenName = "PORTAL GUN";
 	//default ammo and cooldown
 	_ammo = -1;
 	_cooldown = -1;
@@ -14,8 +15,6 @@ PortalManagableItem::PortalManagableItem() {
 
 void PortalManagableItem::onLeftClick(int x, int y) {
 	shootPortal("portalAbullet", x, y);
-
-
 }
 
 void PortalManagableItem::onRightClick(int x, int y) {

@@ -7,6 +7,7 @@
 
 GlueManagableItem::GlueManagableItem() {
 	_textureKey = "DIY_Weapon";
+	_screenName = "GLUE GUN";
 	//default ammo and cooldown
 	_ammo = -1;
 	_cooldown = 500;

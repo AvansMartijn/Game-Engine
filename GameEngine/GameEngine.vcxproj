@@ -231,6 +231,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="GameObjectFacade.h" />
     <ClInclude Include="GlueManageableItem.h" />
     <ClInclude Include="HealthExtension.h" />
+    <ClInclude Include="HpBarUIElement.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
     <ClInclude Include="IsPortalableExtension.h" />
@@ -296,6 +297,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="GameObjectFacade.cpp" />
     <ClCompile Include="GlueManageableItem.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
+    <ClCompile Include="HpBarUIElement.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
     <ClCompile Include="IsPortalableExtension.cpp" />
     <ClCompile Include="MoveExtension.cpp" />

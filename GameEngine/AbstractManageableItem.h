@@ -13,6 +13,7 @@ class GAMEENGINE_AbstractManageableItem AbstractManageableItem
 {
 protected:
 	std::string _textureKey;
+	std::string _screenName;
 	shared_ptr<GameObject> _owner;
 	float _width;
 	float _height;
@@ -24,6 +25,7 @@ public:
 	~AbstractManageableItem();
 
 	std::string getTextureKey();	
+	std::string getScreemName();
 	float getWidth();
 	float getHeight();
 	int getAmmo();

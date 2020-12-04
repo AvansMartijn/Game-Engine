@@ -72,10 +72,10 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, std::string spriteKey) {
+void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, std::string spriteKey, int alpha) {
 	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
 
-	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "");
+	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "", alpha);
 }
 
 void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
@@ -158,6 +158,29 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	}
 }
 
+void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor)
+{
+	percentage = percentage > 1.f ? 1.f : percentage < 0.f ? 0.f : percentage;
+	Color old;
+	SDL_GetRenderDrawColor(_renderer.get(), &old.r, &old.g, &old.g, &old.a);
+
+	//SDL_Rect border = { x + 2, y - 2, w - 2, h + 2 };
+	//SDL_SetRenderDrawColor(_renderer.get(), 0, 0, 0, 255);
+	//SDL_RenderFillRect(_renderer.get(), &border);
+
+	SDL_Rect background = { x, y, w, h };
+	SDL_SetRenderDrawColor(_renderer.get() , bgColor.r, bgColor.g, bgColor.b, bgColor.a);
+	SDL_RenderFillRect(_renderer.get(), &background);
+
+
+
+	SDL_SetRenderDrawColor(_renderer.get(), fgColor.r, fgColor.g, fgColor.b, fgColor.a);
+	int posW = (int)((float)w * percentage);
+	int posX = x + (w - posW); // 
+	SDL_Rect bar = { posX, y, posW, h };
+	SDL_RenderFillRect(_renderer.get(), &bar);
+	SDL_SetRenderDrawColor(_renderer.get(), old.r, old.g, old.b, old.a);
+}
 void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
 
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };

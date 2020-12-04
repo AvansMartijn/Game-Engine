@@ -4,6 +4,7 @@
 #include <ButtonUiElement.h>
 #include "GameSettings.h"
 #include "Screens.h"
+#include "ControllManager.h"
 
 class NewGameSlotsScreen : public AbstractScreen
 {

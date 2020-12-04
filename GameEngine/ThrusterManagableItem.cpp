@@ -5,6 +5,7 @@
 
 ThrusterManagableItem::ThrusterManagableItem() {
 	_textureKey = "DIY_Weapon";
+	_screenName = "THRUSTER GUN";
 	//default ammo and cooldown
 	_ammo = -1;
 	//cooldown in ms

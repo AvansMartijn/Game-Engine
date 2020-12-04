@@ -47,7 +47,14 @@ void HighScoreScreen::onInit()
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void HighScoreScreen::onTick() { }
+
+void HighScoreScreen::onTick() {
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else 
+		fps->text = "  ";
+}
+
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
 	scroll->textLines.clear();
@@ -75,7 +82,16 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	}
 }
 
-void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void HighScoreScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
