@@ -47,17 +47,15 @@ void HighScoreScreen::onInit()
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void HighScoreScreen::onTick() {}
+void HighScoreScreen::onTick() { }
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-
 	scroll->textLines.clear();
 	std::vector<SaveLevel> levels = GameSettings::getInstance().saveGame.levels;
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto level : levels) {
 
-		scroll->textLines.push_back("------------------------------------------");
 		scroll->textLines.push_back(level.name);
 		scroll->textLines.push_back("------------------------------------------");
 		scroll->textLines.push_back(" ");

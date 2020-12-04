@@ -161,7 +161,6 @@ void Window::renderMultiLineText(std::vector<std::string> text, TTF_Font* font, 
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-
 	int pixelcounter = 0;
 
 	for (auto line : text) {
