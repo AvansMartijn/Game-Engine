@@ -110,6 +110,13 @@ void SettingsScreen::onInit() {
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
+
+	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { 475, 600, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	keyBindingsButton.registerGame(_game);
+	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
+
+
 }
 
 void SettingsScreen::onTick() {
