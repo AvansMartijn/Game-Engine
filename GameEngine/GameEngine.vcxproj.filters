@@ -472,5 +472,6 @@
     </ClCompile>
     <ClCompile Include="SDLTexture.cpp">
       <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
