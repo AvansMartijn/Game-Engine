@@ -85,7 +85,6 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	if (multiLine) {
 		int pixelcounter = 0;
 
-
 		std::vector<std::string> lines;
 
 		std::string::size_type pos = 0;
@@ -156,31 +155,35 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	}
 }
 
-void Window::renderMultiLineText(std::vector<std::string> text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine)
-{
+void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
+
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-	int pixelcounter = 0;
+	int w;
+	int h;
 
-	for (auto line : text) {
-		if (line == "")
+	TTF_SizeText(font, "TestRender", &w, &h);
+
+	for (size_t i = 0; i < textLines.size(); i++) {
+
+		if (textLines[i] == "")
 			continue;
 
-		SDL_Surface* surface = TTF_RenderText_Shaded(font, line.c_str(), sdlForegroundColor, sdlBackgrouldColor);
+		SDL_Surface* surface = TTF_RenderText_Shaded(font, textLines[i].c_str(), sdlForegroundColor, sdlBackgrouldColor);
 
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
 
 		SDL_Rect sdlRect;
 		sdlRect.x = rect.x;
-		sdlRect.y = rect.y + pixelcounter;
+		sdlRect.y = rect.y + (h * i);
 		sdlRect.w = surface->w;
 		sdlRect.h = surface->h;
 
 		if (center) {
 			int txtWidth;
 			int txtHeight;
-			if (TTF_SizeText(font, line.c_str(), &txtWidth, &txtHeight))
+			if (TTF_SizeText(font, textLines[i].c_str(), &txtWidth, &txtHeight))
 				cout << TTF_GetError();
 			else
 				sdlRect.x = (getWidth() / 2) - (txtWidth / 2);
@@ -189,9 +192,8 @@ void Window::renderMultiLineText(std::vector<std::string> text, TTF_Font* font, 
 		SDL_RenderCopy(_renderer.get(), texture, NULL, &sdlRect);
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
-
-		pixelcounter += surface->h;
 	}
+
 }
 
 int Window::metersToPixels(float value) {
