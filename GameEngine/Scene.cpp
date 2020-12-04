@@ -29,7 +29,8 @@ void Scene::addGameObject(shared_ptr<GameObject> obj) {
 
 void Scene::addTextUiElement(shared_ptr<TextUiElement> obj) {
     textElements.push_back(obj);
-    
+}
+
 void Scene::addEntity(shared_ptr<GameObject> obj) {
     addGameObject(obj->id, obj);
     _entities.push_back(obj->id);
