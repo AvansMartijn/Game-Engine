@@ -23,7 +23,7 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("CanWieldExtension", &CanWieldExtension::create);
     registerExtension("PickupExtension", &PickupExtension::create);
     registerExtension("DoesDamageExtension", &DoesDamageExtension::create);
-    registerExtension("IsPortalable", &IsPortalableExtension::create);
+    registerExtension("IsPortalableExtension", &IsPortalableExtension::create);
     registerExtension("TimerExtension", &TimerExtension::create);
 }
 
