@@ -101,8 +101,8 @@
                  "type":"Text",
                  "visible":true,
                  "width":0,
-                 "x":2051.52,
-                 "y":860.606
+                 "x":2051.51515151515,
+                 "y":860.606060606061
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1247,14 +1247,9 @@
                  "imagewidth":256,
                  "properties":[
                         {
-                         "name":"damage",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
                          "name":"extensions",
                          "type":"string",
-                         "value":"DoesDamageExtension"
+                         "value":"IsPortableExtension"
                         }]
                 }, 
                 {

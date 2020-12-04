@@ -3,9 +3,6 @@
 #include "Physics.h"
 #include "EntityCategory.h"
 #include "CollisionResolutionPortalExtension.h"
-#include "IsPortalableExtension.h"
-#include "HealthExtension.h"
-#include "DoesDamageExtension.h"
 
 
 void CollisionListener::BeginContact(b2Contact* contact) {
@@ -47,7 +44,6 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 	if (gameObjectA != nullptr && gameObjectB != nullptr) {
 		checkTeleport(gameObjectA, gameObjectB, *valA);
 		checkTeleport(gameObjectB, gameObjectA, *valB);
-		checkDamage(gameObjectB, gameObjectA);
 	}
 	
 }
@@ -123,16 +119,6 @@ void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared
 	}
 }
 
-void CollisionListener::checkDamage(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
-	if (gameObjectA->hasExtension(typeid(HealthExtension))) {
-		if (gameObjectB->hasExtension(typeid(DoesDamageExtension))) {
-			auto healthExtension = dynamic_pointer_cast<HealthExtension>(gameObjectA->getExtension(typeid(HealthExtension)));
-			auto damageExtension = dynamic_pointer_cast<DoesDamageExtension>(gameObjectB->getExtension(typeid(DoesDamageExtension)));
-			healthExtension->reduceHealth(damageExtension->damage);
-		}
-	}
-}
-
 void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
 	//culling duplicate to prevent double operations
 	auto objectLocation = std::find_if(Physics::getInstance().deleteQueue.begin(), Physics::getInstance().deleteQueue.end(), [objA](int id) {return id == objA.index; });
@@ -141,12 +127,11 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 	}
 
 	if (valA.type == "portalAbullet" || valA.type == "portalBbullet") {
-		if (!gameObjectB->hasExtension(typeid(IsPortalableExtension)) && valB.type != "glueFixture") {
+		if (valB.type == "portalSensor" || valB.type == "glueBullet") {
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 			return;
 		}
-		else if (gameObjectB->hasExtension(typeid(IsPortalableExtension))) {
-
+		else if (valB.type == "fixture") {
 			
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 

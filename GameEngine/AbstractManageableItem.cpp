@@ -21,22 +21,6 @@ float AbstractManageableItem::getHeight() {
 	return _height; 
 }
 
-int AbstractManageableItem::getAmmo() {
-	return _ammo;
-}
-
-long AbstractManageableItem::getCooldown() {
-	return _cooldown;
-}
-
-void AbstractManageableItem::setAmmo(int amount) {
-	_ammo = amount;
-}
-
-void AbstractManageableItem::setCooldown(long amount) {
-	_cooldown = amount;
-}
-
 void AbstractManageableItem::setOwner(shared_ptr<GameObject> owner) {
 	_owner = owner;
 }
