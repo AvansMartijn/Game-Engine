@@ -47,12 +47,12 @@ public:
 	/// </summary>
 	/// <param name="screenIndex">The index of the screen we want to display</param>
 	/// <param name="args">The arguments we want to pass to the next screen</param>
-	virtual void switchScreen(int screenIndex, vector<std::string> args = {}) = 0;
+	virtual void switchScreen(int screenIndex, vector<std::string> args = {});
 
 	/// <summary>
 	/// Switch the current screen to the screen with the given index
 	/// </summary>
-	virtual int getPreviousScreen() = 0;
+	virtual int getPreviousScreen();
 
 	/// <summary>
 	/// Registers a texture in the registry.
