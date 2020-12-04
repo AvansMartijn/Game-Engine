@@ -76,7 +76,6 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 			entityAi->createBehaviourTree(enemy);
 			dynamic_pointer_cast<AiExtension>(enemy->getExtension(typeid(AiExtension)))->ai = entityAi;
 		}
-		// TODO: enemy setup
 	}
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;

@@ -16,7 +16,6 @@ bool AbstractBehaviour::isEnoughTimeElapsed(int timeNeeded) {
 	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
 	long diff  = std::chrono::duration_cast<std::chrono::milliseconds>(end - _begin).count();
-	std::cout << diff;
 
 	if (diff >= timeNeeded)
 		_begin = std::chrono::steady_clock::now();
