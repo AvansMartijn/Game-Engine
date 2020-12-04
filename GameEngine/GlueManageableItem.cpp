@@ -34,10 +34,7 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({"TimerExtension"});
 
 
-			std::map<int, std::string> textures;
-			textures.insert(pair<int, std::string>(0, "Blob"));
-
-			gameObject->textures = textures;
+			gameObject->texture = "Blob";
 			gameObject->id = Scene::getInstance().getNextAvailableId();
 
 			//Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);

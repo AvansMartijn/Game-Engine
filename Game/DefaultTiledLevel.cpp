@@ -52,11 +52,11 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	if (tiledGameObject.properties.find("sensor") != tiledGameObject.properties.end()) {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
-		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures,
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textureKey,
 			x, y, width, height, sensor);
 	}
 	else {
-		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textures,
+		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textureKey,
 			x, y, width, height, friction, isFixed, false);
 
 
@@ -86,7 +86,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
 			item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
 
-		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures, x, y, item->getWidth(), item->getHeight(), sensor);
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
 		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
 	}
 	else if (tiledGameObject.layerType == "Misc") {

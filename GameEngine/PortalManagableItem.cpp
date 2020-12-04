@@ -42,15 +42,13 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			GameObjectFacade gameEngine;
 			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({});
 
-			std::map<int, std::string> textures;
 			if (fixtureUserData == "portalAbullet") {
-				textures.insert(pair<int, std::string>(0, "Portal1"));
+				gameObject->texture = "Portal1";
 			}
 			else {
-				textures.insert(pair<int, std::string>(0, "Portal2"));
+				gameObject->texture = "Portal2";
 			}
 
-			gameObject->textures = textures;
 			gameObject->id = Scene::getInstance().getNextAvailableId();
 
 			//Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);
