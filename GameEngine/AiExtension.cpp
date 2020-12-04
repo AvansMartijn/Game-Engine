@@ -1,12 +1,11 @@
 #include "pch.h"
 #include "AiExtension.h"
-void AiExtension::doAi()
-{
-	cout << "AI NEEF";
-}
 
-AiExtension::AiExtension()
-{
+AiExtension::AiExtension() {
 	type = "AiExtension";
 }
 
+void AiExtension::execute() {
+	if (ai != nullptr)
+		ai->execute();
+}

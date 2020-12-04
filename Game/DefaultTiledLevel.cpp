@@ -1,4 +1,5 @@
 #include "DefaultTiledLevel.h"
+#include <DefaultEntityAI.h>
 
 void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 	for (size_t gameObjectIndex = 0; gameObjectIndex < gameObjects.size(); gameObjectIndex++) {
@@ -74,7 +75,12 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	else if (tiledGameObject.type == "Enemy") {
 		shared_ptr<GameObject> enemy = createGameObject(gameEngine, extensions, "Goomba_SpriteSheet", x, y, 0.7f, 1.0f, 0.3f, false, false);
 
-		// TODO: enemy setup
+		if (enemy->hasExtension(typeid(AiExtension))) {
+			// We only use the default entity ai, so no need to check for anything else.
+			shared_ptr<DefaultEntityAI> entityAi = make_shared<DefaultEntityAI>(DefaultEntityAI{});
+			entityAi->createBehaviourTree(enemy);
+			dynamic_pointer_cast<AiExtension>(enemy->getExtension(typeid(AiExtension)))->ai = entityAi;
+		}
 	}
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;

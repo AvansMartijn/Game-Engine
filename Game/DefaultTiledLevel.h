@@ -8,6 +8,7 @@
 #include <PortalManagableItem.h>
 #include <CollisionResolutionPortalExtension.h>
 #include <DoesDamageExtension.h>
+#include <AiExtension.h>
 
 class DefaultTiledLevel : public AbstractLevel
 {
@@ -57,4 +58,3 @@ public:
 	/// <returns>The texture key.</returns>
 	std::string getTextureKeyFromPath(std::string prefix, std::string& path) const;
 };
-

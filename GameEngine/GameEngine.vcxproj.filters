@@ -350,9 +350,6 @@
     <ClCompile Include="AbstractEntityAI.cpp">
       <Filter>Source Files\Ai</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultEntity.cpp">
-      <Filter>Source Files\Ai</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractBehaviour.cpp">
       <Filter>Source Files\Ai\Behaviours</Filter>
     </ClCompile>
@@ -472,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="SDLTexture.cpp">
       <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultEntityAI.cpp">
+      <Filter>Source Files\Ai</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

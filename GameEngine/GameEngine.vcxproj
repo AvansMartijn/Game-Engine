@@ -284,7 +284,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="DefaultEntity.cpp" />
+    <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DoesDamageExtension.cpp" />
     <ClCompile Include="DummyManagableItem.cpp" />
