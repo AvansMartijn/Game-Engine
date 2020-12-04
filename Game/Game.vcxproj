@@ -172,85 +172,10 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AbstractLevel.cpp" />
-    <ClCompile Include="AbstractLevelLoader.cpp" />
-    <ClCompile Include="ControllManager.cpp" />
-    <ClCompile Include="CreditsScreen.cpp" />
-    <ClCompile Include="DefaultLevel.cpp" />
-    <ClCompile Include="DefaultLevelLoader.cpp" />
-    <ClCompile Include="DefaultTiledLevel.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameFinishedScreen.cpp" />
-    <ClCompile Include="GameOverScreen.cpp" />
-    <ClCompile Include="GameScreen.cpp" />
-    <ClCompile Include="GameSettings.cpp" />
-    <ClCompile Include="HelpScreen.cpp" />
-    <ClCompile Include="HighscoreScreen.cpp" />
-    <ClCompile Include="KeybindingData.cpp" />
-    <ClCompile Include="KeyBindingsHelpScreen.cpp" />
-    <ClCompile Include="LoadCustomlevelScreen.cpp" />
-    <ClCompile Include="LoadGameSlotsScreen.cpp" />
-    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenuScreen.cpp" />
-    <ClCompile Include="PauseScreen.cpp" />
-    <ClCompile Include="SaveKeybindings.cpp" />
-    <ClCompile Include="PlayerMoves.cpp" />
-    <ClCompile Include="Quotes.cpp" />
-    <ClCompile Include="NewGameSlotsScreen.cpp" />
-    <ClCompile Include="StartNewLevelScreen.cpp" />
-    <ClCompile Include="TiledLevelLoader.cpp" />
-    <ClCompile Include="TiledMapBuilder.cpp" />
-    <ClCompile Include="SettingsScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractLevel.h" />
-    <ClInclude Include="AbstractLevelLoader.h" />
-    <ClInclude Include="ControllManager.h" />
-    <ClInclude Include="CreditsScreen.h" />
-    <ClInclude Include="DefaultLevel.h" />
-    <ClInclude Include="DefaultLevelLoader.h" />
-    <ClInclude Include="DefaultTiledLevel.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameFinishedScreen.h" />
-    <ClInclude Include="GameOverScreen.h" />
-    <ClInclude Include="GameScreen.h" />
-    <ClInclude Include="GameSettings.h" />
-    <ClInclude Include="HelpScreen.h" />
-    <ClInclude Include="HighscoreScreen.h" />
-    <ClInclude Include="json.h" />
-    <ClInclude Include="KeybindingData.h" />
-    <ClInclude Include="KeyBindingsHelpScreen.h" />
-    <ClInclude Include="LoadCustomlevelScreen.h" />
-    <ClInclude Include="LevelData.h" />
-    <ClInclude Include="LoadGameSlotsScreen.h" />
-    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="MainMenuScreen.h" />
-    <ClInclude Include="PauseScreen.h" />
-    <ClInclude Include="PlayerMoves.h" />
-    <ClInclude Include="Quotes.h" />
-    <ClInclude Include="SaveGame.h" />
-    <ClInclude Include="NewGameSlotsScreen.h" />
-    <ClInclude Include="SaveHighscore.h" />
-    <ClInclude Include="SaveKeybindings.h" />
-    <ClInclude Include="SaveLevel.h" />
-    <ClInclude Include="SaveSettings.h" />
-    <ClInclude Include="Screens.h" />
-    <ClInclude Include="StartNewLevelScreen.h" />
-    <ClInclude Include="TiledGameObject.h" />
-    <ClInclude Include="TiledGrid.h" />
-    <ClInclude Include="TiledLayer.h" />
-    <ClInclude Include="TiledLevel.h" />
-    <ClInclude Include="TiledLevelLoader.h" />
-    <ClInclude Include="TiledMapBuilder.h" />
-    <ClInclude Include="TiledObject.h" />
-    <ClInclude Include="TiledProperty.h" />
-    <ClInclude Include="TiledTile.h" />
-    <ClInclude Include="TiledTileSet.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="SettingsScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
