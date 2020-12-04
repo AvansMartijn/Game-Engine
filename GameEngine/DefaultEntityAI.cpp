@@ -1,15 +1,11 @@
 #include "pch.h"
 #include "DefaultEntityAI.h"
-#include "AbstractEntityAI.h"
-#include "AbstractBehaviour.h"
-#include "BehaviourIdle.h"
-#include "BehaviourSeesEnemy.h"
-#include "BehaviourAttack.h"
+#include <thread>
+
 
 void DefaultEntityAI::createBehaviourTree(shared_ptr<GameObject> self) {
 	// Behaviour
-	shared_ptr<BehaviourIdle> idle = make_shared<BehaviourIdle>(BehaviourIdle(self));
-	int a = 0;
+	_behaviourIdle = make_shared<BehaviourIdle>(BehaviourIdle(self));
 
 	//shared_ptr<BehaviourSeesEnemy> seesEnemy = make_shared<BehaviourSeesEnemy>(BehaviourSeesEnemy(self));
 	//idle->behaviourTrue = seesEnemy;
@@ -22,4 +18,7 @@ void DefaultEntityAI::createBehaviourTree(shared_ptr<GameObject> self) {
 
 	//shared_ptr<AbstractBehaviour> firstBehaviour = idle;
 	//firstBehaviour->execute();
+
+	_currentBehaviour = _behaviourIdle;
 }
+

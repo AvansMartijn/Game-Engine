@@ -6,7 +6,6 @@ AiExtension::AiExtension() {
 }
 
 void AiExtension::execute() {
-	if (ai != nullptr) {
-		int a = 0;
-	}
+	if (ai != nullptr)
+		ai->execute();
 }
