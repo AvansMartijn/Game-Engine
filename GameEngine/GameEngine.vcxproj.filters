@@ -294,6 +294,9 @@
     <ClInclude Include="IsPortalableExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="SDLTexture.h">
+      <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -467,5 +470,7 @@
     <ClCompile Include="IsPortalableExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
+    <ClCompile Include="SDLTexture.cpp">
+      <Filter>Source Files\Wrappers</Filter>
   </ItemGroup>
 </Project>

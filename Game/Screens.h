@@ -11,5 +11,9 @@ enum Screens {
 	HighScore,
 	GameFinished,
 	Settings,
-	LoadCustomMap
+	LoadCustomMap,
+	Loading,
+	NewGame,
+	LoadGame,
+	StartNewGame
 };

@@ -244,6 +244,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="RotateObj.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
+    <ClInclude Include="SDLTexture.h" />
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="SoundExtension.h" />
@@ -310,6 +311,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
+    <ClCompile Include="SDLTexture.cpp" />
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="SoundExtension.cpp" />

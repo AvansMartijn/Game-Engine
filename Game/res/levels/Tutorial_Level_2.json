@@ -1293,7 +1293,7 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":""
+                         "value":"doesDamage"
                         }]
                 }],
          "tilewidth":227

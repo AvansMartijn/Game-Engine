@@ -13,6 +13,7 @@
 #include <vector>
 #include "FileData.h"
 #include <sstream>
+#include "SDLTexture.h"
 
 class Window;
 class GAMEENGINE_AssetRegistry AssetRegistry
@@ -22,7 +23,7 @@ private:
 
 	static AssetRegistry instance;
 
-	std::map<std::string, SDL_Texture*> _textures;
+	std::map<std::string, std::shared_ptr<SDLTexture>> _textures;
 	std::map<std::string, std::string> _fonts;
 
 public:
@@ -38,14 +39,14 @@ public:
 	/// </summary>
 	/// <param name="textureKey">The texture key.</param>
 	/// <param name="texture">The texture.</param>
-	void registerTexture(std::string textureKey, SDL_Texture* texture);
+	void registerTexture(std::string textureKey, std::shared_ptr<SDLTexture> texture);
 
 	/// <summary>
 	/// Get's the texture from the registry.
 	/// </summary>
 	/// <param name="textureKey">The texture key.</param>
 	/// <returns>The texture.</returns>
-	SDL_Texture* getTexture(std::string textureKey);
+	std::shared_ptr<SDLTexture> getTexture(std::string textureKey);
 
 	/// <summary>
 	/// Adds the font path to the registry.

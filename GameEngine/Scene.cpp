@@ -19,6 +19,10 @@ void Scene::addGameObject(shared_ptr<GameObject> obj) {
     addGameObject(obj->id, obj);
 }
 
+void Scene::addTextUiElement(shared_ptr<TextUiElement> obj) {
+    textElements.push_back(obj);
+}
+
 int Scene::getNextAvailableId() {
     int nextId = _gameObjects.size() + 1;
     if (!_gameObjects.empty())
@@ -68,11 +72,26 @@ void Scene::reset() {
 
     score = 1000;
     _gameObjects.clear();
+    textElements.clear();
+    preRender = false;
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
+
+
     for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects)
         x.second->render(window);
+
+    for (auto textElement : textElements) {
+        if (!preRender) {
+            textElement->preRender(window);
+            preRender = true;
+        }
+
+
+        textElement->render(window);
+    }
+
 }
 
 float Scene::metersToPixels(float meters) {

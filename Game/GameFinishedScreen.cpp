@@ -1,6 +1,25 @@
 #include "GameFinishedScreen.h"
 #include "GameSettings.h"
 
+// trim from start (in place)
+static inline void ltrim(std::string& s) {
+	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}));
+}
+
+// trim from end (in place)
+static inline void rtrim(std::string& s) {
+	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}).base(), s.end());
+}
+
+// trim from both ends (in place)
+static inline void trim(std::string& s) {
+	ltrim(s);
+	rtrim(s);
+}
 
 GameFinishedScreen::GameFinishedScreen() {}
 
@@ -20,8 +39,11 @@ void GameFinishedScreen::onInit() {
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
 
-	TextUiElement nameLabelText = TextUiElement("Name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement nameLabelText = TextUiElement("Type your name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
+
+	ImageUiElement walu = ImageUiElement("Win", { 1080 - 350 , ((720 - 400) / 2) + 50, 400, 400 });
+	_uiElements.push_back(make_shared<ImageUiElement>(walu));
 
 	TextUiElement nameText = TextUiElement(" ", font, 48, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_nameText = make_shared<TextUiElement>(nameText);
@@ -44,8 +66,14 @@ void GameFinishedScreen::onInit() {
 					break;
 				}
 			}
-			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+
+			std::string name = _nameText->text;
+			trim(name);
+
+			if (name == "")
+				_nameText->text = "Waluigi";
 			
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 			GameSettings::getInstance().save();
 		}		
 
@@ -56,8 +84,16 @@ void GameFinishedScreen::onInit() {
 		{
 			LevelData levelData = GameSettings::getInstance().getNextLevel();
 
-			game->switchScreen(Screens::MainGame, { levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
-			GameSettings::getInstance().saveGame.currentLevel++;
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+
+			if (GameSettings::getInstance().saveGame.currentSlot == 1)
+				GameSettings::getInstance().saveGame.slot1++;
+			if (GameSettings::getInstance().saveGame.currentSlot == 2) 
+				GameSettings::getInstance().saveGame.slot2++;
+			if (GameSettings::getInstance().saveGame.currentSlot == 3) 
+				GameSettings::getInstance().saveGame.slot3++;
+
+			GameSettings::getInstance().save();
 		}
 		else
 		{
@@ -81,16 +117,19 @@ void GameFinishedScreen::onInit() {
 
 				if (saveLevel.name == currentLevelData.levelName) {
 					foundIndex = levelIndex;
-
 					break;
 				}
 			}
-			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 
+			std::string name = _nameText->text;
+			trim(name);
+
+			if (name == "")
+				_nameText->text = "Waluigi";
+
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 			GameSettings::getInstance().save();
 		}
-
-
 		game->switchScreen(Screens::MainMenu);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
@@ -112,21 +151,22 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-
+	auto test = e.keysym.scancode;
+	std::string test3 = SDL_GetScancodeName(test);
 	if (e.keysym.sym == SDLK_BACKSPACE) {
-		if (_nameText->text.size() > 1)
-		{
+		if (_nameText->text.size() > 1) {
 			_nameText->text.pop_back();
 		}
 	}
-	if (e.keysym.sym == SDLK_SPACE)
-	{
-		_nameText->text.push_back(' ');
+	if (_nameText->text.length() < 21) {
+		if (e.keysym.sym == SDLK_SPACE) {
+			_nameText->text.push_back(' ');
+		}
+		if (e.keysym.sym >= 97 && e.keysym.sym <= 122) {
+			_nameText->text.push_back((char)e.keysym.sym);
+		}
 	}
-	if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-	{
-		_nameText->text.push_back((char)e.keysym.sym);
-	}
+	
 }
 
 void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

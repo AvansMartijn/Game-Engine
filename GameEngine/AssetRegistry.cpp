@@ -6,15 +6,15 @@ AssetRegistry AssetRegistry::instance;
 
 AssetRegistry::AssetRegistry() {}
 
-void AssetRegistry::registerTexture(std::string textureKey, SDL_Texture* texture) {
-	_textures.insert(std::pair<std::string, SDL_Texture*>(textureKey, texture));
+void AssetRegistry::registerTexture(std::string textureKey, std::shared_ptr<SDLTexture> texture) {
+	_textures.insert(std::pair<std::string, std::shared_ptr<SDLTexture>>(textureKey, texture));
 }
 
 void AssetRegistry::registerFont(std::string fontKey, std::string fontPath) {
 	_fonts.insert(std::pair<std::string, std::string>(fontKey, fontPath));
 }
 
-SDL_Texture* AssetRegistry::getTexture(std::string textureKey) {
+std::shared_ptr<SDLTexture> AssetRegistry::getTexture(std::string textureKey) {
 	return _textures[textureKey];
 }
 
