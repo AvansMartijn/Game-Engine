@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"..\/..\/..\/..\/Tiled\/LatropLevels\/Tutorial_Level_2.json"
+         "target":"Tutorial_Level_2.json"
         }
     },
  "height":100,
@@ -77,7 +77,7 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension"
+                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension,HealthExtension"
                         }, 
                         {
                          "name":"health",

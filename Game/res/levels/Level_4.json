@@ -48,7 +48,7 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension"
+                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension,HealthExtension"
                         }, 
                         {
                          "name":"health",
