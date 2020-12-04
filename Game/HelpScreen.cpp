@@ -29,10 +29,22 @@ void HelpScreen::onInit() {
 }
 
 void HelpScreen::onTick(){
-	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
 }
 
-void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 

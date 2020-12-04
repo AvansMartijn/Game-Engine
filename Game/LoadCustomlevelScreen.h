@@ -7,6 +7,7 @@
 #include "ImageUiElement.h"
 #include "Screens.h"
 #include "GameSettings.h"
+#include "ControllManager.h"
 
 class LoadCustomLevelScreen : public AbstractScreen
 {

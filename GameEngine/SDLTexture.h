@@ -17,7 +17,7 @@ public:
 	SDLTexture(std::string filePath, SDL_Renderer* renderer);
 	~SDLTexture();
 
-	void renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey = "");
+	void renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey = "", int alpha = 0);
 private:
 	SDL_Texture* _texture;
 };

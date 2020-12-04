@@ -37,11 +37,13 @@ private:
 	std::vector<std::shared_ptr<AbstractManageableItem>> _availableItems;
 	shared_ptr<AbstractLevelLoader> _levelLoader;
 	vector<shared_ptr<AbstractUiElement>> _gameUiElements;
-	shared_ptr<TextUiElement> _lives;
 	shared_ptr<TextUiElement> _weapon;
+	shared_ptr<TextUiElement> _score;
 	shared_ptr<TextUiElement> _fps;
 	shared_ptr<ImageUiElement> _backgroundImg;
+	shared_ptr<ImageUiElement> _hudBackgroundImg;
 	shared_ptr<HpBarUIElement> _hpBar;
+	shared_ptr<TextUiElement> _ammo;
 	std::string _name;
 public:
 	GameScreen();
@@ -104,5 +106,6 @@ public:
 	/// Resets the game.
 	/// </summary>
 	void reset();
+
 };
 

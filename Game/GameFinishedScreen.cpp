@@ -1,5 +1,5 @@
 #include "GameFinishedScreen.h"
-#include "GameSettings.h"
+
 
 // trim from start (in place)
 static inline void ltrim(std::string& s) {
@@ -137,7 +137,10 @@ void GameFinishedScreen::onInit() {
 }
 
 void GameFinishedScreen::onTick() {
-	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
 }
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {
@@ -153,7 +156,7 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	auto test = e.keysym.scancode;
+	SDL_Scancode test = e.keysym.scancode;
 	std::string test3 = SDL_GetScancodeName(test);
 	if (e.keysym.sym == SDLK_BACKSPACE) {
 		if (_nameText->text.size() > 1) {
@@ -169,6 +172,15 @@ void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		}
 	}
 	
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 }
 
 void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

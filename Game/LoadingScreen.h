@@ -4,6 +4,7 @@
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
+#include "ControllManager.h"
 
 class LoadingScreen: public AbstractScreen
 {

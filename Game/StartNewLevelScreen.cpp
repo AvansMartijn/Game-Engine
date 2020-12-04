@@ -75,9 +75,20 @@ void StartNewLevelScreen::onInit() {
 
 }
 
-void StartNewLevelScreen::onTick() {}
+void StartNewLevelScreen::onTick() {
+	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
-void StartNewLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void StartNewLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void StartNewLevelScreen::onScreenShowed(vector<std::string> args) {}
 

@@ -80,6 +80,11 @@ public:
 	/// The fps counter
 	/// </summary>
 	shared_ptr<TextUiElement> fps;
+
+	/// <summary>
+	/// Should show the FPS
+	/// </summary>
+	bool shouldShowFPS;
 private:
 };
 

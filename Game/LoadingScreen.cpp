@@ -36,9 +36,23 @@ void LoadingScreen::onTick() {
 	}	
 
 	firstTickCounter++;
+
+	if (shouldShowFPS)
+		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		fps->text = "  ";
 }
 
-void LoadingScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void LoadingScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void LoadingScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 

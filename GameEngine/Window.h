@@ -106,7 +106,8 @@ public:
 	/// <param name="rect">The rectangle.</param>
 	/// <param name="angle">The angle.</param>
 	/// <param name="flipRight">If we need to flip right.</param>
-	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true, std::string spriteKey = "");
+	/// <param name="alpha">The alpha of the texture.</param>
+	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true, std::string spriteKey = "", int alpha = 0);
 	
 	/// <summary>
 	/// Renders text on the screen.

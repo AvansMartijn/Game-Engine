@@ -24,9 +24,6 @@ void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	}
 }
 
-void AbstractScreen::onTick() {
-	fps->text = "FPS";
-}
 
 void AbstractScreen::render(const unique_ptr<Window>& window) {
 

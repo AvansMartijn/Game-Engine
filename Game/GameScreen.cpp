@@ -11,6 +11,7 @@ void GameScreen::onInit() {
 	setupScreen();
 	setupGame();
 	setupHUD();
+	shouldShowFPS = true;
 }
 
 void GameScreen::setupScreen() {
@@ -24,25 +25,30 @@ void GameScreen::setupHUD() {
 	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
 	const int fontSize = 19;
-	//_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
-	//_uiElements.push_back(_lives);
-	//_gameUiElements.push_back(_lives);
-	_weapon = make_shared<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 5, 640, 0, 0 }, fgColor, bgColor, false));
+
+	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 300, 100 }, 122));
+	_uiElements.push_back(_hudBackgroundImg);
+	_gameUiElements.push_back(_hudBackgroundImg);
+
+	_score = make_shared<TextUiElement>(TextUiElement("SCORE: 999", font, fontSize, { 10, 630, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_score);
+	_gameUiElements.push_back(_score);
+
+	_weapon = make_shared<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 10, 650, 0, 0 }, fgColor, bgColor, false));
 	_uiElements.push_back(_weapon);
 	_gameUiElements.push_back(_weapon);
-	
+
+	_ammo = make_shared<TextUiElement>(TextUiElement("AMMO: 3", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_ammo);
+	_gameUiElements.push_back(_ammo);
+
+	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(158, 695, -150, 20, 0.8f, hpColor, bgColor));
+	_uiElements.push_back(_hpBar);
+	_gameUiElements.push_back(_hpBar);
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
 	_gameUiElements.push_back(_fps);
-
-
-	// int x, int y, int w, int h, float Percent, Color FGColor, Color BGColor
-
-	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(5, 70, 150, 20, 0.8f, hpColor, bgColor));
-	_uiElements.push_back(_hpBar);
-	_gameUiElements.push_back(_hpBar);
-
 }
 
 void GameScreen::setupGame() {
@@ -66,7 +72,7 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 }
 
 void GameScreen::onTick() {
-	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+	long timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (timePassed >= 1)
 	{
@@ -97,7 +103,12 @@ void GameScreen::onTick() {
 		}
 	}
 
-	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
+
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else if(_fps->text.length() > 0)
+		_fps->text = "  ";
 	
 }
 
@@ -160,6 +171,7 @@ void GameScreen::handlePlayerControls() {
 		}
 	}
 	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
+
 }
 
 void GameScreen::calculatePlayerTexture() {
@@ -227,6 +239,15 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
 	}
+
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps) 
+		shouldShowFPS = !shouldShowFPS;
 	
 	switch (e.keysym.sym)
 	{
