@@ -107,7 +107,7 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	textures.insert(pair<int, std::string>(PlayerMoves::JUMP_LEFT, "Player_Jump_Left"));
 	textures.insert(pair<int, std::string>(PlayerMoves::FALL_LEFT, "Player_Fall_Left"));
 
-	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };
+	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension", "HealthExtension" };
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, textures,
 		2, 8, 0.7f, 1.8f));
 

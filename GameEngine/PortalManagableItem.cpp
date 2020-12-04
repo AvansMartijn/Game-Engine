@@ -8,8 +8,8 @@
 PortalManagableItem::PortalManagableItem() {
 	_textureKey = "DIY_Weapon";
 	//default ammo and cooldown
-	_ammo = 0;
-	_cooldown = 0;
+	_ammo = -1;
+	_cooldown = -1;
 }
 
 void PortalManagableItem::onLeftClick(int x, int y) {

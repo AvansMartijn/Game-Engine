@@ -3,6 +3,6 @@
 
 IsPortalableExtension::IsPortalableExtension()
 {
-	type = "isPortalable";
+	type = "IsPortalableExtension";
 }
 

@@ -114,6 +114,8 @@ public:
 	/// </summary>
 	void executeExpirationQueue();
 
+	//void setContactListener(const b2ContactListener& colListener);
+
 
 };
 

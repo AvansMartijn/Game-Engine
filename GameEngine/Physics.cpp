@@ -213,6 +213,10 @@ void Physics::executeExpirationQueue() {
     }
 }
 
+//void Physics::setContactListener(const b2ContactListener& colListener) {
+//    _world->SetContactListener(&colListener);
+//}
+
 void Physics::reset() {
     _world = new b2World(_gravity);
     _world->SetContactListener(&_colListener);

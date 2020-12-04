@@ -11,6 +11,7 @@
 #include "DoesDamageExtension.h"
 #include "IsPortalableExtension.h"
 #include "TimerExtension.h"
+#include "HealthExtension.h"
 
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
@@ -25,6 +26,8 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("DoesDamageExtension", &DoesDamageExtension::create);
     registerExtension("IsPortalableExtension", &IsPortalableExtension::create);
     registerExtension("TimerExtension", &TimerExtension::create);
+    registerExtension("HealthExtension", &HealthExtension::create);
+
 }
 
 void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate)
