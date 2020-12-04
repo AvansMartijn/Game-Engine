@@ -48,15 +48,20 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	if (tiledGameObject.properties.find("fixed") != tiledGameObject.properties.end())
 		isFixed = tiledGameObject.properties["fixed"].valueBool;
 
+
 	if (tiledGameObject.properties.find("sensor") != tiledGameObject.properties.end()) {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
-		createNonRigidBody(gameEngine, extensions, textureKey,
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures,
 			x, y, width, height, sensor);
 	}
 	else {
-		createGameObject(gameEngine, extensions, textureKey,
+		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textures,
 			x, y, width, height, friction, isFixed, false);
+
+
+		if (tiledGameObject.properties.find("damage") != tiledGameObject.properties.end())
+			dynamic_pointer_cast<DoesDamageExtension>(gameObject->getExtension(typeid(DoesDamageExtension)))->damage = tiledGameObject.properties["damage"].valueInt;
 	}
 }
 
@@ -75,7 +80,13 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 		shared_ptr<AbstractManageableItem> item = Scene::getInstance().getItem(tiledGameObject.type);
 
-		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
+		if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
+			item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+
+		if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
+			item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textures, x, y, item->getWidth(), item->getHeight(), sensor);
 		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
 	}
 	else if (tiledGameObject.layerType == "Misc") {

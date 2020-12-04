@@ -7,6 +7,7 @@
 #include <ThrusterManagableItem.h>
 #include <PortalManagableItem.h>
 #include <CollisionResolutionPortalExtension.h>
+#include <DoesDamageExtension.h>
 
 class DefaultTiledLevel : public AbstractLevel
 {
