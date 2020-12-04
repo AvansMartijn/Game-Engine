@@ -2,6 +2,7 @@
 #include "Physics.h"
 #include "EntityCategory.h"
 #include "CollisionResolutionPortalExtension.h"
+#include "TimerExtension.h"
 
 Physics Physics::instance;
 
@@ -16,6 +17,7 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
     executeTeleportQueue();
     executeSetStaticQueue();
     executeRotateQueue();
+    executeExpirationQueue();
 }
 
 void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
@@ -195,6 +197,25 @@ void Physics::executeRotateQueue() {
         rotateQueue.pop_back();
     }
 }
+
+void Physics::executeExpirationQueue() {
+    for (int i = 0; i < expirationQueue.size(); i++) {
+        int id = expirationQueue.at(i);
+        auto body = Scene::getInstance().getGameObject(id);
+        if (Scene::getInstance().getGameObject(id)->hasExtension(typeid(TimerExtension))) {
+            auto extension = dynamic_pointer_cast<TimerExtension>(Scene::getInstance().getGameObject(id)->getExtension(typeid(TimerExtension)));
+            if (extension->isExpired()) {
+                expirationQueue.erase(expirationQueue.begin()+ i);
+                _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);
+                Scene::getInstance().removeGameObject(id);
+            }
+        }
+    }
+}
+
+//void Physics::setContactListener(const b2ContactListener& colListener) {
+//    _world->SetContactListener(&colListener);
+//}
 
 void Physics::reset() {
     _world = new b2World(_gravity);

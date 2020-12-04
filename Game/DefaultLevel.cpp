@@ -97,22 +97,28 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 
 	// Player
-	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };
+	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };		std::map<int, std::string> textures;
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, "Waluigi",
 		2, 8, 0.7f, 1.8f));
 	Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
 
 	// Weapon Block
-
+	
 	shared_ptr<AbstractManageableItem> glueItem = Scene::getInstance().getItem("GlueGun");
+	glueItem->setAmmo(-1);
+	glueItem->setCooldown(500);
 	shared_ptr<GameObject> weaponGlue = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
 		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
 
 	shared_ptr<AbstractManageableItem> thrusterItem = Scene::getInstance().getItem("ThrusterGun");
+	thrusterItem->setAmmo(-1);
+	thrusterItem->setCooldown(1500);
 	shared_ptr<GameObject> weaponThruster = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
 		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
 
 	shared_ptr<AbstractManageableItem> portalItem = Scene::getInstance().getItem("PortalGun");
+	portalItem->setAmmo(-1);
+	portalItem->setCooldown(0);
 	shared_ptr<GameObject> weaponPortal = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
 		8, 17.5f, portalItem->getWidth(), portalItem->getHeight(), "pickupSensor");
 
