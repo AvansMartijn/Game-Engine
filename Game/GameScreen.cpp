@@ -1,4 +1,4 @@
-#include "GameScreen.h"
+﻿#include "GameScreen.h"
 #include <CanWieldExtension.h>
 #include "TiledLevelLoader.h"
 #include "ControllManager.h"
@@ -38,7 +38,7 @@ void GameScreen::setupHUD() {
 	_uiElements.push_back(_weapon);
 	_gameUiElements.push_back(_weapon);
 
-	_ammo = make_shared<TextUiElement>(TextUiElement("AMMO: 3", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false));
+	_ammo = make_shared<TextUiElement>(TextUiElement("AMMO:", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false));
 	_uiElements.push_back(_ammo);
 	_gameUiElements.push_back(_ammo);
 
@@ -74,6 +74,17 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 void GameScreen::onTick() {
 	long timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
+	if (Scene::getInstance().getPlayer()->getExtension(typeid(HealthExtension))) {
+
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
+		float healthValue = dynamic_pointer_cast<HealthExtension>(gameObject->getExtension(typeid(HealthExtension)))->getHealth();
+
+		if (healthValue <= 0)
+			Scene::getInstance().gameOver = true;
+		else
+			_hpBar->percent = healthValue / 100;
+	}
+
 	if (timePassed >= 1)
 	{
 		begin = std::chrono::steady_clock::now();
@@ -101,8 +112,19 @@ void GameScreen::onTick() {
 		if (currentWeapon != NULL) {
 			std::string result = "WEAPON: " + currentWeapon->getScreemName();
 			_weapon->text = result;
+
+			if (currentWeapon->getAmmo() == -1)
+				_ammo->text = "AMMO: INFINITE";
+			else
+				_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
 		}
+		else {
+			_weapon->text = "WEAPON: NONE";
+			_ammo->text = "AMMO:";
+		}
+
 	}
+
 
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
 

@@ -13,6 +13,7 @@ private:
 	shared_ptr<TextUiElement> _bodyText;
 	shared_ptr<TextUiElement> _nameText;
 	shared_ptr<ButtonUiElement> _nextLevelButton;
+	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;
 	GameFinishedScreen();

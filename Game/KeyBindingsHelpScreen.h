@@ -21,6 +21,7 @@ private:
 	shared_ptr<TextUiElement> _equipPortalGunKey;
 	shared_ptr<TextUiElement> _equipThrusterGunKey;
 	shared_ptr<TextUiElement> _equipGlueGunKey;
+	shared_ptr<TextUiElement> _fps;
 
 	/// <summary>
 	/// Loads the keybindings from saveFile

@@ -13,6 +13,7 @@ private:
 	std::vector<std::string> arguments;
 	int firstTickCounter;
 	shared_ptr<TextUiElement> quoteText;
+	shared_ptr<TextUiElement> _fps;
 
 public:
 	using AbstractScreen::AbstractScreen;

@@ -44,4 +44,5 @@ private:
 	int offset = 0;
 	int y;
 	std::vector<FileData> _files;
+	shared_ptr<TextUiElement> _fps;
 };

@@ -10,6 +10,7 @@ private:
 	shared_ptr<TextUiElement> scroll;
 
 	int offsett = 0;
+	shared_ptr<TextUiElement> _fps;
 
 public:
 	using AbstractScreen::AbstractScreen;

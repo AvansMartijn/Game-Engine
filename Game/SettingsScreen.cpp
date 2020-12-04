@@ -65,6 +65,9 @@ void SettingsScreen::onInit() {
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
 
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+
 
 	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
 	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(GameSettings::getInstance().saveGame.settings.soundFx), font, 40, { 470, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
@@ -121,9 +124,9 @@ void SettingsScreen::onInit() {
 
 void SettingsScreen::onTick() {
 	if (shouldShowFPS)
-		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
-		fps->text = "  ";
+		_fps->text = "  ";
 }
 
 void SettingsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

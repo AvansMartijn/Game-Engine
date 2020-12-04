@@ -11,6 +11,8 @@
 
 class MainMenuScreen : public AbstractScreen
 {
+private:
+	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;
 	MainMenuScreen();
