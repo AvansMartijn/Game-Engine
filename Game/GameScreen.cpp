@@ -95,6 +95,7 @@ void GameScreen::onTick() {
 		calculatePlayerTexture();
 	}
 
+
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
@@ -110,6 +111,16 @@ void GameScreen::onTick() {
 	else if(_fps->text.length() > 0)
 		_fps->text = "  ";
 	
+
+	// TODO: Execute AI
+	size_t a = Scene::getInstance().getEntitiesSize();
+	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+
+		if (gameObject->hasExtension(typeid(AiExtension)))
+			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
+	}
+
 }
 
 void GameScreen::handlePlayerControls() {

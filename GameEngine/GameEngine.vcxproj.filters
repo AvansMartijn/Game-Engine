@@ -287,6 +287,16 @@
     </ClInclude>
     <ClInclude Include="HpBarUIElement.h">
       <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="DoesDamageExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="IsPortalableExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
     <ClInclude Include="SDLTexture.h">
       <Filter>Header Files\Wrapper</Filter>
     </ClInclude>
@@ -341,9 +351,6 @@
       <Filter>Source Files\DataTypes</Filter>
     </ClCompile>
     <ClCompile Include="AbstractEntityAI.cpp">
-      <Filter>Source Files\Ai</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultEntity.cpp">
       <Filter>Source Files\Ai</Filter>
     </ClCompile>
     <ClCompile Include="AbstractBehaviour.cpp">
@@ -456,8 +463,21 @@
     </ClCompile>
     <ClCompile Include="HpBarUIElement.cpp">
       <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="DoesDamageExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="IsPortalableExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
     <ClCompile Include="SDLTexture.cpp">
       <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultEntityAI.cpp">
+      <Filter>Source Files\Ai</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

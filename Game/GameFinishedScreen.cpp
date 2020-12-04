@@ -163,7 +163,7 @@ void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 			_nameText->text.pop_back();
 		}
 	}
-	if (_nameText->text.length() < 20) {
+	if (_nameText->text.length() < 21) {
 		if (e.keysym.sym == SDLK_SPACE) {
 			_nameText->text.push_back(' ');
 		}

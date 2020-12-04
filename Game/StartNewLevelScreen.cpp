@@ -20,22 +20,25 @@ void StartNewLevelScreen::onInit() {
 	StoryTitle->text = "Story";
 	_uiElements.push_back(StoryTitle);
 
-	TextUiElement storyText = TextUiElement("-", "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	StoryText = make_shared<TextUiElement>(storyText);
-	StoryText->text =
-		"For years, waluigi has been hoping to access the Super Smash roster.\n "
-		"Unfortunately he never received an invitation for it. \n"
-		" \n"
-		"Waluigi is frustrated and wants to visit Masahiro Sakurai, the creator of Super Smash.  \n"
-		"After some inquiries he knows the location of Masahiro Sakurai. \n"
-		"Its a super ultra secret secured facility. \n"
-		" \n"
-		"Waluigi is denied entry to the facility ...  \n"
-		"But he is determined to find a way to Masahiro Sakurai ... \n"
-		" \n"
-		" \n"
-		"He sees a back door behind a bush and sneaks in ... \n";
+
+	std::vector<std::string> lines;
+	lines.push_back("For years, waluigi has been hoping to access the Super Smash roster.");
+	lines.push_back("Unfortunately he never received an invitation for it. ");
+	lines.push_back(" ");
+	lines.push_back("Waluigi is frustrated and wants to visit Masahiro Sakurai, the creator of Super Smash.  ");
+	lines.push_back("After some inquiries he knows the location of Masahiro Sakurai. ");
+	lines.push_back("Its a super ultra secret secured facility. ");
+	lines.push_back(" ");
+	lines.push_back("Waluigi is denied entry to the facility ...  ");
+	lines.push_back("But he is determined to find a way to Masahiro Sakurai ... ");
+	lines.push_back(" ");
+	lines.push_back(" ");
+	lines.push_back("He sees a back door behind a bush and sneaks in ... ");
+
+	TextUiElement storyText = TextUiElement(lines, "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true);
+	StoryText = make_shared<TextUiElement>(storyText);		
 	_uiElements.push_back(StoryText);
+
 
 	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	KeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);

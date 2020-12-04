@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"Level_4.json"
+         "target":"..\/..\/..\/..\/Tiled\/LatropLevels\/Level_4.json"
         }
     },
  "height":100,
@@ -48,7 +48,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension"
+                         "value":"MoveExtension,CheckPhysicsExtension,CollisionResolutionDefaultExtension,CanWieldExtension,HealthExtension"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":100
                         }],
                  "rotation":0,
                  "type":"Player",
@@ -205,7 +210,7 @@
          "tiles":[
                 {
                  "id":27,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Ground.Top.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Ground.Top.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -222,7 +227,7 @@
                 }, 
                 {
                  "id":28,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Curve.BottomLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Curve.BottomLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -239,7 +244,7 @@
                 }, 
                 {
                  "id":29,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Curve.BottomRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Curve.BottomRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -256,7 +261,7 @@
                 }, 
                 {
                  "id":30,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Curve.TopLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Curve.TopLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -273,7 +278,7 @@
                 }, 
                 {
                  "id":31,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Curve.TopRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Curve.TopRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -290,7 +295,7 @@
                 }, 
                 {
                  "id":32,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Edge.BottomLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Edge.BottomLeft.png",
                  "imageheight":260,
                  "imagewidth":257,
                  "properties":[
@@ -307,7 +312,7 @@
                 }, 
                 {
                  "id":33,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Edge.BottomRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Edge.BottomRight.png",
                  "imageheight":260,
                  "imagewidth":257,
                  "properties":[
@@ -324,7 +329,7 @@
                 }, 
                 {
                  "id":34,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Edge.TopLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Edge.TopLeft.png",
                  "imageheight":260,
                  "imagewidth":257,
                  "properties":[
@@ -341,7 +346,7 @@
                 }, 
                 {
                  "id":35,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Edge.TopRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Edge.TopRight.png",
                  "imageheight":260,
                  "imagewidth":257,
                  "properties":[
@@ -358,7 +363,7 @@
                 }, 
                 {
                  "id":36,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Ground.Bottom.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Ground.Bottom.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -375,7 +380,7 @@
                 }, 
                 {
                  "id":37,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Ground.Center.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Ground.Center.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -392,7 +397,7 @@
                 }, 
                 {
                  "id":38,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Ground.Left.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Ground.Left.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -409,7 +414,7 @@
                 }, 
                 {
                  "id":39,
-                 "image":"Assets\/FloorsAndWalls\/Stone\/Ground.Right.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Stone\/Ground.Right.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -426,7 +431,7 @@
                 }, 
                 {
                  "id":54,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Ground.Right.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Ground.Right.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -443,7 +448,7 @@
                 }, 
                 {
                  "id":55,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Ground.Top.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Ground.Top.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -460,7 +465,7 @@
                 }, 
                 {
                  "id":56,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Center.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Center.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -477,7 +482,7 @@
                 }, 
                 {
                  "id":57,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Curve.BottomLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Curve.BottomLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -494,7 +499,7 @@
                 }, 
                 {
                  "id":58,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Curve.BottomRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Curve.BottomRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -511,7 +516,7 @@
                 }, 
                 {
                  "id":59,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Curve.TopLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Curve.TopLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -528,7 +533,7 @@
                 }, 
                 {
                  "id":60,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Curve.TopRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Curve.TopRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -545,7 +550,7 @@
                 }, 
                 {
                  "id":61,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Edge.BottomLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Edge.BottomLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -562,7 +567,7 @@
                 }, 
                 {
                  "id":62,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Edge.BottomRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Edge.BottomRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -579,7 +584,7 @@
                 }, 
                 {
                  "id":63,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Edge.TopLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Edge.TopLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -596,7 +601,7 @@
                 }, 
                 {
                  "id":64,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Edge.TopRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Edge.TopRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -613,7 +618,7 @@
                 }, 
                 {
                  "id":65,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Ground.Bottom.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Ground.Bottom.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -630,7 +635,7 @@
                 }, 
                 {
                  "id":66,
-                 "image":"Assets\/FloorsAndWalls\/Blue\/Ground.Left.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Blue\/Ground.Left.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -647,7 +652,7 @@
                 }, 
                 {
                  "id":67,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Ground.Top.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Ground.Top.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -664,7 +669,7 @@
                 }, 
                 {
                  "id":68,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Center.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Center.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -681,7 +686,7 @@
                 }, 
                 {
                  "id":69,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Center-Solid.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Center-Solid.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -698,7 +703,7 @@
                 }, 
                 {
                  "id":70,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Curve.BottomLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Curve.BottomLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -715,7 +720,7 @@
                 }, 
                 {
                  "id":71,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Curve.BottomRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Curve.BottomRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -732,7 +737,7 @@
                 }, 
                 {
                  "id":72,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Curve.TopLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Curve.TopLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -749,7 +754,7 @@
                 }, 
                 {
                  "id":73,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Curve.TopRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Curve.TopRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -766,7 +771,7 @@
                 }, 
                 {
                  "id":74,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Edge.BottomLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Edge.BottomLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -783,7 +788,7 @@
                 }, 
                 {
                  "id":75,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Edge.BottomRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Edge.BottomRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -800,7 +805,7 @@
                 }, 
                 {
                  "id":76,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Edge.TopLeft.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Edge.TopLeft.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -817,7 +822,7 @@
                 }, 
                 {
                  "id":77,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Edge.TopRight.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Edge.TopRight.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -834,7 +839,7 @@
                 }, 
                 {
                  "id":78,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Ground.Bottom.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Ground.Bottom.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -851,7 +856,7 @@
                 }, 
                 {
                  "id":79,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Ground.Left.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Ground.Left.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -868,7 +873,7 @@
                 }, 
                 {
                  "id":80,
-                 "image":"Assets\/FloorsAndWalls\/Black\/Ground.Right.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/FloorsAndWalls\/Black\/Ground.Right.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -908,7 +913,7 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"Assets\/Finish\/Center-Empty-Inside.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Finish\/Center-Empty-Inside.png",
                  "imageheight":255,
                  "imagewidth":256,
                  "properties":[
@@ -947,7 +952,7 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"Assets\/Decorative\/Barrel-Toxic.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Barrel-Toxic.png",
                  "imageheight":256,
                  "imagewidth":235,
                  "properties":[
@@ -969,7 +974,7 @@
                 }, 
                 {
                  "id":1,
-                 "image":"Assets\/Decorative\/Garbage-Bag-1.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Garbage-Bag-1.png",
                  "imageheight":256,
                  "imagewidth":210,
                  "properties":[
@@ -991,7 +996,7 @@
                 }, 
                 {
                  "id":2,
-                 "image":"Assets\/Decorative\/Garbage-Bag-2.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Garbage-Bag-2.png",
                  "imageheight":226,
                  "imagewidth":256,
                  "properties":[
@@ -1013,7 +1018,7 @@
                 }, 
                 {
                  "id":3,
-                 "image":"Assets\/Decorative\/Plant-Interior-LED-Glowing.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Plant-Interior-LED-Glowing.png",
                  "imageheight":256,
                  "imagewidth":142,
                  "properties":[
@@ -1035,7 +1040,7 @@
                 }, 
                 {
                  "id":4,
-                 "image":"Assets\/Decorative\/Plant-Interior-Long.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Plant-Interior-Long.png",
                  "imageheight":256,
                  "imagewidth":138,
                  "properties":[
@@ -1057,7 +1062,7 @@
                 }, 
                 {
                  "id":5,
-                 "image":"Assets\/Decorative\/Plant-Interior-Small.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Plant-Interior-Small.png",
                  "imageheight":256,
                  "imagewidth":168,
                  "properties":[
@@ -1079,7 +1084,7 @@
                 }, 
                 {
                  "id":6,
-                 "image":"Assets\/Decorative\/Trash-Bin-Street.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Trash-Bin-Street.png",
                  "imageheight":256,
                  "imagewidth":213,
                  "properties":[
@@ -1101,7 +1106,7 @@
                 }, 
                 {
                  "id":7,
-                 "image":"Assets\/Decorative\/Barrel-Common.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Barrel-Common.png",
                  "imageheight":256,
                  "imagewidth":195,
                  "properties":[
@@ -1123,7 +1128,7 @@
                 }, 
                 {
                  "id":8,
-                 "image":"Assets\/Decorative\/Barrel-Explosive.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Decorative\/Barrel-Explosive.png",
                  "imageheight":256,
                  "imagewidth":237,
                  "properties":[
@@ -1162,7 +1167,7 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"Assets\/Interactable\/Crate-Metal.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Interactable\/Crate-Metal.png",
                  "imageheight":254,
                  "imagewidth":256,
                  "properties":[
@@ -1184,7 +1189,7 @@
                 }, 
                 {
                  "id":4,
-                 "image":"Assets\/Interactable\/Crate-Box-Square-1.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Interactable\/Crate-Box-Square-1.png",
                  "imageheight":254,
                  "imagewidth":256,
                  "properties":[
@@ -1206,7 +1211,7 @@
                 }, 
                 {
                  "id":5,
-                 "image":"Assets\/Interactable\/Crate-Box-Square-2.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Interactable\/Crate-Box-Square-2.png",
                  "imageheight":254,
                  "imagewidth":256,
                  "properties":[
@@ -1243,7 +1248,7 @@
                 {
                  "name":"extensions",
                  "type":"string",
-                 "value":"isPortalable"
+                 "value":"IsPortalableExtension"
                 }],
          "spacing":0,
          "tilecount":1,
@@ -1251,7 +1256,7 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"Assets\/Portable\/Center.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Portable\/Center.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1280,7 +1285,7 @@
          "tiles":[
                 {
                  "id":11,
-                 "image":"Assets\/Killable\/Spikes.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1292,12 +1297,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":12,
-                 "image":"Assets\/Killable\/Spikes-Bloody.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Bloody.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1309,12 +1314,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":13,
-                 "image":"Assets\/Killable\/Spikes-Bloody-Left.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Bloody-Left.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1326,12 +1331,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":14,
-                 "image":"Assets\/Killable\/Spikes-Bloody-right.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Bloody-right.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1343,12 +1348,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":15,
-                 "image":"Assets\/Killable\/Spikes-Bloody-Top.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Bloody-Top.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1360,12 +1365,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":16,
-                 "image":"Assets\/Killable\/Spikes-Left.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Left.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1377,12 +1382,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":17,
-                 "image":"Assets\/Killable\/Spikes-Right.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Right.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1394,12 +1399,12 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }, 
                 {
                  "id":18,
-                 "image":"Assets\/Killable\/Spikes-Top.png",
+                 "image":"..\/..\/..\/..\/Tiled\/LatropLevels\/Assets\/Killable\/Spikes-Top.png",
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
@@ -1411,7 +1416,7 @@
                         {
                          "name":"extensions",
                          "type":"string",
-                         "value":"doesDamage"
+                         "value":"DoesDamageExtension"
                         }]
                 }],
          "tilewidth":256

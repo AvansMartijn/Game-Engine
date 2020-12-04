@@ -19,14 +19,16 @@ private:
 	static Scene instance;
 
 	map<int, shared_ptr<GameObject>> _gameObjects;
-
+	std::vector<int> _entities;
 	map<std::string, shared_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
-
-	shared_ptr<GameObject> _player;
-public:
 	std::vector<shared_ptr<TextUiElement>> textElements;
 
+	shared_ptr<GameObject> _player;
+
+	bool preRender = false;
+
+public:
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }
@@ -53,12 +55,33 @@ public:
 	/// <param name="obj">The object we want to register.</param>
 	void addGameObject(shared_ptr<GameObject> obj);
 
+	void addTextUiElement(shared_ptr<TextUiElement> obj);
+
+	/// <summary>
+	/// Add an entity to the registry.
+	/// </summary>
+	/// <param name="obj">The entity we want to register.</param>
+	void addEntity(shared_ptr<GameObject> obj);
+
 	/// <summary>
 	/// Get's a gameobject from the registry.
 	/// </summary>
 	/// <param name="id">The id of the gameobject</param>
 	/// <returns>The game object.</returns>
 	shared_ptr<GameObject> getGameObject(int id);
+
+	/// <summary>
+	/// Get's the index at the given index.
+	/// </summary>
+	/// <param name="index">The entity index.</param>
+	/// <returns>The correct game object.</returns>
+	shared_ptr<GameObject> getEntityAtIndex(int index);
+
+	/// <summary>
+	/// Get's the size of the entities vector.
+	/// </summary>
+	/// <returns>The size of the entities vector.</returns>
+	size_t getEntitiesSize();
 
 	/// <summary>
 	/// Removes a game object from the scene.

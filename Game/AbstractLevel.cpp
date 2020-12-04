@@ -14,7 +14,10 @@ shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, ve
 	else
 		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
 
-	Scene::getInstance().addGameObject(gameObject);
+	if (std::find(extensions.begin(), extensions.end(), "AiExtension") != extensions.end())
+		Scene::getInstance().addEntity(gameObject);
+	else
+		Scene::getInstance().addGameObject(gameObject);
 
 	return gameObject;
 }
