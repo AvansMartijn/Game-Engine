@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Game.h"
-
-
+#include "WorkshopGame.h"
+#include "WorkshopUiScreen.h"
+#include "WorkshopGameScreen.h"
 
 //class main {
 //};

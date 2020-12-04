@@ -157,3 +157,31 @@ void AbstractGame::calculateFps()
 	currentFPS = _framespersecond;
 
 }
+
+int AbstractGame::getPreviousScreen() {
+	if (_previousScreens.size() > 0)
+	{
+		int value = _previousScreens.top();
+		_previousScreens.pop();
+		return value;
+	}
+	return -1;
+}
+
+void AbstractGame::switchScreen(int screenIndex, vector<std::string> args) {
+	size_t index = screenIndex;
+	if (index == -1)
+		index = this->getPreviousScreen();
+	else if (_activeScreen)
+		_previousScreens.push(_activeScreen);
+
+	if (index + 1 <= screens.size()) {
+		_activeScreen = index;
+		screens.at(_activeScreen)->onScreenShowed(args);
+	}
+
+	const std::string& trackKey = screens.at(_activeScreen)->backgroundTrackKey;
+
+	if (trackKey != "" && trackKey != SoundPlayer::getInstance().playingTrackKey)
+		playMusicTrack(trackKey);
+}

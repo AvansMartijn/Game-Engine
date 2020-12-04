@@ -3,9 +3,21 @@ WorkshopGame::WorkshopGame(const char* title, int width, int height) : AbstractG
 WorkshopGame::~WorkshopGame() {}
 
 void WorkshopGame::onInit() {
+	// TODO: Register Textures
 
-}
+	// Register Fonts
+	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 
-void WorkshopGame::switchScreen(int screenIndex, vector<std::string> args = {}) {
+	// TODO: Register Audio
 
+
+	// Zorg ervoor dat alle schermen klaar voor gebruik zijn.
+	for (size_t i = 0; i < screens.size(); i++)
+		screens[i]->preRender(_window);
+
+	// Open het eerst geregistreerde scherm.
+	switchScreen(0);
+
+	// Start de game loop
+	gameLoop();
 }

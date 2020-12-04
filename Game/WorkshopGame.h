@@ -7,9 +7,5 @@ public:
 	~WorkshopGame();
 
 	void onInit();
-
-	int getPreviousScreen();
-
-	void switchScreen(int screenIndex, vector<std::string> args = {});
 };
 
