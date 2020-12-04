@@ -42,7 +42,6 @@ public:
 	vector<RotateObj> rotateQueue;
 	vector<shared_ptr<GameObject>> setStaticQueue;
 	vector<int> deleteQueue;
-	vector<int> expirationQueue;
 
 	/// <summary>
 	/// Executes a step in the wordl.
@@ -109,13 +108,6 @@ public:
 	/// Executes the queued rotates.
 	/// </summary>
 	void executeRotateQueue();
-	/// <summary>
-	/// Executes the queued expirations.
-	/// </summary>
-	void executeExpirationQueue();
-
-	//void setContactListener(const b2ContactListener& colListener);
-
 
 };
 

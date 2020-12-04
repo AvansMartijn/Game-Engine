@@ -8,8 +8,6 @@
 
 class GAMEENGINE_GlueManagableItem GlueManagableItem : public AbstractManageableItem
 {
-private:
-	int ammo;
 public:
 	GlueManagableItem();
 
