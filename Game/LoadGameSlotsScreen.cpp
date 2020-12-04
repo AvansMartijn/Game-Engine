@@ -65,12 +65,15 @@ void LoadGameSlotsScreen::onInit() {
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+
 }
 
 
 
 void LoadGameSlotsScreen::onTick() {
-	fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 }
 
 void LoadGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

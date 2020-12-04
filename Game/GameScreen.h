@@ -26,6 +26,8 @@
 #include "TiledLevelLoader.h"
 #include "GameSettings.h"
 #include <TextUiElement.h>
+#include <HealthExtension.h>
+
 
 using namespace std;
 

@@ -49,6 +49,9 @@ void GameFinishedScreen::onInit() {
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
 
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
@@ -138,9 +141,9 @@ void GameFinishedScreen::onInit() {
 
 void GameFinishedScreen::onTick() {
 	if (shouldShowFPS)
-		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
-		fps->text = "  ";
+		_fps->text = "  ";
 }
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {

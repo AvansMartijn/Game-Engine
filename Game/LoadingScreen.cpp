@@ -25,6 +25,9 @@ void LoadingScreen::onInit() {
 
 	ImageUiElement walu = ImageUiElement("Loading", { ((1080 - 700) / 2) + 100 , ((720 - 700) / 2), 700, 700 });
 	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
 }
 
 void LoadingScreen::onTick() {
@@ -38,9 +41,9 @@ void LoadingScreen::onTick() {
 	firstTickCounter++;
 
 	if (shouldShowFPS)
-		fps->text = "FPS: " + std::to_string(_game->currentFPS);
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
-		fps->text = "  ";
+		_fps->text = "  ";
 }
 
 void LoadingScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
