@@ -41,7 +41,7 @@ void Window::registerTextures(std::string prefix, std::string directory, bool is
 	std::vector<FileData> files = AssetRegistry::getInstance().getFilesInDirectory(directory, isDeep);
 
 	for (size_t i = 0; i < files.size(); i++) {
-		if (prefix ==  "")
+		if (prefix == "")
 			registerTexture(files[i].key, files[i].path);
 		else
 			registerTexture(prefix + "_" + files[i].key, files[i].path);
@@ -78,55 +78,48 @@ void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool 
 	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, texture->isSpriteSheet ? spriteKey : "");
 }
 
-std::vector<std::string> split_string(const std::string& str,
-	const std::string& delimiter)
-{
-	std::vector<std::string> strings;
-
-	std::string::size_type pos = 0;
-	std::string::size_type prev = 0;
-	while ((pos = str.find(delimiter, prev)) != std::string::npos)
-	{
-		strings.push_back(str.substr(prev, pos - prev));
-		prev = pos + 1;
-	}
-
-	// To get the last substring (or only, if delimiter is not found)
-	strings.push_back(str.substr(prev));
-
-	return strings;
-}
-
 void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
-	
+	if (multiLine) {
 
-	if (multiLine)
-	{
-		int pixelcounter = 0;
-		std::vector<std::string> lines = split_string(text, "\n");
+		std::vector<std::string> lines;
 
-		for (auto line : lines)
-		{
-			if (line == "")
+		std::string::size_type pos = 0;
+		std::string::size_type prev = 0;
+		while ((pos = text.find("\n", prev)) != std::string::npos) {
+			lines.push_back(text.substr(prev, pos - prev));
+			prev = pos + 1;
+		}
+
+		lines.push_back(text.substr(prev));
+
+
+		int w;
+		int h;
+
+		TTF_SizeText(font, "TestRender", &w, &h);
+
+		for (size_t i = 0; i < lines.size(); i++) {
+
+			if (lines[i] == "")
 				continue;
 
-			SDL_Surface* surface = TTF_RenderText_Shaded(font, line.c_str(), sdlForegroundColor, sdlBackgrouldColor);
+			SDL_Surface* surface = TTF_RenderText_Shaded(font, lines[i].c_str(), sdlForegroundColor, sdlBackgrouldColor);
 
 			SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
 
 			SDL_Rect sdlRect;
 			sdlRect.x = rect.x;
-			sdlRect.y = rect.y + pixelcounter;
+			sdlRect.y = rect.y + (h * i);
 			sdlRect.w = surface->w;
 			sdlRect.h = surface->h;
 
 			if (center) {
 				int txtWidth;
 				int txtHeight;
-				if (TTF_SizeText(font, line.c_str(), &txtWidth, &txtHeight))
+				if (TTF_SizeText(font, lines[i].c_str(), &txtWidth, &txtHeight))
 					cout << TTF_GetError();
 				else
 					sdlRect.x = (getWidth() / 2) - (txtWidth / 2);
@@ -135,13 +128,11 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 			SDL_RenderCopy(_renderer.get(), texture, NULL, &sdlRect);
 			SDL_FreeSurface(surface);
 			SDL_DestroyTexture(texture);
-
-			pixelcounter += surface->h;
 		}
 
 	}
-	else
-	{
+	else {
+
 		SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
 
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
@@ -165,8 +156,47 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
 	}
+}
 
-	
+void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
+
+	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
+	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
+
+	int w;
+	int h;
+
+	TTF_SizeText(font, "TestRender", &w, &h);
+
+	for (size_t i = 0; i < textLines.size(); i++) {
+
+		if (textLines[i] == "")
+			continue;
+
+		SDL_Surface* surface = TTF_RenderText_Shaded(font, textLines[i].c_str(), sdlForegroundColor, sdlBackgrouldColor);
+
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
+
+		SDL_Rect sdlRect;
+		sdlRect.x = rect.x;
+		sdlRect.y = rect.y + (h * i);
+		sdlRect.w = surface->w;
+		sdlRect.h = surface->h;
+
+		if (center) {
+			int txtWidth;
+			int txtHeight;
+			if (TTF_SizeText(font, textLines[i].c_str(), &txtWidth, &txtHeight))
+				cout << TTF_GetError();
+			else
+				sdlRect.x = (getWidth() / 2) - (txtWidth / 2);
+		}
+
+		SDL_RenderCopy(_renderer.get(), texture, NULL, &sdlRect);
+		SDL_FreeSurface(surface);
+		SDL_DestroyTexture(texture);
+	}
+
 }
 
 int Window::metersToPixels(float value) {

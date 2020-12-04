@@ -49,15 +49,20 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	if (tiledGameObject.properties.find("fixed") != tiledGameObject.properties.end())
 		isFixed = tiledGameObject.properties["fixed"].valueBool;
 
+
 	if (tiledGameObject.properties.find("sensor") != tiledGameObject.properties.end()) {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
-		createNonRigidBody(gameEngine, extensions, textureKey,
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textureKey,
 			x, y, width, height, sensor);
 	}
 	else {
-		createGameObject(gameEngine, extensions, textureKey,
+		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textureKey,
 			x, y, width, height, friction, isFixed, false);
+
+
+		if (tiledGameObject.properties.find("damage") != tiledGameObject.properties.end())
+			dynamic_pointer_cast<DoesDamageExtension>(gameObject->getExtension(typeid(DoesDamageExtension)))->damage = tiledGameObject.properties["damage"].valueInt;
 	}
 }
 
@@ -81,13 +86,32 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 		shared_ptr<AbstractManageableItem> item = Scene::getInstance().getItem(tiledGameObject.type);
 
+		if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
+			item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+
+		if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
+			item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
 		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
 	}
 	else if (tiledGameObject.layerType == "Misc") {
 		if (tiledGameObject.type == "Text") {
+
 			std::string text = tiledGameObject.properties["text"].valueString;
-			int b = 0;
+
+			std::vector<std::string> lines;
+			std::string::size_type pos = 0;
+			std::string::size_type prev = 0;
+
+			while ((pos = text.find("\n", prev)) != std::string::npos) {
+				lines.push_back(text.substr(prev, pos - prev));
+				prev = pos + 1;
+			}
+			lines.push_back(text.substr(prev));
+
+			TextUiElement textBox = TextUiElement(lines, "Portal", 20, { (1080 / 2), 600, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255, 100 }, true, true);
+			Scene::getInstance().addTextUiElement(make_shared<TextUiElement>(textBox));
 		}
 	}
 }

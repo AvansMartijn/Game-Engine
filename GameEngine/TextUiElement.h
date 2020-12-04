@@ -14,8 +14,10 @@ class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement
 {
 public:
 	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
+	TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
 	~TextUiElement();
 	std::string text;
+	std::vector<std::string> textLines;
 
 	/// <summary>
 	/// prerender

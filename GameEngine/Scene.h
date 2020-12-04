@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "AbstractManageableItem.h"
 #include "CanWieldExtension.h"
+#include "TextUiElement.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -21,8 +22,12 @@ private:
 	std::vector<int> _entities;
 	map<std::string, shared_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
+	std::vector<shared_ptr<TextUiElement>> textElements;
 
 	shared_ptr<GameObject> _player;
+
+	bool preRender = false;
+
 public:
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
@@ -49,6 +54,8 @@ public:
 	/// </summary>
 	/// <param name="obj">The object we want to register.</param>
 	void addGameObject(shared_ptr<GameObject> obj);
+
+	void addTextUiElement(shared_ptr<TextUiElement> obj);
 
 	/// <summary>
 	/// Add an entity to the registry.

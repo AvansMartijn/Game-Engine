@@ -119,6 +119,8 @@ public:
 	/// <param name="center">If we want to center the text.</param>
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
 
+
+	void renderMultiLineText(std::vector<std::string> text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
 	/// <summary>
 	/// Converts pixels to meters.
 	/// </summary>
