@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"Tutorial_Level_1.json"
+         "target":"..\/..\/..\/..\/Tiled\/LatropLevels\/Tutorial_Level_1.json"
         }
     },
  "height":100,
@@ -1229,6 +1229,11 @@
                  "imagewidth":256,
                  "properties":[
                         {
+                         "name":"damage",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
                          "name":"extensions",
                          "type":"string",
                          "value":"DoesDamageExtension"
@@ -1240,6 +1245,11 @@
                  "imageheight":256,
                  "imagewidth":256,
                  "properties":[
+                        {
+                         "name":"damage",
+                         "type":"int",
+                         "value":5
+                        }, 
                         {
                          "name":"extensions",
                          "type":"string",
