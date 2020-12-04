@@ -80,10 +80,21 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	}
 	else if (tiledGameObject.layerType == "Misc") {
 		if (tiledGameObject.type == "Text") {
+
 			std::string text = tiledGameObject.properties["text"].valueString;
 
-			TextUiElement textBox = TextUiElement(text, "Portal", 20, { (1080 /2), 600, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255, 100 }, true, true);
-			Scene::getInstance().textElements.push_back(make_shared<TextUiElement>(textBox));
+			std::vector<std::string> lines;
+			std::string::size_type pos = 0;
+			std::string::size_type prev = 0;
+
+			while ((pos = text.find("\n", prev)) != std::string::npos) {
+				lines.push_back(text.substr(prev, pos - prev));
+				prev = pos + 1;
+			}
+			lines.push_back(text.substr(prev));
+
+			TextUiElement textBox = TextUiElement(lines, "Portal", 20, { (1080 / 2), 600, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255, 100 }, true, true);
+			Scene::getInstance().addTextUiElement(make_shared<TextUiElement>(textBox));
 		}
 	}
 }

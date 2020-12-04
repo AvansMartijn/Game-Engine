@@ -19,7 +19,9 @@ void HighScoreScreen::onInit()
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement scrollText = TextUiElement("-", "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	std::vector<std::string> lines;
+	lines.push_back("-");
+	TextUiElement scrollText = TextUiElement(lines, "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, true);
 	scroll = make_shared<TextUiElement>(scrollText);
 	_uiElements.push_back(scroll);
 
@@ -36,7 +38,6 @@ void HighScoreScreen::onInit()
 	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, TColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-
 	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
 
@@ -46,21 +47,18 @@ void HighScoreScreen::onInit()
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 }
 
-void HighScoreScreen::onTick() {}
+void HighScoreScreen::onTick() { }
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-
-	scroll->text = "";
+	scroll->textLines.clear();
 	std::vector<SaveLevel> levels = GameSettings::getInstance().saveGame.levels;
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto level : levels) {
-		scroll->text += "------------------------------------------";
-		scroll->text += " \n";
-		scroll->text += level.name;
-		scroll->text += " \n";
-		scroll->text += "------------------------------------------";
-		scroll->text += " \n";
+
+		scroll->textLines.push_back(level.name);
+		scroll->textLines.push_back("------------------------------------------");
+		scroll->textLines.push_back(" ");
 
 		std::sort(level.highscores.begin(), level.highscores.end(), [](SaveHighscore a, SaveHighscore b) { return a.score > b.score; });
 
@@ -69,15 +67,11 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 			if (counter == 5)
 				break;
 
-			scroll->text += highScore.name;
-			scroll->text += ", ";
-			scroll->text += to_string(highScore.score);
-			scroll->text += " \n";
+			scroll->textLines.push_back(highScore.name + ", " + to_string(highScore.score));
 			counter++;
 		}
-		scroll->text += " \n";
-		scroll->text += " ";
-		scroll->text += " \n";
+		scroll->textLines.push_back(" ");
+		scroll->textLines.push_back(" ");
 	}
 }
 
