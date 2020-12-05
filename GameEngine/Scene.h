@@ -38,6 +38,7 @@ public:
 	Scene& operator=(const Scene&) = delete;
 	Scene& operator=(Scene&&) = delete;
 
+	bool isLocked;
 	int score;
 	bool gameOver;
 	float zoom = 40.0f;
