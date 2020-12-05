@@ -20,7 +20,7 @@ void WorkshopGameScreen::setupGame() {
 
 	/** TODO: Add Game Objects. */
 	// TODO: Create Player
-	shared_ptr<GameObject> player = createGameObject({ "CheckPhysicsExtension", "MoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 2);
+	shared_ptr<GameObject> player = createGameObject({ "CheckPhysicsExtension", "MoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 3);
 	player->currentState = "Idle";
 	Scene::getInstance().setPlayer(player);
 
@@ -32,7 +32,7 @@ void WorkshopGameScreen::setupGame() {
 	createGameObject({ "" }, "Crate", 10, Scene::getInstance().pixelsToMeters(720) - 10, 2, 2, 0);
 
 	// TODO: End Point
-	createGameObject({ "" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 1);
+	createGameObject({ "" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 2, "sensorFinish");
 }
 
 void WorkshopGameScreen::onTick() {
@@ -101,7 +101,7 @@ void WorkshopGameScreen::onScreenShowed(vector<std::string> args) {
 }
 
 // Deze code maak een game object aan.
-shared_ptr<GameObject> WorkshopGameScreen::createGameObject(vector<string> extensions, std::string texture, float x, float y, float width, float height, int type) {
+shared_ptr<GameObject> WorkshopGameScreen::createGameObject(vector<string> extensions, std::string texture, float x, float y, float width, float height, int type, std::string sensor) {
 	// Via een facade wordt een game object aangemaakt welke gebruik maakt van de aangegeven extensions.
 	shared_ptr<GameObject> gameObject = _gameEngine.createGameObject(extensions);
 	
@@ -118,7 +118,10 @@ shared_ptr<GameObject> WorkshopGameScreen::createGameObject(vector<string> exten
 	case 1: // Game Object (Static)
 		Physics::getInstance().addBody(gameObject, x, y, width, height, 1.0f, true, false);
 		break;
-	case 2: // Player
+	case 2: // Game Object (Interactable)
+		Physics::getInstance().addBody(gameObject, x, y, width, height, 1.0f, true, false, false, sensor);
+		break;
+	case 3: // Player
 		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
 		break;
 	default:

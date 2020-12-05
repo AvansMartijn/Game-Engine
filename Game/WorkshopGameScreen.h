@@ -24,6 +24,6 @@ public:
 	void render(const unique_ptr<Window>& window);
 	void onScreenShowed(vector<std::string> args = {});
 
-	shared_ptr<GameObject> createGameObject(vector<string> extensions, std::string texture, float x, float y, float width, float height, int type = 0);
+	shared_ptr<GameObject> createGameObject(vector<string> extensions, std::string texture, float x, float y, float width, float height, int type = 0, std::string sensor = "fixture");
 };
 

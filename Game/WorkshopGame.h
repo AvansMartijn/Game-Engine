@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractGame.h"
+#include "ContactListener.h"
 
 class WorkshopGame : public AbstractGame {
 public:

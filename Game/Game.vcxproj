@@ -172,6 +172,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerMoveExtension.cpp" />
     <ClCompile Include="WorkshopGame.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="WorkshopUiScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ContactListener.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PlayerMoveExtension.h" />
     <ClInclude Include="WorkshopGame.h" />
