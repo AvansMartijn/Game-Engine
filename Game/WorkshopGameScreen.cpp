@@ -10,7 +10,6 @@ void WorkshopGameScreen::onInit() {
 
 	// TIJD OVER
 	// TODO: Add Custom Extension
-	// TODO: Add Custom UI Element
 }
 
 void WorkshopGameScreen::onTick() {

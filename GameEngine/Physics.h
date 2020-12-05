@@ -13,11 +13,12 @@
 #include <Box2D.h>
 #include <memory>
 #include "GameObject.h"
-#include "CollisionListener.h"
+#include "AbstractContactListener.h"
 #include "CustomUserData.h"
 #include "TeleportObject.h"
 #include "Scene.h"
 #include "RotateObj.h"
+#include "AbstractContactListener.h"
 
 class CollisionListener;
 class GAMEENGINE_Physics Physics
@@ -28,7 +29,7 @@ private:
 
 	b2World* _world;
 	b2Vec2 _gravity;
-	CollisionListener _colListener;
+	shared_ptr<AbstractContactListener> _colListener;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -114,7 +115,9 @@ public:
 	/// </summary>
 	void executeExpirationQueue();
 
-	//void setContactListener(const b2ContactListener& colListener);
+	void setContactListener(shared_ptr<AbstractContactListener> contactListener);
+
+	void clearAllQueues();
 
 
 };

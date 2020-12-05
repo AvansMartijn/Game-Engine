@@ -17,6 +17,9 @@ void WorkshopUiScreen::onInit() {
 		game->switchScreen(1);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
+
+	// TODO: Add Custom UI Element
+
 }
 
 void WorkshopUiScreen::onTick() {
