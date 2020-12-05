@@ -16,6 +16,7 @@ public:
 	void setupGame();
 
 	void onTick();
+	void handlePlayerControls();
 
 	void handleKeyboardInput(SDL_KeyboardEvent e);
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);

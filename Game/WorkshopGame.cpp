@@ -6,7 +6,9 @@ void WorkshopGame::onInit() {
 	// TODO: Register Textures
 	registerTexture("Background", "res/gfx/Assets/BG/BG.png");
 
-	registerTexture("Doggo", "res/gfx/Assets/Entity/Player/Doggo.jpg");
+	std::map<std::string, Rect> sprites;
+	sprites.insert(make_pair("Idle", Rect{ 43, 157, 80, 51 }));
+	registerTexture("Doggo", "res/gfx/Assets/Entity/Player/Doggo.png", sprites);
 
 	registerTexture("Grass", "res/gfx/Assets/Tiles/2.png");
 	registerTexture("Crate", "res/gfx/Assets/Object/Crate.png");

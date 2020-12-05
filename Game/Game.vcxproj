@@ -173,12 +173,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerMoveExtension.cpp" />
     <ClCompile Include="WorkshopGame.cpp" />
     <ClCompile Include="WorkshopGameScreen.cpp" />
     <ClCompile Include="WorkshopUiScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
+    <ClInclude Include="PlayerMoveExtension.h" />
     <ClInclude Include="WorkshopGame.h" />
     <ClInclude Include="WorkshopGameScreen.h" />
     <ClInclude Include="WorkshopUiScreen.h" />

@@ -8,15 +8,10 @@ void WorkshopGameScreen::onInit() {
 	_backgroundImage = make_shared<ImageUiElement>(ImageUiElement("Background", { 0, 0, 1080, 720 }));
 	_uiElements.push_back(_backgroundImage);
 
-	// TODO: Add Input
-	// TODO: Add Physics
-	// TODO: Add Sound
-	// TODO: Player Controls
-
 	// TIJD OVER
 	// TODO: Add Custom Extension
 	// TODO: AI
-	//Scene::getInstance().isLocked = true;
+	Scene::getInstance().isLocked = true;
 }
 
 void WorkshopGameScreen::setupGame() {
@@ -25,7 +20,8 @@ void WorkshopGameScreen::setupGame() {
 
 	/** TODO: Add Game Objects. */
 	// TODO: Create Player
-	shared_ptr<GameObject> player = createGameObject({ "CheckPhysicsExtension" }, "Doggo", 10, Scene::getInstance().pixelsToMeters(720) - 10, 2, 2, 2);
+	shared_ptr<GameObject> player = createGameObject({ "CheckPhysicsExtension", "MoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 2);
+	player->currentState = "Idle";
 	Scene::getInstance().setPlayer(player);
 
 	// TODO: Create Floor
@@ -33,15 +29,37 @@ void WorkshopGameScreen::setupGame() {
 		createGameObject({ "MoveExtension" }, "Grass", 1 + (i * 2), Scene::getInstance().pixelsToMeters(720) - 1, 2, 2, 1);
 
 	// TODO: Create Objects
-	createGameObject({ "CheckPhysicsExtension" }, "Crate", 10, Scene::getInstance().pixelsToMeters(720) - 10, 2, 2, 0);
+	createGameObject({ "" }, "Crate", 10, Scene::getInstance().pixelsToMeters(720) - 10, 2, 2, 0);
 
 	// TODO: End Point
-	createGameObject({ "CheckPhysicsExtension" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 1);
+	createGameObject({ "" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 1);
 }
 
 void WorkshopGameScreen::onTick() {
 	// Geef aan dat we de volgende step willen doen voor de physics.
 	Physics::getInstance().step(1.0f / 60.f, 6, 2);
+
+	// TODO: Controls
+	if (Scene::getInstance().getPlayer() && Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
+		handlePlayerControls();
+}
+
+void WorkshopGameScreen::handlePlayerControls() {
+	// Haal de huidige velocity op.
+	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
+	const Uint8* keyState = SDL_GetKeyboardState(NULL);
+
+	// TODO: Move
+	if (keyState[SDL_SCANCODE_D])
+		vel.x += 0.3f;
+
+	if (keyState[SDL_SCANCODE_A])
+		vel.x -= 0.3f;
+
+	if (keyState[SDL_SCANCODE_SPACE])
+			vel.y -= 0.5f;
+
+	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
 }
 
 void WorkshopGameScreen::render(const unique_ptr<Window>& window) {
@@ -53,14 +71,29 @@ void WorkshopGameScreen::render(const unique_ptr<Window>& window) {
 }
 
 void WorkshopGameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	switch (e.keysym.sym)
+	{
+	case SDLK_l:
+		Scene::getInstance().isLocked = !Scene::getInstance().isLocked;
+
+		break;
+	default:
+		break;
+	}
 }
 
-void WorkshopGameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
-
-}
+void WorkshopGameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void WorkshopGameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-
+	// Scrollen, dit is om te laten zien straks.
+	if (e.y > 0) {
+		if (Scene::getInstance().zoom < 60)
+			Scene::getInstance().zoom += 3.0f;
+	}
+	else if (e.y < 0) {
+		if (Scene::getInstance().zoom > 10)
+			Scene::getInstance().zoom -= 3.0f;
+	}
 }
 
 void WorkshopGameScreen::onScreenShowed(vector<std::string> args) {

@@ -29,7 +29,6 @@ private:
 	bool preRender = false;
 
 public:
-	bool isLocked;
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }
@@ -39,6 +38,7 @@ public:
 	Scene& operator=(const Scene&) = delete;
 	Scene& operator=(Scene&&) = delete;
 
+	bool isLocked;
 	int score;
 	bool gameOver;
 	float zoom = 40.0f;

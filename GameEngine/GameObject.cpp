@@ -26,7 +26,6 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
-	// calc camera offset
 	std::shared_ptr<GameObject> player = Scene::getInstance().getPlayer();
 
 	//get object position
