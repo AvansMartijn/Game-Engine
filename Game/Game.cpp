@@ -73,8 +73,7 @@ void Game::onInit() {
 	//create collision listener
 	shared_ptr<CollisionListener> colListener = make_shared<CollisionListener>(CollisionListener());
 	Physics::getInstance().setContactListener(colListener);
-	//create physics world
-	Physics::getInstance().reset();
+
 
 	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->preRender(_window);
