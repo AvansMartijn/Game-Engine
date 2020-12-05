@@ -174,6 +174,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractLevel.cpp" />
     <ClCompile Include="AbstractLevelLoader.cpp" />
+    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="DefaultLevel.cpp" />
@@ -206,6 +207,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractLevel.h" />
     <ClInclude Include="AbstractLevelLoader.h" />
+    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="DefaultLevel.h" />

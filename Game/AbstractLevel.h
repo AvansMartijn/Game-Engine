@@ -4,6 +4,8 @@
 #include "GameEngine.h"
 #include "Physics.h"
 #include "Scene.h"
+#include "PickupExtension.h"
+
 
 class AbstractLevel
 {

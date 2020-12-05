@@ -8,7 +8,8 @@ Physics Physics::instance;
 
 Physics::Physics(){
     _gravity = { 0.0f, 10.0f };
-    reset();
+
+    //reset();
 }
 
 void Physics::step(float timeStep, int velocityIterations, int positionIterations) {
@@ -213,13 +214,23 @@ void Physics::executeExpirationQueue() {
     }
 }
 
-//void Physics::setContactListener(const b2ContactListener& colListener) {
-//    _world->SetContactListener(&colListener);
-//}
+void Physics::setContactListener(shared_ptr<AbstractContactListener> contactListener) {
+    _colListener = contactListener;
+    //_world->SetContactListener(_colListener.get());
+}
 
 void Physics::reset() {
+    clearAllQueues();
     _world = new b2World(_gravity);
-    _world->SetContactListener(&_colListener);
+    _world->SetContactListener(_colListener.get());
+}
+
+void Physics::clearAllQueues() {
+    deleteQueue.clear();
+    teleportQueue.clear();
+    expirationQueue.clear();
+    rotateQueue.clear();
+    setStaticQueue.clear();
 }
 
 

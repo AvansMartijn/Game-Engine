@@ -237,9 +237,6 @@
     <ClInclude Include="Body.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionListener.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="CustomUserData.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
@@ -299,6 +296,9 @@
     </ClInclude>
     <ClInclude Include="SDLTexture.h">
       <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractContactListener.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -431,9 +431,6 @@
     <ClCompile Include="Body.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionListener.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -478,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="DefaultEntityAI.cpp">
       <Filter>Source Files\Ai</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractContactListener.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "CollisionListener.h"
 
 Game::Game(const char* title, int width, int height) : AbstractGame(title, width, height) {}
 
@@ -68,6 +69,12 @@ void Game::onInit() {
 	registerSFXTrack("Player_Jump", "res/music/Jump_Sound.wav");
 	registerSFXTrack("Thruster_Sound", "res/music/Thruster_Sound.wav");
 	registerSFXTrack("Glue_Sound", "res/music/Glue_Sound.ogg");
+
+	//create collision listener
+	shared_ptr<CollisionListener> colListener = make_shared<CollisionListener>(CollisionListener());
+	Physics::getInstance().setContactListener(colListener);
+	//create physics world
+	Physics::getInstance().reset();
 
 	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->preRender(_window);

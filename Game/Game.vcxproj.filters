@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Screens\NewLoadGameScreen">
       <UniqueIdentifier>{aa7907a7-5788-441a-ade5-6f011885dd90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{17a6172f-f568-4fcf-9e3c-fcd3ee6da376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{117969f0-c151-4fe4-a951-6a22b817d723}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="StartNewLevelScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionListener.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="StartNewLevelScreen.h">
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionListener.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
