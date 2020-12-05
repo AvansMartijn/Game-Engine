@@ -26,11 +26,6 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
-	// calc camera offset
-	b2Vec2 playerPos = Scene::getInstance().getPlayer()->body.b2body->GetPosition();
-	playerPos.x = metersToPixels(playerPos.x);
-	playerPos.y = metersToPixels(playerPos.y);
-	b2Vec2 diffs = { playerPos.x - (window->getWidth() / 2), playerPos.y - (window->getHeight() / 2) };
 	std::shared_ptr<GameObject> player = Scene::getInstance().getPlayer();
 
 	//get object position
