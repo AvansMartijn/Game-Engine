@@ -5,7 +5,7 @@ WorkshopGame::~WorkshopGame() {}
 void WorkshopGame::onInit() {
 	// TODO: Register Textures
 	registerTexture("Doggo", "res/gfx/Assets/Entity/Player/Doggo.jpg");
-	registerTexture("Grass", "res/gfx/Assets/Tiles/2.jpg");
+	registerTexture("Grass", "res/gfx/Assets/Tiles/2.png");
 	// Register Fonts
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 

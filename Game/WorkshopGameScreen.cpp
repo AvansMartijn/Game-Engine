@@ -21,7 +21,7 @@ void WorkshopGameScreen::onInit() {
 
 	// TODO: Create Floor
 	vector<string> extensions = { "MoveExtension" };
-	shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, "Grass", 0, 0, 1, 1, 1);
+	shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, "Grass", 0, 0, 100, 100, 1);
 }
 
 void WorkshopGameScreen::onTick() {
@@ -70,6 +70,9 @@ shared_ptr<GameObject> WorkshopGameScreen::createGameObject(GameEngine gameEngin
 	default:
 		break;
 	}
+
+	// Voeg game object toe aan de wereld.
+	Scene::getInstance().addGameObject(gameObject);
 
 	return gameObject;
 }

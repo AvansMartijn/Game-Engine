@@ -218,7 +218,6 @@ void Physics::setContactListener(shared_ptr<AbstractContactListener> contactList
     _colListener = contactListener;
 
     reset();
-    //_world->SetContactListener(_colListener.get());
 }
 
 void Physics::reset() {
