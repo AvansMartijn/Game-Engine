@@ -49,7 +49,7 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 		checkTeleport(gameObjectB, gameObjectA, *valB);
 		checkDamage(gameObjectB, gameObjectA);
 	}
-	
+
 }
 
 void CollisionListener::EndContact(b2Contact* contact) {
@@ -83,8 +83,8 @@ void CollisionListener::checkJumpSensor(const CustomUserData& val) {
 
 void CollisionListener::checkExitSensor(const CustomUserData& valA, const CustomUserData& valB) {
 	if (valA.type == "exitSensor") {
-			if (valB.type == "playerFixture")
-				Scene::getInstance().gameOver = true;
+		if (valB.type == "playerFixture")
+			Scene::getInstance().gameOver = true;
 	}
 }
 
@@ -147,7 +147,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 		}
 		else if (gameObjectB->hasExtension(typeid(IsPortalableExtension))) {
 
-			
+
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 
 			float Aleft = gameObjectA->body.b2body->GetPosition().x - (gameObjectA->body.width / 2);
@@ -168,7 +168,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			else if (valA.type == "portalBbullet") {
 				teleportObj.obj = Scene::getInstance().portalB;
 			}
-			
+
 			auto extension = dynamic_pointer_cast<CollisionResolutionPortalExtension>(teleportObj.obj->getExtension(typeid(AbstractCollisionResolutionExtension)));
 			float angle = 0;
 			if (Aleft > Bleft && Aleft < Bright) {

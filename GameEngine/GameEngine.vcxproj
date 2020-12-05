@@ -194,6 +194,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
   <ItemGroup>
     <ClInclude Include="AbstractBehaviour.h" />
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
+    <ClInclude Include="AbstractContactListener.h" />
     <ClInclude Include="AbstractEntityAI.h" />
     <ClInclude Include="AbstractGame.h" />
     <ClInclude Include="AbstractGameObjectExtension.h" />
@@ -212,7 +213,6 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="ButtonUiElement.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
-    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
@@ -263,6 +263,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
   <ItemGroup>
     <ClCompile Include="AbstractBehaviour.cpp" />
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
+    <ClCompile Include="AbstractContactListener.cpp" />
     <ClCompile Include="AbstractEntityAI.cpp" />
     <ClCompile Include="AbstractGame.cpp" />
     <ClCompile Include="AbstractGameObjectExtension.cpp" />
@@ -281,7 +282,6 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="ButtonUiElement.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
-    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="Color.cpp" />

@@ -1,15 +1,14 @@
 #pragma once
-
-
 #include <Box2D.h>
 #include "GameObject.h"
 #include "AbstractCollisionResolutionExtension.h"
 #include "MoveExtension.h"
 #include "CustomUserData.h"
 #include "PickupExtension.h"
+#include "AbstractContactListener.h"
 
 class Physics;
-class CollisionListener : public b2ContactListener
+class CollisionListener : public AbstractContactListener
 {
 public:
 	void BeginContact(b2Contact* contact);
