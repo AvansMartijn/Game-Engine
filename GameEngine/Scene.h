@@ -29,6 +29,7 @@ private:
 	bool preRender = false;
 
 public:
+	bool isLocked;
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }

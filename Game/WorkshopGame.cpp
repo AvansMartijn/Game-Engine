@@ -4,8 +4,14 @@ WorkshopGame::~WorkshopGame() {}
 
 void WorkshopGame::onInit() {
 	// TODO: Register Textures
+	registerTexture("Background", "res/gfx/Assets/BG/BG.png");
+
 	registerTexture("Doggo", "res/gfx/Assets/Entity/Player/Doggo.jpg");
+
 	registerTexture("Grass", "res/gfx/Assets/Tiles/2.png");
+	registerTexture("Crate", "res/gfx/Assets/Object/Crate.png");
+	registerTexture("Bush", "res/gfx/Assets/Object/Bush.png");
+
 	// Register Fonts
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 
@@ -13,7 +19,7 @@ void WorkshopGame::onInit() {
 
 	// TODO: EXTRA Collision Listener
 
-	Physics::getInstance().reset();
+	//Physics::getInstance().reset();
 
 	// Zorg ervoor dat alle schermen klaar voor gebruik zijn.
 	for (size_t i = 0; i < screens.size(); i++)

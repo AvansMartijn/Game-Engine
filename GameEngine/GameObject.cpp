@@ -40,7 +40,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
 
-	if (player) {
+	if (player && !Scene::getInstance().isLocked) {
 		// calc camera offset
 		b2Vec2 playerPos = player->body.b2body->GetPosition();
 		playerPos.x = metersToPixels(playerPos.x);
