@@ -1,6 +1,9 @@
 #pragma once
 #include <AbstractContactListener.h>
-
+#include <CustomUserData.h>
+#include <memory>
+#include "GameObject.h"
+#include "Scene.h"
 class ContactListener : public AbstractContactListener
 {
 public:

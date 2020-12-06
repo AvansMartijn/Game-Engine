@@ -4,6 +4,8 @@
 #include "GameEngine.h"
 #include "ImageUiElement.h"
 #include <memory>
+#include "AbstractGame.h"
+
 class WorkshopGameScreen : public AbstractScreen {
 private:
 	std::shared_ptr<ImageUiElement> _backgroundImage;

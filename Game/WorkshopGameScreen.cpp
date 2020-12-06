@@ -18,11 +18,12 @@ void WorkshopGameScreen::setupGame() {
 	// We resetten het spel voordat we beginnen
 	Scene::getInstance().reset();
 
+	Scene::getInstance().gameOver = false;
+
 	/** TODO: Add Game Objects. */
 	// TODO: Create Player
-	shared_ptr<GameObject> player = createGameObject({ "CheckPhysicsExtension", "MoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 3);
-	player->currentState = "Idle";
-	Scene::getInstance().setPlayer(player);
+	Scene::getInstance().setPlayer(createGameObject({ "CheckPhysicsExtension", "MoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 3));
+	Scene::getInstance().getPlayer()->currentState = "Idle";
 
 	// TODO: Create Floor
 	for (size_t i = 0; i < 15; i++)
@@ -32,7 +33,7 @@ void WorkshopGameScreen::setupGame() {
 	createGameObject({ "" }, "Crate", 10, Scene::getInstance().pixelsToMeters(720) - 10, 2, 2, 0);
 
 	// TODO: End Point
-	createGameObject({ "" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 2, "sensorFinish");
+	createGameObject({ "" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 2, "finishSensor");
 }
 
 void WorkshopGameScreen::onTick() {
@@ -42,6 +43,10 @@ void WorkshopGameScreen::onTick() {
 	// TODO: Controls
 	if (Scene::getInstance().getPlayer() && Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
 		handlePlayerControls();
+
+	// TODO: Extra Game Over
+	if (Scene::getInstance().gameOver)
+		_game->switchScreen(0); 
 }
 
 void WorkshopGameScreen::handlePlayerControls() {
@@ -119,7 +124,7 @@ shared_ptr<GameObject> WorkshopGameScreen::createGameObject(vector<string> exten
 		Physics::getInstance().addBody(gameObject, x, y, width, height, 1.0f, true, false);
 		break;
 	case 2: // Game Object (Interactable)
-		Physics::getInstance().addBody(gameObject, x, y, width, height, 1.0f, true, false, false, sensor);
+		Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, sensor);
 		break;
 	case 3: // Player
 		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
