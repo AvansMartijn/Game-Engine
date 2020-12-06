@@ -16,10 +16,7 @@ void ContactListener::BeginContact(b2Contact* contact) {
 	shared_ptr<GameObject> gameObjectA = Scene::getInstance().getGameObject(objA->index);
 	shared_ptr<GameObject> gameObjectB = Scene::getInstance().getGameObject(objB->index);
 
-	if ((valA->type == "finishSensor" && valB->type == "playerFixture") || 
-		(valB->type == "finishSensor" && valA->type == "playerFixture")) {
-		Scene::getInstance().gameOver = true;
-	}
+	// TODO: Game Over Collision
 }
 
 void ContactListener::EndContact(b2Contact* contact) {}

@@ -5,14 +5,10 @@ WorkshopGameScreen::~WorkshopGameScreen() {}
 
 void WorkshopGameScreen::onInit() {
 	// TODO: Add background.
-	_backgroundImage = make_shared<ImageUiElement>(ImageUiElement("Background", { 0, 0, 1080, 720 }));
-	_uiElements.push_back(_backgroundImage);
 
-	// TIJD OVER
 	// TODO: Add Custom Extension
-	GameObjectExtensionFactory::get()->registerExtension("PlayerMoveExtension", &PlayerMoveExtension::create);
 
-	// TODO: Lock Zoom
+	// Lock Zoom
 	Scene::getInstance().isLocked = true;
 }
 
@@ -23,18 +19,12 @@ void WorkshopGameScreen::setupGame() {
 
 	/** TODO: Add Game Objects. */
 	// TODO: Create Player
-	Scene::getInstance().setPlayer(createGameObject({ "CheckPhysicsExtension", "MoveExtension", "PlayerMoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 3));
-	Scene::getInstance().getPlayer()->currentState = "Idle";
 
 	// TODO: Create Floor
-	for (size_t i = 0; i < 15; i++)
-		createGameObject({ "MoveExtension" }, "Grass", 1 + (i * 2), Scene::getInstance().pixelsToMeters(720) - 1, 2, 2, 1);
 
 	// TODO: Create Objects
-	createGameObject({ "" }, "Crate", 10, Scene::getInstance().pixelsToMeters(720) - 10, 2, 2, 0);
 
 	// TODO: End Point
-	createGameObject({ "" }, "Bush", Scene::getInstance().pixelsToMeters(1080) - 2, Scene::getInstance().pixelsToMeters(720) - 3, 2.5, 2, 2, "finishSensor");
 }
 
 void WorkshopGameScreen::onTick() {
@@ -46,18 +36,13 @@ void WorkshopGameScreen::onTick() {
 		handlePlayerControls();
 
 	// TODO: Extra Game Over
-	if (Scene::getInstance().gameOver)
-		_game->switchScreen(0); 
 }
 
 void WorkshopGameScreen::handlePlayerControls() {
-	dynamic_pointer_cast<PlayerMoveExtension>(Scene::getInstance().getPlayer()->getExtension(typeid(PlayerMoveExtension)))->move();
+	// TODO: Player Input 
 }
 
 void WorkshopGameScreen::render(const unique_ptr<Window>& window) {
-	// TODO: Render BG
-	_backgroundImage->render(window);
-
 	// Render de huidige scene.
 	Scene::getInstance().render(window);
 }

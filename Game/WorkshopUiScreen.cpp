@@ -18,21 +18,12 @@ void WorkshopUiScreen::onInit() {
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
-	// TODO: Add Custom UI Element
-
 }
 
-void WorkshopUiScreen::onTick() {
+void WorkshopUiScreen::onTick() {}
 
-}
+void WorkshopUiScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
 
-void WorkshopUiScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-}
+void WorkshopUiScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
-void WorkshopUiScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {
-
-}
-
-void WorkshopUiScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-
-}
+void WorkshopUiScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}

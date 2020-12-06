@@ -11,14 +11,5 @@ void PlayerMoveExtension::move() {
 	const Uint8* keyState = SDL_GetKeyboardState(NULL);
 
 	// TODO: Movement
-	if (keyState[SDL_SCANCODE_D])
-		vel.x += 0.3f;
 
-	if (keyState[SDL_SCANCODE_A])
-		vel.x -= 0.3f;
-
-	if (keyState[SDL_SCANCODE_SPACE])
-		vel.y -= 0.5f;
-
-	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
 }
