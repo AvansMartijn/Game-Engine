@@ -83,6 +83,7 @@ void Scene::reset() {
     if (getPlayer() && getPlayer()->hasExtension(typeid(MoveExtension)))
         getPlayerMoveExtension()->reset();
 
+    gameOver = false;
     score = 1000;
     _gameObjects.clear();
     textElements.clear();
