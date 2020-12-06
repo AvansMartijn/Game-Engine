@@ -9,6 +9,14 @@
 #pragma once
 class CheatScreen : public AbstractScreen
 {
+private:
+	shared_ptr<TextUiElement> _cheatText;
+
+	//TODO: Move to singleton helper class
+	void trim(std::string &s);
+	void leftTrim(std::string &s);
+	void rightTrim(std::string &s);
+
 public:
 	using AbstractScreen::AbstractScreen;
 	CheatScreen();

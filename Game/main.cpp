@@ -8,6 +8,7 @@
 #include "LoadGameSlotsScreen.h"
 #include "CheatScreen.h"
 #include "CheatHelpScreen.h"
+#include "CheatManager.h"
 
 
 #undef main
@@ -25,8 +26,11 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().addLevel(5, { "Level_3", LevelType::TILED });
 	GameSettings::getInstance().addLevel(6, { "Level_4", LevelType::TILED });
 
-	//
+	//Init Controlls
 	ControllManager::getInstance().initializeControlls();
+
+	//Init Cheats
+	CheatManager::getInstance().initializeCheats();
 
 	// Register Items
 	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
