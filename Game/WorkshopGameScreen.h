@@ -5,6 +5,7 @@
 #include "ImageUiElement.h"
 #include <memory>
 #include "AbstractGame.h"
+#include "PlayerMoveExtension.h"
 
 class WorkshopGameScreen : public AbstractScreen {
 private:

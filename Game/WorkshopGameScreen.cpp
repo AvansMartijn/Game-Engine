@@ -10,19 +10,20 @@ void WorkshopGameScreen::onInit() {
 
 	// TIJD OVER
 	// TODO: Add Custom Extension
-	// TODO: AI
+	GameObjectExtensionFactory::get()->registerExtension("PlayerMoveExtension", &PlayerMoveExtension::create);
+
+	// TODO: Lock Zoom
 	Scene::getInstance().isLocked = true;
 }
 
 void WorkshopGameScreen::setupGame() {
 	// We resetten het spel voordat we beginnen
 	Scene::getInstance().reset();
-
-	Scene::getInstance().gameOver = false;
+	Physics::getInstance().reset();
 
 	/** TODO: Add Game Objects. */
 	// TODO: Create Player
-	Scene::getInstance().setPlayer(createGameObject({ "CheckPhysicsExtension", "MoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 3));
+	Scene::getInstance().setPlayer(createGameObject({ "CheckPhysicsExtension", "MoveExtension", "PlayerMoveExtension" }, "Doggo", 1, Scene::getInstance().pixelsToMeters(720) - 10, 2, 1.5, 3));
 	Scene::getInstance().getPlayer()->currentState = "Idle";
 
 	// TODO: Create Floor
@@ -41,7 +42,7 @@ void WorkshopGameScreen::onTick() {
 	Physics::getInstance().step(1.0f / 60.f, 6, 2);
 
 	// TODO: Controls
-	if (Scene::getInstance().getPlayer() && Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
+	if (Scene::getInstance().getPlayer() && Scene::getInstance().getPlayer()->hasExtension(typeid(PlayerMoveExtension)))
 		handlePlayerControls();
 
 	// TODO: Extra Game Over
@@ -50,21 +51,7 @@ void WorkshopGameScreen::onTick() {
 }
 
 void WorkshopGameScreen::handlePlayerControls() {
-	// Haal de huidige velocity op.
-	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
-	const Uint8* keyState = SDL_GetKeyboardState(NULL);
-
-	// TODO: Move
-	if (keyState[SDL_SCANCODE_D])
-		vel.x += 0.3f;
-
-	if (keyState[SDL_SCANCODE_A])
-		vel.x -= 0.3f;
-
-	if (keyState[SDL_SCANCODE_SPACE])
-			vel.y -= 0.5f;
-
-	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
+	dynamic_pointer_cast<PlayerMoveExtension>(Scene::getInstance().getPlayer()->getExtension(typeid(PlayerMoveExtension)))->move();
 }
 
 void WorkshopGameScreen::render(const unique_ptr<Window>& window) {
