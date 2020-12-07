@@ -73,6 +73,24 @@
     <Filter Include="Source Files\Screens\NewLoadGameScreen">
       <UniqueIdentifier>{aa7907a7-5788-441a-ade5-6f011885dd90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Screens\Cheats">
+      <UniqueIdentifier>{6b18b7bd-04c8-4b4c-8d27-ee2092357542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Cheats">
+      <UniqueIdentifier>{96277c52-0158-453a-9cfe-4d6f3217bd44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc\Cheats">
+      <UniqueIdentifier>{30d1b7c4-4c16-418e-a570-be8d34f077a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc\Cheats">
+      <UniqueIdentifier>{7e9211ec-3d66-4f38-954a-62665ef9afab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc\Cheats\Commands">
+      <UniqueIdentifier>{8785b650-492a-44e9-93d4-8d540195a2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc\Cheats\Commands">
+      <UniqueIdentifier>{0a5e3d18-11f2-4681-86f5-4ff01eb4c9b6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Physics">
       <UniqueIdentifier>{17a6172f-f568-4fcf-9e3c-fcd3ee6da376}</UniqueIdentifier>
     </Filter>
@@ -167,6 +185,27 @@
     </ClCompile>
     <ClCompile Include="LoadGameSlotsScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatScreen.cpp">
+      <Filter>Source Files\Screens\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatHelpScreen.cpp">
+      <Filter>Source Files\Screens\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatManager.cpp">
+      <Filter>Source Files\Misc\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatCommand.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="GodmodeCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="UnlimitedAmmoCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="NoCooldownCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
     </ClCompile>
     <ClCompile Include="StartNewLevelScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
@@ -281,9 +320,6 @@
     <ClInclude Include="SaveHighscore.h">
       <Filter>Header Files\Misc\SaveGame</Filter>
     </ClInclude>
-    <ClInclude Include="GameSettings.h">
-      <Filter>Header Files\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="LevelData.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
@@ -307,6 +343,30 @@
     </ClInclude>
     <ClInclude Include="LoadGameSlotsScreen.h">
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatHelpScreen.h">
+      <Filter>Header Files\Screens\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatScreen.h">
+      <Filter>Header Files\Screens\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatManager.h">
+      <Filter>Header Files\Misc\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatCommand.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSettings.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GodmodeCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="UnlimitedAmmoCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="NoCooldownCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
     </ClInclude>
     <ClInclude Include="StartNewLevelScreen.h">
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>

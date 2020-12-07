@@ -321,6 +321,10 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
 
 		break;
+	case SDLK_TAB:
+		//TODO Open Cheat Window
+		_game->switchScreen(Screens::Cheat);
+		break;
 	case SDLK_p:
 		_game->reset();
 	case SDLK_KP_PLUS:

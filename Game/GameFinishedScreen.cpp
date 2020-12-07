@@ -76,7 +76,9 @@ void GameFinishedScreen::onInit() {
 			if (name == "")
 				_nameText->text = "Waluigi";
 			
-			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+			if (!Scene::getInstance().hasCheated) {
+				GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+			}
 			GameSettings::getInstance().save();
 		}		
 
@@ -130,7 +132,9 @@ void GameFinishedScreen::onInit() {
 			if (name == "")
 				_nameText->text = "Waluigi";
 
-			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+			if (!Scene::getInstance().hasCheated) {
+				GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+			}
 			GameSettings::getInstance().save();
 		}
 		game->switchScreen(Screens::MainMenu);
@@ -148,7 +152,10 @@ void GameFinishedScreen::onTick() {
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {
 
-	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+	if (Scene::getInstance().hasCheated)
+		_bodyText->text = "No Score For Cheaters >:(";
+	else
+		_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 	
 	if (GameSettings::getInstance().getNextLevel().levelName.empty()) {
 		_nextLevelButton->_text = "Credits";
