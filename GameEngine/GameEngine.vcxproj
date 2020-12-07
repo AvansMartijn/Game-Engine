@@ -111,7 +111,8 @@
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,7 +139,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,7 +163,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -188,7 +191,8 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
