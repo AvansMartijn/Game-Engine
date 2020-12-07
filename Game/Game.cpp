@@ -44,6 +44,10 @@ void Game::onInit() {
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
+	LibCurl libcurl;
+	std::string location = libcurl.PerformRequest("https://latropads.mardy.tk/ad.jpg");
+
+	registerTexture("AdPlaceholder", location);
 	registerTexture("Background", "res/gfx/Background.png");
 	registerTexture("BackgroundTint", "res/gfx/BackgroundTint.png");
 	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");

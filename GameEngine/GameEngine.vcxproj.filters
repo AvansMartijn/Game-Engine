@@ -297,6 +297,9 @@
     <ClInclude Include="SDLTexture.h">
       <Filter>Header Files\Wrapper</Filter>
     </ClInclude>
+    <ClInclude Include="LibCurl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="AbstractContactListener.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="SDLTexture.cpp">
       <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="LibCurl.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DefaultEntityAI.cpp">
       <Filter>Source Files\Ai</Filter>
