@@ -30,16 +30,33 @@ void GameOverScreen::onInit()
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
 }
 
-void GameOverScreen::onTick() {}
+void GameOverScreen::onTick() {
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		_fps->text = "  ";
+}
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
 
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
-void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void GameOverScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 

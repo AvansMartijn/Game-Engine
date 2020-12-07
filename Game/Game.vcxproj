@@ -97,7 +97,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\GameEngine</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251;26495;26812</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,6 +178,7 @@
     <ClCompile Include="CheatHelpScreen.cpp" />
     <ClCompile Include="CheatManager.cpp" />
     <ClCompile Include="CheatScreen.cpp" />
+    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="DefaultLevel.cpp" />
@@ -204,6 +205,7 @@
     <ClCompile Include="PlayerMoves.cpp" />
     <ClCompile Include="Quotes.cpp" />
     <ClCompile Include="NewGameSlotsScreen.cpp" />
+    <ClCompile Include="StartNewLevelScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
@@ -216,6 +218,7 @@
     <ClInclude Include="CheatHelpScreen.h" />
     <ClInclude Include="CheatManager.h" />
     <ClInclude Include="CheatScreen.h" />
+    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="DefaultLevel.h" />
@@ -249,6 +252,7 @@
     <ClInclude Include="SaveLevel.h" />
     <ClInclude Include="SaveSettings.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="StartNewLevelScreen.h" />
     <ClInclude Include="TiledGameObject.h" />
     <ClInclude Include="TiledGrid.h" />
     <ClInclude Include="TiledLayer.h" />

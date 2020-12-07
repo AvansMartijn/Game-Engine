@@ -33,8 +33,8 @@ void NewGameSlotsScreen::onInit() {
 		GameSettings::getInstance().saveGame.slot1 = 0;
 		GameSettings::getInstance().save();
 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+
+		game->switchScreen(Screens::StartNewGame);
 	};
 	slot1Button = make_shared<ButtonUiElement>(slot1);
 	_uiElements.push_back(slot1Button);
@@ -48,8 +48,7 @@ void NewGameSlotsScreen::onInit() {
 		GameSettings::getInstance().saveGame.slot2 = 0;
 		GameSettings::getInstance().save();
 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		game->switchScreen(Screens::StartNewGame);
 	};
 	slot2Button = make_shared<ButtonUiElement>(slot2);
 	_uiElements.push_back(slot2Button);
@@ -63,9 +62,9 @@ void NewGameSlotsScreen::onInit() {
 		GameSettings::getInstance().saveGame.slot3 = 0;
 		GameSettings::getInstance().save();
 
-		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
-		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
+		game->switchScreen(Screens::StartNewGame);
 	};
+
 	slot3Button = make_shared<ButtonUiElement>(slot3);
 	_uiElements.push_back(slot3Button);
 
@@ -76,12 +75,26 @@ void NewGameSlotsScreen::onInit() {
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
 	
 }
 
-void NewGameSlotsScreen::onTick() {}
+void NewGameSlotsScreen::onTick() {
+	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+}
 
 void NewGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_d:

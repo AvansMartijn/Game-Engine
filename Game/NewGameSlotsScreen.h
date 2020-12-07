@@ -4,6 +4,7 @@
 #include <ButtonUiElement.h>
 #include "GameSettings.h"
 #include "Screens.h"
+#include "ControllManager.h"
 
 class NewGameSlotsScreen : public AbstractScreen
 {
@@ -11,6 +12,7 @@ private:
 	shared_ptr<ButtonUiElement>slot1Button;
 	shared_ptr<ButtonUiElement>slot2Button;
 	shared_ptr<ButtonUiElement>slot3Button;
+	shared_ptr<TextUiElement> _fps;
 
 public:
 	using AbstractScreen::AbstractScreen;

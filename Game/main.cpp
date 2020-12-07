@@ -9,6 +9,7 @@
 #include "CheatScreen.h"
 #include "CheatHelpScreen.h"
 #include "CheatManager.h"
+#include "StartNewLevelScreen.h"
 
 
 #undef main
@@ -122,6 +123,11 @@ int main(int argc, char* argv[]) {
 	CheatHelpScreen->registerGame(&game);
 	CheatHelpScreen->onInit();
 	game.screens.push_back(move(CheatHelpScreen));
+	
+	unique_ptr<StartNewLevelScreen> StartNewLevelScreen(new StartNewLevelScreen);
+	StartNewLevelScreen->registerGame(&game);
+	StartNewLevelScreen->onInit();
+	game.screens.push_back(move(StartNewLevelScreen));
 
 	game.onInit();
 

@@ -16,5 +16,6 @@ enum Screens {
 	NewGame,
 	LoadGame,
 	Cheat,
-	CheatHelp
+	CheatHelp,
+	StartNewGame
 };

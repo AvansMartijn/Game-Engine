@@ -1,7 +1,5 @@
-#include "GameScreen.h"
+﻿#include "GameScreen.h"
 #include <CanWieldExtension.h>
-
-#include <TextUiElement.h>
 #include "TiledLevelLoader.h"
 #include "ControllManager.h"
 
@@ -13,6 +11,7 @@ void GameScreen::onInit() {
 	setupScreen();
 	setupGame();
 	setupHUD();
+	shouldShowFPS = true;
 }
 
 void GameScreen::setupScreen() {
@@ -21,18 +20,35 @@ void GameScreen::setupScreen() {
 }
 
 void GameScreen::setupHUD() {
-	const Color bgColor = { 0, 0, 0, 0.8 };
-	const Color fgColor = { 210, 190, 70 };
+	const Color bgColor = { 28, 28, 28, 1 };
+	const Color fgColor = { 255, 255, 255 };
+	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
-	const int fontSize = 24;
-	_lives = make_shared<TextUiElement>(TextUiElement("LIVES: 3", font, fontSize, { 5, 10, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_lives);
-	_gameUiElements.push_back(_lives);
+	const int fontSize = 19;
 
-	_weapon = make_shared<TextUiElement>(TextUiElement("CURRENT WEAPON: NULL", font, fontSize, { 5, 40, 0, 0 }, fgColor, bgColor, false));
+	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 300, 100 }, 122));
+	_uiElements.push_back(_hudBackgroundImg);
+	_gameUiElements.push_back(_hudBackgroundImg);
+
+	_score = make_shared<TextUiElement>(TextUiElement("SCORE: 999", font, fontSize, { 10, 630, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_score);
+	_gameUiElements.push_back(_score);
+
+	_weapon = make_shared<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 10, 650, 0, 0 }, fgColor, bgColor, false));
 	_uiElements.push_back(_weapon);
 	_gameUiElements.push_back(_weapon);
 
+	_ammo = make_shared<TextUiElement>(TextUiElement("AMMO:", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false));
+	_uiElements.push_back(_ammo);
+	_gameUiElements.push_back(_ammo);
+
+	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(158, 695, -150, 20, 0.8f, hpColor, bgColor));
+	_uiElements.push_back(_hpBar);
+	_gameUiElements.push_back(_hpBar);
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+	_gameUiElements.push_back(_fps);
 }
 
 void GameScreen::setupGame() {
@@ -56,7 +72,18 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 }
 
 void GameScreen::onTick() {
-	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+	long timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+
+	if (Scene::getInstance().getPlayer()->getExtension(typeid(HealthExtension))) {
+
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
+		float healthValue = dynamic_pointer_cast<HealthExtension>(gameObject->getExtension(typeid(HealthExtension)))->getHealth();
+
+		if (healthValue <= 0)
+			Scene::getInstance().gameOver = true;
+		else
+			_hpBar->percent = healthValue / 100;
+	}
 
 	if (timePassed >= 1)
 	{
@@ -78,6 +105,44 @@ void GameScreen::onTick() {
 		handlePlayerControls();
 		calculatePlayerTexture();
 	}
+
+
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
+		if (currentWeapon != NULL) {
+			std::string result = "WEAPON: " + currentWeapon->getScreemName();
+			_weapon->text = result;
+
+			if (currentWeapon->getAmmo() == -1)
+				_ammo->text = "AMMO: INFINITE";
+			else
+				_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+		}
+		else {
+			_weapon->text = "WEAPON: NONE";
+			_ammo->text = "AMMO:";
+		}
+
+	}
+
+
+	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
+
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else if(_fps->text.length() > 0)
+		_fps->text = "  ";
+	
+
+	// TODO: Execute AI
+	size_t a = Scene::getInstance().getEntitiesSize();
+	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+
+		if (gameObject->hasExtension(typeid(AiExtension)))
+			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
+	}
+
 }
 
 void GameScreen::handlePlayerControls() {
@@ -139,6 +204,7 @@ void GameScreen::handlePlayerControls() {
 		}
 	}
 	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
+
 }
 
 void GameScreen::calculatePlayerTexture() {
@@ -206,6 +272,15 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
 	}
+
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps) 
+		shouldShowFPS = !shouldShowFPS;
 	
 	switch (e.keysym.sym)
 	{

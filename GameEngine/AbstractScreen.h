@@ -10,6 +10,7 @@
 #include "Window.h"
 #include "AbstractUiElement.h"
 #include "Physics.h"
+#include "TextUIElement.h"
 
 using namespace std;
 
@@ -75,5 +76,10 @@ public:
 	/// </summary>
 	virtual void reset();
 
+	/// <summary>
+	/// Should show the FPS
+	/// </summary>
+	bool shouldShowFPS;
+private:
 };
 

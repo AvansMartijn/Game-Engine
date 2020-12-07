@@ -11,12 +11,29 @@ shared_ptr<GameObject> Scene::getGameObject(int id) {
     return _gameObjects[id];
 }
 
+shared_ptr<GameObject> Scene::getEntityAtIndex(int index) {
+    return _gameObjects[_entities.at(index)];
+}
+
+size_t Scene::getEntitiesSize() {
+    return _entities.size();
+}
+
 void Scene::addGameObject(int index, shared_ptr<GameObject> obj) {
     _gameObjects.insert(std::pair<int, shared_ptr<GameObject>>(index, obj));
 }
 
 void Scene::addGameObject(shared_ptr<GameObject> obj) {
     addGameObject(obj->id, obj);
+}
+
+void Scene::addTextUiElement(shared_ptr<TextUiElement> obj) {
+    textElements.push_back(obj);
+}
+
+void Scene::addEntity(shared_ptr<GameObject> obj) {
+    addGameObject(obj->id, obj);
+    _entities.push_back(obj->id);
 }
 
 int Scene::getNextAvailableId() {
@@ -66,13 +83,29 @@ void Scene::reset() {
     if (getPlayer() && getPlayer()->hasExtension(typeid(MoveExtension)))
         getPlayerMoveExtension()->reset();
 
+    gameOver = false;
     score = 1000;
     _gameObjects.clear();
+    textElements.clear();
+    preRender = false;
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
+
+
     for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects)
         x.second->render(window);
+
+    for (auto textElement : textElements) {
+        if (!preRender) {
+            textElement->preRender(window);
+            preRender = true;
+        }
+
+
+        textElement->render(window);
+    }
+
 }
 
 float Scene::metersToPixels(float meters) {

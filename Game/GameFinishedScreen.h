@@ -4,6 +4,8 @@
 #include <TextUiElement.h>
 #include <ButtonUiElement.h>
 #include "Screens.h"
+#include "GameSettings.h"
+#include "ControllManager.h"
 
 class GameFinishedScreen : public AbstractScreen
 {
@@ -11,6 +13,7 @@ private:
 	shared_ptr<TextUiElement> _bodyText;
 	shared_ptr<TextUiElement> _nameText;
 	shared_ptr<ButtonUiElement> _nextLevelButton;
+	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;
 	GameFinishedScreen();

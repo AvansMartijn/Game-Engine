@@ -41,22 +41,24 @@ Quotes::Quotes() {
 	//Chiel
 	_quotes.push_back("\"Martijn wat was je laatste task?\" \n - Chiel 2020");
 	_quotes.push_back("\"Goeie poep\" \n - Chiel 2020");
-	_quotes.push_back("\"vfvfvfvfvvfvfvfvfvfvfvfvfvfvfvfv\" \n - Chiel 2020");
 	_quotes.push_back("\"Kijk hoe mooi\" \n - Chiel 2020");
-	_quotes.push_back("\"Buuuuuuuuuuuuuurb\" \n - Chiel 2020");
-
+	_quotes.push_back("\"Buuuuuuuuuuuuuurp\" \n - Chiel 2020");
+	_quotes.push_back("\"Dat was alles behalven relaxed\" \n - Chiel 2020");
 
 	//Wesley
 	_quotes.push_back("\"Devil-op-ment\" \n - Wesley 2020");
 	_quotes.push_back("\"Ik ben er in de middag bij\" \n - Wesley 2020");
 	_quotes.push_back("\"Ik krijg alle grote tasks\" \n - Wesley 2020");
+	_quotes.push_back("\"Ik ben in mijn eigen kanaal\" \n - Wesley 2020");
+
 
 	//Mike
 	_quotes.push_back("\"Gisteren veel te veel gezopen\" \n - Mike 2020");
 	_quotes.push_back("\"stop_met_in_de_nacht_werken\" \n - Mike 2020");
+	_quotes.push_back("\"Wa mooi!\" \n - Mike 2020");
 
 	//Bob
-	_quotes.push_back("\"rot13 is zo tyfus simpel, dat tik je zo in elkaar\" \n - Bob 2020");
+	_quotes.push_back("\"Rot13 is zo tyfus simpel, dat tik je zo in elkaar\" \n - Bob 2020");
 	_quotes.push_back("\"C++ is toch eigenlijk wel een klotetaal\" \n - Bob 2020");
 
 	//Overig
