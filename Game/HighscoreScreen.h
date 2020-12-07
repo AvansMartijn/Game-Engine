@@ -9,7 +9,8 @@ private:
 
 	shared_ptr<TextUiElement> scroll;
 
-	int offsett = 0;
+	int offset = 0;
+	int anchor = 0;
 	shared_ptr<TextUiElement> _fps;
 
 public:
