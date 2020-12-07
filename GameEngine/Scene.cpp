@@ -88,6 +88,7 @@ void Scene::reset() {
     _gameObjects.clear();
     textElements.clear();
     preRender = false;
+    hasCheated = false;
 }
 
 void Scene::render(const unique_ptr<Window>& window) {

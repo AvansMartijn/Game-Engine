@@ -2,6 +2,7 @@
 #include "GodmodeCheat.h"
 #include "UnlimitedAmmoCheat.h"
 #include "NoCooldownCheat.h"
+#include "Scene.h"
 
 CheatManager CheatManager::_instance;
 
@@ -13,8 +14,9 @@ bool CheatManager::executeCheat(std::string Cheat)
     for (auto const& cheat : CheatList)
     {
         if (Cheat == cheat.first) {
-            if (cheat.second.get()->Execute())
+            if (cheat.second.get()->Execute()) {
                 return true;
+            }
             break;
         }
     }

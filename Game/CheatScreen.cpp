@@ -65,6 +65,7 @@ void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 		if (CheatManager::getInstance().isCheat(cheat))
 		{
 			if (CheatManager::getInstance().executeCheat(cheat))
+				Scene::getInstance().hasCheated = true;
 				_cheatText->text = "Cheat Activated";
 		}
 	}
