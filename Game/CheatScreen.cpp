@@ -71,7 +71,10 @@ void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 	}
 
 	if (e.keysym.sym == SDLK_BACKSPACE) {
-		if (_cheatText->text.size() > 1) {
+		if (_cheatText->text.size() == 1) {
+			_cheatText->text = " ";
+		}
+		else if (_cheatText->text.size() > 1) {
 			_cheatText->text.pop_back();
 		}
 	}
