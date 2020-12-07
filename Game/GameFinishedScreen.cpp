@@ -1,6 +1,25 @@
 #include "GameFinishedScreen.h"
-#include "GameSettings.h"
 
+
+// trim from start (in place)
+static inline void ltrim(std::string& s) {
+	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}));
+}
+
+// trim from end (in place)
+static inline void rtrim(std::string& s) {
+	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}).base(), s.end());
+}
+
+// trim from both ends (in place)
+static inline void trim(std::string& s) {
+	ltrim(s);
+	rtrim(s);
+}
 
 GameFinishedScreen::GameFinishedScreen() {}
 
@@ -20,7 +39,7 @@ void GameFinishedScreen::onInit() {
 	_bodyText = make_shared<TextUiElement>(bodyText);
 	_uiElements.push_back(_bodyText);
 
-	TextUiElement nameLabelText = TextUiElement("Name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement nameLabelText = TextUiElement("Type your name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
 
 	ImageUiElement walu = ImageUiElement("Win", { 1080 - 350 , ((720 - 400) / 2) + 50, 400, 400 });
@@ -29,6 +48,9 @@ void GameFinishedScreen::onInit() {
 	TextUiElement nameText = TextUiElement(" ", font, 48, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_nameText = make_shared<TextUiElement>(nameText);
 	_uiElements.push_back(_nameText);
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
 
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
@@ -47,8 +69,14 @@ void GameFinishedScreen::onInit() {
 					break;
 				}
 			}
-			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+
+			std::string name = _nameText->text;
+			trim(name);
+
+			if (name == "")
+				_nameText->text = "Waluigi";
 			
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 			GameSettings::getInstance().save();
 		}		
 
@@ -95,8 +123,14 @@ void GameFinishedScreen::onInit() {
 					break;
 				}
 			}
-			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 
+			std::string name = _nameText->text;
+			trim(name);
+
+			if (name == "")
+				_nameText->text = "Waluigi";
+
+			GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
 			GameSettings::getInstance().save();
 		}
 		game->switchScreen(Screens::MainMenu);
@@ -105,7 +139,12 @@ void GameFinishedScreen::onInit() {
 
 }
 
-void GameFinishedScreen::onTick() {}
+void GameFinishedScreen::onTick() {
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		_fps->text = "  ";
+}
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {
 
@@ -120,14 +159,14 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	auto test = e.keysym.scancode;
+	SDL_Scancode test = e.keysym.scancode;
 	std::string test3 = SDL_GetScancodeName(test);
 	if (e.keysym.sym == SDLK_BACKSPACE) {
 		if (_nameText->text.size() > 1) {
 			_nameText->text.pop_back();
 		}
 	}
-	if (_nameText->text.length() < 20) {
+	if (_nameText->text.length() < 21) {
 		if (e.keysym.sym == SDLK_SPACE) {
 			_nameText->text.push_back(' ');
 		}
@@ -136,6 +175,15 @@ void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		}
 	}
 	
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 }
 
 void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

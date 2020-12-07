@@ -35,15 +35,5 @@ public:
 	/// Prepare the game.
 	/// </summary>
 	void onInit();
-	/// <summary>
-	/// Switch the current screen to the screen with the given index
-	/// </summary>
-	int getPreviousScreen();
-	/// <summary>
-	/// Switch the current screen to the screen with the given index
-	/// </summary>
-	/// <param name="screenIndex">The index of the screen we want to display</param>
-	/// <param name="args">The arguments we want to pass to the next screen</param>
-	void switchScreen(int screenIndex, vector<std::string> args = {});
 };
 

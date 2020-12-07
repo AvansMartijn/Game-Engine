@@ -17,20 +17,33 @@ void HelpScreen::onInit() {
 	TextUiElement line = TextUiElement("hierkomt een uitleg over hoe het spel werkt zodra er meer functionaliteit is ", font, 25, { 0, 100, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, true);
 	_uiElements.push_back(make_shared<TextUiElement>(line));
 
-	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { 475, 600, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
-	keyBindingsButton.registerGame(_game);
-	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
-
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+
 }
 
-void HelpScreen::onTick(){}
+void HelpScreen::onTick(){
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		_fps->text = "  ";
+}
 
-void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {}
+void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+}
 
 void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 

@@ -7,9 +7,12 @@
 #include "ImageUiElement.h"
 #include "Screens.h"
 #include "GameSettings.h"
+#include "ControllManager.h"
 
 class MainMenuScreen : public AbstractScreen
 {
+private:
+	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;
 	MainMenuScreen();

@@ -7,21 +7,31 @@
 #include <string>
 #include <memory>
 #include "Window.h"
+#include <chrono>
 
 class GAMEENGINE_AbstractManageableItem AbstractManageableItem
 {
 protected:
 	std::string _textureKey;
+	std::string _screenName;
 	shared_ptr<GameObject> _owner;
 	float _width;
 	float _height;
+	int _ammo;
+	long _cooldown;
+	std::chrono::steady_clock::time_point _lastUsed;
 public:
 	AbstractManageableItem();
 	~AbstractManageableItem();
 
 	std::string getTextureKey();	
+	std::string getScreemName();
 	float getWidth();
 	float getHeight();
+	int getAmmo();
+	long getCooldown();
+	void setAmmo(int amount);
+	void setCooldown(long amount);
 	void setOwner(shared_ptr<GameObject> owner);
 
 	virtual void render(const unique_ptr<Window>& window);

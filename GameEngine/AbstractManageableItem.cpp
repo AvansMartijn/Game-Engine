@@ -13,12 +13,33 @@ std::string AbstractManageableItem::getTextureKey() {
 	return _textureKey;
 }
 
+std::string AbstractManageableItem::getScreemName()
+{
+	return _screenName;
+}
+
 float AbstractManageableItem::getWidth() {
 	return _width; 
 }
 
 float AbstractManageableItem::getHeight() {
 	return _height; 
+}
+
+int AbstractManageableItem::getAmmo() {
+	return _ammo;
+}
+
+long AbstractManageableItem::getCooldown() {
+	return _cooldown;
+}
+
+void AbstractManageableItem::setAmmo(int amount) {
+	_ammo = amount;
+}
+
+void AbstractManageableItem::setCooldown(long amount) {
+	_cooldown = amount;
 }
 
 void AbstractManageableItem::setOwner(shared_ptr<GameObject> owner) {

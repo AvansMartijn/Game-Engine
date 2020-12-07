@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "CollisionListener.h"
 
 Game::Game(const char* title, int width, int height) : AbstractGame(title, width, height) {}
 
@@ -36,6 +37,11 @@ void Game::onInit() {
 	registerTexture("Win", "res/gfx/Win.png");
 	registerTexture("Hat", "res/gfx/Pauze.png");
 
+	registerTexture("PortalOrange", "res/gfx/Portal1.png");
+	registerTexture("PortalPurple", "res/gfx/Portal2.png");
+
+	registerTexture("Keybindings", "res/gfx/tutorialTest.png");
+
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
 	LibCurl libcurl;
@@ -43,10 +49,13 @@ void Game::onInit() {
 
 	registerTexture("AdPlaceholder", location);
 	registerTexture("Background", "res/gfx/Background.png");
+	registerTexture("BackgroundTint", "res/gfx/BackgroundTint.png");
 	registerTexture("BackgroundGame", "res/gfx/GameBackground.png");
+	registerTexture("BackgroundHud", "res/gfx/BackgroundHud.png");
 	registerTexture("Logo", "res/gfx/LatropLogo.png");
 	registerTexture("Line", "res/gfx/Line.png");
 	registerTexture("LogoWesley", "res/gfx/LatropLogoWesley.png");
+
 	//Font
 	registerFont("OpenSans", "res/fonts/OpenSans-Regular.ttf");
 	registerFont("Paint", "res/fonts/Paint Drops.ttf");
@@ -65,6 +74,11 @@ void Game::onInit() {
 	registerSFXTrack("Thruster_Sound", "res/music/Thruster_Sound.wav");
 	registerSFXTrack("Glue_Sound", "res/music/Glue_Sound.ogg");
 
+	//create collision listener
+	shared_ptr<CollisionListener> colListener = make_shared<CollisionListener>(CollisionListener());
+	Physics::getInstance().setContactListener(colListener);
+
+
 	for (size_t i = 0; i < screens.size(); i++)
 		screens[i]->preRender(_window);
 
@@ -72,33 +86,4 @@ void Game::onInit() {
 
 
 	gameLoop();
-}
-
-int Game::getPreviousScreen() {
-	if (_previousScreens.size() > 0)
-	{
-		int value = _previousScreens.top();
-		_previousScreens.pop();
-		return value;
-	}
-	return -1;
-}
-
-void Game::switchScreen(int screenIndex, vector<std::string> args) {
-	size_t index = screenIndex;
-	if (index == -1)
-		index = this->getPreviousScreen();
-	else if (_activeScreen)
-		_previousScreens.push(_activeScreen);
-
-	if (index + 1 <= screens.size()) {
-		_activeScreen = index;
-		screens.at(_activeScreen)->onScreenShowed(args);
-	}
-
-	const std::string& trackKey = screens.at(_activeScreen)->backgroundTrackKey;
-	
-	if (trackKey != "" && trackKey != SoundPlayer::getInstance().playingTrackKey) {
-		playMusicTrack(trackKey);
-	}
 }

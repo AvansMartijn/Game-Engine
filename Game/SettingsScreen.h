@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractScreen.h"
 #include <TextUiElement.h>
+#include "ControllManager.h"
 
 
 class SettingsScreen : public AbstractScreen
@@ -8,7 +9,7 @@ class SettingsScreen : public AbstractScreen
 private:
 	shared_ptr<TextUiElement> _soundText;
 	shared_ptr<TextUiElement> _soundFxText;
-	
+	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;
 	SettingsScreen();

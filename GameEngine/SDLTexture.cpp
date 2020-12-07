@@ -12,7 +12,7 @@ SDLTexture::~SDLTexture() {
 	// TODO: Destroy
 }
 
-void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey) {
+void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey, int alpha) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -23,6 +23,9 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 	if (!flipLeft)
 		flip = SDL_FLIP_NONE;
 
+	if(alpha > 0)
+		SDL_SetTextureAlphaMod(_texture, alpha);
+
 	if (spriteKey != "") {
 		SDL_Rect srcRect = { sprites[spriteKey].x, sprites[spriteKey].y, sprites[spriteKey].w, sprites[spriteKey].h };
 
@@ -31,20 +34,4 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 	else
 		SDL_RenderCopyEx(renderer, _texture, NULL, &sdlRect, (double)angle, NULL, flip);
 
-	//// TODO: Please add a debug variable, these can get really annoying.
-	//Color color1 = { 255, 0, 0, 1 };
-	//Rect centerrect = { centerPoint.x, centerPoint.y, 2, 2 };
-	//renderRectangle(centerrect, color1);
-	//Color color2 = { 255, 0, 0, 1 };
-	//Rect leftuprect = { rect.x, rect.y, 2, 2 };
-	//renderRectangle(leftuprect, color2);
-	//Color color3 = { 255, 0, 0, 1 };
-	//Rect rightuprect = { rect.x + rect.w,  rect.y, 2, 2 };
-	//renderRectangle(rightuprect, color3);
-	//Color color4 = { 255, 0, 0, 1 };
-	//Rect leftdownrect = { rect.x,  rect.y + rect.h, 2, 2 };
-	//renderRectangle(leftdownrect, color4);
-	//Color color5 = { 255, 0, 0, 1 };
-	//Rect rightdownrect = { rect.x + rect.w,  rect.y + rect.h, 2, 2 };
-	//renderRectangle(rightdownrect, color5);
 }

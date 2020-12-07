@@ -7,6 +7,7 @@
 #include "ImageUiElement.h"
 #include "Screens.h"
 #include "GameSettings.h"
+#include "ControllManager.h"
 
 class LoadCustomLevelScreen : public AbstractScreen
 {
@@ -42,4 +43,6 @@ public:
 private:
 	int offset = 0;
 	int y;
+	std::vector<FileData> _files;
+	shared_ptr<TextUiElement> _fps;
 };
