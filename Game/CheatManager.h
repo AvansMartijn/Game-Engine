@@ -21,5 +21,5 @@ public:
 	std::map<std::string, std::string> getCheatInformation();
 	void initializeCheats();
 	bool isCheat(std::string Cheat);
-	void executeCheat(std::string Cheat);
+	bool executeCheat(std::string Cheat);
 };

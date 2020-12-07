@@ -4,6 +4,6 @@
 class NoCooldownCheat : public CheatCommand
 {
 public:
-	void Execute();
+	bool Execute();
 };
 

@@ -1,7 +1,13 @@
 #include "NoCooldownCheat.h"
 #include "Scene.h"
 
-void NoCooldownCheat::Execute()
+bool NoCooldownCheat::Execute()
 {
-	auto gun1 = Scene::getInstance().getWieldExtension().get();
+	std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getWieldExtension()->getItems();
+
+	for (auto const& gun : guns)
+	{
+		gun->setCooldown(0);
+	}
+	return true;
 }

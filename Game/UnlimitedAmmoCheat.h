@@ -4,6 +4,6 @@
 class UnlimitedAmmoCheat : public CheatCommand
 {
 public:
-	void Execute();
+	bool Execute();
 };
 

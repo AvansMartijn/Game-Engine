@@ -4,6 +4,6 @@
 class GodmodeCheat : public CheatCommand
 {
 public:
-	void Execute();
+	bool Execute();
 };
 
