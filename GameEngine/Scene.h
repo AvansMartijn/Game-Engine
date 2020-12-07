@@ -41,6 +41,7 @@ public:
 	bool isLocked;
 	int score;
 	bool gameOver;
+	bool hasCheated = false;
 	float zoom = 40.0f;
 
 	/// <summary>

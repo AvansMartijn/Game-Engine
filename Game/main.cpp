@@ -6,6 +6,9 @@
 #include "LoadingScreen.h"
 #include "NewGameSlotsScreen.h"
 #include "LoadGameSlotsScreen.h"
+#include "CheatScreen.h"
+#include "CheatHelpScreen.h"
+#include "CheatManager.h"
 #include "StartNewLevelScreen.h"
 
 
@@ -24,8 +27,11 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().addLevel(5, { "Level_3", LevelType::TILED });
 	GameSettings::getInstance().addLevel(6, { "Level_4", LevelType::TILED });
 
-	//
+	//Init Controlls
 	ControllManager::getInstance().initializeControlls();
+
+	//Init Cheats
+	CheatManager::getInstance().initializeCheats();
 
 	// Register Items
 	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
@@ -108,6 +114,16 @@ int main(int argc, char* argv[]) {
 	LoadGameSlotsScreen->onInit();
 	game.screens.push_back(move(LoadGameSlotsScreen));
 
+	unique_ptr<CheatScreen> CheatScreen(new CheatScreen);
+	CheatScreen->registerGame(&game);
+	CheatScreen->onInit();
+	game.screens.push_back(move(CheatScreen));
+
+	unique_ptr<CheatHelpScreen> CheatHelpScreen(new CheatHelpScreen);
+	CheatHelpScreen->registerGame(&game);
+	CheatHelpScreen->onInit();
+	game.screens.push_back(move(CheatHelpScreen));
+	
 	unique_ptr<StartNewLevelScreen> StartNewLevelScreen(new StartNewLevelScreen);
 	StartNewLevelScreen->registerGame(&game);
 	StartNewLevelScreen->onInit();

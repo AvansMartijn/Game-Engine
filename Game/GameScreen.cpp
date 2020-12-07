@@ -79,10 +79,13 @@ void GameScreen::onTick() {
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
 		float healthValue = dynamic_pointer_cast<HealthExtension>(gameObject->getExtension(typeid(HealthExtension)))->getHealth();
 
-		if (healthValue <= 0)
-			Scene::getInstance().gameOver = true;
-		else
+		if (healthValue <= 0) {
+			_game->switchScreen(Screens::GameOver);
+			return;
+		}
+		else {
 			_hpBar->percent = healthValue / 100;
+		}
 	}
 
 	if (timePassed >= 1)
@@ -317,6 +320,10 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
 
+		break;
+	case SDLK_TAB:
+		//TODO Open Cheat Window
+		_game->switchScreen(Screens::Cheat);
 		break;
 	case SDLK_p:
 		_game->reset();

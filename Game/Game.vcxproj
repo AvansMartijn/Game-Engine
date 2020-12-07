@@ -174,6 +174,10 @@
   <ItemGroup>
     <ClCompile Include="AbstractLevel.cpp" />
     <ClCompile Include="AbstractLevelLoader.cpp" />
+    <ClCompile Include="CheatCommand.cpp" />
+    <ClCompile Include="CheatHelpScreen.cpp" />
+    <ClCompile Include="CheatManager.cpp" />
+    <ClCompile Include="CheatScreen.cpp" />
     <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
@@ -185,6 +189,7 @@
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="GameSettings.cpp" />
+    <ClCompile Include="GodmodeCheat.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="HighscoreScreen.cpp" />
     <ClCompile Include="KeybindingData.cpp" />
@@ -194,6 +199,7 @@
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="NoCooldownCheat.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="SaveKeybindings.cpp" />
     <ClCompile Include="PlayerMoves.cpp" />
@@ -203,10 +209,15 @@
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
+    <ClCompile Include="UnlimitedAmmoCheat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractLevel.h" />
     <ClInclude Include="AbstractLevelLoader.h" />
+    <ClInclude Include="CheatCommand.h" />
+    <ClInclude Include="CheatHelpScreen.h" />
+    <ClInclude Include="CheatManager.h" />
+    <ClInclude Include="CheatScreen.h" />
     <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
@@ -218,6 +229,7 @@
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GameSettings.h" />
+    <ClInclude Include="GodmodeCheat.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="json.h" />
@@ -229,6 +241,7 @@
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="NoCooldownCheat.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
     <ClInclude Include="Quotes.h" />
@@ -250,6 +263,7 @@
     <ClInclude Include="TiledProperty.h" />
     <ClInclude Include="TiledTile.h" />
     <ClInclude Include="TiledTileSet.h" />
+    <ClInclude Include="UnlimitedAmmoCheat.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SettingsScreen.h" />
