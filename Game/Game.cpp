@@ -39,7 +39,7 @@ void Game::onInit() {
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
 	LibCurl libcurl;
-	auto location = libcurl.PerformRequest("https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-lush-sale-advertising-01.jpg");
+	auto location = libcurl.PerformRequest("https://latropads.mardy.tk/ad.jpg");
 
 	registerTexture("AdPlaceholder", location);
 	registerTexture("Background", "res/gfx/Background.png");
