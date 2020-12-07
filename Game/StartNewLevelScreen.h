@@ -18,7 +18,8 @@ private:
 	shared_ptr<ImageUiElement> keybindingsImage;
 	shared_ptr<TextUiElement> _fps;
 
-	int offsett = 0;
+	int offset = 0;
+	int anchor = 0;
 
 public:
 	using AbstractScreen::AbstractScreen;

@@ -38,6 +38,7 @@ void StartNewLevelScreen::onInit() {
 	TextUiElement storyText = TextUiElement(lines, "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true);
 	StoryText = make_shared<TextUiElement>(storyText);		
 	_uiElements.push_back(StoryText);
+	anchor = StoryText->_rect.y;
 
 
 	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
@@ -103,13 +104,28 @@ void StartNewLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 
 	if (e.y > 0) // scroll up
-		offsett = 10;
+		offset = 20;
 	else if (e.y < 0) // scroll down
-		offsett = -10;
+		offset = -20;
+	int heightOfScrolBlock = 0;
 
-	StoryTitle->_rect.y += offsett;
-	StoryText->_rect.y += offsett;
-	KeyBindingsTitle->_rect.y += offsett;
-	keybindingsImage->_rect.y += offsett;
+	heightOfScrolBlock += StoryText->textLines.size() * 25;
+	heightOfScrolBlock += 40;
+	heightOfScrolBlock += 40;
+
+
+	int currentY = StoryTitle->_rect.y;
+
+	if ((currentY += offset) < anchor) {
+		if ((currentY += offset) > ((anchor + heightOfScrolBlock - 200) * -1)) {
+			StoryTitle->_rect.y += offset;
+			StoryText->_rect.y += offset;
+			KeyBindingsTitle->_rect.y += offset;
+			keybindingsImage->_rect.y += offset;
+		}
+	}
+
+
+
 }
 
