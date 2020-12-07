@@ -79,10 +79,13 @@ void GameScreen::onTick() {
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
 		float healthValue = dynamic_pointer_cast<HealthExtension>(gameObject->getExtension(typeid(HealthExtension)))->getHealth();
 
-		if (healthValue <= 0)
-			Scene::getInstance().gameOver = true;
-		else
+		if (healthValue <= 0) {
+			_game->switchScreen(Screens::GameOver);
+			return;
+		}
+		else {
 			_hpBar->percent = healthValue / 100;
+		}
 	}
 
 	if (timePassed >= 1)
