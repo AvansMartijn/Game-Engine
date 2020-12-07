@@ -27,7 +27,7 @@ void CheatHelpScreen::onInit()
 	TextUiElement title = TextUiElement("Cheats Overview", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
-	TextUiElement cheatInformation = TextUiElement("-", font, 25, { 10, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	TextUiElement cheatInformation = TextUiElement(" ", font, 25, { 10, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	_cheatInformation = make_shared<TextUiElement>(cheatInformation);
 	_uiElements.push_back(_cheatInformation);
 
