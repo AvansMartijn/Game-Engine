@@ -26,7 +26,7 @@ void GameScreen::setupHUD() {
 	const string font = "Portal";
 	const int fontSize = 19;
 
-	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 300, 100 }, 122));
+	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 250, 100 }, 122));
 	_uiElements.push_back(_hudBackgroundImg);
 	_gameUiElements.push_back(_hudBackgroundImg);
 
@@ -364,8 +364,8 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 		if (Scene::getInstance().zoom > 10)
 			Scene::getInstance().zoom -= 3.0f;
 	}
-
 }
+
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	_backgroundImg->render(window);
