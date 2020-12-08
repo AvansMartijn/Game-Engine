@@ -125,7 +125,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl_a_debug.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)Release\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)Release\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
@@ -165,7 +165,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl_a_debug.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)Release\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)Release\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>

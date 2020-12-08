@@ -48,5 +48,17 @@ public:
 	/// <param name="value">The amount of meters to convert.</param>
 	/// <returns>The value in pixels.</returns>
 	int metersToPixels(float value);
+
+	template<typename T>
+	std::shared_ptr<T> getExtension() {
+		const std::type_info& typeId = typeid(T);
+
+		std::shared_ptr<AbstractGameObjectExtension> baseExtension = getExtension(typeId);
+
+		if (baseExtension == nullptr)
+			return nullptr;
+
+		return dynamic_pointer_cast<T>(baseExtension);
+	}
 };
 
