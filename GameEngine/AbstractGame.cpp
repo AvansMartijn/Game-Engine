@@ -25,24 +25,21 @@ void AbstractGame::gameLoop() {
 	bool running = true;
 	unsigned int a = SDL_GetTicks();
 	unsigned int b = SDL_GetTicks();
+	unsigned int c = SDL_GetTicks();
+	unsigned int d = SDL_GetTicks();
 	double delta = 0;
+	double qubec = 0;
 	while (running) {
 		a = SDL_GetTicks();
+		c = SDL_GetTicks();
 		delta = a - b;
-		if (delta > 1000 / 60.0) {
+		qubec = c - d;
+		if (delta > 1000 / Scene::getInstance().tickRate) {
 			//cout << "FPS: " << 1000 / delta << std::endl;
 			b = a;
 
 			screens.at(_activeScreen)->onTick();
-
-			_window->clear();
-
-			screens.at(_activeScreen)->render(_window);
-
-			_window->display();
 			
-			calculateFps();
-
 			while (SDL_PollEvent(&event)) {
 				switch (event.type)
 				{
@@ -68,6 +65,16 @@ void AbstractGame::gameLoop() {
 					break;
 				}
 			}
+		}
+
+		if (qubec > 1000 / Scene::getInstance().refreshRate) {
+			d = c;
+			calculateFps();
+			_window->clear();
+
+			screens.at(_activeScreen)->render(_window);
+
+			_window->display();
 		}
 	}
 }

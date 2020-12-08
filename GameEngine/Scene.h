@@ -29,6 +29,8 @@ private:
 	bool preRender = false;
 
 public:
+	float tickRate = 60.0;
+	float refreshRate = 144.0;
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }

@@ -2,6 +2,8 @@
 #include "GodmodeCheat.h"
 #include "UnlimitedAmmoCheat.h"
 #include "NoCooldownCheat.h"
+#include "SonicModeCheat.h"
+#include "MartijnModeCheat.h"
 #include "Scene.h"
 
 CheatManager CheatManager::_instance;
@@ -32,6 +34,8 @@ void CheatManager::initializeCheats()
     GodmodeCheat godmodeCheat;
     UnlimitedAmmoCheat unlimitedAmmoCheat;
     NoCooldownCheat noCooldownCheat;
+    SonicModeCheat sonicModeCheat;
+    MartijnModeCheat martijnModeCheat;
 
     CheatList.insert({ "godmode", std::make_unique<GodmodeCheat>(godmodeCheat) });
     CheatInformation.insert({ "godmode","Gives the play a shitload of health, if you manage to die now you kinda deserve it. :^)" });
@@ -41,6 +45,12 @@ void CheatManager::initializeCheats()
 
     CheatList.insert({ "nocooldown", std::make_unique<NoCooldownCheat>(noCooldownCheat) });
     CheatInformation.insert({ "nocooldown","Sets the cooldown of all guns to 0." });
+
+    CheatList.insert({ "sonicmode", std::make_unique<SonicModeCheat>(sonicModeCheat) });
+    CheatInformation.insert({ "sonicmode","Ups the game speed" });
+
+    CheatList.insert({ "martijnmode", std::make_unique<MartijnModeCheat>(martijnModeCheat) });
+    CheatInformation.insert({ "martijnmode","reset the game speed" });
 }
 
 bool CheatManager::isCheat(std::string Cheat)
