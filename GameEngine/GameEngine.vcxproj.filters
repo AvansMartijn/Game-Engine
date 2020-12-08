@@ -303,6 +303,12 @@
     <ClInclude Include="AbstractContactListener.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Particles.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -484,6 +490,12 @@
     </ClCompile>
     <ClCompile Include="AbstractContactListener.cpp">
       <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="Particles.cpp">
+      <Filter>Source Files\UiElements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

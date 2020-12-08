@@ -242,6 +242,8 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="IsPortalableExtension.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
+    <ClInclude Include="Particles.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PickupExtension.h" />
@@ -307,6 +309,8 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="LibCurl.cpp" />
     <ClCompile Include="IsPortalableExtension.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
+    <ClCompile Include="Particles.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

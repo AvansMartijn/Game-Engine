@@ -386,6 +386,17 @@ void GameScreen::render(const unique_ptr<Window>& window) {
 		if (Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
 			Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
 	}
+
+
+	  auto p = new Particles();        // create a new particle system pointer
+	  p->setPosition(512, 384);              // set the position
+	  p->setStyle(Particles::FIRE);    // set the example effects
+	  p->setStartSpin(0);
+	  p->setStartSpinVar(90);
+	  p->setEndSpin(90);
+	  p->setStartSpinVar(90);
+
+	  p->draw();
 }
 
 void GameScreen::reset() {

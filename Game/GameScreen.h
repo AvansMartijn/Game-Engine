@@ -27,6 +27,7 @@
 #include "GameSettings.h"
 #include <TextUiElement.h>
 #include <HealthExtension.h>
+#include "Particles.h"
 
 
 using namespace std;
