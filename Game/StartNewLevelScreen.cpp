@@ -161,7 +161,5 @@ void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 		}
 	}
 
-
-
 }
 
