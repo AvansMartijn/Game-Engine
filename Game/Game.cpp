@@ -40,7 +40,7 @@ void Game::onInit() {
 	registerTexture("PortalOrange", "res/gfx/Portal1.png");
 	registerTexture("PortalPurple", "res/gfx/Portal2.png");
 
-	registerTexture("Keybindings", "res/gfx/tutorialTest.png");
+	registerTexture("Keybindings", "res/gfx/tutorial.png");
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
