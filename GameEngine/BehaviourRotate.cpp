@@ -3,14 +3,8 @@
 
 void BehaviourRotate::execute() {
 	std::cout << "> Rotate\n";
+	shared_ptr<EntityMovementExtension> movementExtension = _self->getExtension<EntityMovementExtension>();
+	movementExtension->isLookingRight = !movementExtension->isLookingRight;
 
 	this->executeNextBehaviour(true);
-}
-
-bool BehaviourRotate::hasEnoughTimeElapsed() {
-	return false;
-}
-
-bool BehaviourRotate::canRotate() {
-	return false;
 }

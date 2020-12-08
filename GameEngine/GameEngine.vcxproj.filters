@@ -303,6 +303,9 @@
     <ClInclude Include="AbstractContactListener.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="EntityMovementExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -484,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="AbstractContactListener.cpp">
       <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityMovementExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

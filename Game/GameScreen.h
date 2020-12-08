@@ -27,7 +27,9 @@
 #include "GameSettings.h"
 #include <TextUiElement.h>
 #include <HealthExtension.h>
-
+#include <EntityMovementExtension.h>
+#include "EnemyTextureExtension.h"
+#include "PlayerTextureExtension.h"
 
 using namespace std;
 

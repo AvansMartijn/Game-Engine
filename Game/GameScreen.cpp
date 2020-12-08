@@ -138,12 +138,14 @@ void GameScreen::onTick() {
 	
 
 	// TODO: Execute AI
-	size_t a = Scene::getInstance().getEntitiesSize();
 	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
 
 		if (gameObject->hasExtension(typeid(AiExtension)))
-			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
+			gameObject->getExtension<AiExtension>()->execute();
+
+		if (gameObject->hasExtension(typeid(EntityMovementExtension)))
+			gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
 	}
 
 }
@@ -211,36 +213,37 @@ void GameScreen::handlePlayerControls() {
 }
 
 void GameScreen::calculatePlayerTexture() {
-	shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayerMoveExtension();
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(PlayerTextureExtension)))
+		Scene::getInstance().getPlayer()->getExtension<PlayerTextureExtension>()->calculateTextures();
 
-	if (moveExtension->isLookingToRight) {
-		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
-		}
-		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
-		}
-	}
-	else {
-		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
-		}
-		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
-		}
-	}
+	//if (moveExtension->isLookingToRight) {
+	//	if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
+	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
+	//		else
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
+	//	}
+	//	else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
+	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
+	//		else
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
+	//	}
+	//}
+	//else {
+	//	if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
+	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
+	//		else
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
+	//	}
+	//	else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
+	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
+	//		else
+	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
+	//	}
+	//}
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

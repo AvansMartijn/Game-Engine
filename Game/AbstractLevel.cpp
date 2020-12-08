@@ -5,9 +5,15 @@ shared_ptr<GameObject> AbstractLevel::createEntity(GameEngine gameEngine, vector
 }
 
 shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
+	if (friction == -1 && !fixed && !fixedRotation)
+		extensions.push_back("PlayerTextureExtension");
+	else
+		extensions.push_back("EnemyTextureExtension");
+
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
+
 
 	if (friction == -1 && !fixed && !fixedRotation)
 		Physics::getInstance().addPlayer(gameObject, x, y, width, height);

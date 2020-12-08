@@ -1,4 +1,10 @@
 #pragma once
+#ifdef GAMEENGINE_EXPORTS
+#define GAMEENGINE_GameObjectExtensionFactory __declspec(dllexport)
+#else
+#define GAMEENGINE_GameObjectExtensionFactory __declspec(dllimport)
+#endif
+
 #include "GameObject.h"
 #include "AbstractGameObjectExtension.h"
 
@@ -9,7 +15,7 @@
 
 using namespace std;
 
-class GameObjectExtensionFactory
+class GAMEENGINE_GameObjectExtensionFactory GameObjectExtensionFactory
 {
 private:
     GameObjectExtensionFactory();

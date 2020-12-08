@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractBehaviour.h"
+#include "EntityMovementExtension.h"
 
 /// <summary>
 /// Rotate ai behavior
@@ -13,17 +14,5 @@ public:
 	/// Execute the behaviour.
 	/// </summary>
 	void execute();
-
-	/// <summary>
-	/// If enough time has elapsed for the next rotation.
-	/// </summary>
-	/// <returns>If enough time has elapsed</returns>
-	bool hasEnoughTimeElapsed();
-
-	/// <summary>
-	/// Looks if the object can be rotated.
-	/// </summary>
-	/// <returns>If the object can be rotated</returns>
-	bool canRotate();
 };
 

@@ -226,6 +226,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="DummyManagableItem.h" />
     <ClInclude Include="EntityCategory.h" />
     <ClInclude Include="dirent.h" />
+    <ClInclude Include="EntityMovementExtension.h" />
     <ClInclude Include="FileData.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
@@ -294,6 +295,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DoesDamageExtension.cpp" />
     <ClCompile Include="DummyManagableItem.cpp" />
+    <ClCompile Include="EntityMovementExtension.cpp" />
     <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />

@@ -184,6 +184,7 @@
     <ClCompile Include="DefaultLevel.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
     <ClCompile Include="DefaultTiledLevel.cpp" />
+    <ClCompile Include="EnemyTextureExtension.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameFinishedScreen.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
@@ -201,6 +202,7 @@
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="NoCooldownCheat.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="PlayerTextureExtension.cpp" />
     <ClCompile Include="SaveKeybindings.cpp" />
     <ClCompile Include="PlayerMoves.cpp" />
     <ClCompile Include="Quotes.cpp" />
@@ -224,6 +226,7 @@
     <ClInclude Include="DefaultLevel.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
     <ClInclude Include="DefaultTiledLevel.h" />
+    <ClInclude Include="EnemyTextureExtension.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameFinishedScreen.h" />
     <ClInclude Include="GameOverScreen.h" />
@@ -244,6 +247,7 @@
     <ClInclude Include="NoCooldownCheat.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerMoves.h" />
+    <ClInclude Include="PlayerTextureExtension.h" />
     <ClInclude Include="Quotes.h" />
     <ClInclude Include="SaveGame.h" />
     <ClInclude Include="NewGameSlotsScreen.h" />

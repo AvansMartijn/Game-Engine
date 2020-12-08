@@ -17,6 +17,8 @@
 #include "GameSettings.h"
 #include "LevelData.h"
 #include "LibCurl.h"
+#include "PlayerTextureExtension.h"
+#include "EnemyTextureExtension.h"
 
 //engine
 #include "GameEngine.h" 

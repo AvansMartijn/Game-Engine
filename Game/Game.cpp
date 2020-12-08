@@ -6,6 +6,9 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
+	// Register Sprite
+	GameObjectExtensionFactory::get()->registerExtension("PlayerTextureExtension", &PlayerTextureExtension::create);
+
 	// Sprites
 	std::map<std::string, Rect> sprites;
 	sprites.insert(std::make_pair(PlayerMoves::LOOK_RIGHT, Rect{ 662, 78, 318, 456 }));

@@ -79,7 +79,8 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 			// We only use the default entity ai, so no need to check for anything else.
 			shared_ptr<DefaultEntityAI> entityAi = make_shared<DefaultEntityAI>(DefaultEntityAI{});
 			entityAi->createBehaviourTree(enemy);
-			dynamic_pointer_cast<AiExtension>(enemy->getExtension(typeid(AiExtension)))->ai = entityAi;
+
+			enemy->getExtension<AiExtension>()->ai = entityAi;
 		}
 	}
 	else if (tiledGameObject.layerType == "Tools") {
