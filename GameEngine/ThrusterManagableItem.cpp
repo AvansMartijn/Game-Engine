@@ -4,7 +4,7 @@
 #include <iostream>
 
 ThrusterManagableItem::ThrusterManagableItem() {
-	_textureKey = "DIY_Weapon";
+	_textureKey = "ThrusterGun";
 	_screenName = "THRUSTER GUN";
 	//default ammo and cooldown
 	_ammo = -1;

@@ -6,7 +6,7 @@
 #include "Physics.h"
 
 GlueManagableItem::GlueManagableItem() {
-	_textureKey = "DIY_Weapon";
+	_textureKey = "GlueGun";
 	_screenName = "GLUE GUN";
 	//default ammo and cooldown
 	_ammo = -1;
