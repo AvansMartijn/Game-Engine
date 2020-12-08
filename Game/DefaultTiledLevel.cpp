@@ -84,16 +84,54 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	}
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
-		shared_ptr<AbstractManageableItem> item = Scene::getInstance().getItem(tiledGameObject.type);
+		//TODO:: v DAt MOET NETTER
 
-		if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
-			item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+		//TODO:: DIT MOET NETTER
+		if (tiledGameObject.type == "GlueGun") {
+			shared_ptr<GlueManagableItem> itemBluePrint = Scene::getInstance().getItem<GlueManagableItem>(tiledGameObject.type);
+			std::shared_ptr<GlueManagableItem> item = std::make_shared<GlueManagableItem>(*itemBluePrint);
+			if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
+				item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
 
-		if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
-			item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+			if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
+				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
 
-		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-		dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
+			dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+
+		}
+		//TODO:: DIT MOET NETTER
+		else if (tiledGameObject.type == "ThrusterGun") {
+			shared_ptr<ThrusterManagableItem> itemBluePrint = Scene::getInstance().getItem<ThrusterManagableItem>(tiledGameObject.type);
+
+			std::shared_ptr<ThrusterManagableItem> item = std::make_shared<ThrusterManagableItem>(*itemBluePrint);
+			if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
+				item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+
+			if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
+				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+
+			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
+			dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+
+		}
+		//TODO:: DIT MOET NETTER
+		else {
+			shared_ptr<PortalManagableItem> itemBluePrint = Scene::getInstance().getItem<PortalManagableItem>(tiledGameObject.type);
+
+			std::shared_ptr<PortalManagableItem> item = std::make_shared<PortalManagableItem>(*itemBluePrint);
+			if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
+				item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+
+			if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
+				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+
+			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
+			dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+
+		}
+		//TODO:: ^DAt MOET NETTER
+
 	}
 	else if (tiledGameObject.layerType == "Misc") {
 		if (tiledGameObject.type == "Text") {

@@ -104,11 +104,21 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 	// Weapon Block
 	
-	shared_ptr<AbstractManageableItem> glueItem = Scene::getInstance().getItem("GlueGun");
-	glueItem->setAmmo(-1);
+	shared_ptr<GlueManagableItem> glueItemBlueprint = Scene::getInstance().getItem<GlueManagableItem>("GlueGun");
+	std::shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>(*glueItemBlueprint);
+	glueItem->setAmmo(5);
 	glueItem->setCooldown(500);
 	shared_ptr<GameObject> weaponGlue = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
 		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
+
+	std::shared_ptr<GlueManagableItem> glueItem2 = std::make_shared<GlueManagableItem>(*glueItemBlueprint);
+	glueItem2->setAmmo(10);
+	glueItem2->setCooldown(500);
+	shared_ptr<GameObject> weaponGlue2 = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
+		12, 17.5f, glueItem2->getWidth(), glueItem2->getHeight(), "pickupSensor");
+
+	//shared_ptr<AbstractManageableItem> glueItem = 
+
 
 	shared_ptr<AbstractManageableItem> thrusterItem = Scene::getInstance().getItem("ThrusterGun");
 	thrusterItem->setAmmo(-1);
@@ -176,6 +186,7 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 	// Item Binding
 	dynamic_pointer_cast<PickupExtension>(weaponGlue->getExtension(typeid(PickupExtension)))->setItem(glueItem);
+	dynamic_pointer_cast<PickupExtension>(weaponGlue2->getExtension(typeid(PickupExtension)))->setItem(glueItem2);
 	dynamic_pointer_cast<PickupExtension>(weaponThruster->getExtension(typeid(PickupExtension)))->setItem(thrusterItem);
 	dynamic_pointer_cast<PickupExtension>(weaponPortal->getExtension(typeid(PickupExtension)))->setItem(portalItem);
 
