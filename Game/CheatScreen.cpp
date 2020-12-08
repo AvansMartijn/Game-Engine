@@ -57,6 +57,11 @@ void CheatScreen::onTick()
 	
 }
 
+void CheatScreen::onScreenShowed(vector<std::string> args)
+{
+	_cheatText->text = " ";
+}
+
 void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 {
 	if (e.keysym.sym == SDLK_RETURN) {

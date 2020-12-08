@@ -110,7 +110,7 @@ void SettingsScreen::onInit() {
 		int val = Scene::getInstance().tickRate;
 		if (val - 10 > 0) {
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate - 10;
-			_tickSpeed->text = "Game speed : " + to_string(Scene::getInstance().tickRate);
+			_tickSpeed->text = "Game speed: " + to_string(Scene::getInstance().tickRate);
 		}
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(gameSpeedDown));
