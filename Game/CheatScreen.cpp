@@ -57,7 +57,7 @@ void CheatScreen::onTick()
 	
 }
 
-void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
+void CheatScreen::handleKeyboardInput(FluixInputEvent e)
 {
 	if (e.keysym.sym == SDLK_RETURN) {
 		std::string cheat = _cheatText->text;

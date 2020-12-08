@@ -29,7 +29,7 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	void handleKeyboardInput(SDL_KeyboardEvent e);
+	void handleKeyboardInput(FluixInputEvent e);
 	/// <summary>
 	/// Called when the user moves their mouse.
 	/// </summary>

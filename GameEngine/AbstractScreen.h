@@ -11,6 +11,7 @@
 #include "AbstractUiElement.h"
 #include "Physics.h"
 #include "TextUIElement.h"
+#include <FluixInputEvent.h>
 
 using namespace std;
 
@@ -44,7 +45,7 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	virtual void handleKeyboardInput(SDL_KeyboardEvent e) = 0;
+	virtual void handleKeyboardInput(FluixInputEvent e) = 0;
 	/// <summary>
 	/// Called when the user moves their mouse.
 	/// </summary>

@@ -44,7 +44,7 @@ void CheatHelpScreen::onTick()
 
 }
 
-void CheatHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e)
+void CheatHelpScreen::handleKeyboardInput(FluixInputEvent e)
 {
 
 }
