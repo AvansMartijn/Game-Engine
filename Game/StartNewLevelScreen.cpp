@@ -19,6 +19,7 @@ void StartNewLevelScreen::onInit() {
 	StoryTitle = make_shared<TextUiElement>(storyTitle);
 	StoryTitle->text = "Story";
 	_uiElements.push_back(StoryTitle);
+	srollableElements.push_back(StoryTitle);
 
 
 	std::vector<std::string> lines;
@@ -32,21 +33,57 @@ void StartNewLevelScreen::onInit() {
 	lines.push_back("Waluigi is denied entry to the facility ...  ");
 	lines.push_back("But he is determined to find a way to Masahiro Sakurai ... ");
 	lines.push_back(" ");
-	lines.push_back(" ");
 	lines.push_back("He sees a back door behind a bush and sneaks in ... ");
 
 	TextUiElement storyText = TextUiElement(lines, "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true);
-	StoryText = make_shared<TextUiElement>(storyText);		
+	StoryText = make_shared<TextUiElement>(storyText);
 	_uiElements.push_back(StoryText);
+	srollableElements.push_back(StoryText);
 	anchor = StoryText->_rect.y;
 
 
 	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	KeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);
-	KeyBindingsTitle->text = "Keybindings";
+	shared_ptr<TextUiElement> KeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);
+	KeyBindingsTitle->text = "Basic keybindings";
 	_uiElements.push_back(KeyBindingsTitle);
+	srollableElements.push_back(KeyBindingsTitle);
 
-	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 350, 900, 900 });
+
+	TextUiElement movementText = TextUiElement("-", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> MovementText = make_shared<TextUiElement>(movementText);
+	MovementText->text = "Movement";
+	_uiElements.push_back(MovementText);
+	srollableElements.push_back(MovementText);
+
+	TextUiElement weaponsText = TextUiElement("-", "Portal", 20, { 250, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> WeaponsText = make_shared<TextUiElement>(weaponsText);
+	WeaponsText->text = "Weapon select";
+	_uiElements.push_back(WeaponsText);
+	srollableElements.push_back(WeaponsText);
+
+
+	TextUiElement mouseText = TextUiElement("-", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> MouseText = make_shared<TextUiElement>(mouseText);
+	MouseText->text = "Shoot";
+	_uiElements.push_back(MouseText);
+	srollableElements.push_back(MouseText);
+
+	TextUiElement jumpText = TextUiElement("-", "Portal", 20, { 350, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> JumpText = make_shared<TextUiElement>(jumpText);
+	JumpText->text = "Jump";
+	_uiElements.push_back(JumpText);
+	srollableElements.push_back(JumpText);
+
+
+	TextUiElement scrollText = TextUiElement("-", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> ScrollText = make_shared<TextUiElement>(scrollText);
+	ScrollText->text = "Zoom";
+	_uiElements.push_back(ScrollText);
+	srollableElements.push_back(ScrollText);
+
+
+
+	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 },0,false);
 	keybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
 	_uiElements.push_back(keybindingsImage);
 
@@ -110,17 +147,16 @@ void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	int heightOfScrolBlock = 0;
 
 	heightOfScrolBlock += StoryText->textLines.size() * 25;
-	heightOfScrolBlock += 40;
-	heightOfScrolBlock += 40;
-
+	heightOfScrolBlock += 120;
 
 	int currentY = StoryTitle->_rect.y;
 
 	if ((currentY += offset) < anchor) {
 		if ((currentY += offset) > ((anchor + heightOfScrolBlock - 200) * -1)) {
-			StoryTitle->_rect.y += offset;
-			StoryText->_rect.y += offset;
-			KeyBindingsTitle->_rect.y += offset;
+			
+			for (auto textElement : srollableElements)
+				textElement->_rect.y += offset;
+
 			keybindingsImage->_rect.y += offset;
 		}
 	}
