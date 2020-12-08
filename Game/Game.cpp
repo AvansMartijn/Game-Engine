@@ -37,10 +37,13 @@ void Game::onInit() {
 	registerTexture("Win", "res/gfx/Win.png");
 	registerTexture("Hat", "res/gfx/Pauze.png");
 
+	registerTexture("Boyz", "res/gfx/theBoyz.png");
+
+
 	registerTexture("PortalOrange", "res/gfx/Portal1.png");
 	registerTexture("PortalPurple", "res/gfx/Portal2.png");
 
-	registerTexture("Keybindings", "res/gfx/tutorialTest.png");
+	registerTexture("Keybindings", "res/gfx/tutorial.png");
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 
