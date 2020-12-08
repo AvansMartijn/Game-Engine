@@ -15,14 +15,12 @@ void HelpScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-
 	//SCROLL
 	TextUiElement storyTitle = TextUiElement("-", "Portal", 40, { 515, 125, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	StoryTitle = make_shared<TextUiElement>(storyTitle);
 	StoryTitle->text = "Story";
 	_uiElements.push_back(StoryTitle);
 	srollableElements.push_back(StoryTitle);
-
 
 	std::vector<std::string> lines;
 	lines.push_back("For years, waluigi has been hoping to access the Super Smash roster.");
@@ -43,13 +41,11 @@ void HelpScreen::onInit() {
 	srollableElements.push_back(StoryText);
 	anchor = StoryText->_rect.y;
 
-
 	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	shared_ptr<TextUiElement> KeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);
 	KeyBindingsTitle->text = "Basic keybindings";
 	_uiElements.push_back(KeyBindingsTitle);
 	srollableElements.push_back(KeyBindingsTitle);
-
 
 	TextUiElement movementText = TextUiElement("-", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> MovementText = make_shared<TextUiElement>(movementText);
@@ -63,7 +59,6 @@ void HelpScreen::onInit() {
 	_uiElements.push_back(WeaponsText);
 	srollableElements.push_back(WeaponsText);
 
-
 	TextUiElement mouseText = TextUiElement("-", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> MouseText = make_shared<TextUiElement>(mouseText);
 	MouseText->text = "Shoot";
@@ -76,14 +71,11 @@ void HelpScreen::onInit() {
 	_uiElements.push_back(JumpText);
 	srollableElements.push_back(JumpText);
 
-
 	TextUiElement scrollText = TextUiElement("-", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> ScrollText = make_shared<TextUiElement>(scrollText);
 	ScrollText->text = "Zoom";
 	_uiElements.push_back(ScrollText);
 	srollableElements.push_back(ScrollText);
-
-
 
 	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 }, 0, false);
 	keybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
@@ -97,7 +89,6 @@ void HelpScreen::onInit() {
 
 	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2) - 100, 50, 200 });
 	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
-
 
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
@@ -118,8 +109,6 @@ void HelpScreen::onInit() {
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
-
-
 }
 
 void HelpScreen::onTick(){
