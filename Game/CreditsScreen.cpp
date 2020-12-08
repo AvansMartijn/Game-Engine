@@ -74,10 +74,8 @@ void CreditsScreen::onInit() {
 	_scrollableElements.push_back(scoreText);
 
 
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
 			ButtonUiElement wackButton = ButtonUiElement("O", { 770 + (i * 50), 300 + (j*50), 50, 50 }, bgColor, { 255, 255, 255 }, font, 25);
 			wackButton.registerGame(_game);
 			
@@ -102,9 +100,6 @@ void CreditsScreen::onInit() {
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
-
-
-
 }
 
 void CreditsScreen::onTick() {
