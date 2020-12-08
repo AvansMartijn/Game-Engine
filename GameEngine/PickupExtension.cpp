@@ -18,7 +18,12 @@ void PickupExtension::onEntityCollision(shared_ptr<GameObject> gameObject) {
 	for (auto gun : Scene::getInstance().getWieldExtension()->getItems())
 	{
 		if (_item->getTextureKey() == gun->getTextureKey()) {
-			gun->setAmmo(gun->getAmmo() + _item->getAmmo());
+			if (_item->getAmmo() == -1 || gun->getAmmo() == -1) {
+				gun->setAmmo(-1);
+			}
+			else {
+				gun->setAmmo(gun->getAmmo() + _item->getAmmo());
+			}
 			Physics::getInstance().deleteQueue.push_back(_subject->id);
 			return;
 		}
