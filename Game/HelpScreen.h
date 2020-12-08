@@ -10,7 +10,17 @@
 class HelpScreen : public AbstractScreen
 {
 private:
+	shared_ptr<TextUiElement> StoryText;
+	shared_ptr<TextUiElement> StoryTitle;
+
+
+	shared_ptr<ImageUiElement> keybindingsImage;
 	shared_ptr<TextUiElement> _fps;
+
+	std::vector<shared_ptr<TextUiElement>> srollableElements;
+
+	int offset = 0;
+	int anchor = 0;
 public:
 	using AbstractScreen::AbstractScreen;
 	HelpScreen();
