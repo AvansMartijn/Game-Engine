@@ -10,6 +10,7 @@ private:
 	shared_ptr<TextUiElement> _soundText;
 	shared_ptr<TextUiElement> _soundFxText;
 	shared_ptr<TextUiElement> _fps;
+	shared_ptr<TextUiElement> _tickSpeed;
 public:
 	using AbstractScreen::AbstractScreen;
 	SettingsScreen();
