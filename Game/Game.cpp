@@ -30,6 +30,9 @@ void Game::onInit() {
 	sprites.insert(std::make_pair(MoveExtension::RUN_LEFT, Rect{ 318, 1, 87, 72 }));
 	sprites.insert(std::make_pair(MoveExtension::RUN_RIGHT, Rect{ 298, 96, 87, 72 }));
 
+	sprites.insert(std::make_pair(MoveExtension::ATTACK_LEFT, Rect{ 315, 185, 88, 66 }));
+	sprites.insert(std::make_pair(MoveExtension::ATTACK_RIGHT, Rect{ 297, 259, 88, 66 }));
+
 	registerTexture("Goomba_SpriteSheet", "res/gfx/Assets/Entity/Goomba/Goomba.png", sprites);
 
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");

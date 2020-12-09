@@ -23,6 +23,18 @@ protected:
 	/// <returns>The created entity.</returns>
 	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
 	/// <summary>
+	/// Creates a new enemy
+	/// </summary>
+	/// <param name="gameEngine">The game engine.</param>
+	/// <param name="extensions">The extensions which this game object will use.</param>
+	/// <param name="textureKey">The texture we want to use.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The object width.</param>
+	/// <param name="height">The object height.</param>
+	/// <returns>The created enemy.</returns>
+	shared_ptr<GameObject> createEnemy(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
+	/// <summary>
 	/// Creates a new non ridgid.
 	/// </summary>
 	/// <param name="gameEngine">The game engine.</param>

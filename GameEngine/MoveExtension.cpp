@@ -9,6 +9,8 @@ const std::string MoveExtension::LOOK_LEFT = "Look_Left";
 const std::string MoveExtension::RUN_LEFT = "Running_Left";
 const std::string MoveExtension::JUMP_LEFT = "Jump_Left";
 const std::string MoveExtension::FALL_LEFT = "Fall_Left";
+const std::string MoveExtension::ATTACK_LEFT = "Attack_Left";
+const std::string MoveExtension::ATTACK_RIGHT = "Attack_Right";
 
 MoveExtension::MoveExtension() {
 	type = "MoveExtension";
@@ -23,7 +25,6 @@ void MoveExtension::move(float movementX, float movementY) {
 	currentMovementType = MovementTypes::RUNNING;
 
 	_subject->body.b2body->SetLinearVelocity(vel);
-
 }
 
 bool MoveExtension::canJump() {

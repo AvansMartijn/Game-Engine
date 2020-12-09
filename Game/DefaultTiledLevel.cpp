@@ -73,7 +73,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		Scene::getInstance().getPlayer()->currentState = MoveExtension::LOOK_RIGHT;
 	}
 	else if (tiledGameObject.type == "Enemy") {
-		shared_ptr<GameObject> enemy = createGameObject(gameEngine, extensions, "Goomba_SpriteSheet", x, y, 0.7f, 1.0f, 0.3f, false, true);
+		shared_ptr<GameObject> enemy = createEnemy(gameEngine, extensions, "Goomba_SpriteSheet", x, y, 0.7f, 1.0f);
 
 		if (enemy->hasExtension(typeid(AiExtension))) {
 			// We only use the default entity ai, so no need to check for anything else.

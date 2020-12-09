@@ -9,6 +9,8 @@
 class BehaviourAttack : public AbstractBehaviour
 {
 public:
+	using AbstractBehaviour::AbstractBehaviour;
+
 	/// <summary>
 	/// Execute the behaviour.
 	/// </summary>

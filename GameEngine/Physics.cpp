@@ -79,6 +79,58 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     body->CreateFixture(&wheelFix);
 }
 
+void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
+    obj->body.width = width;
+    obj->body.height = height;
+
+
+    b2BodyDef bodyDef;
+    bodyDef.position.Set(x, y);
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.fixedRotation = true;
+
+    CustomUserData* userData = new CustomUserData;
+    userData->index = obj->id;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
+
+    b2Body* body = _world->CreateBody(&bodyDef);
+    obj->body.b2body = body;
+
+
+    b2PolygonShape box;
+    box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
+    b2FixtureDef fixtureDef;
+    fixtureDef.filter.categoryBits = SCENERY;
+    fixtureDef.filter.maskBits = -1;
+
+    fixtureDef.shape = &box;
+    fixtureDef.density = 1.0f;
+    fixtureDef.friction = 0.3f;
+
+    CustomUserData* data = new CustomUserData;
+    data->type = userDataType;
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data);
+    body->CreateFixture(&fixtureDef);
+
+    b2CircleShape wheelShape;
+    wheelShape.m_radius = 0.05f;
+    wheelShape.m_p = { 0 - (obj->body.width / 2), 0 + (obj->body.height / 2) };
+    b2FixtureDef wheelFix;
+    wheelFix.shape = &wheelShape;
+    CustomUserData* data3 = new CustomUserData;
+    data3->type = "feetWheel";
+    wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
+    body->CreateFixture(&wheelFix);
+
+    b2CircleShape wheelShape2;
+    wheelShape2.m_radius = 0.05f;
+    wheelShape2.m_p = { 0 + (obj->body.width / 2), 0 + (obj->body.height / 2) };
+    wheelFix.shape = &wheelShape2;
+    wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
+    body->CreateFixture(&wheelFix);
+}
+
+
 void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;

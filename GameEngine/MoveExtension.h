@@ -18,10 +18,12 @@ public:
 	static const std::string RUN_RIGHT;
 	static const std::string JUMP_RIGHT;
 	static const std::string FALL_RIGHT;
+	static const std::string ATTACK_RIGHT;
 	static const std::string LOOK_LEFT;
 	static const std::string RUN_LEFT;
 	static const std::string JUMP_LEFT;
 	static const std::string FALL_LEFT;
+	static const std::string ATTACK_LEFT;
 
 	MoveExtension();
 	int jumpCounter;

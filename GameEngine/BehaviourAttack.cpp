@@ -3,7 +3,16 @@
 
 void BehaviourAttack::execute() {
 	shared_ptr<HealthExtension> healthExtension = Scene::getInstance().getPlayer()->getExtension<HealthExtension>();
-	healthExtension->reduceHealth(1);
+	shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 
-	this->executeNextBehaviour(true);
+	if (healthExtension != nullptr) {
+		healthExtension->reduceHealth(1);
+
+		if (moveExtension != nullptr)
+			moveExtension->currentMovementType = MovementTypes::ATTACKING;
+
+		this->executeNextBehaviour(true);
+	}
+	
+	this->executeNextBehaviour(false);
 }

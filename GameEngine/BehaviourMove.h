@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractBehaviour.h"
+#include "Scene.h"
 
 /// <summary>
 /// Move ai behavior
@@ -13,5 +14,11 @@ public:
 	/// Execute the behaviour.
 	/// </summary>
 	void execute();
+
+	/// <summary>
+	/// Checks if the player is in attack range.
+	/// </summary>
+	/// <returns>If the player is in attack range.</returns>
+	bool isPlayerInAttackRange();
 };
 
