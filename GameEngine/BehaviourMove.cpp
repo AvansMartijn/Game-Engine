@@ -43,6 +43,5 @@ bool BehaviourMove::isPlayerInAttackRange() {
 	bool playerInViewX = playerX >= fovStartX && playerX <= fovEndX;
 	bool playerInViewY = playerY >= fovStartY && playerY <= fovEndY;
 
-	std::cout << std::to_string(playerInViewX) + ":" << std::to_string(playerInViewX) << endl;;
 	return playerInViewX && playerInViewY;
 }

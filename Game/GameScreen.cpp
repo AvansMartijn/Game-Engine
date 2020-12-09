@@ -100,6 +100,27 @@ void GameScreen::onTick() {
 		Scene::getInstance().gameOver = false;
 	}
 
+	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+
+		if (gameObject != nullptr) {
+			if (gameObject->hasExtension(typeid(AiExtension)))
+				gameObject->getExtension<AiExtension>()->execute();
+
+			if (gameObject->hasExtension(typeid(MoveExtension)))
+				gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
+
+			if (gameObject->hasExtension(typeid(HealthExtension))) {
+				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
+
+				if (healthExtension->getHealth() <= 0) {
+					Scene::getInstance().removeEntity(gameObjectIndex);
+					Physics::getInstance().deleteQueue.push_back(gameObject->id);
+				}
+			}
+		}
+	}
+
 	float timeStep = 1.0f / 60.0f;
 
 	Physics::getInstance().step(timeStep, 6, 2);
@@ -108,7 +129,6 @@ void GameScreen::onTick() {
 		handlePlayerControls();
 		calculatePlayerTexture();
 	}
-
 
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
@@ -135,19 +155,6 @@ void GameScreen::onTick() {
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else if(_fps->text.length() > 0)
 		_fps->text = "  ";
-	
-
-	// TODO: Execute AI
-	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
-
-		if (gameObject->hasExtension(typeid(AiExtension)))
-			gameObject->getExtension<AiExtension>()->execute();
-
-		if (gameObject->hasExtension(typeid(MoveExtension)))
-			gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
-	}
-
 }
 
 void GameScreen::handlePlayerControls() {

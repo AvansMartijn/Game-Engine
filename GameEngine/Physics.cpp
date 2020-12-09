@@ -231,7 +231,11 @@ void Physics::executeDeleteQueue() {
         int id = deleteQueue.back();
 
         deleteQueue.pop_back();
-        _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);
+
+        shared_ptr<GameObject> gameObject = Scene::getInstance().getGameObject(id);
+        if (gameObject != nullptr)
+            _world->DestroyBody(gameObject->body.b2body);
+
         Scene::getInstance().removeGameObject(id);
     }
 }

@@ -74,6 +74,8 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	}
 	else if (tiledGameObject.type == "Enemy") {
 		shared_ptr<GameObject> enemy = createEnemy(gameEngine, extensions, "Goomba_SpriteSheet", x, y, 0.7f, 1.0f);
+		if (tiledGameObject.properties.find("health") != tiledGameObject.properties.end() && enemy->hasExtension(typeid(HealthExtension)))
+			enemy->getExtension<HealthExtension>()->setHealth(tiledGameObject.properties["health"].valueInt);
 
 		if (enemy->hasExtension(typeid(AiExtension))) {
 			// We only use the default entity ai, so no need to check for anything else.
