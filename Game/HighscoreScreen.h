@@ -7,10 +7,10 @@ class HighScoreScreen : public AbstractScreen
 {
 private:
 
-	shared_ptr<TextUiElement> scroll;
+	shared_ptr<TextUiElement> _scrollableText;
 
-	int offset = 0;
-	int anchor = 0;
+	int _offset = 0;
+	int _anchor = 0;
 	shared_ptr<TextUiElement> _fps;
 
 public:
