@@ -13,7 +13,6 @@ private:
 	shared_ptr<TextUiElement> StoryText;
 	shared_ptr<TextUiElement> StoryTitle;
 
-
 	shared_ptr<ImageUiElement> keybindingsImage;
 	shared_ptr<TextUiElement> _fps;
 

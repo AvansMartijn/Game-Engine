@@ -80,8 +80,7 @@ void HelpScreen::onInit() {
 	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 }, 0, false);
 	keybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
 	_uiElements.push_back(keybindingsImage);
-
-
+      
 	//SCROLL END
 
 	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
