@@ -20,7 +20,7 @@ int random_int_credits(int low, int high) {
 
 void CreditsScreen::onInit() {
 
-	begin = std::chrono::steady_clock::now();
+	_begin = std::chrono::steady_clock::now();
 
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
@@ -38,10 +38,10 @@ void CreditsScreen::onInit() {
 	_uiElements.push_back(Title);
 
 	TextUiElement line = TextUiElement("Team Mike", font, 40, { 100, 100, 0, 0 }, { 255, 255, 255 }, bgColor, false);
-	Line = make_shared<TextUiElement>(line);
-	_uiElements.push_back(Line);
-	_scrollableElements.push_back(Line);
-	anchor = Line->_rect.y;
+	_line = make_shared<TextUiElement>(line);
+	_uiElements.push_back(_line);
+	_scrollableElements.push_back(_line);
+	_anchor = _line->_rect.y;
 
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
@@ -65,13 +65,13 @@ void CreditsScreen::onInit() {
 	_uiElements.push_back(WackAMoleText);
 	_scrollableElements.push_back(WackAMoleText);
 
-	WackAMoleInfo = make_shared<TextUiElement>(TextUiElement("Get a score of 5 and win a \n \"Prize\"", "Portal", 25, { 720, 150, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, true));
-	_uiElements.push_back(WackAMoleInfo);
-	_scrollableElements.push_back(WackAMoleInfo);
+	_wackAMoleInfo = make_shared<TextUiElement>(TextUiElement("Get a score of 5 and win a \n \"Prize\"", "Portal", 25, { 720, 150, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, true));
+	_uiElements.push_back(_wackAMoleInfo);
+	_scrollableElements.push_back(_wackAMoleInfo);
 
-	scoreText = make_shared<TextUiElement>(TextUiElement("Score: ", "Portal", 40, { 770, 250, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(scoreText);
-	_scrollableElements.push_back(scoreText);
+	_scoreText = make_shared<TextUiElement>(TextUiElement("Score: ", "Portal", 40, { 770, 250, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_scoreText);
+	_scrollableElements.push_back(_scoreText);
 
 
 	for (int i = 0; i < 3; i++) {
@@ -83,9 +83,9 @@ void CreditsScreen::onInit() {
 
 			WackButton->onClick = [WackButton, this](AbstractGame* game) {
 				if (WackButton == _mole)
-					score++;
+					_score++;
 				else
-					score = 0;
+					_score = 0;
 			};
 			_uiElements.push_back(WackButton);
 			_wackAMoleButtons.push_back(WackButton);
@@ -109,21 +109,21 @@ void CreditsScreen::onTick() {
 		_fps->text = "  ";
 
 
-	long timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - begin).count();
+	long timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _begin).count();
 
 	if (timePassed >= 500) {
-		begin = std::chrono::steady_clock::now();
+		_begin = std::chrono::steady_clock::now();
 		_mole->_text = "O";
 		_mole = _wackAMoleButtons[random_int_credits(0, _wackAMoleButtons.size())];
 		_mole->_text = "X";
 			
 	}
 
-	if (score == 5) {
-		scrollLock = false;
-		WackAMoleInfo->text = "You \"Won\" scroll to collect your \n \"prize\"";
+	if (_score == 5) {
+		_scrollLock = false;
+		_wackAMoleInfo->text = "You \"Won\" scroll to collect your \n \"prize\"";
 	}
-	scoreText->text = "Score: " + to_string(score);
+	_scoreText->text = "Score: " + to_string(_score);
 }
 
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
@@ -150,28 +150,28 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void CreditsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-	if (!scrollLock)
+	if (!_scrollLock)
 	{
 		if (e.y > 0) // scroll up
-			offset = 20;
+			_offset = 20;
 		else if (e.y < 0) // scroll down
-			offset = -20;
+			_offset = -20;
 
 
 		int heightOfScrolBlock = 800;
 
-		int currentY = Line->_rect.y;
+		int currentY = _line->_rect.y;
 
-		if ((currentY += offset) < anchor) {
-			if ((currentY += offset) > ((anchor + heightOfScrolBlock - 200) * -1)) {
+		if ((currentY += _offset) < _anchor) {
+			if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
 
 				for (auto textElement : _scrollableElements)
-					textElement->_rect.y += offset;
+					textElement->_rect.y += _offset;
 
 				for (auto buttonElement : _wackAMoleButtons)
-					buttonElement->_rect.y += offset;
+					buttonElement->_rect.y += _offset;
 
-				_theBoyz->_rect.y += offset;
+				_theBoyz->_rect.y += _offset;
 			}
 		}
 	}
