@@ -12,17 +12,17 @@ class StartNewLevelScreen : public AbstractScreen
 {
 private:
 
-	shared_ptr<TextUiElement> StoryText;
-	shared_ptr<TextUiElement> StoryTitle;
+	shared_ptr<TextUiElement> _storyText;
+	shared_ptr<TextUiElement> _storyTitle;
 
 
-	shared_ptr<ImageUiElement> keybindingsImage;
+	shared_ptr<ImageUiElement> _keybindingsImage;
 	shared_ptr<TextUiElement> _fps;
 
-	std::vector<shared_ptr<TextUiElement>> srollableElements;
+	std::vector<shared_ptr<TextUiElement>> _srollableElements;
 
-	int offset = 0;
-	int anchor = 0;
+	int _offset = 0;
+	int _anchor = 0;
 
 public:
 	using AbstractScreen::AbstractScreen;

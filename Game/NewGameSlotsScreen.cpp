@@ -36,8 +36,8 @@ void NewGameSlotsScreen::onInit() {
 
 		game->switchScreen(Screens::StartNewGame);
 	};
-	slot1Button = make_shared<ButtonUiElement>(slot1);
-	_uiElements.push_back(slot1Button);
+	_slot1Button = make_shared<ButtonUiElement>(slot1);
+	_uiElements.push_back(_slot1Button);
 
 	ButtonUiElement slot2 = ButtonUiElement("Slot 2", { 700, 220, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot2.registerGame(_game);
@@ -50,8 +50,8 @@ void NewGameSlotsScreen::onInit() {
 
 		game->switchScreen(Screens::StartNewGame);
 	};
-	slot2Button = make_shared<ButtonUiElement>(slot2);
-	_uiElements.push_back(slot2Button);
+	_slot2Button = make_shared<ButtonUiElement>(slot2);
+	_uiElements.push_back(_slot2Button);
 
 	ButtonUiElement slot3 = ButtonUiElement("Slot 3", { 700, 270, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot3.registerGame(_game);
@@ -65,8 +65,8 @@ void NewGameSlotsScreen::onInit() {
 		game->switchScreen(Screens::StartNewGame);
 	};
 
-	slot3Button = make_shared<ButtonUiElement>(slot3);
-	_uiElements.push_back(slot3Button);
+	_slot3Button = make_shared<ButtonUiElement>(slot3);
+	_uiElements.push_back(_slot3Button);
 
 	TextUiElement note = TextUiElement("* The selected level slot will be overidden", font, 12, { 700, 320, width, height }, { 255, 255, 255 }, bgColor, false);
 	_uiElements.push_back(make_shared<TextUiElement>(note));
@@ -111,19 +111,19 @@ void NewGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void NewGameSlotsScreen::onScreenShowed(vector<std::string> args)
 {
 	if (GameSettings::getInstance().saveGame.slot1 == -1) 
-		slot1Button->_text = "Slot 1 - Empty";
+		_slot1Button->_text = "Slot 1 - Empty";
 	else 
-		slot1Button->_text = "Slot 1 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot1).levelName;
+		_slot1Button->_text = "Slot 1 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot1).levelName;
 
 	if (GameSettings::getInstance().saveGame.slot2 == -1)
-		slot2Button->_text = "Slot 2 - Empty";
+		_slot2Button->_text = "Slot 2 - Empty";
 	else
-		slot2Button->_text = "Slot 2 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot2).levelName;
+		_slot2Button->_text = "Slot 2 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot2).levelName;
 
 	if (GameSettings::getInstance().saveGame.slot3 == -1)
-		slot3Button->_text = "Slot 3 - Empty";
+		_slot3Button->_text = "Slot 3 - Empty";
 	else
-		slot3Button->_text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
+		_slot3Button->_text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
 }
 
 void NewGameSlotsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

@@ -6,10 +6,10 @@ class Quotes
 private:
 	Quotes();
 
-	static Quotes instance;
+	static Quotes _instance;
 	std::vector<std::string> _quotes;
 public:
-	static Quotes& getInstance() { return instance; }
+	static Quotes& getInstance() { return _instance; }
 
 	Quotes(const Quotes&) = delete;
 	Quotes(Quotes&&) = delete;

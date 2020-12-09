@@ -22,9 +22,9 @@ void HighScoreScreen::onInit()
 	std::vector<std::string> lines;
 	lines.push_back("-");
 	TextUiElement scrollText = TextUiElement(lines, "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, true);
-	scroll = make_shared<TextUiElement>(scrollText);
-	_uiElements.push_back(scroll);
-	anchor = scroll->_rect.y;
+	_scrollableText = make_shared<TextUiElement>(scrollText);
+	_uiElements.push_back(_scrollableText);
+	_anchor = _scrollableText->_rect.y;
 
 	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
 	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
@@ -61,15 +61,15 @@ void HighScoreScreen::onTick() {
 
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
-	scroll->textLines.clear();
+	_scrollableText->textLines.clear();
 	std::vector<SaveLevel> levels = GameSettings::getInstance().saveGame.levels;
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto level : levels) {
 
-		scroll->textLines.push_back(level.name);
-		scroll->textLines.push_back("------------------------------------------");
-		scroll->textLines.push_back(" ");
+		_scrollableText->textLines.push_back(level.name);
+		_scrollableText->textLines.push_back("------------------------------------------");
+		_scrollableText->textLines.push_back(" ");
 
 		std::sort(level.highscores.begin(), level.highscores.end(), [](SaveHighscore a, SaveHighscore b) { return a.score > b.score; });
 
@@ -78,11 +78,11 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 			if (counter == 5)
 				break;
 
-			scroll->textLines.push_back(highScore.name + ", " + to_string(highScore.score));
+			_scrollableText->textLines.push_back(highScore.name + ", " + to_string(highScore.score));
 			counter++;
 		}
-		scroll->textLines.push_back(" ");
-		scroll->textLines.push_back(" ");
+		_scrollableText->textLines.push_back(" ");
+		_scrollableText->textLines.push_back(" ");
 	}
 }
 
@@ -102,16 +102,16 @@ void HighScoreScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 
 	if (e.y > 0) // scroll up
-		offset = 20;
+		_offset = 20;
 	else if (e.y < 0) // scroll down
-		offset = -20;
+		_offset = -20;
 
-	int heightOfScrolBlock = scroll->textLines.size() * 25;
-	int currentY = scroll->_rect.y;
+	int heightOfScrolBlock = _scrollableText->textLines.size() * 25;
+	int currentY = _scrollableText->_rect.y;
 
-	if ((currentY += offset) < anchor)
-		if ((currentY += offset) > ((anchor + heightOfScrolBlock - 200) * -1))
-			scroll->_rect.y += offset;
+	if ((currentY += _offset) < _anchor)
+		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1))
+			_scrollableText->_rect.y += _offset;
 	
 }
 
