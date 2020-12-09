@@ -12,7 +12,6 @@
 #include "IsPortalableExtension.h"
 #include "TimerExtension.h"
 #include "HealthExtension.h"
-#include "EntityMovementExtension.h"
 
 GameObjectExtensionFactory::GameObjectExtensionFactory()
 {
@@ -28,7 +27,6 @@ GameObjectExtensionFactory::GameObjectExtensionFactory()
     registerExtension("IsPortalableExtension", &IsPortalableExtension::create);
     registerExtension("TimerExtension", &TimerExtension::create);
     registerExtension("HealthExtension", &HealthExtension::create);
-    registerExtension("EntityMovementExtension", &EntityMovementExtension::create);
 
 }
 

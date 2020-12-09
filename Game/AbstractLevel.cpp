@@ -14,7 +14,6 @@ shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, ve
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
 
-
 	if (friction == -1 && !fixed && !fixedRotation)
 		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
 	else

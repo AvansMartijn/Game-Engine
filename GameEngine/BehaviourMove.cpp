@@ -2,15 +2,12 @@
 #include "BehaviourMove.h"
 
 void BehaviourMove::execute() {
-	std::cout << "> Move\n";
+	shared_ptr<MoveExtension> extension = _self->getExtension<MoveExtension>();
 
-	this->executeNextBehaviour(true);
-}
+	if (_self->body.b2body->GetLinearVelocity().y == 0) {
+		extension->move(extension->isLookingToRight ? 2 : -2, 0);
 
-bool BehaviourMove::isMovable() {
-	return false;
-}
-
-bool BehaviourMove::isWallHit() {
-	return false;
+		// TODO: Look if player collides with entity. (yes = false, no = true)
+		this->executeNextBehaviour(true);
+	}
 }

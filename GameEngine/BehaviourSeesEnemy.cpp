@@ -12,17 +12,20 @@ void BehaviourSeesEnemy::execute() {
 	float playerX = Scene::getInstance().getPlayer()->body.b2body->GetPosition().x;
 	float playerY = Scene::getInstance().getPlayer()->body.b2body->GetPosition().y;
 
-	shared_ptr<EntityMovementExtension> movementExtension = _self->getExtension<EntityMovementExtension>();
-
 	int fovStartX = subjectX;
 	int fovEndX = subjectX + lookX;
 	int fovStartY = subjectY - lookY;
 	int fovEndY = subjectY + lookY;
-	if (!movementExtension->isLookingRight) {
-		fovStartX = subjectX - lookX;
-		fovEndX = subjectX;
-	}
 
+	if (_self->hasExtension(typeid(MoveExtension))) {
+		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
+
+
+		if (!moveExtension->isLookingToRight) {
+			fovStartX = subjectX - lookX;
+			fovEndX = subjectX;
+		}
+	}
 	bool playerInViewX = playerX >= fovStartX && playerX <= fovEndX;
 	bool playerInViewY = playerY >= fovStartY && playerY <= fovEndY;
 

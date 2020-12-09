@@ -2,11 +2,8 @@
 #include "BehaviourAttack.h"
 
 void BehaviourAttack::execute() {
-	std::cout << "> Attack\n";
+	shared_ptr<HealthExtension> healthExtension = Scene::getInstance().getPlayer()->getExtension<HealthExtension>();
+	healthExtension->reduceHealth(1);
 
 	this->executeNextBehaviour(true);
-}
-
-bool BehaviourAttack::canAttack() {
-	return false;
 }

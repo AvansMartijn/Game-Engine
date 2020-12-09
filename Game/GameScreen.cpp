@@ -144,7 +144,7 @@ void GameScreen::onTick() {
 		if (gameObject->hasExtension(typeid(AiExtension)))
 			gameObject->getExtension<AiExtension>()->execute();
 
-		if (gameObject->hasExtension(typeid(EntityMovementExtension)))
+		if (gameObject->hasExtension(typeid(MoveExtension)))
 			gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
 	}
 
@@ -215,35 +215,6 @@ void GameScreen::handlePlayerControls() {
 void GameScreen::calculatePlayerTexture() {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(PlayerTextureExtension)))
 		Scene::getInstance().getPlayer()->getExtension<PlayerTextureExtension>()->calculateTextures();
-
-	//if (moveExtension->isLookingToRight) {
-	//	if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-	//		else
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
-	//	}
-	//	else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-	//		else
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
-	//	}
-	//}
-	//else {
-	//	if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-	//		else
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
-	//	}
-	//	else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-	//		if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-	//		else
-	//			Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
-	//	}
-	//}
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

@@ -1,6 +1,5 @@
 #pragma once
 #include "AbstractBehaviour.h"
-#include "EntityMovementExtension.h"
 
 /// <summary>
 /// Rotate ai behavior
@@ -8,7 +7,8 @@
 class BehaviourRotate : public AbstractBehaviour
 {
 public:
-	using AbstractBehaviour::AbstractBehaviour;
+	BehaviourRotate(shared_ptr<GameObject> self, int waitTime);
+	int waitTime = 2000;
 
 	/// <summary>
 	/// Execute the behaviour.

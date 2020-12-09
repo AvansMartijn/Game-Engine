@@ -183,9 +183,6 @@
     <ClCompile Include="Quotes.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMoves.cpp">
-      <Filter>Source Files\Misc</Filter>
-    </ClCompile>
     <ClCompile Include="NewGameSlotsScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
     </ClCompile>
@@ -265,9 +262,6 @@
     </ClInclude>
     <ClInclude Include="DefaultLevelLoader.h">
       <Filter>Header Files\LevelLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMoves.h">
-      <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="json.h">
       <Filter>Header Files</Filter>
