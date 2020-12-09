@@ -16,11 +16,10 @@ void HelpScreen::onInit() {
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
 	//SCROLL
-	TextUiElement storyTitle = TextUiElement("-", "Portal", 40, { 515, 125, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	StoryTitle = make_shared<TextUiElement>(storyTitle);
-	StoryTitle->text = "Story";
-	_uiElements.push_back(StoryTitle);
-	srollableElements.push_back(StoryTitle);
+	TextUiElement storyTitle = TextUiElement("Story", "Portal", 40, { 515, 125, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	_storyTitle = make_shared<TextUiElement>(storyTitle);
+	_uiElements.push_back(_storyTitle);
+	_srollableTextElements.push_back(_storyTitle);
 
 	std::vector<std::string> lines;
 	lines.push_back("For years, waluigi has been hoping to access the Super Smash roster.");
@@ -36,51 +35,158 @@ void HelpScreen::onInit() {
 	lines.push_back("He sees a back door behind a bush and sneaks in ... ");
 
 	TextUiElement storyText = TextUiElement(lines, "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true);
-	StoryText = make_shared<TextUiElement>(storyText);
-	_uiElements.push_back(StoryText);
-	srollableElements.push_back(StoryText);
-	anchor = StoryText->_rect.y;
+	_storyText = make_shared<TextUiElement>(storyText);
+	_uiElements.push_back(_storyText);
+	_srollableTextElements.push_back(_storyText);
+	_anchor = _storyText->_rect.y;
 
-	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	shared_ptr<TextUiElement> KeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);
-	KeyBindingsTitle->text = "Basic keybindings";
-	_uiElements.push_back(KeyBindingsTitle);
-	srollableElements.push_back(KeyBindingsTitle);
+	TextUiElement keyBindingsText = TextUiElement("Basic keybindings", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	shared_ptr<TextUiElement> pKeyBindingsText = make_shared<TextUiElement>(keyBindingsText);
+	_uiElements.push_back(pKeyBindingsText);
+	_srollableTextElements.push_back(pKeyBindingsText);
 
-	TextUiElement movementText = TextUiElement("-", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> MovementText = make_shared<TextUiElement>(movementText);
-	MovementText->text = "Movement";
-	_uiElements.push_back(MovementText);
-	srollableElements.push_back(MovementText);
+	TextUiElement movementText = TextUiElement("Movement", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> pMovementText = make_shared<TextUiElement>(movementText);
+	_uiElements.push_back(pMovementText);
+	_srollableTextElements.push_back(pMovementText);
 
-	TextUiElement weaponsText = TextUiElement("-", "Portal", 20, { 250, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> WeaponsText = make_shared<TextUiElement>(weaponsText);
-	WeaponsText->text = "Weapon select";
-	_uiElements.push_back(WeaponsText);
-	srollableElements.push_back(WeaponsText);
+	TextUiElement weaponsText = TextUiElement("Weapon select", "Portal", 20, { 250, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> pWeaponsText = make_shared<TextUiElement>(weaponsText);
+	_uiElements.push_back(pWeaponsText);
+	_srollableTextElements.push_back(pWeaponsText);
 
-	TextUiElement mouseText = TextUiElement("-", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> MouseText = make_shared<TextUiElement>(mouseText);
-	MouseText->text = "Shoot";
-	_uiElements.push_back(MouseText);
-	srollableElements.push_back(MouseText);
+	TextUiElement mouseText = TextUiElement("Shoot", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> pMouseText = make_shared<TextUiElement>(mouseText);
+	_uiElements.push_back(pMouseText);
+	_srollableTextElements.push_back(pMouseText);
 
-	TextUiElement jumpText = TextUiElement("-", "Portal", 20, { 350, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> JumpText = make_shared<TextUiElement>(jumpText);
-	JumpText->text = "Jump";
-	_uiElements.push_back(JumpText);
-	srollableElements.push_back(JumpText);
+	TextUiElement jumpText = TextUiElement("Jump", "Portal", 20, { 350, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> pJumpText = make_shared<TextUiElement>(jumpText);
+	_uiElements.push_back(pJumpText);
+	_srollableTextElements.push_back(pJumpText);
 
-	TextUiElement scrollText = TextUiElement("-", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> ScrollText = make_shared<TextUiElement>(scrollText);
-	ScrollText->text = "Zoom";
-	_uiElements.push_back(ScrollText);
-	srollableElements.push_back(ScrollText);
+	TextUiElement scrollText = TextUiElement("Zoom", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	shared_ptr<TextUiElement> pScrollText = make_shared<TextUiElement>(scrollText);
+	_uiElements.push_back(pScrollText);
+	_srollableTextElements.push_back(pScrollText);
 
 	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 }, 0, false);
-	keybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
-	_uiElements.push_back(keybindingsImage);
-      
+	shared_ptr<ImageUiElement> pKeybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
+	_uiElements.push_back(pKeybindingsImage);
+	_srollableImgElements.push_back(pKeybindingsImage);
+
+
+	//Weapons
+	TextUiElement weaponsInfoText = TextUiElement("Weapons", "Portal", 40, { 515, 1100, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	shared_ptr<TextUiElement> pWeaponsInfoText = make_shared<TextUiElement>(weaponsInfoText);
+	_uiElements.push_back(pWeaponsInfoText);
+	_srollableTextElements.push_back(pWeaponsInfoText);
+
+	//portal gun
+	ImageUiElement portalGunImg = ImageUiElement("Krool", {  100, 1200, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pPortalGunImg = make_shared<ImageUiElement>(portalGunImg);
+	_uiElements.push_back(pPortalGunImg);
+	_srollableImgElements.push_back(pPortalGunImg);
+
+	TextUiElement portalGunInfoText = TextUiElement("-", "Portal", 25, { 300, 1200, 100, 0 }, { 255, 255, 255 }, bgColor, false,true);
+	portalGunInfoText.text = "The portal gun can shoot 2 diffrent portals. \nWhen stepped in one of them you get teleported to the other";
+	shared_ptr<TextUiElement> pPortalGunInfoText = make_shared<TextUiElement>(portalGunInfoText);
+	_uiElements.push_back(pPortalGunInfoText);
+	_srollableTextElements.push_back(pPortalGunInfoText);
+
+	//thrustergun
+	ImageUiElement thrusterGunImg = ImageUiElement("Krool", { 100, 1350, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pThrusterGunImg = make_shared<ImageUiElement>(thrusterGunImg);
+	_uiElements.push_back(pThrusterGunImg);
+	_srollableImgElements.push_back(pThrusterGunImg);
+
+	TextUiElement thrusterGunInfoText = TextUiElement("-", "Portal", 25, { 300, 1350, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	thrusterGunInfoText.text = "The thuster gun shoots a burts of air and propels you in the opposite \ndirection of the cursor";
+	shared_ptr<TextUiElement> pThrusterGunInfoText = make_shared<TextUiElement>(thrusterGunInfoText);
+	_uiElements.push_back(pThrusterGunInfoText);
+	_srollableTextElements.push_back(pThrusterGunInfoText);
+
+	//gluegun
+	ImageUiElement glueGunImg = ImageUiElement("Krool", { 100, 1500, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pGlueGunImg = make_shared<ImageUiElement>(glueGunImg);
+	_uiElements.push_back(pGlueGunImg);
+	_srollableImgElements.push_back(pGlueGunImg);
+
+	TextUiElement glueGunInfoText = TextUiElement("-", "Portal", 25, { 300, 1500, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	glueGunInfoText.text = "The glue gun can shoot glue blobs. the player can interact with these \nblobs by standing on them";
+	shared_ptr<TextUiElement> pGlueGunInfoText = make_shared<TextUiElement>(glueGunInfoText);
+	_uiElements.push_back(pGlueGunInfoText);
+	_srollableTextElements.push_back(pGlueGunInfoText);
+
+	//environment
+	TextUiElement environmentInfoText = TextUiElement("Environment", "Portal", 40, { 515, 1600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	shared_ptr<TextUiElement> pEnvironmentInfoText = make_shared<TextUiElement>(environmentInfoText);
+	_uiElements.push_back(pEnvironmentInfoText);
+	_srollableTextElements.push_back(pEnvironmentInfoText);
+
+	//enemies
+	ImageUiElement enemiesImg = ImageUiElement("Krool", { 100, 1700, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pEnemiesImg = make_shared<ImageUiElement>(enemiesImg);
+	_uiElements.push_back(pEnemiesImg);
+	_srollableImgElements.push_back(pEnemiesImg);
+
+	TextUiElement enemiesInfoText = TextUiElement("-", "Portal", 25, { 300, 1700, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	enemiesInfoText.text = "Enemies:\n1\n2";
+	shared_ptr<TextUiElement> pEnemiesInfoText = make_shared<TextUiElement>(enemiesInfoText);
+	_uiElements.push_back(pEnemiesInfoText);
+	_srollableTextElements.push_back(pEnemiesInfoText);
+
+
+	//spikes
+	ImageUiElement spikesImg = ImageUiElement("Spikes", { 100, 1850, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pSpikesImg = make_shared<ImageUiElement>(spikesImg);
+	_uiElements.push_back(pSpikesImg);
+	_srollableImgElements.push_back(pSpikesImg);
+
+	TextUiElement spikesInfoText = TextUiElement("-", "Portal", 25, { 300, 1850, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	spikesInfoText.text = "Spikes:\nDeals damage to the player:\nKEEP AWAY.";
+	shared_ptr<TextUiElement> pSpikesInfoText = make_shared<TextUiElement>(spikesInfoText);
+	_uiElements.push_back(pSpikesInfoText);
+	_srollableTextElements.push_back(pSpikesInfoText);
+
+	//portalble surfaces
+	ImageUiElement portalbleSurfacesImg = ImageUiElement("Portable", { 100, 2000, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pPortalbleSurfacesImg = make_shared<ImageUiElement>(portalbleSurfacesImg);
+	_uiElements.push_back(pPortalbleSurfacesImg);
+	_srollableImgElements.push_back(pPortalbleSurfacesImg);
+
+	TextUiElement portalbleSurfacesInfoText = TextUiElement("-", "Portal", 25, { 300, 2000, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	portalbleSurfacesInfoText.text = "Portalble surfaces:\nOnly on this surface portals can be placed.";
+	shared_ptr<TextUiElement> pPortalbleSurfacesInfoText = make_shared<TextUiElement>(portalbleSurfacesInfoText);
+	_uiElements.push_back(pPortalbleSurfacesInfoText);
+	_srollableTextElements.push_back(pPortalbleSurfacesInfoText);
+
+
+	//boxes
+	ImageUiElement boxesImg = ImageUiElement("Crate_Metal", { 100, 2150, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pBoxesImg = make_shared<ImageUiElement>(boxesImg);
+	_uiElements.push_back(pBoxesImg);
+	_srollableImgElements.push_back(pBoxesImg);
+
+	TextUiElement boxesInfoText = TextUiElement("-", "Portal", 25, { 300, 2150, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	boxesInfoText.text = "Creates/ Boxes:\nThese can be moved, maybe it will help solve some puzzels? ";
+	shared_ptr<TextUiElement> pBoxesInfoText = make_shared<TextUiElement>(boxesInfoText);
+	_uiElements.push_back(pBoxesInfoText);
+	_srollableTextElements.push_back(pBoxesInfoText);
+
+	//Finish
+	ImageUiElement finishImg = ImageUiElement("Finish", { 100, 2300, 100, 100 }, 0, false);
+	shared_ptr<ImageUiElement> pFinishImg = make_shared<ImageUiElement>(finishImg);
+	_uiElements.push_back(pFinishImg);
+	_srollableImgElements.push_back(pFinishImg);
+
+	TextUiElement finishInfoText = TextUiElement("-", "Portal", 25, { 300, 2300, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
+	finishInfoText.text = "Finish:\nThe end of the level\nRUSH B";
+	shared_ptr<TextUiElement> pFinishInfoText = make_shared<TextUiElement>(finishInfoText);
+	_uiElements.push_back(pFinishInfoText);
+	_srollableTextElements.push_back(pFinishInfoText);
+
+   
 	//SCROLL END
 
 	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
@@ -132,23 +238,24 @@ void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void HelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	if (e.y > 0) // scroll up
-		offset = 20;
+		_offset = 25;
 	else if (e.y < 0) // scroll down
-		offset = -20;
+		_offset = -25;
 	int heightOfScrolBlock = 0;
 
-	heightOfScrolBlock += StoryText->textLines.size() * 25;
-	heightOfScrolBlock += 120;
+	heightOfScrolBlock += _storyText->textLines.size() * 25;
+	heightOfScrolBlock += 1500;
 
-	int currentY = StoryTitle->_rect.y;
+	int currentY = _storyTitle->_rect.y;
 
-	if ((currentY += offset) < anchor) {
-		if ((currentY += offset) > ((anchor + heightOfScrolBlock - 200) * -1)) {
+	if ((currentY += _offset) < _anchor) {
+		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
 
-			for (auto textElement : srollableElements)
-				textElement->_rect.y += offset;
+			for (auto textElement : _srollableTextElements)
+				textElement->_rect.y += _offset;
 
-			keybindingsImage->_rect.y += offset;
+			for (auto imgElement : _srollableImgElements)
+				imgElement->_rect.y += _offset;
 		}
 	}
 

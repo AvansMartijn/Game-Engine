@@ -36,9 +36,11 @@ void Game::onInit() {
 	registerTexture("Lose", "res/gfx/Sad.png");
 	registerTexture("Win", "res/gfx/Win.png");
 	registerTexture("Hat", "res/gfx/Pauze.png");
-
 	registerTexture("Boyz", "res/gfx/theBoyz.png");
 
+	registerTexture("Spikes", "res/levels/Assets/Killable/Spikes.png");
+	registerTexture("Portable", "res/levels/Assets/Portable/Center.png");
+	registerTexture("Finish", "res/levels/Assets/Finish/Center-Empty-Inside.png");
 
 	registerTexture("PortalOrange", "res/gfx/Portal1.png");
 	registerTexture("PortalPurple", "res/gfx/Portal2.png");
