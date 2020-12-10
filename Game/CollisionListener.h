@@ -15,7 +15,7 @@ public:
 
 	void EndContact(b2Contact* contact);
 
-	void checkJumpSensor(const CustomUserData& val);
+	void checkJumpSensor(const CustomUserData& val, const CustomUserData& valB);
 	void checkLeftArmSensor(const CustomUserData& val, b2Body& bodyB);
 	void checkRightArmSensor(const CustomUserData& val, b2Body& bodyB);
 	void checkExitSensor(const CustomUserData& valA, const CustomUserData& valB);

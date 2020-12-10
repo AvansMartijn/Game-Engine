@@ -26,13 +26,13 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 
 
 	if (valA != nullptr) {
-		checkJumpSensor(*valA);
+		checkJumpSensor(*valA, *valB);
 		checkLeftArmSensor(*valA, *bodyB);
 		checkRightArmSensor(*valA, *bodyB);
 	}
 
 	if (valB != nullptr) {
-		checkJumpSensor(*valB);
+		checkJumpSensor(*valB, *valA);
 		//checkJumpSensor(*valB);
 		checkLeftArmSensor(*valB, *bodyA);
 		checkRightArmSensor(*valB, *bodyA);
@@ -70,40 +70,34 @@ void CollisionListener::EndContact(b2Contact* contact) {
 	GameObject* objA = (GameObject*)bodyA->GetUserData().pointer;
 	GameObject* objB = (GameObject*)bodyB->GetUserData().pointer;
 
-	if (valA != nullptr) {
-		if (valA->type == "jumpSensor")
-			Scene::getInstance().getPlayerMoveExtension()->jumpCounter--;
-	}
-
-	if (valB != nullptr) {
-		if (valB->type == "jumpSensor")
-			Scene::getInstance().getPlayerMoveExtension()->jumpCounter--;
-	}
-
 	if (valA != nullptr && valB != nullptr) {
+		if (valA->type == "jumpSensor")
+			if(valB->type != "portalSensor")
+			Scene::getInstance().getPlayerMoveExtension()->jumpCounter--;
+
+		if (valB->type == "jumpSensor")
+			if (valA->type != "portalSensor")
+			Scene::getInstance().getPlayerMoveExtension()->jumpCounter--;
+	
 		if (valA->type == "leftArmSensor" && bodyB->GetType() == b2_staticBody)
 			Scene::getInstance().getPlayerMoveExtension()->leftArmCounter--;
-	}
-
-	if (valB != nullptr && valA != nullptr) {
+	
 		if (valB->type == "leftArmSensor" && bodyA->GetType() == b2_staticBody)
 			Scene::getInstance().getPlayerMoveExtension()->leftArmCounter--;
-	}
-
-	if (valA != nullptr && valB != nullptr) {
+	
 		if (valA->type == "rightArmSensor" && bodyB->GetType() == b2_staticBody)
 			Scene::getInstance().getPlayerMoveExtension()->rightArmCounter--;
-	}
-
-	if (valB != nullptr && valA != nullptr) {
+	
 		if (valB->type == "rightArmSensor" && bodyA->GetType() == b2_staticBody)
 			Scene::getInstance().getPlayerMoveExtension()->rightArmCounter--;
 	}
+	
 }
 
-void CollisionListener::checkJumpSensor(const CustomUserData& val) {
-	if (val.type == "jumpSensor")
-		Scene::getInstance().getPlayerMoveExtension()->jumpCounter++;
+void CollisionListener::checkJumpSensor(const CustomUserData& valA, const CustomUserData& valB) {
+	if (valA.type == "jumpSensor")
+		if(valB.type != "portalSensor")
+			Scene::getInstance().getPlayerMoveExtension()->jumpCounter++;
 }
 
 void CollisionListener::checkLeftArmSensor(const CustomUserData& valA, b2Body& bodyB) {
