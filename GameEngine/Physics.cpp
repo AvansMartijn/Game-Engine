@@ -200,7 +200,9 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
 
     if (fixedRotation)
         bodyDef.fixedRotation = true;
-
+    if (isBullet) {
+        bodyDef.bullet = true;
+    }
     b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
 
