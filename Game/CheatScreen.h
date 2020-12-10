@@ -17,6 +17,8 @@ private:
 	void leftTrim(std::string &s);
 	void rightTrim(std::string &s);
 
+	shared_ptr<TextUiElement> _fps;
+
 public:
 	using AbstractScreen::AbstractScreen;
 	CheatScreen();

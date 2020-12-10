@@ -30,6 +30,7 @@ public:
 	float getHeight();
 	int getAmmo();
 	long getCooldown();
+	long getLastUsed();
 	void setAmmo(int amount);
 	void setCooldown(long amount);
 	void setOwner(shared_ptr<GameObject> owner);
@@ -37,6 +38,7 @@ public:
 	virtual void render(const unique_ptr<Window>& window);
 	virtual void onLeftClick(int x, int y) = 0;
 	virtual void onRightClick(int x, int y) = 0;
+
 
 };
 

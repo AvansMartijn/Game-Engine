@@ -1,9 +1,17 @@
 ﻿#include "GameScreen.h"
 #include <CanWieldExtension.h>
 #include "TiledLevelLoader.h"
-#include "ControllManager.h"
+
 
 GameScreen::GameScreen() {}
+
+//TODO: Even naar een helper class verplaatsen
+long convertTimeToLong(std::chrono::steady_clock::time_point time) {
+	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(time);
+	auto epoch = now_ms.time_since_epoch();
+	auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
+	return value.count();
+}
 
 void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
@@ -26,7 +34,7 @@ void GameScreen::setupHUD() {
 	const string font = "Portal";
 	const int fontSize = 19;
 
-	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 300, 100 }, 122));
+	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 240, 100 }, 122));
 	_uiElements.push_back(_hudBackgroundImg);
 	_gameUiElements.push_back(_hudBackgroundImg);
 
@@ -130,18 +138,50 @@ void GameScreen::onTick() {
 		calculatePlayerTexture();
 	}
 
+	//shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->addItem();
+	//currentWeapon->getCooldown();
+
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
 			std::string result = "WEAPON: " + currentWeapon->getScreemName();
 			_weapon->text = result;
+			  
+			for (std::string cheat : Scene::getInstance().activatedCheats) {
+				if(cheat == "unlimitedammo" || currentWeapon->getScreemName() == "GLUE GUN")
+					_ammo->text = "AMMO: INFINITE";
+			}
 
-			if (currentWeapon->getAmmo() == -1)
-				_ammo->text = "AMMO: INFINITE";
-			else
+			if (currentWeapon->getAmmo() == -1 || currentWeapon->getScreemName() != "GLUE GUN") {
+				auto currentTime = std::chrono::steady_clock::now();
+				long difference = convertTimeToLong(currentTime) - currentWeapon->getLastUsed();
+				if (difference == 0) {
+					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
+					_ammo->text = "COOLDOWN: READY";
+				}
+				else if (difference >= currentWeapon->getCooldown()) {
+					_ammo->text = "COOLDOWN: READY";
+					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
+				}
+				else {
+					_ammo->text = "COOLDOWN: RECHARGING";
+					Mouse::getInstance().setCursor(Mouse::WAIT);
+				}
+
+			}
+
+			else {
+				if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+					Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
 				_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+			}
+
 		}
 		else {
+			if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::NONE))
+				Mouse::getInstance().setCursor(Mouse::NONE);
 			_weapon->text = "WEAPON: NONE";
 			_ammo->text = "AMMO:";
 		}
@@ -155,6 +195,18 @@ void GameScreen::onTick() {
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else if(_fps->text.length() > 0)
 		_fps->text = "  ";
+	
+
+	// TODO: Execute AI
+	size_t a = Scene::getInstance().getEntitiesSize();
+	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+
+		if (gameObject->hasExtension(typeid(AiExtension)))
+			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
+	}
+
+
 }
 
 void GameScreen::handlePlayerControls() {
@@ -352,8 +404,8 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 		if (Scene::getInstance().zoom > 10)
 			Scene::getInstance().zoom -= 3.0f;
 	}
-
 }
+
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	_backgroundImg->render(window);

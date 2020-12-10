@@ -42,6 +42,7 @@ public:
 	int score;
 	bool gameOver;
 	bool hasCheated = false;
+	std::vector<std::string> activatedCheats;
 	float zoom = 40.0f;
 
 	/// <summary>

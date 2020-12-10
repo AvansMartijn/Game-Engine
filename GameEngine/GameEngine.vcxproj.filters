@@ -97,6 +97,12 @@
     <Filter Include="Header Files\Misc">
       <UniqueIdentifier>{398d20c3-1841-4ef1-a6f4-1c201b6f3933}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UiElements\Mouse">
+      <UniqueIdentifier>{b8c2dec6-a365-4918-af55-67b1d6eb0b69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UiElements\Mouse">
+      <UniqueIdentifier>{05409c78-e468-4e22-bb86-8410560f4efb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -303,6 +309,9 @@
     <ClInclude Include="AbstractContactListener.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Header Files\UiElements\Mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -484,6 +493,9 @@
     </ClCompile>
     <ClCompile Include="AbstractContactListener.cpp">
       <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Files\UiElements\Mouse</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

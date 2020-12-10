@@ -216,6 +216,11 @@
     <ClCompile Include="CollisionListener.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="FlyCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="AllWeaponsCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
     <ClCompile Include="EnemyTextureExtension.cpp">
       <Filter>Source Files\Extensions</Filter>
     </ClCompile>
@@ -380,6 +385,11 @@
     <ClInclude Include="CollisionListener.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="FlyCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="AllWeaponsCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
     <ClInclude Include="EnemyTextureExtension.h">
       <Filter>Header Files\Extensions</Filter>
     </ClInclude>
