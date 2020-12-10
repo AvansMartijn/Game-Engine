@@ -359,8 +359,20 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 		break;
 	case SDLK_TAB:
-		//TODO Open Cheat Window
 		_game->switchScreen(Screens::Cheat);
+		break;
+	case SDLK_PAGEUP:
+		if (Scene::getInstance().tickRate + 10 <= 250) {
+			Scene::getInstance().tickRate = Scene::getInstance().tickRate + 10;
+		}
+		break;
+	case SDLK_PAGEDOWN:
+		if (Scene::getInstance().tickRate - 10 > 0) {
+			Scene::getInstance().tickRate = Scene::getInstance().tickRate - 10;
+		}
+		break;
+	case SDLK_HOME:
+		Scene::getInstance().tickRate = 60.0;
 		break;
 	case SDLK_p:
 		_game->reset();
