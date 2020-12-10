@@ -6,7 +6,7 @@
 #include "Physics.h"
 
 GlueManagableItem::GlueManagableItem() {
-	_textureKey = "DIY_Weapon";
+	_textureKey = "GlueGun";
 	_screenName = "GLUE GUN";
 	//default ammo and cooldown
 	_ammo = -1;
@@ -30,7 +30,7 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 			double angleDeg = angleRad * (180.0f / M_PI);
 
-			std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << "ammo: " << _ammo << std::endl;
+			//std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << "ammo: " << _ammo << std::endl;
 			GameObjectFacade gameEngine;
 			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({"TimerExtension"});
 

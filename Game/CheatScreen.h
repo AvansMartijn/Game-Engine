@@ -17,6 +17,8 @@ private:
 	void leftTrim(std::string &s);
 	void rightTrim(std::string &s);
 
+	shared_ptr<TextUiElement> _fps;
+
 public:
 	using AbstractScreen::AbstractScreen;
 	CheatScreen();
@@ -30,6 +32,11 @@ public:
 	/// Called every tick to update properties.
 	/// </summary>
 	void onTick();
+	/// <summary>
+	/// Called when the user switches to this screen.
+	/// </summary>
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	void onScreenShowed(vector<std::string> args);
 	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>

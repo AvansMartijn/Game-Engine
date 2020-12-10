@@ -4,7 +4,7 @@
 #include <iostream>
 
 ThrusterManagableItem::ThrusterManagableItem() {
-	_textureKey = "DIY_Weapon";
+	_textureKey = "ThrusterGun";
 	_screenName = "THRUSTER GUN";
 	//default ammo and cooldown
 	_ammo = -1;
@@ -30,7 +30,7 @@ void ThrusterManagableItem::onLeftClick(int x, int y) {
 			double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 			double angleDeg = angleRad * (180.0f / 3.141592653589793238463f);
 
-			std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
+			//std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
 
 			//apply impulse thrust
 			int force = -50;
