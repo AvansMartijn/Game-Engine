@@ -5,6 +5,7 @@
 
 GameScreen::GameScreen() {}
 
+//TODO: Even naar een helper class verplaatsen
 long convertTimeToLong(std::chrono::steady_clock::time_point time) {
 	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(time);
 	auto epoch = now_ms.time_since_epoch();
