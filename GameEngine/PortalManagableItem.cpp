@@ -10,7 +10,7 @@ PortalManagableItem::PortalManagableItem() {
 	_screenName = "PORTAL GUN";
 	//default ammo and cooldown
 	_ammo = -1;
-	_cooldown = -1;
+	_cooldown = 0;
 }
 
 void PortalManagableItem::onLeftClick(int x, int y) {
