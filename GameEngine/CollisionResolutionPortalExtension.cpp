@@ -129,8 +129,8 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
             velX = tempVel;
         }
     }
-    if (velY > 50) {
-        velY = 50;
+    if (velY > 30) {
+        velY = 30;
     }
     std::cout << inputObject->body.b2body->GetLinearVelocity().x << " | " << inputObject->body.b2body->GetLinearVelocity().y << "\n";
     inputObject->body.b2body->SetLinearVelocity({ velX, velY });

@@ -83,7 +83,7 @@ void HelpScreen::onInit() {
 	_srollableTextElements.push_back(pWeaponsInfoText);
 
 	//portal gun
-	ImageUiElement portalGunImg = ImageUiElement("Krool", {  100, 1200, 100, 100 }, 0, false);
+	ImageUiElement portalGunImg = ImageUiElement("PortalGun", {  100, 1200, 100, 50 }, 0, false);
 	shared_ptr<ImageUiElement> pPortalGunImg = make_shared<ImageUiElement>(portalGunImg);
 	_uiElements.push_back(pPortalGunImg);
 	_srollableImgElements.push_back(pPortalGunImg);
@@ -95,7 +95,7 @@ void HelpScreen::onInit() {
 	_srollableTextElements.push_back(pPortalGunInfoText);
 
 	//thrustergun
-	ImageUiElement thrusterGunImg = ImageUiElement("Krool", { 100, 1350, 100, 100 }, 0, false);
+	ImageUiElement thrusterGunImg = ImageUiElement("ThrusterGun", { 100, 1350, 100, 50 }, 0, false);
 	shared_ptr<ImageUiElement> pThrusterGunImg = make_shared<ImageUiElement>(thrusterGunImg);
 	_uiElements.push_back(pThrusterGunImg);
 	_srollableImgElements.push_back(pThrusterGunImg);
@@ -107,7 +107,7 @@ void HelpScreen::onInit() {
 	_srollableTextElements.push_back(pThrusterGunInfoText);
 
 	//gluegun
-	ImageUiElement glueGunImg = ImageUiElement("Krool", { 100, 1500, 100, 100 }, 0, false);
+	ImageUiElement glueGunImg = ImageUiElement("GlueGun", { 100, 1500, 100, 50 }, 0, false);
 	shared_ptr<ImageUiElement> pGlueGunImg = make_shared<ImageUiElement>(glueGunImg);
 	_uiElements.push_back(pGlueGunImg);
 	_srollableImgElements.push_back(pGlueGunImg);

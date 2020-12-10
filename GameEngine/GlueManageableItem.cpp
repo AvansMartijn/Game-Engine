@@ -43,7 +43,7 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			Scene::getInstance().addGameObject(gameObject);
 			Physics::getInstance().expirationQueue.push_back(gameObject->id);
 
-			int force = 50;
+			int force = 30;
 			b2Vec2 vect = b2Vec2(sin(angleDeg * (b2_pi / 180)) * force, cos(angleDeg * (b2_pi / 180)) * force);
 			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
 			if (_ammo > 0) {
