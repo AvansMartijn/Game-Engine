@@ -280,21 +280,21 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 	SDL_Keycode firstGun;
 	if (ControllManager::getInstance().equipPortalKey.isDefault)
-		firstGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipPortalKey.defaultSDLKey);
+		firstGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipPortalKey.defaultSDLKey);
 	else
-		firstGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipPortalKey.userSDLKey);
+		firstGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipPortalKey.userSDLKey);
 
 	SDL_Keycode secondGun;
 	if (ControllManager::getInstance().equipThrusterKey.isDefault)
-		secondGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipThrusterKey.defaultSDLKey);
+		secondGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipThrusterKey.defaultSDLKey);
 	else
-		secondGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipThrusterKey.userSDLKey);
+		secondGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipThrusterKey.userSDLKey);
 
 	SDL_Keycode thirdGun;
 	if (ControllManager::getInstance().equipGlueKey.isDefault)
-		thirdGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipGlueKey.defaultSDLKey);
+		thirdGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipGlueKey.defaultSDLKey);
 	else
-		thirdGun = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().equipGlueKey.userSDLKey);
+		thirdGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipGlueKey.userSDLKey);
 
 	if (e.keysym.sym == firstGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
@@ -311,9 +311,9 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 	SDL_Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = SDL_GetKeyFromScancode(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = SDL_GetKeyFromScancode(ControllManager::getInstance().toggleFPSKey.userSDLKey);
 
 	if (e.keysym.sym == fps) 
 		shouldShowFPS = !shouldShowFPS;

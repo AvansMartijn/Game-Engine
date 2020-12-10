@@ -60,6 +60,9 @@ void Game::onInit() {
 	registerTexture("Keybindings", "res/gfx/tutorial.png");
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
+	registerTexture("GlueGun", "res/gfx/Assets/Items/GlueGun.png");
+	registerTexture("PortalGun", "res/gfx/Assets/Items/PortalGun.png");
+	registerTexture("ThrusterGun", "res/gfx/Assets/Items/ThrusterGun.png");
 
 	LibCurl libcurl;
 	std::string location = libcurl.PerformRequest("https://latropads.mardy.tk/ad.jpg");

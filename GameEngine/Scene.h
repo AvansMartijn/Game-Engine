@@ -29,6 +29,8 @@ private:
 	bool preRender = false;
 
 public:
+	float tickRate = 60.0;
+	float refreshRate = 144.0;
 	shared_ptr<GameObject> portalA;
 	shared_ptr<GameObject> portalB;
 	static Scene& getInstance() { return instance; }
@@ -118,12 +120,23 @@ public:
 	/// <returns>The item on the given index.</returns>
 	shared_ptr<AbstractManageableItem> getItem(int index);
 
+
 	/// <summary>
 	/// Get's the item with the given name.
 	/// </summary>
 	/// <param name="name">The name of the item.</param>
 	/// <returns>The item with the given name.</returns>
 	shared_ptr<AbstractManageableItem> getItem(std::string name);
+
+	template<typename T>
+	std::shared_ptr<T> getItem(std::string name) {
+		std::shared_ptr<AbstractManageableItem> item = getItem(name);
+
+		if (item == nullptr)
+			return nullptr;
+
+		return dynamic_pointer_cast<T>(item);
+	}
 
 	/// <summary>
 	/// Set's the player.
@@ -173,5 +186,6 @@ public:
 	/// <param name="pixels"></param>
 	/// <returns>amount of meters</returns>
 	float pixelsToMeters(float pixels);
+
 };
 

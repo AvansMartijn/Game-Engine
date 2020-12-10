@@ -6,7 +6,7 @@
 #include "Physics.h"
 
 PortalManagableItem::PortalManagableItem() {
-	_textureKey = "DIY_Weapon";
+	_textureKey = "PortalGun";
 	_screenName = "PORTAL GUN";
 	//default ammo and cooldown
 	_ammo = -1;

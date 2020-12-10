@@ -68,6 +68,11 @@ void CheatScreen::onTick()
 		Mouse::getInstance().setCursor(Mouse::BEAM);
 }
 
+void CheatScreen::onScreenShowed(vector<std::string> args)
+{
+	_cheatText->text = " ";
+}
+
 void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 {
 	SDL_Keycode fps;

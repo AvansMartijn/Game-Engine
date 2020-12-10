@@ -2,6 +2,8 @@
 #include "GodmodeCheat.h"
 #include "UnlimitedAmmoCheat.h"
 #include "NoCooldownCheat.h"
+#include "SonicModeCheat.h"
+#include "MartijnModeCheat.h"
 #include "Scene.h"
 #include "FlyCheat.h"
 #include "AllWeaponsCheat.h"
@@ -35,6 +37,8 @@ void CheatManager::initializeCheats()
     GodmodeCheat godmodeCheat;
     UnlimitedAmmoCheat unlimitedAmmoCheat;
     NoCooldownCheat noCooldownCheat;
+    SonicModeCheat sonicModeCheat;
+    MartijnModeCheat martijnModeCheat;
     FlyCheat flyCheat;
     AllWeaponsCheat allWeaponsCheat;
 
@@ -47,7 +51,13 @@ void CheatManager::initializeCheats()
     CheatList.insert({ "nocooldown", std::make_unique<NoCooldownCheat>(noCooldownCheat) });
     CheatInformation.insert({ "nocooldown","Sets the cooldown of all guns to 0." });
 
-    CheatList.insert({ "flyboi", std::make_unique<FlyCheat>(flyCheat) });
+    CheatList.insert({ "sonicmode", std::make_unique<SonicModeCheat>(sonicModeCheat) });
+    CheatInformation.insert({ "sonicmode","Ups the game speed" });
+
+    CheatList.insert({ "martijnmode", std::make_unique<MartijnModeCheat>(martijnModeCheat) });
+    CheatInformation.insert({ "martijnmode","reset the game speed" });
+
+  CheatList.insert({ "flyboi", std::make_unique<FlyCheat>(flyCheat) });
     CheatInformation.insert({ "flyboi","Allows you to fly." });
 
     CheatList.insert({ "allweapons", std::make_unique<AllWeaponsCheat>(allWeaponsCheat) });

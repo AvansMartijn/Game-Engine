@@ -202,12 +202,14 @@
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="MartijnModeCheat.cpp" />
     <ClCompile Include="NoCooldownCheat.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PlayerTextureExtension.cpp" />
     <ClCompile Include="SaveKeybindings.cpp" />
     <ClCompile Include="Quotes.cpp" />
     <ClCompile Include="NewGameSlotsScreen.cpp" />
+    <ClCompile Include="SonicModeCheat.cpp" />
     <ClCompile Include="StartNewLevelScreen.cpp" />
     <ClCompile Include="TiledLevelLoader.cpp" />
     <ClCompile Include="TiledMapBuilder.cpp" />
@@ -247,6 +249,7 @@
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="MartijnModeCheat.h" />
     <ClInclude Include="NoCooldownCheat.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerTextureExtension.h" />
@@ -258,6 +261,7 @@
     <ClInclude Include="SaveLevel.h" />
     <ClInclude Include="SaveSettings.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="SonicModeCheat.h" />
     <ClInclude Include="StartNewLevelScreen.h" />
     <ClInclude Include="TiledGameObject.h" />
     <ClInclude Include="TiledGrid.h" />
