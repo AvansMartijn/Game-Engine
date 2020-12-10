@@ -11,6 +11,7 @@
 #include "AbstractManageableItem.h"
 #include "CanWieldExtension.h"
 #include "TextUiElement.h"
+#include "IEMath.h"
 
 class GAMEENGINE_Scene Scene
 {
@@ -172,5 +173,9 @@ public:
 	/// <param name="pixels"></param>
 	/// <returns>amount of meters</returns>
 	float pixelsToMeters(float pixels);
+
+
+
+
 };
 

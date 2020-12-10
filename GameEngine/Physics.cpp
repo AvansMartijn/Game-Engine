@@ -292,5 +292,14 @@ void Physics::clearAllQueues() {
     setStaticQueue.clear();
 }
 
+Vec2 Physics::getLinearVelocity(shared_ptr<GameObject> gameObject) {
+    auto linVel = gameObject->body.b2body->GetLinearVelocity();
+    return { linVel.x, linVel.y };
+}
+
+void Physics::setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel) {
+    gameObject->body.b2body->SetLinearVelocity({ vel.x, vel.y });
+}
+
 
 

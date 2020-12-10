@@ -158,7 +158,7 @@ void GameScreen::onTick() {
 }
 
 void GameScreen::handlePlayerControls() {
-	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
+	Vec2 vel = Physics::getInstance().getLinearVelocity(Scene::getInstance().getPlayer());
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	SDL_Scancode walkLeft;
@@ -215,7 +215,7 @@ void GameScreen::handlePlayerControls() {
 			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
-	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
+	Physics::getInstance().setLinearVelocity(Scene::getInstance().getPlayer(), vel);
 
 }
 

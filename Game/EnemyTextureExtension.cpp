@@ -1,5 +1,6 @@
 #include "EnemyTextureExtension.h"
 #include <Scene.h>
+#include <Physics.h>
 
 EnemyTextureExtension::EnemyTextureExtension() {
 	type = "EnemyTextureExtension";
@@ -17,7 +18,7 @@ void EnemyTextureExtension::calculateTextures() {
 		if (moveExtension->currentMovementType == MovementTypes::IDLE)
 			currentState = MoveExtension::LOOK_RIGHT;
 		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (_subject->body.b2body->GetLinearVelocity().x == 0)
+			if (Physics::getInstance().getLinearVelocity(_subject).x == 0)
 				currentState = MoveExtension::LOOK_RIGHT;
 			else
 				currentState = MoveExtension::RUN_RIGHT;
@@ -29,7 +30,7 @@ void EnemyTextureExtension::calculateTextures() {
 		if (moveExtension->currentMovementType == MovementTypes::IDLE)
 			currentState = MoveExtension::LOOK_LEFT;
 		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (_subject->body.b2body->GetLinearVelocity().x == 0)
+			if (Physics::getInstance().getLinearVelocity(_subject).x == 0)
 				currentState = MoveExtension::LOOK_LEFT;
 			else
 				currentState = MoveExtension::RUN_LEFT;
