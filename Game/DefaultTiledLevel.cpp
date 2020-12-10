@@ -68,12 +68,14 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 
 void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
 	if (tiledGameObject.type == "Player") {
-		Scene::getInstance().setPlayer(createEntity(gameEngine, extensions, "Waluigi",
-			x, y, 0.7f, 1.8f));
-		Scene::getInstance().getPlayer()->currentState = MoveExtension::LOOK_RIGHT;
+		Scene::getInstance().setPlayer(createPlayer(gameEngine, extensions, "Waluigi", x, y, 0.7f, 1.8f));
+
+		PlayerAnimationHandler animationHandler;
+		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));
+		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
 	}
 	else if (tiledGameObject.type == "Enemy") {
-		shared_ptr<GameObject> enemy = createEnemy(gameEngine, extensions, "Goomba_SpriteSheet", x, y, 0.7f, 1.0f);
+		shared_ptr<GameObject> enemy = createEnemy(gameEngine, extensions, "Goomba", x, y, 0.7f, 1.0f);
 		if (tiledGameObject.properties.find("health") != tiledGameObject.properties.end() && enemy->hasExtension(typeid(HealthExtension)))
 			enemy->getExtension<HealthExtension>()->setHealth(tiledGameObject.properties["health"].valueInt);
 
@@ -84,6 +86,10 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 
 			enemy->getExtension<AiExtension>()->ai = entityAi;
 		}
+
+		EnemyAnimationHandler animationHandler;
+		enemy->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<EnemyAnimationHandler>(animationHandler));
+		enemy->getExtension<AnimationExtension>()->registerAnimations();
 	}
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;

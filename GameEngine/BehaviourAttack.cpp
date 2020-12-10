@@ -9,7 +9,7 @@ void BehaviourAttack::execute() {
 		healthExtension->reduceHealth(1);
 
 		if (moveExtension != nullptr)
-			moveExtension->currentMovementType = MovementTypes::ATTACKING;
+			moveExtension->currentMovementType = MovementType::ATTACKING;
 
 		this->executeNextBehaviour(true);
 	}

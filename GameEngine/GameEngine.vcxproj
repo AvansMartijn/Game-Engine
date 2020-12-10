@@ -152,6 +152,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -196,6 +197,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractAnimationHandler.h" />
     <ClInclude Include="AbstractBehaviour.h" />
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
     <ClInclude Include="AbstractContactListener.h" />
@@ -206,6 +208,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="AbstractScreen.h" />
     <ClInclude Include="AbstractUiElement.h" />
     <ClInclude Include="AiExtension.h" />
+    <ClInclude Include="AnimationExtension.h" />
     <ClInclude Include="AssetRegistry.h" />
     <ClInclude Include="AttackExtension.h" />
     <ClInclude Include="BehaviourAttack.h" />
@@ -267,6 +270,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractAnimationHandler.cpp" />
     <ClCompile Include="AbstractBehaviour.cpp" />
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
     <ClCompile Include="AbstractContactListener.cpp" />
@@ -277,6 +281,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="AbstractScreen.cpp" />
     <ClCompile Include="AbstractUiElement.cpp" />
     <ClCompile Include="AiExtension.cpp" />
+    <ClCompile Include="AnimationExtension.cpp" />
     <ClCompile Include="AssetRegistry.cpp" />
     <ClCompile Include="AttackExtension.cpp" />
     <ClCompile Include="BehaviourAttack.cpp" />

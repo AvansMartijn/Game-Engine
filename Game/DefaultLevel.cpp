@@ -100,7 +100,7 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };			
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, "Waluigi",
 		2, 8, 0.7f, 1.8f));
-	Scene::getInstance().getPlayer()->currentState = MoveExtension::LOOK_RIGHT;
+	//Scene::getInstance().getPlayer()->currentSktate = MoveExtension::LOOK_RIGHT;
 
 	// Weapon Block
 	

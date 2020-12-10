@@ -85,7 +85,7 @@ void GameScreen::onTick() {
 	if (Scene::getInstance().getPlayer()->getExtension(typeid(HealthExtension))) {
 
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
-		float healthValue = dynamic_pointer_cast<HealthExtension>(gameObject->getExtension(typeid(HealthExtension)))->getHealth();
+		float healthValue = gameObject->getExtension<HealthExtension>()->getHealth();
 
 		if (healthValue <= 0) {
 			_game->switchScreen(Screens::GameOver);
@@ -115,9 +115,6 @@ void GameScreen::onTick() {
 			if (gameObject->hasExtension(typeid(AiExtension)))
 				gameObject->getExtension<AiExtension>()->execute();
 
-			if (gameObject->hasExtension(typeid(MoveExtension)))
-				gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
-
 			if (gameObject->hasExtension(typeid(HealthExtension))) {
 				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
 
@@ -126,6 +123,9 @@ void GameScreen::onTick() {
 					Physics::getInstance().deleteQueue.push_back(gameObject->id);
 				}
 			}
+
+			if (gameObject->hasExtension(typeid(AnimationExtension)))
+				gameObject->getExtension<AnimationExtension>()->animate();
 		}
 	}
 
@@ -135,7 +135,7 @@ void GameScreen::onTick() {
 
 	if (Scene::getInstance().getPlayer()) {
 		handlePlayerControls();
-		calculatePlayerTexture();
+		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->animate();
 	}
 
 	//shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->addItem();
@@ -195,18 +195,6 @@ void GameScreen::onTick() {
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else if(_fps->text.length() > 0)
 		_fps->text = "  ";
-	
-
-	// TODO: Execute AI
-	size_t a = Scene::getInstance().getEntitiesSize();
-	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
-
-		if (gameObject->hasExtension(typeid(AiExtension)))
-			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
-	}
-
-
 }
 
 void GameScreen::handlePlayerControls() {
@@ -222,7 +210,7 @@ void GameScreen::handlePlayerControls() {
 	if (keystate[walkLeft]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->leftArmCounter <= 0) {
 			vel.x = -5;
-			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementType::RUNNING;
 			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
 		}
 	}
@@ -237,7 +225,7 @@ void GameScreen::handlePlayerControls() {
 		if (Scene::getInstance().getPlayerMoveExtension()->rightArmCounter <= 0) {
 			vel.x = 5;
 
-			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementType::RUNNING;
 			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
 		}
 	}
@@ -267,17 +255,11 @@ void GameScreen::handlePlayerControls() {
 	if (keystate[jump]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
 			vel.y = -5;
-			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::JUMPING;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementType::JUMPING;
 			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
 	Physics::getInstance().setLinearVelocity(Scene::getInstance().getPlayer(), vel);
-
-}
-
-void GameScreen::calculatePlayerTexture() {
-	if (Scene::getInstance().getPlayer()->hasExtension(typeid(PlayerTextureExtension)))
-		Scene::getInstance().getPlayer()->getExtension<PlayerTextureExtension>()->calculateTextures();
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

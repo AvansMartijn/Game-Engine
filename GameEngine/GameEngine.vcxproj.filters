@@ -312,6 +312,12 @@
     <ClInclude Include="Mouse.h">
       <Filter>Header Files\UiElements\Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractAnimationHandler.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -496,6 +502,12 @@
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\UiElements\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractAnimationHandler.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

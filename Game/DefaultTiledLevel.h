@@ -8,6 +8,8 @@
 #include <CollisionResolutionPortalExtension.h>
 #include <DoesDamageExtension.h>
 #include <AiExtension.h>
+#include "EnemyAnimationHandler.h"
+#include "PlayerAnimationHandler.h"
 
 class DefaultTiledLevel : public AbstractLevel
 {

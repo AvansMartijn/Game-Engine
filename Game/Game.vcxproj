@@ -138,6 +138,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\GameEngine</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,8 +186,8 @@
     <ClCompile Include="DefaultLevel.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
     <ClCompile Include="DefaultTiledLevel.cpp" />
+    <ClCompile Include="EnemyAnimationHandler.cpp" />
     <ClCompile Include="FlyCheat.cpp" />
-    <ClCompile Include="EnemyTextureExtension.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameFinishedScreen.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
@@ -205,7 +206,7 @@
     <ClCompile Include="MartijnModeCheat.cpp" />
     <ClCompile Include="NoCooldownCheat.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
-    <ClCompile Include="PlayerTextureExtension.cpp" />
+    <ClCompile Include="PlayerAnimationHandler.cpp" />
     <ClCompile Include="SaveKeybindings.cpp" />
     <ClCompile Include="Quotes.cpp" />
     <ClCompile Include="NewGameSlotsScreen.cpp" />
@@ -230,8 +231,8 @@
     <ClInclude Include="DefaultLevel.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
     <ClInclude Include="DefaultTiledLevel.h" />
+    <ClInclude Include="EnemyAnimationHandler.h" />
     <ClInclude Include="FlyCheat.h" />
-    <ClInclude Include="EnemyTextureExtension.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameFinishedScreen.h" />
     <ClInclude Include="GameOverScreen.h" />
@@ -252,7 +253,7 @@
     <ClInclude Include="MartijnModeCheat.h" />
     <ClInclude Include="NoCooldownCheat.h" />
     <ClInclude Include="PauseScreen.h" />
-    <ClInclude Include="PlayerTextureExtension.h" />
+    <ClInclude Include="PlayerAnimationHandler.h" />
     <ClInclude Include="Quotes.h" />
     <ClInclude Include="SaveGame.h" />
     <ClInclude Include="NewGameSlotsScreen.h" />

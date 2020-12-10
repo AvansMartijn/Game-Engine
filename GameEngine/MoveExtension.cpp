@@ -1,17 +1,6 @@
 #include "pch.h"
 #include "MoveExtension.h"
 
-const std::string MoveExtension::LOOK_RIGHT = "Look_Right";
-const std::string MoveExtension::RUN_RIGHT = "Running_Right";
-const std::string MoveExtension::JUMP_RIGHT = "Jump_Right";
-const std::string MoveExtension::FALL_RIGHT = "Fall_Right";
-const std::string MoveExtension::LOOK_LEFT = "Look_Left";
-const std::string MoveExtension::RUN_LEFT = "Running_Left";
-const std::string MoveExtension::JUMP_LEFT = "Jump_Left";
-const std::string MoveExtension::FALL_LEFT = "Fall_Left";
-const std::string MoveExtension::ATTACK_LEFT = "Attack_Left";
-const std::string MoveExtension::ATTACK_RIGHT = "Attack_Right";
-
 MoveExtension::MoveExtension() {
 	type = "MoveExtension";
 }
@@ -22,7 +11,7 @@ void MoveExtension::move(float movementX, float movementY) {
 	vel.x = movementX;
 	vel.y = movementY;
 
-	currentMovementType = MovementTypes::RUNNING;
+	currentMovementType = MovementType::RUNNING;
 
 	_subject->body.b2body->SetLinearVelocity(vel);
 }
