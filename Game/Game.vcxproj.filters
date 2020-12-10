@@ -227,6 +227,7 @@
     </ClCompile>
     <ClCompile Include="AllWeaponsCheat.cpp">
       <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
     <ClCompile Include="EnemyTextureExtension.cpp">
       <Filter>Source Files\Extensions</Filter>
     </ClCompile>
@@ -402,6 +403,7 @@
     </ClInclude>
     <ClInclude Include="AllWeaponsCheat.h">
       <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
     <ClInclude Include="EnemyTextureExtension.h">
       <Filter>Header Files\Extensions</Filter>
     </ClInclude>
