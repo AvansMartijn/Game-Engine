@@ -2,11 +2,17 @@
 #include "BehaviourAttack.h"
 
 void BehaviourAttack::execute() {
-	std::cout << "> Attack\n";
+	shared_ptr<HealthExtension> healthExtension = Scene::getInstance().getPlayer()->getExtension<HealthExtension>();
+	shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 
-	this->executeNextBehaviour(true);
-}
+	if (healthExtension != nullptr) {
+		healthExtension->reduceHealth(1);
 
-bool BehaviourAttack::canAttack() {
-	return false;
+		if (moveExtension != nullptr)
+			moveExtension->currentMovementType = MovementTypes::ATTACKING;
+
+		this->executeNextBehaviour(true);
+	}
+	
+	this->executeNextBehaviour(false);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractBehaviour.h"
+#include "Scene.h"
 
 /// <summary>
 /// Move ai behavior
@@ -15,15 +16,9 @@ public:
 	void execute();
 
 	/// <summary>
-	/// Looks if the object can be moved.
+	/// Checks if the player is in attack range.
 	/// </summary>
-	/// <returns>If the object can be moved</returns>
-	bool isMovable();
-
-	/// <summary>
-	/// If a wall is hit.
-	/// </summary>
-	/// <returns>If the wall is hit</returns>
-	bool isWallHit();
+	/// <returns>If the player is in attack range.</returns>
+	bool isPlayerInAttackRange();
 };
 

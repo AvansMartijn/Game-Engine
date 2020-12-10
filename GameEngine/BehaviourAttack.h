@@ -1,5 +1,7 @@
 #pragma once
 #include "AbstractBehaviour.h"
+#include "Scene.h"
+#include "HealthExtension.h"
 
 /// <summary>
 /// Attack behavior
@@ -13,11 +15,5 @@ public:
 	/// Execute the behaviour.
 	/// </summary>
 	void execute();
-
-	/// <summary>
-	/// See if the object can be attacked.
-	/// </summary>
-	/// <returns>Can the object be attacked.</returns>
-	bool canAttack();
 };
 

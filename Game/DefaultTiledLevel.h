@@ -2,7 +2,6 @@
 #include "AbstractLevel.h"
 #include "TiledGameObject.h"
 #include <sstream>
-#include "PlayerMoves.h"
 #include <GlueManageableItem.h>
 #include <ThrusterManagableItem.h>
 #include <PortalManagableItem.h>
