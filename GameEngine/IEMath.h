@@ -143,15 +143,15 @@ inline Vec2 operator*(float s, const Vec2& v)
     return Vec2(s * v.x, s * v.y);
 }
 
-inline Vec2 Min(const Vec2& a, const Vec2& b)
-{
-    return Vec2(std::min(a.x, b.x), std::min(a.y, b.y));
-}
-
-inline Vec2 Max(const Vec2& a, const Vec2& b)
-{
-    return Vec2(std::max(a.x, b.x), std::max(a.y, b.y));
-}
+//inline Vec2 Min(const Vec2& a, const Vec2& b)
+//{
+//    return Vec2(std::min(a.x, b.x), std::min(a.y, b.y));
+//}
+//
+//inline Vec2 Max(const Vec2& a, const Vec2& b)
+//{
+//    return Vec2(std::max(a.x, b.x), std::max(a.y, b.y));
+//}
 
 inline real Dot(const Vec2& a, const Vec2& b)
 {

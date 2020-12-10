@@ -210,7 +210,7 @@ void GameScreen::onTick() {
 }
 
 void GameScreen::handlePlayerControls() {
-	b2Vec2 vel = Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity();
+	Vec2 vel = Physics::getInstance().getLinearVelocity(Scene::getInstance().getPlayer());
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	SDL_Scancode walkLeft;
@@ -220,9 +220,11 @@ void GameScreen::handlePlayerControls() {
 		walkLeft = ControllManager::getInstance().walkLeftKey.userSDLKey;
 
 	if (keystate[walkLeft]) {
-		vel.x = -5;
-		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
-		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
+		if (Scene::getInstance().getPlayerMoveExtension()->leftArmCounter <= 0) {
+			vel.x = -5;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
+		}
 	}
 
 	SDL_Scancode walkRight;
@@ -232,10 +234,12 @@ void GameScreen::handlePlayerControls() {
 		walkRight = ControllManager::getInstance().walkRightKey.userSDLKey;
 
 	if (keystate[walkRight]) {
-		vel.x = 5;
+		if (Scene::getInstance().getPlayerMoveExtension()->rightArmCounter <= 0) {
+			vel.x = 5;
 
-		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
-		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
+		}
 	}
 
 	SDL_Scancode stop;
@@ -267,7 +271,7 @@ void GameScreen::handlePlayerControls() {
 			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
-	Scene::getInstance().getPlayer()->body.b2body->SetLinearVelocity(vel);
+	Physics::getInstance().setLinearVelocity(Scene::getInstance().getPlayer(), vel);
 
 }
 

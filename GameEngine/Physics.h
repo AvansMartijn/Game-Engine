@@ -130,6 +130,20 @@ public:
 
 	void clearAllQueues();
 
+	/// <summary>
+	/// Get Linear velocity of gameobject
+	/// </summary>
+	/// <param name="gameObject">gameobject</param>
+	/// <returns>linearVelocity</returns>
+	Vec2 getLinearVelocity(shared_ptr<GameObject> gameObject);
+
+	/// <summary>
+	/// Get Linear velocity of gameobject
+	/// </summary>
+	/// <param name="gameObject">gameobject</param>
+	/// <returns>linearVelocity</returns>
+	void setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel);
+
 
 };
 

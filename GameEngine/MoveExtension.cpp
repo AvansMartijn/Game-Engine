@@ -31,6 +31,13 @@ bool MoveExtension::canJump() {
 	return jumpCounter > 0;
 }
 
+int MoveExtension::getLeftArmCounter() {
+	return leftArmCounter;
+}
+int MoveExtension::getRightArmCounter() {
+	return rightArmCounter;
+}
+
 void MoveExtension::reset() {
 	jumpCounter = 0;
 }

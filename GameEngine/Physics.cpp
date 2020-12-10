@@ -65,6 +65,8 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     wheelShape.m_radius = 0.05f;
     wheelShape.m_p = { 0 - (obj->body.width / 2), 0 + (obj->body.height / 2) };
     b2FixtureDef wheelFix;
+    wheelFix.filter.categoryBits = CHARACTER;
+    wheelFix.filter.maskBits = SCENERY | CHARACTER;
     wheelFix.shape = &wheelShape;
     CustomUserData* data3 = new CustomUserData;
     data3->type = "feetWheel";
@@ -77,6 +79,24 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     wheelFix.shape = &wheelShape2;
     wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
     body->CreateFixture(&wheelFix);
+
+    box.SetAsBox(obj->body.width / 2, obj->body.height / 2.1f, b2Vec2(-0.05f, 0), 0);
+    b2FixtureDef wheelFix2;
+    wheelFix2.filter.categoryBits = CHARACTER;
+    wheelFix2.filter.maskBits = SCENERY | CHARACTER;
+    wheelFix2.shape = &box;
+    wheelFix2.isSensor = true;
+    CustomUserData* data5 = new CustomUserData;
+    data5->type = "leftArmSensor";
+    wheelFix2.userData.pointer = reinterpret_cast<uintptr_t>(data5);
+    body->CreateFixture(&wheelFix2);
+
+    box.SetAsBox(obj->body.width / 2, obj->body.height / 2.1f, b2Vec2(0.05f, 0), 0);
+    wheelFix2.shape = &box;
+    CustomUserData* data4 = new CustomUserData;
+    data4->type = "rightArmSensor";
+    wheelFix2.userData.pointer = reinterpret_cast<uintptr_t>(data4);
+    body->CreateFixture(&wheelFix2);
 }
 
 void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
@@ -180,7 +200,9 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
 
     if (fixedRotation)
         bodyDef.fixedRotation = true;
-
+    if (isBullet) {
+        bodyDef.bullet = true;
+    }
     b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
 
@@ -290,6 +312,15 @@ void Physics::clearAllQueues() {
     expirationQueue.clear();
     rotateQueue.clear();
     setStaticQueue.clear();
+}
+
+Vec2 Physics::getLinearVelocity(shared_ptr<GameObject> gameObject) {
+    auto linVel = gameObject->body.b2body->GetLinearVelocity();
+    return { linVel.x, linVel.y };
+}
+
+void Physics::setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel) {
+    gameObject->body.b2body->SetLinearVelocity({ vel.x, vel.y });
 }
 
 

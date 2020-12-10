@@ -11,6 +11,7 @@
 #include "AbstractManageableItem.h"
 #include "CanWieldExtension.h"
 #include "TextUiElement.h"
+#include "IEMath.h"
 
 class GAMEENGINE_Scene Scene
 {

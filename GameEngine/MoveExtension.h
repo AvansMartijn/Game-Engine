@@ -27,6 +27,8 @@ public:
 
 	MoveExtension();
 	int jumpCounter;
+	int leftArmCounter;
+	int rightArmCounter;
 
 	MovementTypes currentMovementType;
 	bool isLookingToRight;
@@ -48,6 +50,9 @@ public:
 	/// <param name="movementX">The x movement.</param>
 	/// <param name="movementY">The y movement.</param>
 	void move(float movementX, float movementY);
+
+	int getLeftArmCounter();
+	int getRightArmCounter();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
 };
