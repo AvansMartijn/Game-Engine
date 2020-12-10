@@ -15,6 +15,7 @@
 #include <GameEngine.h>
 #include <TextUiElement.h>
 #include <HpBarUIElement.h>
+#include "ControllManager.h"
 #include "PickupExtension.h"
 #include "ThrusterManagableItem.h"
 #include "GlueManageableItem.h"
@@ -27,6 +28,7 @@
 #include "GameSettings.h"
 #include <TextUiElement.h>
 #include <HealthExtension.h>
+#include <Mouse.h>
 
 
 using namespace std;

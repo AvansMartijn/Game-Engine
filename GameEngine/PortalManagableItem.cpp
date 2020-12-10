@@ -37,7 +37,7 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 			double angleDeg = angleRad * (180.0f / M_PI);
 
-			std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
+			//std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
 			GameObjectFacade gameEngine;
 			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({});
 

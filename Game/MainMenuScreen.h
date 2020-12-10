@@ -8,6 +8,7 @@
 #include "Screens.h"
 #include "GameSettings.h"
 #include "ControllManager.h"
+#include <Mouse.h>
 
 class MainMenuScreen : public AbstractScreen
 {

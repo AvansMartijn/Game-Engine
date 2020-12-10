@@ -1,4 +1,5 @@
 #include "GameFinishedScreen.h"
+#include <Mouse.h>
 
 
 // trim from start (in place)
@@ -148,6 +149,12 @@ void GameFinishedScreen::onTick() {
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
 		_fps->text = "  ";
+
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
+		Mouse::getInstance().setCursor(Mouse::DEFAULT);
+
+	if (Scene::getInstance().activatedCheats.size() > 0)
+		Scene::getInstance().activatedCheats.clear();
 }
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {

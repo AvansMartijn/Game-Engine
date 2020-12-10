@@ -1,4 +1,5 @@
 #include "GameOverScreen.h"
+#include <Mouse.h>
 
 
 GameOverScreen::GameOverScreen() {}
@@ -40,6 +41,13 @@ void GameOverScreen::onTick() {
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
 		_fps->text = "  ";
+
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
+		Mouse::getInstance().setCursor(Mouse::DEFAULT);
+
+
+	if (Scene::getInstance().activatedCheats.size() > 0)
+		Scene::getInstance().activatedCheats.clear();
 }
 
 void GameOverScreen::onScreenShowed(vector<string> args) {

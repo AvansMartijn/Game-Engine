@@ -3,6 +3,8 @@
 #include "UnlimitedAmmoCheat.h"
 #include "NoCooldownCheat.h"
 #include "Scene.h"
+#include "FlyCheat.h"
+#include "AllWeaponsCheat.h"
 
 CheatManager CheatManager::_instance;
 
@@ -15,6 +17,7 @@ bool CheatManager::executeCheat(std::string Cheat)
     {
         if (Cheat == cheat.first) {
             if (cheat.second.get()->Execute()) {
+                Scene::getInstance().activatedCheats.push_back(cheat.first);
                 return true;
             }
             break;
@@ -32,6 +35,8 @@ void CheatManager::initializeCheats()
     GodmodeCheat godmodeCheat;
     UnlimitedAmmoCheat unlimitedAmmoCheat;
     NoCooldownCheat noCooldownCheat;
+    FlyCheat flyCheat;
+    AllWeaponsCheat allWeaponsCheat;
 
     CheatList.insert({ "godmode", std::make_unique<GodmodeCheat>(godmodeCheat) });
     CheatInformation.insert({ "godmode","Gives the play a shitload of health, if you manage to die now you kinda deserve it. :^)" });
@@ -41,6 +46,12 @@ void CheatManager::initializeCheats()
 
     CheatList.insert({ "nocooldown", std::make_unique<NoCooldownCheat>(noCooldownCheat) });
     CheatInformation.insert({ "nocooldown","Sets the cooldown of all guns to 0." });
+
+    CheatList.insert({ "flyboi", std::make_unique<FlyCheat>(flyCheat) });
+    CheatInformation.insert({ "flyboi","Allows you to fly." });
+
+    CheatList.insert({ "allweapons", std::make_unique<AllWeaponsCheat>(allWeaponsCheat) });
+    CheatInformation.insert({"allweapons", "Gives acces to all the weapons in the game." });
 }
 
 bool CheatManager::isCheat(std::string Cheat)
