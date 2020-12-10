@@ -174,6 +174,11 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 	if (objectLocation != Physics::getInstance().deleteQueue.end()) {
 		return;
 	}
+	
+
+	if (valA.type == "rightArmSensor" || valA.type == "leftArmSensor" || valB.type == "rightArmSensor" || valB.type == "leftArmSensor") {
+		return;
+	}
 
 	if (valA.type == "portalAbullet" || valA.type == "portalBbullet") {
 		if (!gameObjectB->hasExtension(typeid(IsPortalableExtension)) && valB.type != "glueFixture") {
