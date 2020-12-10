@@ -107,6 +107,27 @@ void GameScreen::onTick() {
 		Scene::getInstance().gameOver = false;
 	}
 
+	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+
+		if (gameObject != nullptr) {
+			if (gameObject->hasExtension(typeid(AiExtension)))
+				gameObject->getExtension<AiExtension>()->execute();
+
+			if (gameObject->hasExtension(typeid(MoveExtension)))
+				gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
+
+			if (gameObject->hasExtension(typeid(HealthExtension))) {
+				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
+
+				if (healthExtension->getHealth() <= 0) {
+					Scene::getInstance().removeEntity(gameObjectIndex);
+					Physics::getInstance().deleteQueue.push_back(gameObject->id);
+				}
+			}
+		}
+	}
+
 	float timeStep = 1.0f / 60.0f;
 
 	Physics::getInstance().step(timeStep, 6, 2);
@@ -239,36 +260,8 @@ void GameScreen::handlePlayerControls() {
 }
 
 void GameScreen::calculatePlayerTexture() {
-	shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayerMoveExtension();
-
-	if (moveExtension->isLookingToRight) {
-		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
-		}
-		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
-		}
-	}
-	else {
-		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
-		}
-		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
-		}
-	}
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(PlayerTextureExtension)))
+		Scene::getInstance().getPlayer()->getExtension<PlayerTextureExtension>()->calculateTextures();
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

@@ -6,21 +6,33 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
+	// Register Sprite
+	GameObjectExtensionFactory::get()->registerExtension("PlayerTextureExtension", &PlayerTextureExtension::create);
+	GameObjectExtensionFactory::get()->registerExtension("EnemyTextureExtension", &EnemyTextureExtension::create);
+
 	// Sprites
 	std::map<std::string, Rect> sprites;
-	sprites.insert(std::make_pair(PlayerMoves::LOOK_RIGHT, Rect{ 662, 78, 318, 456 }));
-	sprites.insert(std::make_pair(PlayerMoves::LOOK_LEFT, Rect{ 253, 78, 318, 456 }));
+	sprites.insert(std::make_pair(MoveExtension::LOOK_RIGHT, Rect{ 662, 78, 318, 456 }));
+	sprites.insert(std::make_pair(MoveExtension::LOOK_LEFT, Rect{ 253, 78, 318, 456 }));
 
-	sprites.insert(std::make_pair(PlayerMoves::JUMP_RIGHT, Rect{ 2555, 676, 293, 496 }));
-	sprites.insert(std::make_pair(PlayerMoves::JUMP_LEFT, Rect{ 2058, 654, 385, 519}));
+	sprites.insert(std::make_pair(MoveExtension::JUMP_RIGHT, Rect{ 2555, 676, 293, 496 }));
+	sprites.insert(std::make_pair(MoveExtension::JUMP_LEFT, Rect{ 2058, 654, 385, 519}));
 
-	sprites.insert(std::make_pair(PlayerMoves::RUN_RIGHT, Rect{ 542, 735, 448, 448 }));
-	sprites.insert(std::make_pair(PlayerMoves::RUN_LEFT, Rect{ 44, 735, 448, 448 }));
+	sprites.insert(std::make_pair(MoveExtension::RUN_RIGHT, Rect{ 542, 735, 448, 448 }));
+	sprites.insert(std::make_pair(MoveExtension::RUN_LEFT, Rect{ 44, 735, 448, 448 }));
 
 	registerTexture("Waluigi", "res/gfx/Assets/Entity/Player/Waluigi.png", sprites);
 
 	sprites.clear();
-	sprites.insert(std::make_pair<std::string, Rect>("Player_Look_Right", { 23, 0, 86, 76 }));
+	sprites.insert(std::make_pair(MoveExtension::LOOK_LEFT, Rect{ 23, 1, 86, 76 }));
+	sprites.insert(std::make_pair(MoveExtension::LOOK_RIGHT, Rect{ 161, 1, 86, 76 }));
+
+	sprites.insert(std::make_pair(MoveExtension::RUN_LEFT, Rect{ 318, 1, 87, 72 }));
+	sprites.insert(std::make_pair(MoveExtension::RUN_RIGHT, Rect{ 298, 96, 87, 72 }));
+
+	sprites.insert(std::make_pair(MoveExtension::ATTACK_LEFT, Rect{ 315, 185, 88, 66 }));
+	sprites.insert(std::make_pair(MoveExtension::ATTACK_RIGHT, Rect{ 297, 259, 88, 66 }));
+
 	registerTexture("Goomba_SpriteSheet", "res/gfx/Assets/Entity/Goomba/Goomba.png", sprites);
 
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
@@ -36,11 +48,16 @@ void Game::onInit() {
 	registerTexture("Lose", "res/gfx/Sad.png");
 	registerTexture("Win", "res/gfx/Win.png");
 	registerTexture("Hat", "res/gfx/Pauze.png");
+	registerTexture("Boyz", "res/gfx/theBoyz.png");
+
+	registerTexture("Spikes", "res/levels/Assets/Killable/Spikes.png");
+	registerTexture("Portable", "res/levels/Assets/Portable/Center.png");
+	registerTexture("Finish", "res/levels/Assets/Finish/Center-Empty-Inside.png");
 
 	registerTexture("PortalOrange", "res/gfx/Portal1.png");
 	registerTexture("PortalPurple", "res/gfx/Portal2.png");
 
-	registerTexture("Keybindings", "res/gfx/tutorialTest.png");
+	registerTexture("Keybindings", "res/gfx/tutorial.png");
 
 	registerTexture("DIY_Weapon", "res/gfx/Assets/Items/DIY_Weapon.png");
 

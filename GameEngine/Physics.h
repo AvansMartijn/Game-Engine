@@ -64,6 +64,17 @@ public:
 	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
 
 	/// <summary>
+	/// Adds an entity to the world.
+	/// </summary>
+	/// <param name="obj">The entity.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The width</param>
+	/// <param name="height">The height.</param>
+	/// <param name="userDataType">The identifier.</param>
+	void addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType = "entityFixture");
+
+	/// <summary>
 	/// Adds a portal to the world.
 	/// </summary>
 	/// <param name="obj">The player.</param>

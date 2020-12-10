@@ -3,8 +3,6 @@
 AbstractEntityAI::AbstractEntityAI() {}
 
 void AbstractEntityAI::execute() {
-	// More to come here.
-	if (_currentBehaviour->isEnoughTimeElapsed(1000)) {
+	if (_currentBehaviour->isEnoughTimeElapsed(100))
 		_currentBehaviour->execute();
-	}
 }

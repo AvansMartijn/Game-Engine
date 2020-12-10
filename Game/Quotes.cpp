@@ -16,7 +16,7 @@ int random_int(int low, int high) {
 }
 
 
-Quotes Quotes::instance;
+Quotes Quotes::_instance;
 Quotes::Quotes() {
 	//Lars
 	_quotes.push_back("\"Ik word zo verdrietig van dit project\" \n - Lars 2020");

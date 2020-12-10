@@ -10,9 +10,9 @@
 class LoadGameSlotsScreen : public AbstractScreen
 {
 private:
-	shared_ptr<ButtonUiElement>slot1Button;
-	shared_ptr<ButtonUiElement>slot2Button;
-	shared_ptr<ButtonUiElement>slot3Button;
+	shared_ptr<ButtonUiElement> _slot1Button;
+	shared_ptr<ButtonUiElement> _slot2Button;
+	shared_ptr<ButtonUiElement> _slot3Button;
 	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;

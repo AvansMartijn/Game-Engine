@@ -89,8 +89,14 @@ public:
 	/// <summary>
 	/// Removes a game object from the scene.
 	/// </summary>
-	/// <param name="id">The game object ID.</param>
-	void removeGameObject(int id);
+	/// <param name="index">The game object index.</param>
+	void removeGameObject(int index);
+
+	/// <summary>
+	/// Removes an entity from the scene.
+	/// </summary>
+	/// <param name="id">The entity ID.</param>
+	void removeEntity(int id);
 
 	/// <summary>
 	/// Get's the next available id.

@@ -97,10 +97,10 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 
 	// Player
-	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };		std::map<int, std::string> textures;
+	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension" };			
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, "Waluigi",
 		2, 8, 0.7f, 1.8f));
-	Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
+	Scene::getInstance().getPlayer()->currentState = MoveExtension::LOOK_RIGHT;
 
 	// Weapon Block
 	

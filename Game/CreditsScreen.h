@@ -11,6 +11,23 @@ class CreditsScreen : public AbstractScreen
 {
 private:
 	shared_ptr<TextUiElement> _fps;
+
+	int _offset{ 0 };
+	int _anchor{ 0 };
+	bool _scrollLock = true;
+	shared_ptr<TextUiElement> _line;
+
+	std::vector<shared_ptr<TextUiElement>> _scrollableElements;
+	shared_ptr<ImageUiElement> _theBoyz;
+
+	//wack-A-Mole
+	std::chrono::steady_clock::time_point _begin;
+	int _score{ 0 };
+	shared_ptr<TextUiElement> _scoreText;
+	shared_ptr<TextUiElement> _wackAMoleInfo;
+	shared_ptr<ButtonUiElement> _mole;
+	
+	std::vector<shared_ptr<ButtonUiElement>> _wackAMoleButtons;
 public:
 	using AbstractScreen::AbstractScreen;
 	CreditsScreen();

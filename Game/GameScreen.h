@@ -22,7 +22,6 @@
 #include "PortalManagableItem.h"
 #include "AbstractLevelLoader.h"
 #include "DefaultLevelLoader.h"
-#include "PlayerMoves.h"
 #include "SoundPlayer.h";
 #include "TiledLevelLoader.h"
 #include "GameSettings.h"
@@ -30,6 +29,8 @@
 #include <HealthExtension.h>
 #include <Mouse.h>
 
+#include "EnemyTextureExtension.h"
+#include "PlayerTextureExtension.h"
 
 using namespace std;
 
