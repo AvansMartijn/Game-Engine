@@ -65,6 +65,8 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     wheelShape.m_radius = 0.05f;
     wheelShape.m_p = { 0 - (obj->body.width / 2), 0 + (obj->body.height / 2) };
     b2FixtureDef wheelFix;
+    wheelFix.filter.categoryBits = CHARACTER;
+    wheelFix.filter.maskBits = SCENERY | CHARACTER | PORTAL;
     wheelFix.shape = &wheelShape;
     CustomUserData* data3 = new CustomUserData;
     data3->type = "feetWheel";
@@ -80,6 +82,8 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
 
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2.1f, b2Vec2(-0.05f, 0), 0);
     b2FixtureDef wheelFix2;
+    wheelFix2.filter.categoryBits = CHARACTER;
+    wheelFix2.filter.maskBits = SCENERY | CHARACTER | PORTAL;
     wheelFix2.shape = &box;
     wheelFix2.isSensor = true;
     CustomUserData* data5 = new CustomUserData;
@@ -132,8 +136,6 @@ void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float widt
     wheelShape.m_radius = 0.05f;
     wheelShape.m_p = { 0 - (obj->body.width / 2), 0 + (obj->body.height / 2) };
     b2FixtureDef wheelFix;
-    wheelFix.filter.categoryBits = CHARACTER;
-    wheelFix.filter.maskBits = SCENERY | CHARACTER | PORTAL;
     wheelFix.shape = &wheelShape;
     CustomUserData* data3 = new CustomUserData;
     data3->type = "feetWheel";
