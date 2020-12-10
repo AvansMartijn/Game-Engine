@@ -97,6 +97,12 @@
     <Filter Include="Source Files\Physics">
       <UniqueIdentifier>{117969f0-c151-4fe4-a951-6a22b817d723}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Extensions">
+      <UniqueIdentifier>{850bd37f-cf36-4ce7-a15a-a7fa62e92c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Extensions">
+      <UniqueIdentifier>{887bb2c0-6b45-4e3c-8a64-9caf4337860b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,9 +183,6 @@
     <ClCompile Include="Quotes.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMoves.cpp">
-      <Filter>Source Files\Misc</Filter>
-    </ClCompile>
     <ClCompile Include="NewGameSlotsScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
     </ClCompile>
@@ -218,6 +221,17 @@
     </ClCompile>
     <ClCompile Include="MartijnModeCheat.cpp">
       <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="AllWeaponsCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    <ClCompile Include="EnemyTextureExtension.cpp">
+      <Filter>Source Files\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTextureExtension.cpp">
+      <Filter>Source Files\Extensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,9 +273,6 @@
     </ClInclude>
     <ClInclude Include="DefaultLevelLoader.h">
       <Filter>Header Files\LevelLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMoves.h">
-      <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="json.h">
       <Filter>Header Files</Filter>
@@ -385,6 +396,17 @@
     </ClInclude>
     <ClInclude Include="MartijnModeCheat.h">
       <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="AllWeaponsCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    <ClInclude Include="EnemyTextureExtension.h">
+      <Filter>Header Files\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTextureExtension.h">
+      <Filter>Header Files\Extensions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

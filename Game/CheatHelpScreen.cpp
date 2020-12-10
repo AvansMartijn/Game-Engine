@@ -1,5 +1,7 @@
 #include "CheatHelpScreen.h"
 #include "CheatManager.h"
+#include <Mouse.h>
+#include "ControllManager.h"
 
 void CheatHelpScreen::loadCheatInformation()
 {
@@ -36,17 +38,33 @@ void CheatHelpScreen::onInit()
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Cheat); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
+
 	loadCheatInformation();
 }
 
 void CheatHelpScreen::onTick()
 {
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		_fps->text = "  ";
 
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
+		Mouse::getInstance().setCursor(Mouse::DEFAULT);
 }
 
 void CheatHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
 
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
 }
 
 void CheatHelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e)

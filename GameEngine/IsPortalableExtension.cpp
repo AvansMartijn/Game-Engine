@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "IsPortalableExtension.h"
 
-IsPortalableExtension::IsPortalableExtension()
-{
+IsPortalableExtension::IsPortalableExtension() {
 	type = "IsPortalableExtension";
 }
 

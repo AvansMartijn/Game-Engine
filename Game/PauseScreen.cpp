@@ -1,4 +1,5 @@
 #include "PauseScreen.h"
+#include <Mouse.h>
 
 PauseScreen::PauseScreen() {}
 PauseScreen::~PauseScreen() {}
@@ -50,6 +51,9 @@ void PauseScreen::onTick() {
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
 		_fps->text = "  ";
+
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
+		Mouse::getInstance().setCursor(Mouse::DEFAULT);
 }
 
 void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

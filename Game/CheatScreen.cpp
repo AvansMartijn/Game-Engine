@@ -1,5 +1,7 @@
 #include "CheatScreen.h"
 #include "CheatManager.h"
+#include <Mouse.h>
+#include "ControllManager.h"
 
 //TODO: Move to singelton helper class
 void CheatScreen::trim(std::string& s)
@@ -50,11 +52,20 @@ void CheatScreen::onInit()
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
 }
 
 void CheatScreen::onTick()
 {
-	
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		_fps->text = "  ";
+
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::BEAM))
+		Mouse::getInstance().setCursor(Mouse::BEAM);
 }
 
 void CheatScreen::onScreenShowed(vector<std::string> args)
@@ -64,14 +75,25 @@ void CheatScreen::onScreenShowed(vector<std::string> args)
 
 void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	if (e.keysym.sym == SDLK_RETURN) {
 		std::string cheat = _cheatText->text;
 		trim(cheat);
 		if (CheatManager::getInstance().isCheat(cheat))
 		{
-			if (CheatManager::getInstance().executeCheat(cheat))
+			if (CheatManager::getInstance().executeCheat(cheat)) {
 				Scene::getInstance().hasCheated = true;
 				_cheatText->text = "Cheat Activated";
+				Scene::getInstance().activatedCheats.push_back(cheat);
+			}
 		}
 	}
 

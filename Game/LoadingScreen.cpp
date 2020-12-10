@@ -19,8 +19,8 @@ void LoadingScreen::onInit() {
 	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
 	TextUiElement quoteTest = TextUiElement("Quote:", font, 18, { 30, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false, true);
-	quoteText = make_shared<TextUiElement>(quoteTest);
-	_uiElements.push_back(quoteText);
+	_quoteText = make_shared<TextUiElement>(quoteTest);
+	_uiElements.push_back(_quoteText);
 
 
 	ImageUiElement walu = ImageUiElement("Loading", { ((1080 - 700) / 2) + 100 , ((720 - 700) / 2), 700, 700 });
@@ -32,13 +32,13 @@ void LoadingScreen::onInit() {
 
 void LoadingScreen::onTick() {
 
-	if (firstTickCounter != 0) {
-		auto screen = stoi(arguments[0]);
-		arguments.erase(arguments.begin());
-		_game->switchScreen(screen, arguments);
+	if (_firstTickCounter != 0) {
+		auto screen = stoi(_arguments[0]);
+		_arguments.erase(_arguments.begin());
+		_game->switchScreen(screen, _arguments);
 	}	
 
-	firstTickCounter++;
+	_firstTickCounter++;
 
 	if (shouldShowFPS)
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
@@ -63,8 +63,8 @@ void LoadingScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
 
 void LoadingScreen::onScreenShowed(vector<std::string> args)
 {
-	arguments = args;
-	firstTickCounter = 0;
+	_arguments = args;
+	_firstTickCounter = 0;
 
-	quoteText->text = Quotes::getInstance().getQuote();
+	_quoteText->text = Quotes::getInstance().getQuote();
 }

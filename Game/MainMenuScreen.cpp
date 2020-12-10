@@ -68,6 +68,8 @@ void MainMenuScreen::onInit() {
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
+
+	Mouse::getInstance().setCursor(Mouse::DEFAULT);
 }
 
 void MainMenuScreen::onTick() {

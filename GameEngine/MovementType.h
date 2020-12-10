@@ -3,5 +3,6 @@ enum class MovementTypes {
 	IDLE,
 	RUNNING,
 	JUMPING,
-	FALLING
+	FALLING,
+	ATTACKING
 };

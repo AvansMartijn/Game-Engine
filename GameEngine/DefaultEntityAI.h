@@ -9,6 +9,8 @@
 #include "BehaviourIdle.h"
 #include "BehaviourSeesEnemy.h"
 #include "BehaviourAttack.h"
+#include "BehaviourRotate.h"
+#include "BehaviourMove.h"
 
 class GAMEENGINE_DefaultEntityAI DefaultEntityAI : public AbstractEntityAI
 {

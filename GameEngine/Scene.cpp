@@ -48,6 +48,10 @@ void Scene::removeGameObject(int id) {
     _gameObjects.erase(id);
 }
 
+void Scene::removeEntity(int index) {
+    _entities.erase(_entities.begin() + index);
+}
+
 void Scene::addItem(std::string name, shared_ptr<AbstractManageableItem> item) {
     int id = _items.size() + 1;
     
@@ -94,8 +98,10 @@ void Scene::reset() {
 void Scene::render(const unique_ptr<Window>& window) {
 
 
-    for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects)
-        x.second->render(window);
+    for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects) {
+        if (x.second != nullptr)
+            x.second->render(window);
+    }
 
     for (auto textElement : textElements) {
         if (!preRender) {

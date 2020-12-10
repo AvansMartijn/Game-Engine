@@ -1,9 +1,17 @@
 ﻿#include "GameScreen.h"
 #include <CanWieldExtension.h>
 #include "TiledLevelLoader.h"
-#include "ControllManager.h"
+
 
 GameScreen::GameScreen() {}
+
+//TODO: Even naar een helper class verplaatsen
+long convertTimeToLong(std::chrono::steady_clock::time_point time) {
+	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(time);
+	auto epoch = now_ms.time_since_epoch();
+	auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
+	return value.count();
+}
 
 void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
@@ -26,7 +34,7 @@ void GameScreen::setupHUD() {
 	const string font = "Portal";
 	const int fontSize = 19;
 
-	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 300, 100 }, 122));
+	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 240, 100 }, 122));
 	_uiElements.push_back(_hudBackgroundImg);
 	_gameUiElements.push_back(_hudBackgroundImg);
 
@@ -100,6 +108,27 @@ void GameScreen::onTick() {
 		Scene::getInstance().gameOver = false;
 	}
 
+	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+
+		if (gameObject != nullptr) {
+			if (gameObject->hasExtension(typeid(AiExtension)))
+				gameObject->getExtension<AiExtension>()->execute();
+
+			if (gameObject->hasExtension(typeid(MoveExtension)))
+				gameObject->getExtension<EnemyTextureExtension>()->calculateTextures();
+
+			if (gameObject->hasExtension(typeid(HealthExtension))) {
+				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
+
+				if (healthExtension->getHealth() <= 0) {
+					Scene::getInstance().removeEntity(gameObjectIndex);
+					Physics::getInstance().deleteQueue.push_back(gameObject->id);
+				}
+			}
+		}
+	}
+
 	float timeStep = 1.0f / 60.0f;
 
 	Physics::getInstance().step(timeStep, 6, 2);
@@ -109,19 +138,50 @@ void GameScreen::onTick() {
 		calculatePlayerTexture();
 	}
 
+	//shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->addItem();
+	//currentWeapon->getCooldown();
 
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
 			std::string result = "WEAPON: " + currentWeapon->getScreemName();
 			_weapon->text = result;
+			  
+			for (std::string cheat : Scene::getInstance().activatedCheats) {
+				if(cheat == "unlimitedammo" || currentWeapon->getScreemName() == "GLUE GUN")
+					_ammo->text = "AMMO: INFINITE";
+			}
 
-			if (currentWeapon->getAmmo() == -1)
-				_ammo->text = "AMMO: INFINITE";
-			else
+			if (currentWeapon->getAmmo() == -1 || currentWeapon->getScreemName() != "GLUE GUN") {
+				auto currentTime = std::chrono::steady_clock::now();
+				long difference = convertTimeToLong(currentTime) - currentWeapon->getLastUsed();
+				if (difference == 0) {
+					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
+					_ammo->text = "COOLDOWN: READY";
+				}
+				else if (difference >= currentWeapon->getCooldown()) {
+					_ammo->text = "COOLDOWN: READY";
+					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
+				}
+				else {
+					_ammo->text = "COOLDOWN: RECHARGING";
+					Mouse::getInstance().setCursor(Mouse::WAIT);
+				}
+
+			}
+
+			else {
+				if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+					Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
 				_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+			}
+
 		}
 		else {
+			if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::NONE))
+				Mouse::getInstance().setCursor(Mouse::NONE);
 			_weapon->text = "WEAPON: NONE";
 			_ammo->text = "AMMO:";
 		}
@@ -145,6 +205,7 @@ void GameScreen::onTick() {
 		if (gameObject->hasExtension(typeid(AiExtension)))
 			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
 	}
+
 
 }
 
@@ -211,36 +272,8 @@ void GameScreen::handlePlayerControls() {
 }
 
 void GameScreen::calculatePlayerTexture() {
-	shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayerMoveExtension();
-
-	if (moveExtension->isLookingToRight) {
-		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_RIGHT;
-		}
-		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_RIGHT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_RIGHT;
-		}
-	}
-	else {
-		if (moveExtension->currentMovementType == MovementTypes::JUMPING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().y == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::JUMP_LEFT;
-		}
-		else if (moveExtension->currentMovementType == MovementTypes::RUNNING) {
-			if (Scene::getInstance().getPlayer()->body.b2body->GetLinearVelocity().x == 0)
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::LOOK_LEFT;
-			else
-				Scene::getInstance().getPlayer()->currentState = PlayerMoves::RUN_LEFT;
-		}
-	}
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(PlayerTextureExtension)))
+		Scene::getInstance().getPlayer()->getExtension<PlayerTextureExtension>()->calculateTextures();
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
@@ -371,8 +404,8 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 		if (Scene::getInstance().zoom > 10)
 			Scene::getInstance().zoom -= 3.0f;
 	}
-
 }
+
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	_backgroundImg->render(window);

@@ -11,6 +11,7 @@ class CheatHelpScreen : public AbstractScreen
 {
 private:
 	shared_ptr<TextUiElement> _cheatInformation;
+	shared_ptr<TextUiElement> _fps;
 	void loadCheatInformation();
 public:
 	using AbstractScreen::AbstractScreen;
