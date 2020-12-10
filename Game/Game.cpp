@@ -54,6 +54,12 @@ void Game::onInit() {
 	registerTexture("Portable", "res/levels/Assets/Portable/Center.png");
 	registerTexture("Finish", "res/levels/Assets/Finish/Center-Empty-Inside.png");
 
+	//guns
+	registerTexture("GlueGun", "res/gfx/Assets/Items/GlueGun.png");
+	registerTexture("PortalGun", "res/gfx/Assets/Items/PortalGun.png");
+	registerTexture("ThrusterGun", "res/gfx/Assets/Items/ThrusterGun.png");
+
+
 	registerTexture("PortalOrange", "res/gfx/Portal1.png");
 	registerTexture("PortalPurple", "res/gfx/Portal2.png");
 
