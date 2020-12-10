@@ -16,8 +16,8 @@ public:
 	void EndContact(b2Contact* contact);
 
 	void checkJumpSensor(const CustomUserData& val);
-	void checkLeftArmSensor(const CustomUserData& val);
-	void checkRightArmSensor(const CustomUserData& val);
+	void checkLeftArmSensor(const CustomUserData& val, b2Body& bodyB);
+	void checkRightArmSensor(const CustomUserData& val, b2Body& bodyB);
 	void checkExitSensor(const CustomUserData& valA, const CustomUserData& valB);
 	void checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
 	void checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObject, const CustomUserData& objA, b2Fixture& fixtureA);
