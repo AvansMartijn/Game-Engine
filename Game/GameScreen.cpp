@@ -60,8 +60,12 @@ void GameScreen::setupHUD() {
 }
 
 void GameScreen::setupGame() {
-	if (_levelLoader)
+	if (_levelLoader) {
 		_levelLoader->createLevel(_gameEngine, _name);
+
+		std::string number = _name.substr(_name.length() - 1, 1);
+		backgroundTrackKey = "Background_" + number;
+	}
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
