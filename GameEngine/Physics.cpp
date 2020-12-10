@@ -77,6 +77,22 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     wheelFix.shape = &wheelShape2;
     wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
     body->CreateFixture(&wheelFix);
+
+    box.SetAsBox(obj->body.width / 2, obj->body.height / 2.1f, b2Vec2(-0.05f, 0), 0);
+    b2FixtureDef wheelFix2;
+    wheelFix2.shape = &box;
+    wheelFix2.isSensor = true;
+    CustomUserData* data5 = new CustomUserData;
+    data5->type = "leftArmSensor";
+    wheelFix2.userData.pointer = reinterpret_cast<uintptr_t>(data5);
+    body->CreateFixture(&wheelFix2);
+
+    box.SetAsBox(obj->body.width / 2, obj->body.height / 2.1f, b2Vec2(0.05f, 0), 0);
+    wheelFix2.shape = &box;
+    CustomUserData* data4 = new CustomUserData;
+    data4->type = "rightArmSensor";
+    wheelFix2.userData.pointer = reinterpret_cast<uintptr_t>(data4);
+    body->CreateFixture(&wheelFix2);
 }
 
 void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {

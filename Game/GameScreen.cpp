@@ -168,9 +168,11 @@ void GameScreen::handlePlayerControls() {
 		walkLeft = ControllManager::getInstance().walkLeftKey.userSDLKey;
 
 	if (keystate[walkLeft]) {
-		vel.x = -5;
-		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
-		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
+		if (Scene::getInstance().getPlayerMoveExtension()->leftArmCounter <= 0) {
+			vel.x = -5;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
+		}
 	}
 
 	SDL_Scancode walkRight;
@@ -180,10 +182,12 @@ void GameScreen::handlePlayerControls() {
 		walkRight = ControllManager::getInstance().walkRightKey.userSDLKey;
 
 	if (keystate[walkRight]) {
-		vel.x = 5;
+		if (Scene::getInstance().getPlayerMoveExtension()->rightArmCounter <= 0) {
+			vel.x = 5;
 
-		Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
-		Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
+			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementTypes::RUNNING;
+			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
+		}
 	}
 
 	SDL_Scancode stop;
