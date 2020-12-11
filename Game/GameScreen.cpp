@@ -142,46 +142,40 @@ void GameScreen::onTick() {
 		calculatePlayerTexture();
 	}
 
-	//shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->addItem();
-	//currentWeapon->getCooldown();
+	std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getWieldExtension()->getItems();
 
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
-			std::string result = "WEAPON: " + currentWeapon->getScreemName();
-			_weapon->text = result;
+			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
 			  
 			for (std::string cheat : Scene::getInstance().activatedCheats) {
-				if(cheat == "unlimitedammo" || currentWeapon->getScreemName() == "GLUE GUN")
+				if(cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
 					_ammo->text = "AMMO: INFINITE";
 			}
 
-			if (currentWeapon->getAmmo() == -1 || currentWeapon->getScreemName() != "GLUE GUN") {
-				auto currentTime = std::chrono::steady_clock::now();
-				long difference = convertTimeToLong(currentTime) - currentWeapon->getLastUsed();
-				if (difference == 0) {
-					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
-					_ammo->text = "COOLDOWN: READY";
-				}
-				else if (difference >= currentWeapon->getCooldown()) {
-					_ammo->text = "COOLDOWN: READY";
-					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
+			if (_ammo->text == "AMMO: INFINITE") {}
+			else {
+				if (currentWeapon->getAmmo() == -1) {
+					long difference = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					if (difference == 0 || currentWeapon->getScreenName() != "GLUE GUN")
+						_ammo->text = "COOLDOWN: READY";
+					else if (difference >= currentWeapon->getCooldown()) 
+						_ammo->text = "COOLDOWN: READY";
+					else
+						_ammo->text = "COOLDOWN: RECHARGING";
 				}
 				else {
-					_ammo->text = "COOLDOWN: RECHARGING";
-					Mouse::getInstance().setCursor(Mouse::WAIT);
+					long cooldown = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					if (cooldown == 0)
+						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+					else if (cooldown < currentWeapon->getCooldown())
+						_ammo->text = "COOLDOWN: RECHARGING";
+					else if (cooldown >= currentWeapon->getCooldown())
+						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
 				}
 
 			}
-
-			else {
-				if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-					Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
-				_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
-			}
-
 		}
 		else {
 			if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::NONE))
@@ -191,7 +185,6 @@ void GameScreen::onTick() {
 		}
 
 	}
-
 
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
 
@@ -210,7 +203,8 @@ void GameScreen::onTick() {
 			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
 	}
 
-
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+		Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
 }
 
 void GameScreen::handlePlayerControls() {
