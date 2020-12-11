@@ -29,6 +29,7 @@ void GameScreen::setupScreen() {
 
 void GameScreen::setupHUD() {
 	const Color bgColor = { 28, 28, 28, 1 };
+	const Color bgRed = { 255, 0, 0, 255 };
 	const Color fgColor = { 255, 255, 255 };
 	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
@@ -50,7 +51,7 @@ void GameScreen::setupHUD() {
 	_uiElements.push_back(_ammo);
 	_gameUiElements.push_back(_ammo);
 
-	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(158, 695, -150, 20, 0.8f, hpColor, bgColor));
+	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed));
 	_uiElements.push_back(_hpBar);
 	_gameUiElements.push_back(_hpBar);
 
