@@ -5,6 +5,7 @@
 #include <GlueManageableItem.h>
 #include <ThrusterManagableItem.h>
 #include <PortalManagableItem.h>
+#include "PlayerAnimationHandler.h"
 
 class DefaultLevel : public AbstractLevel {
 private:

@@ -7,11 +7,9 @@ class CheatManager {
 private:
 	CheatManager();
 	static CheatManager _instance;
+	std::map<std::string, std::unique_ptr<CheatCommand>> _cheatList;
+	std::map<std::string, std::string> _cheatInformation;
 public:
-	// TODO: PRIVATE
-	std::map<std::string, std::unique_ptr<CheatCommand>> cheatList;
-	std::map<std::string, std::string> cheatInformation;
-
 	static CheatManager& getInstance() { return _instance; }
 
 	CheatManager(const CheatManager&) = delete;

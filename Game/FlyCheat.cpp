@@ -3,6 +3,7 @@
 #include "HealthExtension.h"
 
 bool FlyCheat::Execute() {
-	Scene::getInstance().getPlayerMoveExtension()->jumpCounter = MAXINT;
+	Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter = MAXINT;
+
 	return true;
 }

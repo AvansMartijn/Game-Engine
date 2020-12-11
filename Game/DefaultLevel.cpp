@@ -1,14 +1,18 @@
 #include "DefaultLevel.h"
+#include "PlayerAnimationHandler.h"
 
 void DefaultLevel::createLevel(GameEngine gameEngine) {
-	// TODO: FIX OR REMOVE
 	// Player
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension", "AnimationExtension" };			
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, "Waluigi",
 		2, 8, 0.7f, 1.8f));
+	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler({});
+
+	PlayerAnimationHandler animationHandler;
+	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));
+	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
 
 	// Weapon Block
-	
 	shared_ptr<GlueManagableItem> glueItemBlueprint = Scene::getInstance().getItem<GlueManagableItem>("GlueGun");
 	std::shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>(*glueItemBlueprint);
 	glueItem->setAmmo(5);
@@ -86,13 +90,14 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	shared_ptr<GameObject> exit = createNonRigidBody(gameEngine, {}, "Gate_Cropped",
 		23, 14.8f, 2.5f, 2.5f, "exitSensor");
 
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
+	// TODO: FIX
+	portal1->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalB);
+	portal2->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalA);
 
-	// Item Binding
-	dynamic_pointer_cast<PickupExtension>(weaponGlue->getExtension(typeid(PickupExtension)))->setItem(glueItem);
-	dynamic_pointer_cast<PickupExtension>(weaponGlue2->getExtension(typeid(PickupExtension)))->setItem(glueItem2);
-	dynamic_pointer_cast<PickupExtension>(weaponThruster->getExtension(typeid(PickupExtension)))->setItem(thrusterItem);
-	dynamic_pointer_cast<PickupExtension>(weaponPortal->getExtension(typeid(PickupExtension)))->setItem(portalItem);
+	//// Item Binding
+	weaponGlue->getExtension<PickupExtension>()->setItem(glueItem);
+	weaponGlue2->getExtension<PickupExtension>()->setItem(glueItem2);
+	weaponThruster->getExtension<PickupExtension>()->setItem(thrusterItem);
+	weaponPortal->getExtension<PickupExtension>()->setItem(portalItem);
 
 }

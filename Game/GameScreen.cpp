@@ -79,7 +79,7 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 void GameScreen::onTick() {
 	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
-	if (Scene::getInstance().getPlayer()->getExtension(typeid(HealthExtension))) {
+	if (Scene::getInstance().getPlayer()->getExtension<HealthExtension>()) {
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
 		float healthValue = (float)gameObject->getExtension<HealthExtension>()->getHealth();
 
@@ -136,18 +136,18 @@ void GameScreen::onTick() {
 			gameObject.second->getExtension<AnimationExtension>()->animate();
 	}
 
-	std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getWieldExtension()->getItems();
-
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
+		std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getItems();
+
+		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
 		if (currentWeapon != NULL) {
 			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
 
 			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::CROSSHAIR))
 				Mouse::getInstance().setCursor(MouseSkins::CROSSHAIR);
-			  
+
 			for (std::string cheat : Scene::getInstance().activatedCheats) {
-				if(cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
+				if (cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
 					_ammo->text = "AMMO: INFINITE";
 			}
 
@@ -156,7 +156,7 @@ void GameScreen::onTick() {
 					long difference = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
 					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
 						_ammo->text = "COOLDOWN: READY";
-					else if (difference >= currentWeapon->getCooldown()) 
+					else if (difference >= currentWeapon->getCooldown())
 						_ammo->text = "COOLDOWN: READY";
 					else
 						_ammo->text = "COOLDOWN: RECHARGING";
@@ -180,7 +180,6 @@ void GameScreen::onTick() {
 			_ammo->text = "AMMO:";
 		}
 	}
-
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
 
 	if (shouldShowFPS)
@@ -199,8 +198,11 @@ void GameScreen::handlePlayerControls() {
 		walkLeft = ControllManager::getInstance().walkLeftKey.userSDLKey;
 
 	if (keystate[walkLeft]) {
-		if (Scene::getInstance().getPlayerMoveExtension()->leftArmCounter <= 0)
-			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(-5);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			if (moveExtension->leftArmCounter <= 0)
+				moveExtension->moveX(-5);
+		}
 	}
 
 	SDL_Scancode walkRight;
@@ -210,8 +212,11 @@ void GameScreen::handlePlayerControls() {
 		walkRight = ControllManager::getInstance().walkRightKey.userSDLKey;
 
 	if (keystate[walkRight]) {
-		if (Scene::getInstance().getPlayerMoveExtension()->rightArmCounter <= 0)
-			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(5);
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			if (moveExtension->rightArmCounter <= 0)
+				moveExtension->moveX(5);
+		}
 	}
 
 	SDL_Scancode stop;
@@ -230,10 +235,14 @@ void GameScreen::handlePlayerControls() {
 		jump = ControllManager::getInstance().jumpKey.userSDLKey;
 
 	if (keystate[jump]) {
-		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
-			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveY(-5);
-			SoundPlayer::getInstance().playSFX("Player_Jump");
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			if (moveExtension->canJump()) {
+				moveExtension->moveY(-5);
+				SoundPlayer::getInstance().playSFX("Player_Jump");
+			}
 		}
+
 	}
 }
 
@@ -258,15 +267,15 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 
 	if (e.keysym.sym == firstGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(0);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(0);
 	}
 	else if (e.keysym.sym == secondGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(1);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(1);
 	}
 	else if (e.keysym.sym == thirdGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(2);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(2);
 	}
 
 	SDL_Keycode fps;
@@ -285,32 +294,32 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		break;
 	case SDLK_4:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(3);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(3);
 
 		break;
 	case SDLK_5:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(4);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(4);
 
 		break;
 	case SDLK_6:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(5);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(5);
 
 		break;
 	case SDLK_7:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(6);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(6);
 
 		break;
 	case SDLK_8:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(7);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(7);
 
 		break;
 	case SDLK_9:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
-			Scene::getInstance().getWieldExtension()->setCurrentItemIndex(8);
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(8);
 
 		break;
 	case SDLK_TAB:
@@ -345,7 +354,7 @@ void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		shared_ptr<CanWieldExtension> wieldExtension = Scene::getInstance().getWieldExtension();
+		shared_ptr<CanWieldExtension> wieldExtension = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>();
 
 		switch (e.button) {
 		case SDL_BUTTON_LEFT:
@@ -385,8 +394,8 @@ void GameScreen::render(const unique_ptr<Window>& window) {
 		_gameUiElements[gameUiElementIndex]->render(window);
 
   if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		if (Scene::getInstance().getWieldExtension()->getCurrentItem() != nullptr)
-			Scene::getInstance().getWieldExtension()->getCurrentItem()->render(window);
+		if (Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem() != nullptr)
+			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem()->render(window);
 	}
 }
 

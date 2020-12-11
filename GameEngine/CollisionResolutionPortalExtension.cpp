@@ -20,7 +20,7 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
     if (objectLocation != Physics::getInstance().teleportQueue.end())
         return;
    
-    shared_ptr<CollisionResolutionPortalExtension> otherPortalExtension = dynamic_pointer_cast<CollisionResolutionPortalExtension>(_linkedPortal->getExtension(typeid(AbstractCollisionResolutionExtension)));
+    shared_ptr<CollisionResolutionPortalExtension> otherPortalExtension = _linkedPortal->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>();
     if (!isActive || !otherPortalExtension->isActive)
         return;
 

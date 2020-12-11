@@ -270,7 +270,7 @@ void Physics::executeExpirationQueue() {
         int id = expirationQueue.at(i);
         auto body = Scene::getInstance().getGameObject(id);
         if (Scene::getInstance().getGameObject(id)->hasExtension(typeid(TimerExtension))) {
-            auto extension = dynamic_pointer_cast<TimerExtension>(Scene::getInstance().getGameObject(id)->getExtension(typeid(TimerExtension)));
+            auto extension = Scene::getInstance().getGameObject(id)->getExtension<TimerExtension>();
             if (extension->isExpired()) {
                 expirationQueue.erase(expirationQueue.begin()+ i);
                 _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);

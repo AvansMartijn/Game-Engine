@@ -34,9 +34,8 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		-50, -50, 3, 0.7f, "portalSensor");
 	Scene::getInstance().portalB = portal2;
 
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal1->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal2);
-	dynamic_pointer_cast<CollisionResolutionPortalExtension>(portal2->getExtension(typeid(AbstractCollisionResolutionExtension)))->link(portal1);
-
+	portal1->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalB);
+	portal2->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalA);
 }
 
 void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
@@ -63,7 +62,7 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 
 
 		if (tiledGameObject.properties.find("damage") != tiledGameObject.properties.end())
-			dynamic_pointer_cast<DoesDamageExtension>(gameObject->getExtension(typeid(DoesDamageExtension)))->damage = tiledGameObject.properties["damage"].valueInt;
+			gameObject->getExtension<DoesDamageExtension>()->damage = tiledGameObject.properties["damage"].valueInt;
 	}
 }
 
@@ -107,7 +106,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
 
 			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-			dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+			gameObject->getExtension<PickupExtension>()->setItem(item);
 
 		}
 		//TODO:: DIT MOET NETTER
@@ -122,7 +121,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
 
 			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-			dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+			gameObject->getExtension<PickupExtension>()->setItem(item);
 
 		}
 		//TODO:: DIT MOET NETTER
@@ -137,7 +136,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
 
 			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-			dynamic_pointer_cast<PickupExtension>(gameObject->getExtension(typeid(PickupExtension)))->setItem(item);
+			gameObject->getExtension<PickupExtension>()->setItem(item);
 
 		}
 		//TODO:: ^DAt MOET NETTER

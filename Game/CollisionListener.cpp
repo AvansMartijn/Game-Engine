@@ -71,43 +71,45 @@ void CollisionListener::EndContact(b2Contact* contact) {
 	GameObject* objB = (GameObject*)bodyB->GetUserData().pointer;
 
 	if (valA != nullptr && valB != nullptr) {
-		if (valA->type == "jumpSensor")
-			if(valB->type != "portalSensor")
-			Scene::getInstance().getPlayerMoveExtension()->jumpCounter--;
+		if (valA->type == "jumpSensor") {
+			if (valB->type != "portalSensor")
+				Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter--;
+		}
 
-		if (valB->type == "jumpSensor")
+		if (valB->type == "jumpSensor") {
 			if (valA->type != "portalSensor")
-			Scene::getInstance().getPlayerMoveExtension()->jumpCounter--;
-	
+				Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter--;
+		}
+
 		if (valA->type == "leftArmSensor" && bodyB->GetType() == b2_staticBody)
-			Scene::getInstance().getPlayerMoveExtension()->leftArmCounter--;
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter--;
 	
 		if (valB->type == "leftArmSensor" && bodyA->GetType() == b2_staticBody)
-			Scene::getInstance().getPlayerMoveExtension()->leftArmCounter--;
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter--;
 	
 		if (valA->type == "rightArmSensor" && bodyB->GetType() == b2_staticBody)
-			Scene::getInstance().getPlayerMoveExtension()->rightArmCounter--;
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->rightArmCounter--;
 	
 		if (valB->type == "rightArmSensor" && bodyA->GetType() == b2_staticBody)
-			Scene::getInstance().getPlayerMoveExtension()->rightArmCounter--;
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->rightArmCounter--;
 	}
-	
 }
 
 void CollisionListener::checkJumpSensor(const CustomUserData& valA, const CustomUserData& valB) {
-	if (valA.type == "jumpSensor")
-		if(valB.type != "portalSensor")
-			Scene::getInstance().getPlayerMoveExtension()->jumpCounter++;
+	if (valA.type == "jumpSensor") {
+		if (valB.type != "portalSensor")
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter++;
+	}
 }
 
 void CollisionListener::checkLeftArmSensor(const CustomUserData& valA, b2Body& bodyB) {
 	if (valA.type == "leftArmSensor" && bodyB.GetType() == b2_staticBody)
-		Scene::getInstance().getPlayerMoveExtension()->leftArmCounter++;
+		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter++;
 }
 
 void CollisionListener::checkRightArmSensor(const CustomUserData& valA, b2Body& bodyB) {
 	if (valA.type == "rightArmSensor" && bodyB.GetType() == b2_staticBody)
-		Scene::getInstance().getPlayerMoveExtension()->rightArmCounter++;
+		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->rightArmCounter++;
 }
 
 void CollisionListener::checkExitSensor(const CustomUserData& valA, const CustomUserData& valB) {
@@ -121,7 +123,7 @@ void CollisionListener::checkPickupSensor(const CustomUserData& valA, const Cust
 	if (valA.type == "pickupSensor") {
 		if (valB.type == "playerFixture") {
 			if (gameObjectA->hasExtension(typeid(PickupExtension)))
-				dynamic_pointer_cast<PickupExtension>(gameObjectA->getExtension(typeid(PickupExtension)))->onEntityCollision(gameObjectB);
+				gameObjectA->getExtension<PickupExtension>()->onEntityCollision(gameObjectB);
 		}
 	}
 }
@@ -144,7 +146,7 @@ void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserDa
 
 void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB, const CustomUserData& valB) {
 	if (gameObjectA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-		shared_ptr<AbstractCollisionResolutionExtension> resolution = dynamic_pointer_cast<AbstractCollisionResolutionExtension>(gameObjectA->getExtension(typeid(AbstractCollisionResolutionExtension)));
+		shared_ptr<AbstractCollisionResolutionExtension> resolution = gameObjectA->getExtension<AbstractCollisionResolutionExtension>();
 		if (!resolution->isDefault()) {
 			if (gameObjectB->body.b2body->GetType() == b2_dynamicBody && valB.type != "portalABullet" && valB.type != "portalBbullet" && valB.type != "glueBullet")
 				resolution->resolveCollision(gameObjectB);
@@ -155,8 +157,8 @@ void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared
 void CollisionListener::checkDamage(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
 	if (gameObjectA->hasExtension(typeid(HealthExtension))) {
 		if (gameObjectB->hasExtension(typeid(DoesDamageExtension))) {
-			auto healthExtension = dynamic_pointer_cast<HealthExtension>(gameObjectA->getExtension(typeid(HealthExtension)));
-			auto damageExtension = dynamic_pointer_cast<DoesDamageExtension>(gameObjectB->getExtension(typeid(DoesDamageExtension)));
+			shared_ptr<HealthExtension> healthExtension = gameObjectA->getExtension<HealthExtension>();
+			shared_ptr<DoesDamageExtension> damageExtension = gameObjectB->getExtension<DoesDamageExtension>();
 			healthExtension->reduceHealth(damageExtension->damage);
 		}
 	}
@@ -198,7 +200,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 				teleportObj.obj = Scene::getInstance().portalB;
 			}
 
-			auto extension = dynamic_pointer_cast<CollisionResolutionPortalExtension>(teleportObj.obj->getExtension(typeid(AbstractCollisionResolutionExtension)));
+			shared_ptr<CollisionResolutionPortalExtension> extension = teleportObj.obj->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>();
 			float angle = 0;
 			if (Aleft > Bleft && Aleft < Bright) {
 				//A left is in between B left and right

@@ -20,6 +20,13 @@ class Window;
 class GAMEENGINE_GameObject GameObject {
 private:
 	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
+
+	/// <summary>
+	/// Get's an extension from type_info.
+	/// </summary>
+	/// <param name="type">The typeinfo for the type.</param>
+	/// <returns>The extension/</returns>
+	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
 public:
 	GameObject();
 
@@ -40,9 +47,6 @@ public:
 	/// <param name="type">The extension we want to check for.</param>
 	/// <returns>If the extension is available.</returns>
 	bool hasExtension(const std::type_info& type);
-
-	// TODO: REMOVE (11-12-2020)
-	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
 
 	/// <summary>
 	/// Renders the game object.
@@ -72,6 +76,24 @@ public:
 			return nullptr;
 
 		return dynamic_pointer_cast<T>(baseExtension);
+	}
+
+	/// <summary>
+	/// Get's the extension with the given type (T1).
+	/// </summary>
+	/// <typeparam name="T1">The return type.</typeparam>
+	/// <typeparam name="T2">The type id type.</typeparam>
+	/// <returns>The extension.</returns>
+	template<typename T1, typename T2>
+	std::shared_ptr<T1> getExtension() {
+		const std::type_info& typeId = typeid(T2);
+
+		std::shared_ptr<AbstractGameObjectExtension> baseExtension = getExtension(typeId);
+
+		if (baseExtension == nullptr)
+			return nullptr;
+
+		return dynamic_pointer_cast<T1>(baseExtension);
 	}
 };
 

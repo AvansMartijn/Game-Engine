@@ -177,18 +177,6 @@ public:
 	void render(const unique_ptr<Window>& window);
 
 	/// <summary>
-	/// Get's the move extension for the player.
-	/// </summary>
-	/// <returns>The move extension for the player.</returns>
-	shared_ptr<MoveExtension> getPlayerMoveExtension();
-
-	/// <summary>
-	/// Get's the wield extension.
-	/// </summary>
-	/// <returns>The wield extension.</returns>
-	shared_ptr<CanWieldExtension> getWieldExtension();
-
-	/// <summary>
 	/// convert meters to pixels
 	/// </summary>
 	/// <param name="meters"></param>

@@ -79,17 +79,9 @@ void Scene::setPlayer(shared_ptr<GameObject> player) {
     _player = player;
 }
 
-shared_ptr<MoveExtension> Scene::getPlayerMoveExtension() {
-    return dynamic_pointer_cast<MoveExtension>(_player->getExtension(typeid(MoveExtension)));
-}
-
-shared_ptr<CanWieldExtension> Scene::getWieldExtension() {
-    return dynamic_pointer_cast<CanWieldExtension>(_player->getExtension(typeid(CanWieldExtension)));
-}
-
 void Scene::reset() {
     if (getPlayer() && getPlayer()->hasExtension(typeid(MoveExtension)))
-        getPlayerMoveExtension()->reset();
+        getPlayer()->getExtension<MoveExtension>()->reset();
 
     gameOver = false;
     score = 1000;
