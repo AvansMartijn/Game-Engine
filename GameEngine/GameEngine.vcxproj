@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2\include;..\Lib\SDL2_image\include;..\Lib\SDL2_mixer\include;..\Lib\SDL2_ttf\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,20 +98,21 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <DisableSpecificWarnings>4251;26495</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";"..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl_a_debug.lib";"..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,13 +133,14 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)Release\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";"..\Lib\libcurl\$(PlatformTarget)Release\lib\libcurl.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -150,18 +152,20 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";"..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl_a_debug.lib";"..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -182,18 +186,21 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"..\Lib\Box2D\$(PlatformTarget)Release\lib\box2d.lib";"..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib";"..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib";"..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib";"..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib";"..\Lib\libcurl\$(PlatformTarget)Release\lib\libcurl.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "..\Lib\SDL2\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_image\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
 copy "..\Lib\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
-copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
+copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";
+copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractAnimationHandler.h" />
     <ClInclude Include="AbstractBehaviour.h" />
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
+    <ClInclude Include="AbstractContactListener.h" />
     <ClInclude Include="AbstractEntityAI.h" />
     <ClInclude Include="AbstractGame.h" />
     <ClInclude Include="AbstractGameObjectExtension.h" />
@@ -201,6 +208,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="AbstractScreen.h" />
     <ClInclude Include="AbstractUiElement.h" />
     <ClInclude Include="AiExtension.h" />
+    <ClInclude Include="AnimationExtension.h" />
     <ClInclude Include="AssetRegistry.h" />
     <ClInclude Include="AttackExtension.h" />
     <ClInclude Include="BehaviourAttack.h" />
@@ -212,14 +220,16 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="ButtonUiElement.h" />
     <ClInclude Include="CanWieldExtension.h" />
     <ClInclude Include="CheckPhysicsExtension.h" />
-    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="DoesDamageExtension.h" />
     <ClInclude Include="DummyManagableItem.h" />
     <ClInclude Include="EntityCategory.h" />
+    <ClInclude Include="dirent.h" />
+    <ClInclude Include="FileData.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -228,8 +238,12 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="GameObjectFacade.h" />
     <ClInclude Include="GlueManageableItem.h" />
     <ClInclude Include="HealthExtension.h" />
+    <ClInclude Include="HpBarUIElement.h" />
     <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
+    <ClInclude Include="LibCurl.h" />
+    <ClInclude Include="IsPortalableExtension.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
@@ -240,21 +254,27 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClInclude Include="RotateObj.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
+    <ClInclude Include="SDLTexture.h" />
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="SoundExtension.h" />
+    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="StateExtension.h" />
     <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="Talker.h" />
     <ClInclude Include="TeleportObject.h" />
     <ClInclude Include="TextUiElement.h" />
     <ClInclude Include="ThrusterManagableItem.h" />
+    <ClInclude Include="TimerExtension.h" />
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractAnimationHandler.cpp" />
     <ClCompile Include="AbstractBehaviour.cpp" />
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
+    <ClCompile Include="AbstractContactListener.cpp" />
     <ClCompile Include="AbstractEntityAI.cpp" />
     <ClCompile Include="AbstractGame.cpp" />
     <ClCompile Include="AbstractGameObjectExtension.cpp" />
@@ -262,6 +282,7 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="AbstractScreen.cpp" />
     <ClCompile Include="AbstractUiElement.cpp" />
     <ClCompile Include="AiExtension.cpp" />
+    <ClCompile Include="AnimationExtension.cpp" />
     <ClCompile Include="AssetRegistry.cpp" />
     <ClCompile Include="AttackExtension.cpp" />
     <ClCompile Include="BehaviourAttack.cpp" />
@@ -273,13 +294,14 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="ButtonUiElement.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CheckPhysicsExtension.cpp" />
-    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="DefaultEntity.cpp" />
+    <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="DoesDamageExtension.cpp" />
     <ClCompile Include="DummyManagableItem.cpp" />
+    <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
@@ -287,7 +309,11 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="GameObjectFacade.cpp" />
     <ClCompile Include="GlueManageableItem.cpp" />
     <ClCompile Include="HealthExtension.cpp" />
+    <ClCompile Include="HpBarUIElement.cpp" />
     <ClCompile Include="ImageUiElement.cpp" />
+    <ClCompile Include="LibCurl.cpp" />
+    <ClCompile Include="IsPortalableExtension.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MoveExtension.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -301,13 +327,17 @@ copy "..\Lib\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "..\$(IntDir)";</Command>
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
+    <ClCompile Include="SDLTexture.cpp" />
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="SoundExtension.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="StateExtension.cpp" />
     <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />
     <ClCompile Include="ThrusterManagableItem.cpp" />
+    <ClCompile Include="TimerExtension.cpp" />
+    <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

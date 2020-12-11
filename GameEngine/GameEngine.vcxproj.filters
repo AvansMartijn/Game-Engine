@@ -94,6 +94,18 @@
     <Filter Include="Header Files\GameObjects\Items">
       <UniqueIdentifier>{0277e037-a379-4096-ae7b-74b5f2482ebe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{398d20c3-1841-4ef1-a6f4-1c201b6f3933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UiElements\Mouse">
+      <UniqueIdentifier>{b8c2dec6-a365-4918-af55-67b1d6eb0b69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UiElements\Mouse">
+      <UniqueIdentifier>{05409c78-e468-4e22-bb86-8410560f4efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{d05e6f6f-9736-478e-af77-9fe4320383d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -234,9 +246,6 @@
     <ClInclude Include="Body.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionListener.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="CustomUserData.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
@@ -272,6 +281,48 @@
     </ClInclude>
     <ClInclude Include="RotateObj.h">
       <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="dirent.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="FileData.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundPlayer.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HpBarUIElement.h">
+      <Filter>Header Files\UiElements</Filter>
+    </ClInclude>
+    <ClInclude Include="DoesDamageExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="IsPortalableExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLTexture.h">
+      <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="LibCurl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractContactListener.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Header Files\UiElements\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractAnimationHandler.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -324,9 +375,6 @@
       <Filter>Source Files\DataTypes</Filter>
     </ClCompile>
     <ClCompile Include="AbstractEntityAI.cpp">
-      <Filter>Source Files\Ai</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultEntity.cpp">
       <Filter>Source Files\Ai</Filter>
     </ClCompile>
     <ClCompile Include="AbstractBehaviour.cpp">
@@ -407,9 +455,6 @@
     <ClCompile Include="Body.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionListener.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -430,6 +475,48 @@
     </ClCompile>
     <ClCompile Include="PortalManagableItem.cpp">
       <Filter>Source Files\GameObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FileData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundPlayer.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBarUIElement.cpp">
+      <Filter>Source Files\UiElements</Filter>
+    </ClCompile>
+    <ClCompile Include="DoesDamageExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="IsPortalableExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLTexture.cpp">
+      <Filter>Source Files\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="LibCurl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultEntityAI.cpp">
+      <Filter>Source Files\Ai</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractContactListener.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Files\UiElements\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractAnimationHandler.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\Misc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

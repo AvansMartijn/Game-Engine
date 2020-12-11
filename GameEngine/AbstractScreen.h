@@ -10,6 +10,7 @@
 #include "Window.h"
 #include "AbstractUiElement.h"
 #include "Physics.h"
+#include "TextUIElement.h"
 
 using namespace std;
 
@@ -23,6 +24,8 @@ protected:
 public:
 	AbstractScreen();
 	~AbstractScreen();
+
+	std::string backgroundTrackKey = "";
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -72,5 +75,11 @@ public:
 	/// Resets the game.
 	/// </summary>
 	virtual void reset();
+
+	/// <summary>
+	/// Should show the FPS
+	/// </summary>
+	bool shouldShowFPS;
+private:
 };
 

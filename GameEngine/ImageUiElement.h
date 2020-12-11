@@ -13,7 +13,7 @@ using namespace std;
 class GAMEENGINE_ImageUiElement ImageUiElement : public AbstractUiElement
 {
 public:
-	ImageUiElement(std::string imageKey, Rect rect);
+	ImageUiElement(std::string imageKey, Rect rect, int alpha = 0, bool flipRight = true);
 	~ImageUiElement();
 
 	/// <summary>
@@ -33,7 +33,9 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
-private:
 	std::string _textureKey;
+	int _alpha;
+	bool _flipRight;
+private:
 };
 

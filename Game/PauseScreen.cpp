@@ -1,42 +1,71 @@
 #include "PauseScreen.h"
+#include <Mouse.h>
 
 PauseScreen::PauseScreen() {}
 PauseScreen::~PauseScreen() {}
 
 void PauseScreen::onInit() {
-	const Color bgColor = { 66, 99, 116 };
+	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	TextUiElement text = TextUiElement("  PAUSE   ", font, 48, { 0, 0, 0, 0 }, { 32, 180, 226 }, { 7, 16, 29 }, true);
-	_uiElements.push_back(make_shared<TextUiElement>(text));
+	TextUiElement headerText = TextUiElement("Pause", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, true);
+	_uiElements.push_back(make_shared<TextUiElement>(headerText));
 
-	ButtonUiElement resumeButton = ButtonUiElement("Resume", { (1080 / 2) - 200, 100, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement resumeButton = ButtonUiElement("Resume", { 470, 100, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	resumeButton.registerGame(_game);
 	resumeButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(resumeButton));
 
-	ButtonUiElement helpButton = ButtonUiElement("Help", { (1080 / 2) - 200, 250, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement helpButton = ButtonUiElement("Help", { 470, 150, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	helpButton.registerGame(_game);
 	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
-	ButtonUiElement RestartButton = ButtonUiElement("Restart", { (1080 / 2) - 200, 400, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement settingsButton = ButtonUiElement("Settings", { 470, 200, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	settingsButton.registerGame(_game);
+	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Settings); };
+	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
+
+	ButtonUiElement RestartButton = ButtonUiElement("Restart", { 470, 250, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	RestartButton.registerGame(_game);
-	RestartButton.onClick = [](AbstractGame* game) {  game->reset(); game->switchScreen(Screens::MainGame);};
+	RestartButton.onClick = [](AbstractGame* game) {  game->switchScreen(Screens::MainGame, { "reset" });};
 	_uiElements.push_back(make_shared<ButtonUiElement>(RestartButton));
 
-	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { (1080 / 2) - 200, 550, 500, 100 }, bgColor, { 180, 102, 13 }, font, 40);
+	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { 470, 300, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+
+	ImageUiElement walu = ImageUiElement("Hat", { 1080 - 350 , (((720 - 400) - 100) / 2), 300, 300 });
+	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+
+	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
+	_uiElements.push_back(_fps);
 }
 
-void PauseScreen::onTick() {}
+void PauseScreen::onTick() {
+	if (shouldShowFPS)
+		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	else
+		_fps->text = "  ";
+
+	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
+		Mouse::getInstance().setCursor(Mouse::DEFAULT);
+}
 
 void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+	SDL_Keycode fps;
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+	else
+		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+
+	if (e.keysym.sym == fps)
+		shouldShowFPS = !shouldShowFPS;
+
 	switch (e.keysym.sym)
 	{
 	case SDLK_ESCAPE:

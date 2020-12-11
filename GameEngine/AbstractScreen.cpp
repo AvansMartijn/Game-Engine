@@ -24,7 +24,9 @@ void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	}
 }
 
+
 void AbstractScreen::render(const unique_ptr<Window>& window) {
+
 	for (shared_ptr<AbstractUiElement>& obj : _uiElements)
 		obj->render(window);
 }

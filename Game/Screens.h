@@ -8,5 +8,14 @@ enum Screens {
 	MainMenu,
 	GameOver,
 	KeyBindings,
-	HighScore
+	HighScore,
+	GameFinished,
+	Settings,
+	LoadCustomMap,
+	Loading,
+	NewGame,
+	LoadGame,
+	Cheat,
+	CheatHelp,
+	StartNewGame
 };

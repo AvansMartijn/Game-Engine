@@ -13,9 +13,11 @@
 class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement
 {
 public:
-	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center);
+	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
+	TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
 	~TextUiElement();
 	std::string text;
+	std::vector<std::string> textLines;
 
 	/// <summary>
 	/// prerender
@@ -40,6 +42,7 @@ private:
 	Color _foregroundColor;
 	Color _backgroundColor;
 	bool _center;
+	bool _multiLine;
 
 	// This has to be here, otherwise we have to add every possible fontSize to the registry.
 	TTF_Font* _font;

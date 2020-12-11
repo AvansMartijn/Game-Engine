@@ -3,16 +3,13 @@
 #include "Physics.h"
 
 GameObject::GameObject() {
-	currentState = 0;
 }
 
-void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
-{
+void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension) {
 	_gameObjectExtensions.push_back(extension);
 }
 
-bool GameObject::hasExtension(const std::type_info& type)
-{
+bool GameObject::hasExtension(const std::type_info& type) {
 	for (shared_ptr<AbstractGameObjectExtension> const& extension : _gameObjectExtensions)
 	{
 		string givenName = type.name();
@@ -26,11 +23,7 @@ bool GameObject::hasExtension(const std::type_info& type)
 }
 
 void GameObject::render(const unique_ptr<Window>& window) {
-	// calc camera offset
-	b2Vec2 playerPos = Scene::getInstance().getPlayer()->body.b2body->GetPosition();
-	playerPos.x = metersToPixels(playerPos.x);
-	playerPos.y = metersToPixels(playerPos.y);
-	b2Vec2 diffs = { playerPos.x - (window->getWidth() / 2), playerPos.y - (window->getHeight() / 2) };
+	std::shared_ptr<GameObject> player = Scene::getInstance().getPlayer();
 
 	//get object position
 	b2Vec2 position = body.b2body->GetPosition();
@@ -43,12 +36,31 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	float radians = body.b2body->GetAngle();
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
 
-	//apply camera offset
-	rect.x -= diffs.x;
-	rect.y -= diffs.y;
+	if (player && !Scene::getInstance().isLocked) {
+		// calc camera offset
+		b2Vec2 playerPos = player->body.b2body->GetPosition();
+		playerPos.x = metersToPixels(playerPos.x);
+		playerPos.y = metersToPixels(playerPos.y);
+		b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
 
-	//render
-	window->renderTexture(textures[currentState], rect, degrees, false);
+		//apply camera offset
+		rect.x -= diffs.x;
+		rect.y -= diffs.y;
+	}
+
+
+	if (hasExtension(typeid(AnimationExtension))) {
+		shared_ptr<AnimationExtension> animation = getExtension<AnimationExtension>();
+		if (animation->getAnimationHandler() != nullptr) {
+			Rect sprite = animation->getCurrentSprite();
+
+			window->renderSprite(texture, rect, sprite, degrees, animation->shouldFlipLeft());
+		}
+	}
+	else {
+		//render
+		window->renderTexture(texture, rect, degrees, false);
+	}
 }
 
 
@@ -68,9 +80,3 @@ std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std:
 	}
 	return nullptr;
 }
-
-void GameObject::addTexture(int state, std::string textureKey) {
-	textures.insert(std::pair<int, std::string>(state, textureKey));
-}
-
-

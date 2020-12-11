@@ -1,11 +1,18 @@
 #pragma once
 #include "AbstractScreen.h"
 #include <TextUiElement.h>
+#include "ControllManager.h"
 
 class HighScoreScreen : public AbstractScreen
 {
 private:
-	shared_ptr<TextUiElement> _bodyText;
+
+	shared_ptr<TextUiElement> _scrollableText;
+
+	int _offset = 0;
+	int _anchor = 0;
+	shared_ptr<TextUiElement> _fps;
+
 public:
 	using AbstractScreen::AbstractScreen;
 	HighScoreScreen();

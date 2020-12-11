@@ -1,16 +1,15 @@
 #include "pch.h"
 #include "BehaviourRotate.h"
 
+BehaviourRotate::BehaviourRotate(shared_ptr<GameObject> self, int waitTime) : AbstractBehaviour(self) {
+	waitTime = waitTime;
+}
+
 void BehaviourRotate::execute() {
-	std::cout << "> Rotate\n";
+	if (isEnoughTimeElapsed(waitTime)) {
+		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
+		moveExtension->isLookingToLeft = !moveExtension->isLookingToLeft;
 
-	this->executeNextBehaviour(true);
-}
-
-bool BehaviourRotate::hasEnoughTimeElapsed() {
-	return false;
-}
-
-bool BehaviourRotate::canRotate() {
-	return false;
+		this->executeNextBehaviour(true);
+	}
 }

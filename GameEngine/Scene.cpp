@@ -11,12 +11,33 @@ shared_ptr<GameObject> Scene::getGameObject(int id) {
     return _gameObjects[id];
 }
 
+map<int, shared_ptr<GameObject>> Scene::getGameObjects() {
+    return _gameObjects;
+}
+
+shared_ptr<GameObject> Scene::getEntityAtIndex(int index) {
+    return _gameObjects[_entities.at(index)];
+}
+
+size_t Scene::getEntitiesSize() {
+    return _entities.size();
+}
+
 void Scene::addGameObject(int index, shared_ptr<GameObject> obj) {
     _gameObjects.insert(std::pair<int, shared_ptr<GameObject>>(index, obj));
 }
 
 void Scene::addGameObject(shared_ptr<GameObject> obj) {
     addGameObject(obj->id, obj);
+}
+
+void Scene::addTextUiElement(shared_ptr<TextUiElement> obj) {
+    _textElements.push_back(obj);
+}
+
+void Scene::addEntity(shared_ptr<GameObject> obj) {
+    addGameObject(obj->id, obj);
+    _entities.push_back(obj->id);
 }
 
 int Scene::getNextAvailableId() {
@@ -31,12 +52,23 @@ void Scene::removeGameObject(int id) {
     _gameObjects.erase(id);
 }
 
-void Scene::addItem(shared_ptr<AbstractManageableItem> item) {
-    _items.insert(std::pair<int, shared_ptr<AbstractManageableItem>>(_items.size() + 1, item));
+void Scene::removeEntity(int index) {
+    _entities.erase(_entities.begin() + index);
+}
+
+void Scene::addItem(std::string name, shared_ptr<AbstractManageableItem> item) {
+    int id = _items.size() + 1;
+    
+    _items.insert(std::pair<std::string, shared_ptr<AbstractManageableItem>>(name, item));
+    _keyRegistry.insert(std::pair<int, std::string>(id, name));
 }
 
 shared_ptr<AbstractManageableItem> Scene::getItem(int index) {
-    return _items[index];
+    return _items[_keyRegistry[index]];
+}
+
+shared_ptr<AbstractManageableItem> Scene::getItem(std::string name) {
+    return _items[name];
 }
 
 shared_ptr<GameObject> Scene::getPlayer() {
@@ -56,15 +88,35 @@ shared_ptr<CanWieldExtension> Scene::getWieldExtension() {
 }
 
 void Scene::reset() {
+    if (getPlayer() && getPlayer()->hasExtension(typeid(MoveExtension)))
+        getPlayerMoveExtension()->reset();
+
+    gameOver = false;
     score = 1000;
     _gameObjects.clear();
-    _items.clear();
-    getPlayerMoveExtension()->reset();
+    _textElements.clear();
+    preRender = false;
+    hasCheated = false;
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
-    for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects)
-        x.second->render(window);
+
+
+    for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects) {
+        if (x.second != nullptr)
+            x.second->render(window);
+    }
+
+    for (auto textElement : _textElements) {
+        if (!preRender) {
+            textElement->preRender(window);
+            preRender = true;
+        }
+
+
+        textElement->render(window);
+    }
+
 }
 
 float Scene::metersToPixels(float meters) {
@@ -74,5 +126,7 @@ float Scene::metersToPixels(float meters) {
 float Scene::pixelsToMeters(float pixels) {
     return pixels / zoom;
 }
+
+
 
 

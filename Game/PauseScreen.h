@@ -6,9 +6,12 @@
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
 #include "Screens.h"
+#include "ControllManager.h"
 
 class PauseScreen : public AbstractScreen
 {
+private:
+	shared_ptr<TextUiElement> _fps;
 public:
 	using AbstractScreen::AbstractScreen;
 	PauseScreen();

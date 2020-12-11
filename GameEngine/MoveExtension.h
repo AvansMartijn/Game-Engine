@@ -6,6 +6,8 @@
 #endif
 #include "AbstractGameObjectExtension.h"
 #include "MovementType.h"
+#include "GameObject.h"
+#include <chrono>
 
 /// <summary>
 /// Movement capabilities
@@ -13,14 +15,15 @@
 class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension
 {
 private:
-	//PhysicsFacade _physicsFacade;
+	std::chrono::steady_clock::time_point _afkTime;
 public:
-
 	MoveExtension();
 	int jumpCounter;
+	int leftArmCounter;
+	int rightArmCounter;
 
-	MovementTypes currentMovementType;
-	bool isLookingToRight;
+	MovementType currentMovementType;
+	bool isLookingToLeft;
 
 	/// <summary>
 	/// Checks if the player can jump.
@@ -33,7 +36,30 @@ public:
 	/// </summary>
 	void reset();
 
-	void move();
+	/// <summary>
+	/// Move the subject.
+	/// </summary>
+	/// <param name="movementX">The x movement.</param>
+	/// <param name="movementY">The y movement.</param>
+	void move(float movementX, float movementY);
+
+	/// <summary>
+	/// Move on the x-axis.
+	/// </summary>
+	/// <param name="movementX">The movement on the x-axis.</param>
+	void moveX(float movementX);
+
+	/// <summary>
+	/// Move on the y-axis.
+	/// </summary>
+	/// <param name="movementY">The movement on the y-axis.</param>
+	void moveY(float movementY);
+
+	void updateState();
+
+	int getLeftArmCounter();
+	int getRightArmCounter();
+	void resetAfkTime();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
 };

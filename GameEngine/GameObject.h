@@ -11,10 +11,10 @@
 #include <iostream>
 #include <string>
 #include "Window.h"
-#include <Box2D.h>
 #include "Body.h"
 #include "MoveExtension.h"
 #include <map>
+#include "AnimationExtension.h"
 
 using namespace std;
 class Window;
@@ -28,8 +28,7 @@ public:
 	Body body;
 	int id;
 
-	int currentState;
-	std::map<int, std::string> textures;
+	std::string texture;
 
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 	bool hasExtension(const std::type_info& type);
@@ -48,12 +47,16 @@ public:
 	/// <returns>The value in pixels.</returns>
 	int metersToPixels(float value);
 
-	/// <summary>
-	/// Adds a texture to the texture list.
-	/// </summary>
-	/// <param name="state">The state when to use the texture.</param>
-	/// <param name="textureKey">The key of the texture</param>
-	void addTexture(int state, std::string textureKey);
+	template<typename T>
+	std::shared_ptr<T> getExtension() {
+		const std::type_info& typeId = typeid(T);
 
+		std::shared_ptr<AbstractGameObjectExtension> baseExtension = getExtension(typeId);
+
+		if (baseExtension == nullptr)
+			return nullptr;
+
+		return dynamic_pointer_cast<T>(baseExtension);
+	}
 };
 

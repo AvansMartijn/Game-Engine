@@ -22,11 +22,86 @@
     <Filter Include="Source Files\Screens\HelpScreen">
       <UniqueIdentifier>{3ccecd3f-a405-444b-87a4-beb721f175ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Screens\Help">
-      <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Misc">
       <UniqueIdentifier>{b3c90d31-3ba9-4393-be32-8b2b8cc155b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevelLoader">
+      <UniqueIdentifier>{829ac85b-4f24-49db-8874-1f9686cd1d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LevelLoader">
+      <UniqueIdentifier>{9dbcfc8c-b7bc-4b42-8781-b46599502a0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LevelLoader\Tiled">
+      <UniqueIdentifier>{204fa313-c4ce-4fe5-8030-25572e1e5a24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevelLoader\Tiled">
+      <UniqueIdentifier>{3af56a32-7d09-40a3-a6ed-6a35c43f6ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevelLoader\Tiled\Data">
+      <UniqueIdentifier>{cc865ce4-2117-48a7-a37b-417191ba9e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevelLoader\Levels">
+      <UniqueIdentifier>{b341d2a5-23d5-4b08-8d1f-84b7b83ec989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LevelLoader\Levels">
+      <UniqueIdentifier>{0dad9f2b-8764-4f5e-844a-82211abfbdca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\LevelEnd">
+      <UniqueIdentifier>{4493590e-5cc9-4877-9cdc-5ce5d0427542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\HelpScreen">
+      <UniqueIdentifier>{9ee0a660-f6fa-461e-9e0c-e0c66e4c65bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\LevelEnd">
+      <UniqueIdentifier>{1e13ab3d-d670-4f57-9672-5a66559dd9ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc\SaveGame">
+      <UniqueIdentifier>{2ee07bc4-c0b8-414b-91af-ce39ac6d4647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{f1f3764a-90cf-4825-a6dc-2eea39de6acc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc\Keybindings">
+      <UniqueIdentifier>{773d3f38-58be-4024-b416-1a052a10d039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc\Keybindings">
+      <UniqueIdentifier>{ca886303-7780-4d0b-94fe-d15b2253a86f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\NewLoadGameScreen">
+      <UniqueIdentifier>{146ba1cb-e30e-445a-bb54-0593490f5e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\NewLoadGameScreen">
+      <UniqueIdentifier>{aa7907a7-5788-441a-ade5-6f011885dd90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\Cheats">
+      <UniqueIdentifier>{6b18b7bd-04c8-4b4c-8d27-ee2092357542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Cheats">
+      <UniqueIdentifier>{96277c52-0158-453a-9cfe-4d6f3217bd44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc\Cheats">
+      <UniqueIdentifier>{30d1b7c4-4c16-418e-a570-be8d34f077a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc\Cheats">
+      <UniqueIdentifier>{7e9211ec-3d66-4f38-954a-62665ef9afab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc\Cheats\Commands">
+      <UniqueIdentifier>{8785b650-492a-44e9-93d4-8d540195a2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc\Cheats\Commands">
+      <UniqueIdentifier>{0a5e3d18-11f2-4681-86f5-4ff01eb4c9b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{17a6172f-f568-4fcf-9e3c-fcd3ee6da376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{117969f0-c151-4fe4-a951-6a22b817d723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Animation">
+      <UniqueIdentifier>{325cb5d4-1fc6-4631-9eec-13f5c1b5b8e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Animation">
+      <UniqueIdentifier>{1a4c013a-51f2-462c-95ac-9a2ce34fabc3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,14 +126,113 @@
     <ClCompile Include="HelpScreen.cpp">
       <Filter>Source Files\Screens\HelpScreen</Filter>
     </ClCompile>
-    <ClCompile Include="GameOverScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
     <ClCompile Include="KeyBindingsHelpScreen.cpp">
       <Filter>Source Files\Screens\HelpScreen</Filter>
     </ClCompile>
     <ClCompile Include="HighscoreScreen.cpp">
       <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractLevelLoader.cpp">
+      <Filter>Source Files\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledLevelLoader.cpp">
+      <Filter>Source Files\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultLevelLoader.cpp">
+      <Filter>Source Files\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledMapBuilder.cpp">
+      <Filter>Source Files\LevelLoader\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultLevel.cpp">
+      <Filter>Source Files\LevelLoader\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractLevel.cpp">
+      <Filter>Source Files\LevelLoader\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultTiledLevel.cpp">
+      <Filter>Source Files\LevelLoader\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScreen.cpp">
+      <Filter>Source Files\Screens\LevelEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFinishedScreen.cpp">
+      <Filter>Source Files\Screens\LevelEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadCustomlevelScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSettings.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllManager.cpp">
+      <Filter>Source Files\Misc\Keybindings</Filter>
+    </ClCompile>
+    <ClCompile Include="KeybindingData.cpp">
+      <Filter>Source Files\Misc\Keybindings</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveKeybindings.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Quotes.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGameSlotsScreen.cpp">
+      <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadGameSlotsScreen.cpp">
+      <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatScreen.cpp">
+      <Filter>Source Files\Screens\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatHelpScreen.cpp">
+      <Filter>Source Files\Screens\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatManager.cpp">
+      <Filter>Source Files\Misc\Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatCommand.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="GodmodeCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="UnlimitedAmmoCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="NoCooldownCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="StartNewLevelScreen.cpp">
+      <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionListener.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="SonicModeCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MartijnModeCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="AllWeaponsCheat.cpp">
+      <Filter>Source Files\Misc\Cheats\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAnimationHandler.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAnimationHandler.cpp">
+      <Filter>Source Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,20 +254,161 @@
     <ClInclude Include="CreditsScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="GameOverScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
     <ClInclude Include="KeyBindingsHelpScreen.h">
-      <Filter>Header Files\Screens\Help</Filter>
+      <Filter>Header Files\Screens\HelpScreen</Filter>
     </ClInclude>
     <ClInclude Include="HelpScreen.h">
-      <Filter>Header Files\Screens\Help</Filter>
+      <Filter>Header Files\Screens\HelpScreen</Filter>
     </ClInclude>
     <ClInclude Include="Screens.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="HighscoreScreen.h">
       <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractLevelLoader.h">
+      <Filter>Header Files\LevelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledLevelLoader.h">
+      <Filter>Header Files\LevelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultLevelLoader.h">
+      <Filter>Header Files\LevelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledMapBuilder.h">
+      <Filter>Header Files\LevelLoader\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledLevel.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledLayer.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledTileSet.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledGrid.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledTile.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledGameObject.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultLevel.h">
+      <Filter>Header Files\LevelLoader\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractLevel.h">
+      <Filter>Header Files\LevelLoader\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultTiledLevel.h">
+      <Filter>Header Files\LevelLoader\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledProperty.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledObject.h">
+      <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScreen.h">
+      <Filter>Header Files\Screens\LevelEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFinishedScreen.h">
+      <Filter>Header Files\Screens\LevelEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadCustomlevelScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveGame.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLevel.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveSettings.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveHighscore.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelData.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllManager.h">
+      <Filter>Header Files\Misc\Keybindings</Filter>
+    </ClInclude>
+    <ClInclude Include="KeybindingData.h">
+      <Filter>Header Files\Misc\Keybindings</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveKeybindings.h">
+      <Filter>Header Files\Misc\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Quotes.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameSlotsScreen.h">
+      <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadGameSlotsScreen.h">
+      <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatHelpScreen.h">
+      <Filter>Header Files\Screens\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatScreen.h">
+      <Filter>Header Files\Screens\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatManager.h">
+      <Filter>Header Files\Misc\Cheats</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatCommand.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSettings.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GodmodeCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="UnlimitedAmmoCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="NoCooldownCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="StartNewLevelScreen.h">
+      <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionListener.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SonicModeCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MartijnModeCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="AllWeaponsCheat.h">
+      <Filter>Header Files\Misc\Cheats\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAnimationHandler.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimationHandler.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

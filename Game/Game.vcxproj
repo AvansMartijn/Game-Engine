@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\Box2D\$(PlatformTarget)\include;..\Lib\SDL2_image\include;..\Lib\SDL2\include;..\Lib\SDL2_ttf\include;..\Lib\SDL2_mixer\include;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Box2D\$(PlatformTarget)\lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.dll;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.dll;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.dll;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.dll;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,14 +97,17 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\GameEngine</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251;26495</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl_a_debug.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -122,8 +125,11 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)Release\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)Release\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -132,13 +138,17 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\GameEngine</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;26495;26812;4275</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl_a_debug.lib;..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -156,33 +166,118 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\$(IntDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GameEngine.lib;..\Lib\Box2D\$(PlatformTarget)Release\lib\box2d.lib;..\Lib\SDL2\lib\$(PlatformTarget)\SDL2.lib;..\Lib\SDL2_image\lib\$(PlatformTarget)\SDL2_image.lib;..\Lib\SDL2_ttf\lib\$(PlatformTarget)\SDL2_ttf.lib;..\Lib\SDL2_mixer\lib\$(PlatformTarget)\SDL2_mixer.lib;..\Lib\libcurl\$(PlatformTarget)Release\lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy ".\res" "..\$(IntDir)res" /E /H /C /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractLevel.cpp" />
+    <ClCompile Include="AbstractLevelLoader.cpp" />
+    <ClCompile Include="AllWeaponsCheat.cpp" />
+    <ClCompile Include="CheatCommand.cpp" />
+    <ClCompile Include="CheatHelpScreen.cpp" />
+    <ClCompile Include="CheatManager.cpp" />
+    <ClCompile Include="CheatScreen.cpp" />
+    <ClCompile Include="CollisionListener.cpp" />
+    <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="DefaultLevel.cpp" />
+    <ClCompile Include="DefaultLevelLoader.cpp" />
+    <ClCompile Include="DefaultTiledLevel.cpp" />
+    <ClCompile Include="EnemyAnimationHandler.cpp" />
+    <ClCompile Include="FlyCheat.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameFinishedScreen.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="GameSettings.cpp" />
+    <ClCompile Include="GodmodeCheat.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="HighscoreScreen.cpp" />
+    <ClCompile Include="KeybindingData.cpp" />
     <ClCompile Include="KeyBindingsHelpScreen.cpp" />
+    <ClCompile Include="LoadCustomlevelScreen.cpp" />
+    <ClCompile Include="LoadGameSlotsScreen.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="MartijnModeCheat.cpp" />
+    <ClCompile Include="NoCooldownCheat.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="PlayerAnimationHandler.cpp" />
+    <ClCompile Include="SaveKeybindings.cpp" />
+    <ClCompile Include="Quotes.cpp" />
+    <ClCompile Include="NewGameSlotsScreen.cpp" />
+    <ClCompile Include="SonicModeCheat.cpp" />
+    <ClCompile Include="StartNewLevelScreen.cpp" />
+    <ClCompile Include="TiledLevelLoader.cpp" />
+    <ClCompile Include="TiledMapBuilder.cpp" />
+    <ClCompile Include="SettingsScreen.cpp" />
+    <ClCompile Include="UnlimitedAmmoCheat.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractLevel.h" />
+    <ClInclude Include="AbstractLevelLoader.h" />
+    <ClInclude Include="AllWeaponsCheat.h" />
+    <ClInclude Include="CheatCommand.h" />
+    <ClInclude Include="CheatHelpScreen.h" />
+    <ClInclude Include="CheatManager.h" />
+    <ClInclude Include="CheatScreen.h" />
+    <ClInclude Include="CollisionListener.h" />
+    <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="DefaultLevel.h" />
+    <ClInclude Include="DefaultLevelLoader.h" />
+    <ClInclude Include="DefaultTiledLevel.h" />
+    <ClInclude Include="EnemyAnimationHandler.h" />
+    <ClInclude Include="FlyCheat.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameFinishedScreen.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="GameSettings.h" />
+    <ClInclude Include="GodmodeCheat.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="HighscoreScreen.h" />
+    <ClInclude Include="json.h" />
+    <ClInclude Include="KeybindingData.h" />
     <ClInclude Include="KeyBindingsHelpScreen.h" />
+    <ClInclude Include="LoadCustomlevelScreen.h" />
+    <ClInclude Include="LevelData.h" />
+    <ClInclude Include="LoadGameSlotsScreen.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="MartijnModeCheat.h" />
+    <ClInclude Include="NoCooldownCheat.h" />
     <ClInclude Include="PauseScreen.h" />
+    <ClInclude Include="PlayerAnimationHandler.h" />
+    <ClInclude Include="Quotes.h" />
+    <ClInclude Include="SaveGame.h" />
+    <ClInclude Include="NewGameSlotsScreen.h" />
+    <ClInclude Include="SaveHighscore.h" />
+    <ClInclude Include="SaveKeybindings.h" />
+    <ClInclude Include="SaveLevel.h" />
+    <ClInclude Include="SaveSettings.h" />
     <ClInclude Include="Screens.h" />
+    <ClInclude Include="SonicModeCheat.h" />
+    <ClInclude Include="StartNewLevelScreen.h" />
+    <ClInclude Include="TiledGameObject.h" />
+    <ClInclude Include="TiledGrid.h" />
+    <ClInclude Include="TiledLayer.h" />
+    <ClInclude Include="TiledLevel.h" />
+    <ClInclude Include="TiledLevelLoader.h" />
+    <ClInclude Include="TiledMapBuilder.h" />
+    <ClInclude Include="TiledObject.h" />
+    <ClInclude Include="TiledProperty.h" />
+    <ClInclude Include="TiledTile.h" />
+    <ClInclude Include="TiledTileSet.h" />
+    <ClInclude Include="UnlimitedAmmoCheat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SettingsScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

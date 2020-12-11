@@ -13,11 +13,12 @@
 #include <Box2D.h>
 #include <memory>
 #include "GameObject.h"
-#include "CollisionListener.h"
+#include "AbstractContactListener.h"
 #include "CustomUserData.h"
 #include "TeleportObject.h"
 #include "Scene.h"
 #include "RotateObj.h"
+#include "AbstractContactListener.h"
 
 class CollisionListener;
 class GAMEENGINE_Physics Physics
@@ -28,7 +29,7 @@ private:
 
 	b2World* _world;
 	b2Vec2 _gravity;
-	CollisionListener _colListener;
+	shared_ptr<AbstractContactListener> _colListener;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -42,6 +43,7 @@ public:
 	vector<RotateObj> rotateQueue;
 	vector<shared_ptr<GameObject>> setStaticQueue;
 	vector<int> deleteQueue;
+	vector<int> expirationQueue;
 
 	/// <summary>
 	/// Executes a step in the wordl.
@@ -60,6 +62,17 @@ public:
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
 	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+
+	/// <summary>
+	/// Adds an entity to the world.
+	/// </summary>
+	/// <param name="obj">The entity.</param>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
+	/// <param name="width">The width</param>
+	/// <param name="height">The height.</param>
+	/// <param name="userDataType">The identifier.</param>
+	void addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType = "entityFixture");
 
 	/// <summary>
 	/// Adds a portal to the world.
@@ -108,7 +121,35 @@ public:
 	/// Executes the queued rotates.
 	/// </summary>
 	void executeRotateQueue();
+	/// <summary>
+	/// Executes the queued expirations.
+	/// </summary>
+	void executeExpirationQueue();
 
+	void setContactListener(shared_ptr<AbstractContactListener> contactListener);
+
+	void clearAllQueues();
+
+	/// <summary>
+	/// Get Linear velocity of game object
+	/// </summary>
+	/// <param name="gameObject">The gameobject</param>
+	/// <returns>The linear velocity.</returns>
+	Vec2 getLinearVelocity(shared_ptr<GameObject> gameObject);
+
+	/// <summary>
+	/// Get Linear velocity of game object
+	/// </summary>
+	/// <param name="gameObject">The game object</param>
+	/// <returns>The linear velocity</returns>
+	void setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel);
+
+	/// <summary>
+	/// Get's the position of the game object.
+	/// </summary>
+	/// <param name="gameObject">The game object.</param>
+	/// <returns>The position of the game object</returns>
+	Vec2 getPosition(shared_ptr<GameObject> gameObject);
 };
 
 #endif
