@@ -161,7 +161,7 @@ void GameScreen::onTick() {
 			else {
 				if (currentWeapon->getAmmo() == -1) {
 					long difference = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
-					if (difference == 0 || currentWeapon->getScreenName() != "GLUE GUN")
+					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
 						_ammo->text = "COOLDOWN: READY";
 					else if (difference >= currentWeapon->getCooldown()) 
 						_ammo->text = "COOLDOWN: READY";
