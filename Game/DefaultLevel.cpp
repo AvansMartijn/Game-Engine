@@ -1,5 +1,4 @@
 #include "DefaultLevel.h"
-#include "PlayerAnimationHandler.h"
 
 void DefaultLevel::createLevel(GameEngine gameEngine) {
 	// Player
@@ -90,7 +89,6 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	shared_ptr<GameObject> exit = createNonRigidBody(gameEngine, {}, "Gate_Cropped",
 		23, 14.8f, 2.5f, 2.5f, "exitSensor");
 
-	// TODO: FIX
 	portal1->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalB);
 	portal2->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalA);
 
