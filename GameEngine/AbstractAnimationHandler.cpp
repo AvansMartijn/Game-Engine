@@ -20,6 +20,9 @@ std::string AbstractAnimationHandler::getKeyFromMovementType(MovementType moveme
 	case MovementType::AFK:
 		key = KEY_AFK;
 		break;
+	case MovementType::HURTING:
+		key = KEY_HURTING;
+		break;
 	default:
 		break;
 	}

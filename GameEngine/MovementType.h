@@ -5,5 +5,6 @@ enum class MovementType {
 	JUMPING,
 	FALLING,
 	ATTACKING,
-	AFK
+	AFK,
+	HURTING
 };

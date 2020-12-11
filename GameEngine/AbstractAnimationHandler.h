@@ -26,6 +26,7 @@ public:
 	const std::string KEY_JUMPING = "JUMPING";
 	const std::string KEY_ATTACKING = "ATTACKING";
 	const std::string KEY_AFK = "AFK";
+	const std::string KEY_HURTING = "HURTING";
 
 	Rect sprite;
 	bool shouldFlipLeft;

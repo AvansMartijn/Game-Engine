@@ -49,7 +49,7 @@ void MoveExtension::moveY(float movementY) {
 
 void MoveExtension::updateState() {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
-	if (canJump() && vel.x == 0 && vel.y == 0) {
+	if (canJump() && vel.x == 0 && vel.y == 0 && currentMovementType != MovementType::HURTING) {
 		if (Utilities::getInstance().isEnoughTimeElapsed(3000, _afkTime))
 			currentMovementType = MovementType::AFK;
 		else if (currentMovementType != MovementType::AFK)

@@ -47,7 +47,14 @@ void PlayerAnimationHandler::registerAnimations() {
 	// Jumping
 	frames.clear();
 	frames.push_back(Rect{ 67, 198, 40, 47 });
+
 	_animations.insert(make_pair(KEY_JUMPING, frames));
+
+	// Hurting
+	frames.clear();
+	frames.push_back(Rect{ 189, 923, 33, 42 });
+	frames.push_back(Rect{ 228, 925, 33, 41 });
+	_animations.insert(make_pair(KEY_HURTING, frames));
 }
 
 void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
@@ -60,21 +67,21 @@ void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 			_currentFrame = 0;
 
 			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
-		
-			if (moveExtension->currentMovementType == MovementType::RUNNING) {
-				currentAnimation = KEY_RUNNING;
+
+			currentAnimation = movementType;
+			if (movementType == KEY_RUNNING) {
 				_currentCooldown = 200;
 			}
-			else if (moveExtension->currentMovementType == MovementType::JUMPING) {
-				currentAnimation = KEY_JUMPING;
+			else if (movementType == KEY_JUMPING) {
 				_currentCooldown = 0;
 			}
-			else if (moveExtension->currentMovementType == MovementType::IDLE) {
-				currentAnimation = KEY_IDLE;
+			else if (movementType == KEY_IDLE) {
 				_currentCooldown = 200;
 			} 
-			else if (moveExtension->currentMovementType == MovementType::AFK) {
-				currentAnimation = KEY_AFK;
+			else if (movementType == KEY_AFK) {
+				_currentCooldown = 200;
+			}
+			else if (movementType == KEY_HURTING) {
 				_currentCooldown = 200;
 			}
 		}
