@@ -1,5 +1,6 @@
 #include "PlayerAnimationHandler.h"
 #include "GameObject.h"
+#include <Utilities.h>
 
 void PlayerAnimationHandler::registerAnimations() {
 	//_animations
@@ -8,20 +9,39 @@ void PlayerAnimationHandler::registerAnimations() {
 
 	std::vector<Rect> frames;
 
-	// Idle
-	frames.push_back(Rect{ 253, 78, 318, 456 });
-	frames.push_back(Rect{ 1877, 72, 324, 462 });
-	frames.push_back(Rect{ 707, 1265, 248, 492 });
-	frames.push_back(Rect{ 47, 1275, 246, 482 });
-	frames.push_back(Rect{ 707, 1265, 248, 492 });
-	frames.push_back(Rect{ 1877, 72, 324, 462 });
-
+	// IDLE
+	frames.push_back(Rect{ 101, 6, 25, 45 });
 	_animations.insert(make_pair(KEY_IDLE, frames));
+
+	// AFK
+	frames.clear();
+	frames.push_back(Rect{ 101, 6, 25, 45 });
+	frames.push_back(Rect{ 328, 926, 24, 47 });
+	frames.push_back(Rect{ 363, 920, 23, 53 });
+	frames.push_back(Rect{ 393, 923, 31, 50 });
+	frames.push_back(Rect{ 435, 918, 32, 55 });
+	frames.push_back(Rect{ 471, 919, 27, 54 });
+	frames.push_back(Rect{ 501, 919, 23, 54 });
+	frames.push_back(Rect{ 527, 919, 27, 54 });
+	frames.push_back(Rect{ 558, 919, 23, 54 });
+	frames.push_back(Rect{ 592, 917, 36, 56 });
+	frames.push_back(Rect{ 638, 921, 41, 48 });
+	frames.push_back(Rect{ 688, 920, 26, 49 });
+	frames.push_back(Rect{ 730, 918, 35, 51 });
+	frames.push_back(Rect{ 772, 919, 32, 50 });
+	frames.push_back(Rect{ 101, 6, 25, 45 });
+
+	_animations.insert(make_pair(KEY_AFK, frames));
 
 	// Running
 	frames.clear();
-	frames.push_back(Rect{ 44, 735, 448, 448 });
-	//frames.push_back(Rect{ 1032, 735, 481, 445 });
+	frames.push_back(Rect{ 288, 13, 35, 46 });
+	frames.push_back(Rect{ 326, 15, 35, 47 });
+	frames.push_back(Rect{ 363, 16, 36, 43 });
+	frames.push_back(Rect{ 421, 14, 35, 47 });
+	frames.push_back(Rect{ 471, 16, 33, 46 });
+	frames.push_back(Rect{ 510, 17, 39, 44 });
+
 	_animations.insert(make_pair(KEY_RUNNING, frames));
 
 	// Jumping
@@ -35,9 +55,10 @@ void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 		shared_ptr<MoveExtension> moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipRight = moveExtension->isLookingToRight;
 
-		if (getKeyFromMovementType(moveExtension->currentMovementType) != currentAnimation) {
+		std::string movementType = getKeyFromMovementType(moveExtension->currentMovementType);
+		if (movementType != currentAnimation) {
 			_currentFrame = 0;
-			
+
 			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
 		
 			if (moveExtension->currentMovementType == MovementType::RUNNING) {
@@ -50,37 +71,21 @@ void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 			}
 			else if (moveExtension->currentMovementType == MovementType::IDLE) {
 				currentAnimation = KEY_IDLE;
-				_currentCooldown = 1000;
+				_currentCooldown = 200;
+			} 
+			else if (moveExtension->currentMovementType == MovementType::AFK) {
+				currentAnimation = KEY_AFK;
+				_currentCooldown = 200;
 			}
 		}
-		else if (isEnoughTimeElapsed(_currentCooldown)) {
+		else if (Utilities::getInstance().isEnoughTimeElapsed(_currentCooldown, _begin)) {
 			_currentFrame++;
 
-			if (_currentFrame == _animations[currentAnimation].size())
+			if (_currentFrame >= _animations[currentAnimation].size())
 				_currentFrame = 0;
 		}
 
 		std::vector<Rect> frames = _animations[currentAnimation];
 		sprite = frames[_currentFrame];
 	}
-}
-
-std::string PlayerAnimationHandler::getKeyFromMovementType(MovementType movementType) {
-	std::string key = KEY_IDLE;
-	switch (movementType)
-	{
-	case MovementType::IDLE:
-		key = KEY_IDLE;
-		break;
-	case MovementType::RUNNING:
-		key = KEY_RUNNING;
-		break;
-	case MovementType::JUMPING:
-		key = KEY_JUMPING;
-		break;
-	default:
-		break;
-	}
-
-	return key;
 }

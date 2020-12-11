@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <chrono>
+#include "MovementType.h"
 
 class GameObject;
 class GAMEENGINE_AbstractAnimationHandler AbstractAnimationHandler {
@@ -20,12 +21,17 @@ protected:
 	int _currentCooldown;
 	std::chrono::steady_clock::time_point _begin;
 public:
+	const std::string KEY_IDLE = "IDLE";
+	const std::string KEY_RUNNING = "RUNNING";
+	const std::string KEY_JUMPING = "JUMPING";
+	const std::string KEY_ATTACKING = "ATTACKING";
+	const std::string KEY_AFK = "AFK";
+
 	Rect sprite;
 	bool shouldFlipRight;
 	virtual	void registerAnimations() = 0;
 	virtual void animate(std::shared_ptr<GameObject> gameObject) = 0;
-
-	bool isEnoughTimeElapsed(int timeNeeded);
-
+	
+	std::string getKeyFromMovementType(MovementType movementType);
 };
 

@@ -7,12 +7,15 @@
 #include "AbstractGameObjectExtension.h"
 #include "MovementType.h"
 #include "GameObject.h"
+#include <chrono>
 
 /// <summary>
 /// Movement capabilities
 /// </summary>
 class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension
 {
+private:
+	std::chrono::steady_clock::time_point _afkTime;
 public:
 	MoveExtension();
 	int jumpCounter;
@@ -56,6 +59,7 @@ public:
 
 	int getLeftArmCounter();
 	int getRightArmCounter();
+	void resetAfkTime();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
 };

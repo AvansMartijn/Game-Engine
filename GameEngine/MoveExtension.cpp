@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "MoveExtension.h"
 #include "Physics.h"
+#include "Utilities.h"
 
 MoveExtension::MoveExtension() {
 	type = "MoveExtension";
@@ -13,11 +14,12 @@ void MoveExtension::move(float movementX, float movementY) {
 	currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)
-		isLookingToRight = false;
-	else if (vel.x > 0)
 		isLookingToRight = true;
+	else if (vel.x > 0)
+		isLookingToRight = false;
 
 	Physics::getInstance().setLinearVelocity(_subject, vel);
+	resetAfkTime();
 }
 
 void MoveExtension::moveX(float movementX) {
@@ -28,11 +30,12 @@ void MoveExtension::moveX(float movementX) {
 		currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)
-		isLookingToRight = false;
-	else if (vel.x > 0)
 		isLookingToRight = true;
+	else if (vel.x > 0)
+		isLookingToRight = false;
 
 	Physics::getInstance().setLinearVelocity(_subject, vel);
+	resetAfkTime();
 }
 
 void MoveExtension::moveY(float movementY) {
@@ -41,13 +44,17 @@ void MoveExtension::moveY(float movementY) {
 	currentMovementType = MovementType::JUMPING;
 
 	Physics::getInstance().setLinearVelocity(_subject, vel);
+	resetAfkTime();
 }
 
 void MoveExtension::updateState() {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
-
-	if (canJump() && vel.x == 0 && vel.y == 0)
-		currentMovementType = MovementType::IDLE;
+	if (canJump() && vel.x == 0 && vel.y == 0) {
+		if (Utilities::getInstance().isEnoughTimeElapsed(3000, _afkTime))
+			currentMovementType = MovementType::AFK;
+		else if (currentMovementType != MovementType::AFK)
+			currentMovementType = MovementType::IDLE;
+	}
 }
 
 bool MoveExtension::canJump() {
@@ -63,4 +70,8 @@ int MoveExtension::getRightArmCounter() {
 
 void MoveExtension::reset() {
 	jumpCounter = 0;
+}
+
+void MoveExtension::resetAfkTime() {
+	_afkTime = std::chrono::steady_clock::now();
 }

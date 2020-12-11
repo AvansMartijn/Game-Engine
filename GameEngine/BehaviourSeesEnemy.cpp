@@ -2,7 +2,7 @@
 #include "BehaviourSeesEnemy.h"
 
 void BehaviourSeesEnemy::execute() {
-	float lookX = 10;
+	float lookX = 5;
 	float lookY = 2;
 
 	float subjectX = Physics::getInstance().getPosition(_self).x;

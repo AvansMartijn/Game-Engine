@@ -266,6 +266,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="TextUiElement.h" />
     <ClInclude Include="ThrusterManagableItem.h" />
     <ClInclude Include="TimerExtension.h" />
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -336,6 +337,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="TextUiElement.cpp" />
     <ClCompile Include="ThrusterManagableItem.cpp" />
     <ClCompile Include="TimerExtension.cpp" />
+    <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
