@@ -5,7 +5,6 @@
 // The higher the value the smoother the result is...
 // Don't make it 0 or less :)
 
-
 AbstractGame::AbstractGame(const char* title, int width, int height) {
 	_window = unique_ptr<Window>(new Window("Latrop 2", 1080, 720));
 	_activeScreen = 0;
@@ -35,16 +34,15 @@ void AbstractGame::gameLoop() {
 		delta = a - b;
 		qubec = c - d;
 		if (delta > 1000 / Scene::getInstance().tickRate) {
-			//cout << "FPS: " << 1000 / delta << std::endl;
 			b = a;
 
 			screens.at(_activeScreen)->onTick();
 			
 			while (SDL_PollEvent(&event)) {
-				switch (event.type)
-				{
+				switch (event.type) {
 				case SDL_KEYDOWN:
 					screens.at(_activeScreen)->handleKeyboardInput(event.key);
+
 					break;
 				case SDL_MOUSEMOTION:
 					screens.at(_activeScreen)->handleMouseMotionInput(event.motion);
@@ -60,6 +58,7 @@ void AbstractGame::gameLoop() {
 					break;
 				case SDL_QUIT:
 					running = false;
+
 					break;
 				default:
 					break;
@@ -108,64 +107,48 @@ void AbstractGame::reset() {
 		screens[i]->reset();
 }
 
-void AbstractGame::initFps()
-{
-	// Set all frame times to 0ms.
-	memset(_frametimes, 0, sizeof(_frametimes));
-	_framecount = 0;
-	_framespersecond = 0;
-	_frametimelast = SDL_GetTicks();
+void AbstractGame::initFps() {
+	memset(_frameTimes, 0, sizeof(_frameTimes));
 
+	_frameCount = 0;
+	_framesPerSecond = 0;
+	_frameTimeLast = SDL_GetTicks();
 }
 
-void AbstractGame::calculateFps()
-{
-	Uint32 frametimesindex;
-	Uint32 getticks;
+void AbstractGame::calculateFps() {
+	Uint32 frameTimesIndex;
+	Uint32 ticks;
 	Uint32 count;
 	Uint32 i;
 
-	// frametimesindex is the position in the array. It ranges from 0 to FRAME_VALUES.
-	// This value rotates back to 0 after it hits FRAME_VALUES.
-	frametimesindex = _framecount % FRAME_VALUES;
+	frameTimesIndex = _frameCount % FRAME_VALUES;
 
-	getticks = SDL_GetTicks();
+	ticks = SDL_GetTicks();
 
-	// save the frame time value
-	_frametimes[frametimesindex] = getticks - _frametimelast;
-	_frametimelast = getticks;
-	_framecount++;
+	_frameTimes[frameTimesIndex] = ticks - _frameTimeLast;
+	_frameTimeLast = ticks;
+	_frameCount++;
 
-	// Work out the current framerate
-
-	// The code below could be moved into another function if you don't need the value every frame.
-
-	// I've included a test to see if the whole array has been written to or not. This will stop
-	// strange values on the first few (FRAME_VALUES) frames.
-	if (_framecount < FRAME_VALUES) 
-		count = _framecount;
+	if (_frameCount < FRAME_VALUES)
+		count = _frameCount;
 	else 
 		count = FRAME_VALUES;
 
-	// add up all the values and divide to get the average frame time.
-	_framespersecond = 0;
+	_framesPerSecond = 0;
 	for (i = 0; i < count; i++) 
-		_framespersecond += _frametimes[i];
+		_framesPerSecond += _frameTimes[i];
 
-	_framespersecond /= count;
+	_framesPerSecond /= count;
 
-	// now to make it an actual frames per second value...
-	_framespersecond = 1000.f / _framespersecond;
-	//cout << currentFPS << endl;
-	currentFPS = _framespersecond;
-
+	_framesPerSecond = 1000.f / _framesPerSecond;
+	currentFPS = _framesPerSecond;
 }
 
 int AbstractGame::getPreviousScreen() {
-	if (_previousScreens.size() > 0)
-	{
+	if (_previousScreens.size() > 0) {
 		int value = _previousScreens.top();
 		_previousScreens.pop();
+
 		return value;
 	}
 	return -1;

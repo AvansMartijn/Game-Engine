@@ -158,8 +158,7 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	}
 }
 
-void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor)
-{
+void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor) {
 	percentage = percentage > 1.f ? 1.f : percentage < 0.f ? 0.f : percentage;
 	Color old;
 	SDL_GetRenderDrawColor(_renderer.get(), &old.r, &old.g, &old.g, &old.a);
@@ -184,6 +183,7 @@ void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgC
 	SDL_RenderFillRect(_renderer.get(), &bar);
 	SDL_SetRenderDrawColor(_renderer.get(), old.r, old.g, old.b, old.a);
 }
+
 void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
 
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
@@ -195,7 +195,6 @@ void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* f
 	TTF_SizeText(font, "TestRender", &w, &h);
 
 	for (size_t i = 0; i < textLines.size(); i++) {
-
 		if (textLines[i] == "")
 			continue;
 

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "DoesDamageExtension.h"
 
-DoesDamageExtension::DoesDamageExtension()
-{
+DoesDamageExtension::DoesDamageExtension() {
 	type = "DoesDamageExtension";
 }

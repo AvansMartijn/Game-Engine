@@ -34,16 +34,16 @@ private:
 
 #define FRAME_VALUES 10
 	// An array to store frame times:
-	Uint32 _frametimes[FRAME_VALUES];
+	Uint32 _frameTimes[FRAME_VALUES];
 
 	// Last calculated SDL_GetTicks
-	Uint32 _frametimelast;
+	Uint32 _frameTimeLast;
 
 	// total frames rendered
-	Uint32 _framecount;
+	Uint32 _frameCount;
 
 	// the value you want
-	int _framespersecond;
+	int _framesPerSecond;
 protected:
 	/// <summary>
 	/// The index of the visible screen.

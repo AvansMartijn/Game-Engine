@@ -17,7 +17,6 @@ void ButtonUiElement::preRender(const unique_ptr<Window>& window) {
 }
 
 void ButtonUiElement::render(const unique_ptr<Window>& window) {
-
     // Draw a line arround the box
     Rect _border = rect;
     _border.x -= 3;

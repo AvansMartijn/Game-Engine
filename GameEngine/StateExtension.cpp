@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "StateExtension.h"
 
-void StateExtension::changeState()
-{
+// TODO: KAN DEZE WEG?
+void StateExtension::changeState() {
 }
 

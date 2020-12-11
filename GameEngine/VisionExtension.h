@@ -1,6 +1,8 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
+// TODO: KAN DEZE WEG?
+
 /// <summary>
 /// Vision capabilities
 /// </summary>

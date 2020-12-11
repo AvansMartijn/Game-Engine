@@ -3,14 +3,13 @@
 
 Mouse Mouse::_instance;
 
-Mouse::Mouse() { }
+Mouse::Mouse() {}
 
 void Mouse::setCursor(MouseSkins skin)
 {
 	SDL_Cursor* cursor;
 
-	switch (skin)
-	{
+	switch (skin) {
 	case DEFAULT:
 		cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
 		_currentSkin = DEFAULT;

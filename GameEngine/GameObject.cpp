@@ -2,16 +2,14 @@
 #include "GameObject.h"
 #include "Physics.h"
 
-GameObject::GameObject() {
-}
+GameObject::GameObject() {}
 
 void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension) {
 	_gameObjectExtensions.push_back(extension);
 }
 
 bool GameObject::hasExtension(const std::type_info& type) {
-	for (shared_ptr<AbstractGameObjectExtension> const& extension : _gameObjectExtensions)
-	{
+	for (shared_ptr<AbstractGameObjectExtension> const& extension : _gameObjectExtensions) {
 		string givenName = type.name();
 		givenName.erase(0, 6);
 		string currentName = extension->type;
@@ -57,21 +55,16 @@ void GameObject::render(const unique_ptr<Window>& window) {
 			window->renderSprite(texture, rect, sprite, degrees, animation->shouldFlipLeft());
 		}
 	}
-	else {
-		//render
+	else
 		window->renderTexture(texture, rect, degrees, false);
-	}
 }
-
 
 int GameObject::metersToPixels(float value) {
 	return (int)(Scene::getInstance().zoom * value);
 }
 
-
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
-	for (shared_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions)
-	{
+	for (shared_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions) {
 		string givenName = type.name();
 		givenName.erase(0, 6);
 		string currentName = extension->type;

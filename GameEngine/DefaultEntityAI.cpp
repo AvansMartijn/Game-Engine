@@ -2,9 +2,7 @@
 #include "DefaultEntityAI.h"
 #include <thread>
 
-
 void DefaultEntityAI::createBehaviourTree(shared_ptr<GameObject> self) {
-	// Behaviour
 	_behaviourIdle = make_shared<BehaviourIdle>(BehaviourIdle(self));
 
 	shared_ptr<BehaviourSeesEnemy> seesEnemy = make_shared<BehaviourSeesEnemy>(BehaviourSeesEnemy(self));

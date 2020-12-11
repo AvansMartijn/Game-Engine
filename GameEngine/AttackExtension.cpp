@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "AttackExtension.h"
 
-
-AttackExtension::AttackExtension()
-{
+AttackExtension::AttackExtension() {
 	type = "AttackExtension";
 }

@@ -18,9 +18,8 @@ long TimerExtension::getExpiresAfter() {
 
 bool TimerExtension::isExpired() {
 	auto timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _creationTime).count();
-	if (timePassed >= _expiresAfter) {
+	if (timePassed >= _expiresAfter)
 		return true;
-	}
 
 	return false;
 }

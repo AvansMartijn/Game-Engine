@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include <iostream>
 
+// TODO: KAN DEZE WEG?
 DummyManagableItem::DummyManagableItem() {
 	_textureKey = "DIY_Weapon";
 }
@@ -18,10 +19,6 @@ void DummyManagableItem::onLeftClick(int x, int y) {
 
 	double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 	double angleDeg = angleRad * (180.0f / 3.141592653589793238463f);
-
-	std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
 }
 
-void DummyManagableItem::onRightClick(int x, int y) {
-	std::cout << "x: " << x << " | " << "y: " << y << std::endl;
-}
+void DummyManagableItem::onRightClick(int x, int y) {}

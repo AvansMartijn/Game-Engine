@@ -1,16 +1,12 @@
 #include "pch.h"
 #include "GameObjectBuilder.h"
 
-
-void GameObjectBuilder::buildGameObject()
-{
+void GameObjectBuilder::buildGameObject() {
 	_gameObject.reset(new GameObject());
 }
 
-void GameObjectBuilder::addExtension(const std::vector<string>& extensionNames)
-{
-	for (const string& extensionName : extensionNames)
-	{
+void GameObjectBuilder::addExtension(const std::vector<string>& extensionNames) {
+	for (const string& extensionName : extensionNames) {
 		shared_ptr<AbstractGameObjectExtension> extension(GameObjectExtensionFactory::get()->createExtension(extensionName));
 		if (extension) {
 			extension->registerSubject(_gameObject);

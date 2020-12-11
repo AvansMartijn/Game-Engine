@@ -37,16 +37,13 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 			double angleDeg = angleRad * (180.0f / M_PI);
 
-			//std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << std::endl;
 			GameObjectFacade gameEngine;
 			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({});
 
-			if (fixtureUserData == "portalAbullet") {
+			if (fixtureUserData == "portalAbullet")
 				gameObject->texture = "Portal1";
-			}
-			else {
+			else
 				gameObject->texture = "Portal2";
-			}
 
 			gameObject->id = Scene::getInstance().getNextAvailableId();
 
@@ -57,9 +54,8 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			int force = 50;
 			b2Vec2 vect = b2Vec2(sin(angleDeg * (b2_pi / 180)) * force, cos(angleDeg * (b2_pi / 180)) * force);
 			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
-			if (_ammo > 0) {
+			if (_ammo > 0)
 				_ammo -= 1;
-			}
 		}
 	}
 }

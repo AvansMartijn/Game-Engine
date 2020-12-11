@@ -75,7 +75,6 @@ std::vector<std::string> AssetRegistry::split(std::string& string, char delimite
 
 	std::stringstream ss(string);
 
-
 	while (ss.good()) {
 		std::string substr;
 		getline(ss, substr, delimiter);

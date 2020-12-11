@@ -11,7 +11,6 @@ GlueManagableItem::GlueManagableItem() {
 	//default ammo and cooldown
 	_ammo = -1;
 	_cooldown = 500;
-
 }
 
 void GlueManagableItem::onLeftClick(int x, int y) {
@@ -30,15 +29,12 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 			double angleDeg = angleRad * (180.0f / M_PI);
 
-			//std::cout << "x: " << x << " | " << "y: " << y << " angle degrees: " << angleDeg << "ammo: " << _ammo << std::endl;
 			GameObjectFacade gameEngine;
 			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({"TimerExtension"});
-
 
 			gameObject->texture = "Blob";
 			gameObject->id = Scene::getInstance().getNextAvailableId();
 
-			//Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);
 			Physics::getInstance().addBody(gameObject, Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 0.5f, 0.5f, 0.3f, false, false, true, "glueBullet");
 			Scene::getInstance().addGameObject(gameObject);
 			Physics::getInstance().expirationQueue.push_back(gameObject->id);
@@ -46,12 +42,10 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			int force = 30;
 			b2Vec2 vect = b2Vec2(sin(angleDeg * (b2_pi / 180)) * force, cos(angleDeg * (b2_pi / 180)) * force);
 			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
-			if (_ammo > 0) {
+			if (_ammo > 0)
 				_ammo -= 1;
-			}
 		}
 	}
-
 }
 
 void GlueManagableItem::onRightClick(int x, int y) {

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AbstractManageableItem.h"
 #include "Scene.h"
+#include "Utilities.h"
 
 AbstractManageableItem::AbstractManageableItem() {
 	_width = 0.8f;
@@ -14,8 +15,7 @@ std::string AbstractManageableItem::getTextureKey() {
 	return _textureKey;
 }
 
-std::string AbstractManageableItem::getScreenName()
-{
+std::string AbstractManageableItem::getScreenName() {
 	return _screenName;
 }
 
@@ -35,12 +35,8 @@ long AbstractManageableItem::getCooldown() {
 	return _cooldown;
 }
 
-long AbstractManageableItem::getLastUsed()
-{
-	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(_lastUsed);
-	auto epoch = now_ms.time_since_epoch();
-	auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
-	return value.count();
+long AbstractManageableItem::getLastUsed() {
+	return Utilities::getInstance().convertTimeToLong(_lastUsed);
 }
 
 void AbstractManageableItem::setAmmo(int amount) {
@@ -65,6 +61,7 @@ void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 		x -= (_width + (_width / 3));
 	else
 		x += _width / 3;
+
 	float y = position.y - (_height / 2);
 
 	position.x = Scene::getInstance().metersToPixels(position.x);
@@ -83,4 +80,3 @@ void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 	if(shouldRender)
 		window->renderTexture(_textureKey, rect, 0.0F, isLookingToLeft);
 }
-

@@ -297,7 +297,6 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="CheckPhysicsExtension.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
-    <ClCompile Include="Color.cpp" />
     <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DoesDamageExtension.cpp" />
@@ -325,7 +324,6 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PickupExtension.cpp" />
     <ClCompile Include="PortalManagableItem.cpp" />
-    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SDLImageWrapper.cpp" />
     <ClCompile Include="SDLTexture.cpp" />

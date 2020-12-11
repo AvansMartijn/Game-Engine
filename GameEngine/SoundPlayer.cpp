@@ -22,41 +22,35 @@ Mix_Chunk* SoundPlayer::getSfxTrack(const std::string& sfxTrackKey){
 }
 
 void SoundPlayer::pauseMusic() {
+
+	// If music is playing, pause. If no music is playing, start playing.
 	if (Mix_PausedMusic() == 1)
-	{
-		//Resume the music
 		Mix_ResumeMusic();
-	}
-	//If the music is playing
 	else
-	{
-		//Pause the music
 		Mix_PauseMusic();
-	}
 }
 
 void SoundPlayer::changeMusicVolume(int volume){
-	if (volume > 128) {
+	if (volume > 128)
 		volume = 128;
-	}
-	if (volume < 0) {
+
+	if (volume < 0)
 		volume = 0;
-	}
+
 	currentVolume = volume;
 	Mix_VolumeMusic(volume);
 }
 
 void SoundPlayer::changeSFXVolume(int volume)
 {
-	if (volume > 128) {
+	if (volume > 128)
 		volume = 128;
-	}
-	if (volume < 0) {
+
+	if (volume < 0)
 		volume = 0;
-	}
+
 	currentSFXVolume = volume;
 	Mix_Volume(-1, volume);
-
 }
 
 void playTrackNow() {
@@ -68,20 +62,13 @@ void SoundPlayer::playMusicTrack(const std::string& musicTrackKey){
 	// Add to playlist
 	playingTrackKey = musicTrackKey;
 
+	// If no music is being played, play. Otherwise stop.
 	if (Mix_PlayingMusic() == 0)
-	{
 		playTrackNow();
-	}
-	//If music is being played
 	else
-	{
 		Mix_HookMusicFinished(playTrackNow);
 		Mix_FadeOutMusic(500);
-	}
-	
 }
-
-
 
 void SoundPlayer::playSFX(const std::string& sfxTrackKey){
 	Mix_Chunk* sfx = getSfxTrack(sfxTrackKey);
@@ -91,10 +78,8 @@ void SoundPlayer::playSFX(const std::string& sfxTrackKey){
 void SoundPlayer::openAudio(){
 	//Initialize Mixer
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-	{
 		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
-	}
+
 	Mix_VolumeMusic(currentVolume);
 	Mix_Volume(-1, currentSFXVolume);
-
 }

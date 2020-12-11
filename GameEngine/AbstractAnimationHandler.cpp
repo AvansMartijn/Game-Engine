@@ -3,8 +3,7 @@
 
 std::string AbstractAnimationHandler::getKeyFromMovementType(MovementType movementType) {
 	std::string key = KEY_IDLE;
-	switch (movementType)
-	{
+	switch (movementType) {
 	case MovementType::IDLE:
 		key = KEY_IDLE;
 		break;

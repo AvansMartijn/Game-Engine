@@ -100,8 +100,6 @@ void Scene::reset() {
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
-
-
     for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects) {
         if (x.second != nullptr)
             x.second->render(window);
@@ -113,10 +111,8 @@ void Scene::render(const unique_ptr<Window>& window) {
             preRender = true;
         }
 
-
         textElement->render(window);
     }
-
 }
 
 float Scene::metersToPixels(float meters) {
@@ -126,7 +122,3 @@ float Scene::metersToPixels(float meters) {
 float Scene::pixelsToMeters(float pixels) {
     return pixels / zoom;
 }
-
-
-
-

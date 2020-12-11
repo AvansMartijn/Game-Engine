@@ -34,7 +34,6 @@ void TextUiElement::render(const unique_ptr<Window>& window) {
         window->renderMultiLineText(textLines, _font, rect, _foregroundColor, _backgroundColor, _center, _multiLine);
     else
         window->renderText(text, _font, rect, _foregroundColor, _backgroundColor, _center, _multiLine);
-    
 }
 
 bool TextUiElement::isInBound(int mouseX, int mouseY) {

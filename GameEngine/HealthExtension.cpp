@@ -2,8 +2,7 @@
 #include "HealthExtension.h"
 #include "GameObject.h"
 
-HealthExtension::HealthExtension()
-{
+HealthExtension::HealthExtension() {
 	type = "HealthExtension";
 	//default health is 100;
 	_health = 100;

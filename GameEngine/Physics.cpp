@@ -49,8 +49,6 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data1);
     body->CreateFixture(&fixtureDef);
 
-
-
     box.SetAsBox(obj->body.width / 2.1f, obj->body.height / 2, b2Vec2(0, 0.05f), 0);
     fixtureDef.isSensor = true;
 
@@ -59,7 +57,6 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     fixtureDef.shape = &box;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(data2);
     body->CreateFixture(&fixtureDef);
-
 
     b2CircleShape wheelShape;
     wheelShape.m_radius = 0.05f;
@@ -103,7 +100,6 @@ void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float widt
     obj->body.width = width;
     obj->body.height = height;
 
-
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
     bodyDef.type = b2_dynamicBody;
@@ -115,7 +111,6 @@ void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float widt
 
     b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
-
 
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
@@ -149,7 +144,6 @@ void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float widt
     wheelFix.userData.pointer = reinterpret_cast<uintptr_t>(data3);
     body->CreateFixture(&wheelFix);
 }
-
 
 void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
     obj->body.width = width;
@@ -187,7 +181,6 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
 void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
-    
 
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
@@ -200,12 +193,12 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
 
     if (fixedRotation)
         bodyDef.fixedRotation = true;
-    if (isBullet) {
+
+    if (isBullet)
         bodyDef.bullet = true;
-    }
+
     b2Body* body = _world->CreateBody(&bodyDef);
     obj->body.b2body = body;
-
 
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
@@ -230,7 +223,6 @@ void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width,
 }
 
 void Physics::executeTeleportQueue() {
-
     for (size_t i = 0; i < teleportQueue.size(); i++) {
         TeleportObject teleportObject = teleportQueue.back();
         
@@ -239,10 +231,8 @@ void Physics::executeTeleportQueue() {
         b2Vec2 newPosition = { teleportObject.newPosition.x, teleportObject.newPosition.y };
 
         teleportObject.obj->body.b2body->SetTransform(newPosition, teleportObject.obj->body.b2body->GetAngle());
-        if (teleportObject.hasSpeed) {
+        if (teleportObject.hasSpeed)
             teleportObject.obj->body.b2body->SetLinearVelocity({ teleportObject.newSpeed.x, teleportObject.newSpeed.y });
-
-        }
     }
 }
 
@@ -314,6 +304,7 @@ void Physics::clearAllQueues() {
 
 Vec2 Physics::getLinearVelocity(shared_ptr<GameObject> gameObject) {
     auto linVel = gameObject->body.b2body->GetLinearVelocity();
+
     return { linVel.x, linVel.y };
 }
 
@@ -323,7 +314,6 @@ void Physics::setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& v
 
 Vec2 Physics::getPosition(shared_ptr<GameObject> gameObject) {
     auto position = gameObject->body.b2body->GetPosition();
+
     return { position.x, position.y };
 }
-
-

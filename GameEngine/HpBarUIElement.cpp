@@ -18,8 +18,7 @@ HpBarUIElement::HpBarUIElement(int x, int y, int w, int h, float percentage, Col
 
 HpBarUIElement::~HpBarUIElement() {}
 
-void HpBarUIElement::preRender(const unique_ptr<Window>& window) {
-}
+void HpBarUIElement::preRender(const unique_ptr<Window>& window) {}
 
 void HpBarUIElement::render(const unique_ptr<Window>& window) {
     window->renderHPBar(_x, _y, _w, _h, percent, _fgColor, _bgColor);

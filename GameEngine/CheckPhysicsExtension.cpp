@@ -3,12 +3,12 @@
 #include "CollisionResolutionDefaultExtension.h"
 #include "Physics.h"
 
+//TODO: KAN DEZE WEG?
 CheckPhysicsExtension::CheckPhysicsExtension() {
 	type = "CheckPhysicsExtension";
 }
 
-void CheckPhysicsExtension::doPhysics()
-{
+void CheckPhysicsExtension::doPhysics() {
 	//_subject->body.b2body->GetContactList();
 	//gravity
 	//_physicsfacade.addGravityForce(_subject);

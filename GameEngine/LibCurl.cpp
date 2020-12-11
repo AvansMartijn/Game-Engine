@@ -5,15 +5,13 @@
 #include <string>
 #include <cstring>
 
-size_t write_data(void* ptr, size_t size, size_t nmemb, FILE* stream)
-{
+size_t write_data(void* ptr, size_t size, size_t nmemb, FILE* stream) {
 	size_t written;
 	written = fwrite(ptr, size, nmemb, stream);
 	return written;
 }
 
-std::string LibCurl::PerformRequest(const std::string& url)
-{
+std::string LibCurl::PerformRequest(const std::string& url) {
 	std::string _s;
 	FILE* fp;
 	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2") + "ad.jpg";
@@ -32,9 +30,7 @@ std::string LibCurl::PerformRequest(const std::string& url)
 	CURLcode res;
 	res = curl_easy_perform(curl.get());
 	if (res != CURLE_OK)
-	{
-		//throw std::runtime_error("Failed to fetch: " + url);
-	}
+		std::cout << "Failed to fetch: " + url << std::endl;
 
 	fclose(fp);
 
