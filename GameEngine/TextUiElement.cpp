@@ -12,10 +12,10 @@ TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize,
     _multiLine = mulitLine;
 }
 
-TextUiElement::TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mulitLine) {
+TextUiElement::TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect textRect, Color fgColor, Color bgColor, bool center, bool mulitLine) {
     textLines = txt;
     _fontKey = fontKey;
-    rect = rect;
+    rect = textRect;
     _foregroundColor = fgColor;
     _backgroundColor = bgColor;
     _fontSize = fontSize;
