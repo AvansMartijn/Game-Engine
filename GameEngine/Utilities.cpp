@@ -40,3 +40,17 @@ void Utilities::rightTrim(std::string& str) {
 		return !std::isspace(ch);
 	}).base(), str.end());
 }
+
+std::default_random_engine& Utilities::getRandomEngine() {
+	static std::random_device rd{};
+	static std::default_random_engine re{ rd() };
+
+	return re;
+}
+
+int Utilities::getRandomInt(int low, int high) {
+	assert(high > low);
+	std::uniform_int_distribution<int> d{ low, high - 1 };
+
+	return d(getRandomEngine());
+}

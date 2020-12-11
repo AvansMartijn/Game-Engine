@@ -15,6 +15,7 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		float yLeftOver = 1.0f - height;
 		if (height < 1)
 			y = y + (yLeftOver / 2);
+
 		std::string extensionsString = go.properties["extensions"].valueString;
 		std::vector<std::string> extensions = AssetRegistry::getInstance().split(extensionsString, ',');
 

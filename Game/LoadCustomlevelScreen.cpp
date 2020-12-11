@@ -31,9 +31,7 @@ void LoadCustomLevelScreen::onInit() {
 		_uiElements.push_back(_line);
 		uiList.push_back(_line);
 		y += 35;
-
 	}
-
 
 	TextUiElement title = TextUiElement("Custom levels", font, 60, { 5, 10, 100, 130 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
@@ -64,8 +62,7 @@ void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_ESCAPE: // GO BACK TO PAUSE
 		_game->switchScreen(Screens::MainMenu);
 		break;

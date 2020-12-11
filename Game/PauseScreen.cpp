@@ -29,10 +29,10 @@ void PauseScreen::onInit() {
 	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Settings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
 
-	ButtonUiElement RestartButton = ButtonUiElement("Restart", { 470, 250, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
-	RestartButton.registerGame(_game);
-	RestartButton.onClick = [](AbstractGame* game) {  game->switchScreen(Screens::MainGame, { "reset" });};
-	_uiElements.push_back(make_shared<ButtonUiElement>(RestartButton));
+	ButtonUiElement restartButton = ButtonUiElement("Restart", { 470, 250, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	restartButton.registerGame(_game);
+	restartButton.onClick = [](AbstractGame* game) {  game->switchScreen(Screens::MainGame, { "reset" });};
+	_uiElements.push_back(make_shared<ButtonUiElement>(restartButton));
 
 	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { 470, 300, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
@@ -66,8 +66,7 @@ void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::MainGame);
 		break;

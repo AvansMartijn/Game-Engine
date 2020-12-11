@@ -17,11 +17,11 @@ void CheatScreen::onInit() {
 	TextUiElement title = TextUiElement("Cheats", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
-	TextUiElement EnterCheat = TextUiElement("Enter Cheat", font, 30, { 250, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(EnterCheat));
+	TextUiElement enterCheat = TextUiElement("Enter Cheat", font, 30, { 250, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	_uiElements.push_back(make_shared<TextUiElement>(enterCheat));
 
-	TextUiElement CheatText = TextUiElement(" ", font, 30, { 100, 350, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_cheatText = make_shared<TextUiElement>(CheatText);
+	TextUiElement cheatText = TextUiElement(" ", font, 30, { 100, 350, 0, 0 }, { 255, 255, 255 }, bgColor, true);
+	_cheatText = make_shared<TextUiElement>(cheatText);
 	_uiElements.push_back(_cheatText);
 
 	ButtonUiElement cheatHelp = ButtonUiElement("Cheat Overview", { 400, 650, 180, 40 }, bgColor, { 255, 255, 255 }, font, 25);

@@ -3,12 +3,10 @@
 #include <Mouse.h>
 #include "ControllManager.h"
 
-void CheatHelpScreen::loadCheatInformation()
-{
+void CheatHelpScreen::loadCheatInformation() {
 	std::map<std::string, std::string> cheatInformation = CheatManager::getInstance().getCheatInformation();
 	
-	for (auto const& cheat : cheatInformation)
-	{
+	for (auto const& cheat : cheatInformation) {
 		_cheatInformation->text += cheat.first + " - ";
 		_cheatInformation->text += cheat.second;
 		_cheatInformation->text += "\n";
@@ -18,8 +16,7 @@ void CheatHelpScreen::loadCheatInformation()
 CheatHelpScreen::CheatHelpScreen() {}
 CheatHelpScreen::~CheatHelpScreen() {}
 
-void CheatHelpScreen::onInit()
-{
+void CheatHelpScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 
@@ -44,8 +41,7 @@ void CheatHelpScreen::onInit()
 	loadCheatInformation();
 }
 
-void CheatHelpScreen::onTick()
-{
+void CheatHelpScreen::onTick() {
 	if (shouldShowFPS)
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
@@ -55,8 +51,7 @@ void CheatHelpScreen::onTick()
 		Mouse::getInstance().setCursor(Mouse::DEFAULT);
 }
 
-void CheatHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e)
-{
+void CheatHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	SDL_Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
 		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
@@ -67,12 +62,6 @@ void CheatHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 		shouldShowFPS = !shouldShowFPS;
 }
 
-void CheatHelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e)
-{
+void CheatHelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
-}
-
-void CheatHelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e)
-{
-
-}
+void CheatHelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}

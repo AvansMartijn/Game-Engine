@@ -31,7 +31,6 @@ void SettingsScreen::onInit() {
 	ButtonUiElement soundPlus = ButtonUiElement("+", { 260, 160, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundPlus.registerGame(_game);
 	soundPlus.onClick = [this](AbstractGame* game) { 
-
 		int volume = GameSettings::getInstance().saveGame.settings.sound;
 
 		if(volume <= 118)
@@ -47,7 +46,6 @@ void SettingsScreen::onInit() {
 	ButtonUiElement soundMin = ButtonUiElement("-", { 160, 160, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundMin.registerGame(_game);
 	soundMin.onClick = [this](AbstractGame* game) { 
-
 		int volume = SoundPlayer::getInstance().currentVolume;
 
 		if (volume >= 10)
@@ -60,7 +58,6 @@ void SettingsScreen::onInit() {
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundMin));
 
-
 	// change to_string(SoundPlayer::getInstance().currentVolume to the FX curretnvalue
 	TextUiElement soundFxText = TextUiElement("Sound FX: " + to_string(GameSettings::getInstance().saveGame.settings.soundFx), font, 40, { 150, 250, 0, 0 }, { 255, 255, 255 }, bgColor, false);
 	_soundFxText = make_shared<TextUiElement>(soundFxText);
@@ -69,7 +66,6 @@ void SettingsScreen::onInit() {
 	ButtonUiElement soundFxPlus = ButtonUiElement("+", { 260, 310, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundFxPlus.registerGame(_game);
 	soundFxPlus.onClick = [this](AbstractGame* game) {
-
 		int volume = GameSettings::getInstance().saveGame.settings.soundFx;
 
 		if (volume <= 118)
@@ -85,7 +81,6 @@ void SettingsScreen::onInit() {
 	ButtonUiElement soundFxMin = ButtonUiElement("-", { 160, 310, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundFxMin.registerGame(_game);
 	soundFxMin.onClick = [this](AbstractGame* game) {
-
 		int volume = GameSettings::getInstance().saveGame.settings.soundFx;
 
 		if (volume >= 10)
@@ -98,7 +93,6 @@ void SettingsScreen::onInit() {
 
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(soundFxMin));
-
 
 	TextUiElement gameSpeed = TextUiElement("Game speed: " + to_string(Scene::getInstance().tickRate), font, 40, { 650, 100, 0, 0 }, { 255, 255, 255 }, bgColor, false);
 	_tickSpeed = make_shared<TextUiElement>(gameSpeed);
@@ -135,8 +129,6 @@ void SettingsScreen::onInit() {
 	keyBindingsButton.registerGame(_game);
 	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
-
-
 }
 
 void SettingsScreen::onTick() {
@@ -147,7 +139,7 @@ void SettingsScreen::onTick() {
 }
 
 void SettingsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-		SDL_Keycode fps;
+	SDL_Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
 		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
 	else
@@ -156,8 +148,7 @@ void SettingsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_ESCAPE: // GO BACK 
 		_game->switchScreen(Screens::GoBack);
 		break;

@@ -1,20 +1,5 @@
 #include "Quotes.h"
-#include <random>
-#include <cassert>
-
-
-std::default_random_engine& random_engine() {
-	static std::random_device rd{};
-	static std::default_random_engine re{ rd() };
-	return re;
-}
-
-int random_int(int low, int high) {
-	assert(high > low);
-	std::uniform_int_distribution<int> d{ low, high - 1 };
-	return d(random_engine());
-}
-
+#include <Utilities.h>
 
 Quotes Quotes::_instance;
 Quotes::Quotes() {
@@ -68,5 +53,5 @@ Quotes::Quotes() {
 }
 
 std::string Quotes::getQuote() {
-	return _quotes[random_int(0, _quotes.size())];
+	return _quotes[Utilities::getInstance().getRandomInt(0, _quotes.size())];
 }

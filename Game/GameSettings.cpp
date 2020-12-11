@@ -3,8 +3,7 @@
 
 GameSettings GameSettings::instance;
 
-GameSettings::GameSettings() {
-}
+GameSettings::GameSettings() {}
 
 void GameSettings::save() {
 	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2");
@@ -32,7 +31,6 @@ void GameSettings::load() {
 void GameSettings::addLevel(int number, LevelData levelData) {
 	bool found = false;
 	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
-		
 		SaveLevel data = saveGame.levels[levelIndex];
 		if (data.name == levelData.levelName) {
 			found = true;
@@ -64,7 +62,6 @@ bool GameSettings::isStoryLevel(LevelData levelData) {
 }
 
 LevelData GameSettings::getCurrentLevel() {
-
 	switch (saveGame.currentSlot)
 	{
 	case 0 :
@@ -77,11 +74,9 @@ LevelData GameSettings::getCurrentLevel() {
 	case 2:
 		return _storyLevels[saveGame.slot2];
 		break;
-
 	case 3:
 		return _storyLevels[saveGame.slot3];
 		break;
-
 	default:
 		return {};
 		break;
@@ -93,7 +88,6 @@ LevelData GameSettings::getLevelByIndex(int i) {
 }
 
 LevelData GameSettings::getNextLevel() {
-
 	if (saveGame.currentSlot == 1) {
 		if (saveGame.slot1 >= (int)_storyLevels.size())
 			return {};
@@ -116,16 +110,13 @@ LevelData GameSettings::getNextLevel() {
 	}
 
 	return {};
-
 }
 
 int GameSettings::getIndexByLevelName(std::string name) {
-
-	int kut = 1;
 	auto levelPair = std::find_if(_storyLevels.begin(), _storyLevels.end(), [name](std::pair<int, LevelData> level ) { return level.second.levelName == name; });
 
 	if (levelPair != _storyLevels.end())
 		return (*levelPair).first;
-	else
-		return -1;
+
+	return -1;
 }

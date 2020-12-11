@@ -134,24 +134,3 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-
-
-
-//#include <iostream>
-//
-//#include "GameEngine.h" //Api Facade
-//#include <Talker.h> //Exposed class
-//
-//#include "main.h"
-//
-//int main()
-//{
-//	std::cout << "Hello World!\n";
-//	std::cout << EngineDoSomthing() << "\n";
-//	std::cout << EngineDoSomthingElse() << "\n";
-//
-//	Talker talk;
-//	std::cout << talk.Talk() << "\n";
-//
-//	return 0;
-//}

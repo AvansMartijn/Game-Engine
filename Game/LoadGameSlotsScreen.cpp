@@ -1,7 +1,6 @@
 #include "LoadGameSlotsScreen.h"
 #include <TextUiElement.h>
 
-
 LoadGameSlotsScreen::LoadGameSlotsScreen() {}
 LoadGameSlotsScreen::~LoadGameSlotsScreen() {}
 
@@ -67,10 +66,7 @@ void LoadGameSlotsScreen::onInit() {
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
-
 }
-
-
 
 void LoadGameSlotsScreen::onTick() {
 	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
@@ -98,8 +94,7 @@ void LoadGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	}
 }
 
-void LoadGameSlotsScreen::onScreenShowed(vector<std::string> args)
-{
+void LoadGameSlotsScreen::onScreenShowed(vector<std::string> args) {
 	if(GameSettings::getInstance().saveGame.slot1 == -1)
 		_slot1Button->_text = "Slot 1 - Empty";
 	else

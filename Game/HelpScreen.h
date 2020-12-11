@@ -14,8 +14,8 @@ private:
 
 	shared_ptr<TextUiElement> _fps;
 
-	std::vector<shared_ptr<TextUiElement>> _srollableTextElements;
-	std::vector<shared_ptr<ImageUiElement>> _srollableImgElements;
+	std::vector<shared_ptr<TextUiElement>> _scrollableTextElements;
+	std::vector<shared_ptr<ImageUiElement>> _scrollableImgElements;
 
 	int _offset = 0;
 	int _anchor = 0;

@@ -9,8 +9,7 @@ HighScoreScreen::HighScoreScreen() {}
 
 HighScoreScreen::~HighScoreScreen() {}
 
-void HighScoreScreen::onInit()
-{
+void HighScoreScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const Color TColor = { 51,51,51 };
 	const string font = "Portal";
@@ -32,7 +31,6 @@ void HighScoreScreen::onInit()
 	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2) - 100, 50, 200 });
 	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
 
-
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
 	
@@ -51,7 +49,6 @@ void HighScoreScreen::onInit()
 	_uiElements.push_back(_fps);
 }
 
-
 void HighScoreScreen::onTick() {
 	if (shouldShowFPS)
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
@@ -59,14 +56,12 @@ void HighScoreScreen::onTick() {
 		_fps->text = "  ";
 }
 
-
 void HighScoreScreen::onScreenShowed(vector<string> args) {
 	_scrollableText->textLines.clear();
 	std::vector<SaveLevel> levels = GameSettings::getInstance().saveGame.levels;
 	std::multimap<int, std::string, std::greater<int>> scores;
 
 	for (auto level : levels) {
-
 		_scrollableText->textLines.push_back(level.name);
 		_scrollableText->textLines.push_back("------------------------------------------");
 		_scrollableText->textLines.push_back(" ");
@@ -109,10 +104,10 @@ void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	int heightOfScrolBlock = _scrollableText->textLines.size() * 25;
 	int currentY = _scrollableText->_rect.y;
 
-	if ((currentY += _offset) < _anchor)
+	if ((currentY += _offset) < _anchor) {
 		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1))
 			_scrollableText->_rect.y += _offset;
-	
+	}
 }
 
 

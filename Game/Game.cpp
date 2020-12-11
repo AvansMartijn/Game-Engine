@@ -86,6 +86,5 @@ void Game::onInit() {
 
 	switchScreen(Screens::MainMenu);
 
-
 	gameLoop();
 }

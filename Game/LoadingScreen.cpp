@@ -1,8 +1,6 @@
 #include "LoadingScreen.h"
 #include "Quotes.h"
 
-
-
 LoadingScreen::LoadingScreen() {}
 
 LoadingScreen::~LoadingScreen() {}
@@ -21,7 +19,6 @@ void LoadingScreen::onInit() {
 	TextUiElement quoteTest = TextUiElement("Quote:", font, 18, { 30, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false, true);
 	_quoteText = make_shared<TextUiElement>(quoteTest);
 	_uiElements.push_back(_quoteText);
-
 
 	ImageUiElement walu = ImageUiElement("Loading", { ((1080 - 700) / 2) + 100 , ((720 - 700) / 2), 700, 700 });
 	_uiElements.push_back(make_shared<ImageUiElement>(walu));
@@ -61,8 +58,7 @@ void LoadingScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void LoadingScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
 
-void LoadingScreen::onScreenShowed(vector<std::string> args)
-{
+void LoadingScreen::onScreenShowed(vector<std::string> args) {
 	_arguments = args;
 	_firstTickCounter = 0;
 

@@ -1,68 +1,51 @@
 #include "KeyBindingsHelpScreen.h"
 
-void KeyBindingsHelpScreen::loadKeybinding()
-{
-	if (ControllManager::getInstance().toggleFPSKey.isDefault) {
+void KeyBindingsHelpScreen::loadKeybinding() {
+	if (ControllManager::getInstance().toggleFPSKey.isDefault)
 		_fpsKey->text = ControllManager::getInstance().toggleFPSKey.defaultKey;
-	} 
-	else {
+	else
 		_fpsKey->text = ControllManager::getInstance().toggleFPSKey.userKey;
-	}
 
-	if (ControllManager::getInstance().walkLeftKey.isDefault) {
+	if (ControllManager::getInstance().walkLeftKey.isDefault)
 		_walkLeftKey->text = ControllManager::getInstance().walkLeftKey.defaultKey;
-	}
-	else {
+	else
 		_walkLeftKey->text = ControllManager::getInstance().walkLeftKey.userKey;
-	}
 
-	if (ControllManager::getInstance().walkRightKey.isDefault) {
+	if (ControllManager::getInstance().walkRightKey.isDefault)
 		_walkRightKey->text = ControllManager::getInstance().walkRightKey.defaultKey;
-	}
-	else {
+	else
 		_walkRightKey->text = ControllManager::getInstance().walkRightKey.userKey;
-	}
 
-	if (ControllManager::getInstance().stopKey.isDefault) {
+	if (ControllManager::getInstance().stopKey.isDefault)
 		_stopKey->text = ControllManager::getInstance().stopKey.defaultKey;
-	}
-	else {
+	else
 		_stopKey->text = ControllManager::getInstance().stopKey.userKey;
-	}
 
-	if (ControllManager::getInstance().jumpKey.isDefault) {
+	if (ControllManager::getInstance().jumpKey.isDefault)
 		_jumpKey->text = ControllManager::getInstance().jumpKey.defaultKey;
-	}
-	else {
+	else
 		_jumpKey->text = ControllManager::getInstance().jumpKey.userKey;
-	}
 
-	if (ControllManager::getInstance().equipPortalKey.isDefault) {
+	if (ControllManager::getInstance().equipPortalKey.isDefault)
 		_equipPortalGunKey->text = ControllManager::getInstance().equipPortalKey.defaultKey;
-	}
-	else {
+	else
 		_equipPortalGunKey->text = ControllManager::getInstance().equipPortalKey.userKey;
-	}
 
-	if (ControllManager::getInstance().equipThrusterKey.isDefault) {
+	if (ControllManager::getInstance().equipThrusterKey.isDefault)
 		_equipThrusterGunKey->text = ControllManager::getInstance().equipThrusterKey.defaultKey;
-	}
-	else {
+	else
 		_equipThrusterGunKey->text = ControllManager::getInstance().equipThrusterKey.userKey;
-	}
 
-	if (ControllManager::getInstance().equipGlueKey.isDefault) {
+	if (ControllManager::getInstance().equipGlueKey.isDefault)
 		_equipGlueGunKey->text = ControllManager::getInstance().equipGlueKey.defaultKey;
-	}
-	else {
+	else
 		_equipGlueGunKey->text = ControllManager::getInstance().equipGlueKey.userKey;
-	}
 }
 
-void KeyBindingsHelpScreen::changeText(shared_ptr<TextUiElement> text)
-{
+void KeyBindingsHelpScreen::changeText(shared_ptr<TextUiElement> text) {
 	if (_listingForInput)
 		loadKeybinding();
+
 	text->text = "PUSH KEY";
 }
 
@@ -188,8 +171,7 @@ void KeyBindingsHelpScreen::onInit() {
 	_uiElements.push_back(_fps);
 }
 
-void KeyBindingsHelpScreen::onScreenShowed(vector<std::string> args)
-{
+void KeyBindingsHelpScreen::onScreenShowed(vector<std::string> args) {
 	loadKeybinding();
 }
 
@@ -201,8 +183,7 @@ void KeyBindingsHelpScreen::onTick() {
 }
 
 void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	if (_listingForInput)
-	{
+	if (_listingForInput) {
 		std::string keyPressed = SDL_GetScancodeName(e.keysym.scancode);
 		SDL_Scancode KeyPressedSDL = e.keysym.scancode;
 		_listingForInput = false;

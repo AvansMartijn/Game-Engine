@@ -17,9 +17,9 @@ bool AllWeaponsCheat::Execute()
 		portalItem->setAmmo(-1);
 		portalItem->setCooldown(0);
 
-		Scene::getInstance().getWieldExtension()->addItem(glueItem);
-		Scene::getInstance().getWieldExtension()->addItem(thrusterItem);
-		Scene::getInstance().getWieldExtension()->addItem(portalItem);
+		Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->addItem(glueItem);
+		Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->addItem(thrusterItem);
+		Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->addItem(portalItem);
 	}
 	return true;
 }

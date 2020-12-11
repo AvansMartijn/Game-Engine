@@ -1,7 +1,6 @@
 #include "NewGameSlotsScreen.h"
 #include <TextUiElement.h>
 
-
 NewGameSlotsScreen::NewGameSlotsScreen() {}
 NewGameSlotsScreen::~NewGameSlotsScreen() {}
 
@@ -32,7 +31,6 @@ void NewGameSlotsScreen::onInit() {
 		//set the Slot1 to current level
 		GameSettings::getInstance().saveGame.slot1 = 0;
 		GameSettings::getInstance().save();
-
 
 		game->switchScreen(Screens::StartNewGame);
 	};
@@ -78,7 +76,6 @@ void NewGameSlotsScreen::onInit() {
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
-	
 }
 
 void NewGameSlotsScreen::onTick() {
@@ -95,8 +92,7 @@ void NewGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_d:
 		_game->switchScreen(Screens::MainGame, { "default", "Default", "reset" });
 

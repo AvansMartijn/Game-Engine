@@ -1,25 +1,10 @@
 #include "CreditsScreen.h"
-#include <random>
+#include "Utilities.h"
 
 CreditsScreen::CreditsScreen() {}
 CreditsScreen::~CreditsScreen() {}
 
-
-
-std::default_random_engine& random_engine_credits() {
-	static std::random_device rd{};
-	static std::default_random_engine re{ rd() };
-	return re;
-}
-
-int random_int_credits(int low, int high) {
-	assert(high > low);
-	std::uniform_int_distribution<int> d{ low, high - 1 };
-	return d(random_engine_credits());
-}
-
 void CreditsScreen::onInit() {
-
 	_begin = std::chrono::steady_clock::now();
 
 	const Color bgColor = { 28, 28, 28 };
@@ -43,27 +28,24 @@ void CreditsScreen::onInit() {
 	_scrollableElements.push_back(_line);
 	_anchor = _line->_rect.y;
 
-
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
-
 	for (int i = 0; i < 6; i++) {
 		posy += 50;
 
 		TextUiElement lineOfC = TextUiElement(teamMembers[i], font, 25, { 100, posy, 0, 0 }, { 255, 255, 255 }, bgColor, false);
-		shared_ptr<TextUiElement> LineOfC = make_shared<TextUiElement>(lineOfC);
-		_uiElements.push_back(LineOfC);
-		_scrollableElements.push_back(LineOfC);
+		shared_ptr<TextUiElement> lineOfCPtr = make_shared<TextUiElement>(lineOfC);
+		_uiElements.push_back(lineOfCPtr);
+		_scrollableElements.push_back(lineOfCPtr);
 	}
 
-
 	TextUiElement wackAMoleText = TextUiElement("Wack-A-Mole", font, 40, { 720, 100, 0, 0 }, { 255, 255, 255 }, bgColor, false);
-	shared_ptr<TextUiElement> WackAMoleText = make_shared<TextUiElement>(wackAMoleText);
-	_uiElements.push_back(WackAMoleText);
-	_scrollableElements.push_back(WackAMoleText);
+	shared_ptr<TextUiElement> wackAMoleTextPtr = make_shared<TextUiElement>(wackAMoleText);
+	_uiElements.push_back(wackAMoleTextPtr);
+	_scrollableElements.push_back(wackAMoleTextPtr);
 
 	_wackAMoleInfo = make_shared<TextUiElement>(TextUiElement("Get a score of 5 and win a \n \"Prize\"", "Portal", 25, { 720, 150, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, true));
 	_uiElements.push_back(_wackAMoleInfo);
@@ -73,29 +55,27 @@ void CreditsScreen::onInit() {
 	_uiElements.push_back(_scoreText);
 	_scrollableElements.push_back(_scoreText);
 
-
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			ButtonUiElement wackButton = ButtonUiElement("O", { 770 + (i * 50), 300 + (j*50), 50, 50 }, bgColor, { 255, 255, 255 }, font, 25);
 			wackButton.registerGame(_game);
 			
-			shared_ptr<ButtonUiElement> WackButton = make_shared<ButtonUiElement>(wackButton);
+			shared_ptr<ButtonUiElement> wackButtonPtr = make_shared<ButtonUiElement>(wackButton);
 
-			WackButton->onClick = [WackButton, this](AbstractGame* game) {
-				if (WackButton == _mole)
+			wackButtonPtr->onClick = [wackButtonPtr, this](AbstractGame* game) {
+				if (wackButtonPtr == _mole)
 					_score++;
 				else
 					_score = 0;
 			};
-			_uiElements.push_back(WackButton);
-			_wackAMoleButtons.push_back(WackButton);
+			_uiElements.push_back(wackButtonPtr);
+			_wackAMoleButtons.push_back(wackButtonPtr);
 		}
 	}
 	_mole = _wackAMoleButtons[0];
 
-	
-	ImageUiElement BoyzImage = ImageUiElement("Boyz", { 0 , 770, 1080, 720 }, 0, false);
-	_theBoyz = make_shared<ImageUiElement>(BoyzImage);
+	ImageUiElement boyzImage = ImageUiElement("Boyz", { 0 , 770, 1080, 720 }, 0, false);
+	_theBoyz = make_shared<ImageUiElement>(boyzImage);
 	_uiElements.push_back(_theBoyz);
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
@@ -108,15 +88,13 @@ void CreditsScreen::onTick() {
 	else
 		_fps->text = "  ";
 
-
 	long timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _begin).count();
 
 	if (timePassed >= 500) {
 		_begin = std::chrono::steady_clock::now();
 		_mole->_text = "O";
-		_mole = _wackAMoleButtons[random_int_credits(0, _wackAMoleButtons.size())];
+		_mole = _wackAMoleButtons[Utilities::getInstance().getRandomInt(0, _wackAMoleButtons.size())];
 		_mole->_text = "X";
-			
 	}
 
 	if (_score == 5) {
@@ -136,8 +114,7 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_ESCAPE: // GO BACK TO PAUSE
 		_game->switchScreen(Screens::MainMenu);
 
@@ -150,13 +127,11 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void CreditsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-	if (!_scrollLock)
-	{
+	if (!_scrollLock) {
 		if (e.y > 0) // scroll up
 			_offset = 20;
 		else if (e.y < 0) // scroll down
 			_offset = -20;
-
 
 		int heightOfScrolBlock = 800;
 

@@ -6,12 +6,20 @@
 #endif
 #include <chrono>
 #include <string>
+#include <random>
+#include <cassert>
 
 class GAMEENGINE_Utilities Utilities
 {
 private:
 	Utilities();
 	static Utilities instance;
+
+	/// <summary>
+	/// Creates a random engine instance.
+	/// </summary>
+	/// <returns>The random engine instance.</returns>
+	std::default_random_engine& getRandomEngine();
 public:
 	static Utilities& getInstance() { return instance; }
 
@@ -52,5 +60,13 @@ public:
 	/// </summary>
 	/// <param name="str">The string</param>
 	void rightTrim(std::string& str);
+
+	/// <summary>
+	/// Generates a random int between the two given points.
+	/// </summary>
+	/// <param name="low">The lowest possible number.</param>
+	/// <param name="high">The highest possible number.</param>
+	/// <returns>The random number.</returns>
+	int getRandomInt(int low, int high);
 };
 

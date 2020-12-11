@@ -80,7 +80,6 @@ void GameScreen::onTick() {
 	long timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (Scene::getInstance().getPlayer()->getExtension(typeid(HealthExtension))) {
-
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
 		float healthValue = gameObject->getExtension<HealthExtension>()->getHealth();
 
@@ -88,13 +87,11 @@ void GameScreen::onTick() {
 			_game->switchScreen(Screens::GameOver);
 			return;
 		}
-		else {
+		else
 			_hpBar->percent = healthValue / 100;
-		}
 	}
 
-	if (timePassed >= 1)
-	{
+	if (timePassed >= 1) {
 		begin = std::chrono::steady_clock::now();
 		if (Scene::getInstance().score >= 1)
 			Scene::getInstance().score--;
@@ -154,8 +151,7 @@ void GameScreen::onTick() {
 					_ammo->text = "AMMO: INFINITE";
 			}
 
-			if (_ammo->text == "AMMO: INFINITE") {}
-			else {
+			if (_ammo->text != "AMMO: INFINITE") {
 				if (currentWeapon->getAmmo() == -1) {
 					long difference = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
 					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
@@ -183,7 +179,6 @@ void GameScreen::onTick() {
 			_weapon->text = "WEAPON: NONE";
 			_ammo->text = "AMMO:";
 		}
-
 	}
 
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
@@ -243,7 +238,6 @@ void GameScreen::handlePlayerControls() {
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-
 	SDL_Keycode firstGun;
 	if (ControllManager::getInstance().equipPortalKey.isDefault)
 		firstGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipPortalKey.defaultSDLKey);
@@ -284,8 +278,7 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps) 
 		shouldShowFPS = !shouldShowFPS;
 	
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_ESCAPE:
 		_game->switchScreen(Screens::Pause);
 

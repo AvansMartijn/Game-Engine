@@ -6,8 +6,7 @@ GameOverScreen::GameOverScreen() {}
 
 GameOverScreen::~GameOverScreen() {}
 
-void GameOverScreen::onInit()
-{
+void GameOverScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 	backgroundTrackKey = "Game_Over";
@@ -25,7 +24,6 @@ void GameOverScreen::onInit()
 
 	ImageUiElement walu = ImageUiElement("Lose", { ((1080 - 400) / 2) + 50 , ((720 - 400) / 2) + 50, 400, 400 });
 	_uiElements.push_back(make_shared<ImageUiElement>(walu));
-
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
@@ -45,13 +43,11 @@ void GameOverScreen::onTick() {
 	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
 		Mouse::getInstance().setCursor(Mouse::DEFAULT);
 
-
 	if (Scene::getInstance().activatedCheats.size() > 0)
 		Scene::getInstance().activatedCheats.clear();
 }
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
-
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 

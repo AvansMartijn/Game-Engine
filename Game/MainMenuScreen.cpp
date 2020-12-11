@@ -89,8 +89,7 @@ void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	if (e.keysym.sym == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym)
-	{
+	switch (e.keysym.sym) {
 	case SDLK_d:
 		_game->switchScreen(Screens::MainGame, { "default", "Default", "reset" });
 

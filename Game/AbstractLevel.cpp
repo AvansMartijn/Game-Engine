@@ -5,11 +5,6 @@ shared_ptr<GameObject> AbstractLevel::createEntity(GameEngine gameEngine, vector
 }
 
 shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
-	if (friction == -1 && !fixed && !fixedRotation)
-		extensions.push_back("PlayerTextureExtension");
-	else
-		extensions.push_back("EnemyTextureExtension");
-
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
@@ -29,7 +24,6 @@ shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, ve
 
 shared_ptr<GameObject> AbstractLevel::createPlayer(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
 	extensions.push_back("AnimationExtension");
-	extensions.push_back("PlayerTextureExtension");
 
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
@@ -44,7 +38,6 @@ shared_ptr<GameObject> AbstractLevel::createPlayer(GameEngine gameEngine, vector
 
 shared_ptr<GameObject> AbstractLevel::createEnemy(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
 	extensions.push_back("AnimationExtension");
-	extensions.push_back("EnemyTextureExtension");
 
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;

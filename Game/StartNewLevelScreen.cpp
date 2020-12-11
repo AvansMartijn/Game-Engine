@@ -5,14 +5,13 @@ StartNewLevelScreen::~StartNewLevelScreen() {}
 
 void StartNewLevelScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
-	const Color TColor = { 51,51,51 };
+	const Color tColor = { 51,51,51 };
 	const string font = "Portal";
 	const string fontPortal = "Portal";
 	backgroundTrackKey = "Game_Over";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
-
 
 	//SCROLL
 	TextUiElement storyTitle = TextUiElement("-", "Portal", 40, { 515, 125, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
@@ -91,13 +90,13 @@ void StartNewLevelScreen::onInit() {
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
 
-	TextUiElement title = TextUiElement("Waluigi", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, TColor, true);
+	TextUiElement title = TextUiElement("Waluigi", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, tColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
 	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
 
-	ButtonUiElement backButton = ButtonUiElement("Start", { 515, 650, 70, 40 }, TColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement backButton = ButtonUiElement("Start", { 515, 650, 70, 40 }, tColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](AbstractGame* game) {
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
@@ -133,6 +132,7 @@ void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 		_offset = 20;
 	else if (e.y < 0) // scroll down
 		_offset = -20;
+
 	int heightOfScrolBlock = 0;
 
 	heightOfScrolBlock += _storyText->textLines.size() * 25;
@@ -149,6 +149,5 @@ void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 			_keybindingsImage->_rect.y += _offset;
 		}
 	}
-
 }
 

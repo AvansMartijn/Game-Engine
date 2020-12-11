@@ -2,13 +2,11 @@
 #include "Scene.h"
 #include "HealthExtension.h"
 
-bool GodmodeCheat::Execute()
-{
-	auto Player = Scene::getInstance().getPlayer();
-	if (Player->hasExtension(typeid(HealthExtension)))
-	{
-		shared_ptr<HealthExtension> Extension = dynamic_pointer_cast<HealthExtension>(Player->getExtension(typeid(HealthExtension)));
-		Extension->setHealth(MAXINT);
+bool GodmodeCheat::Execute() {
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(HealthExtension))) {
+		shared_ptr<HealthExtension> healthExtension = Scene::getInstance().getPlayer()->getExtension<HealthExtension>();
+		healthExtension->setHealth(MAXINT);
+
 		return true;
 	}
 }

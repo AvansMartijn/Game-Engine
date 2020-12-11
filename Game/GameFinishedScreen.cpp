@@ -1,26 +1,6 @@
 #include "GameFinishedScreen.h"
 #include <Mouse.h>
-
-
-// trim from start (in place)
-static inline void ltrim(std::string& s) {
-	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
-		return !std::isspace(ch);
-		}));
-}
-
-// trim from end (in place)
-static inline void rtrim(std::string& s) {
-	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
-		return !std::isspace(ch);
-		}).base(), s.end());
-}
-
-// trim from both ends (in place)
-static inline void trim(std::string& s) {
-	ltrim(s);
-	rtrim(s);
-}
+#include "Utilities.h"
 
 GameFinishedScreen::GameFinishedScreen() {}
 
@@ -56,16 +36,12 @@ void GameFinishedScreen::onInit() {
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level & Save", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
-
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
-
-		
 
 		auto test = GameSettings::getInstance().getNextLevel().levelName;
 		auto test2 = GameSettings::getInstance().getCurrentLevel().levelName;
 		//Checks for next level
-		if (!GameSettings::getInstance().getNextLevel().levelName.empty())
-		{
+		if (!GameSettings::getInstance().getNextLevel().levelName.empty()) {
 			LevelData levelData = GameSettings::getInstance().getNextLevel();
 
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
@@ -78,7 +54,6 @@ void GameFinishedScreen::onInit() {
 				GameSettings::getInstance().saveGame.slot3++;
 
 			GameSettings::getInstance().save();
-
 
 			if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
 				int foundIndex = -1;
@@ -93,21 +68,18 @@ void GameFinishedScreen::onInit() {
 				}
 
 				std::string name = _nameText->text;
-				trim(name);
+				Utilities::getInstance().trim(name);
 
 				if (name == "")
 					_nameText->text = "Waluigi";
 
-				if (!Scene::getInstance().hasCheated) {
+				if (!Scene::getInstance().hasCheated)
 					GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
-				}
 				GameSettings::getInstance().save();
 			}
 		}
 		else
-		{
 			game->switchScreen(Screens::Credits);
-		}
 	};
 	_nextLevelButton = make_shared<ButtonUiElement>(nextLevelButton);
 	_uiElements.push_back(_nextLevelButton);
@@ -115,7 +87,6 @@ void GameFinishedScreen::onInit() {
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [this](AbstractGame* game) {
-
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
 		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
@@ -130,20 +101,19 @@ void GameFinishedScreen::onInit() {
 			}
 
 			std::string name = _nameText->text;
-			trim(name);
+			Utilities::getInstance().trim(name);
 
 			if (name == "")
 				_nameText->text = "Waluigi";
 
-			if (!Scene::getInstance().hasCheated) {
+			if (!Scene::getInstance().hasCheated)
 				GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
-			}
+
 			GameSettings::getInstance().save();
 		}
 		game->switchScreen(Screens::MainMenu);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
-
 }
 
 void GameFinishedScreen::onTick() {
@@ -166,29 +136,24 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 	else
 		_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 	
-	if (GameSettings::getInstance().getNextLevel().levelName.empty()) {
+	if (GameSettings::getInstance().getNextLevel().levelName.empty())
 		_nextLevelButton->_text = "Credits";
-	}
-	else {
+	else
 		_nextLevelButton->_text = "Next level";
-	}
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	SDL_Scancode test = e.keysym.scancode;
 	std::string test3 = SDL_GetScancodeName(test);
 	if (e.keysym.sym == SDLK_BACKSPACE) {
-		if (_nameText->text.size() > 1) {
+		if (_nameText->text.size() > 1)
 			_nameText->text.pop_back();
-		}
 	}
 	if (_nameText->text.length() < 21) {
-		if (e.keysym.sym == SDLK_SPACE) {
+		if (e.keysym.sym == SDLK_SPACE)
 			_nameText->text.push_back(' ');
-		}
-		if (e.keysym.sym >= 97 && e.keysym.sym <= 122) {
+		if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
 			_nameText->text.push_back((char)e.keysym.sym);
-		}
 	}
 	
 	SDL_Keycode fps;

@@ -22,9 +22,7 @@
 #include "GameEngine.h" 
 
 
-class Game : public AbstractGame
-{
-
+class Game : public AbstractGame {
 public:
 	using AbstractGame::AbstractGame;
 
