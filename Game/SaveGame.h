@@ -15,6 +15,7 @@ public:
 	int slot1 = -1;
 	int slot2 = -1;
 	int slot3 = -1;
+	int customSlot = -1;
 };
 
 inline void to_json(nlohmann::json& j, const SaveGame& sg) {

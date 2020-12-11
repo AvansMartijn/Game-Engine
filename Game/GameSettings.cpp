@@ -67,6 +67,9 @@ LevelData GameSettings::getCurrentLevel() {
 
 	switch (saveGame.currentSlot)
 	{
+	case 0 :
+		return _storyLevels[saveGame.customSlot];
+		break;
 	case 1:
 		return _storyLevels[saveGame.slot1];
 		break;
@@ -114,4 +117,15 @@ LevelData GameSettings::getNextLevel() {
 
 	return {};
 
+}
+
+int GameSettings::getIndexByLevelName(std::string name) {
+
+	int kut = 1;
+	auto levelPair = std::find_if(_storyLevels.begin(), _storyLevels.end(), [name](std::pair<int, LevelData> level ) { return level.second.levelName == name; });
+
+	if (levelPair != _storyLevels.end())
+		return (*levelPair).first;
+	else
+		return -1;
 }
