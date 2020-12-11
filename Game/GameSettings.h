@@ -30,6 +30,7 @@ public:
 	LevelData getCurrentLevel();
 	LevelData getLevelByIndex(int i);
 	LevelData getNextLevel();
+	int getIndexByLevelName(std::string name);
 	bool isStoryLevel(LevelData levelData);
 };
 

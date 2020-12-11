@@ -53,35 +53,13 @@ void GameFinishedScreen::onInit() {
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
 
-	ButtonUiElement nextLevelButton = ButtonUiElement("Next level", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement nextLevelButton = ButtonUiElement("Next level & Save", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
 	nextLevelButton.onClick = [this](AbstractGame* game) {
 
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
-		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
-			int foundIndex = -1;
-			for (size_t levelIndex = 0; levelIndex < GameSettings::getInstance().saveGame.levels.size(); levelIndex++) {
-				SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
-
-				if (saveLevel.name == currentLevelData.levelName) {
-					foundIndex = levelIndex;
-
-					break;
-				}
-			}
-
-			std::string name = _nameText->text;
-			trim(name);
-
-			if (name == "")
-				_nameText->text = "Waluigi";
-			
-			if (!Scene::getInstance().hasCheated) {
-				GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
-			}
-			GameSettings::getInstance().save();
-		}		
+		
 
 		auto test = GameSettings::getInstance().getNextLevel().levelName;
 		auto test2 = GameSettings::getInstance().getCurrentLevel().levelName;
@@ -100,6 +78,31 @@ void GameFinishedScreen::onInit() {
 				GameSettings::getInstance().saveGame.slot3++;
 
 			GameSettings::getInstance().save();
+
+
+			if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
+				int foundIndex = -1;
+				for (size_t levelIndex = 0; levelIndex < GameSettings::getInstance().saveGame.levels.size(); levelIndex++) {
+					SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
+
+					if (saveLevel.name == currentLevelData.levelName) {
+						foundIndex = levelIndex;
+
+						break;
+					}
+				}
+
+				std::string name = _nameText->text;
+				trim(name);
+
+				if (name == "")
+					_nameText->text = "Waluigi";
+
+				if (!Scene::getInstance().hasCheated) {
+					GameSettings::getInstance().saveGame.levels[foundIndex].highscores.push_back({ _nameText->text ,Scene::getInstance().score });
+				}
+				GameSettings::getInstance().save();
+			}
 		}
 		else
 		{
