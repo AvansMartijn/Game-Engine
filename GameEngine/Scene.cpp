@@ -11,6 +11,10 @@ shared_ptr<GameObject> Scene::getGameObject(int id) {
     return _gameObjects[id];
 }
 
+map<int, shared_ptr<GameObject>> Scene::getGameObjects() {
+    return _gameObjects;
+}
+
 shared_ptr<GameObject> Scene::getEntityAtIndex(int index) {
     return _gameObjects[_entities.at(index)];
 }
@@ -28,7 +32,7 @@ void Scene::addGameObject(shared_ptr<GameObject> obj) {
 }
 
 void Scene::addTextUiElement(shared_ptr<TextUiElement> obj) {
-    textElements.push_back(obj);
+    _textElements.push_back(obj);
 }
 
 void Scene::addEntity(shared_ptr<GameObject> obj) {
@@ -90,7 +94,7 @@ void Scene::reset() {
     gameOver = false;
     score = 1000;
     _gameObjects.clear();
-    textElements.clear();
+    _textElements.clear();
     preRender = false;
     hasCheated = false;
 }
@@ -103,7 +107,7 @@ void Scene::render(const unique_ptr<Window>& window) {
             x.second->render(window);
     }
 
-    for (auto textElement : textElements) {
+    for (auto textElement : _textElements) {
         if (!preRender) {
             textElement->preRender(window);
             preRender = true;

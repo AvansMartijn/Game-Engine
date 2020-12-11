@@ -23,7 +23,7 @@ private:
 	std::vector<int> _entities;
 	map<std::string, shared_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
-	std::vector<shared_ptr<TextUiElement>> textElements;
+	std::vector<shared_ptr<TextUiElement>> _textElements;
 
 	shared_ptr<GameObject> _player;
 
@@ -61,6 +61,10 @@ public:
 	/// <param name="obj">The object we want to register.</param>
 	void addGameObject(shared_ptr<GameObject> obj);
 
+	/// <summary>
+	/// Ad an UI element to the scene.
+	/// </summary>
+	/// <param name="obj"></param>
 	void addTextUiElement(shared_ptr<TextUiElement> obj);
 
 	/// <summary>
@@ -75,6 +79,12 @@ public:
 	/// <param name="id">The id of the gameobject</param>
 	/// <returns>The game object.</returns>
 	shared_ptr<GameObject> getGameObject(int id);
+
+	/// <summary>
+	/// Get's the game objects in the current scene.
+	/// </summary>
+	/// <returns>The game objects in the current scene.</returns>
+	map<int, shared_ptr<GameObject>> getGameObjects();
 
 	/// <summary>
 	/// Get's the index at the given index.
@@ -120,7 +130,6 @@ public:
 	/// <param name="index">The index of the item.</param>
 	/// <returns>The item on the given index.</returns>
 	shared_ptr<AbstractManageableItem> getItem(int index);
-
 
 	/// <summary>
 	/// Get's the item with the given name.

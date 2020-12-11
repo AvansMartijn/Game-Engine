@@ -123,9 +123,6 @@ void GameScreen::onTick() {
 					Physics::getInstance().deleteQueue.push_back(gameObject->id);
 				}
 			}
-
-			if (gameObject->hasExtension(typeid(AnimationExtension)))
-				gameObject->getExtension<AnimationExtension>()->animate();
 		}
 	}
 
@@ -138,7 +135,11 @@ void GameScreen::onTick() {
 
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->updateState();
-		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->animate();
+	}
+
+	for (auto gameObject : Scene::getInstance().getGameObjects()) {
+		if (gameObject.second->hasExtension(typeid(AnimationExtension)))
+			gameObject.second->getExtension<AnimationExtension>()->animate();
 	}
 
 	//shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->addItem();
