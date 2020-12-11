@@ -2,7 +2,7 @@
 #include "AbstractUiElement.h"
 AbstractUiElement::AbstractUiElement() {
 	_game = NULL;
-	_rect = {};
+	rect = {};
 	onClick = [](AbstractGame* game) {std::cout << "No OnClick\n"; };
 }
 

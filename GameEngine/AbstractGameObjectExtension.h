@@ -11,14 +11,12 @@
 using namespace std;
 
 class GameObject;
-class GAMEENGINE_AbstractGameObjectExtension AbstractGameObjectExtension
-{
+class GAMEENGINE_AbstractGameObjectExtension AbstractGameObjectExtension {
+protected:
+	shared_ptr<GameObject> _subject;
 public:
 	string type;
 	virtual void registerSubject(shared_ptr<GameObject> subject);
-
-protected:
-	shared_ptr<GameObject> _subject;
 };
 
 typedef AbstractGameObjectExtension* (__stdcall* CreateExtensionFn)(void);

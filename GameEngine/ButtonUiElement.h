@@ -14,12 +14,20 @@ using namespace std;
 /// <summary>
 /// Button element
 /// </summary>
-class GAMEENGINE_ButtonUiElement ButtonUiElement : public AbstractUiElement
-{
+class GAMEENGINE_ButtonUiElement ButtonUiElement : public AbstractUiElement {
+private:
+	Color _backgroundColor;
+	Color _foregroundColor;
+	std::string _fontKey;
+	int _fontSize;
+
+	// This has to be here, otherwise we have to add every possible fontSize to the registry.
+	TTF_Font* _font;
 public:
 	using AbstractUiElement::AbstractUiElement;
+	std::string text;
 
-	ButtonUiElement(std::string text, Rect rect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
+	ButtonUiElement(std::string btnText, Rect btnRect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
 	~ButtonUiElement();
 
 	/// <summary>
@@ -39,14 +47,5 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
-	std::string _text;
-private:
-	Color _backgroundColor;
-	Color _foregroundColor;
-	std::string _fontKey;
-	int _fontSize;
-
-	// This has to be here, otherwise we have to add every possible fontSize to the registry.
-	TTF_Font* _font;
 };
 

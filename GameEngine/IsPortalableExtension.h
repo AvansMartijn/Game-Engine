@@ -1,8 +1,7 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
-class IsPortalableExtension : public AbstractGameObjectExtension
-{
+class IsPortalableExtension : public AbstractGameObjectExtension {
 public:
 	IsPortalableExtension();
 

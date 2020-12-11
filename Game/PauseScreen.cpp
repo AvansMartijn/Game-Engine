@@ -52,8 +52,8 @@ void PauseScreen::onTick() {
 	else
 		_fps->text = "  ";
 
-	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
-		Mouse::getInstance().setCursor(Mouse::DEFAULT);
+	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::DEFAULT))
+		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
 }
 
 void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

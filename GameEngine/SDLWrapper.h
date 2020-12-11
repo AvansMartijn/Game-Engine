@@ -1,8 +1,7 @@
 #pragma once
 #include <SDL.H>
 
-struct SDLWrapper
-{
+struct SDLWrapper {
 	SDLWrapper();
 	~SDLWrapper();
 

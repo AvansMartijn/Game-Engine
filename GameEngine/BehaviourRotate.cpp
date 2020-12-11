@@ -3,11 +3,11 @@
 #include "Utilities.h"
 
 BehaviourRotate::BehaviourRotate(shared_ptr<GameObject> self, int waitTime) : AbstractBehaviour(self) {
-	waitTime = waitTime;
+	_waitTime = waitTime;
 }
 
 void BehaviourRotate::execute() {
-	if (Utilities::getInstance().isEnoughTimeElapsed(waitTime, _begin)) {
+	if (Utilities::getInstance().isEnoughTimeElapsed(_waitTime, _begin)) {
 		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 		moveExtension->isLookingToLeft = !moveExtension->isLookingToLeft;
 

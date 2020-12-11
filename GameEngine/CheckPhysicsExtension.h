@@ -8,13 +8,12 @@
 #include "AbstractCollisionResolutionExtension.h"
 //#include "PhysicsFacade.h"
 
+//  TODO: KAN DEZE WEG?
+
 /// <summary>
 /// Physics
 /// </summary>
-class GAMEENGINE_CheckPhysicsExtension CheckPhysicsExtension : public AbstractGameObjectExtension
-{
-private:
-	//PhysicsFacade _physicsfacade;
+class GAMEENGINE_CheckPhysicsExtension CheckPhysicsExtension : public AbstractGameObjectExtension {
 public:
 	CheckPhysicsExtension();
 	void doPhysics();

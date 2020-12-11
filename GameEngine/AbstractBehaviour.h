@@ -11,8 +11,16 @@
 /// <summary>
 /// Abstract class for ai behavior
 /// </summary>
-class GAMEENGINE_AbstractBehaviour AbstractBehaviour
-{
+class GAMEENGINE_AbstractBehaviour AbstractBehaviour {
+protected:
+	shared_ptr<GameObject> _self = nullptr;
+	std::chrono::steady_clock::time_point _begin;
+
+	/// <summary>
+	/// Execute the next behaviour.
+	/// </summary>
+	/// <param name="isTrue">The state of the next behaviour.</param>
+	virtual void executeNextBehaviour(bool isTrue);
 public:
 	AbstractBehaviour(shared_ptr<GameObject> self);
 
@@ -23,14 +31,5 @@ public:
 
 	shared_ptr<AbstractBehaviour> behaviourTrue = nullptr;
 	shared_ptr<AbstractBehaviour> behaviourFalse = nullptr;
-protected:
-	shared_ptr<GameObject> _self = nullptr;
-	std::chrono::steady_clock::time_point _begin;
-
-	/// <summary>
-	/// Execute the next behaviour.
-	/// </summary>
-	/// <param name="isTrue">The state of the next behaviour.</param>
-	virtual void executeNextBehaviour(bool isTrue);
 };
 

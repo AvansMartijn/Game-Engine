@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
-struct FileData
-{
+struct FileData {
 	std::string key;
 	std::string path;
 };

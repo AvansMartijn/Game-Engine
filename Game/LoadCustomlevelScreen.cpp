@@ -82,7 +82,7 @@ void LoadCustomLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 			offset = -10;
 
 		for (int i = 0; i < uiList.size(); i++)
-			uiList[i]->_rect.y += offset;
+			uiList[i]->rect.y += offset;
 	}
 }
 

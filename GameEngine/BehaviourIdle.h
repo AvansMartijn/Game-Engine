@@ -4,8 +4,7 @@
 /// <summary>
 /// Idle ai behavior
 /// </summary>
-class BehaviourIdle : public AbstractBehaviour
-{
+class BehaviourIdle : public AbstractBehaviour {
 public:
 	using AbstractBehaviour::AbstractBehaviour;
 

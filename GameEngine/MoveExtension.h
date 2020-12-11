@@ -12,8 +12,7 @@
 /// <summary>
 /// Movement capabilities
 /// </summary>
-class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension
-{
+class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension {
 private:
 	std::chrono::steady_clock::time_point _afkTime;
 public:
@@ -55,10 +54,26 @@ public:
 	/// <param name="movementY">The movement on the y-axis.</param>
 	void moveY(float movementY);
 
+	/// <summary>
+	/// Update the current movement state.
+	/// </summary>
 	void updateState();
 
+	/// <summary>
+	/// Get's the amount of collisions for the left arm.
+	/// </summary>
+	/// <returns>The amount of collision for the left arm.</returns>
 	int getLeftArmCounter();
+
+	/// <summary>
+	/// Get's the amount of collisions for the right arm.
+	/// </summary>
+	/// <returns>The amount of collision for the right arm.</returns>
 	int getRightArmCounter();
+
+	/// <summary>
+	/// Resets the afk timer.
+	/// </summary>
 	void resetAfkTime();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }

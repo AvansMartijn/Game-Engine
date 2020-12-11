@@ -10,10 +10,19 @@
 #include <string>
 #include <iostream>
 
-class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement
-{
+class GAMEENGINE_TextUiElement TextUiElement : public AbstractUiElement {
+private:
+	std::string _fontKey;
+	int _fontSize;
+	Color _foregroundColor;
+	Color _backgroundColor;
+	bool _center;
+	bool _multiLine;
+
+	// This has to be here, otherwise we have to add every possible fontSize to the registry.
+	TTF_Font* _font;
 public:
-	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
+	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect textRect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
 	TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
 	~TextUiElement();
 	std::string text;
@@ -36,15 +45,5 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
-private:
-	std::string _fontKey;
-	int _fontSize;
-	Color _foregroundColor;
-	Color _backgroundColor;
-	bool _center;
-	bool _multiLine;
-
-	// This has to be here, otherwise we have to add every possible fontSize to the registry.
-	TTF_Font* _font;
 };
 

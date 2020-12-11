@@ -6,8 +6,7 @@
 /// <summary>
 /// Move ai behavior
 /// </summary>
-class BehaviourMove : public AbstractBehaviour
-{
+class BehaviourMove : public AbstractBehaviour {
 public:
 	using AbstractBehaviour::AbstractBehaviour;
 

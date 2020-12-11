@@ -16,8 +16,7 @@
 #include "SDLTexture.h"
 
 class Window;
-class GAMEENGINE_AssetRegistry AssetRegistry
-{
+class GAMEENGINE_AssetRegistry AssetRegistry {
 private:
 	AssetRegistry();
 

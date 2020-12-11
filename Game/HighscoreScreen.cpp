@@ -23,7 +23,7 @@ void HighScoreScreen::onInit() {
 	TextUiElement scrollText = TextUiElement(lines, "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, true);
 	_scrollableText = make_shared<TextUiElement>(scrollText);
 	_uiElements.push_back(_scrollableText);
-	_anchor = _scrollableText->_rect.y;
+	_anchor = _scrollableText->rect.y;
 
 	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
 	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
@@ -102,11 +102,11 @@ void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 		_offset = -20;
 
 	int heightOfScrolBlock = _scrollableText->textLines.size() * 25;
-	int currentY = _scrollableText->_rect.y;
+	int currentY = _scrollableText->rect.y;
 
 	if ((currentY += _offset) < _anchor) {
 		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1))
-			_scrollableText->_rect.y += _offset;
+			_scrollableText->rect.y += _offset;
 	}
 }
 

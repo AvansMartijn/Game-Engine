@@ -7,8 +7,14 @@
 #include "pch.h"
 #include "SDL.h"
 #include <iostream>
+#include "MouseSkins.h"
 
 class GAMEENGINE_Mouse Mouse {
+private:
+	Mouse();
+	static Mouse _instance;
+
+	MouseSkins _currentSkin;
 public:
 	static Mouse& getInstance() { return _instance; }
 
@@ -16,14 +22,6 @@ public:
 	Mouse(Mouse&&) = delete;
 	Mouse& operator=(const Mouse&) = delete;
 	Mouse& operator=(Mouse&&) = delete;
-
-	enum MouseSkins {
-		DEFAULT = 0,
-		CROSSHAIR,
-		WAIT,
-		BEAM,
-		NONE
-	};
 
 	/// <summary>
 	/// Checks if the current mouse skin is current skin
@@ -37,11 +35,4 @@ public:
 	/// </summary>
 	/// <param name="skin"></param>
 	void setCursor(MouseSkins skin);
-
-private:
-	Mouse();
-	static Mouse _instance;
-
-	MouseSkins _currentSkin;
-
 };

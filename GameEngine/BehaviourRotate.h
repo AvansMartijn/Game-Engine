@@ -4,11 +4,11 @@
 /// <summary>
 /// Rotate ai behavior
 /// </summary>
-class BehaviourRotate : public AbstractBehaviour
-{
+class BehaviourRotate : public AbstractBehaviour {
+private:
+	int _waitTime;
 public:
 	BehaviourRotate(shared_ptr<GameObject> self, int waitTime);
-	int waitTime = 2000;
 
 	/// <summary>
 	/// Execute the behaviour.

@@ -6,12 +6,22 @@
 #endif
 #include "AbstractManageableItem.h"
 
-class GAMEENGINE_ThrusterManagableItem ThrusterManagableItem : public AbstractManageableItem
-{
+class GAMEENGINE_ThrusterManagableItem ThrusterManagableItem : public AbstractManageableItem {
 public:
 	ThrusterManagableItem();
 
+	/// <summary>
+	/// When the left mouse button has been pressed.
+	/// </summary>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
 	void onLeftClick(int x, int y);
+
+	/// <summary>
+	/// When the right mouse button has been pressed.
+	/// </summary>
+	/// <param name="x">The x-coordinate.</param>
+	/// <param name="y">The y-coordinate.</param>
 	void onRightClick(int x, int y);
 };
 

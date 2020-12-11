@@ -10,14 +10,22 @@
 #include "Scene.h"
 #include "Physics.h"
 
-class GAMEENGINE_PickupExtension PickupExtension : public AbstractGameObjectExtension
-{
+class GAMEENGINE_PickupExtension PickupExtension : public AbstractGameObjectExtension {
 private:
 	shared_ptr<AbstractManageableItem> _item;
 public:
 	PickupExtension();
 
+	/// <summary>
+	/// Set's the current item.
+	/// </summary>
+	/// <param name="item">The item we want to set.</param>
 	void setItem(shared_ptr<AbstractManageableItem> item);
+
+	/// <summary>
+	/// Get's the current item.
+	/// </summary>
+	/// <returns></returns>
 	shared_ptr<AbstractManageableItem> getItem();
 
 	/// <summary>

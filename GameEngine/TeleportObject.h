@@ -1,6 +1,5 @@
 #pragma once
-struct TeleportObject
-{
+struct TeleportObject {
 public:
 	shared_ptr<GameObject> obj;
 	b2Vec2 newPosition;

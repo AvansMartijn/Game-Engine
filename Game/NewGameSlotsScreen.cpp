@@ -107,19 +107,19 @@ void NewGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void NewGameSlotsScreen::onScreenShowed(vector<std::string> args)
 {
 	if (GameSettings::getInstance().saveGame.slot1 == -1) 
-		_slot1Button->_text = "Slot 1 - Empty";
+		_slot1Button->text = "Slot 1 - Empty";
 	else 
-		_slot1Button->_text = "Slot 1 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot1).levelName;
+		_slot1Button->text = "Slot 1 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot1).levelName;
 
 	if (GameSettings::getInstance().saveGame.slot2 == -1)
-		_slot2Button->_text = "Slot 2 - Empty";
+		_slot2Button->text = "Slot 2 - Empty";
 	else
-		_slot2Button->_text = "Slot 2 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot2).levelName;
+		_slot2Button->text = "Slot 2 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot2).levelName;
 
 	if (GameSettings::getInstance().saveGame.slot3 == -1)
-		_slot3Button->_text = "Slot 3 - Empty";
+		_slot3Button->text = "Slot 3 - Empty";
 	else
-		_slot3Button->_text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
+		_slot3Button->text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
 }
 
 void NewGameSlotsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

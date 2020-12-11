@@ -47,8 +47,8 @@ void AbstractManageableItem::setAmmo(int amount) {
 	_ammo = amount;
 }
 
-void AbstractManageableItem::setCooldown(long amount) {
-	_cooldown = amount;
+void AbstractManageableItem::setCooldown(long cooldown) {
+	_cooldown = cooldown;
 }
 
 void AbstractManageableItem::setOwner(shared_ptr<GameObject> owner) {

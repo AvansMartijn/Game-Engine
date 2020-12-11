@@ -13,8 +13,7 @@
 #include "TextUiElement.h"
 #include "IEMath.h"
 
-class GAMEENGINE_Scene Scene
-{
+class GAMEENGINE_Scene Scene {
 private:
 	Scene();
 	static Scene instance;
@@ -138,6 +137,12 @@ public:
 	/// <returns>The item with the given name.</returns>
 	shared_ptr<AbstractManageableItem> getItem(std::string name);
 
+	/// <summary>
+	/// Get's an item from the scene.
+	/// </summary>
+	/// <typeparam name="T">The type of item.</typeparam>
+	/// <param name="name">The item name.</param>
+	/// <returns>The item.</returns>
 	template<typename T>
 	std::shared_ptr<T> getItem(std::string name) {
 		std::shared_ptr<AbstractManageableItem> item = getItem(name);

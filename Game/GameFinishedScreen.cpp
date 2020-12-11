@@ -122,8 +122,8 @@ void GameFinishedScreen::onTick() {
 	else
 		_fps->text = "  ";
 
-	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
-		Mouse::getInstance().setCursor(Mouse::DEFAULT);
+	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::DEFAULT))
+		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
 
 	if (Scene::getInstance().activatedCheats.size() > 0)
 		Scene::getInstance().activatedCheats.clear();
@@ -137,9 +137,9 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 		_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 	
 	if (GameSettings::getInstance().getNextLevel().levelName.empty())
-		_nextLevelButton->_text = "Credits";
+		_nextLevelButton->text = "Credits";
 	else
-		_nextLevelButton->_text = "Next level";
+		_nextLevelButton->text = "Next level";
 }
 
 void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

@@ -7,8 +7,7 @@
 #include "GameObjectExtensionFactory.h"
 #include <memory>
 
-class GAMEENGINE_GameObjectBuilder GameObjectBuilder
-{
+class GAMEENGINE_GameObjectBuilder GameObjectBuilder {
 protected:
 	std::shared_ptr<GameObject> _gameObject;
 public:

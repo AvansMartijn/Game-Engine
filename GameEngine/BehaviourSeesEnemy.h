@@ -6,8 +6,7 @@
 /// <summary>
 /// Sees enemy ai behavior
 /// </summary>
-class BehaviourSeesEnemy : public AbstractBehaviour
-{
+class BehaviourSeesEnemy : public AbstractBehaviour {
 public:
 	using AbstractBehaviour::AbstractBehaviour;
 

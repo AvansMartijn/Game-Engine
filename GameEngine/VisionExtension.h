@@ -4,8 +4,7 @@
 /// <summary>
 /// Vision capabilities
 /// </summary>
-class VisionExtension : public AbstractGameObjectExtension
-{
+class VisionExtension : public AbstractGameObjectExtension {
 private:
 	int _coneRadius;
 	int _radius;

@@ -20,9 +20,48 @@ using namespace std;
 /// <summary>
 /// The game class needs to be based of this class.
 /// </summary>
-class GAMEENGINE_AbstractGame AbstractGame
-{
+class GAMEENGINE_AbstractGame AbstractGame {
+private:
+	/// <summary>
+	/// Sets up values to calculate fps
+	/// </summary>
+	void initFps();
+
+	/// <summary>
+	/// Calculates the current fps
+	/// </summary>
+	void calculateFps();
+
+#define FRAME_VALUES 10
+	// An array to store frame times:
+	Uint32 _frametimes[FRAME_VALUES];
+
+	// Last calculated SDL_GetTicks
+	Uint32 _frametimelast;
+
+	// total frames rendered
+	Uint32 _framecount;
+
+	// the value you want
+	int _framespersecond;
+protected:
+	/// <summary>
+	/// The index of the visible screen.
+	/// </summary>
+	int _activeScreen;
+
+	/// <summary>
+	/// Previous visted screens for back functionalitie
+	/// </summary>
+	std::stack<int> _previousScreens;
+
+	SDLWrapper _sdl;
+	SDLImageWrapper _sdlImage;
+	SDLTtfWrapper _sdlTtf;
+	unique_ptr<Window> _window;
 public:
+	int currentFPS;
+
 	AbstractGame(const char* title, int width, int height);
 	~AbstractGame();
 
@@ -76,6 +115,7 @@ public:
 	/// <param name="directory">The directory which we want to add.</param>
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	void registerTextures(std::string prefix, std::string directory, bool isDeep);
+
 	/// <summary>
 	/// Registers a soundtrack in the registry.
 	/// </summary>
@@ -83,55 +123,22 @@ public:
 	/// <param name="trackPath">Soundtrak path</param>
 	void registerMusicTrack(const std::string& musicTrackKey, const std::string& trackPath);
 
+	/// <summary>
+	/// Register a SFX track.
+	/// </summary>
+	/// <param name="sfxTrackKey">The track key.</param>
+	/// <param name="trackPath">The path to the track.</param>
 	void registerSFXTrack(const std::string& sfxTrackKey, const std::string& trackPath);
 
+	/// <summary>
+	/// Play a music track.
+	/// </summary>
+	/// <param name="musicTrackKey">The music track.</param>
 	void playMusicTrack(const std::string& musicTrackKey);
 
 	/// <summary>
 	/// Resets the game.
 	/// </summary>
 	void reset();
-
-	int currentFPS;
-private:
-	/// <summary>
-	/// Sets up values to calculate fps
-	/// </summary>
-	void initFps();
-
-	/// <summary>
-	/// Calculates the current fps
-	/// </summary>
-	void calculateFps();
-
-	#define FRAME_VALUES 10
-	// An array to store frame times:
-	Uint32 _frametimes[FRAME_VALUES];
-
-	// Last calculated SDL_GetTicks
-	Uint32 _frametimelast;
-
-	// total frames rendered
-	Uint32 _framecount;
-
-	// the value you want
-	int _framespersecond;
-
-
-protected:
-	/// <summary>
-	/// The index of the visible screen.
-	/// </summary>
-	int _activeScreen;
-
-	/// <summary>
-	/// Previous visted screens for back functionalitie
-	/// </summary>
-	std::stack<int> _previousScreens;
-
-	SDLWrapper _sdl;
-	SDLImageWrapper _sdlImage;
-	SDLTtfWrapper _sdlTtf;
-	unique_ptr<Window> _window;
 };
 

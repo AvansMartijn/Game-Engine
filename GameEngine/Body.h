@@ -1,7 +1,6 @@
 #pragma once
 #include <Box2D.h>
-class Body
-{
+class Body {
 public:
 	Body();
 

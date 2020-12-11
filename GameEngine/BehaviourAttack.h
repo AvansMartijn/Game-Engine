@@ -6,8 +6,7 @@
 /// <summary>
 /// Attack behavior
 /// </summary>
-class BehaviourAttack : public AbstractBehaviour
-{
+class BehaviourAttack : public AbstractBehaviour {
 public:
 	using AbstractBehaviour::AbstractBehaviour;
 

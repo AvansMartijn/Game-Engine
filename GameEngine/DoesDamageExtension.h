@@ -1,8 +1,7 @@
 #pragma once
 #include "AbstractGameObjectExtension.h"
 
-class DoesDamageExtension : public AbstractGameObjectExtension
-{
+class DoesDamageExtension : public AbstractGameObjectExtension {
 public:
 	int damage;
 	DoesDamageExtension();

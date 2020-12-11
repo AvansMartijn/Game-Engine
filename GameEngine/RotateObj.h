@@ -2,8 +2,7 @@
 
 
 #pragma once
-class RotateObj
-{
+class RotateObj {
 public:
 	shared_ptr<GameObject> obj;
 	float angleRad;

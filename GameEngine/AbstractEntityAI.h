@@ -12,8 +12,7 @@
 /// <summary>
 /// Abstract class for entity ai
 /// </summary>
-class GAMEENGINE_AbstractEntityAI AbstractEntityAI
-{
+class GAMEENGINE_AbstractEntityAI AbstractEntityAI {
 protected:
 	shared_ptr<AbstractBehaviour> _currentBehaviour;
 	std::chrono::steady_clock::time_point _begin;
@@ -26,7 +25,6 @@ public:
 	/// <param name="self">The player</param>
 	/// <param name="scene">All the game objects</param>
 	virtual void createBehaviourTree(shared_ptr<GameObject> self) = 0;
-
 
 	/// <summary>
 	/// Executes the current behaviour and goes to the next.

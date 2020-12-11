@@ -12,8 +12,7 @@
 #include "BehaviourRotate.h"
 #include "BehaviourMove.h"
 
-class GAMEENGINE_DefaultEntityAI DefaultEntityAI : public AbstractEntityAI
-{
+class GAMEENGINE_DefaultEntityAI DefaultEntityAI : public AbstractEntityAI {
 private:
 	shared_ptr<BehaviourIdle> _behaviourIdle;
 public:

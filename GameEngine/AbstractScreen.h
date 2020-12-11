@@ -16,16 +16,17 @@ using namespace std;
 
 class GameEngine;
 class AbstractGame;
-class GAMEENGINE_AbstractScreen AbstractScreen
-{
+class GAMEENGINE_AbstractScreen AbstractScreen {
 protected:
 	AbstractGame* _game;
 	vector<shared_ptr<AbstractUiElement>> _uiElements;
 public:
+	bool shouldShowFPS;
+	std::string backgroundTrackKey = "";
+
 	AbstractScreen();
 	~AbstractScreen();
 
-	std::string backgroundTrackKey = "";
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -50,6 +51,10 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	virtual void handleMouseMotionInput(SDL_MouseMotionEvent e) = 0;
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	virtual void handleMouseWheelInput(SDL_MouseWheelEvent e) = 0;
 	/// <summary>
 	/// Called when the user click their mouse.
@@ -75,10 +80,5 @@ public:
 	/// Resets the game.
 	/// </summary>
 	virtual void reset();
-	/// <summary>
-	/// Should show the FPS
-	/// </summary>
-	bool shouldShowFPS;
-private:
 };
 

@@ -244,6 +244,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="LibCurl.h" />
     <ClInclude Include="IsPortalableExtension.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseSkins.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />

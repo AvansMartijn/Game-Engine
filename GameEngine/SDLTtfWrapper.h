@@ -1,8 +1,7 @@
 #pragma once
 #include <SDL_ttf.h>
 
-struct SDLTtfWrapper
-{
+struct SDLTtfWrapper {
 	SDLTtfWrapper();
 	~SDLTtfWrapper();
 

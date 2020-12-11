@@ -38,7 +38,7 @@ void HelpScreen::onInit() {
 	_storyText = make_shared<TextUiElement>(storyText);
 	_uiElements.push_back(_storyText);
 	_scrollableTextElements.push_back(_storyText);
-	_anchor = _storyText->_rect.y;
+	_anchor = _storyText->rect.y;
 
 	TextUiElement keyBindingsText = TextUiElement("Basic keybindings", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	shared_ptr<TextUiElement> pKeyBindingsText = make_shared<TextUiElement>(keyBindingsText);
@@ -246,15 +246,15 @@ void HelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	heightOfScrolBlock += _storyText->textLines.size() * 25;
 	heightOfScrolBlock += 1500;
 
-	int currentY = _storyTitle->_rect.y;
+	int currentY = _storyTitle->rect.y;
 
 	if ((currentY += _offset) < _anchor) {
 		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
 			for (auto textElement : _scrollableTextElements)
-				textElement->_rect.y += _offset;
+				textElement->rect.y += _offset;
 
 			for (auto imgElement : _scrollableImgElements)
-				imgElement->_rect.y += _offset;
+				imgElement->rect.y += _offset;
 		}
 	}
 }

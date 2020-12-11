@@ -26,5 +26,5 @@ void HpBarUIElement::render(const unique_ptr<Window>& window) {
 }
 
 bool HpBarUIElement::isInBound(int mouseX, int mouseY) {
-    return (mouseX >= _rect.x && mouseX <= _rect.x + _rect.w) && (mouseY > _rect.y && mouseY < _rect.y + _rect.h);
+    return (mouseX >= rect.x && mouseX <= rect.x + rect.w) && (mouseY > rect.y && mouseY < rect.y + rect.h);
 }

@@ -2,8 +2,7 @@
 #include <SDL_image.H>
 #include <stdexcept>
 
-struct SDLImageWrapper
-{
+struct SDLImageWrapper {
 	SDLImageWrapper();
 	~SDLImageWrapper();
 

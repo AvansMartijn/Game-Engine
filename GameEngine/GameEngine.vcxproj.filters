@@ -64,9 +64,6 @@
     <Filter Include="Header Files\GameObjects\Extensions">
       <UniqueIdentifier>{ec168694-6404-448d-a603-a3bb6ae07589}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameObjects\PhysicalObject">
-      <UniqueIdentifier>{e1c30bd5-3c9a-47c1-9d47-63e171db5382}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\GameObjects\Extensions\CollisionResolution">
       <UniqueIdentifier>{2b85ae65-9702-46ab-88c5-390b24dc9b01}</UniqueIdentifier>
     </Filter>
@@ -322,7 +319,10 @@
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseSkins.h">
+      <Filter>Header Files\UiElements\Mouse</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

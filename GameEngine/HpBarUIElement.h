@@ -13,9 +13,14 @@ using namespace std;
 /// <summary>
 /// HP Bar element
 /// </summary>
-class GAMEENGINE_HpBarUIElement HpBarUIElement : public AbstractUiElement
-{
+class GAMEENGINE_HpBarUIElement HpBarUIElement : public AbstractUiElement {
+private:
+	Color _fgColor;
+	Color _bgColor;
+	int _x, _y, _w, _h;
 public:
+	float percent;
+
 	HpBarUIElement(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor);
 	~HpBarUIElement();
 
@@ -36,11 +41,5 @@ public:
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
 	bool isInBound(int mouseX, int mouseY);
-	float percent;
-private:
-	Color _fgColor;
-	Color _bgColor;
-	int _x, _y, _w, _h;
-
 };
 

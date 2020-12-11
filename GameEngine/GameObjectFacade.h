@@ -3,11 +3,14 @@
 #include "GameObjectBuilder.h"
 #include "GameObjectExtensionFactory.h"
 
-
-class GameObjectFacade
-{
+class GameObjectFacade{
 private:
 	GameObjectBuilder _builder;
 public:
+	/// <summary>
+	/// Creates a game object with the given extension names.
+	/// </summary>
+	/// <param name="extensionNames">The extensions we want to add.</param>
+	/// <returns>The created game object.</returns>
 	shared_ptr<GameObject> createGameObject(vector<string> extensionNames);
 };

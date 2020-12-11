@@ -26,7 +26,7 @@ void CreditsScreen::onInit() {
 	_line = make_shared<TextUiElement>(line);
 	_uiElements.push_back(_line);
 	_scrollableElements.push_back(_line);
-	_anchor = _line->_rect.y;
+	_anchor = _line->rect.y;
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
@@ -92,9 +92,9 @@ void CreditsScreen::onTick() {
 
 	if (timePassed >= 500) {
 		_begin = std::chrono::steady_clock::now();
-		_mole->_text = "O";
+		_mole->text = "O";
 		_mole = _wackAMoleButtons[Utilities::getInstance().getRandomInt(0, _wackAMoleButtons.size())];
-		_mole->_text = "X";
+		_mole->text = "X";
 	}
 
 	if (_score == 5) {
@@ -135,18 +135,18 @@ void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 
 		int heightOfScrolBlock = 800;
 
-		int currentY = _line->_rect.y;
+		int currentY = _line->rect.y;
 
 		if ((currentY += _offset) < _anchor) {
 			if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
 
 				for (auto textElement : _scrollableElements)
-					textElement->_rect.y += _offset;
+					textElement->rect.y += _offset;
 
 				for (auto buttonElement : _wackAMoleButtons)
-					buttonElement->_rect.y += _offset;
+					buttonElement->rect.y += _offset;
 
-				_theBoyz->_rect.y += _offset;
+				_theBoyz->rect.y += _offset;
 			}
 		}
 	}

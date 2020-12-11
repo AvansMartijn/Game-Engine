@@ -40,8 +40,8 @@ void GameOverScreen::onTick() {
 	else
 		_fps->text = "  ";
 
-	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::DEFAULT))
-		Mouse::getInstance().setCursor(Mouse::DEFAULT);
+	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::DEFAULT))
+		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
 
 	if (Scene::getInstance().activatedCheats.size() > 0)
 		Scene::getInstance().activatedCheats.clear();

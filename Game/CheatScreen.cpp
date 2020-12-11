@@ -44,8 +44,8 @@ void CheatScreen::onTick() {
 	else
 		_fps->text = "  ";
 
-	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::BEAM))
-		Mouse::getInstance().setCursor(Mouse::BEAM);
+	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::BEAM))
+		Mouse::getInstance().setCursor(MouseSkins::BEAM);
 }
 
 void CheatScreen::onScreenShowed(vector<std::string> args) {

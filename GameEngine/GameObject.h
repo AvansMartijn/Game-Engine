@@ -4,7 +4,6 @@
 #else
 #define GAMEENGINE_GameObject __declspec(dllimport)
 #endif
-//#include "PhysicalBody.h"
 #include "AbstractGameObjectExtension.h"
 #include <vector>
 #include <memory>
@@ -18,8 +17,7 @@
 
 using namespace std;
 class Window;
-class GAMEENGINE_GameObject GameObject
-{
+class GAMEENGINE_GameObject GameObject {
 private:
 	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
 public:
@@ -30,8 +28,20 @@ public:
 
 	std::string texture;
 
+	/// <summary>
+	/// Adds an extension.
+	/// </summary>
+	/// <param name="extension">The extension we want to add</param>
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
+
+	/// <summary>
+	/// Checks if the given extension is available.
+	/// </summary>
+	/// <param name="type">The extension we want to check for.</param>
+	/// <returns>If the extension is available.</returns>
 	bool hasExtension(const std::type_info& type);
+
+	// TODO: REMOVE (11-12-2020)
 	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
 
 	/// <summary>
@@ -47,6 +57,11 @@ public:
 	/// <returns>The value in pixels.</returns>
 	int metersToPixels(float value);
 
+	/// <summary>
+	/// Get's the extension with the given type.
+	/// </summary>
+	/// <typeparam name="T">The extension type.</typeparam>
+	/// <returns>The extension.</returns>
 	template<typename T>
 	std::shared_ptr<T> getExtension() {
 		const std::type_info& typeId = typeid(T);

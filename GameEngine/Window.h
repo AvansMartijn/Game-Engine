@@ -22,6 +22,12 @@
 #undef byte
 
 class GAMEENGINE_WINDOW Window {
+private:
+	int _width;
+	int _height;
+
+	std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> _window{ nullptr, SDL_DestroyWindow };
+	std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> _renderer{ nullptr, SDL_DestroyRenderer };
 public:
 	Window(const char* title, int width, int height);
 
@@ -76,7 +82,6 @@ public:
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(std::string fontKey, std::string fontPath);
 
-
 	/// <summary>
 	/// Get's the font from the given path.
 	/// </summary>
@@ -123,7 +128,6 @@ public:
 	/// <param name="center">If we want to center the text.</param>
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
 
-
 	void renderMultiLineText(std::vector<std::string> text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
 	/// <summary>
 	/// Render a hp bar
@@ -143,11 +147,5 @@ public:
 	/// <param name="value">The value in pixels.</param>
 	/// <returns>The value ins meters.</returns>
 	int metersToPixels(float value);
-private:
-	int _width;
-	int _height;
-
-	std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> _window{ nullptr, SDL_DestroyWindow };
-	std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> _renderer{ nullptr, SDL_DestroyRenderer };
 };
 

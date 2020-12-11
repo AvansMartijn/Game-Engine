@@ -12,11 +12,9 @@
 #include <map>
 #include <string>
 
-
 using namespace std;
 
-class GAMEENGINE_GameObjectExtensionFactory GameObjectExtensionFactory
-{
+class GAMEENGINE_GameObjectExtensionFactory GameObjectExtensionFactory {
 private:
     GameObjectExtensionFactory();
     GameObjectExtensionFactory(const GameObjectExtensionFactory&) { }
@@ -29,8 +27,7 @@ private:
 public:
     ~GameObjectExtensionFactory() { _m_FactoryMap.clear(); }
 
-    static GameObjectExtensionFactory* get()
-    {
+    static GameObjectExtensionFactory* get() {
         static GameObjectExtensionFactory instance;
         return &instance;
     }
@@ -38,7 +35,6 @@ public:
     void registerExtension(const string& extensionName, CreateExtensionFn pfnCreate);
 
     AbstractGameObjectExtension* createExtension(const string& extensionName);
-
 };
 
 

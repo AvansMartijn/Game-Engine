@@ -10,12 +10,15 @@
 /// <summary>
 /// AI Capabilities
 /// </summary>
-class GAMEENGINE_AiExtension AiExtension : public AbstractGameObjectExtension
-{
+class GAMEENGINE_AiExtension AiExtension : public AbstractGameObjectExtension {
 public:
 	std::shared_ptr<AbstractEntityAI> ai;
 
 	AiExtension();
+
+	/// <summary>
+	/// Execute the AI.
+	/// </summary>
 	void execute();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new AiExtension(); }

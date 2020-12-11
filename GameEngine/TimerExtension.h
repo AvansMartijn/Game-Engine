@@ -10,19 +10,37 @@
 #include "Scene.h"
 #include "Physics.h"
 
-class GAMEENGINE_TimerExtension TimerExtension : public AbstractGameObjectExtension
-{
+class GAMEENGINE_TimerExtension TimerExtension : public AbstractGameObjectExtension {
 private:
 	std::chrono::steady_clock::time_point _creationTime;
 	long _expiresAfter;
 public:
 	TimerExtension();
+
+	/// <summary>
+	/// Get's the creation time.
+	/// </summary>
+	/// <returns>The creation time.</returns>
 	std::chrono::steady_clock::time_point getCreationTime();
+
+	/// <summary>
+	/// Get's the time it takes to expire.
+	/// </summary>
+	/// <returns>The time it takes to expire.</returns>
 	long getExpiresAfter();
+
+	/// <summary>
+	/// Checks if the object has expired.
+	/// </summary>
+	/// <returns>If the object has expired.</returns>
 	bool isExpired();
+
+	/// <summary>
+	/// Set's the expiration time.
+	/// </summary>
+	/// <param name="miliseconds">The expiration time in ms.</param>
 	void setExpiresAfter(int miliseconds);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new TimerExtension(); }
-
 };
 

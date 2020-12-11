@@ -13,9 +13,12 @@
 /// </summary>
 class Window;
 class AbstractGame;
-class GAMEENGINE_AbstractUiElement AbstractUiElement
-{
+class GAMEENGINE_AbstractUiElement AbstractUiElement {
+protected:
+	AbstractGame* _game;
 public:
+	Rect rect;
+
 	AbstractUiElement();
 	~AbstractUiElement();
 
@@ -45,8 +48,4 @@ public:
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
 	std::function<void(AbstractGame*)> onClick;
-
-	Rect _rect;
-protected:
-	AbstractGame* _game;
 };

@@ -9,8 +9,8 @@ void SoundPlayer::registerMusicTrack(const std::string& musicTrackKey, const std
 	_musicTracks.insert(std::pair<std::string, Mix_Music*>(musicTrackKey, Mix_LoadMUS(musicTrack.c_str())));
 }
 
-void SoundPlayer::registerSFXTrack(const std::string& musicTrackKey, const std::string& musicTrack){
-	_sfx.insert(std::pair<std::string, Mix_Chunk*>(musicTrackKey, Mix_LoadWAV(musicTrack.c_str())));
+void SoundPlayer::registerSFXTrack(const std::string& sfxTrackKey, const std::string& sfxTrack){
+	_sfx.insert(std::pair<std::string, Mix_Chunk*>(sfxTrackKey, Mix_LoadWAV(sfxTrack.c_str())));
 }
 
 Mix_Music* SoundPlayer::getMusicTrack(const std::string& musicTrackKey){

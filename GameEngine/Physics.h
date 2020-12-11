@@ -21,8 +21,7 @@
 #include "AbstractContactListener.h"
 
 class CollisionListener;
-class GAMEENGINE_Physics Physics
-{
+class GAMEENGINE_Physics Physics {
 private:
 	Physics();
 	static Physics instance;
@@ -126,8 +125,15 @@ public:
 	/// </summary>
 	void executeExpirationQueue();
 
+	/// <summary>
+	/// Set's the contact listener.
+	/// </summary>
+	/// <param name="contactListener">The contact listener.</param>
 	void setContactListener(shared_ptr<AbstractContactListener> contactListener);
 
+	/// <summary>
+	/// Clear all the queues.
+	/// </summary>
 	void clearAllQueues();
 
 	/// <summary>
