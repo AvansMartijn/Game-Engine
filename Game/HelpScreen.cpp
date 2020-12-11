@@ -243,7 +243,7 @@ void HelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 
 	int heightOfScrolBlock = 0;
 
-	heightOfScrolBlock += _storyText->textLines.size() * 25;
+	heightOfScrolBlock += (int)_storyText->textLines.size() * 25;
 	heightOfScrolBlock += 1500;
 
 	int currentY = _storyTitle->rect.y;

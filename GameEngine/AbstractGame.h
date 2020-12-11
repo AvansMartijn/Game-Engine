@@ -43,7 +43,7 @@ private:
 	Uint32 _frameCount;
 
 	// the value you want
-	int _framesPerSecond;
+	float _framesPerSecond;
 protected:
 	/// <summary>
 	/// The index of the visible screen.

@@ -7,7 +7,7 @@ void BehaviourMove::execute() {
 	if (_self->body.b2body->GetLinearVelocity().y == 0) {
 
 		if (!isPlayerInAttackRange()) {
-			extension->move(extension->isLookingToLeft ? -2 : 2, 0);
+			extension->move(extension->isLookingToLeft ? -2.0f : 2.0f, 0.0f);
 
 			this->executeNextBehaviour(true);
 		}

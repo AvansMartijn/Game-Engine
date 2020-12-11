@@ -36,6 +36,6 @@ public:
 	/// <param name="spriteRect">The rect which the sprite is in.</param>
 	/// <param name="angle">The angle which we want to draw.</param>
 	/// <param name="flipLeft">If we should flip the texture.</param>
-	void renderSprite(SDL_Renderer* renderer, Rect rect, Rect spriteRect, int angle, bool flipLeft);
+	void renderSprite(SDL_Renderer* renderer, Rect rect, Rect spriteRect, float angle, bool flipLeft);
 };
 

@@ -112,7 +112,7 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 
 			SDL_Rect sdlRect;
 			sdlRect.x = rect.x;
-			sdlRect.y = rect.y + (h * i);
+			sdlRect.y = rect.y + (h * (int)i);
 			sdlRect.w = surface->w;
 			sdlRect.h = surface->h;
 
@@ -204,7 +204,7 @@ void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* f
 
 		SDL_Rect sdlRect;
 		sdlRect.x = rect.x;
-		sdlRect.y = rect.y + (h * i);
+		sdlRect.y = rect.y + (h * (int)i);
 		sdlRect.w = surface->w;
 		sdlRect.h = surface->h;
 

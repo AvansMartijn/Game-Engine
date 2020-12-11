@@ -76,11 +76,11 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 		6, 2, 1, 1, 0.3f, false, false);
 
 	shared_ptr<GameObject> portal1 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Portal1",
-		-50, -50, 3, 0.7, "portalSensor");
+		-50, -50, 3, 0.7f, "portalSensor");
 	Scene::getInstance().portalA = portal1;
 
 	shared_ptr<GameObject> portal2 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Portal2",
-		-50, -50, 3, 0.7, "portalSensor");
+		-50, -50, 3, 0.7f, "portalSensor");
 	Scene::getInstance().portalB = portal2;
 
 	shared_ptr<GameObject> exit = createNonRigidBody(gameEngine, {}, "Gate_Cropped",

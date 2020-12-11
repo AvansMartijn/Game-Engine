@@ -28,7 +28,7 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 
 }
 
-void SDLTexture::renderSprite(SDL_Renderer* renderer, Rect rect, Rect spriteRect, int angle, bool flipLeft) {
+void SDLTexture::renderSprite(SDL_Renderer* renderer, Rect rect, Rect spriteRect, float angle, bool flipLeft) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;

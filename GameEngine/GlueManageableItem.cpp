@@ -30,8 +30,8 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			playerPos.y = Scene::getInstance().metersToPixels(playerPos.y);
 			b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
 
-			x = x + diffs.x;
-			y = y + diffs.y;
+			x += (int)diffs.x;
+			y += (int)diffs.y;
 
 			double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 			double angleDeg = angleRad * (180.0f / M_PI);
@@ -47,7 +47,7 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			Physics::getInstance().expirationQueue.push_back(gameObject->id);
 
 			int force = 30;
-			b2Vec2 vect = b2Vec2(sin(angleDeg * (b2_pi / 180)) * force, cos(angleDeg * (b2_pi / 180)) * force);
+			b2Vec2 vect = b2Vec2((float)sin(angleDeg * (b2_pi / 180)) * force, (float)cos(angleDeg * (b2_pi / 180)) * force);
 			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
 			if (_ammo > 0)
 				_ammo -= 1;

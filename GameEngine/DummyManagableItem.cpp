@@ -14,8 +14,8 @@ void DummyManagableItem::onLeftClick(int x, int y) {
 	playerPos.y = Scene::getInstance().metersToPixels(playerPos.y);
 	b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
 
-	x = x + diffs.x;
-	y = y + diffs.y;
+	x += (int)diffs.x;
+	y += (int)diffs.y;
 
 	double angleRad = atan2(x - playerPos.x, y - playerPos.y);
 	double angleDeg = angleRad * (180.0f / 3.141592653589793238463f);

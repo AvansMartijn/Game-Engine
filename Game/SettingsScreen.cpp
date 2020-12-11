@@ -101,7 +101,7 @@ void SettingsScreen::onInit() {
 	ButtonUiElement gameSpeedDown = ButtonUiElement("Slow Down", { 650, 160, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	gameSpeedDown.registerGame(_game);
 	gameSpeedDown.onClick = [this](AbstractGame* game) {
-		int val = Scene::getInstance().tickRate;
+		int val = (int)Scene::getInstance().tickRate;
 		if (val - 10 > 0) {
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate - 10;
 			_tickSpeed->text = "Game speed: " + to_string(Scene::getInstance().tickRate);
@@ -112,7 +112,7 @@ void SettingsScreen::onInit() {
 	ButtonUiElement gameSpeedUp = ButtonUiElement("Speed Up", { 650, 210, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	gameSpeedUp.registerGame(_game);
 	gameSpeedUp.onClick = [this](AbstractGame* game) {
-		int val = Scene::getInstance().tickRate;
+		int val = (int)Scene::getInstance().tickRate;
 		if (val + 10 <= 250) {
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate + 10;
 			_tickSpeed->text = "Game speed: " + to_string(Scene::getInstance().tickRate);

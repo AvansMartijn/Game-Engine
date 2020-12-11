@@ -88,12 +88,12 @@ void CreditsScreen::onTick() {
 	else
 		_fps->text = "  ";
 
-	long timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _begin).count();
+	auto timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _begin).count();
 
 	if (timePassed >= 500) {
 		_begin = std::chrono::steady_clock::now();
 		_mole->text = "O";
-		_mole = _wackAMoleButtons[Utilities::getInstance().getRandomInt(0, _wackAMoleButtons.size())];
+		_mole = _wackAMoleButtons[Utilities::getInstance().getRandomInt(0, (int)_wackAMoleButtons.size())];
 		_mole->text = "X";
 	}
 

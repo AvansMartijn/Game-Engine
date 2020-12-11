@@ -37,13 +37,13 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	if (player && !Scene::getInstance().isLocked) {
 		// calc camera offset
 		b2Vec2 playerPos = player->body.b2body->GetPosition();
-		playerPos.x = metersToPixels(playerPos.x);
-		playerPos.y = metersToPixels(playerPos.y);
+		playerPos.x = (float)metersToPixels(playerPos.x);
+		playerPos.y = (float)metersToPixels(playerPos.y);
 		b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
 
 		//apply camera offset
-		rect.x -= diffs.x;
-		rect.y -= diffs.y;
+		rect.x -= (int)diffs.x;
+		rect.y -= (int)diffs.y;
 	}
 
 

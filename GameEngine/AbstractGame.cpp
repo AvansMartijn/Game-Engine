@@ -141,7 +141,7 @@ void AbstractGame::calculateFps() {
 	_framesPerSecond /= count;
 
 	_framesPerSecond = 1000.f / _framesPerSecond;
-	currentFPS = _framesPerSecond;
+	currentFPS = (int)_framesPerSecond;
 }
 
 int AbstractGame::getPreviousScreen() {
@@ -162,7 +162,7 @@ void AbstractGame::switchScreen(int screenIndex, vector<std::string> args) {
 		_previousScreens.push(_activeScreen);
 
 	if (index + 1 <= screens.size()) {
-		_activeScreen = index;
+		_activeScreen = (int)index;
 		screens.at(_activeScreen)->onScreenShowed(args);
 	}
 

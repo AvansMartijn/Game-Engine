@@ -41,7 +41,7 @@ void Scene::addEntity(shared_ptr<GameObject> obj) {
 }
 
 int Scene::getNextAvailableId() {
-    int nextId = _gameObjects.size() + 1;
+    int nextId = (int)_gameObjects.size() + 1;
     if (!_gameObjects.empty())
         nextId = _gameObjects.rbegin()->first + 1;
 
@@ -57,7 +57,7 @@ void Scene::removeEntity(int index) {
 }
 
 void Scene::addItem(std::string name, shared_ptr<AbstractManageableItem> item) {
-    int id = _items.size() + 1;
+    int id = (int)_items.size() + 1;
     
     _items.insert(std::pair<std::string, shared_ptr<AbstractManageableItem>>(name, item));
     _keyRegistry.insert(std::pair<int, std::string>(id, name));

@@ -8,7 +8,7 @@ Utilities::Utilities() {}
 bool Utilities::isEnoughTimeElapsed(int timeNeeded, std::chrono::steady_clock::time_point& timePoint) {
 	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
-	long diff = std::chrono::duration_cast<std::chrono::milliseconds>(end - timePoint).count();
+	auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end - timePoint).count();
 
 	if (diff >= timeNeeded)
 		timePoint = std::chrono::steady_clock::now();
@@ -21,7 +21,7 @@ long Utilities::convertTimeToLong(std::chrono::steady_clock::time_point time) {
 	auto epoch = now_ms.time_since_epoch();
 	auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
 
-	return value.count();
+	return (long)value.count();
 }
 
 void Utilities::trim(std::string& str) {

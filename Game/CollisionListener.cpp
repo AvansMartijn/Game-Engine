@@ -270,7 +270,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 				}
 			}
 			//rotatequeue
-			float angleRadians = angle * (M_PI / 180);
+			float angleRadians = angle * ((float)M_PI / 180.0f);
 			//teleportObj.obj->body.b2body->SetTransform(teleportObj.obj->body.b2body->GetPosition(), angleRadians);*/
 			RotateObj rotateObj{ teleportObj.obj, angleRadians };
 			Physics::getInstance().rotateQueue.push_back(rotateObj);

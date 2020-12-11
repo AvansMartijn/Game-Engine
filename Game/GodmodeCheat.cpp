@@ -9,4 +9,6 @@ bool GodmodeCheat::Execute() {
 
 		return true;
 	}
+
+	return false;
 }

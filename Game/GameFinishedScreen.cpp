@@ -61,7 +61,7 @@ void GameFinishedScreen::onInit() {
 					SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
 
 					if (saveLevel.name == currentLevelData.levelName) {
-						foundIndex = levelIndex;
+						foundIndex = (int)levelIndex;
 
 						break;
 					}
@@ -95,7 +95,7 @@ void GameFinishedScreen::onInit() {
 				SaveLevel saveLevel = GameSettings::getInstance().saveGame.levels[levelIndex];
 
 				if (saveLevel.name == currentLevelData.levelName) {
-					foundIndex = levelIndex;
+					foundIndex = (int)levelIndex;
 					break;
 				}
 			}

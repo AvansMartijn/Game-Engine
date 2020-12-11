@@ -77,11 +77,11 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 }
 
 void GameScreen::onTick() {
-	long timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (Scene::getInstance().getPlayer()->getExtension(typeid(HealthExtension))) {
 		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
-		float healthValue = gameObject->getExtension<HealthExtension>()->getHealth();
+		float healthValue = (float)gameObject->getExtension<HealthExtension>()->getHealth();
 
 		if (healthValue <= 0) {
 			_game->switchScreen(Screens::GameOver);
@@ -103,7 +103,7 @@ void GameScreen::onTick() {
 	}
 
 	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex(gameObjectIndex);
+		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex((int)gameObjectIndex);
 
 		if (gameObject != nullptr) {
 			if (gameObject->hasExtension(typeid(AiExtension)))
@@ -113,7 +113,7 @@ void GameScreen::onTick() {
 				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
 
 				if (healthExtension->getHealth() <= 0) {
-					Scene::getInstance().removeEntity(gameObjectIndex);
+					Scene::getInstance().removeEntity((int)gameObjectIndex);
 					Physics::getInstance().deleteQueue.push_back(gameObject->id);
 				}
 			}

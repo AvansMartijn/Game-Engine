@@ -101,7 +101,7 @@ void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	else if (e.y < 0) // scroll down
 		_offset = -20;
 
-	int heightOfScrolBlock = _scrollableText->textLines.size() * 25;
+	int heightOfScrolBlock = (int)_scrollableText->textLines.size() * 25;
 	int currentY = _scrollableText->rect.y;
 
 	if ((currentY += _offset) < _anchor) {

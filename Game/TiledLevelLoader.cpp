@@ -99,10 +99,10 @@ TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, int gid) con
 			TiledTileSet correctTileSet = level.tileSets[correctTileSetIndex];
 
 			if (tileSet.firstGid > correctTileSet.firstGid && tileSet.firstGid <= gid)
-				correctTileSetIndex = tileSetIndex;
+				correctTileSetIndex = (int)tileSetIndex;
 		}
 		else if (tileSet.firstGid <= gid)
-			correctTileSetIndex = tileSetIndex;
+			correctTileSetIndex = (int)tileSetIndex;
 	}
 
 	if (correctTileSetIndex == -1)
@@ -117,7 +117,7 @@ TiledTile TiledLevelLoader::findTileForGid(TiledTileSet& tileSet, int gid) const
 		TiledTile tile = tileSet.tiles[tileIndex];
 
 		if (tile.id == gid - tileSet.firstGid) {
-			correctTileIndex = tileIndex;
+			correctTileIndex = (int)tileIndex;
 
 			break;
 		}

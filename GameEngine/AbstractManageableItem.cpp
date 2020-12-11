@@ -74,8 +74,8 @@ void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 		Scene::getInstance().metersToPixels(_height)
 	};
 
-	rect.x -= diffs.x;
-	rect.y -= diffs.y;
+	rect.x -= (int)diffs.x;
+	rect.y -= (int)diffs.y;
 
 	if(shouldRender)
 		window->renderTexture(_textureKey, rect, 0.0F, isLookingToLeft);

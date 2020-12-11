@@ -53,5 +53,5 @@ Quotes::Quotes() {
 }
 
 std::string Quotes::getQuote() {
-	return _quotes[Utilities::getInstance().getRandomInt(0, _quotes.size())];
+	return _quotes[Utilities::getInstance().getRandomInt(0, (int)_quotes.size())];
 }
