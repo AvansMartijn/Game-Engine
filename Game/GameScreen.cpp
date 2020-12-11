@@ -148,6 +148,9 @@ void GameScreen::onTick() {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
 			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
+
+			if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+				Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
 			  
 			for (std::string cheat : Scene::getInstance().activatedCheats) {
 				if(cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
@@ -202,9 +205,6 @@ void GameScreen::onTick() {
 		if (gameObject->hasExtension(typeid(AiExtension)))
 			dynamic_pointer_cast<AiExtension>(gameObject->getExtension(typeid(AiExtension)))->execute();
 	}
-
-	if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-		Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
 }
 
 void GameScreen::handlePlayerControls() {
