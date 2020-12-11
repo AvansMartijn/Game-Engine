@@ -120,6 +120,12 @@ LevelData GameSettings::getNextLevel() {
 }
 
 int GameSettings::getIndexByLevelName(std::string name) {
-	std::pair<int, LevelData> levelPair = *std::find_if(_storyLevels.begin(), _storyLevels.end(), [name](std::pair<int, LevelData> level ) { return level.second.levelName == name; });
-	return levelPair.first;
+
+	int kut = 1;
+	auto levelPair = std::find_if(_storyLevels.begin(), _storyLevels.end(), [name](std::pair<int, LevelData> level ) { return level.second.levelName == name; });
+
+	if (levelPair != _storyLevels.end())
+		return (*levelPair).first;
+	else
+		return -1;
 }
