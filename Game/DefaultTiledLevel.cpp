@@ -68,7 +68,7 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 
 void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
 	if (tiledGameObject.type == "Player") {
-		Scene::getInstance().setPlayer(createPlayer(gameEngine, extensions, "Waluigi2", x, y, 0.7f, 1.8f));
+		Scene::getInstance().setPlayer(createPlayer(gameEngine, extensions, "Waluigi", x, y, 0.7f, 1.8f));
 
 		PlayerAnimationHandler animationHandler;
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));

@@ -19,7 +19,7 @@ public:
 	shared_ptr<AbstractAnimationHandler> getAnimationHandler();
 	void animate();
 	Rect getCurrentSprite();
-	bool shouldFlipRight();
+	bool shouldFlipLeft();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new AnimationExtension(); }
 };

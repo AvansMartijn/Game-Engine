@@ -7,7 +7,7 @@ void BehaviourMove::execute() {
 	if (_self->body.b2body->GetLinearVelocity().y == 0) {
 
 		if (!isPlayerInAttackRange()) {
-			extension->move(extension->isLookingToRight ? 2 : -2, 0);
+			extension->move(extension->isLookingToLeft ? -2 : 2, 0);
 
 			this->executeNextBehaviour(true);
 		}
@@ -34,7 +34,7 @@ bool BehaviourMove::isPlayerInAttackRange() {
 	if (_self->hasExtension(typeid(MoveExtension))) {
 		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 
-		if (!moveExtension->isLookingToRight) {
+		if (moveExtension->isLookingToLeft) {
 			fovStartX = subjectX - lookX;
 			fovEndX = subjectX + 0.5f;
 		}

@@ -46,14 +46,14 @@ void PlayerAnimationHandler::registerAnimations() {
 
 	// Jumping
 	frames.clear();
-	frames.push_back(Rect{ 2058, 654, 385, 519 });
+	frames.push_back(Rect{ 67, 198, 40, 47 });
 	_animations.insert(make_pair(KEY_JUMPING, frames));
 }
 
 void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 	if (gameObject->hasExtension(typeid(MoveExtension))) {
 		shared_ptr<MoveExtension> moveExtension = gameObject->getExtension<MoveExtension>();
-		shouldFlipRight = moveExtension->isLookingToRight;
+		shouldFlipLeft = moveExtension->isLookingToLeft;
 
 		std::string movementType = getKeyFromMovementType(moveExtension->currentMovementType);
 		if (movementType != currentAnimation) {

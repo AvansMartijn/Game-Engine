@@ -27,6 +27,6 @@ Rect AnimationExtension::getCurrentSprite() {
 	return _animationHandler->sprite;
 }
 
-bool AnimationExtension::shouldFlipRight() {
-	return _animationHandler->shouldFlipRight;
+bool AnimationExtension::shouldFlipLeft() {
+	return _animationHandler->shouldFlipLeft;
 }

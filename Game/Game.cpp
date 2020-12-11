@@ -6,12 +6,9 @@ Game::Game(const char* title, int width, int height) : AbstractGame(title, width
 Game::~Game() {}
 
 void Game::onInit() {
-
 	// Textures
 	registerTexture("Waluigi", "res/gfx/Assets/Entity/Player/Waluigi.png");
-	registerTexture("Goomba", "res/gfx/Assets/Entity/Goomba/Goomba.png");
-	registerTexture("Waluigi2", "res/gfx/Assets/Entity/Player/Waluigi2.png");
-
+	registerTexture("Goomba", "res/gfx/Assets/Entity/Goomba/Goomba.png", true);
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
 	registerTexture("Portal1", "res/gfx/Assets/Enviroment/Portal1.png");

@@ -54,7 +54,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 		if (animation->getAnimationHandler() != nullptr) {
 			Rect sprite = animation->getCurrentSprite();
 
-			window->renderSprite(texture, rect, sprite, degrees, animation->shouldFlipRight());
+			window->renderSprite(texture, rect, sprite, degrees, animation->shouldFlipLeft());
 		}
 	}
 	else {

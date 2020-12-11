@@ -18,7 +18,7 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 	sdlRect.h = rect.h;
 	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
 	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
-	if (!flipLeft)
+	if ((!isReversed && !flipLeft) || (isReversed && flipLeft))
 		flip = SDL_FLIP_NONE;
 
 	if(alpha > 0)
@@ -36,7 +36,7 @@ void SDLTexture::renderSprite(SDL_Renderer* renderer, Rect rect, Rect spriteRect
 	sdlRect.h = rect.h;
 	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
 	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
-	if (!flipLeft)
+	if ((!isReversed && !flipLeft) || (isReversed && flipLeft))
 		flip = SDL_FLIP_NONE;
 
 	SDL_Rect sdlSpriteRect;

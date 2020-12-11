@@ -5,6 +5,7 @@
 AbstractManageableItem::AbstractManageableItem() {
 	_width = 0.8f;
 	_height = 0.4f;
+	shouldRender = true;
 }
 
 AbstractManageableItem::~AbstractManageableItem() {}
@@ -55,12 +56,12 @@ void AbstractManageableItem::setOwner(shared_ptr<GameObject> owner) {
 }
 
 void AbstractManageableItem::render(const unique_ptr<Window>& window) {
-	bool isLookingRight = _owner->hasExtension(typeid(MoveExtension)) ? dynamic_pointer_cast<MoveExtension>(_owner->getExtension(typeid(MoveExtension)))->isLookingToRight : false;
+	bool isLookingToLeft = _owner->hasExtension(typeid(MoveExtension)) ? _owner->getExtension<MoveExtension>()->isLookingToLeft : false;
 
 	b2Vec2 position = _owner->body.b2body->GetPosition();
 
 	float x = position.x;
-	if (!isLookingRight)
+	if (isLookingToLeft)
 		x -= (_width + (_width / 3));
 	else
 		x += _width / 3;
@@ -79,7 +80,7 @@ void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 	rect.x -= diffs.x;
 	rect.y -= diffs.y;
 
-
-	window->renderTexture(_textureKey, rect, 0.0F, isLookingRight);
+	if(shouldRender)
+		window->renderTexture(_textureKey, rect, 0.0F, isLookingToLeft);
 }
 

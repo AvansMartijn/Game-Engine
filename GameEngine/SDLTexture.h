@@ -12,6 +12,8 @@
 class SDLTexture
 {
 public:
+	bool isReversed;
+
 	SDLTexture(std::string filePath, SDL_Renderer* renderer);
 	~SDLTexture();
 

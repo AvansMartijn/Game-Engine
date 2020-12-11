@@ -28,7 +28,7 @@ public:
 	const std::string KEY_AFK = "AFK";
 
 	Rect sprite;
-	bool shouldFlipRight;
+	bool shouldFlipLeft;
 	virtual	void registerAnimations() = 0;
 	virtual void animate(std::shared_ptr<GameObject> gameObject) = 0;
 	

@@ -23,7 +23,7 @@ public:
 	int rightArmCounter;
 
 	MovementType currentMovementType;
-	bool isLookingToRight;
+	bool isLookingToLeft;
 
 	/// <summary>
 	/// Checks if the player can jump.

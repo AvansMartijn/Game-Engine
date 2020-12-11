@@ -8,7 +8,7 @@ BehaviourRotate::BehaviourRotate(shared_ptr<GameObject> self, int waitTime) : Ab
 void BehaviourRotate::execute() {
 	if (isEnoughTimeElapsed(waitTime)) {
 		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
-		moveExtension->isLookingToRight = !moveExtension->isLookingToRight;
+		moveExtension->isLookingToLeft = !moveExtension->isLookingToLeft;
 
 		this->executeNextBehaviour(true);
 	}

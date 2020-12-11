@@ -58,7 +58,8 @@ public:
 	/// </summary>
 	/// <param name="textureKey">The texture key./param>
 	/// <param name="texturePath">The path to the texture.</param>
-	void registerTexture(std::string textureKey, std::string texturePath);
+	/// <param name="isReversed">If the texture should be reversed.</param>
+	void registerTexture(std::string textureKey, std::string texturePath, bool isReversed = false);
 
 	/// <summary>
 	/// Adds all textures within a directory to the registry.
@@ -97,9 +98,9 @@ public:
 	/// <param name="textureKey">The texture key.</param>
 	/// <param name="rect">The rectangle.</param>
 	/// <param name="angle">The angle.</param>
-	/// <param name="flipRight">If we need to flip right.</param>
+	/// <param name="flipRight">If we need to flip left.</param>
 	/// <param name="alpha">The alpha of the texture.</param>
-	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipRight = true, int alpha = 0);
+	void renderTexture(std::string textureKey, Rect rect, float angle = 0, bool flipLeft = true, int alpha = 0);
 	
 	/// <summary>
 	/// Renders a sprite on the screen
@@ -108,8 +109,8 @@ public:
 	/// <param name="rect">The render rect.</param>
 	/// <param name="sprite">The sprite rect.</param>
 	/// <param name="angle">The angle.</param>
-	/// <param name="flipRight">If we need to flip right.</param>
-	void renderSprite(std::string textureKey, Rect rect, Rect sprite, float angle = 0, bool flipRight = false);
+	/// <param name="flipRight">If we need to flip left.</param>
+	void renderSprite(std::string textureKey, Rect rect, Rect sprite, float angle = 0, bool flipLeft = false);
 
 	/// <summary>
 	/// Renders text on the screen.

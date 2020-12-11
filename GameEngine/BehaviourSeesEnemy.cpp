@@ -12,14 +12,14 @@ void BehaviourSeesEnemy::execute() {
 	float playerY = Physics::getInstance().getPosition(Scene::getInstance().getPlayer()).y;
 
 	float fovStartX = subjectX;
-	float fovEndX = subjectX + lookX;
 	float fovStartY = subjectY - lookY;
+	float fovEndX = subjectX + lookX;
 	float fovEndY = subjectY + lookY;
 
 	if (_self->hasExtension(typeid(MoveExtension))) {
 		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 
-		if (!moveExtension->isLookingToRight) {
+		if (moveExtension->isLookingToLeft) {
 			fovStartX = subjectX - lookX;
 			fovEndX = subjectX;
 		}

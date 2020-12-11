@@ -14,9 +14,9 @@ void MoveExtension::move(float movementX, float movementY) {
 	currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)
-		isLookingToRight = true;
+		isLookingToLeft = true;
 	else if (vel.x > 0)
-		isLookingToRight = false;
+		isLookingToLeft = false;
 
 	Physics::getInstance().setLinearVelocity(_subject, vel);
 	resetAfkTime();
@@ -30,9 +30,9 @@ void MoveExtension::moveX(float movementX) {
 		currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)
-		isLookingToRight = true;
+		isLookingToLeft = true;
 	else if (vel.x > 0)
-		isLookingToRight = false;
+		isLookingToLeft = false;
 
 	Physics::getInstance().setLinearVelocity(_subject, vel);
 	resetAfkTime();

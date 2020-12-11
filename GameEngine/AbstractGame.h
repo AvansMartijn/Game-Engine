@@ -59,7 +59,8 @@ public:
 	/// </summary>
 	/// <param name="textureKey">The texture registry key.</param>
 	/// <param name="texturePath">The path to the texture.</param>
-	void registerTexture(std::string textureKey, std::string texturePath);
+	/// <param name="isReversed">If the texture should be reversed.</param>
+	void registerTexture(std::string textureKey, std::string texturePath, bool isReversed = false);
 
 	/// <summary>
 	/// Registers a font in the registry.
