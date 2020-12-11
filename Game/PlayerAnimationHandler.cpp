@@ -69,21 +69,16 @@ void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
 
 			currentAnimation = movementType;
-			if (movementType == KEY_RUNNING) {
+			if (movementType == KEY_RUNNING)
 				_currentCooldown = 200;
-			}
-			else if (movementType == KEY_JUMPING) {
+			else if (movementType == KEY_JUMPING)
 				_currentCooldown = 0;
-			}
-			else if (movementType == KEY_IDLE) {
+			else if (movementType == KEY_IDLE)
 				_currentCooldown = 200;
-			} 
-			else if (movementType == KEY_AFK) {
+			else if (movementType == KEY_AFK)
 				_currentCooldown = 200;
-			}
-			else if (movementType == KEY_HURTING) {
+			else if (movementType == KEY_HURTING)
 				_currentCooldown = 200;
-			}
 		}
 		else if (Utilities::getInstance().isEnoughTimeElapsed(_currentCooldown, _begin)) {
 			_currentFrame++;

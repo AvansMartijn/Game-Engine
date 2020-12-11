@@ -11,7 +11,9 @@ void MoveExtension::move(float movementX, float movementY) {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	vel.x = movementX;
 	vel.y = movementY;
-	currentMovementType = MovementType::RUNNING;
+
+	if (currentMovementType != MovementType::JUMPING && currentMovementType != MovementType::HURTING)
+		currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)
 		isLookingToLeft = true;
@@ -26,7 +28,7 @@ void MoveExtension::moveX(float movementX) {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	vel.x = movementX;
 
-	if(currentMovementType != MovementType::JUMPING)
+	if(currentMovementType != MovementType::JUMPING && currentMovementType != MovementType::HURTING)
 		currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)

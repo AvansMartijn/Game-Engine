@@ -49,6 +49,12 @@ void EnemyAnimationHandler::registerAnimations() {
 	frames.push_back(Rect{ 830, 1926, 89, 71 });
 
 	_animations.insert(make_pair(KEY_ATTACKING, frames));
+
+	// Hurting
+	frames.clear();
+	frames.push_back(Rect{ 23, 1, 86, 76 });
+	frames.push_back(Rect{ 23, 578, 85, 75 });
+	_animations.insert(make_pair(KEY_HURTING, frames));
 }
 
 void EnemyAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
@@ -56,23 +62,21 @@ void EnemyAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 		shared_ptr<MoveExtension> moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipLeft = moveExtension->isLookingToLeft;
 
-		if (getKeyFromMovementType(moveExtension->currentMovementType) != currentAnimation) {
+		std::string movementType = getKeyFromMovementType(moveExtension->currentMovementType);
+		if (movementType != currentAnimation) {
 			_currentFrame = 0;
+			currentAnimation = movementType;
 
 			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
 
-			if (moveExtension->currentMovementType == MovementType::RUNNING) {
-				currentAnimation = KEY_RUNNING;
+			if (movementType == KEY_RUNNING)
 				_currentCooldown = 200;
-			}
-			else if (moveExtension->currentMovementType == MovementType::ATTACKING) {
-				currentAnimation = KEY_ATTACKING;
+			else if (movementType == KEY_ATTACKING)
 				_currentCooldown = 200;
-			}
-			else if (moveExtension->currentMovementType == MovementType::IDLE) {
-				currentAnimation = KEY_IDLE;
-				_currentCooldown = 500;
-			}
+			else if (movementType == KEY_IDLE)
+				_currentCooldown = 200;
+			else if (movementType == KEY_HURTING)
+				_currentCooldown = 200;
 		}
 		else if (Utilities::getInstance().isEnoughTimeElapsed(_currentCooldown, _begin)) {
 			_currentFrame++;
