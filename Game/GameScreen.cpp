@@ -143,7 +143,7 @@ void GameScreen::onTick() {
 	}
 
 	for (auto gameObject : Scene::getInstance().getGameObjects()) {
-		if (gameObject.second->hasExtension(typeid(AnimationExtension)))
+		if (gameObject.second->hasExtension(typeid(AnimationExtension)) && gameObject.second != nullptr)
 			gameObject.second->getExtension<AnimationExtension>()->animate();
 	}
 

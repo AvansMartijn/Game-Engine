@@ -28,7 +28,7 @@ void MoveExtension::moveX(float movementX) {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	vel.x = movementX;
 
-	if(currentMovementType != MovementType::JUMPING && currentMovementType != MovementType::HURTING)
+	if(currentMovementType != MovementType::JUMPING)
 		currentMovementType = MovementType::RUNNING;
 
 	if (vel.x < 0)
