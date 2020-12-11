@@ -1,6 +1,8 @@
 #pragma once
 #include "AbstractBehaviour.h"
 #include "Scene.h"
+#include "Physics.h"
+
 /// <summary>
 /// Sees enemy ai behavior
 /// </summary>

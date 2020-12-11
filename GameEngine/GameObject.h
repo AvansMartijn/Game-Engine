@@ -11,10 +11,10 @@
 #include <iostream>
 #include <string>
 #include "Window.h"
-#include <Box2D.h>
 #include "Body.h"
 #include "MoveExtension.h"
 #include <map>
+#include "AnimationExtension.h"
 
 using namespace std;
 class Window;
@@ -28,9 +28,7 @@ public:
 	Body body;
 	int id;
 
-	std::string currentState;
 	std::string texture;
-	//std::map<int, std::string> textures;
 
 	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
 	bool hasExtension(const std::type_info& type);

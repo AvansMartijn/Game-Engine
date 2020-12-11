@@ -97,11 +97,11 @@
     <Filter Include="Source Files\Physics">
       <UniqueIdentifier>{117969f0-c151-4fe4-a951-6a22b817d723}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Extensions">
-      <UniqueIdentifier>{850bd37f-cf36-4ce7-a15a-a7fa62e92c63}</UniqueIdentifier>
+    <Filter Include="Header Files\Animation">
+      <UniqueIdentifier>{325cb5d4-1fc6-4631-9eec-13f5c1b5b8e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Extensions">
-      <UniqueIdentifier>{887bb2c0-6b45-4e3c-8a64-9caf4337860b}</UniqueIdentifier>
+    <Filter Include="Source Files\Animation">
+      <UniqueIdentifier>{1a4c013a-51f2-462c-95ac-9a2ce34fabc3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,11 +228,11 @@
     <ClCompile Include="AllWeaponsCheat.cpp">
       <Filter>Source Files\Misc\Cheats\Commands</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyTextureExtension.cpp">
-      <Filter>Source Files\Extensions</Filter>
+    <ClCompile Include="EnemyAnimationHandler.cpp">
+      <Filter>Source Files\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerTextureExtension.cpp">
-      <Filter>Source Files\Extensions</Filter>
+    <ClCompile Include="PlayerAnimationHandler.cpp">
+      <Filter>Source Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,11 +404,11 @@
     <ClInclude Include="AllWeaponsCheat.h">
       <Filter>Header Files\Misc\Cheats\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyTextureExtension.h">
-      <Filter>Header Files\Extensions</Filter>
+    <ClInclude Include="EnemyAnimationHandler.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerTextureExtension.h">
-      <Filter>Header Files\Extensions</Filter>
+    <ClInclude Include="PlayerAnimationHandler.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

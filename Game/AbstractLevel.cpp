@@ -27,7 +27,23 @@ shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, ve
 	return gameObject;
 }
 
+shared_ptr<GameObject> AbstractLevel::createPlayer(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
+	extensions.push_back("AnimationExtension");
+	extensions.push_back("PlayerTextureExtension");
+
+	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
+	gameObject->texture = texture;
+	gameObject->id = Scene::getInstance().getNextAvailableId();
+
+	Physics::getInstance().addPlayer(gameObject, x, y, width, height);
+
+	Scene::getInstance().addGameObject(gameObject);
+
+	return gameObject;
+}
+
 shared_ptr<GameObject> AbstractLevel::createEnemy(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
+	extensions.push_back("AnimationExtension");
 	extensions.push_back("EnemyTextureExtension");
 
 	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);

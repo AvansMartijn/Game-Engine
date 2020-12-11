@@ -35,7 +35,7 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement loadCustomButton = ButtonUiElement("Load Custom Map", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadCustomButton.registerGame(_game);
-	// TODO: Load Game
+
 	loadCustomButton.onClick = [](AbstractGame* game) {
 		game->switchScreen(Screens::LoadCustomMap);
 	};

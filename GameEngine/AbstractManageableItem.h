@@ -24,6 +24,7 @@ public:
 	AbstractManageableItem();
 	~AbstractManageableItem();
 
+	bool shouldRender;
 	std::string getTextureKey();	
 	std::string getScreenName();
 	float getWidth();

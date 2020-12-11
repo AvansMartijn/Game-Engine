@@ -1,30 +1,62 @@
 #include "pch.h"
 #include "MoveExtension.h"
-
-const std::string MoveExtension::LOOK_RIGHT = "Look_Right";
-const std::string MoveExtension::RUN_RIGHT = "Running_Right";
-const std::string MoveExtension::JUMP_RIGHT = "Jump_Right";
-const std::string MoveExtension::FALL_RIGHT = "Fall_Right";
-const std::string MoveExtension::LOOK_LEFT = "Look_Left";
-const std::string MoveExtension::RUN_LEFT = "Running_Left";
-const std::string MoveExtension::JUMP_LEFT = "Jump_Left";
-const std::string MoveExtension::FALL_LEFT = "Fall_Left";
-const std::string MoveExtension::ATTACK_LEFT = "Attack_Left";
-const std::string MoveExtension::ATTACK_RIGHT = "Attack_Right";
+#include "Physics.h"
+#include "Utilities.h"
 
 MoveExtension::MoveExtension() {
 	type = "MoveExtension";
 }
 
 void MoveExtension::move(float movementX, float movementY) {
-	// TODO: NO Box2D
-	b2Vec2 vel = _subject->body.b2body->GetLinearVelocity();
+	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	vel.x = movementX;
 	vel.y = movementY;
 
-	currentMovementType = MovementTypes::RUNNING;
+	if (currentMovementType != MovementType::JUMPING && currentMovementType != MovementType::HURTING)
+		currentMovementType = MovementType::RUNNING;
 
-	_subject->body.b2body->SetLinearVelocity(vel);
+	if (vel.x < 0)
+		isLookingToLeft = true;
+	else if (vel.x > 0)
+		isLookingToLeft = false;
+
+	Physics::getInstance().setLinearVelocity(_subject, vel);
+	resetAfkTime();
+}
+
+void MoveExtension::moveX(float movementX) {
+	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	vel.x = movementX;
+
+	if(currentMovementType != MovementType::JUMPING && currentMovementType != MovementType::HURTING)
+		currentMovementType = MovementType::RUNNING;
+
+	if (vel.x < 0)
+		isLookingToLeft = true;
+	else if (vel.x > 0)
+		isLookingToLeft = false;
+
+	Physics::getInstance().setLinearVelocity(_subject, vel);
+	resetAfkTime();
+}
+
+void MoveExtension::moveY(float movementY) {
+	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	vel.y = movementY;
+	currentMovementType = MovementType::JUMPING;
+
+	Physics::getInstance().setLinearVelocity(_subject, vel);
+	resetAfkTime();
+}
+
+void MoveExtension::updateState() {
+	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	if (canJump() && vel.x == 0 && vel.y == 0 && currentMovementType != MovementType::HURTING) {
+		if (Utilities::getInstance().isEnoughTimeElapsed(3000, _afkTime))
+			currentMovementType = MovementType::AFK;
+		else if (currentMovementType != MovementType::AFK)
+			currentMovementType = MovementType::IDLE;
+	}
 }
 
 bool MoveExtension::canJump() {
@@ -40,4 +72,8 @@ int MoveExtension::getRightArmCounter() {
 
 void MoveExtension::reset() {
 	jumpCounter = 0;
+}
+
+void MoveExtension::resetAfkTime() {
+	_afkTime = std::chrono::steady_clock::now();
 }

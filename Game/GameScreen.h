@@ -29,9 +29,6 @@
 #include <HealthExtension.h>
 #include <Mouse.h>
 
-#include "EnemyTextureExtension.h"
-#include "PlayerTextureExtension.h"
-
 using namespace std;
 
 class GameScreen : public AbstractScreen
@@ -82,10 +79,6 @@ public:
 	/// Handles the player controls.
 	/// </summary>
 	void handlePlayerControls();
-	/// <summary>
-	/// Calculates which texture we have to use.
-	/// </summary>
-	void calculatePlayerTexture();
 	/// <summary>
 	/// Called when the user uses their keyboard.
 	/// </summary>

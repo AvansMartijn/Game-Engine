@@ -7,31 +7,23 @@
 #include "AbstractGameObjectExtension.h"
 #include "MovementType.h"
 #include "GameObject.h"
+#include <chrono>
 
 /// <summary>
 /// Movement capabilities
 /// </summary>
 class GAMEENGINE_MoveExtension MoveExtension : public AbstractGameObjectExtension
 {
+private:
+	std::chrono::steady_clock::time_point _afkTime;
 public:
-	static const std::string LOOK_RIGHT;
-	static const std::string RUN_RIGHT;
-	static const std::string JUMP_RIGHT;
-	static const std::string FALL_RIGHT;
-	static const std::string ATTACK_RIGHT;
-	static const std::string LOOK_LEFT;
-	static const std::string RUN_LEFT;
-	static const std::string JUMP_LEFT;
-	static const std::string FALL_LEFT;
-	static const std::string ATTACK_LEFT;
-
 	MoveExtension();
 	int jumpCounter;
 	int leftArmCounter;
 	int rightArmCounter;
 
-	MovementTypes currentMovementType;
-	bool isLookingToRight;
+	MovementType currentMovementType;
+	bool isLookingToLeft;
 
 	/// <summary>
 	/// Checks if the player can jump.
@@ -51,8 +43,23 @@ public:
 	/// <param name="movementY">The y movement.</param>
 	void move(float movementX, float movementY);
 
+	/// <summary>
+	/// Move on the x-axis.
+	/// </summary>
+	/// <param name="movementX">The movement on the x-axis.</param>
+	void moveX(float movementX);
+
+	/// <summary>
+	/// Move on the y-axis.
+	/// </summary>
+	/// <param name="movementY">The movement on the y-axis.</param>
+	void moveY(float movementY);
+
+	void updateState();
+
 	int getLeftArmCounter();
 	int getRightArmCounter();
+	void resetAfkTime();
 
 	static AbstractGameObjectExtension* __stdcall create() { return new MoveExtension(); }
 };

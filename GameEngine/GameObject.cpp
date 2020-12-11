@@ -3,16 +3,13 @@
 #include "Physics.h"
 
 GameObject::GameObject() {
-	currentState = "";
 }
 
-void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension)
-{
+void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension) {
 	_gameObjectExtensions.push_back(extension);
 }
 
-bool GameObject::hasExtension(const std::type_info& type)
-{
+bool GameObject::hasExtension(const std::type_info& type) {
 	for (shared_ptr<AbstractGameObjectExtension> const& extension : _gameObjectExtensions)
 	{
 		string givenName = type.name();
@@ -51,8 +48,19 @@ void GameObject::render(const unique_ptr<Window>& window) {
 		rect.y -= diffs.y;
 	}
 
-	//render
-	window->renderTexture(texture, rect, degrees, false, currentState);
+
+	if (hasExtension(typeid(AnimationExtension))) {
+		shared_ptr<AnimationExtension> animation = getExtension<AnimationExtension>();
+		if (animation->getAnimationHandler() != nullptr) {
+			Rect sprite = animation->getCurrentSprite();
+
+			window->renderSprite(texture, rect, sprite, degrees, animation->shouldFlipLeft());
+		}
+	}
+	else {
+		//render
+		window->renderTexture(texture, rect, degrees, false);
+	}
 }
 
 

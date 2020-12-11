@@ -1,8 +1,10 @@
 #pragma once
-enum class MovementTypes {
+enum class MovementType {
 	IDLE,
 	RUNNING,
 	JUMPING,
 	FALLING,
-	ATTACKING
+	ATTACKING,
+	AFK,
+	HURTING
 };

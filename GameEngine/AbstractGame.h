@@ -59,15 +59,8 @@ public:
 	/// </summary>
 	/// <param name="textureKey">The texture registry key.</param>
 	/// <param name="texturePath">The path to the texture.</param>
-	void registerTexture(std::string textureKey, std::string texturePath);
-	
-	/// <summary>
-	/// Registers a texture in the registry.
-	/// </summary>
-	/// <param name="textureKey">The texture registry key.</param>
-	/// <param name="texturePath">The path to the texture.</param>
-	/// <param name="sprites">The sprite positions.</param>
-	void registerTexture(std::string textureKey, std::string texturePath, std::map<std::string, Rect> sprites);
+	/// <param name="isReversed">If the texture should be reversed.</param>
+	void registerTexture(std::string textureKey, std::string texturePath, bool isReversed = false);
 
 	/// <summary>
 	/// Registers a font in the registry.

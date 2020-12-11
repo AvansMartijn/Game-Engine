@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "HealthExtension.h"
-
+#include "GameObject.h"
 
 HealthExtension::HealthExtension()
 {
@@ -18,5 +18,8 @@ void HealthExtension::setHealth(int value) {
 }
 
 void HealthExtension::reduceHealth(int value) {
+	if (_subject->hasExtension(typeid(MoveExtension)))
+		_subject->getExtension<MoveExtension>()->currentMovementType = MovementType::HURTING;
+
 	_health -= value;
 }

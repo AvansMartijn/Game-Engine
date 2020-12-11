@@ -6,10 +6,10 @@ void BehaviourAttack::execute() {
 	shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 
 	if (healthExtension != nullptr) {
-		healthExtension->reduceHealth(1);
+		healthExtension->reduceHealth(5);
 
 		if (moveExtension != nullptr)
-			moveExtension->currentMovementType = MovementTypes::ATTACKING;
+			moveExtension->currentMovementType = MovementType::ATTACKING;
 
 		this->executeNextBehaviour(true);
 	}

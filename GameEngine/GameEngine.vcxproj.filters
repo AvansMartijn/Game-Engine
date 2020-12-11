@@ -103,6 +103,9 @@
     <Filter Include="Header Files\UiElements\Mouse">
       <UniqueIdentifier>{05409c78-e468-4e22-bb86-8410560f4efb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{d05e6f6f-9736-478e-af77-9fe4320383d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -312,6 +315,15 @@
     <ClInclude Include="Mouse.h">
       <Filter>Header Files\UiElements\Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractAnimationHandler.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationExtension.h">
+      <Filter>Header Files\GameObjects\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -496,6 +508,15 @@
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\UiElements\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationExtension.cpp">
+      <Filter>Source Files\GameObjects\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractAnimationHandler.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\Misc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

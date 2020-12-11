@@ -5,22 +5,21 @@ void BehaviourSeesEnemy::execute() {
 	float lookX = 10;
 	float lookY = 2;
 
-	// TODO: NO BOX2D
-	float subjectX = _self->body.b2body->GetPosition().x;
-	float subjectY = _self->body.b2body->GetPosition().y;
-
-	float playerX = Scene::getInstance().getPlayer()->body.b2body->GetPosition().x;
-	float playerY = Scene::getInstance().getPlayer()->body.b2body->GetPosition().y;
+	float subjectX = Physics::getInstance().getPosition(_self).x;
+	float subjectY = Physics::getInstance().getPosition(_self).y;
+	
+	float playerX = Physics::getInstance().getPosition(Scene::getInstance().getPlayer()).x;
+	float playerY = Physics::getInstance().getPosition(Scene::getInstance().getPlayer()).y;
 
 	float fovStartX = subjectX;
-	float fovEndX = subjectX + lookX;
 	float fovStartY = subjectY - lookY;
+	float fovEndX = subjectX + lookX;
 	float fovEndY = subjectY + lookY;
 
 	if (_self->hasExtension(typeid(MoveExtension))) {
 		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
 
-		if (!moveExtension->isLookingToRight) {
+		if (moveExtension->isLookingToLeft) {
 			fovStartX = subjectX - lookX;
 			fovEndX = subjectX;
 		}

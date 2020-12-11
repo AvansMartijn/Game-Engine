@@ -33,7 +33,7 @@ std::string LibCurl::PerformRequest(const std::string& url)
 	res = curl_easy_perform(curl.get());
 	if (res != CURLE_OK)
 	{
-		throw std::runtime_error("Failed to fetch: " + url);
+		//throw std::runtime_error("Failed to fetch: " + url);
 	}
 
 	fclose(fp);

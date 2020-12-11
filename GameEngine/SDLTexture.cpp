@@ -8,11 +8,9 @@ SDLTexture::SDLTexture(std::string filePath, SDL_Renderer* renderer) {
 		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
 }
 
-SDLTexture::~SDLTexture() {
-	// TODO: Destroy
-}
+SDLTexture::~SDLTexture() {}
 
-void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, std::string spriteKey, int alpha) {
+void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, int alpha) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -20,18 +18,32 @@ void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, b
 	sdlRect.h = rect.h;
 	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
 	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
-	if (!flipLeft)
+	if ((!isReversed && !flipLeft) || (isReversed && flipLeft))
 		flip = SDL_FLIP_NONE;
 
 	if(alpha > 0)
 		SDL_SetTextureAlphaMod(_texture, alpha);
 
-	if (spriteKey != "") {
-		SDL_Rect srcRect = { sprites[spriteKey].x, sprites[spriteKey].y, sprites[spriteKey].w, sprites[spriteKey].h };
+	SDL_RenderCopyEx(renderer, _texture, NULL, &sdlRect, (double)angle, NULL, flip);
 
-		SDL_RenderCopyEx(renderer, _texture, &srcRect, &sdlRect, (double)angle, NULL, flip);
-	}
-	else
-		SDL_RenderCopyEx(renderer, _texture, NULL, &sdlRect, (double)angle, NULL, flip);
+}
 
+void SDLTexture::renderSprite(SDL_Renderer* renderer, Rect rect, Rect spriteRect, int angle, bool flipLeft) {
+	SDL_Rect sdlRect;
+	sdlRect.x = rect.x;
+	sdlRect.y = rect.y;
+	sdlRect.w = rect.w;
+	sdlRect.h = rect.h;
+	SDL_Point centerPoint = { sdlRect.x + (sdlRect.w / 2), sdlRect.y + (sdlRect.h / 2) };
+	SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+	if ((!isReversed && !flipLeft) || (isReversed && flipLeft))
+		flip = SDL_FLIP_NONE;
+
+	SDL_Rect sdlSpriteRect;
+	sdlSpriteRect.x = spriteRect.x;
+	sdlSpriteRect.y = spriteRect.y;
+	sdlSpriteRect.w = spriteRect.w;
+	sdlSpriteRect.h = spriteRect.h;
+
+	SDL_RenderCopyEx(renderer, _texture, &sdlSpriteRect, &sdlRect, (double)angle, NULL, flip);
 }
