@@ -61,6 +61,12 @@ public:
 	/// <param name="y">The y-coordinates.</param>
 	void onRightClick(int x, int y);
 
+	/// <summary>
+	/// If the object has any items.
+	/// </summary>
+	/// <returns>If the object has any items</returns>
+	bool hasItems();
+
 	static AbstractGameObjectExtension* __stdcall create() { return new CanWieldExtension(); }
 };
 

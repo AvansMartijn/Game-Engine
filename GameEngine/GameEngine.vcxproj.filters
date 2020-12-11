@@ -73,9 +73,6 @@
     <Filter Include="Source Files\GameObjects\Extensions">
       <UniqueIdentifier>{44687b2b-0c8f-45aa-b7a7-ca01ed8c506e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameObjects\PhysicalObject">
-      <UniqueIdentifier>{43d252b2-480e-48f8-a184-c3bb5b307282}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameObjects\Extensions\CollisionResolution">
       <UniqueIdentifier>{07bde15e-2922-4073-a98f-d3d5766e8179}</UniqueIdentifier>
     </Filter>

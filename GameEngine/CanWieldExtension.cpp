@@ -44,3 +44,7 @@ void CanWieldExtension::onRightClick(int x, int y) {
 	if (item != nullptr)
 		getCurrentItem()->onRightClick(x, y);
 }
+
+bool CanWieldExtension::hasItems() {
+	return _items.size() > 0;
+}

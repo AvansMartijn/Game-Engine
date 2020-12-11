@@ -23,6 +23,13 @@ void PortalManagableItem::onRightClick(int x, int y) {
 
 void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y) {
 	if (_ammo > 0 || _ammo == -1) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+
+			moveExtension->resetAfkTime();
+			moveExtension->currentMovementType = MovementType::IDLE;
+		}
+
 		auto timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _lastUsed).count();
 		if (timePassed >= _cooldown) {
 			_lastUsed = std::chrono::steady_clock::now();
