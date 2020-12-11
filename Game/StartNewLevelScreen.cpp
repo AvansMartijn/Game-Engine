@@ -19,7 +19,7 @@ void StartNewLevelScreen::onInit() {
 	_storyTitle = make_shared<TextUiElement>(storyTitle);
 	_storyTitle->text = "Story";
 	_uiElements.push_back(_storyTitle);
-	_srollableElements.push_back(_storyTitle);
+	_scrollableElements.push_back(_storyTitle);
 
 
 	std::vector<std::string> lines;
@@ -38,64 +38,55 @@ void StartNewLevelScreen::onInit() {
 	TextUiElement storyText = TextUiElement(lines, "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true);
 	_storyText = make_shared<TextUiElement>(storyText);
 	_uiElements.push_back(_storyText);
-	_srollableElements.push_back(_storyText);
+	_scrollableElements.push_back(_storyText);
 	_anchor = _storyText->_rect.y;
-
 
 	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
 	shared_ptr<TextUiElement> pKeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);
 	pKeyBindingsTitle->text = "Basic keybindings";
 	_uiElements.push_back(pKeyBindingsTitle);
-	_srollableElements.push_back(pKeyBindingsTitle);
-
+	_scrollableElements.push_back(pKeyBindingsTitle);
 
 	TextUiElement movementText = TextUiElement("-", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> pMovementText = make_shared<TextUiElement>(movementText);
 	pMovementText->text = "Movement";
 	_uiElements.push_back(pMovementText);
-	_srollableElements.push_back(pMovementText);
+	_scrollableElements.push_back(pMovementText);
 
 	TextUiElement weaponsText = TextUiElement("-", "Portal", 20, { 250, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> pWeaponsText = make_shared<TextUiElement>(weaponsText);
 	pWeaponsText->text = "Weapon select";
 	_uiElements.push_back(pWeaponsText);
-	_srollableElements.push_back(pWeaponsText);
-
+	_scrollableElements.push_back(pWeaponsText);
 
 	TextUiElement mouseText = TextUiElement("-", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> pMouseText = make_shared<TextUiElement>(mouseText);
 	pMouseText->text = "Shoot";
 	_uiElements.push_back(pMouseText);
-	_srollableElements.push_back(pMouseText);
+	_scrollableElements.push_back(pMouseText);
 
 	TextUiElement jumpText = TextUiElement("-", "Portal", 20, { 350, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> pJumpText = make_shared<TextUiElement>(jumpText);
 	pJumpText->text = "Jump";
 	_uiElements.push_back(pJumpText);
-	_srollableElements.push_back(pJumpText);
-
+	_scrollableElements.push_back(pJumpText);
 
 	TextUiElement scrollText = TextUiElement("-", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
 	shared_ptr<TextUiElement> pScrollText = make_shared<TextUiElement>(scrollText);
 	pScrollText->text = "Zoom";
 	_uiElements.push_back(pScrollText);
-	_srollableElements.push_back(pScrollText);
-
-
+	_scrollableElements.push_back(pScrollText);
 
 	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 },0,false);
 	_keybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
 	_uiElements.push_back(_keybindingsImage);
 
-
 	//SCROLL END
-
 	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2)-100, 50, 200 });
 	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
 
 	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2)-100, 50, 200 });
 	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
-
 
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
@@ -116,7 +107,6 @@ void StartNewLevelScreen::onInit() {
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
 	_uiElements.push_back(_fps);
-
 }
 
 void StartNewLevelScreen::onTick() {
@@ -139,7 +129,6 @@ void StartNewLevelScreen::onScreenShowed(vector<std::string> args) {}
 void StartNewLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-
 	if (e.y > 0) // scroll up
 		_offset = 20;
 	else if (e.y < 0) // scroll down
@@ -154,7 +143,7 @@ void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	if ((currentY += _offset) < _anchor) {
 		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
 			
-			for (auto textElement : _srollableElements)
+			for (auto textElement : _scrollableElements)
 				textElement->_rect.y += _offset;
 
 			_keybindingsImage->_rect.y += _offset;

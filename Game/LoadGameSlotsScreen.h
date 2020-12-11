@@ -6,9 +6,7 @@
 #include "Screens.h"
 #include "ControllManager.h"
 
-
-class LoadGameSlotsScreen : public AbstractScreen
-{
+class LoadGameSlotsScreen : public AbstractScreen {
 private:
 	shared_ptr<ButtonUiElement> _slot1Button;
 	shared_ptr<ButtonUiElement> _slot2Button;
@@ -43,5 +41,9 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };

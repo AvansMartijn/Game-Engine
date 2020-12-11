@@ -7,8 +7,7 @@
 #include "Screens.h"
 #include "ControllManager.h"
 
-class HelpScreen : public AbstractScreen
-{
+class HelpScreen : public AbstractScreen {
 private:
 	shared_ptr<TextUiElement> _storyText;
 	shared_ptr<TextUiElement> _storyTitle;
@@ -43,5 +42,9 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };

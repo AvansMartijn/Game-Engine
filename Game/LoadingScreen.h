@@ -6,15 +6,12 @@
 #include "Screens.h"
 #include "ControllManager.h"
 
-class LoadingScreen: public AbstractScreen
-{
-
+class LoadingScreen: public AbstractScreen {
 private: 
 	std::vector<std::string> _arguments;
 	int _firstTickCounter;
 	shared_ptr<TextUiElement> _quoteText;
 	shared_ptr<TextUiElement> _fps;
-
 public:
 	using AbstractScreen::AbstractScreen;
 	LoadingScreen();
@@ -38,8 +35,15 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
-
-	virtual void onScreenShowed(vector<std::string> args = {});
+	/// <summary>
+	/// Called when the user switches to this screen.
+	/// </summary>
+	/// <param name="args">The arguments we want to pass to the next screen</param>
+	void onScreenShowed(vector<std::string> args = {});
 };
 

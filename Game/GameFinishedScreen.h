@@ -7,8 +7,7 @@
 #include "GameSettings.h"
 #include "ControllManager.h"
 
-class GameFinishedScreen : public AbstractScreen
-{
+class GameFinishedScreen : public AbstractScreen {
 private:
 	shared_ptr<TextUiElement> _bodyText;
 	shared_ptr<TextUiElement> _nameText;
@@ -42,6 +41,10 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };
 

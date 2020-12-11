@@ -75,7 +75,6 @@ public:
 	/// Resets the game.
 	/// </summary>
 	virtual void reset();
-
 	/// <summary>
 	/// Should show the FPS
 	/// </summary>

@@ -31,8 +31,7 @@
 
 using namespace std;
 
-class GameScreen : public AbstractScreen
-{
+class GameScreen : public AbstractScreen {
 private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
@@ -89,6 +88,10 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 	/// <summary>
 	/// Called when the user click their mouse.
@@ -104,6 +107,5 @@ public:
 	/// Resets the game.
 	/// </summary>
 	void reset();
-
 };
 

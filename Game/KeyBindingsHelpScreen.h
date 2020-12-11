@@ -6,9 +6,7 @@
 #include "Screens.h"
 #include "ControllManager.h"
 
-
-class KeyBindingsHelpScreen : public AbstractScreen
-{
+class KeyBindingsHelpScreen : public AbstractScreen {
 private:
 	std::string _currentAction;
 	bool _listingForInput = false;
@@ -59,6 +57,10 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
 	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };
 

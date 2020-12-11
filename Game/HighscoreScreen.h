@@ -3,10 +3,8 @@
 #include <TextUiElement.h>
 #include "ControllManager.h"
 
-class HighScoreScreen : public AbstractScreen
-{
+class HighScoreScreen : public AbstractScreen {
 private:
-
 	shared_ptr<TextUiElement> _scrollableText;
 
 	int _offset = 0;
@@ -38,6 +36,10 @@ public:
 	/// </summary>
 	/// <param name="e"></param>
 	virtual void handleMouseMotionInput(SDL_MouseMotionEvent e) override;
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
 };
 
