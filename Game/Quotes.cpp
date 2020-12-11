@@ -57,6 +57,7 @@ Quotes::Quotes() {
 	_quotes.push_back("\"stop_met_in_de_nacht_werken\" \n - Mike 2020");
 	_quotes.push_back("\"Wa mooi!\" \n - Mike 2020");
 	_quotes.push_back("\"Wa-elegy, 1 Hour Extended Edition\" \n - Mike 2020");
+	_quotes.push_back("\"Soms ben ik gewoon kaulo dom\" \n - Mike 2020");
 
 	//Bob
 	_quotes.push_back("\"Rot13 is zo tyfus simpel, dat tik je zo in elkaar\" \n - Bob 2020");
