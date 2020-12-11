@@ -8,9 +8,7 @@ SDLTexture::SDLTexture(std::string filePath, SDL_Renderer* renderer) {
 		std::cout << "failed to load texture. Error: " << SDL_GetError() << "\n";
 }
 
-SDLTexture::~SDLTexture() {
-	// TODO: Destroy
-}
+SDLTexture::~SDLTexture() {}
 
 void SDLTexture::renderTexture(SDL_Renderer* renderer, Rect rect, float angle, bool flipLeft, int alpha) {
 	SDL_Rect sdlRect;

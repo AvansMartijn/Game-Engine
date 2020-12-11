@@ -11,7 +11,6 @@
 #include <iostream>
 #include <string>
 #include "Window.h"
-#include <Box2D.h>
 #include "Body.h"
 #include "MoveExtension.h"
 #include <map>

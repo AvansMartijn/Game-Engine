@@ -135,6 +135,9 @@ void GameScreen::onTick() {
 
 	if (Scene::getInstance().getPlayer()) {
 		handlePlayerControls();
+
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->updateState();
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->animate();
 	}
 
@@ -198,7 +201,6 @@ void GameScreen::onTick() {
 }
 
 void GameScreen::handlePlayerControls() {
-	Vec2 vel = Physics::getInstance().getLinearVelocity(Scene::getInstance().getPlayer());
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 
 	SDL_Scancode walkLeft;
@@ -208,11 +210,8 @@ void GameScreen::handlePlayerControls() {
 		walkLeft = ControllManager::getInstance().walkLeftKey.userSDLKey;
 
 	if (keystate[walkLeft]) {
-		if (Scene::getInstance().getPlayerMoveExtension()->leftArmCounter <= 0) {
-			vel.x = -5;
-			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementType::RUNNING;
-			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = false;
-		}
+		if (Scene::getInstance().getPlayerMoveExtension()->leftArmCounter <= 0)
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(-5);
 	}
 
 	SDL_Scancode walkRight;
@@ -222,12 +221,8 @@ void GameScreen::handlePlayerControls() {
 		walkRight = ControllManager::getInstance().walkRightKey.userSDLKey;
 
 	if (keystate[walkRight]) {
-		if (Scene::getInstance().getPlayerMoveExtension()->rightArmCounter <= 0) {
-			vel.x = 5;
-
-			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementType::RUNNING;
-			Scene::getInstance().getPlayerMoveExtension()->isLookingToRight = true;
-		}
+		if (Scene::getInstance().getPlayerMoveExtension()->rightArmCounter <= 0)
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(5);
 	}
 
 	SDL_Scancode stop;
@@ -237,14 +232,7 @@ void GameScreen::handlePlayerControls() {
 		stop = ControllManager::getInstance().stopKey.userSDLKey;
 
 	if (keystate[stop])
-		vel.x = 0;
-
-	if (keystate[SDL_SCANCODE_F])
-		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50.0f : -50.0f;
-	if (keystate[SDL_SCANCODE_F]) {
-		vel.x = (Scene::getInstance().getPlayerMoveExtension()->isLookingToRight) ? 50 : -50;
-		SoundPlayer::getInstance().playSFX("Thruster_Sound");
-	}
+		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(0);
 
 	SDL_Scancode jump;
 	if (ControllManager::getInstance().jumpKey.isDefault)
@@ -254,12 +242,10 @@ void GameScreen::handlePlayerControls() {
 
 	if (keystate[jump]) {
 		if (Scene::getInstance().getPlayerMoveExtension()->canJump()) {
-			vel.y = -5;
-			Scene::getInstance().getPlayerMoveExtension()->currentMovementType = MovementType::JUMPING;
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveY(-5);
 			SoundPlayer::getInstance().playSFX("Player_Jump");
 		}
 	}
-	Physics::getInstance().setLinearVelocity(Scene::getInstance().getPlayer(), vel);
 }
 
 void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

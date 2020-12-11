@@ -40,6 +40,20 @@ public:
 	/// <param name="movementY">The y movement.</param>
 	void move(float movementX, float movementY);
 
+	/// <summary>
+	/// Move on the x-axis.
+	/// </summary>
+	/// <param name="movementX">The movement on the x-axis.</param>
+	void moveX(float movementX);
+
+	/// <summary>
+	/// Move on the y-axis.
+	/// </summary>
+	/// <param name="movementY">The movement on the y-axis.</param>
+	void moveY(float movementY);
+
+	void updateState();
+
 	int getLeftArmCounter();
 	int getRightArmCounter();
 

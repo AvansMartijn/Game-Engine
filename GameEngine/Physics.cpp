@@ -323,5 +323,9 @@ void Physics::setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& v
     gameObject->body.b2body->SetLinearVelocity({ vel.x, vel.y });
 }
 
+Vec2 Physics::getPosition(shared_ptr<GameObject> gameObject) {
+    auto position = gameObject->body.b2body->GetPosition();
+    return { position.x, position.y };
+}
 
 

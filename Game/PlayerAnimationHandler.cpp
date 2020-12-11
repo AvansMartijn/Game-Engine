@@ -11,6 +11,11 @@ void PlayerAnimationHandler::registerAnimations() {
 	// Idle
 	frames.push_back(Rect{ 253, 78, 318, 456 });
 	frames.push_back(Rect{ 1877, 72, 324, 462 });
+	frames.push_back(Rect{ 707, 1265, 248, 492 });
+	frames.push_back(Rect{ 47, 1275, 246, 482 });
+	frames.push_back(Rect{ 707, 1265, 248, 492 });
+	frames.push_back(Rect{ 1877, 72, 324, 462 });
+
 	_animations.insert(make_pair(KEY_IDLE, frames));
 
 	// Running
@@ -32,7 +37,6 @@ void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 
 		if (getKeyFromMovementType(moveExtension->currentMovementType) != currentAnimation) {
 			_currentFrame = 0;
-			// TODO: Switch animation
 			
 			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
 		
@@ -44,7 +48,7 @@ void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 				currentAnimation = KEY_JUMPING;
 				_currentCooldown = 0;
 			}
-			else if (moveExtension->currentMovementType == MovementType::IDLE || (moveExtension->currentMovementType == MovementType::RUNNING && velocity.x == 0)) {
+			else if (moveExtension->currentMovementType == MovementType::IDLE) {
 				currentAnimation = KEY_IDLE;
 				_currentCooldown = 1000;
 			}
