@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().addLevel(4, { "Level_2", LevelType::TILED });
 	GameSettings::getInstance().addLevel(5, { "Level_3", LevelType::TILED });
 	GameSettings::getInstance().addLevel(6, { "Level_4", LevelType::TILED });
+	GameSettings::getInstance().addLevel(7, { "Level_5", LevelType::TILED });
 
 	//Init Controlls
 	ControllManager::getInstance().initializeControlls();

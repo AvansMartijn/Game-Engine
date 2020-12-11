@@ -14,7 +14,7 @@ std::string AbstractManageableItem::getTextureKey() {
 	return _textureKey;
 }
 
-std::string AbstractManageableItem::getScreemName()
+std::string AbstractManageableItem::getScreenName()
 {
 	return _screenName;
 }

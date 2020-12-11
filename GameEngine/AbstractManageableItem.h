@@ -26,7 +26,7 @@ public:
 
 	bool shouldRender;
 	std::string getTextureKey();	
-	std::string getScreemName();
+	std::string getScreenName();
 	float getWidth();
 	float getHeight();
 	int getAmmo();

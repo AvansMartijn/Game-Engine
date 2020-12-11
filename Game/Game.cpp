@@ -66,7 +66,9 @@ void Game::onInit() {
 	registerMusicTrack("Background_Menu", "res/music/Main_Menu.mp3");
 	registerMusicTrack("Background_1", "res/music/Game_Background_1.mp3");
 	registerMusicTrack("Background_2", "res/music/Game_Background_2.mp3");
-	registerMusicTrack("Background_3", "res/music/Game_Background_2.mp3");
+	registerMusicTrack("Background_3", "res/music/Game_Background_3.mp3");
+	registerMusicTrack("Background_4", "res/music/Game_Background_4.mp3");
+	registerMusicTrack("Background_5", "res/music/Game_Background_5.mp3");
 	registerMusicTrack("Game_Over", "res/music/Game_Over.mp3");
 
 	//SFX

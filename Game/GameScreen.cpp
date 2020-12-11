@@ -29,6 +29,7 @@ void GameScreen::setupScreen() {
 
 void GameScreen::setupHUD() {
 	const Color bgColor = { 28, 28, 28, 1 };
+	const Color bgRed = { 255, 0, 0, 255 };
 	const Color fgColor = { 255, 255, 255 };
 	const Color hpColor = { 0, 255, 0 };
 	const string font = "Portal";
@@ -50,7 +51,7 @@ void GameScreen::setupHUD() {
 	_uiElements.push_back(_ammo);
 	_gameUiElements.push_back(_ammo);
 
-	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(158, 695, -150, 20, 0.8f, hpColor, bgColor));
+	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed));
 	_uiElements.push_back(_hpBar);
 	_gameUiElements.push_back(_hpBar);
 
@@ -60,8 +61,12 @@ void GameScreen::setupHUD() {
 }
 
 void GameScreen::setupGame() {
-	if (_levelLoader)
+	if (_levelLoader) {
 		_levelLoader->createLevel(_gameEngine, _name);
+
+		std::string number = _name.substr(_name.length() - 1, 1);
+		backgroundTrackKey = "Background_" + number;
+	}
 }
 
 void GameScreen::onScreenShowed(vector<std::string> args) {
@@ -142,46 +147,43 @@ void GameScreen::onTick() {
 			gameObject.second->getExtension<AnimationExtension>()->animate();
 	}
 
-	//shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->addItem();
-	//currentWeapon->getCooldown();
+	std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getWieldExtension()->getItems();
 
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getWieldExtension()->getCurrentItem();
 		if (currentWeapon != NULL) {
-			std::string result = "WEAPON: " + currentWeapon->getScreemName();
-			_weapon->text = result;
+			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
+
+			if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
+				Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
 			  
 			for (std::string cheat : Scene::getInstance().activatedCheats) {
-				if(cheat == "unlimitedammo" || currentWeapon->getScreemName() == "GLUE GUN")
+				if(cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
 					_ammo->text = "AMMO: INFINITE";
 			}
 
-			if (currentWeapon->getAmmo() == -1 || currentWeapon->getScreemName() != "GLUE GUN") {
-				auto currentTime = std::chrono::steady_clock::now();
-				long difference = convertTimeToLong(currentTime) - currentWeapon->getLastUsed();
-				if (difference == 0) {
-					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
-					_ammo->text = "COOLDOWN: READY";
-				}
-				else if (difference >= currentWeapon->getCooldown()) {
-					_ammo->text = "COOLDOWN: READY";
-					if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-						Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
+			if (_ammo->text == "AMMO: INFINITE") {}
+			else {
+				if (currentWeapon->getAmmo() == -1) {
+					long difference = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
+						_ammo->text = "COOLDOWN: READY";
+					else if (difference >= currentWeapon->getCooldown()) 
+						_ammo->text = "COOLDOWN: READY";
+					else
+						_ammo->text = "COOLDOWN: RECHARGING";
 				}
 				else {
-					_ammo->text = "COOLDOWN: RECHARGING";
-					Mouse::getInstance().setCursor(Mouse::WAIT);
+					long cooldown = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					if (cooldown == 0)
+						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+					else if (cooldown < currentWeapon->getCooldown())
+						_ammo->text = "COOLDOWN: RECHARGING";
+					else if (cooldown >= currentWeapon->getCooldown())
+						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
 				}
 
 			}
-
-			else {
-				if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::CROSSHAIR))
-					Mouse::getInstance().setCursor(Mouse::CROSSHAIR);
-				_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
-			}
-
 		}
 		else {
 			if (!Mouse::getInstance().isCurrentMouseSkin(Mouse::NONE))
@@ -191,7 +193,6 @@ void GameScreen::onTick() {
 		}
 
 	}
-
 
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
 
