@@ -4,8 +4,7 @@
 #include <vector>
 #include <string>
 
-class TiledObject
-{
+class TiledObject {
 private:
 public:
 	int height;

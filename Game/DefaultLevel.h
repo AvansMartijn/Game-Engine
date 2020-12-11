@@ -6,8 +6,7 @@
 #include <ThrusterManagableItem.h>
 #include <PortalManagableItem.h>
 
-class DefaultLevel : public AbstractLevel
-{
+class DefaultLevel : public AbstractLevel {
 private:
 public:
 	/// <summary>

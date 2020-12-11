@@ -8,8 +8,7 @@
 #include "AbstractContactListener.h"
 
 class Physics;
-class CollisionListener : public AbstractContactListener
-{
+class CollisionListener : public AbstractContactListener {
 public:
 	void BeginContact(b2Contact* contact);
 

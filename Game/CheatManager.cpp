@@ -10,14 +10,11 @@
 
 CheatManager CheatManager::_instance;
 
-CheatManager::CheatManager() {
-}
+CheatManager::CheatManager() {}
 
-bool CheatManager::executeCheat(std::string Cheat)
-{
-    for (auto const& cheat : CheatList)
-    {
-        if (Cheat == cheat.first) {
+bool CheatManager::executeCheat(std::string cheatName) {
+    for (auto const& cheat : cheatList) {
+        if (cheatName == cheat.first) {
             if (cheat.second.get()->Execute()) {
                 Scene::getInstance().activatedCheats.push_back(cheat.first);
                 return true;
@@ -25,15 +22,15 @@ bool CheatManager::executeCheat(std::string Cheat)
             break;
         }
     }
+
+    return false;
 }
 
-std::map<std::string, std::string> CheatManager::getCheatInformation()
-{
-    return CheatInformation;
+std::map<std::string, std::string> CheatManager::getCheatInformation() {
+    return cheatInformation;
 }
 
-void CheatManager::initializeCheats()
-{
+void CheatManager::initializeCheats() {
     GodmodeCheat godmodeCheat;
     UnlimitedAmmoCheat unlimitedAmmoCheat;
     NoCooldownCheat noCooldownCheat;
@@ -42,34 +39,32 @@ void CheatManager::initializeCheats()
     FlyCheat flyCheat;
     AllWeaponsCheat allWeaponsCheat;
 
-    CheatList.insert({ "godmode", std::make_unique<GodmodeCheat>(godmodeCheat) });
-    CheatInformation.insert({ "godmode","Gives the play a shitload of health, if you manage to die now you kinda deserve it. :^)" });
+    cheatList.insert({ "godmode", std::make_unique<GodmodeCheat>(godmodeCheat) });
+    cheatInformation.insert({ "godmode","Gives the play a shitload of health, if you manage to die now you kinda deserve it. :^)" });
 
-    CheatList.insert({ "unlimitedammo", std::make_unique<UnlimitedAmmoCheat>(unlimitedAmmoCheat) });
-    CheatInformation.insert({ "unlimitedammo","Will give the player a unlimited amount of ammo." });
+    cheatList.insert({ "unlimitedammo", std::make_unique<UnlimitedAmmoCheat>(unlimitedAmmoCheat) });
+    cheatInformation.insert({ "unlimitedammo","Will give the player a unlimited amount of ammo." });
 
-    CheatList.insert({ "nocooldown", std::make_unique<NoCooldownCheat>(noCooldownCheat) });
-    CheatInformation.insert({ "nocooldown","Sets the cooldown of all guns to 0." });
+    cheatList.insert({ "nocooldown", std::make_unique<NoCooldownCheat>(noCooldownCheat) });
+    cheatInformation.insert({ "nocooldown","Sets the cooldown of all guns to 0." });
 
-    CheatList.insert({ "sonicmode", std::make_unique<SonicModeCheat>(sonicModeCheat) });
-    CheatInformation.insert({ "sonicmode","Ups the game speed" });
+    cheatList.insert({ "sonicmode", std::make_unique<SonicModeCheat>(sonicModeCheat) });
+    cheatInformation.insert({ "sonicmode","Ups the game speed" });
 
-    CheatList.insert({ "martijnmode", std::make_unique<MartijnModeCheat>(martijnModeCheat) });
-    CheatInformation.insert({ "martijnmode","reset the game speed" });
+    cheatList.insert({ "martijnmode", std::make_unique<MartijnModeCheat>(martijnModeCheat) });
+    cheatInformation.insert({ "martijnmode","reset the game speed" });
+    
+    cheatList.insert({ "flyboi", std::make_unique<FlyCheat>(flyCheat) });
+    cheatInformation.insert({ "flyboi","Allows you to fly." });
 
-  CheatList.insert({ "flyboi", std::make_unique<FlyCheat>(flyCheat) });
-    CheatInformation.insert({ "flyboi","Allows you to fly." });
-
-    CheatList.insert({ "allweapons", std::make_unique<AllWeaponsCheat>(allWeaponsCheat) });
-    CheatInformation.insert({"allweapons", "Gives acces to all the weapons in the game." });
+    cheatList.insert({ "allweapons", std::make_unique<AllWeaponsCheat>(allWeaponsCheat) });
+    cheatInformation.insert({"allweapons", "Gives acces to all the weapons in the game." });
 }
 
-bool CheatManager::isCheat(std::string Cheat)
-{
+bool CheatManager::isCheat(std::string cheatName) {
     bool isCheat = false;
-    for (auto const& cheat : CheatList)
-    {
-        if (Cheat == cheat.first) {
+    for (auto const& cheat : cheatList) {
+        if (cheatName == cheat.first) {
             isCheat = true;
             break;
         }

@@ -174,12 +174,12 @@ void KeyBindingsHelpScreen::onInit() {
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipGlueButton));
 
 	ButtonUiElement resetButton = ButtonUiElement("Reset All", { 350, 545, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	resetButton.onClick = [this](AbstractGame* game) { ControllManager::getInstance().resetControlls(); loadKeybinding();};
+	resetButton.onClick = [this](AbstractGame* game) { ControllManager::getInstance().resetControls(); loadKeybinding();};
 	_uiElements.push_back(make_shared<ButtonUiElement>(resetButton));
 
 	ButtonUiElement backButton = ButtonUiElement("Save & Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControlls();};
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControls();};
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	loadKeybinding();
@@ -207,7 +207,7 @@ void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		SDL_Scancode KeyPressedSDL = e.keysym.scancode;
 		_listingForInput = false;
 		
-		ControllManager::getInstance().updateControll(_currentAction, keyPressed, KeyPressedSDL);
+		ControllManager::getInstance().updateControl(_currentAction, keyPressed, KeyPressedSDL);
 		loadKeybinding();
 	}
 

@@ -3,9 +3,7 @@
 #include "TiledGrid.h"
 #include "TiledTile.h"
 
-class TiledTileSet
-{
-private:
+class TiledTileSet {
 public:
 	int columns;
 	int firstGid;

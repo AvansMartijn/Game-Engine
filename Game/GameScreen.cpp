@@ -1,17 +1,9 @@
 ﻿#include "GameScreen.h"
 #include <CanWieldExtension.h>
 #include "TiledLevelLoader.h"
-
+#include "Utilities.h"
 
 GameScreen::GameScreen() {}
-
-//TODO: Even naar een helper class verplaatsen
-long convertTimeToLong(std::chrono::steady_clock::time_point time) {
-	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(time);
-	auto epoch = now_ms.time_since_epoch();
-	auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
-	return value.count();
-}
 
 void GameScreen::onInit() {
 	begin = std::chrono::steady_clock::now();
@@ -143,7 +135,7 @@ void GameScreen::onTick() {
 	}
 
 	for (auto gameObject : Scene::getInstance().getGameObjects()) {
-		if (gameObject.second->hasExtension(typeid(AnimationExtension)) && gameObject.second != nullptr)
+		if (gameObject.second != nullptr && gameObject.second->hasExtension(typeid(AnimationExtension)))
 			gameObject.second->getExtension<AnimationExtension>()->animate();
 	}
 
@@ -165,7 +157,7 @@ void GameScreen::onTick() {
 			if (_ammo->text == "AMMO: INFINITE") {}
 			else {
 				if (currentWeapon->getAmmo() == -1) {
-					long difference = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					long difference = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
 					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
 						_ammo->text = "COOLDOWN: READY";
 					else if (difference >= currentWeapon->getCooldown()) 
@@ -174,7 +166,7 @@ void GameScreen::onTick() {
 						_ammo->text = "COOLDOWN: RECHARGING";
 				}
 				else {
-					long cooldown = convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					long cooldown = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
 					if (cooldown == 0)
 						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
 					else if (cooldown < currentWeapon->getCooldown())
@@ -332,14 +324,12 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		_game->switchScreen(Screens::Cheat);
 		break;
 	case SDLK_PAGEUP:
-		if (Scene::getInstance().tickRate + 10 <= 250) {
+		if (Scene::getInstance().tickRate + 10 <= 250)
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate + 10;
-		}
 		break;
 	case SDLK_PAGEDOWN:
-		if (Scene::getInstance().tickRate - 10 > 0) {
+		if (Scene::getInstance().tickRate - 10 > 0)
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate - 10;
-		}
 		break;
 	case SDLK_HOME:
 		Scene::getInstance().tickRate = 60.0;

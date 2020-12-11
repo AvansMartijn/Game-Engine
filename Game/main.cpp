@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 	GameSettings::getInstance().addLevel(7, { "Level_5", LevelType::TILED });
 
 	//Init Controlls
-	ControllManager::getInstance().initializeControlls();
+	ControllManager::getInstance().initializeControls();
 
 	//Init Cheats
 	CheatManager::getInstance().initializeCheats();

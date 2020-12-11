@@ -19,15 +19,6 @@ void DefaultEntityAI::createBehaviourTree(shared_ptr<GameObject> self) {
 	seesEnemy->behaviourTrue = moveEnemy;
 	seesEnemy->behaviourFalse = rotateEnemy;
 
-	//shared_ptr<BehaviourAttack> attack = make_shared<BehaviourAttack>(BehaviourAttack(self));
-	//seesEnemy->behaviourTrue = attack;
-	//seesEnemy->behaviourFalse = idle;
-
-	//attack->behaviourTrue = idle;
-
-	//shared_ptr<AbstractBehaviour> firstBehaviour = idle;
-	//firstBehaviour->execute();
-
 	_currentBehaviour = _behaviourIdle;
 }
 

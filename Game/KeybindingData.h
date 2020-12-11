@@ -3,20 +3,20 @@
 #include <SDL.h>
 #include "json.h"
 
-class KeybindingData
-{
+class KeybindingData {
 public:
 	std::string defaultKey;
 	std::string userKey;
 	SDL_Scancode defaultSDLKey;
 	SDL_Scancode userSDLKey;
-	bool isDefault = true;
+	bool isDefault;
 
 	KeybindingData();
 
 	KeybindingData(std::string _defaultKey, SDL_Scancode _defaultSDLKey) {
 		defaultKey = _defaultKey;
 		defaultSDLKey = _defaultSDLKey;
+		isDefault = true;
 	}
 
 	KeybindingData(std::string _defaultKey, std::string _userKey, SDL_Scancode _defaultSDLKey, SDL_Scancode _userSDLKey, bool _isDefault) {

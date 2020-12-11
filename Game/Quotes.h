@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-class Quotes
-{
+class Quotes {
 private:
 	Quotes();
 
@@ -16,6 +15,10 @@ public:
 	Quotes& operator=(const Quotes&) = delete;
 	Quotes& operator=(Quotes&&) = delete;
 
+	/// <summary>
+	/// Get's a random quote.
+	/// </summary>
+	/// <returns>A random quote.</returns>
 	std::string getQuote();
 };
 

@@ -2,8 +2,7 @@
 #include <string>
 #include "KeybindingData.h"
 
-class ControllManager
-{
+class ControllManager {
 private:
 	ControllManager();
 	static ControllManager _instance;
@@ -24,9 +23,34 @@ public:
 	ControllManager& operator=(const ControllManager&) = delete;
 	ControllManager& operator=(ControllManager&&) = delete;
 
-	void resetControlls();
-	void saveControlls();
-	bool validKey(SDL_Scancode key, std::string Action);
-	void initializeControlls();
-	void updateControll(std::string Action, std::string userKey, SDL_Scancode userSDLKey);
+	/// <summary>
+	/// Resets the controls.
+	/// </summary>
+	void resetControls();
+
+	/// <summary>
+	/// Saves the controls.
+	/// </summary>
+	void saveControls();
+
+	/// <summary>
+	/// Checks if the given key is valid.
+	/// </summary>
+	/// <param name="key">The scancode.</param>
+	/// <param name="action">The action.</param>
+	/// <returns>If the key is valid.</returns>
+	bool validKey(SDL_Scancode key, std::string action);
+
+	/// <summary>
+	/// Register all the controls.
+	/// </summary>
+	void initializeControls();
+
+	/// <summary>
+	/// Update the controls.
+	/// </summary>
+	/// <param name="action">The action</param>
+	/// <param name="userKey">The user key.</param>
+	/// <param name="userSDLKey">The user scancode.</param>
+	void updateControl(std::string action, std::string userKey, SDL_Scancode userSDLKey);
 };

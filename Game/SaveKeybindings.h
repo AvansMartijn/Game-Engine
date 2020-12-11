@@ -1,8 +1,7 @@
 #pragma once
 #include "KeybindingData.h"
 
-class SaveKeybindings
-{
+class SaveKeybindings {
 public:
 	KeybindingData toggleFPSKey;
 	KeybindingData walkLeftKey;

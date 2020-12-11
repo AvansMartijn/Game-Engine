@@ -5,8 +5,7 @@ enum class LevelType {
 	TILED
 };
 
-struct LevelData
-{
+struct LevelData {
 	std::string levelName;
 	LevelType levelType;
 };

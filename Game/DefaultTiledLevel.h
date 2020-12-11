@@ -11,8 +11,7 @@
 #include "EnemyAnimationHandler.h"
 #include "PlayerAnimationHandler.h"
 
-class DefaultTiledLevel : public AbstractLevel
-{
+class DefaultTiledLevel : public AbstractLevel {
 private:
 public:
 	std::vector<TiledGameObject> gameObjects;

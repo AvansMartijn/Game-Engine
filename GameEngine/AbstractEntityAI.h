@@ -7,6 +7,7 @@
 #include <list>
 #include "AbstractBehaviour.h"
 #include "GameObject.h"
+#include <chrono>
 
 /// <summary>
 /// Abstract class for entity ai
@@ -15,6 +16,7 @@ class GAMEENGINE_AbstractEntityAI AbstractEntityAI
 {
 protected:
 	shared_ptr<AbstractBehaviour> _currentBehaviour;
+	std::chrono::steady_clock::time_point _begin;
 public:
 	AbstractEntityAI();
 

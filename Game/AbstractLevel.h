@@ -6,9 +6,7 @@
 #include "Scene.h"
 #include "PickupExtension.h"
 
-
-class AbstractLevel
-{
+class AbstractLevel{
 protected:
 	/// <summary>
 	/// Creates a new entity.

@@ -2,9 +2,7 @@
 #include "json.h"
 #include "SaveKeybindings.h"
 
-class SaveSettings
-{
-private:
+class SaveSettings {
 public:
 	SaveKeybindings cm;
 	int sound = 60;

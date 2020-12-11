@@ -1,8 +1,7 @@
 #pragma once
 #include "json.h"
 
-class TiledProperty
-{
+class TiledProperty {
 private:
 public:
 	std::string name;

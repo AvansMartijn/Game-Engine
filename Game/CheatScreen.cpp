@@ -2,31 +2,12 @@
 #include "CheatManager.h"
 #include <Mouse.h>
 #include "ControllManager.h"
-
-//TODO: Move to singelton helper class
-void CheatScreen::trim(std::string& s)
-{
-	leftTrim(s);
-	rightTrim(s);
-}
-void CheatScreen::leftTrim(std::string& s)
-{
-	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
-		return !std::isspace(ch);
-	}));
-}
-void CheatScreen::rightTrim(std::string& s)
-{
-	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
-		return !std::isspace(ch);
-	}).base(), s.end());
-}
+#include <Utilities.h>
 
 CheatScreen::CheatScreen() {}
 CheatScreen::~CheatScreen() {}
 
-void CheatScreen::onInit()
-{
+void CheatScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
 
@@ -57,8 +38,7 @@ void CheatScreen::onInit()
 	_uiElements.push_back(_fps);
 }
 
-void CheatScreen::onTick()
-{
+void CheatScreen::onTick() {
 	if (shouldShowFPS)
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
@@ -68,13 +48,11 @@ void CheatScreen::onTick()
 		Mouse::getInstance().setCursor(Mouse::BEAM);
 }
 
-void CheatScreen::onScreenShowed(vector<std::string> args)
-{
+void CheatScreen::onScreenShowed(vector<std::string> args) {
 	_cheatText->text = " ";
 }
 
-void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
-{
+void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	SDL_Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
 		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
@@ -86,9 +64,9 @@ void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 
 	if (e.keysym.sym == SDLK_RETURN) {
 		std::string cheat = _cheatText->text;
-		trim(cheat);
-		if (CheatManager::getInstance().isCheat(cheat))
-		{
+
+		Utilities::getInstance().trim(cheat);
+		if (CheatManager::getInstance().isCheat(cheat)) {
 			if (CheatManager::getInstance().executeCheat(cheat)) {
 				Scene::getInstance().hasCheated = true;
 				_cheatText->text = "Cheat Activated";
@@ -98,27 +76,19 @@ void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e)
 	}
 
 	if (e.keysym.sym == SDLK_BACKSPACE) {
-		if (_cheatText->text.size() == 1) {
+		if (_cheatText->text.size() == 1)
 			_cheatText->text = " ";
-		}
-		else if (_cheatText->text.size() > 1) {
+		else if (_cheatText->text.size() > 1)
 			_cheatText->text.pop_back();
-		}
 	}
 	if (_cheatText->text.length() <= 20) {
-		if (e.keysym.sym == SDLK_SPACE) {
+		if (e.keysym.sym == SDLK_SPACE)
 			_cheatText->text.push_back(' ');
-		}
-		if (e.keysym.sym >= 97 && e.keysym.sym <= 122) {
+		if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
 			_cheatText->text.push_back((char)e.keysym.sym);
-		}
 	}
 }
 
-void CheatScreen::handleMouseMotionInput(SDL_MouseMotionEvent e)
-{
-}
+void CheatScreen::handleMouseMotionInput(SDL_MouseMotionEvent e){}
 
-void CheatScreen::handleMouseWheelInput(SDL_MouseWheelEvent e)
-{
-}
+void CheatScreen::handleMouseWheelInput(SDL_MouseWheelEvent e){}

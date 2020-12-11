@@ -1,8 +1,7 @@
 #pragma once
 #include "json.h"
 
-class TiledGrid
-{
+class TiledGrid {
 public:
 	int height;
 	std::string orientation;

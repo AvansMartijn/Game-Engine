@@ -106,7 +106,6 @@ void GameFinishedScreen::onInit() {
 		}
 		else
 		{
-			//TODO Delete next level button
 			game->switchScreen(Screens::Credits);
 		}
 	};

@@ -2,9 +2,7 @@
 #include "json.h"
 #include "TiledProperty.h"
 
-class TiledTile
-{
-private:
+class TiledTile {
 public:
 	int id;
 	std::string image;

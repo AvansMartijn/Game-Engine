@@ -2,9 +2,7 @@
 #include "json.h"
 #include <string>
 
-class SaveHighscore
-{
-private:
+class SaveHighscore {
 public:
 	std::string name;
 	int score;

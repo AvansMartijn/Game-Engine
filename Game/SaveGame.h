@@ -4,9 +4,7 @@
 #include <string>
 #include <vector>
 
-class SaveGame
-{
-private:
+class SaveGame {
 public:
 	std::vector<SaveLevel> levels;
 	SaveSettings settings;

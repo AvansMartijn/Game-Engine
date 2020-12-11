@@ -15,6 +15,11 @@ public:
 	TiledMapBuilder(TiledMapBuilder&&) = delete;
 	TiledMapBuilder& operator=(TiledMapBuilder&&) = delete;
 
+	/// <summary>
+	/// Build the level.
+	/// </summary>
+	/// <param name="fileLocation">The location of the file we want to load.</param>
+	/// <returns>The level which we build.</returns>
 	TiledLevel build(std::string& fileLocation);
 };
 

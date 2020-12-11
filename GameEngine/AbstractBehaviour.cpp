@@ -11,15 +11,3 @@ void AbstractBehaviour::executeNextBehaviour(bool isTrue) {
 	else if (!isTrue && this->behaviourFalse)
 		this->behaviourFalse->execute();
 }
-
-// TODO: Naar helper class
-bool AbstractBehaviour::isEnoughTimeElapsed(int timeNeeded) {
-	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-
-	long diff  = std::chrono::duration_cast<std::chrono::milliseconds>(end - _begin).count();
-
-	if (diff >= timeNeeded)
-		_begin = std::chrono::steady_clock::now();
-
-	return diff >= timeNeeded;
-}

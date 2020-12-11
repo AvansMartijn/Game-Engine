@@ -4,9 +4,7 @@
 #include "SaveHighscore.h"
 #include <vector>
 
-class SaveLevel
-{
-private:
+class SaveLevel {
 public:
 	std::string name;
 	std::vector<SaveHighscore> highscores;

@@ -1,9 +1,12 @@
 #pragma once
 #include "CheatCommand.h"
 
-class UnlimitedAmmoCheat : public CheatCommand
-{
+class UnlimitedAmmoCheat : public CheatCommand {
 public:
+	/// <summary>
+	/// Execute the cheat.
+	/// </summary>
+	/// <returns>If the cheat was executed succesfully.</returns>
 	bool Execute();
 };
 

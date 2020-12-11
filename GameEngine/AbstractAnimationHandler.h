@@ -30,9 +30,23 @@ public:
 
 	Rect sprite;
 	bool shouldFlipLeft;
+
+	/// <summary>
+	/// Register the animations.
+	/// </summary>
 	virtual	void registerAnimations() = 0;
+
+	/// <summary>
+	/// Animate the given game object.
+	/// </summary>
+	/// <param name="gameObject">The game object we want to animate.</param>
 	virtual void animate(std::shared_ptr<GameObject> gameObject) = 0;
 	
+	/// <summary>
+	/// Converts a movement type to a key.
+	/// </summary>
+	/// <param name="movementType">The movement type we want to convert.</param>
+	/// <returns>The movement type as key.</returns>
 	std::string getKeyFromMovementType(MovementType movementType);
 };
 

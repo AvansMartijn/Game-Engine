@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "AbstractEntityAI.h"
+#include "Utilities.h"
+
 AbstractEntityAI::AbstractEntityAI() {}
 
 void AbstractEntityAI::execute() {
-	if (_currentBehaviour->isEnoughTimeElapsed(100))
+	if (Utilities::getInstance().isEnoughTimeElapsed(100, _begin))
 		_currentBehaviour->execute();
 }

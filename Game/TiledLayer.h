@@ -2,10 +2,7 @@
 #include "json.h"
 #include "TiledObject.h"
 
-class TiledLayer
-{
-private:
-
+class TiledLayer {
 public:
 	int height;
 	int id;
