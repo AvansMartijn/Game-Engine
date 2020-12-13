@@ -63,11 +63,13 @@ void SoundPlayer::playMusicTrack(const std::string& musicTrackKey){
 	playingTrackKey = musicTrackKey;
 
 	// If no music is being played, play. Otherwise stop.
-	if (Mix_PlayingMusic() == 0)
+	if (Mix_PlayingMusic() == 0) {
 		playTrackNow();
-	else
+	}
+	else {
 		Mix_HookMusicFinished(playTrackNow);
 		Mix_FadeOutMusic(500);
+	}
 }
 
 void SoundPlayer::playSFX(const std::string& sfxTrackKey){
