@@ -2,7 +2,8 @@
 #include "TimerExtension.h"
 
 TimerExtension::TimerExtension() {
-	type = "TimerExtension";
+	type = getType();
+
 	_creationTime = std::chrono::steady_clock::now();
 	//default expires after 5 seconds
 	_expiresAfter = 5000;

@@ -13,8 +13,7 @@ void CollisionResolutionPortalExtension::link(shared_ptr<GameObject> linkedPorta
     _linkedPortal = linkedPortal;
 }
 
-void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject)
-{
+void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject) {
     //culling duplicate to prevent double operations
     auto objectLocation = std::find_if(Physics::getInstance().teleportQueue.begin(), Physics::getInstance().teleportQueue.end(), [inputObject](TeleportObject tellie) {return tellie.obj == inputObject; });
     if (objectLocation != Physics::getInstance().teleportQueue.end())

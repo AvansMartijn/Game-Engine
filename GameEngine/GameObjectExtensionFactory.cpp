@@ -4,7 +4,6 @@
 #include "MoveExtension.h"
 #include "CollisionResolutionDefaultExtension.h"
 #include "CollisionResolutionPortalExtension.h"
-#include "CheckPhysicsExtension.h"
 #include "CanWieldExtension.h"
 #include "PickupExtension.h"
 #include "DoesDamageExtension.h"
@@ -13,20 +12,18 @@
 #include "HealthExtension.h"
 #include "AnimationExtension.h"
 
-// TODO: MAKE IT SO WE DON'T NEED TO ADD A KEY (use GetType)
 GameObjectExtensionFactory::GameObjectExtensionFactory() {
-    registerExtension("AiExtension", &AiExtension::create);
-    registerExtension("MoveExtension", &MoveExtension::create);
-    registerExtension("CheckPhysicsExtension", &CheckPhysicsExtension::create);
-    registerExtension("CollisionResolutionDefaultExtension", &CollisionResolutionDefaultExtension::create);
-    registerExtension("CollisionResolutionPortalExtension", &CollisionResolutionPortalExtension::create);
-    registerExtension("CanWieldExtension", &CanWieldExtension::create);
-    registerExtension("PickupExtension", &PickupExtension::create);
-    registerExtension("DoesDamageExtension", &DoesDamageExtension::create);
-    registerExtension("IsPortalableExtension", &IsPortalableExtension::create);
-    registerExtension("TimerExtension", &TimerExtension::create);
-    registerExtension("HealthExtension", &HealthExtension::create);
-    registerExtension("AnimationExtension", &AnimationExtension::create);
+    registerExtension(AiExtension::getType(), &AiExtension::create);
+    registerExtension(MoveExtension::getType(), &MoveExtension::create);
+    registerExtension(CollisionResolutionDefaultExtension::getType(), &CollisionResolutionDefaultExtension::create);
+    registerExtension(CollisionResolutionPortalExtension::getType(), &CollisionResolutionPortalExtension::create);
+    registerExtension(CanWieldExtension::getType(), &CanWieldExtension::create);
+    registerExtension(PickupExtension::getType(), &PickupExtension::create);
+    registerExtension(DoesDamageExtension::getType(), &DoesDamageExtension::create);
+    registerExtension(IsPortalableExtension::getType(), &IsPortalableExtension::create);
+    registerExtension(TimerExtension::getType(), &TimerExtension::create);
+    registerExtension(HealthExtension::getType(), &HealthExtension::create);
+    registerExtension(AnimationExtension::getType(), &AnimationExtension::create);
 }
 
 void GameObjectExtensionFactory::registerExtension(const string& extensionName, CreateExtensionFn pfnCreate) {

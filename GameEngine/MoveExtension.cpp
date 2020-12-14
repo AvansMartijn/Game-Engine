@@ -4,7 +4,7 @@
 #include "Utilities.h"
 
 MoveExtension::MoveExtension() {
-	type = "MoveExtension";
+	type = getType();
 }
 
 void MoveExtension::move(float movementX, float movementY) {

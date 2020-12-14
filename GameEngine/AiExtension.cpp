@@ -2,7 +2,7 @@
 #include "AiExtension.h"
 
 AiExtension::AiExtension() {
-	type = "AiExtension";
+	type = getType();
 }
 
 void AiExtension::execute() {

@@ -13,5 +13,8 @@ public:
 	void fillProperties(std::map<std::string, ExtensionProperty> properties);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new IsPortalableExtension(); }
+
+	static std::string __stdcall getType() { return "IsPortalableExtension"; }
+
 };
 

@@ -50,5 +50,6 @@ public:
 	void link(shared_ptr<GameObject> linkedPortal);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new CollisionResolutionPortalExtension(); }
+	static std::string __stdcall getType() { return "CollisionResolutionPortalExtension"; }
 };
 

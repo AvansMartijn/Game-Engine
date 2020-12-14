@@ -2,7 +2,7 @@
 #include "CanWieldExtension.h"
 
 CanWieldExtension::CanWieldExtension() {
-	type = "CanWieldExtension";
+	type = getType();
 }
 
 void CanWieldExtension::addItem(std::shared_ptr<AbstractManageableItem> item) {

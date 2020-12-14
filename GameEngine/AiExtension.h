@@ -28,5 +28,7 @@ public:
 	void fillProperties(std::map<std::string, ExtensionProperty> properties);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new AiExtension(); }
+
+	static std::string __stdcall getType() { return "AiExtension"; }
 };
 

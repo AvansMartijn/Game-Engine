@@ -48,5 +48,7 @@ public:
 	void fillProperties(std::map<std::string, ExtensionProperty> properties);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new TimerExtension(); }
+
+	static std::string __stdcall getType() { return "TimerExtension"; }
 };
 

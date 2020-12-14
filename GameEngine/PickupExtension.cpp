@@ -2,7 +2,7 @@
 #include "PickupExtension.h"
 
 PickupExtension::PickupExtension() {
-	type = "PickupExtension";
+	type = getType();
 }
 
 shared_ptr<AbstractManageableItem> PickupExtension::getItem() {

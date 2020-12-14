@@ -2,7 +2,7 @@
 #include "AnimationExtension.h"
 
 AnimationExtension::AnimationExtension() {
-	type = "AnimationExtension";
+	type = getType();
 }
 
 void AnimationExtension::setAnimationHandler(shared_ptr<AbstractAnimationHandler> animationHandler) {

@@ -18,7 +18,7 @@ class GAMEENGINE_AbstractGameObjectExtension AbstractGameObjectExtension {
 protected:
 	shared_ptr<GameObject> _subject;
 public:
-	string type;
+	std::string type;
 
 	/// <summary>
 	/// Registers the subject of the extension.

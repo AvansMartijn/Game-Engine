@@ -195,9 +195,6 @@
     <ClInclude Include="HealthExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
-    <ClInclude Include="CheckPhysicsExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
     <ClInclude Include="CanWieldExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
@@ -390,9 +387,6 @@
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="AiExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckPhysicsExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="CanWieldExtension.cpp">
