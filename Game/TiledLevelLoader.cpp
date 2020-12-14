@@ -15,7 +15,7 @@ void TiledLevelLoader::createLevel(GameEngine gameEngine, std::string& name) {
 }
 
 TiledLevel TiledLevelLoader::getTiledLevel(std::string& name) {
-	std::string fileDir = AssetRegistry::getInstance().getBasePath() + "res\\levels\\" + name + ".json";
+	std::string fileDir = directory + name + ".json";
 
 	TiledLevel level = TiledMapBuilder().build(fileDir);
 

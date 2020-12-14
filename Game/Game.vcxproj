@@ -174,7 +174,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractLevel.cpp" />
-    <ClCompile Include="AbstractLevelLoader.cpp" />
     <ClCompile Include="AllWeaponsCheat.cpp" />
     <ClCompile Include="CheatCommand.cpp" />
     <ClCompile Include="CheatHelpScreen.cpp" />

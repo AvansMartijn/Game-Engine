@@ -65,10 +65,14 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 	for (size_t i = 0; i < args.size(); i++) {
 		std::string arg = args[i];
 
-		if (arg == "tiled")
+		if (arg == "tiled") {
 			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
+			_levelLoader->directory = AssetRegistry::getInstance().getBasePath() + "res\\levels\\";
+		}
 		else if (arg == "default")
 			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+		else if (arg == "custom")
+			_levelLoader->directory = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2") + "Levels\\";
 		else if (arg == "reset")
 			reset();
 		else

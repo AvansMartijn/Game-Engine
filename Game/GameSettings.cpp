@@ -1,12 +1,14 @@
 #include "GameSettings.h"
 #include <SoundPlayer.h>
+#include <windows.h>
+#include <string>
 
 GameSettings GameSettings::instance;
 
 GameSettings::GameSettings() {}
 
 void GameSettings::save() {
-	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2");
+	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2");
 	nlohmann::json j = saveGame;
 
 	std::ofstream outputStream(prefPath + "save.json");
@@ -14,7 +16,7 @@ void GameSettings::save() {
 }
 
 void GameSettings::load() {
-	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2");
+	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2");
 	std::ifstream inputStream(prefPath + "save.json");
 
 	if (!inputStream.fail()) {
@@ -26,6 +28,10 @@ void GameSettings::load() {
 
 	SoundPlayer::getInstance().changeMusicVolume(saveGame.settings.sound);
 	SoundPlayer::getInstance().changeSFXVolume(saveGame.settings.soundFx);
+
+	std::string levelDirectory = prefPath + "Levels\\";
+
+	CreateDirectoryA(levelDirectory.c_str(), NULL);
 }
 
 void GameSettings::addLevel(int number, LevelData levelData) {

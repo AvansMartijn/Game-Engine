@@ -3,8 +3,9 @@
 #include "GameEngine.h"
 
 class AbstractLevelLoader {
-protected:
 public:
+	std::string directory;
+
 	/// <summary>
 	/// Create a level.
 	/// </summary>

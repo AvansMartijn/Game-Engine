@@ -70,11 +70,12 @@ public:
 	/// <summary>
 	/// Get's all file locations in the given directory.
 	/// </summary>
+	/// <param name="basePath">The starting path.</param>
 	/// <param name="directory">The directory.</param>
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	/// <param name="shouldAddKey">If we should add the file name as key.</param>
 	/// <returns>A list with all file data.</returns>
-	std::vector<FileData> getFilesInDirectory(std::string directory, bool isDeep, bool shouldAddKey = true) const;
+	std::vector<FileData> getFilesInDirectory(std::string basePath, std::string directory, bool isDeep, bool shouldAddKey = true) const;
 
 	/// <summary>
 	/// Split a string by the given delimiter.

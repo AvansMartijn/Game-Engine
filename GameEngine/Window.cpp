@@ -32,7 +32,7 @@ void Window::registerTexture(std::string textureKey, std::string texturePath, bo
 }
 
 void Window::registerTextures(std::string prefix, std::string directory, bool isDeep) {
-	std::vector<FileData> files = AssetRegistry::getInstance().getFilesInDirectory(directory, isDeep);
+	std::vector<FileData> files = AssetRegistry::getInstance().getFilesInDirectory(AssetRegistry::getInstance().getBasePath(), directory, isDeep);
 
 	for (size_t i = 0; i < files.size(); i++) {
 		if (prefix == "")

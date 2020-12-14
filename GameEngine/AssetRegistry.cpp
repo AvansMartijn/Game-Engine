@@ -29,9 +29,7 @@ std::string AssetRegistry::getBasePath() const {
 	return std::string(currentDir) + "\\";
 }
 
-std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string directory, bool isDeep, bool shouldAddKey) const {
-	std::string basePath = AssetRegistry::getInstance().getBasePath();
-
+std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string basePath, std::string directory, bool isDeep, bool shouldAddKey) const {
 	DIR* dir;
 	struct dirent* ent;
 

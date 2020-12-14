@@ -13,7 +13,7 @@ void LoadCustomLevelScreen::onInit() {
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
 	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
 
-	_files = AssetRegistry::getInstance().getFilesInDirectory("res/levels", false, false);
+	_files = AssetRegistry::getInstance().getFilesInDirectory(AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2"), "Levels\\", false, false);
 
 	for (size_t i = 0; i < _files.size(); i++) {
 		LevelData levelData = { _files[i].key, LevelType::TILED };
@@ -24,8 +24,7 @@ void LoadCustomLevelScreen::onInit() {
 		lineOfC.onClick = [levelData](AbstractGame* game) {
 			GameSettings::getInstance().saveGame.currentSlot = 0;
 			GameSettings::getInstance().saveGame.customSlot = GameSettings::getInstance().getIndexByLevelName(levelData.levelName);
-			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame),levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
-			
+			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "custom", "reset" });
 		};
 		_line = make_shared<ButtonUiElement>(lineOfC);
 		_uiElements.push_back(_line);
