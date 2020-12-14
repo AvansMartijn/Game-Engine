@@ -48,6 +48,4 @@ public:
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
 	std::function<void(shared_ptr<AbstractGame>)> onClick;
-
-	// TODO: DEZE OMZETTEN NAAR SMART PTR
 };

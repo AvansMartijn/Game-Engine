@@ -28,7 +28,7 @@ public:
 
 	Game(const char* title, int width, int height);
 	~Game();
-	Game();
+
 	/// <summary>
 	/// Prepare the game.
 	/// </summary>

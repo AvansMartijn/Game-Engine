@@ -63,7 +63,6 @@ public:
 	int currentFPS;
 
 	AbstractGame(const char* title, int width, int height);
-	AbstractGame();
 	~AbstractGame();
 
 	/// <summary>

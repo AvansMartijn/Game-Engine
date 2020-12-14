@@ -21,6 +21,7 @@ private:
 	std::string _fontKey;
 	int _fontSize;
 
+	// TODO: WEG WERKEN.
 	// This has to be here, otherwise we have to add every possible fontSize to the registry.
 	TTF_Font* _font;
 public:

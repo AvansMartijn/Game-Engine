@@ -14,8 +14,6 @@
 #undef main
 
 int main(int argc, char* argv[]) {
-	//Game gameObject = { string("Game").c_str(), 1080, 720 };
-
 	shared_ptr<Game> game = make_shared<Game>("Game", 1080, 720);
 	GameSettings::getInstance().load();
 

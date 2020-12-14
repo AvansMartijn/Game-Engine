@@ -16,7 +16,6 @@ void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	if (e.button == SDL_BUTTON_LEFT) {
 		for (shared_ptr<AbstractUiElement>& element : _uiElements) {
 			if (element->isInBound(e.x, e.y)) {
-				// TODO: SMART
 				element->onClick(_game);
 
 				break;

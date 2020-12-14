@@ -12,7 +12,6 @@ AbstractGame::AbstractGame(const char* title, int width, int height) {
 }
 
 AbstractGame::~AbstractGame() {}
-AbstractGame::AbstractGame() {}
 
 void AbstractGame::gameLoop() {
 	SDL_Event event;
