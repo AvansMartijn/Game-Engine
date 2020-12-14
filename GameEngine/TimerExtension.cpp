@@ -28,5 +28,6 @@ void TimerExtension::setExpiresAfter(int miliseconds) {
 	_expiresAfter = miliseconds;
 }
 
-
+void TimerExtension::fillProperties(std::map<std::string, ExtensionProperty> properties) {
+}
 

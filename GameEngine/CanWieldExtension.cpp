@@ -48,3 +48,10 @@ void CanWieldExtension::onRightClick(int x, int y) {
 bool CanWieldExtension::hasItems() {
 	return _items.size() > 0;
 }
+
+void CanWieldExtension::setShouldRender(bool shouldRender) {
+	if (hasItems())
+		getCurrentItem()->shouldRender = shouldRender;
+}
+
+void CanWieldExtension::fillProperties(std::map<std::string, ExtensionProperty> extensionProperties) {}

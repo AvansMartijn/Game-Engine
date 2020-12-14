@@ -30,3 +30,8 @@ Rect AnimationExtension::getCurrentSprite() {
 bool AnimationExtension::shouldFlipLeft() {
 	return _animationHandler->shouldFlipLeft;
 }
+
+
+void AnimationExtension::fillProperties(std::map<std::string, ExtensionProperty> properties) {
+
+}

@@ -49,3 +49,7 @@ void ThrusterManagableItem::onLeftClick(int x, int y) {
 void ThrusterManagableItem::onRightClick(int x, int y) {
 	onLeftClick(x, y);
 }
+
+shared_ptr<AbstractManageableItem> ThrusterManagableItem::clone() const {
+	return std::make_shared<ThrusterManagableItem>(*this);
+}

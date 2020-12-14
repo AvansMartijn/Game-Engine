@@ -370,14 +370,12 @@ void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 }
 
 void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-	if (e.y > 0) // scroll up
-	{
+	if (e.y > 0) {
 		// Put code for handling "scroll up" here!
 		if (Scene::getInstance().zoom < 60)
 			Scene::getInstance().zoom += 3.0f;
 	}
-	else if (e.y < 0) // scroll down
-	{
+	else if (e.y < 0) {
 		// Put code for handling "scroll down" here!
 		if (Scene::getInstance().zoom > 10)
 			Scene::getInstance().zoom -= 3.0f;

@@ -7,6 +7,9 @@
 
 #include <memory>
 #include <iostream>
+#include "ExtensionProperty.h"
+#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -16,7 +19,18 @@ protected:
 	shared_ptr<GameObject> _subject;
 public:
 	string type;
+
+	/// <summary>
+	/// Registers the subject of the extension.
+	/// </summary>
+	/// <param name="subject">The subject of the extension.</param>
 	virtual void registerSubject(shared_ptr<GameObject> subject);
+
+	/// <summary>
+	/// Fills the extensions with the given properties.
+	/// </summary>
+	/// <param name="properties">The properties we want to use</param>
+	virtual void fillProperties(std::map<std::string, ExtensionProperty> properties);
 };
 
 typedef AbstractGameObjectExtension* (__stdcall* CreateExtensionFn)(void);

@@ -3,7 +3,7 @@
 #include "CollisionResolutionDefaultExtension.h"
 #include "Physics.h"
 
-//TODO: KAN DEZE WEG?
+//TODO: MAG WEG
 CheckPhysicsExtension::CheckPhysicsExtension() {
 	type = "CheckPhysicsExtension";
 }

@@ -63,6 +63,10 @@ int GameObject::metersToPixels(float value) {
 	return (int)(Scene::getInstance().zoom * value);
 }
 
+vector<shared_ptr<AbstractGameObjectExtension>> GameObject::getExtensions() {
+	return _gameObjectExtensions;
+}
+
 std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
 	for (shared_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions) {
 		string givenName = type.name();

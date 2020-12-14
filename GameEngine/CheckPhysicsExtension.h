@@ -8,7 +8,7 @@
 #include "AbstractCollisionResolutionExtension.h"
 //#include "PhysicsFacade.h"
 
-//  TODO: KAN DEZE WEG?
+//  TODO: MAG WEG
 
 /// <summary>
 /// Physics

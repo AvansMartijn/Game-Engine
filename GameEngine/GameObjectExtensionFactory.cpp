@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "GameObjectExtensionFactory.h"
 #include "AiExtension.h"
-#include "AttackExtension.h"
 #include "MoveExtension.h"
 #include "CollisionResolutionDefaultExtension.h"
 #include "CollisionResolutionPortalExtension.h"
@@ -17,7 +16,6 @@
 // TODO: MAKE IT SO WE DON'T NEED TO ADD A KEY (use GetType)
 GameObjectExtensionFactory::GameObjectExtensionFactory() {
     registerExtension("AiExtension", &AiExtension::create);
-    registerExtension("AttackExtension", &AttackExtension::create);
     registerExtension("MoveExtension", &MoveExtension::create);
     registerExtension("CheckPhysicsExtension", &CheckPhysicsExtension::create);
     registerExtension("CollisionResolutionDefaultExtension", &CollisionResolutionDefaultExtension::create);

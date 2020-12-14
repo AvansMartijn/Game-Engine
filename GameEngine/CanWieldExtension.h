@@ -67,6 +67,18 @@ public:
 	/// <returns>If the object has any items</returns>
 	bool hasItems();
 
+	/// <summary>
+	/// Set's if the current item should render.
+	/// </summary>
+	/// <param name="shouldRender">If the current item should render</param>
+	void setShouldRender(bool shouldRender);
+
+	/// <summary>
+	/// Fills the extensions with the given properties.
+	/// </summary>
+	/// <param name="properties">The properties we want to use</param>
+	void fillProperties(std::map<std::string, ExtensionProperty> properties);
+
 	static AbstractGameObjectExtension* __stdcall create() { return new CanWieldExtension(); }
 };
 

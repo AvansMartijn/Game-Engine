@@ -16,6 +16,8 @@ private:
 public:
 	PickupExtension();
 
+	std::string itemType;
+
 	/// <summary>
 	/// Set's the current item.
 	/// </summary>
@@ -33,6 +35,12 @@ public:
 	/// </summary>
 	/// <param name="gameObject">The colliding game object</param>
 	void onEntityCollision(shared_ptr<GameObject> gameObject);
+
+	/// <summary>
+	/// Fills the extensions with the given properties.
+	/// </summary>
+	/// <param name="properties">The properties we want to use</param>
+	void fillProperties(std::map<std::string, ExtensionProperty> properties);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new PickupExtension(); }
 };

@@ -22,3 +22,8 @@ void HealthExtension::reduceHealth(int value) {
 
 	_health -= value;
 }
+
+void HealthExtension::fillProperties(std::map<std::string, ExtensionProperty> extensionProperties) {
+	if (extensionProperties.find("health") != extensionProperties.end())
+		_health = extensionProperties["health"].valueInt;
+}

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CollisionResolutionDefaultExtension.h"
 
-// TODO: WAT HIER MEE DOEN?
 CollisionResolutionDefaultExtension::CollisionResolutionDefaultExtension() {
 	type = "AbstractCollisionResolutionExtension";
 }
