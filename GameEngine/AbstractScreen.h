@@ -18,6 +18,7 @@ class GameEngine;
 class AbstractGame;
 class GAMEENGINE_AbstractScreen AbstractScreen {
 protected:
+	// TODO: DEZE WEG WERKEN
 	AbstractGame* _game;
 	vector<shared_ptr<AbstractUiElement>> _uiElements;
 public:
@@ -26,7 +27,6 @@ public:
 
 	AbstractScreen();
 	~AbstractScreen();
-
 
 	/// <summary>
 	/// Called one time to create all objects.

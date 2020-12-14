@@ -128,7 +128,18 @@ public:
 	/// <param name="center">If we want to center the text.</param>
 	void renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
 
+	/// <summary>
+	/// Render a multi line text area.
+	/// </summary>
+	/// <param name="text">The text we want to render.</param>
+	/// <param name="font">The font we want to use.</param>
+	/// <param name="rect">The rectangle.</param>
+	/// <param name="foregroundColor">The foreground color.</param>
+	/// <param name="backgroundColor">The background color.</param>
+	/// <param name="center">If we want to center the text.</param>
+	/// <param name="multiLine">If we should render multiple lines.</param>
 	void renderMultiLineText(std::vector<std::string> text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine = false);
+
 	/// <summary>
 	/// Render a hp bar
 	/// </summary>
@@ -136,16 +147,16 @@ public:
 	/// <param name="y">y pos</param>
 	/// <param name="w">width</param>
 	/// <param name="h">height</param>
-	/// <param name="Percent">Precent to fill the bar</param>
-	/// <param name="FGColor">Front color</param>
-	/// <param name="BGColor">Background color</param>
-	void renderHPBar(int x, int y, int w, int h, float Percent, Color FGColor, Color BGColor);
+	/// <param name="percent">Precent to fill the bar</param>
+	/// <param name="fgColor">Front color</param>
+	/// <param name="bgColor">Background color</param>
+	void renderHPBar(int x, int y, int w, int h, float percent, Color fgColor, Color bgColor);
 
 	/// <summary>
 	/// Converts pixels to meters.
 	/// </summary>
 	/// <param name="value">The value in pixels.</param>
-	/// <returns>The value ins meters.</returns>
+	/// <returns>The value in meters.</returns>
 	int metersToPixels(float value);
 };
 

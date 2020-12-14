@@ -15,6 +15,7 @@ class Window;
 class AbstractGame;
 class GAMEENGINE_AbstractUiElement AbstractUiElement {
 protected:
+	// TODO: DEZE WEG WERKEN
 	AbstractGame* _game;
 public:
 	Rect rect;
@@ -48,4 +49,6 @@ public:
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
 	std::function<void(AbstractGame*)> onClick;
+
+	// TODO: DEZE OMZETTEN NAAR SMART PTR
 };

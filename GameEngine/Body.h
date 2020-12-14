@@ -4,6 +4,7 @@ class Body {
 public:
 	Body();
 
+	// TODO: DEZE WEG WERKEN.
 	b2Body* b2body;
 	float width;
 	float height;
