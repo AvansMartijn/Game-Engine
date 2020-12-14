@@ -2,7 +2,7 @@
 #include "CollisionListener.h"
 
 Game::Game(const char* title, int width, int height) : AbstractGame(title, width, height) {}
-
+Game::Game() {}
 Game::~Game() {}
 
 void Game::onInit() {

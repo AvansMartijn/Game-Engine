@@ -16,27 +16,27 @@ void PauseScreen::onInit() {
 
 	ButtonUiElement resumeButton = ButtonUiElement("Resume", { 470, 100, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	resumeButton.registerGame(_game);
-	resumeButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	resumeButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::MainGame); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(resumeButton));
 
 	ButtonUiElement helpButton = ButtonUiElement("Help", { 470, 150, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	helpButton.registerGame(_game);
-	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
+	helpButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Help); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
 	ButtonUiElement settingsButton = ButtonUiElement("Settings", { 470, 200, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	settingsButton.registerGame(_game);
-	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Settings); };
+	settingsButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Settings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
 
 	ButtonUiElement restartButton = ButtonUiElement("Restart", { 470, 250, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	restartButton.registerGame(_game);
-	restartButton.onClick = [](AbstractGame* game) {  game->switchScreen(Screens::MainGame, { "reset" });};
+	restartButton.onClick = [](shared_ptr<AbstractGame> game) {  game->switchScreen(Screens::MainGame, { "reset" });};
 	_uiElements.push_back(make_shared<ButtonUiElement>(restartButton));
 
 	ButtonUiElement quitGameButton= ButtonUiElement("Quit", { 470, 300, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GameOver); };
+	quitGameButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GameOver); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
 
 	ImageUiElement walu = ImageUiElement("Hat", { 1080 - 350 , (((720 - 400) - 100) / 2), 300, 300 });

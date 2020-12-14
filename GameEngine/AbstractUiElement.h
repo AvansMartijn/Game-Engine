@@ -15,8 +15,7 @@ class Window;
 class AbstractGame;
 class GAMEENGINE_AbstractUiElement AbstractUiElement {
 protected:
-	// TODO: DEZE WEG WERKEN
-	AbstractGame* _game;
+	shared_ptr<AbstractGame> _game;
 public:
 	Rect rect;
 
@@ -44,11 +43,11 @@ public:
 	/// Register the game to the element.
 	/// </summary>
 	/// <param name="game">The Game</param>
-	virtual void registerGame(AbstractGame* game);
+	virtual void registerGame(shared_ptr<AbstractGame> game);
 	/// <summary>
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
-	std::function<void(AbstractGame*)> onClick;
+	std::function<void(shared_ptr<AbstractGame>)> onClick;
 
 	// TODO: DEZE OMZETTEN NAAR SMART PTR
 };

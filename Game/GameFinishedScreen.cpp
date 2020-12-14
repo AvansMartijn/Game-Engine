@@ -35,7 +35,7 @@ void GameFinishedScreen::onInit() {
 
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level & Save", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
-	nextLevelButton.onClick = [this](AbstractGame* game) {
+	nextLevelButton.onClick = [this](shared_ptr<AbstractGame> game) {
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
 		auto test = GameSettings::getInstance().getNextLevel().levelName;
@@ -86,7 +86,7 @@ void GameFinishedScreen::onInit() {
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [this](AbstractGame* game) {
+	quitGameButton.onClick = [this](shared_ptr<AbstractGame> game) {
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
 		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {

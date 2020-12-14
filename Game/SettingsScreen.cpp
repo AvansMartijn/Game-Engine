@@ -30,7 +30,7 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement soundPlus = ButtonUiElement("+", { 260, 160, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundPlus.registerGame(_game);
-	soundPlus.onClick = [this](AbstractGame* game) { 
+	soundPlus.onClick = [this](shared_ptr<AbstractGame> game) {
 		int volume = GameSettings::getInstance().saveGame.settings.sound;
 
 		if(volume <= 118)
@@ -45,7 +45,7 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement soundMin = ButtonUiElement("-", { 160, 160, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundMin.registerGame(_game);
-	soundMin.onClick = [this](AbstractGame* game) { 
+	soundMin.onClick = [this](shared_ptr<AbstractGame> game) {
 		int volume = SoundPlayer::getInstance().currentVolume;
 
 		if (volume >= 10)
@@ -65,7 +65,7 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement soundFxPlus = ButtonUiElement("+", { 260, 310, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundFxPlus.registerGame(_game);
-	soundFxPlus.onClick = [this](AbstractGame* game) {
+	soundFxPlus.onClick = [this](shared_ptr<AbstractGame> game) {
 		int volume = GameSettings::getInstance().saveGame.settings.soundFx;
 
 		if (volume <= 118)
@@ -80,7 +80,7 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement soundFxMin = ButtonUiElement("-", { 160, 310, 40, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	soundFxMin.registerGame(_game);
-	soundFxMin.onClick = [this](AbstractGame* game) {
+	soundFxMin.onClick = [this](shared_ptr<AbstractGame> game) {
 		int volume = GameSettings::getInstance().saveGame.settings.soundFx;
 
 		if (volume >= 10)
@@ -100,7 +100,7 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement gameSpeedDown = ButtonUiElement("Slow Down", { 650, 160, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	gameSpeedDown.registerGame(_game);
-	gameSpeedDown.onClick = [this](AbstractGame* game) {
+	gameSpeedDown.onClick = [this](shared_ptr<AbstractGame> game) {
 		int val = (int)Scene::getInstance().tickRate;
 		if (val - 10 > 0) {
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate - 10;
@@ -111,7 +111,7 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement gameSpeedUp = ButtonUiElement("Speed Up", { 650, 210, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	gameSpeedUp.registerGame(_game);
-	gameSpeedUp.onClick = [this](AbstractGame* game) {
+	gameSpeedUp.onClick = [this](shared_ptr<AbstractGame> game) {
 		int val = (int)Scene::getInstance().tickRate;
 		if (val + 10 <= 250) {
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate + 10;
@@ -122,12 +122,12 @@ void SettingsScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
+	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	ButtonUiElement keyBindingsButton = ButtonUiElement("Keybindings", { 475, 600, 150, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	keyBindingsButton.registerGame(_game);
-	keyBindingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::KeyBindings); };
+	keyBindingsButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::KeyBindings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(keyBindingsButton));
 }
 
