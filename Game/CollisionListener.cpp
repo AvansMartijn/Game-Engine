@@ -7,7 +7,6 @@
 #include "HealthExtension.h"
 #include "DoesDamageExtension.h"
 
-
 void CollisionListener::BeginContact(b2Contact* contact) {
 	b2Fixture* fixtureA = contact->GetFixtureA();
 	b2Fixture* fixtureB = contact->GetFixtureB();
@@ -130,9 +129,8 @@ void CollisionListener::checkPickupSensor(const CustomUserData& valA, const Cust
 
 void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObject, const CustomUserData& objA, b2Fixture& fixtureA) {
 	if (valA.type == "glueBullet") {
-		if (valB.type == "portalSensor") {
+		if (valB.type == "portalSensor")
 			Physics::getInstance().deleteQueue.push_back(objA.index);
-		}
 		else if (valB.type == "glueFixture" || valB.type == "fixture") {
 			valA.type = "glueFixture";
 			b2Filter filter = fixtureA.GetFilterData();
@@ -167,9 +165,8 @@ void CollisionListener::checkDamage(shared_ptr<GameObject> gameObjectA, shared_p
 void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
 	//culling duplicate to prevent double operations
 	auto objectLocation = std::find_if(Physics::getInstance().deleteQueue.begin(), Physics::getInstance().deleteQueue.end(), [objA](int id) {return id == objA.index; });
-	if (objectLocation != Physics::getInstance().deleteQueue.end()) {
+	if (objectLocation != Physics::getInstance().deleteQueue.end())
 		return;
-	}
 
 	if (valA.type == "portalAbullet" || valA.type == "portalBbullet") {
 		if (!gameObjectB->hasExtension(typeid(IsPortalableExtension)) && valB.type != "glueFixture") {
@@ -177,100 +174,83 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			return;
 		}
 		else if (gameObjectB->hasExtension(typeid(IsPortalableExtension))) {
-
-
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 
-			float Aleft = gameObjectA->body.b2body->GetPosition().x - (gameObjectA->body.width / 2);
-			float Aright = gameObjectA->body.b2body->GetPosition().x + (gameObjectA->body.width / 2);
-			float Atop = gameObjectA->body.b2body->GetPosition().y - (gameObjectA->body.height / 2);
-			float Abottom = gameObjectA->body.b2body->GetPosition().y + (gameObjectA->body.width / 2);
+			float aLeft = gameObjectA->body.b2body->GetPosition().x - (gameObjectA->body.width / 2);
+			float aRight = gameObjectA->body.b2body->GetPosition().x + (gameObjectA->body.width / 2);
+			float aTop = gameObjectA->body.b2body->GetPosition().y - (gameObjectA->body.height / 2);
+			float aBottom = gameObjectA->body.b2body->GetPosition().y + (gameObjectA->body.width / 2);
 
-			float Bleft = gameObjectB->body.b2body->GetPosition().x - (gameObjectB->body.width / 2);
-			float Bright = gameObjectB->body.b2body->GetPosition().x + (gameObjectB->body.width / 2);
-			float Btop = gameObjectB->body.b2body->GetPosition().y - (gameObjectB->body.height / 2);
-			float Bbottom = gameObjectB->body.b2body->GetPosition().y + (gameObjectB->body.height / 2);
+			float bLeft = gameObjectB->body.b2body->GetPosition().x - (gameObjectB->body.width / 2);
+			float bRight = gameObjectB->body.b2body->GetPosition().x + (gameObjectB->body.width / 2);
+			float bTop = gameObjectB->body.b2body->GetPosition().y - (gameObjectB->body.height / 2);
+			float bBottom = gameObjectB->body.b2body->GetPosition().y + (gameObjectB->body.height / 2);
 
 			TeleportObject teleportObj;
 			teleportObj.newPosition = gameObjectA->body.b2body->GetPosition();
-			if (valA.type == "portalAbullet") {
+			if (valA.type == "portalAbullet")
 				teleportObj.obj = Scene::getInstance().portalA;
-			}
-			else if (valA.type == "portalBbullet") {
+			else if (valA.type == "portalBbullet")
 				teleportObj.obj = Scene::getInstance().portalB;
-			}
 
 			shared_ptr<CollisionResolutionPortalExtension> extension = teleportObj.obj->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>();
 			float angle = 0;
-			if (Aleft > Bleft && Aleft < Bright) {
+			if (aLeft > bLeft && aLeft < bRight) {
 				//A left is in between B left and right
 				// it has to be bottom or top, check which one is closer
-				if (abs(Abottom - gameObjectB->body.b2body->GetPosition().y) < abs(Atop - gameObjectB->body.b2body->GetPosition().y)) {
+				if (abs(aBottom - gameObjectB->body.b2body->GetPosition().y) < abs(aTop - gameObjectB->body.b2body->GetPosition().y)) {
 					// bottom is closer to object b
 					// portal must be on top of object B
 					extension->exitSide = "top";
-					std::cout << "bottom" << "\n";
+
 					angle = 180;
 				}
 				else {
 					//top is closer
 					extension->exitSide = "bottom";
-
-					std::cout << "top" << "\n";
 				}
 			}
-			else if (Aright > Bleft && Aright < Bright) {
+			else if (aRight > bLeft && aRight < bRight) {
 				//A right is in between B left and right
-				if (abs(Abottom - gameObjectB->body.b2body->GetPosition().y) < abs(Atop - gameObjectB->body.b2body->GetPosition().y)) {
+				if (abs(aBottom - gameObjectB->body.b2body->GetPosition().y) < abs(aTop - gameObjectB->body.b2body->GetPosition().y)) {
 					// bottom is closer to object b
 					// portal must be on top of object B
-					std::cout << "bottom" << "\n";
 					extension->exitSide = "top";
 					angle = 180;
-
 				}
 				else {
 					//top is closer
-					std::cout << "top" << "\n";
 					extension->exitSide = "bottom";
-
 				}
 			}
-			else if (Atop > Btop && Atop < Bbottom) {
+			else if (aTop > bTop && aTop < bBottom) {
 				//A left is in between B left and right
 				// it has to be bottom or top, check which one is closer
-				if (abs(Aright - gameObjectB->body.b2body->GetPosition().x) < abs(Aleft - gameObjectB->body.b2body->GetPosition().x)) {
+				if (abs(aRight - gameObjectB->body.b2body->GetPosition().x) < abs(aLeft - gameObjectB->body.b2body->GetPosition().x)) {
 					//right is closer
-					std::cout << "right" << "\n";
 					extension->exitSide = "left";
 					angle = 90;
-
 				}
 				else {
 					//left is closer
-					std::cout << "left" << "\n";
 					extension->exitSide = "right";
 					angle = -90;
-
 				}
 			}
-			else if (Abottom > Btop && Abottom < Bbottom) {
+			else if (aBottom > bTop && aBottom < bBottom) {
 				//A right is in between B left and right
-				if (abs(Aright - gameObjectB->body.b2body->GetPosition().x) < abs(Aleft - gameObjectB->body.b2body->GetPosition().x)) {
+				if (abs(aRight - gameObjectB->body.b2body->GetPosition().x) < abs(aLeft - gameObjectB->body.b2body->GetPosition().x)) {
 					//right is closer
-					std::cout << "right" << "\n";
 					extension->exitSide = "left";
 					angle = 90;
-
 				}
 				else {
 					//left is closer
-					std::cout << "left" << "\n";
 					extension->exitSide = "right";
 					angle = -90;
-
 				}
 			}
+
 			//rotatequeue
 			float angleRadians = angle * ((float)M_PI / 180.0f);
 			//teleportObj.obj->body.b2body->SetTransform(teleportObj.obj->body.b2body->GetPosition(), angleRadians);*/
