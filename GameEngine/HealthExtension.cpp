@@ -4,7 +4,6 @@
 
 HealthExtension::HealthExtension() {
 	type = getType();
-	//default health is 100;
 	_health = 100;
 }
 
