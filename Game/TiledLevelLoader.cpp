@@ -1,6 +1,6 @@
 #include "TiledLevelLoader.h"
 
-void TiledLevelLoader::createLevel(GameEngine gameEngine, std::string& name) {
+void TiledLevelLoader::createLevel(GameEngine gameEngine, const std::string& name) {
 	// Don't reload data from the file if we already have the correct game objects.
 	if (name != _currentName) {
 		TiledLevel tiledLevel = getTiledLevel(name);
@@ -14,7 +14,7 @@ void TiledLevelLoader::createLevel(GameEngine gameEngine, std::string& name) {
 	_defaultTiledLevel.createLevel(gameEngine);
 }
 
-TiledLevel TiledLevelLoader::getTiledLevel(std::string& name) {
+TiledLevel TiledLevelLoader::getTiledLevel(const std::string& name) {
 	std::string fileDir = directory + name + ".json";
 
 	TiledLevel level = TiledMapBuilder().build(fileDir);
@@ -22,7 +22,7 @@ TiledLevel TiledLevelLoader::getTiledLevel(std::string& name) {
 	return level;
 }
 
-std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(TiledLevel& level) {
+std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(const TiledLevel& level) {
 	std::vector<TiledGameObject> gameObjects;
 
 	for (size_t layerIndex = 0; layerIndex < level.layers.size(); layerIndex++) {
@@ -89,7 +89,7 @@ std::vector<TiledGameObject> TiledLevelLoader::getTiledGameObjects(TiledLevel& l
 	return gameObjects;
 }
 
-TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, int gid) const {
+TiledTileSet TiledLevelLoader::findTileSetForGid(const TiledLevel& level, int gid) const {
 
 	int correctTileSetIndex = -1;
 	for (size_t tileSetIndex = 0; tileSetIndex < level.tileSets.size(); tileSetIndex++) {
@@ -111,7 +111,7 @@ TiledTileSet TiledLevelLoader::findTileSetForGid(TiledLevel& level, int gid) con
 	return level.tileSets[correctTileSetIndex];
 }
 
-TiledTile TiledLevelLoader::findTileForGid(TiledTileSet& tileSet, int gid) const {
+TiledTile TiledLevelLoader::findTileForGid(const TiledTileSet& tileSet, int gid) const {
 	int correctTileIndex = -1;
 	for (size_t tileIndex = 0; tileIndex < tileSet.tiles.size(); tileIndex++) {
 		TiledTile tile = tileSet.tiles[tileIndex];

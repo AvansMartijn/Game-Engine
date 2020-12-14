@@ -58,5 +58,5 @@ public:
 	/// <param name="prefix">The prefix we want to use.</param>
 	/// <param name="path">The texture path.</param>
 	/// <returns>The texture key.</returns>
-	std::string getTextureKeyFromPath(std::string prefix, std::string& path) const;
+	std::string getTextureKeyFromPath(const std::string& prefix, const std::string& path) const;
 };

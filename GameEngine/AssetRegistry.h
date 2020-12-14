@@ -38,28 +38,28 @@ public:
 	/// </summary>
 	/// <param name="textureKey">The texture key.</param>
 	/// <param name="texture">The texture.</param>
-	void registerTexture(std::string textureKey, std::shared_ptr<SDLTexture> texture);
+	void registerTexture(const std::string& textureKey, std::shared_ptr<SDLTexture> texture);
 
 	/// <summary>
 	/// Get's the texture from the registry.
 	/// </summary>
 	/// <param name="textureKey">The texture key.</param>
 	/// <returns>The texture.</returns>
-	std::shared_ptr<SDLTexture> getTexture(std::string textureKey);
+	std::shared_ptr<SDLTexture> getTexture(const std::string& textureKey);
 
 	/// <summary>
 	/// Adds the font path to the registry.
 	/// </summary>
 	/// <param name="fontKey">The font key.</param>
 	/// <param name="fontPath">The font.</param>
-	void registerFont(std::string fontKey, std::string fontPath);
+	void registerFont(const std::string& fontKey, const std::string& fontPath);
 
 	/// <summary>
 	/// Get's the font path from the registry.
 	/// </summary>
 	/// <param name="fontKey">The font key.</param>
 	/// <returns>The font path.</returns>
-	std::string getFontPath(std::string fontKey);
+	std::string getFontPath(const std::string& fontKey);
 
 	/// <summary>
 	/// Get's the base path.
@@ -75,7 +75,7 @@ public:
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
 	/// <param name="shouldAddKey">If we should add the file name as key.</param>
 	/// <returns>A list with all file data.</returns>
-	std::vector<FileData> getFilesInDirectory(std::string basePath, std::string directory, bool isDeep, bool shouldAddKey = true) const;
+	std::vector<FileData> getFilesInDirectory(const std::string& basePath, const std::string& directory, bool isDeep, bool shouldAddKey = true) const;
 
 	/// <summary>
 	/// Split a string by the given delimiter.
@@ -91,5 +91,5 @@ public:
 	/// <param name="org">The organisation name.</param>
 	/// <param name="app">The app name.</param>
 	/// <returns>The pref dir.</returns>
-	std::string getPrefPath(std::string org, std::string app);
+	std::string getPrefPath(const std::string& org, const std::string& app) const;
 };

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "TextUiElement.h"
 
-TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect textRect, Color fgColor, Color bgColor, bool center, bool mulitLine) {
+TextUiElement::TextUiElement(const std::string& txt, const std::string& fontKey, int fontSize, const Rect& textRect, const Color& fgColor, const Color& bgColor, bool center, bool mulitLine) {
     text = txt;
     _fontKey = fontKey;
     rect = textRect;
@@ -12,7 +12,7 @@ TextUiElement::TextUiElement(std::string txt, std::string fontKey, int fontSize,
     _multiLine = mulitLine;
 }
 
-TextUiElement::TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect textRect, Color fgColor, Color bgColor, bool center, bool mulitLine) {
+TextUiElement::TextUiElement(std::vector<std::string> txt, const std::string& fontKey, int fontSize, const Rect& textRect, const Color& fgColor, const Color& bgColor, bool center, bool mulitLine) {
     textLines = txt;
     _fontKey = fontKey;
     rect = textRect;
@@ -36,6 +36,6 @@ void TextUiElement::render(const unique_ptr<Window>& window) {
         window->renderText(text, _font, rect, _foregroundColor, _backgroundColor, _center, _multiLine);
 }
 
-bool TextUiElement::isInBound(int mouseX, int mouseY) {
+bool TextUiElement::isInBound(int mouseX, int mouseY) const {
     return false;
 }

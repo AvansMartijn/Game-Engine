@@ -2,7 +2,7 @@
 #include "ImageUiElement.h"
 
 using namespace std;
-ImageUiElement::ImageUiElement(std::string textureKey, Rect imageRect, int alpha, bool flipRight) {
+ImageUiElement::ImageUiElement(const std::string& textureKey, const Rect& imageRect, int alpha, bool flipRight) {
     rect = imageRect;
     _textureKey = textureKey;
     _alpha = alpha;
@@ -17,6 +17,6 @@ void ImageUiElement::render(const unique_ptr<Window>& window) {
     window->renderTexture(_textureKey, rect, 0.0f, _flipRight, _alpha);
 }
 
-bool ImageUiElement::isInBound(int mouseX, int mouseY) {
+bool ImageUiElement::isInBound(int mouseX, int mouseY) const {
     return false;
 }

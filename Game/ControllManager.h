@@ -39,7 +39,7 @@ public:
 	/// <param name="key">The scancode.</param>
 	/// <param name="action">The action.</param>
 	/// <returns>If the key is valid.</returns>
-	bool validKey(SDL_Scancode key, std::string action);
+	bool validKey(const SDL_Scancode& key, const std::string& action);
 
 	/// <summary>
 	/// Register all the controls.
@@ -52,5 +52,5 @@ public:
 	/// <param name="action">The action</param>
 	/// <param name="userKey">The user key.</param>
 	/// <param name="userSDLKey">The user scancode.</param>
-	void updateControl(std::string action, std::string userKey, SDL_Scancode userSDLKey);
+	void updateControl(const std::string& action, const std::string& userKey, const SDL_Scancode& userSDLKey);
 };

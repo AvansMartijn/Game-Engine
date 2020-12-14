@@ -33,12 +33,12 @@ public:
 	/// </summary>
 	/// <param name="cheat">The name of the cheat we want to search for.</param>
 	/// <returns>If there is a cheat with the given name.</returns>
-	bool isCheat(std::string cheatName);
+	bool isCheat(const std::string& cheatName) const;
 
 	/// <summary>
 	/// Execute the cheat with the givenName
 	/// </summary>
 	/// <param name="cheat"></param>
 	/// <returns></returns>
-	bool executeCheat(std::string cheatName);
+	bool executeCheat(const std::string& cheatName);
 };

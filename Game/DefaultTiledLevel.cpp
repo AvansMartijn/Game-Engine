@@ -132,7 +132,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	}
 }
 
-std::string DefaultTiledLevel::getTextureKeyFromPath(std::string prefix, std::string& path) const {
+std::string DefaultTiledLevel::getTextureKeyFromPath(const std::string& prefix, const std::string& path) const {
 	// Find file name
 	std::string name = path.substr(path.rfind('/') + 1);
 

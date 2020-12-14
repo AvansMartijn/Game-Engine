@@ -47,6 +47,6 @@ public:
 	/// </summary>
 	/// <param name="movementType">The movement type we want to convert.</param>
 	/// <returns>The movement type as key.</returns>
-	std::string getKeyFromMovementType(MovementType movementType);
+	std::string getKeyFromMovementType(MovementType movementType) const;
 };
 

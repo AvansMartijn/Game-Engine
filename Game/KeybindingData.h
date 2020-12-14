@@ -13,13 +13,14 @@ public:
 
 	KeybindingData();
 
-	KeybindingData(std::string _defaultKey, SDL_Scancode _defaultSDLKey) {
+	// TODO: SDL REFERENCE
+	KeybindingData(const std::string& _defaultKey, const SDL_Scancode& _defaultSDLKey) {
 		defaultKey = _defaultKey;
 		defaultSDLKey = _defaultSDLKey;
 		isDefault = true;
 	}
 
-	KeybindingData(std::string _defaultKey, std::string _userKey, SDL_Scancode _defaultSDLKey, SDL_Scancode _userSDLKey, bool _isDefault) {
+	KeybindingData(const std::string& _defaultKey, const std::string& _userKey, const SDL_Scancode& _defaultSDLKey, const SDL_Scancode& _userSDLKey, bool _isDefault) {
 		defaultKey = _defaultKey;
 		userKey = _userKey;
 		defaultSDLKey = _defaultSDLKey;

@@ -83,7 +83,7 @@ public:
 	/// Get's the game objects in the current scene.
 	/// </summary>
 	/// <returns>The game objects in the current scene.</returns>
-	map<int, shared_ptr<GameObject>> getGameObjects();
+	map<int, shared_ptr<GameObject>> getGameObjects() const;
 
 	/// <summary>
 	/// Get's the index at the given index.
@@ -96,7 +96,7 @@ public:
 	/// Get's the size of the entities vector.
 	/// </summary>
 	/// <returns>The size of the entities vector.</returns>
-	size_t getEntitiesSize();
+	size_t getEntitiesSize() const;
 
 	/// <summary>
 	/// Removes a game object from the scene.
@@ -163,7 +163,7 @@ public:
 	/// Get's the player.
 	/// </summary>
 	/// <returns>The player.</returns>
-	shared_ptr<GameObject> getPlayer();
+	shared_ptr<GameObject> getPlayer() const;
 
 	/// <summary>
 	/// Resets the scene.
@@ -181,14 +181,14 @@ public:
 	/// </summary>
 	/// <param name="meters"></param>
 	/// <returns>amount of pixels</returns>
-	float metersToPixels(float meters);
+	float metersToPixels(float meters) const;
 
 	/// <summary>
 	/// convert pixels to meters
 	/// </summary>
 	/// <param name="pixels"></param>
 	/// <returns>amount of meters</returns>
-	float pixelsToMeters(float pixels);
+	float pixelsToMeters(float pixels) const;
 
 };
 

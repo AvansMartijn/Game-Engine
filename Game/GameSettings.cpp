@@ -34,7 +34,7 @@ void GameSettings::load() {
 	CreateDirectoryA(levelDirectory.c_str(), NULL);
 }
 
-void GameSettings::addLevel(int number, LevelData levelData) {
+void GameSettings::addLevel(int number, const LevelData& levelData) {
 	bool found = false;
 	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
 		SaveLevel data = saveGame.levels[levelIndex];
@@ -54,7 +54,7 @@ void GameSettings::addLevel(int number, LevelData levelData) {
 	_storyLevels.insert(std::make_pair(number, levelData));
 }
 
-bool GameSettings::isStoryLevel(LevelData levelData) {
+bool GameSettings::isStoryLevel(const LevelData& levelData) {
 	bool found = false;
 	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
 		SaveLevel data = saveGame.levels[levelIndex];
@@ -118,7 +118,7 @@ LevelData GameSettings::getNextLevel() {
 	return {};
 }
 
-int GameSettings::getIndexByLevelName(std::string name) {
+int GameSettings::getIndexByLevelName(const std::string& name) const {
 	auto levelPair = std::find_if(_storyLevels.begin(), _storyLevels.end(), [name](std::pair<int, LevelData> level ) { return level.second.levelName == name; });
 
 	if (levelPair != _storyLevels.end())

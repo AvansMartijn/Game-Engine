@@ -38,7 +38,7 @@ public:
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
-	virtual bool isInBound(int mouseX, int mouseY) = 0;
+	virtual bool isInBound(int mouseX, int mouseY) const = 0;
 	/// <summary>
 	/// Register the game to the element.
 	/// </summary>

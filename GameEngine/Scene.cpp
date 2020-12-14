@@ -11,7 +11,7 @@ shared_ptr<GameObject> Scene::getGameObject(int id) {
     return _gameObjects[id];
 }
 
-map<int, shared_ptr<GameObject>> Scene::getGameObjects() {
+map<int, shared_ptr<GameObject>> Scene::getGameObjects() const {
     return _gameObjects;
 }
 
@@ -19,7 +19,7 @@ shared_ptr<GameObject> Scene::getEntityAtIndex(int index) {
     return _gameObjects[_entities.at(index)];
 }
 
-size_t Scene::getEntitiesSize() {
+size_t Scene::getEntitiesSize() const {
     return _entities.size();
 }
 
@@ -71,7 +71,7 @@ shared_ptr<AbstractManageableItem> Scene::getItem(std::string name) {
     return _items[name];
 }
 
-shared_ptr<GameObject> Scene::getPlayer() {
+shared_ptr<GameObject> Scene::getPlayer() const {
     return _player;
 }
 
@@ -107,10 +107,10 @@ void Scene::render(const unique_ptr<Window>& window) {
     }
 }
 
-float Scene::metersToPixels(float meters) {
+float Scene::metersToPixels(float meters) const {
     return meters * zoom;
 }
 
-float Scene::pixelsToMeters(float pixels) {
+float Scene::pixelsToMeters(float pixels) const {
     return pixels / zoom;
 }
