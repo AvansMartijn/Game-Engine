@@ -5,6 +5,6 @@ public:
 	/// Execute the cheat.
 	/// </summary>
 	/// <returns>If the cheat was executed succesfully.</returns>
-	virtual bool Execute() = 0;
+	virtual bool execute() = 0;
 };
 
