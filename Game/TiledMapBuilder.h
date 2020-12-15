@@ -20,6 +20,6 @@ public:
 	/// </summary>
 	/// <param name="fileLocation">The location of the file we want to load.</param>
 	/// <returns>The level which we build.</returns>
-	TiledLevel build(std::string& fileLocation);
+	TiledLevel build(const std::string& fileLocation);
 };
 

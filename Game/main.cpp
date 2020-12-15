@@ -11,12 +11,10 @@
 #include "CheatManager.h"
 #include "StartNewLevelScreen.h"
 
-
 #undef main
 
 int main(int argc, char* argv[]) {
-	Game game = { "Game", 1080, 720 };
-
+	shared_ptr<Game> game = make_shared<Game>("Game", 1080, 720);
 	GameSettings::getInstance().load();
 
 	GameSettings::getInstance().addLevel(0, { "Tutorial_Level_1", LevelType::TILED });
@@ -46,91 +44,91 @@ int main(int argc, char* argv[]) {
 
 	// The screens have to be created outside the Game class, using "this" will create problems.
 	unique_ptr<GameScreen> gameScreen(new GameScreen);
-	gameScreen->registerGame(&game);
+	gameScreen->registerGame(game);
 	gameScreen->onInit();
-	game.screens.push_back(move(gameScreen));
+	game->screens.push_back(move(gameScreen));
 
 	unique_ptr<PauseScreen> pauseScreen(new PauseScreen);
-	pauseScreen->registerGame(&game);
+	pauseScreen->registerGame(game);
 	pauseScreen->onInit();
-	game.screens.push_back(move(pauseScreen));
+	game->screens.push_back(move(pauseScreen));
 
 	unique_ptr<CreditsScreen> creditsScreen(new CreditsScreen);
-	creditsScreen->registerGame(&game);
+	creditsScreen->registerGame(game);
 	creditsScreen->onInit();
-	game.screens.push_back(move(creditsScreen));
+	game->screens.push_back(move(creditsScreen));
 
 	unique_ptr<HelpScreen> helpScreen(new HelpScreen);
-	helpScreen->registerGame(&game);
+	helpScreen->registerGame(game);
 	helpScreen->onInit();
-	game.screens.push_back(move(helpScreen));
+	game->screens.push_back(move(helpScreen));
 
 	unique_ptr<MainMenuScreen> mainMenuScreen(new MainMenuScreen);
-	mainMenuScreen->registerGame(&game);
+	mainMenuScreen->registerGame(game);
 	mainMenuScreen->onInit();
-	game.screens.push_back(move(mainMenuScreen));
+	game->screens.push_back(move(mainMenuScreen));
 
 	unique_ptr<GameOverScreen> gameOverScreen(new GameOverScreen);
-	gameOverScreen->registerGame(&game);
+	gameOverScreen->registerGame(game);
 	gameOverScreen->onInit();
-	game.screens.push_back(move(gameOverScreen));
+	game->screens.push_back(move(gameOverScreen));
 
 	unique_ptr<KeyBindingsHelpScreen> keyBindingsHelpScreen(new KeyBindingsHelpScreen);
-	keyBindingsHelpScreen->registerGame(&game);
+	keyBindingsHelpScreen->registerGame(game);
 	keyBindingsHelpScreen->onInit();
-	game.screens.push_back(move(keyBindingsHelpScreen));
+	game->screens.push_back(move(keyBindingsHelpScreen));
 
 	unique_ptr<HighScoreScreen> HighScoreScreen(new HighScoreScreen);
-	HighScoreScreen->registerGame(&game);
+	HighScoreScreen->registerGame(game);
 	HighScoreScreen->onInit();
-	game.screens.push_back(move(HighScoreScreen));
+	game->screens.push_back(move(HighScoreScreen));
 
 	unique_ptr<GameFinishedScreen> GameFinishedScreen(new GameFinishedScreen);
-	GameFinishedScreen->registerGame(&game);
+	GameFinishedScreen->registerGame(game);
 	GameFinishedScreen->onInit();
-	game.screens.push_back(move(GameFinishedScreen));
+	game->screens.push_back(move(GameFinishedScreen));
 
 	unique_ptr<SettingsScreen> SettingsScreen(new SettingsScreen);
-	SettingsScreen->registerGame(&game);
+	SettingsScreen->registerGame(game);
 	SettingsScreen->onInit();
-	game.screens.push_back(move(SettingsScreen));
+	game->screens.push_back(move(SettingsScreen));
 
 	unique_ptr<LoadCustomLevelScreen> LoadCustomlevelScreen(new LoadCustomLevelScreen);
-	LoadCustomlevelScreen->registerGame(&game);
+	LoadCustomlevelScreen->registerGame(game);
 	LoadCustomlevelScreen->onInit();
-	game.screens.push_back(move(LoadCustomlevelScreen));
+	game->screens.push_back(move(LoadCustomlevelScreen));
 
 	unique_ptr<LoadingScreen> LoadingScreen(new LoadingScreen);
-	LoadingScreen->registerGame(&game);
+	LoadingScreen->registerGame(game);
 	LoadingScreen->onInit();
-	game.screens.push_back(move(LoadingScreen));
+	game->screens.push_back(move(LoadingScreen));
 
 	unique_ptr<NewGameSlotsScreen> NewGameSlotsScreen(new NewGameSlotsScreen);
-	NewGameSlotsScreen->registerGame(&game);
+	NewGameSlotsScreen->registerGame(game);
 	NewGameSlotsScreen->onInit();
-	game.screens.push_back(move(NewGameSlotsScreen));
+	game->screens.push_back(move(NewGameSlotsScreen));
 
 	unique_ptr<LoadGameSlotsScreen> LoadGameSlotsScreen(new LoadGameSlotsScreen);
-	LoadGameSlotsScreen->registerGame(&game);
+	LoadGameSlotsScreen->registerGame(game);
 	LoadGameSlotsScreen->onInit();
-	game.screens.push_back(move(LoadGameSlotsScreen));
+	game->screens.push_back(move(LoadGameSlotsScreen));
 
 	unique_ptr<CheatScreen> CheatScreen(new CheatScreen);
-	CheatScreen->registerGame(&game);
+	CheatScreen->registerGame(game);
 	CheatScreen->onInit();
-	game.screens.push_back(move(CheatScreen));
+	game->screens.push_back(move(CheatScreen));
 
 	unique_ptr<CheatHelpScreen> CheatHelpScreen(new CheatHelpScreen);
-	CheatHelpScreen->registerGame(&game);
+	CheatHelpScreen->registerGame(game);
 	CheatHelpScreen->onInit();
-	game.screens.push_back(move(CheatHelpScreen));
+	game->screens.push_back(move(CheatHelpScreen));
 	
 	unique_ptr<StartNewLevelScreen> StartNewLevelScreen(new StartNewLevelScreen);
-	StartNewLevelScreen->registerGame(&game);
+	StartNewLevelScreen->registerGame(game);
 	StartNewLevelScreen->onInit();
-	game.screens.push_back(move(StartNewLevelScreen));
+	game->screens.push_back(move(StartNewLevelScreen));
 
-	game.onInit();
+	game->onInit();
 
 	return 0;
 }

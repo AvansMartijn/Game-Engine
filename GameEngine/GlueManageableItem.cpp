@@ -58,3 +58,7 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 void GlueManagableItem::onRightClick(int x, int y) {
 	onLeftClick(x, y);
 }
+
+shared_ptr<AbstractManageableItem> GlueManagableItem::clone() const {
+	return std::make_shared<GlueManagableItem>(*this);
+}

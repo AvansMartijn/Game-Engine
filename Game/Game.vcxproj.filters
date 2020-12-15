@@ -132,9 +132,6 @@
     <ClCompile Include="HighscoreScreen.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractLevelLoader.cpp">
-      <Filter>Source Files\LevelLoader</Filter>
-    </ClCompile>
     <ClCompile Include="TiledLevelLoader.cpp">
       <Filter>Source Files\LevelLoader</Filter>
     </ClCompile>

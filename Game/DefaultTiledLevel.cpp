@@ -19,10 +19,14 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 		std::string extensionsString = go.properties["extensions"].valueString;
 		std::vector<std::string> extensions = AssetRegistry::getInstance().split(extensionsString, ',');
 
+		std::map<std::string, ExtensionProperty> extensionProperties;
+		for (auto extensionProperty : go.properties)
+			extensionProperties.insert(make_pair(extensionProperty.first, extensionProperty.second.toExtensionProperty()));
+
 		if (go.layer == "tilelayer")
-			createTile(gameEngine, go, extensions, x, y, width, height);
+			createTile(gameEngine, go, extensions, extensionProperties, x, y, width, height);
 		else if (go.layer == "objectgroup")
-			createObject(gameEngine, go, extensions, x, y, width, height);
+			createObject(gameEngine, go, extensions, extensionProperties, x, y, width, height);
 	}
 
 	// Create Portals
@@ -38,7 +42,7 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 	portal2->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalA);
 }
 
-void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
+void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height) {
 	std::string textureKey = getTextureKeyFromPath("Tiled", tiledGameObject.image);
 
 	float friction = 2.5f;
@@ -49,35 +53,37 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	if (tiledGameObject.properties.find("fixed") != tiledGameObject.properties.end())
 		isFixed = tiledGameObject.properties["fixed"].valueBool;
 
-
 	if (tiledGameObject.properties.find("sensor") != tiledGameObject.properties.end()) {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textureKey,
 			x, y, width, height, sensor);
+
+		for (shared_ptr<AbstractGameObjectExtension> extension : gameObject->getExtensions())
+			extension->fillProperties(extensionProperties);
 	}
 	else {
 		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textureKey,
 			x, y, width, height, friction, isFixed, false);
 
-
-		if (tiledGameObject.properties.find("damage") != tiledGameObject.properties.end())
-			gameObject->getExtension<DoesDamageExtension>()->damage = tiledGameObject.properties["damage"].valueInt;
+		for (shared_ptr<AbstractGameObjectExtension> extension : gameObject->getExtensions())
+			extension->fillProperties(extensionProperties);
 	}
 }
 
-void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height) {
+void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height) {
 	if (tiledGameObject.type == "Player") {
 		Scene::getInstance().setPlayer(createPlayer(gameEngine, extensions, "Waluigi", x, y, 0.7f, 1.8f));
 
 		PlayerAnimationHandler animationHandler;
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
+
+		for (shared_ptr<AbstractGameObjectExtension> extension : Scene::getInstance().getPlayer()->getExtensions())
+			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.type == "Enemy") {
 		shared_ptr<GameObject> enemy = createEnemy(gameEngine, extensions, "Goomba", x, y, 0.7f, 1.0f);
-		if (tiledGameObject.properties.find("health") != tiledGameObject.properties.end() && enemy->hasExtension(typeid(HealthExtension)))
-			enemy->getExtension<HealthExtension>()->setHealth(tiledGameObject.properties["health"].valueInt);
 
 		if (enemy->hasExtension(typeid(AiExtension))) {
 			// We only use the default entity ai, so no need to check for anything else.
@@ -90,57 +96,20 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		EnemyAnimationHandler animationHandler;
 		enemy->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<EnemyAnimationHandler>(animationHandler));
 		enemy->getExtension<AnimationExtension>()->registerAnimations();
+
+		for (shared_ptr<AbstractGameObjectExtension> extension : enemy->getExtensions())
+			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
-		//TODO:: v DAt MOET NETTER
 
-		//TODO:: DIT MOET NETTER
-		if (tiledGameObject.type == "GlueGun") {
-			shared_ptr<GlueManagableItem> itemBluePrint = Scene::getInstance().getItem<GlueManagableItem>(tiledGameObject.type);
-			std::shared_ptr<GlueManagableItem> item = std::make_shared<GlueManagableItem>(*itemBluePrint);
-			if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
-				item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
+		shared_ptr<AbstractManageableItem> itemBluePrint = Scene::getInstance().getItem<AbstractManageableItem>(tiledGameObject.type);
 
-			if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
-				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
+		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, itemBluePrint->getWidth(), itemBluePrint->getHeight(), sensor);
 
-			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-			gameObject->getExtension<PickupExtension>()->setItem(item);
-
-		}
-		//TODO:: DIT MOET NETTER
-		else if (tiledGameObject.type == "ThrusterGun") {
-			shared_ptr<ThrusterManagableItem> itemBluePrint = Scene::getInstance().getItem<ThrusterManagableItem>(tiledGameObject.type);
-
-			std::shared_ptr<ThrusterManagableItem> item = std::make_shared<ThrusterManagableItem>(*itemBluePrint);
-			if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
-				item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
-
-			if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
-				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
-
-			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-			gameObject->getExtension<PickupExtension>()->setItem(item);
-
-		}
-		//TODO:: DIT MOET NETTER
-		else {
-			shared_ptr<PortalManagableItem> itemBluePrint = Scene::getInstance().getItem<PortalManagableItem>(tiledGameObject.type);
-
-			std::shared_ptr<PortalManagableItem> item = std::make_shared<PortalManagableItem>(*itemBluePrint);
-			if (tiledGameObject.properties.find("ammo") != tiledGameObject.properties.end())
-				item->setAmmo(tiledGameObject.properties["ammo"].valueInt);
-
-			if (tiledGameObject.properties.find("cooldown") != tiledGameObject.properties.end())
-				item->setCooldown(tiledGameObject.properties["cooldown"].valueInt);
-
-			shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, item->getWidth(), item->getHeight(), sensor);
-			gameObject->getExtension<PickupExtension>()->setItem(item);
-
-		}
-		//TODO:: ^DAt MOET NETTER
-
+		gameObject->getExtension<PickupExtension>()->itemType = tiledGameObject.type;
+		for (shared_ptr<AbstractGameObjectExtension> extension : gameObject->getExtensions())
+			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.layerType == "Misc") {
 		if (tiledGameObject.type == "Text") {
@@ -163,7 +132,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	}
 }
 
-std::string DefaultTiledLevel::getTextureKeyFromPath(std::string prefix, std::string& path) const {
+std::string DefaultTiledLevel::getTextureKeyFromPath(const std::string& prefix, const std::string& path) const {
 	// Find file name
 	std::string name = path.substr(path.rfind('/') + 1);
 

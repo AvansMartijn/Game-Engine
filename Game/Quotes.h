@@ -19,6 +19,6 @@ public:
 	/// Get's a random quote.
 	/// </summary>
 	/// <returns>A random quote.</returns>
-	std::string getQuote();
+	std::string getQuote() const;
 };
 

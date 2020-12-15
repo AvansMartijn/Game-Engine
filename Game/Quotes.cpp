@@ -52,6 +52,6 @@ Quotes::Quotes() {
 	_quotes.push_back("\"20 Euro op Trump, die wint 100%\" \n - Lars, Xandor, Martijn 2020");
 }
 
-std::string Quotes::getQuote() {
+std::string Quotes::getQuote() const {
 	return _quotes[Utilities::getInstance().getRandomInt(0, (int)_quotes.size())];
 }

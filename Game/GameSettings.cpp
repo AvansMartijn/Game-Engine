@@ -1,12 +1,14 @@
 #include "GameSettings.h"
 #include <SoundPlayer.h>
+#include <windows.h>
+#include <string>
 
 GameSettings GameSettings::instance;
 
 GameSettings::GameSettings() {}
 
 void GameSettings::save() {
-	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2");
+	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2");
 	nlohmann::json j = saveGame;
 
 	std::ofstream outputStream(prefPath + "save.json");
@@ -14,7 +16,7 @@ void GameSettings::save() {
 }
 
 void GameSettings::load() {
-	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2");
+	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2");
 	std::ifstream inputStream(prefPath + "save.json");
 
 	if (!inputStream.fail()) {
@@ -26,9 +28,13 @@ void GameSettings::load() {
 
 	SoundPlayer::getInstance().changeMusicVolume(saveGame.settings.sound);
 	SoundPlayer::getInstance().changeSFXVolume(saveGame.settings.soundFx);
+
+	std::string levelDirectory = prefPath + "Levels\\";
+
+	CreateDirectoryA(levelDirectory.c_str(), NULL);
 }
 
-void GameSettings::addLevel(int number, LevelData levelData) {
+void GameSettings::addLevel(int number, const LevelData& levelData) {
 	bool found = false;
 	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
 		SaveLevel data = saveGame.levels[levelIndex];
@@ -48,7 +54,7 @@ void GameSettings::addLevel(int number, LevelData levelData) {
 	_storyLevels.insert(std::make_pair(number, levelData));
 }
 
-bool GameSettings::isStoryLevel(LevelData levelData) {
+bool GameSettings::isStoryLevel(const LevelData& levelData) {
 	bool found = false;
 	for (size_t levelIndex = 0; levelIndex < saveGame.levels.size(); levelIndex++) {
 		SaveLevel data = saveGame.levels[levelIndex];
@@ -112,7 +118,7 @@ LevelData GameSettings::getNextLevel() {
 	return {};
 }
 
-int GameSettings::getIndexByLevelName(std::string name) {
+int GameSettings::getIndexByLevelName(const std::string& name) const {
 	auto levelPair = std::find_if(_storyLevels.begin(), _storyLevels.end(), [name](std::pair<int, LevelData> level ) { return level.second.levelName == name; });
 
 	if (levelPair != _storyLevels.end())

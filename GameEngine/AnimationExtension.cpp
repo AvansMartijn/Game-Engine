@@ -2,7 +2,7 @@
 #include "AnimationExtension.h"
 
 AnimationExtension::AnimationExtension() {
-	type = "AnimationExtension";
+	type = getType();
 }
 
 void AnimationExtension::setAnimationHandler(shared_ptr<AbstractAnimationHandler> animationHandler) {
@@ -29,4 +29,9 @@ Rect AnimationExtension::getCurrentSprite() {
 
 bool AnimationExtension::shouldFlipLeft() {
 	return _animationHandler->shouldFlipLeft;
+}
+
+
+void AnimationExtension::fillProperties(std::map<std::string, ExtensionProperty> properties) {
+
 }

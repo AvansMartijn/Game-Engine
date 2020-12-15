@@ -21,13 +21,14 @@ private:
 	std::string _fontKey;
 	int _fontSize;
 
+	// TODO: WEG WERKEN.
 	// This has to be here, otherwise we have to add every possible fontSize to the registry.
 	TTF_Font* _font;
 public:
 	using AbstractUiElement::AbstractUiElement;
 	std::string text;
 
-	ButtonUiElement(std::string btnText, Rect btnRect, Color bgColor, Color fgColor, std::string fontKey, int fontSize);
+	ButtonUiElement(const std::string& btnText, const Rect& btnRect, const Color& bgColor, const Color& fgColor, const std::string& fontKey, int fontSize);
 	~ButtonUiElement();
 
 	/// <summary>
@@ -46,6 +47,6 @@ public:
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
-	bool isInBound(int mouseX, int mouseY);
+	bool isInBound(int mouseX, int mouseY) const;
 };
 

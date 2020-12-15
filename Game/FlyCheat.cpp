@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "HealthExtension.h"
 
-bool FlyCheat::Execute() {
+bool FlyCheat::execute() {
 	Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter = MAXINT;
 
 	return true;

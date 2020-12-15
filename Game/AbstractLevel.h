@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "PickupExtension.h"
 
+// TODO: DEZE STREAM LINEN
 class AbstractLevel{
 protected:
 	/// <summary>

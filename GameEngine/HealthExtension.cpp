@@ -3,8 +3,7 @@
 #include "GameObject.h"
 
 HealthExtension::HealthExtension() {
-	type = "HealthExtension";
-	//default health is 100;
+	type = getType();
 	_health = 100;
 }
 
@@ -21,4 +20,9 @@ void HealthExtension::reduceHealth(int value) {
 		_subject->getExtension<MoveExtension>()->currentMovementType = MovementType::HURTING;
 
 	_health -= value;
+}
+
+void HealthExtension::fillProperties(std::map<std::string, ExtensionProperty> extensionProperties) {
+	if (extensionProperties.find("health") != extensionProperties.end())
+		_health = extensionProperties["health"].valueInt;
 }

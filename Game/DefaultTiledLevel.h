@@ -31,11 +31,12 @@ public:
 	/// <param name="tiledGameObject">The tiled game object</param>
 	/// <param name="textures">The textures</param>
 	/// <param name="extensions">The extensions</param>
+	/// <param name="extensionProperties">The extension properties.</param>
 	/// <param name="x">The x-coordinate</param>
 	/// <param name="y">The y-coordinate</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height</param>
-	void createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height);
+	void createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Creates the object.
@@ -44,11 +45,12 @@ public:
 	/// <param name="tiledGameObject">The tiled game object</param>
 	/// <param name="textures">The textures</param>
 	/// <param name="extensions">The extensions</param>
+	/// <param name="extensionProperties">The extension properties.</param>
 	/// <param name="x">The x-coordinate</param>
 	/// <param name="y">The y-coordinate</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height</param>
-	void createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, float x, float y, float width, float height);
+	void createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Get's the texture key from the path.
@@ -56,5 +58,5 @@ public:
 	/// <param name="prefix">The prefix we want to use.</param>
 	/// <param name="path">The texture path.</param>
 	/// <returns>The texture key.</returns>
-	std::string getTextureKeyFromPath(std::string prefix, std::string& path) const;
+	std::string getTextureKeyFromPath(const std::string& prefix, const std::string& path) const;
 };

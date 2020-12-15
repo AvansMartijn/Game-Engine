@@ -18,15 +18,14 @@ class GameEngine;
 class AbstractGame;
 class GAMEENGINE_AbstractScreen AbstractScreen {
 protected:
-	AbstractGame* _game;
+	shared_ptr<AbstractGame> _game;
 	vector<shared_ptr<AbstractUiElement>> _uiElements;
 public:
 	bool shouldShowFPS;
-	std::string backgroundTrackKey = "";
+	string backgroundTrackKey = "";
 
 	AbstractScreen();
 	~AbstractScreen();
-
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -65,7 +64,7 @@ public:
 	/// Adds a reference to the game.
 	/// </summary>
 	/// <param name="game">A refrence to the game.</param>
-	virtual void registerGame(AbstractGame* game);
+	virtual void registerGame(shared_ptr<AbstractGame> game);
 	/// <summary>
 	/// Renders all the objects on the screen.
 	/// </summary>

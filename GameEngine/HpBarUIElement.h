@@ -21,7 +21,7 @@ private:
 public:
 	float percent;
 
-	HpBarUIElement(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor);
+	HpBarUIElement(int x, int y, int w, int h, float percentage, const Color& fgColor, const Color& bgColor);
 	~HpBarUIElement();
 
 	/// <summary>
@@ -40,6 +40,6 @@ public:
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
-	bool isInBound(int mouseX, int mouseY);
+	bool isInBound(int mouseX, int mouseY) const;
 };
 

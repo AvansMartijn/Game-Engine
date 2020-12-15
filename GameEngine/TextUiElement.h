@@ -19,11 +19,12 @@ private:
 	bool _center;
 	bool _multiLine;
 
+	// TODO: WEG WERKEN
 	// This has to be here, otherwise we have to add every possible fontSize to the registry.
 	TTF_Font* _font;
 public:
-	TextUiElement(std::string txt, std::string fontKey, int fontSize, Rect textRect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
-	TextUiElement(std::vector<std::string> txt, std::string fontKey, int fontSize, Rect rect, Color fgColor, Color bgColor, bool center, bool mutliLine = false);
+	TextUiElement(const std::string& txt, const std::string& fontKey, int fontSize, const Rect& textRect, const Color& fgColor, const Color& bgColor, bool center, bool mutliLine = false);
+	TextUiElement(std::vector<std::string> txt, const std::string& fontKey, int fontSize, const Rect& rect, const Color& fgColor, const Color& bgColor, bool center, bool mutliLine = false);
 	~TextUiElement();
 	std::string text;
 	std::vector<std::string> textLines;
@@ -44,6 +45,6 @@ public:
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
-	bool isInBound(int mouseX, int mouseY);
+	bool isInBound(int mouseX, int mouseY) const;
 };
 

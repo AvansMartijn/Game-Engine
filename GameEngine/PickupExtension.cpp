@@ -2,7 +2,7 @@
 #include "PickupExtension.h"
 
 PickupExtension::PickupExtension() {
-	type = "PickupExtension";
+	type = getType();
 }
 
 shared_ptr<AbstractManageableItem> PickupExtension::getItem() {
@@ -29,4 +29,18 @@ void PickupExtension::onEntityCollision(shared_ptr<GameObject> gameObject) {
 
 	Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->addItem(_item);
 	Physics::getInstance().deleteQueue.push_back(_subject->id);
+}
+
+
+void PickupExtension::fillProperties(std::map<std::string, ExtensionProperty> extensionProperties) {
+	shared_ptr<AbstractManageableItem> itemBlueprint = Scene::getInstance().getItem(itemType);
+
+	std::shared_ptr<AbstractManageableItem> item = itemBlueprint->clone();
+	if (extensionProperties.find("ammo") != extensionProperties.end())
+		item->setAmmo(extensionProperties["ammo"].valueInt);
+
+	if (extensionProperties.find("cooldown") != extensionProperties.end())
+		item->setCooldown(extensionProperties["cooldown"].valueInt);
+
+	setItem(item);
 }

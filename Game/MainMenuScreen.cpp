@@ -21,14 +21,14 @@ void MainMenuScreen::onInit() {
 
 	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 75, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
-	startButton.onClick = [](AbstractGame* game) {
+	startButton.onClick = [](shared_ptr<AbstractGame> game) {
 		game->switchScreen(Screens::NewGame);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadButton.registerGame(_game);
-	loadButton.onClick = [](AbstractGame* game) { 
+	loadButton.onClick = [](shared_ptr<AbstractGame> game) {
 		game->switchScreen(Screens::LoadGame);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
@@ -36,34 +36,34 @@ void MainMenuScreen::onInit() {
 	ButtonUiElement loadCustomButton = ButtonUiElement("Load Custom Map", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadCustomButton.registerGame(_game);
 
-	loadCustomButton.onClick = [](AbstractGame* game) {
+	loadCustomButton.onClick = [](shared_ptr<AbstractGame> game) {
 		game->switchScreen(Screens::LoadCustomMap);
 	};
 	_uiElements.push_back(make_shared<ButtonUiElement>(loadCustomButton));
 
 	ButtonUiElement helpButton = ButtonUiElement("Help", { 700, 225, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	helpButton.registerGame(_game);
-	helpButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Help); };
+	helpButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Help); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
 
 	ButtonUiElement highscoreButton = ButtonUiElement("Highscores", { 700, 275, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	highscoreButton.registerGame(_game);
-	highscoreButton.onClick = [](AbstractGame* game) {   game->switchScreen(Screens::HighScore); };
+	highscoreButton.onClick = [](shared_ptr<AbstractGame> game) {   game->switchScreen(Screens::HighScore); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(highscoreButton));
 
 	ButtonUiElement creditButton = ButtonUiElement("Credits", { 700, 325, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	creditButton.registerGame(_game);
-	creditButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Credits); };
+	creditButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Credits); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(creditButton));
 
 	ButtonUiElement settingsButton = ButtonUiElement("Settings", { 700, 375, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	settingsButton.registerGame(_game);
-	settingsButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Settings); };
+	settingsButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Settings); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
 
 	ButtonUiElement exitbutton = ButtonUiElement("Exit", { 700, 425, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	exitbutton.registerGame(_game);
-	exitbutton.onClick = [](AbstractGame* game) { exit(0); };
+	exitbutton.onClick = [](shared_ptr<AbstractGame> game) { exit(0); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));

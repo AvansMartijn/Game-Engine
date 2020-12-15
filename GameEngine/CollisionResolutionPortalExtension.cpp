@@ -13,8 +13,7 @@ void CollisionResolutionPortalExtension::link(shared_ptr<GameObject> linkedPorta
     _linkedPortal = linkedPortal;
 }
 
-void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject)
-{
+void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject) {
     //culling duplicate to prevent double operations
     auto objectLocation = std::find_if(Physics::getInstance().teleportQueue.begin(), Physics::getInstance().teleportQueue.end(), [inputObject](TeleportObject tellie) {return tellie.obj == inputObject; });
     if (objectLocation != Physics::getInstance().teleportQueue.end())
@@ -122,11 +121,6 @@ void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject>
     }
     if (velY > 30)
         velY = 30;
-
-    // TODO: REMOVE DEBUG MESSAGE
-    std::cout << inputObject->body.b2body->GetLinearVelocity().x << " | " << inputObject->body.b2body->GetLinearVelocity().y << "\n";
-    inputObject->body.b2body->SetLinearVelocity({ velX, velY });
-    std::cout << inputObject->body.b2body->GetLinearVelocity().x << " | " << inputObject->body.b2body->GetLinearVelocity().y << "\n";
     
     Physics::getInstance().teleportQueue.push_back({ inputObject, newPos, {velX, velY}, true });
 }

@@ -189,31 +189,13 @@
     <ClInclude Include="CollisionResolutionDefaultExtension.h">
       <Filter>Header Files\GameObjects\Extensions\CollisionResolution</Filter>
     </ClInclude>
-    <ClInclude Include="VisionExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="SwitchExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="StateExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
     <ClInclude Include="MoveExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
     <ClInclude Include="HealthExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
-    <ClInclude Include="CheckPhysicsExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
     <ClInclude Include="CanWieldExtension.h">
-      <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
     </ClInclude>
     <ClInclude Include="AiExtension.h">
@@ -257,9 +239,6 @@
     </ClInclude>
     <ClInclude Include="PickupExtension.h">
       <Filter>Header Files\GameObjects\Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="DummyManagableItem.h">
-      <Filter>Header Files\GameObjects\Items</Filter>
     </ClInclude>
     <ClInclude Include="ThrusterManagableItem.h">
       <Filter>Header Files\GameObjects\Items</Filter>
@@ -320,6 +299,9 @@
     </ClInclude>
     <ClInclude Include="MouseSkins.h">
       <Filter>Header Files\UiElements\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtensionProperty.h">
+      <Filter>Header Files\Core\DataTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -407,12 +389,6 @@
     <ClCompile Include="AiExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
-    <ClCompile Include="AttackExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckPhysicsExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
     <ClCompile Include="CanWieldExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
@@ -420,18 +396,6 @@
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="MoveExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="StateExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="SwitchExtension.cpp">
-      <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="VisionExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectFacade.cpp">
@@ -454,9 +418,6 @@
     </ClCompile>
     <ClCompile Include="PickupExtension.cpp">
       <Filter>Source Files\GameObjects\Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="DummyManagableItem.cpp">
-      <Filter>Source Files\GameObjects\Items</Filter>
     </ClCompile>
     <ClCompile Include="ThrusterManagableItem.cpp">
       <Filter>Source Files\GameObjects\Items</Filter>

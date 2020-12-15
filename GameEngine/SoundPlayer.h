@@ -14,9 +14,12 @@ class GAMEENGINE_SoundPlayer SoundPlayer {
 private:
 	SoundPlayer();
 	static SoundPlayer instance;
+
+	// TODO: DEZE WEG WERKEN.
 	std::map<std::string, Mix_Music*> _musicTracks;
 	std::map<std::string, Mix_Chunk*> _sfx;
 
+	// TODO: DEZE WEG WERKEN.
 	/// <summary>
 	/// Get's an SFX track.
 	/// </summary>

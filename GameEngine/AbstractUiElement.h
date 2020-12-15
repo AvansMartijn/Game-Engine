@@ -15,7 +15,7 @@ class Window;
 class AbstractGame;
 class GAMEENGINE_AbstractUiElement AbstractUiElement {
 protected:
-	AbstractGame* _game;
+	shared_ptr<AbstractGame> _game;
 public:
 	Rect rect;
 
@@ -38,14 +38,14 @@ public:
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
-	virtual bool isInBound(int mouseX, int mouseY) = 0;
+	virtual bool isInBound(int mouseX, int mouseY) const = 0;
 	/// <summary>
 	/// Register the game to the element.
 	/// </summary>
 	/// <param name="game">The Game</param>
-	virtual void registerGame(AbstractGame* game);
+	virtual void registerGame(shared_ptr<AbstractGame> game);
 	/// <summary>
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
-	std::function<void(AbstractGame*)> onClick;
+	std::function<void(shared_ptr<AbstractGame>)> onClick;
 };

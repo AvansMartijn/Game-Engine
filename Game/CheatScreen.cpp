@@ -26,12 +26,12 @@ void CheatScreen::onInit() {
 
 	ButtonUiElement cheatHelp = ButtonUiElement("Cheat Overview", { 400, 650, 180, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	cheatHelp.registerGame(_game);
-	cheatHelp.onClick = [](AbstractGame* game) { game->switchScreen(Screens::CheatHelp); };
+	cheatHelp.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::CheatHelp); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(cheatHelp));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 600, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::MainGame); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));

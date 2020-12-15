@@ -62,6 +62,12 @@ public:
 	int metersToPixels(float value);
 
 	/// <summary>
+	/// Get's all the extensions for this game object.
+	/// </summary>
+	/// <returns>All the extensions.</returns>
+	vector<shared_ptr<AbstractGameObjectExtension>> getExtensions();
+
+	/// <summary>
 	/// Get's the extension with the given type.
 	/// </summary>
 	/// <typeparam name="T">The extension type.</typeparam>

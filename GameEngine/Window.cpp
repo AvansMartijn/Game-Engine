@@ -24,15 +24,15 @@ int Window::getHeight() const {
 	return _height;
 }
 
-void Window::registerTexture(std::string textureKey, std::string texturePath, bool isReversed) {
+void Window::registerTexture(const std::string& textureKey, const std::string& texturePath, bool isReversed) {
 	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
 	texture.isReversed = isReversed;
 
 	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
 }
 
-void Window::registerTextures(std::string prefix, std::string directory, bool isDeep) {
-	std::vector<FileData> files = AssetRegistry::getInstance().getFilesInDirectory(directory, isDeep);
+void Window::registerTextures(const std::string& prefix, const std::string& directory, bool isDeep) {
+	std::vector<FileData> files = AssetRegistry::getInstance().getFilesInDirectory(AssetRegistry::getInstance().getBasePath(), directory, isDeep);
 
 	for (size_t i = 0; i < files.size(); i++) {
 		if (prefix == "")
@@ -42,11 +42,11 @@ void Window::registerTextures(std::string prefix, std::string directory, bool is
 	}
 }
 
-void Window::registerFont(std::string fontKey, std::string fontPath) {
+void Window::registerFont(const std::string& fontKey, const std::string& fontPath) {
 	AssetRegistry::getInstance().registerFont(fontKey, fontPath);
 }
 
-TTF_Font* Window::getFont(std::string fontKey, int fontSize) {
+TTF_Font* Window::getFont(const std::string& fontKey, int fontSize) {
 	return TTF_OpenFont(AssetRegistry::getInstance().getFontPath(fontKey.c_str()).c_str(), fontSize);
 }
 
@@ -55,7 +55,7 @@ void Window::clear() {
 	SDL_RenderClear(_renderer.get());
 }
 
-void Window::renderRectangle(Rect rect, Color color) {
+void Window::renderRectangle(const Rect& rect, const Color& color) {
 	SDL_Rect sdlRect;
 	sdlRect.x = rect.x;
 	sdlRect.y = rect.y;
@@ -66,24 +66,23 @@ void Window::renderRectangle(Rect rect, Color color) {
 	SDL_RenderFillRect(_renderer.get(), &sdlRect);
 }
 
-void Window::renderTexture(std::string textureKey, Rect rect, float angle, bool flipLeft, int alpha) {
+void Window::renderTexture(const std::string& textureKey, const Rect& rect, float angle, bool flipLeft, int alpha) {
 	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
 
 	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, alpha);
 }
 
-void Window::renderSprite(std::string textureKey, Rect rect, Rect sprite, float angle, bool flipLeft) {
+void Window::renderSprite(const std::string& textureKey, const Rect& rect, const Rect& sprite, float angle, bool flipLeft) {
 	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
 
 	texture->renderSprite(_renderer.get(), rect, sprite, angle, flipLeft);
 }
 
-void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
+void Window::renderText(const std::string& text, TTF_Font* font, const Rect& rect, const Color& foregroundColor, const Color& backgroundColor, bool center, bool multiLine) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
 	if (multiLine) {
-
 		std::vector<std::string> lines;
 
 		std::string::size_type pos = 0;
@@ -95,14 +94,12 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 
 		lines.push_back(text.substr(prev));
 
-
 		int w;
 		int h;
 
 		TTF_SizeText(font, "TestRender", &w, &h);
 
 		for (size_t i = 0; i < lines.size(); i++) {
-
 			if (lines[i] == "")
 				continue;
 
@@ -129,12 +126,9 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 			SDL_FreeSurface(surface);
 			SDL_DestroyTexture(texture);
 		}
-
 	}
 	else {
-
 		SDL_Surface* surface = TTF_RenderText_Shaded(font, text.c_str(), sdlForegroundColor, sdlBackgrouldColor);
-
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
 
 		SDL_Rect sdlRect;
@@ -158,7 +152,7 @@ void Window::renderText(std::string text, TTF_Font* font, Rect rect, Color foreg
 	}
 }
 
-void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgColor, Color bgColor) {
+void Window::renderHPBar(int x, int y, int w, int h, float percentage, const Color& fgColor, const Color& bgColor) {
 	percentage = percentage > 1.f ? 1.f : percentage < 0.f ? 0.f : percentage;
 	Color old;
 	SDL_GetRenderDrawColor(_renderer.get(), &old.r, &old.g, &old.g, &old.a);
@@ -184,8 +178,7 @@ void Window::renderHPBar(int x, int y, int w, int h, float percentage, Color fgC
 	SDL_SetRenderDrawColor(_renderer.get(), old.r, old.g, old.b, old.a);
 }
 
-void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* font, Rect rect, Color foregroundColor, Color backgroundColor, bool center, bool multiLine) {
-
+void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* font, const Rect& rect, const Color& foregroundColor, const Color& backgroundColor, bool center, bool multiLine) {
 	SDL_Color sdlForegroundColor = { foregroundColor.r, foregroundColor.g, foregroundColor.b, foregroundColor.a };
 	SDL_Color sdlBackgrouldColor = { backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a };
 
@@ -199,7 +192,6 @@ void Window::renderMultiLineText(std::vector<std::string> textLines, TTF_Font* f
 			continue;
 
 		SDL_Surface* surface = TTF_RenderText_Shaded(font, textLines[i].c_str(), sdlForegroundColor, sdlBackgrouldColor);
-
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
 
 		SDL_Rect sdlRect;

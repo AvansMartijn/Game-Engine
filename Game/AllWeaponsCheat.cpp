@@ -1,7 +1,7 @@
 #include "AllWeaponsCheat.h"
 #include "Scene.h"
 
-bool AllWeaponsCheat::Execute()
+bool AllWeaponsCheat::execute()
 {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		

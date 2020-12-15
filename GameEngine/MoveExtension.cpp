@@ -4,13 +4,16 @@
 #include "Utilities.h"
 
 MoveExtension::MoveExtension() {
-	type = "MoveExtension";
+	type = getType();
 }
 
 void MoveExtension::move(float movementX, float movementY) {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	vel.x = movementX;
 	vel.y = movementY;
+
+	if (_subject->hasExtension(typeid(CanWieldExtension)))
+		_subject->getExtension<CanWieldExtension>()->setShouldRender(true);
 
 	if (currentMovementType != MovementType::JUMPING && currentMovementType != MovementType::HURTING)
 		currentMovementType = MovementType::RUNNING;
@@ -31,6 +34,9 @@ void MoveExtension::moveX(float movementX) {
 	if(currentMovementType != MovementType::JUMPING)
 		currentMovementType = MovementType::RUNNING;
 
+	if (_subject->hasExtension(typeid(CanWieldExtension)))
+		_subject->getExtension<CanWieldExtension>()->setShouldRender(true);
+
 	if (vel.x < 0)
 		isLookingToLeft = true;
 	else if (vel.x > 0)
@@ -43,7 +49,11 @@ void MoveExtension::moveX(float movementX) {
 void MoveExtension::moveY(float movementY) {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	vel.y = movementY;
+	
 	currentMovementType = MovementType::JUMPING;
+
+	if (_subject->hasExtension(typeid(CanWieldExtension)))
+		_subject->getExtension<CanWieldExtension>()->setShouldRender(true);
 
 	Physics::getInstance().setLinearVelocity(_subject, vel);
 	resetAfkTime();
@@ -88,4 +98,7 @@ void MoveExtension::reset() {
 
 void MoveExtension::resetAfkTime() {
 	_afkTime = std::chrono::steady_clock::now();
+}
+
+void MoveExtension::fillProperties(std::map<std::string, ExtensionProperty> propertiess) {
 }

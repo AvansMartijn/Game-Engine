@@ -14,7 +14,7 @@ size_t write_data(void* ptr, size_t size, size_t nmemb, FILE* stream) {
 std::string LibCurl::PerformRequest(const std::string& url) {
 	std::string _s;
 	FILE* fp;
-	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Laptrop 2") + "ad.jpg";
+	std::string prefPath = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2") + "ad.jpg";
 	char outfilename[FILENAME_MAX];
 	strcpy_s(outfilename, prefPath.c_str());
 

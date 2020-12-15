@@ -6,19 +6,19 @@ AssetRegistry AssetRegistry::instance;
 
 AssetRegistry::AssetRegistry() {}
 
-void AssetRegistry::registerTexture(std::string textureKey, std::shared_ptr<SDLTexture> texture) {
+void AssetRegistry::registerTexture(const std::string& textureKey, std::shared_ptr<SDLTexture> texture) {
 	_textures.insert(std::pair<std::string, std::shared_ptr<SDLTexture>>(textureKey, texture));
 }
 
-void AssetRegistry::registerFont(std::string fontKey, std::string fontPath) {
+void AssetRegistry::registerFont(const std::string& fontKey, const std::string& fontPath) {
 	_fonts.insert(std::pair<std::string, std::string>(fontKey, fontPath));
 }
 
-std::shared_ptr<SDLTexture> AssetRegistry::getTexture(std::string textureKey) {
+std::shared_ptr<SDLTexture> AssetRegistry::getTexture(const std::string& textureKey) {
 	return _textures[textureKey];
 }
 
-std::string AssetRegistry::getFontPath(std::string fontKey) {
+std::string AssetRegistry::getFontPath(const std::string& fontKey) {
 	return _fonts[fontKey];
 }
 
@@ -29,9 +29,7 @@ std::string AssetRegistry::getBasePath() const {
 	return std::string(currentDir) + "\\";
 }
 
-std::vector<FileData> AssetRegistry::getFilesInDirectory(std::string directory, bool isDeep, bool shouldAddKey) const {
-	std::string basePath = AssetRegistry::getInstance().getBasePath();
-
+std::vector<FileData> AssetRegistry::getFilesInDirectory(const std::string& basePath, const std::string& directory, bool isDeep, bool shouldAddKey) const {
 	DIR* dir;
 	struct dirent* ent;
 
@@ -85,7 +83,7 @@ std::vector<std::string> AssetRegistry::split(std::string& string, char delimite
 	return result;
 }
 
-std::string AssetRegistry::getPrefPath(std::string org, std::string app) {
+std::string AssetRegistry::getPrefPath(const std::string& org, const std::string& app) const {
 	char* basePath = SDL_GetPrefPath(org.c_str(), app.c_str());
 	if (basePath)
 		return string(basePath);

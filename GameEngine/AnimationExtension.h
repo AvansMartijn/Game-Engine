@@ -47,5 +47,13 @@ public:
 	/// <returns>If the sprite should be flipped.</returns>
 	bool shouldFlipLeft();
 
+	/// <summary>
+	/// Fills the extensions with the given properties.
+	/// </summary>
+	/// <param name="properties">The properties we want to use</param>
+	void fillProperties(std::map<std::string, ExtensionProperty> properties);
+
 	static AbstractGameObjectExtension* __stdcall create() { return new AnimationExtension(); }
+
+	static std::string __stdcall getType() { return "AnimationExtension"; }
 };

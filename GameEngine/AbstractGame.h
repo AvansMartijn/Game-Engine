@@ -99,14 +99,14 @@ public:
 	/// <param name="textureKey">The texture registry key.</param>
 	/// <param name="texturePath">The path to the texture.</param>
 	/// <param name="isReversed">If the texture should be reversed.</param>
-	void registerTexture(std::string textureKey, std::string texturePath, bool isReversed = false);
+	void registerTexture(const std::string& textureKey, const std::string& texturePath, bool isReversed = false);
 
 	/// <summary>
 	/// Registers a font in the registry.
 	/// </summary>
 	/// <param name="fontKey">The font registry key.</param>
 	/// <param name="fontPath">The path to the font.</param>
-	void registerFont(std::string fontKey, std::string fontPath);
+	void registerFont(const std::string& fontKey, const std::string& fontPath);
 
 	/// <summary>
 	/// Adds all textures within a directory to the registry.
@@ -114,7 +114,7 @@ public:
 	/// <param name="prefix">The prefix we want to use for these textures.</param>
 	/// <param name="directory">The directory which we want to add.</param>
 	/// <param name="isDeep">If we should scan the directories within this directory.</param>
-	void registerTextures(std::string prefix, std::string directory, bool isDeep);
+	void registerTextures(const std::string& prefix, const std::string& directory, bool isDeep);
 
 	/// <summary>
 	/// Registers a soundtrack in the registry.

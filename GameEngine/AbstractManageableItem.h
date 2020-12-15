@@ -104,5 +104,11 @@ public:
 	/// <param name="x">The x-coordinate.</param>
 	/// <param name="y">The y-coordinate.</param>
 	virtual void onRightClick(int x, int y) = 0;
+
+	/// <summary>
+	/// Clones the current item.
+	/// </summary>
+	/// <returns>A copy of the current item.</returns>
+	virtual shared_ptr<AbstractManageableItem> clone() const = 0;
 };
 

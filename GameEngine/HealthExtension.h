@@ -29,6 +29,15 @@ public:
 	/// <param name="value">The amount of health we want to reduce.</param>
 	void reduceHealth(int value);
 
+	/// <summary>
+	/// Fills the extensions with the given properties.
+	/// </summary>
+	/// <param name="properties">The properties we want to use</param>
+	void fillProperties(std::map<std::string, ExtensionProperty> properties);
+
 	static AbstractGameObjectExtension* __stdcall create() { return new HealthExtension(); }
+
+	static std::string __stdcall getType() { return "HealthExtension"; }
+
 };
 

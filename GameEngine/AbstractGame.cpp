@@ -78,15 +78,15 @@ void AbstractGame::gameLoop() {
 	}
 }
 
-void AbstractGame::registerTexture(std::string textureKey, std::string texturePath, bool isReversed) {
+void AbstractGame::registerTexture(const std::string& textureKey, const std::string& texturePath, bool isReversed) {
 	_window->registerTexture(textureKey, texturePath, isReversed);
 }
 
-void AbstractGame::registerFont(std::string fontKey, std::string fontPath) {
+void AbstractGame::registerFont(const std::string& fontKey, const std::string& fontPath) {
 	_window->registerFont(fontKey, fontPath);
 }
 
-void AbstractGame::registerTextures(std::string prefix, std::string directory, bool isDeep) {
+void AbstractGame::registerTextures(const std::string& prefix, const std::string& directory, bool isDeep) {
 	_window->registerTextures(prefix, directory, isDeep);
 }
 

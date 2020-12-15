@@ -3,13 +3,14 @@
 #include "GameEngine.h"
 
 class AbstractLevelLoader {
-protected:
 public:
+	std::string directory;
+
 	/// <summary>
 	/// Create a level.
 	/// </summary>
 	/// <param name="gameEngine">The game engine.</param>
 	/// <param name="name">The name of the level.</param>
-	virtual void createLevel(GameEngine gameEngine, std::string& name) = 0;
+	virtual void createLevel(GameEngine gameEngine, const std::string& name) = 0;
 };
 

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "AbstractAnimationHandler.h"
 
-std::string AbstractAnimationHandler::getKeyFromMovementType(MovementType movementType) {
+std::string AbstractAnimationHandler::getKeyFromMovementType(MovementType movementType) const {
 	std::string key = KEY_IDLE;
 	switch (movementType) {
 	case MovementType::IDLE:

@@ -54,7 +54,7 @@ void ControllManager::saveControls() {
 	GameSettings::getInstance().save();
 }
 
-bool ControllManager::validKey(SDL_Scancode key, std::string action) {
+bool ControllManager::validKey(const SDL_Scancode& key, const std::string& action) {
 	bool valid = true;
 	std::vector<SDL_Scancode> invalidKeys;
 	invalidKeys.push_back(SDL_SCANCODE_ESCAPE);
@@ -144,7 +144,7 @@ void ControllManager::initializeControls() {
 	}
 }
 
-void ControllManager::updateControl(std::string action, std::string userKey, SDL_Scancode userSDLKey) {
+void ControllManager::updateControl(const std::string& action, const std::string& userKey, const SDL_Scancode& userSDLKey) {
 	if (!validKey(userSDLKey, action))
 		return;
 

@@ -30,7 +30,7 @@ void CreditsScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
+	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	for (int i = 0; i < 6; i++) {
@@ -62,7 +62,7 @@ void CreditsScreen::onInit() {
 			
 			shared_ptr<ButtonUiElement> wackButtonPtr = make_shared<ButtonUiElement>(wackButton);
 
-			wackButtonPtr->onClick = [wackButtonPtr, this](AbstractGame* game) {
+			wackButtonPtr->onClick = [wackButtonPtr, this](shared_ptr<AbstractGame> game) {
 				if (wackButtonPtr == _mole)
 					_score++;
 				else

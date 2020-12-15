@@ -12,10 +12,10 @@ CheatManager CheatManager::_instance;
 
 CheatManager::CheatManager() {}
 
-bool CheatManager::executeCheat(std::string cheatName) {
+bool CheatManager::executeCheat(const std::string& cheatName) {
     for (auto const& cheat : _cheatList) {
         if (cheatName == cheat.first) {
-            if (cheat.second->Execute()) {
+            if (cheat.second->execute()) {
                 Scene::getInstance().activatedCheats.push_back(cheat.first);
                 return true;
             }
@@ -61,7 +61,7 @@ void CheatManager::initializeCheats() {
     _cheatInformation.insert({"allweapons", "Gives acces to all the weapons in the game." });
 }
 
-bool CheatManager::isCheat(std::string cheatName) {
+bool CheatManager::isCheat(const std::string& cheatName) const {
     bool isCheat = false;
     for (auto const& cheat : _cheatList) {
         if (cheatName == cheat.first) {

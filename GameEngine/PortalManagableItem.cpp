@@ -66,3 +66,7 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 		}
 	}
 }
+
+shared_ptr<AbstractManageableItem> PortalManagableItem::clone() const {
+	return std::make_shared<PortalManagableItem>(*this);;
+}

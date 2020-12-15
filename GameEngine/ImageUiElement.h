@@ -16,7 +16,7 @@ private:
 	int _alpha;
 	bool _flipRight;
 public:
-	ImageUiElement(std::string imageKey, Rect imageRect, int alpha = 0, bool flipRight = true);
+	ImageUiElement(const std::string& imageKey, const Rect& imageRect, int alpha = 0, bool flipRight = true);
 	~ImageUiElement();
 
 	/// <summary>
@@ -35,6 +35,6 @@ public:
 	/// <param name="mouseX">X coordinate of the mouse</param>
 	/// <param name="mouseY">Y coordinate of the mouse</param>
 	/// <returns></returns>
-	bool isInBound(int mouseX, int mouseY);
+	bool isInBound(int mouseX, int mouseY) const;
 };
 

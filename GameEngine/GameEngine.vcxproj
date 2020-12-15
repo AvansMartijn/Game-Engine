@@ -210,7 +210,6 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="AiExtension.h" />
     <ClInclude Include="AnimationExtension.h" />
     <ClInclude Include="AssetRegistry.h" />
-    <ClInclude Include="AttackExtension.h" />
     <ClInclude Include="BehaviourAttack.h" />
     <ClInclude Include="BehaviourIdle.h" />
     <ClInclude Include="BehaviourMove.h" />
@@ -219,16 +218,15 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="Body.h" />
     <ClInclude Include="ButtonUiElement.h" />
     <ClInclude Include="CanWieldExtension.h" />
-    <ClInclude Include="CheckPhysicsExtension.h" />
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
     <ClInclude Include="DoesDamageExtension.h" />
-    <ClInclude Include="DummyManagableItem.h" />
     <ClInclude Include="EntityCategory.h" />
     <ClInclude Include="dirent.h" />
+    <ClInclude Include="ExtensionProperty.h" />
     <ClInclude Include="FileData.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
@@ -258,17 +256,13 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="SDLTexture.h" />
     <ClInclude Include="SDLTtfWrapper.h" />
     <ClInclude Include="SDLWrapper.h" />
-    <ClInclude Include="SoundExtension.h" />
     <ClInclude Include="SoundPlayer.h" />
-    <ClInclude Include="StateExtension.h" />
-    <ClInclude Include="SwitchExtension.h" />
     <ClInclude Include="Talker.h" />
     <ClInclude Include="TeleportObject.h" />
     <ClInclude Include="TextUiElement.h" />
     <ClInclude Include="ThrusterManagableItem.h" />
     <ClInclude Include="TimerExtension.h" />
     <ClInclude Include="Utilities.h" />
-    <ClInclude Include="VisionExtension.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -285,7 +279,6 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="AiExtension.cpp" />
     <ClCompile Include="AnimationExtension.cpp" />
     <ClCompile Include="AssetRegistry.cpp" />
-    <ClCompile Include="AttackExtension.cpp" />
     <ClCompile Include="BehaviourAttack.cpp" />
     <ClCompile Include="BehaviourIdle.cpp" />
     <ClCompile Include="BehaviourMove.cpp" />
@@ -294,13 +287,11 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="ButtonUiElement.cpp" />
     <ClCompile Include="CanWieldExtension.cpp" />
-    <ClCompile Include="CheckPhysicsExtension.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
     <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DoesDamageExtension.cpp" />
-    <ClCompile Include="DummyManagableItem.cpp" />
     <ClCompile Include="FileData.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -329,15 +320,11 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="SDLTexture.cpp" />
     <ClCompile Include="SDLTtfWrapper.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
-    <ClCompile Include="SoundExtension.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
-    <ClCompile Include="StateExtension.cpp" />
-    <ClCompile Include="SwitchExtension.cpp" />
     <ClCompile Include="TextUiElement.cpp" />
     <ClCompile Include="ThrusterManagableItem.cpp" />
     <ClCompile Include="TimerExtension.cpp" />
     <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="VisionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ButtonUiElement.h"
 
-ButtonUiElement::ButtonUiElement(std::string btnText, Rect btnRect, Color bgColor, Color fgColor, std::string fontKey, int fontSize) {
+ButtonUiElement::ButtonUiElement(const std::string& btnText, const Rect& btnRect, const Color& bgColor, const Color& fgColor, const std::string& fontKey, int fontSize) {
     text = btnText;
     rect = btnRect;
     _backgroundColor = bgColor;
@@ -33,6 +33,6 @@ void ButtonUiElement::render(const unique_ptr<Window>& window) {
     window->renderText(text, _font, txtRect, _foregroundColor, _backgroundColor, false);
 }
 
-bool ButtonUiElement::isInBound(int mouseX, int mouseY) {
+bool ButtonUiElement::isInBound(int mouseX, int mouseY) const {
     return (mouseX >= rect.x && mouseX <= rect.x + rect.w) && (mouseY > rect.y && mouseY < rect.y + rect.h);
 }

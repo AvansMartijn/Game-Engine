@@ -2,6 +2,7 @@
 #include "IsPortalableExtension.h"
 
 IsPortalableExtension::IsPortalableExtension() {
-	type = "IsPortalableExtension";
+	type = getType();
 }
 
+void IsPortalableExtension::fillProperties(std::map<std::string, ExtensionProperty> properties) {}

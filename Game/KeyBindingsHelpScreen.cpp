@@ -125,44 +125,44 @@ void KeyBindingsHelpScreen::onInit() {
 
 	//BUTTONS
 	ButtonUiElement toggleFPSButton = ButtonUiElement("Change", { 750, 135, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	toggleFPSButton.onClick = [this](AbstractGame* game) { _listingForInput = true, _currentAction = "toggleFPS"; changeText(_fpsKey); };
+	toggleFPSButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true, _currentAction = "toggleFPS"; changeText(_fpsKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(toggleFPSButton));
 
 	ButtonUiElement walkLeftButton = ButtonUiElement("Change", { 750, 215, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	walkLeftButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "walkLeft"; changeText(_walkLeftKey); };
+	walkLeftButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "walkLeft"; changeText(_walkLeftKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(walkLeftButton));
 
 	ButtonUiElement walkRightButton = ButtonUiElement("Change", { 750, 255, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	walkRightButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "walkRight"; changeText(_walkRightKey); };
+	walkRightButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "walkRight"; changeText(_walkRightKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(walkRightButton));
 
 	ButtonUiElement stopButton = ButtonUiElement("Change", { 750, 295, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	stopButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "stop"; changeText(_stopKey); };
+	stopButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "stop"; changeText(_stopKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(stopButton));
 
 	ButtonUiElement jumpButton = ButtonUiElement("Change", { 750, 335, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	jumpButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "jump"; changeText(_jumpKey); };
+	jumpButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "jump"; changeText(_jumpKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(jumpButton));
 
 	ButtonUiElement equipPortalButton = ButtonUiElement("Change", { 750, 415, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	equipPortalButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipPortal"; changeText(_equipPortalGunKey); };
+	equipPortalButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "equipPortal"; changeText(_equipPortalGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipPortalButton));
 
 	ButtonUiElement equipThrusterButton = ButtonUiElement("Change", { 750, 455, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	equipThrusterButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipThruster"; changeText(_equipThrusterGunKey); };
+	equipThrusterButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "equipThruster"; changeText(_equipThrusterGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipThrusterButton));
 
 	ButtonUiElement equipGlueButton = ButtonUiElement("Change", { 750, 495, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	equipGlueButton.onClick = [this](AbstractGame* game) { _listingForInput = true; _currentAction = "equipGlue"; changeText(_equipGlueGunKey); };
+	equipGlueButton.onClick = [this](shared_ptr<AbstractGame> game) { _listingForInput = true; _currentAction = "equipGlue"; changeText(_equipGlueGunKey); };
 	_uiElements.push_back(make_shared<ButtonUiElement>(equipGlueButton));
 
 	ButtonUiElement resetButton = ButtonUiElement("Reset All", { 350, 545, 70, 30 }, bgColor, { 255, 255, 255 }, font, 20);
-	resetButton.onClick = [this](AbstractGame* game) { ControllManager::getInstance().resetControls(); loadKeybinding();};
+	resetButton.onClick = [this](shared_ptr<AbstractGame> game) { ControllManager::getInstance().resetControls(); loadKeybinding();};
 	_uiElements.push_back(make_shared<ButtonUiElement>(resetButton));
 
 	ButtonUiElement backButton = ButtonUiElement("Save & Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControls();};
+	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); ControllManager::getInstance().saveControls();};
 	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
 
 	loadKeybinding();

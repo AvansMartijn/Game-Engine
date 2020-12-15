@@ -37,7 +37,7 @@ public:
 	/// </summary>
 	/// <param name="number">The level number.</param>
 	/// <param name="levelData">The level data.</param>
-	void addLevel(int number, LevelData levelData);
+	void addLevel(int number, const LevelData& levelData);
 
 	/// <summary>
 	/// Get's the current level.
@@ -63,13 +63,13 @@ public:
 	/// </summary>
 	/// <param name="name">The level name.</param>
 	/// <returns>The level index.</returns>
-	int getIndexByLevelName(std::string name);
+	int getIndexByLevelName(const std::string& name) const;
 
 	/// <summary>
 	/// Checks if the given level is a story level.
 	/// </summary>
 	/// <param name="levelData">The level.</param>
 	/// <returns>If the given level is a story level.</returns>
-	bool isStoryLevel(LevelData levelData);
+	bool isStoryLevel(const LevelData& levelData);
 };
 

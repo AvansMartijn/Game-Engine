@@ -1,5 +1,6 @@
 #pragma once
 #include "json.h"
+#include "ExtensionProperty.h"
 
 class TiledProperty {
 private:
@@ -10,6 +11,12 @@ public:
 	float valueFloat;
 	int valueInt;
 	std::string valueString;
+
+	ExtensionProperty toExtensionProperty() {
+		ExtensionProperty extensionProperty = ExtensionProperty(name, type, valueBool, valueFloat, valueInt, valueString);
+
+		return extensionProperty;
+	}
 };
 
 inline void from_json(const nlohmann::json& j, TiledProperty& p) {

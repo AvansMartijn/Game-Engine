@@ -4,7 +4,6 @@
 #include "Window.h"
 #include "GameObjectBuilder.h"
 #include "MoveExtension.h"
-#include "CheckPhysicsExtension.h"
 #include "AbstractGame.h"
 #include "Physics.h"
 #include <iostream>

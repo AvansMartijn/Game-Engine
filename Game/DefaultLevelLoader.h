@@ -14,6 +14,6 @@ public:
 	/// </summary>
 	/// <param name="gameEngine">The game engine.</param>
 	/// <param name="name">The name of the level.</param>
-	void createLevel(GameEngine gameEngine, std::string& name);
+	void createLevel(GameEngine gameEngine, const std::string& name);
 };
 
