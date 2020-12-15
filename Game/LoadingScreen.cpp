@@ -11,24 +11,21 @@ void LoadingScreen::onInit() {
 	const string fontPortal = "OpenSans";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	TextUiElement headerText = TextUiElement("Loading . . . ", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false);
-	_uiElements.push_back(make_shared<TextUiElement>(headerText));
+	_uiElements.push_back(make_unique<TextUiElement>(headerText));
 
 	TextUiElement quoteTest = TextUiElement("Quote:", font, 18, { 30, 500, 0, 0 }, { 255, 255, 255 }, { 28, 28, 28 }, false, true);
-	_quoteText = make_shared<TextUiElement>(quoteTest);
-	_uiElements.push_back(_quoteText);
+	_quoteText = addUiElement<TextUiElement>(make_unique<TextUiElement>(quoteTest));
 
 	ImageUiElement walu = ImageUiElement("Loading", { ((1080 - 700) / 2) + 100 , ((720 - 700) / 2), 700, 700 });
-	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+	_uiElements.push_back(make_unique<ImageUiElement>(walu));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void LoadingScreen::onTick() {
-
 	if (_firstTickCounter != 0) {
 		auto screen = stoi(_arguments[0]);
 		_arguments.erase(_arguments.begin());
@@ -37,10 +34,7 @@ void LoadingScreen::onTick() {
 
 	_firstTickCounter++;
 
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 }
 
 void LoadingScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

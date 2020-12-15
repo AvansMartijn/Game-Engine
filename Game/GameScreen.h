@@ -34,16 +34,21 @@ class GameScreen : public AbstractScreen {
 private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
+
+	// TODO: OMZETTEN
 	std::vector<std::shared_ptr<AbstractManageableItem>> _availableItems;
+
+	// TODO: OMZETTEN
 	shared_ptr<AbstractLevelLoader> _levelLoader;
-	vector<shared_ptr<AbstractUiElement>> _gameUiElements;
-	shared_ptr<TextUiElement> _weapon;
-	shared_ptr<TextUiElement> _score;
-	shared_ptr<TextUiElement> _fps;
-	shared_ptr<ImageUiElement> _backgroundImg;
-	shared_ptr<ImageUiElement> _hudBackgroundImg;
-	shared_ptr<HpBarUIElement> _hpBar;
-	shared_ptr<TextUiElement> _ammo;
+
+	// TODO: CHANGE
+	vector<unique_ptr<AbstractUiElement>> _gameUiElements;
+	unique_ptr<ImageUiElement> _backgroundImg;
+	TextUiElement* _weapon;
+	TextUiElement* _score;
+	HpBarUIElement* _hpBar;
+	TextUiElement* _ammo;
+
 	std::string _name;
 public:
 	GameScreen();
@@ -97,6 +102,11 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
 	void handleMouseClickInput(SDL_MouseButtonEvent e);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
 	/// <summary>
 	/// Renders all the objects on the screen.
 	/// </summary>

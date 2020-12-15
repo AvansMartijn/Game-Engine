@@ -11,15 +11,14 @@ private:
 	std::string _currentAction;
 	bool _listingForInput = false;
 
-	shared_ptr<TextUiElement> _fpsKey;
-	shared_ptr<TextUiElement> _walkLeftKey;
-	shared_ptr<TextUiElement> _walkRightKey;
-	shared_ptr<TextUiElement> _stopKey;
-	shared_ptr<TextUiElement> _jumpKey;
-	shared_ptr<TextUiElement> _equipPortalGunKey;
-	shared_ptr<TextUiElement> _equipThrusterGunKey;
-	shared_ptr<TextUiElement> _equipGlueGunKey;
-	shared_ptr<TextUiElement> _fps;
+	TextUiElement* _fpsKey;
+	TextUiElement* _walkLeftKey;
+	TextUiElement* _walkRightKey;
+	TextUiElement* _stopKey;
+	TextUiElement* _jumpKey;
+	TextUiElement* _equipPortalGunKey;
+	TextUiElement* _equipThrusterGunKey;
+	TextUiElement* _equipGlueGunKey;
 
 	/// <summary>
 	/// Loads the keybindings from saveFile
@@ -28,9 +27,8 @@ private:
 	/// <summary>
 	/// Changes the text of the current key with "CLICK BUTTON", also resets to default values if _islisting is allready true
 	/// </summary>
-	void changeText(shared_ptr<TextUiElement> text);
+	void changeText(TextUiElement* text);
 public:
-	using AbstractScreen::AbstractScreen;
 	KeyBindingsHelpScreen();
 	~KeyBindingsHelpScreen();
 

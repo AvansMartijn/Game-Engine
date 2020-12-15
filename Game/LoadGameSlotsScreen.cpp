@@ -12,16 +12,16 @@ void LoadGameSlotsScreen::onInit() {
 	const int height = 40;
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	ImageUiElement logoWesley = ImageUiElement("LogoWesley", { ((1080 - 700) / 2) , ((720 - 700) / 2), 700, 700 });
-	_uiElements.push_back(make_shared<ImageUiElement>(logoWesley));
+	_uiElements.push_back(make_unique<ImageUiElement>(logoWesley));
 
 	TextUiElement title = TextUiElement("Load Game", font, 40, { 700, 75, width, height }, { 255, 255, 255 }, bgColor, false);
-	_uiElements.push_back(make_shared<TextUiElement>(title));
+	_uiElements.push_back(make_unique<TextUiElement>(title));
 
 	TextUiElement subTitle = TextUiElement("Select slot to load the game", font, 20, { 700, 120, width, height }, { 255, 255, 255 }, bgColor, false);
-	_uiElements.push_back(make_shared<TextUiElement>(subTitle));
+	_uiElements.push_back(make_unique<TextUiElement>(subTitle));
 
 	ButtonUiElement slot1 = ButtonUiElement("Slot 1", { 700, 170, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot1.registerGame(_game);
@@ -32,8 +32,7 @@ void LoadGameSlotsScreen::onInit() {
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 		}
 	};
-	_slot1Button = make_shared<ButtonUiElement>(slot1);
-	_uiElements.push_back(_slot1Button);
+	_slot1Button = addUiElement<ButtonUiElement>(make_unique<ButtonUiElement>(slot1));
 
 	ButtonUiElement slot2 = ButtonUiElement("Slot 2", { 700, 220, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot2.registerGame(_game);
@@ -44,8 +43,7 @@ void LoadGameSlotsScreen::onInit() {
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 		}
 	};
-	_slot2Button = make_shared<ButtonUiElement>(slot2);
-	_uiElements.push_back(_slot2Button);
+	_slot2Button = addUiElement<ButtonUiElement>(make_unique<ButtonUiElement>(slot2));
 
 	ButtonUiElement slot3 = ButtonUiElement("Slot 3", { 700, 270, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot3.registerGame(_game);
@@ -56,20 +54,18 @@ void LoadGameSlotsScreen::onInit() {
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 		}
 	};
-	_slot3Button = make_shared<ButtonUiElement>(slot3);
-	_uiElements.push_back(_slot3Button);
+	_slot3Button = addUiElement<ButtonUiElement>(make_unique<ButtonUiElement>(slot3));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 700, 400, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void LoadGameSlotsScreen::onTick() {
-	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	updateFpsElement();
 }
 
 void LoadGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
@@ -95,7 +91,7 @@ void LoadGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 }
 
 void LoadGameSlotsScreen::onScreenShowed(vector<std::string> args) {
-	if(GameSettings::getInstance().saveGame.slot1 == -1)
+	/*if(GameSettings::getInstance().saveGame.slot1 == -1)
 		_slot1Button->text = "Slot 1 - Empty";
 	else
 		_slot1Button->text = "Slot 1 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot1).levelName;
@@ -108,7 +104,7 @@ void LoadGameSlotsScreen::onScreenShowed(vector<std::string> args) {
 	if (GameSettings::getInstance().saveGame.slot3 == -1)
 		_slot3Button->text = "Slot 3 - Empty";
 	else
-		_slot3Button->text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
+		_slot3Button->text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;*/
 }
 
 void LoadGameSlotsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}

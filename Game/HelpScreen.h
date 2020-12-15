@@ -9,18 +9,15 @@
 
 class HelpScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _storyText;
-	shared_ptr<TextUiElement> _storyTitle;
+	TextUiElement* _storyText;
+	TextUiElement* _storyTitle;
 
-	shared_ptr<TextUiElement> _fps;
-
-	std::vector<shared_ptr<TextUiElement>> _scrollableTextElements;
-	std::vector<shared_ptr<ImageUiElement>> _scrollableImgElements;
+	unique_ptr<AbstractUiElement> _backgroundElement;
+	std::vector<unique_ptr<AbstractUiElement>> _scrollableUiElement;
 
 	int _offset = 0;
 	int _anchor = 0;
 public:
-	using AbstractScreen::AbstractScreen;
 	HelpScreen();
 	~HelpScreen();
 
@@ -47,4 +44,14 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void render(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
 };

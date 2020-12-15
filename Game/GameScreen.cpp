@@ -15,8 +15,7 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::setupScreen() {
-	_backgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 }));
-	_uiElements.push_back(_backgroundImg);
+	_backgroundImg = make_unique<ImageUiElement>(ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 }));
 }
 
 void GameScreen::setupHUD() {
@@ -27,29 +26,21 @@ void GameScreen::setupHUD() {
 	const string font = "Portal";
 	const int fontSize = 19;
 
-	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 240, 100 }, 122));
-	_uiElements.push_back(_hudBackgroundImg);
-	_gameUiElements.push_back(_hudBackgroundImg);
+	_gameUiElements.push_back(make_unique<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 240, 100 }, 122)));
 
-	_score = make_shared<TextUiElement>(TextUiElement("SCORE: 999", font, fontSize, { 10, 630, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_score);
-	_gameUiElements.push_back(_score);
+	_gameUiElements.push_back(make_unique<TextUiElement>(TextUiElement("SCORE: 999", font, fontSize, { 10, 630, 0, 0 }, fgColor, bgColor, false)));
+	_score = static_cast<TextUiElement*>(_gameUiElements.back().get());
 
-	_weapon = make_shared<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 10, 650, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_weapon);
-	_gameUiElements.push_back(_weapon);
+	_gameUiElements.push_back(make_unique<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 10, 650, 0, 0 }, fgColor, bgColor, false)));
+	_weapon = static_cast<TextUiElement*>(_gameUiElements.back().get());
 
-	_ammo = make_shared<TextUiElement>(TextUiElement("AMMO:", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_ammo);
-	_gameUiElements.push_back(_ammo);
+	_gameUiElements.push_back(make_unique<TextUiElement>(TextUiElement("AMMO:", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false)));
+	_ammo = static_cast<TextUiElement*>(_gameUiElements.back().get());
 
-	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed));
-	_uiElements.push_back(_hpBar);
-	_gameUiElements.push_back(_hpBar);
+	_gameUiElements.push_back(make_unique<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed)));
+	_hpBar = static_cast<HpBarUIElement*>(_gameUiElements.back().get());
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
-	_gameUiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void GameScreen::setupGame() {
@@ -186,10 +177,7 @@ void GameScreen::onTick() {
 	}
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
 
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else if(_fps->text.length() > 0)
-		_fps->text = "  ";
+	updateFpsElement();
 }
 
 void GameScreen::handlePlayerControls() {
@@ -386,16 +374,24 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	}
 }
 
+void GameScreen::preRender(const unique_ptr<Window>& window) {
+	_backgroundImg->preRender(window);
+
+	for (const unique_ptr<AbstractUiElement>& uiElement : _gameUiElements)
+		uiElement->preRender(window);
+
+	AbstractScreen::preRender(window);
+}
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	_backgroundImg->render(window);
 
 	Scene::getInstance().render(window);
 
-	for (size_t gameUiElementIndex = 0; gameUiElementIndex < _gameUiElements.size(); gameUiElementIndex++)
-		_gameUiElements[gameUiElementIndex]->render(window);
+	for(const unique_ptr<AbstractUiElement>& uiElement : _gameUiElements)
+		uiElement->render(window);
 
-  if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		if (Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem() != nullptr)
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem()->render(window);
 	}

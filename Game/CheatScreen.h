@@ -9,12 +9,8 @@
 #pragma once
 class CheatScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _cheatText;
-
-	shared_ptr<TextUiElement> _fps;
-
+	TextUiElement* _cheatText;
 public:
-	using AbstractScreen::AbstractScreen;
 	CheatScreen();
 	~CheatScreen();
 

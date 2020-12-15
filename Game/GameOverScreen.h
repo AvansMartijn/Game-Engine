@@ -8,11 +8,10 @@
 
 class GameOverScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _bodyText;
-	shared_ptr<TextUiElement> _nameText;
-	shared_ptr<TextUiElement> _fps;
+	TextUiElement* _bodyText;
+	TextUiElement* _nameText;
+	TextUiElement* _fps;
 public:
-	using AbstractScreen::AbstractScreen;
 	GameOverScreen();
 	~GameOverScreen();
 

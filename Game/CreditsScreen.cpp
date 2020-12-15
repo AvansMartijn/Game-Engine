@@ -5,7 +5,7 @@ CreditsScreen::CreditsScreen() {}
 CreditsScreen::~CreditsScreen() {}
 
 void CreditsScreen::onInit() {
-	_begin = std::chrono::steady_clock::now();
+	/*_begin = std::chrono::steady_clock::now();
 
 	const Color bgColor = { 28, 28, 28 };
 	const string font = "Portal";
@@ -79,11 +79,11 @@ void CreditsScreen::onInit() {
 	_uiElements.push_back(_theBoyz);
 
 	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	_uiElements.push_back(_fps);*/
 }
 
 void CreditsScreen::onTick() {
-	if (shouldShowFPS)
+	/*if (shouldShowFPS)
 		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
 	else
 		_fps->text = "  ";
@@ -101,7 +101,7 @@ void CreditsScreen::onTick() {
 		_scrollLock = false;
 		_wackAMoleInfo->text = "You \"Won\" scroll to collect your \n \"prize\"";
 	}
-	_scoreText->text = "Score: " + to_string(_score);
+	_scoreText->text = "Score: " + to_string(_score);*/
 }
 
 void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
@@ -127,29 +127,29 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 void CreditsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-	if (!_scrollLock) {
-		if (e.y > 0) // scroll up
-			_offset = 20;
-		else if (e.y < 0) // scroll down
-			_offset = -20;
+	//if (!_scrollLock) {
+	//	if (e.y > 0) // scroll up
+	//		_offset = 20;
+	//	else if (e.y < 0) // scroll down
+	//		_offset = -20;
 
-		int heightOfScrolBlock = 800;
+	//	int heightOfScrolBlock = 800;
 
-		int currentY = _line->rect.y;
+	//	int currentY = _line->rect.y;
 
-		if ((currentY += _offset) < _anchor) {
-			if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
+	//	if ((currentY += _offset) < _anchor) {
+	//		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
 
-				for (auto textElement : _scrollableElements)
-					textElement->rect.y += _offset;
+	//			for (auto textElement : _scrollableElements)
+	//				textElement->rect.y += _offset;
 
-				for (auto buttonElement : _wackAMoleButtons)
-					buttonElement->rect.y += _offset;
+	//			for (auto buttonElement : _wackAMoleButtons)
+	//				buttonElement->rect.y += _offset;
 
-				_theBoyz->rect.y += _offset;
-			}
-		}
-	}
+	//			_theBoyz->rect.y += _offset;
+	//		}
+	//	}
+	//}
 
 }
 

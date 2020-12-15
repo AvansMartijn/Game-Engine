@@ -10,10 +10,8 @@ class LoadingScreen: public AbstractScreen {
 private: 
 	std::vector<std::string> _arguments;
 	int _firstTickCounter;
-	shared_ptr<TextUiElement> _quoteText;
-	shared_ptr<TextUiElement> _fps;
+	TextUiElement* _quoteText;
 public:
-	using AbstractScreen::AbstractScreen;
 	LoadingScreen();
 	~LoadingScreen();
 

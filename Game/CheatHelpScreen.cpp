@@ -6,7 +6,7 @@
 void CheatHelpScreen::loadCheatInformation() {
 	std::map<std::string, std::string> cheatInformation = CheatManager::getInstance().getCheatInformation();
 	
-	for (auto const& cheat : cheatInformation) {
+	for (const auto& cheat : cheatInformation) {
 		_cheatInformation->text += cheat.first + " - ";
 		_cheatInformation->text += cheat.second;
 		_cheatInformation->text += "\n";
@@ -21,31 +21,25 @@ void CheatHelpScreen::onInit() {
 	const string font = "Portal";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	TextUiElement title = TextUiElement("Cheats Overview", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(title));
+	_uiElements.push_back(make_unique<TextUiElement>(title));
 
 	TextUiElement cheatInformation = TextUiElement(" ", font, 25, { 10, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	_cheatInformation = make_shared<TextUiElement>(cheatInformation);
-	_uiElements.push_back(_cheatInformation);
+	_cheatInformation = addUiElement<TextUiElement>(make_unique<TextUiElement>(cheatInformation));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Cheat); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
-
+	addFpsElement("Portal");
 	loadCheatInformation();
 }
 
 void CheatHelpScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 
 	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::DEFAULT))
 		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);

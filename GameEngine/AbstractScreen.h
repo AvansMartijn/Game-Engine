@@ -18,14 +18,31 @@ class GameEngine;
 class AbstractGame;
 class GAMEENGINE_AbstractScreen AbstractScreen {
 protected:
+	// REASON: All screens need full ownership over the Game instance.
 	shared_ptr<AbstractGame> _game;
-	vector<shared_ptr<AbstractUiElement>> _uiElements;
+	vector<unique_ptr<AbstractUiElement>> _uiElements;
+
+	// Raw pointer, this class does not delete the pointer (uiElements / the vector does that)
+	TextUiElement* _fpsElement;
+
+	/// <summary>
+	/// Adds an FPS element.
+	/// </summary>
+	/// <param name="fontKey">The font we want to use.</param>
+	void addFpsElement(const std::string& fontKey);
+
+	/// <summary>
+	/// Updates the FPS element.
+	/// </summary>
+	void updateFpsElement();
 public:
 	bool shouldShowFPS;
 	string backgroundTrackKey = "";
 
 	AbstractScreen();
 	~AbstractScreen();
+	AbstractScreen(const AbstractScreen&) = delete;
+	AbstractScreen& operator =(const AbstractScreen&) = delete;
 
 	/// <summary>
 	/// Called one time to create all objects.
@@ -79,5 +96,20 @@ public:
 	/// Resets the game.
 	/// </summary>
 	virtual void reset();
+
+	/// <summary>
+	/// Adds an uiElement and returns the pointer.
+	/// </summary>
+	/// <typeparam name="T">The ui element type.</typeparam>
+	/// <param name="uiElement">The ui element which we want to add.</param>
+	/// <returns>The pointer for the moved ui element.</returns>
+	template<typename T>
+	T* addUiElement(unique_ptr<AbstractUiElement> uiElement) {
+		_uiElements.push_back(std::move(uiElement));
+
+		AbstractUiElement* uiElementRaw = _uiElements.back().get();
+
+		return static_cast<T*>(uiElementRaw);
+	}
 };
 

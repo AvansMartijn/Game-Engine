@@ -11,34 +11,28 @@ void GameOverScreen::onInit() {
 	const string font = "Portal";
 	backgroundTrackKey = "Game_Over";
 
-
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	TextUiElement headerText = TextUiElement("Game Over, you lost", font, 60, { 0, 0, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(headerText));
+	_uiElements.push_back(make_unique<TextUiElement>(headerText));
 
 	TextUiElement bodyText = TextUiElement("Score: 0", font, 40, { 100, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_bodyText = make_shared<TextUiElement>(bodyText);
-	_uiElements.push_back(_bodyText);
+	_bodyText = addUiElement<TextUiElement>(make_unique<TextUiElement>(bodyText));
 
 	ImageUiElement walu = ImageUiElement("Lose", { ((1080 - 400) / 2) + 50 , ((720 - 400) / 2) + 50, 400, 400 });
-	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+	_uiElements.push_back(make_unique<ImageUiElement>(walu));
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
 	quitGameButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::MainMenu); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(quitGameButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void GameOverScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 
 	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::DEFAULT))
 		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
@@ -48,7 +42,7 @@ void GameOverScreen::onTick() {
 }
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
-	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+	//_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
 void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {

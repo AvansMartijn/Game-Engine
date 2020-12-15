@@ -14,13 +14,12 @@ private:
 	int offset = 0;
 	int y;
 	std::vector<FileData> _files;
-	shared_ptr<TextUiElement> _fps;
+	vector<unique_ptr<AbstractUiElement>> _scrollableUiElements;
+
 public:
-	using AbstractScreen::AbstractScreen;
 	LoadCustomLevelScreen();
 	~LoadCustomLevelScreen();
 
-	vector<shared_ptr<ButtonUiElement>> uiList;
 	/// <summary>
 	/// Called one time to create all objects.
 	/// </summary>
@@ -44,4 +43,19 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	/// <summary>
+	/// Called when the user click their mouse.
+	/// </summary>
+	/// <param name="e">The mouse click event.</param>
+	void handleMouseClickInput(SDL_MouseButtonEvent e);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void render(const unique_ptr<Window>& window);
 };

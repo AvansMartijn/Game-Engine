@@ -6,12 +6,10 @@
 
 class SettingsScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _soundText;
-	shared_ptr<TextUiElement> _soundFxText;
-	shared_ptr<TextUiElement> _fps;
-	shared_ptr<TextUiElement> _tickSpeed;
+	TextUiElement* _soundText;
+	TextUiElement* _soundFxText;
+	TextUiElement* _tickSpeed;
 public:
-	using AbstractScreen::AbstractScreen;
 	SettingsScreen();
 	~SettingsScreen();
 

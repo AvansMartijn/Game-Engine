@@ -9,12 +9,10 @@
 
 class GameFinishedScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _bodyText;
-	shared_ptr<TextUiElement> _nameText;
-	shared_ptr<ButtonUiElement> _nextLevelButton;
-	shared_ptr<TextUiElement> _fps;
+	TextUiElement* _bodyText;
+	TextUiElement* _nameText;
+	ButtonUiElement* _nextLevelButton;
 public:
-	using AbstractScreen::AbstractScreen;
 	GameFinishedScreen();
 	~GameFinishedScreen();
 

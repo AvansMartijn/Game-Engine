@@ -11,27 +11,27 @@ void MainMenuScreen::onInit() {
 	const int height = 40;
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	ImageUiElement AdImage = ImageUiElement("AdPlaceholder", { 60 , 120, 200, 500 }, 0, false);
-	_uiElements.push_back(make_shared<ImageUiElement>(AdImage));
+	_uiElements.push_back(make_unique<ImageUiElement>(AdImage));
 
 	ImageUiElement logoWesley = ImageUiElement("LogoWesley", { ((1080 - 700) / 2) , ((720 - 700) / 2), 700, 700 });
-	_uiElements.push_back(make_shared<ImageUiElement>(logoWesley));
+	_uiElements.push_back(make_unique<ImageUiElement>(logoWesley));
 
 	ButtonUiElement startButton = ButtonUiElement("New Game", { 700, 75, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
 	startButton.onClick = [](shared_ptr<AbstractGame> game) {
 		game->switchScreen(Screens::NewGame);
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(startButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(startButton));
 
 	ButtonUiElement loadButton = ButtonUiElement("Load Game", { 700, 125, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadButton.registerGame(_game);
 	loadButton.onClick = [](shared_ptr<AbstractGame> game) {
 		game->switchScreen(Screens::LoadGame);
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(loadButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(loadButton));
 
 	ButtonUiElement loadCustomButton = ButtonUiElement("Load Custom Map", { 700, 175, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	loadCustomButton.registerGame(_game);
@@ -39,44 +39,40 @@ void MainMenuScreen::onInit() {
 	loadCustomButton.onClick = [](shared_ptr<AbstractGame> game) {
 		game->switchScreen(Screens::LoadCustomMap);
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(loadCustomButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(loadCustomButton));
 
 	ButtonUiElement helpButton = ButtonUiElement("Help", { 700, 225, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	helpButton.registerGame(_game);
 	helpButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Help); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(helpButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(helpButton));
 
 	ButtonUiElement highscoreButton = ButtonUiElement("Highscores", { 700, 275, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	highscoreButton.registerGame(_game);
 	highscoreButton.onClick = [](shared_ptr<AbstractGame> game) {   game->switchScreen(Screens::HighScore); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(highscoreButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(highscoreButton));
 
 	ButtonUiElement creditButton = ButtonUiElement("Credits", { 700, 325, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	creditButton.registerGame(_game);
 	creditButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Credits); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(creditButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(creditButton));
 
 	ButtonUiElement settingsButton = ButtonUiElement("Settings", { 700, 375, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	settingsButton.registerGame(_game);
 	settingsButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Settings); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(settingsButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(settingsButton));
 
 	ButtonUiElement exitbutton = ButtonUiElement("Exit", { 700, 425, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	exitbutton.registerGame(_game);
 	exitbutton.onClick = [](shared_ptr<AbstractGame> game) { exit(0); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(exitbutton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(exitbutton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
-
+	addFpsElement("Portal");
+	
 	Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
 }
 
 void MainMenuScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 }
 
 void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
