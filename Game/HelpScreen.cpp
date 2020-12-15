@@ -7,7 +7,7 @@ HelpScreen::~HelpScreen() {}
 
 void HelpScreen::onInit() {
 	const Color bgColor = { 28, 28, 28 };
-	const Color TColor = { 51,51,51 };
+	const Color tColor = { 51,51,51 };
 	const string font = "Portal";
 	const string fontPortal = "Portal";
 	backgroundTrackKey = "Game_Over";
@@ -124,13 +124,13 @@ void HelpScreen::onInit() {
 	_scrollableTextElements.push_back(pEnvironmentInfoText);
 
 	//enemies
-	ImageUiElement enemiesImg = ImageUiElement("Krool", { 100, 1700, 100, 100 }, 0, false);
+	ImageUiElement enemiesImg = ImageUiElement("Goomba_Icon", { 100, 1700, 100, 100 }, 0, false);
 	shared_ptr<ImageUiElement> pEnemiesImg = make_shared<ImageUiElement>(enemiesImg);
 	_uiElements.push_back(pEnemiesImg);
 	_scrollableImgElements.push_back(pEnemiesImg);
 
 	TextUiElement enemiesInfoText = TextUiElement("-", "Portal", 25, { 300, 1700, 100, 0 }, { 255, 255, 255 }, bgColor, false, true);
-	enemiesInfoText.text = "Enemies:\n1\n2";
+	enemiesInfoText.text = "Enemies:\nWalks towards the enemy.\nNot the smartest of the bunch.\nWill walk in any trap.";
 	shared_ptr<TextUiElement> pEnemiesInfoText = make_shared<TextUiElement>(enemiesInfoText);
 	_uiElements.push_back(pEnemiesInfoText);
 	_scrollableTextElements.push_back(pEnemiesInfoText);
@@ -197,13 +197,13 @@ void HelpScreen::onInit() {
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
 
-	TextUiElement title = TextUiElement("Waluigi", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, TColor, true);
+	TextUiElement title = TextUiElement("Help", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, tColor, true);
 	_uiElements.push_back(make_shared<TextUiElement>(title));
 
 	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
 	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
 
-	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, TColor, { 255, 255, 255 }, font, 25);
+	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, tColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
 	backButton.onClick = [](shared_ptr<AbstractGame> game) {
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();

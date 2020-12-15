@@ -8,6 +8,7 @@ void Game::onInit() {
 	// Textures
 	registerTexture("Waluigi", "res/gfx/Assets/Entity/Player/Waluigi.png");
 	registerTexture("Goomba", "res/gfx/Assets/Entity/Goomba/Goomba.png", true);
+	registerTexture("Goomba_Icon", "res/gfx/Assets/Entity/Goomba/Goomba_Icon.png");
 	registerTexture("Crate_Metal", "res/gfx/Assets/Enviroment/Crate_Metal.png");
 	registerTexture("Mystical_Crystal_Flipped", "res/gfx/Assets/Enviroment/Mystical_Crystal_Flipped.png");
 	registerTexture("Portal1", "res/gfx/Assets/Enviroment/Portal1.png");
