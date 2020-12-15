@@ -10,24 +10,23 @@
 class CreditsScreen : public AbstractScreen {
 private:
 	// TODO: CHANGE
-	//shared_ptr<TextUiElement> _fps;
+	int _offset{ 0 };
+	int _anchor{ 0 };
+	bool _scrollLock = true;
+	TextUiElement* _line;
+	unique_ptr<ImageUiElement> _backgroundImage;
 
-	//int _offset{ 0 };
-	//int _anchor{ 0 };
-	//bool _scrollLock = true;
-	//shared_ptr<TextUiElement> _line;
+	std::vector<unique_ptr<TextUiElement>> _scrollableElements;
+	ImageUiElement* _theBoyz;
 
-	//std::vector<shared_ptr<TextUiElement>> _scrollableElements;
-	//shared_ptr<ImageUiElement> _theBoyz;
-
-	////wack-A-Mole
-	//std::chrono::steady_clock::time_point _begin;
-	//int _score{ 0 };
-	//shared_ptr<TextUiElement> _scoreText;
-	//shared_ptr<TextUiElement> _wackAMoleInfo;
-	//shared_ptr<ButtonUiElement> _mole;
-	//
-	//std::vector<shared_ptr<ButtonUiElement>> _wackAMoleButtons;
+	//wack-A-Mole
+	std::chrono::steady_clock::time_point _begin;
+	int _score{ 0 };
+	TextUiElement* _scoreText;
+	TextUiElement* _wackAMoleInfo;
+	ButtonUiElement* _mole;
+	
+	std::vector<unique_ptr<ButtonUiElement>> _wackAMoleButtons;
 public:
 	CreditsScreen();
 	~CreditsScreen();
@@ -55,4 +54,19 @@ public:
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
 	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	/// <summary>
+	/// Called when the user click their mouse.
+	/// </summary>
+	/// <param name="e">The mouse click event.</param>
+	void handleMouseClickInput(SDL_MouseButtonEvent e);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void render(const unique_ptr<Window>& window);
 };
