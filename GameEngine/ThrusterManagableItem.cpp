@@ -25,10 +25,10 @@ void ThrusterManagableItem::onLeftClick(int x, int y) {
 		if (timePassed >= _cooldown) {
 			_lastUsed = std::chrono::steady_clock::now();
 
-			b2Vec2 playerPos = Scene::getInstance().getPlayer()->body.b2body->GetPosition();
+			Vec2 playerPos = Scene::getInstance().getPlayer()->body.getPosition();
 			playerPos.x = Scene::getInstance().metersToPixels(playerPos.x);
 			playerPos.y = Scene::getInstance().metersToPixels(playerPos.y);
-			b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
+			Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
 
 			x += (int) diffs.x;
 			y += (int) diffs.y;
@@ -38,8 +38,8 @@ void ThrusterManagableItem::onLeftClick(int x, int y) {
 
 			//apply impulse thrust
 			int force = -50;
-			b2Vec2 vect = b2Vec2((float)sin(angleDeg * (b2_pi / 180)) * force, (float)cos(angleDeg * (b2_pi / 180)) * force);
-			Scene::getInstance().getPlayer()->body.b2body->ApplyLinearImpulseToCenter(vect, true);
+			Vec2 vect = Vec2((float)sin(angleDeg * (b2_pi / 180)) * force, (float)cos(angleDeg * (b2_pi / 180)) * force);
+			Scene::getInstance().getPlayer()->body.applyLinearImpulseToCenter(vect, true);
 			if (_ammo > 0)
 				_ammo -= 1;
 		}

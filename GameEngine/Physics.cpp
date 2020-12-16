@@ -8,7 +8,7 @@ Physics Physics::instance;
 
 Physics::Physics(){
     _gravity = { 0.0f, 10.0f };
-
+    _colListener = make_unique<ContactListener>();
     reset();
 }
 
@@ -34,7 +34,7 @@ void Physics::addPlayer(GameObject* obj, float x, float y, float width, float he
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     b2Body* body = _world->CreateBody(&bodyDef);
-    obj->body.b2body = body;
+    obj->body.setBody(body);
     
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
@@ -110,7 +110,7 @@ void Physics::addEntity(GameObject* obj, float x, float y, float width, float he
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     b2Body* body = _world->CreateBody(&bodyDef);
-    obj->body.b2body = body;
+    obj->body.setBody(body);
 
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
@@ -157,7 +157,7 @@ void Physics::addNonRigidBody(GameObject* obj, float x, float y, float width, fl
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(userData);
 
     b2Body* body = _world->CreateBody(&bodyDef);
-    obj->body.b2body = body;
+    obj->body.setBody(body);
 
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
@@ -198,7 +198,7 @@ void Physics::addBody(GameObject* obj, float x, float y, float width, float heig
         bodyDef.bullet = true;
 
     b2Body* body = _world->CreateBody(&bodyDef);
-    obj->body.b2body = body;
+    obj->body.setBody(body);
 
     b2PolygonShape box;
     box.SetAsBox(obj->body.width / 2, obj->body.height / 2);
@@ -228,11 +228,11 @@ void Physics::executeTeleportQueue() {
         
         teleportQueue.pop_back();
 
-        b2Vec2 newPosition = { teleportObject.newPosition.x, teleportObject.newPosition.y };
+        Vec2 newPosition = { teleportObject.newPosition.x, teleportObject.newPosition.y };
 
-        teleportObject.obj->body.b2body->SetTransform(newPosition, teleportObject.obj->body.b2body->GetAngle());
+        teleportObject.obj->body.setTransform(newPosition, teleportObject.obj->body.getAngle());
         if (teleportObject.hasSpeed)
-            teleportObject.obj->body.b2body->SetLinearVelocity({ teleportObject.newSpeed.x, teleportObject.newSpeed.y });
+            teleportObject.obj->body.setLinearVelocity({ teleportObject.newSpeed.x, teleportObject.newSpeed.y });
     }
 }
 
@@ -244,7 +244,7 @@ void Physics::executeDeleteQueue() {
 
         GameObject* gameObject = Scene::getInstance().getGameObject(id);
         if (gameObject != nullptr)
-            _world->DestroyBody(gameObject->body.b2body);
+            _world->DestroyBody(gameObject->body.getOriginal());
 
         Scene::getInstance().removeGameObject(id);
     }
@@ -252,7 +252,7 @@ void Physics::executeDeleteQueue() {
 
 void Physics::executeSetStaticQueue() {
     while (!setStaticQueue.empty()) {
-        setStaticQueue.back()->body.b2body->SetType(b2_staticBody);
+        setStaticQueue.back()->body.setType(staticBody);
         setStaticQueue.pop_back();
     }
 }
@@ -260,7 +260,7 @@ void Physics::executeSetStaticQueue() {
 void Physics::executeRotateQueue() {
     while (!rotateQueue.empty()) {
         RotateObj rotateObj = rotateQueue.back();
-        rotateObj.obj->body.b2body->SetTransform(rotateObj.obj->body.b2body->GetPosition(), rotateObj.angleRad);
+        rotateObj.obj->body.setTransform(rotateObj.obj->body.getPosition(), rotateObj.angleRad);
         rotateQueue.pop_back();
     }
 }
@@ -273,15 +273,16 @@ void Physics::executeExpirationQueue() {
             auto extension = Scene::getInstance().getGameObject(id)->getExtension<TimerExtension>();
             if (extension->isExpired()) {
                 expirationQueue.erase(expirationQueue.begin()+ i);
-                _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.b2body);
+                _world->DestroyBody(Scene::getInstance().getGameObject(id)->body.getOriginal());
                 Scene::getInstance().removeGameObject(id);
             }
         }
     }
 }
 
-void Physics::setContactListener(unique_ptr<AbstractContactListener> contactListener) {
-    _colListener = std::move(contactListener);
+void Physics::setContactHandler(unique_ptr<AbstractContactHandler> contactHandler) {
+    if (_colListener != nullptr)
+        _colListener->setContactHandler(std::move(contactHandler));
 
     reset();
 }
@@ -289,7 +290,7 @@ void Physics::setContactListener(unique_ptr<AbstractContactListener> contactList
 void Physics::reset() {
     clearAllQueues();
     _world = new b2World(_gravity);
-
+    
     if (_colListener != nullptr)
         _world->SetContactListener(_colListener.get());
 }
@@ -300,20 +301,4 @@ void Physics::clearAllQueues() {
     expirationQueue.clear();
     rotateQueue.clear();
     setStaticQueue.clear();
-}
-
-Vec2 Physics::getLinearVelocity(GameObject* gameObject) {
-    auto linVel = gameObject->body.b2body->GetLinearVelocity();
-
-    return { linVel.x, linVel.y };
-}
-
-void Physics::setLinearVelocity(GameObject* gameObject, const Vec2& vel) {
-    gameObject->body.b2body->SetLinearVelocity({ vel.x, vel.y });
-}
-
-Vec2 Physics::getPosition(GameObject* gameObject) {
-    auto position = gameObject->body.b2body->GetPosition();
-
-    return { position.x, position.y };
 }

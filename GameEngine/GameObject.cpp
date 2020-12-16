@@ -8,22 +8,23 @@ void GameObject::render(const unique_ptr<Window>& window) {
 	GameObject* player = Scene::getInstance().getPlayer();
 
 	//get object position
-	b2Vec2 position = body.b2body->GetPosition();
+	Vec2 position = body.getPosition();
 	Rect rect = {
 		Scene::getInstance().metersToPixels((position.x - (body.width / 2))),
 		Scene::getInstance().metersToPixels((position.y - (body.height / 2))),
 		Scene::getInstance().metersToPixels(body.width),
 		Scene::getInstance().metersToPixels(body.height)
 	};
-	float radians = body.b2body->GetAngle();
+	float radians = body.getAngle();
+
 	float degrees = radians * (180.0f / 3.141592653589793238463f);
 
 	if (player && !Scene::getInstance().isLocked) {
 		// calc camera offset
-		b2Vec2 playerPos = player->body.b2body->GetPosition();
+		Vec2 playerPos = player->body.getPosition();
 		playerPos.x = (float)metersToPixels(playerPos.x);
 		playerPos.y = (float)metersToPixels(playerPos.y);
-		b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
+		Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
 
 		//apply camera offset
 		rect.x -= (int)diffs.x;

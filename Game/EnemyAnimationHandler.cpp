@@ -67,7 +67,7 @@ void EnemyAnimationHandler::animate(GameObject* gameObject) {
 			_currentFrame = 0;
 			currentAnimation = movementType;
 
-			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
+			Vec2 velocity = gameObject->body.getLinearVelocity();
 
 			if (movementType == KEY_RUNNING)
 				_currentCooldown = 200;

@@ -66,7 +66,7 @@ void PlayerAnimationHandler::animate(GameObject* gameObject) {
 		if (movementType != currentAnimation) {
 			_currentFrame = 0;
 
-			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
+			Vec2 velocity = gameObject->body.getLinearVelocity();
 
 			currentAnimation = movementType;
 			if (movementType == KEY_RUNNING)

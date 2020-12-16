@@ -1,124 +1,124 @@
-#include "CollisionListener.h"
-#include "pch.h"
-#include "Physics.h"
-#include "EntityCategory.h"
-#include "CollisionResolutionPortalExtension.h"
-#include "IsPortalableExtension.h"
-#include "HealthExtension.h"
-#include "DoesDamageExtension.h"
+#include "DefaultContactHandler.h"
+#include <CollisionResolutionPortalExtension.h>
+#include <IsPortalableExtension.h>
+#include <HealthExtension.h>
+#include <DoesDamageExtension.h>
+#include <EntityCategory.h>
+#include <PickupExtension.h>
 
-void CollisionListener::BeginContact(b2Contact* contact) {
-	b2Fixture* fixtureA = contact->GetFixtureA();
-	b2Fixture* fixtureB = contact->GetFixtureB();
+void DefaultContactHandler::onBeginContact(std::unique_ptr<Contact> contact) {
+	std::unique_ptr<Fixture> fixtureA = contact->getFixtureA();
+	std::unique_ptr<Fixture> fixtureB = contact->getFixtureB();
+	
+	std::unique_ptr<Body> bodyA = fixtureA->getBody();
+	std::unique_ptr<Body> bodyB = fixtureB->getBody();
 
-	b2Body* bodyA = fixtureA->GetBody();
-	b2Body* bodyB = fixtureB->GetBody();
-
-	CustomUserData* valA = (CustomUserData*)fixtureA->GetUserData().pointer;
-	CustomUserData* valB = (CustomUserData*)fixtureB->GetUserData().pointer;
-
-	CustomUserData* objA = (CustomUserData*)bodyA->GetUserData().pointer;
-	CustomUserData* objB = (CustomUserData*)bodyB->GetUserData().pointer;
+	CustomUserData* valA = fixtureA->getUserData();
+	CustomUserData* valB = fixtureB->getUserData();
+	
+	CustomUserData* objA = bodyA->getUserData();
+	CustomUserData* objB = bodyB->getUserData();
 
 	GameObject* gameObjectA = Scene::getInstance().getGameObject(objA->index);
 	GameObject* gameObjectB = Scene::getInstance().getGameObject(objB->index);
-
-
+	
 	if (valA != nullptr) {
 		checkJumpSensor(*valA, *valB);
-		checkLeftArmSensor(*valA, *bodyB);
-		checkRightArmSensor(*valA, *bodyB);
+		checkLeftArmSensor(*valA, bodyB);
+		checkRightArmSensor(*valA, bodyB);
 	}
-
+	
 	if (valB != nullptr) {
 		checkJumpSensor(*valB, *valA);
 		//checkJumpSensor(*valB);
-		checkLeftArmSensor(*valB, *bodyA);
-		checkRightArmSensor(*valB, *bodyA);
+		checkLeftArmSensor(*valB, bodyA);
+		checkRightArmSensor(*valB, bodyA);
 	}
-
+	
 	if (valA != nullptr && valB != nullptr) {
 		checkExitSensor(*valA, *valB);
 		checkExitSensor(*valB, *valA);
 		checkPickupSensor(*valA, *valB, gameObjectA, gameObjectB);
 		checkPickupSensor(*valB, *valA, gameObjectB, gameObjectA);
-		checkGlueBullet(*valA, *valB, gameObjectA, *objA, *fixtureA);
-		checkGlueBullet(*valB, *valA, gameObjectB, *objB, *fixtureB);
+		checkGlueBullet(*valA, *valB, gameObjectA, *objA, fixtureA);
+		checkGlueBullet(*valB, *valA, gameObjectB, *objB, fixtureB);
 		checkPortalBullet(*valA, *valB, *objA, gameObjectA, gameObjectB);
 		checkPortalBullet(*valB, *valA, *objB, gameObjectB, gameObjectA);
 	}
-
+	
 	if (gameObjectA != nullptr && gameObjectB != nullptr) {
 		checkTeleport(gameObjectA, gameObjectB, *valA);
 		checkTeleport(gameObjectB, gameObjectA, *valB);
 		checkDamage(gameObjectB, gameObjectA);
 	}
-
 }
 
-void CollisionListener::EndContact(b2Contact* contact) {
-	b2Fixture* fixtureA = contact->GetFixtureA();
-	b2Fixture* fixtureB = contact->GetFixtureB();
+void DefaultContactHandler::onEndContact(std::unique_ptr<Contact> contact) {
+	std::unique_ptr<Fixture> fixtureA = contact->getFixtureA();
+	std::unique_ptr<Fixture> fixtureB = contact->getFixtureB();
 
-	b2Body* bodyA = fixtureA->GetBody();
-	b2Body* bodyB = fixtureB->GetBody();
+	std::unique_ptr<Body> bodyA = fixtureA->getBody();
+	std::unique_ptr<Body> bodyB = fixtureB->getBody();
 
-	CustomUserData* valA = (CustomUserData*)fixtureA->GetUserData().pointer;
-	CustomUserData* valB = (CustomUserData*)fixtureB->GetUserData().pointer;
+	CustomUserData* valA = fixtureA->getUserData();
+	CustomUserData* valB = fixtureB->getUserData();
 
-	GameObject* objA = (GameObject*)bodyA->GetUserData().pointer;
-	GameObject* objB = (GameObject*)bodyB->GetUserData().pointer;
+	CustomUserData* objA = bodyA->getUserData();
+	CustomUserData* objB = bodyB->getUserData();
 
+	GameObject* gameObjectA = Scene::getInstance().getGameObject(objA->index);
+	GameObject* gameObjectB = Scene::getInstance().getGameObject(objB->index);
+	
 	if (valA != nullptr && valB != nullptr) {
 		if (valA->type == "jumpSensor") {
 			if (valB->type != "portalSensor")
 				Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter--;
 		}
-
+	
 		if (valB->type == "jumpSensor") {
 			if (valA->type != "portalSensor")
 				Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter--;
 		}
-
-		if (valA->type == "leftArmSensor" && bodyB->GetType() == b2_staticBody)
-			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter--;
 	
-		if (valB->type == "leftArmSensor" && bodyA->GetType() == b2_staticBody)
+		if (valA->type == "leftArmSensor" && bodyB->getType() == b2_staticBody)
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter--;
-	
-		if (valA->type == "rightArmSensor" && bodyB->GetType() == b2_staticBody)
+		
+		if (valB->type == "leftArmSensor" && bodyA->getType() == b2_staticBody)
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter--;
+		
+		if (valA->type == "rightArmSensor" && bodyB->getType() == b2_staticBody)
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->rightArmCounter--;
-	
-		if (valB->type == "rightArmSensor" && bodyA->GetType() == b2_staticBody)
+		
+		if (valB->type == "rightArmSensor" && bodyA->getType() == b2_staticBody)
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->rightArmCounter--;
 	}
 }
 
-void CollisionListener::checkJumpSensor(const CustomUserData& valA, const CustomUserData& valB) {
+void DefaultContactHandler::checkJumpSensor(const CustomUserData& valA, const CustomUserData& valB) {
 	if (valA.type == "jumpSensor") {
 		if (valB.type != "portalSensor")
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->jumpCounter++;
 	}
 }
 
-void CollisionListener::checkLeftArmSensor(const CustomUserData& valA, b2Body& bodyB) {
-	if (valA.type == "leftArmSensor" && bodyB.GetType() == b2_staticBody)
+void DefaultContactHandler::checkLeftArmSensor(const CustomUserData& valA, const std::unique_ptr<Body>& bodyB) {
+	if (valA.type == "leftArmSensor" && bodyB->getType() == b2_staticBody)
 		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->leftArmCounter++;
 }
 
-void CollisionListener::checkRightArmSensor(const CustomUserData& valA, b2Body& bodyB) {
-	if (valA.type == "rightArmSensor" && bodyB.GetType() == b2_staticBody)
+void DefaultContactHandler::checkRightArmSensor(const CustomUserData& valA, const std::unique_ptr<Body>& bodyB) {
+	if (valA.type == "rightArmSensor" && bodyB->getType() == b2_staticBody)
 		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->rightArmCounter++;
 }
 
-void CollisionListener::checkExitSensor(const CustomUserData& valA, const CustomUserData& valB) {
+void DefaultContactHandler::checkExitSensor(const CustomUserData& valA, const CustomUserData& valB) {
 	if (valA.type == "exitSensor") {
 		if (valB.type == "playerFixture")
 			Scene::getInstance().gameOver = true;
 	}
 }
 
-void CollisionListener::checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, GameObject* gameObjectA, GameObject* gameObjectB) {
+void DefaultContactHandler::checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, GameObject* gameObjectA, GameObject* gameObjectB) {
 	if (valA.type == "pickupSensor") {
 		if (valB.type == "playerFixture") {
 			if (gameObjectA->hasExtension(typeid(PickupExtension)))
@@ -127,33 +127,33 @@ void CollisionListener::checkPickupSensor(const CustomUserData& valA, const Cust
 	}
 }
 
-void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, GameObject* gameObject, const CustomUserData& objA, b2Fixture& fixtureA) {
+void DefaultContactHandler::checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, GameObject* gameObject, const CustomUserData& objA, const unique_ptr<Fixture>& fixtureA) {
 	if (valA.type == "glueBullet") {
 		if (valB.type == "portalSensor")
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 		else if (valB.type == "glueFixture" || valB.type == "fixture") {
 			valA.type = "glueFixture";
-			b2Filter filter = fixtureA.GetFilterData();
-			filter.categoryBits = SCENERY;
-			filter.maskBits = -1;
-			fixtureA.SetFilterData(filter);
+			std::unique_ptr<FixtureFilter> filter = fixtureA->getFilterData();
+			filter->categoryBits = SCENERY;
+			filter->maskBits = -1;
+			fixtureA->setFilterData(std::move(filter));
 
 			Physics::getInstance().setStaticQueue.push_back(gameObject);
 		}
 	}
 }
 
-void CollisionListener::checkTeleport(GameObject* gameObjectA, GameObject* gameObjectB, const CustomUserData& valB) {
+void DefaultContactHandler::checkTeleport(GameObject* gameObjectA, GameObject* gameObjectB, const CustomUserData& valB) {
 	if (gameObjectA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
 		AbstractCollisionResolutionExtension* resolution = gameObjectA->getExtension<AbstractCollisionResolutionExtension>();
 		if (!resolution->isDefault()) {
-			if (gameObjectB->body.b2body->GetType() == b2_dynamicBody && valB.type != "portalABullet" && valB.type != "portalBbullet" && valB.type != "glueBullet")
+			if (gameObjectB->body.getType() == b2_dynamicBody && valB.type != "portalABullet" && valB.type != "portalBbullet" && valB.type != "glueBullet")
 				resolution->resolveCollision(gameObjectB);
 		}
 	}
 }
 
-void CollisionListener::checkDamage(GameObject* gameObjectA, GameObject* gameObjectB) {
+void DefaultContactHandler::checkDamage(GameObject* gameObjectA, GameObject* gameObjectB) {
 	if (gameObjectA->hasExtension(typeid(HealthExtension))) {
 		if (gameObjectB->hasExtension(typeid(DoesDamageExtension))) {
 			HealthExtension* healthExtension = gameObjectA->getExtension<HealthExtension>();
@@ -163,7 +163,7 @@ void CollisionListener::checkDamage(GameObject* gameObjectA, GameObject* gameObj
 	}
 }
 
-void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, GameObject* gameObjectA, GameObject* gameObjectB) {
+void DefaultContactHandler::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, GameObject* gameObjectA, GameObject* gameObjectB) {
 	//culling duplicate to prevent double operations
 	auto objectLocation = std::find_if(Physics::getInstance().deleteQueue.begin(), Physics::getInstance().deleteQueue.end(), [objA](int id) {return id == objA.index; });
 	if (objectLocation != Physics::getInstance().deleteQueue.end())
@@ -177,18 +177,18 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 		else if (gameObjectB->hasExtension(typeid(IsPortalableExtension))) {
 			Physics::getInstance().deleteQueue.push_back(objA.index);
 
-			float aLeft = gameObjectA->body.b2body->GetPosition().x - (gameObjectA->body.width / 2);
-			float aRight = gameObjectA->body.b2body->GetPosition().x + (gameObjectA->body.width / 2);
-			float aTop = gameObjectA->body.b2body->GetPosition().y - (gameObjectA->body.height / 2);
-			float aBottom = gameObjectA->body.b2body->GetPosition().y + (gameObjectA->body.width / 2);
+			float aLeft = gameObjectA->body.getPosition().x - (gameObjectA->body.width / 2);
+			float aRight = gameObjectA->body.getPosition().x + (gameObjectA->body.width / 2);
+			float aTop = gameObjectA->body.getPosition().y - (gameObjectA->body.height / 2);
+			float aBottom = gameObjectA->body.getPosition().y + (gameObjectA->body.width / 2);
 
-			float bLeft = gameObjectB->body.b2body->GetPosition().x - (gameObjectB->body.width / 2);
-			float bRight = gameObjectB->body.b2body->GetPosition().x + (gameObjectB->body.width / 2);
-			float bTop = gameObjectB->body.b2body->GetPosition().y - (gameObjectB->body.height / 2);
-			float bBottom = gameObjectB->body.b2body->GetPosition().y + (gameObjectB->body.height / 2);
+			float bLeft = gameObjectB->body.getPosition().x - (gameObjectB->body.width / 2);
+			float bRight = gameObjectB->body.getPosition().x + (gameObjectB->body.width / 2);
+			float bTop = gameObjectB->body.getPosition().y - (gameObjectB->body.height / 2);
+			float bBottom = gameObjectB->body.getPosition().y + (gameObjectB->body.height / 2);
 
 			TeleportObject teleportObj;
-			teleportObj.newPosition = gameObjectA->body.b2body->GetPosition();
+			teleportObj.newPosition = gameObjectA->body.getPosition();
 			if (valA.type == "portalAbullet")
 				teleportObj.obj = Scene::getInstance().portalA;
 			else if (valA.type == "portalBbullet")
@@ -199,7 +199,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			if (aLeft > bLeft && aLeft < bRight) {
 				//A left is in between B left and right
 				// it has to be bottom or top, check which one is closer
-				if (abs(aBottom - gameObjectB->body.b2body->GetPosition().y) < abs(aTop - gameObjectB->body.b2body->GetPosition().y)) {
+				if (abs(aBottom - gameObjectB->body.getPosition().y) < abs(aTop - gameObjectB->body.getPosition().y)) {
 					// bottom is closer to object b
 					// portal must be on top of object B
 					extension->exitSide = "top";
@@ -213,7 +213,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			}
 			else if (aRight > bLeft && aRight < bRight) {
 				//A right is in between B left and right
-				if (abs(aBottom - gameObjectB->body.b2body->GetPosition().y) < abs(aTop - gameObjectB->body.b2body->GetPosition().y)) {
+				if (abs(aBottom - gameObjectB->body.getPosition().y) < abs(aTop - gameObjectB->body.getPosition().y)) {
 					// bottom is closer to object b
 					// portal must be on top of object B
 					extension->exitSide = "top";
@@ -227,7 +227,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			else if (aTop > bTop && aTop < bBottom) {
 				//A left is in between B left and right
 				// it has to be bottom or top, check which one is closer
-				if (abs(aRight - gameObjectB->body.b2body->GetPosition().x) < abs(aLeft - gameObjectB->body.b2body->GetPosition().x)) {
+				if (abs(aRight - gameObjectB->body.getPosition().x) < abs(aLeft - gameObjectB->body.getPosition().x)) {
 					//right is closer
 					extension->exitSide = "left";
 					angle = 90;
@@ -240,7 +240,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			}
 			else if (aBottom > bTop && aBottom < bBottom) {
 				//A right is in between B left and right
-				if (abs(aRight - gameObjectB->body.b2body->GetPosition().x) < abs(aLeft - gameObjectB->body.b2body->GetPosition().x)) {
+				if (abs(aRight - gameObjectB->body.getPosition().x) < abs(aLeft - gameObjectB->body.getPosition().x)) {
 					//right is closer
 					extension->exitSide = "left";
 					angle = 90;

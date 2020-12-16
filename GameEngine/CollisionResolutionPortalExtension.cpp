@@ -24,7 +24,7 @@ void CollisionResolutionPortalExtension::resolveCollision(GameObject* inputObjec
         return;
 
     std::string otherExitSide = otherPortalExtension->exitSide;
-    b2Vec2 newPos{ _linkedPortal->body.b2body->GetPosition().x,_linkedPortal->body.b2body->GetPosition().y };
+    Vec2 newPos = { _linkedPortal->body.getPosition().x, _linkedPortal->body.getPosition().y };
     float diagonal = sqrt(pow(inputObject->body.width, 2) + pow(inputObject->body.height, 2));
 
     if (otherExitSide == "top")
@@ -36,8 +36,8 @@ void CollisionResolutionPortalExtension::resolveCollision(GameObject* inputObjec
     else if (otherExitSide == "right")
         newPos.x += diagonal;
 
-    float velX = inputObject->body.b2body->GetLinearVelocity().x;
-    float velY = inputObject->body.b2body->GetLinearVelocity().y;
+    float velX = inputObject->body.getLinearVelocity().x;
+    float velY = inputObject->body.getLinearVelocity().y;
 
     if (exitSide == "top") {
         if (otherExitSide == "top") {

@@ -9,18 +9,15 @@
 #ifndef Physics_h
 #define Physics_h
 
-
 #include <Box2D.h>
 #include <memory>
 #include "GameObject.h"
-#include "AbstractContactListener.h"
 #include "CustomUserData.h"
 #include "TeleportObject.h"
 #include "Scene.h"
 #include "RotateObj.h"
-#include "AbstractContactListener.h"
+#include "ContactListener.h"
 
-class CollisionListener;
 class GAMEENGINE_Physics Physics {
 private:
 	Physics();
@@ -29,7 +26,7 @@ private:
 	// TODO: DEZE WEG WERKEN.
 	b2World* _world;
 	b2Vec2 _gravity;
-	unique_ptr<AbstractContactListener> _colListener;
+	unique_ptr<ContactListener> _colListener;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -42,7 +39,6 @@ public:
 	vector<TeleportObject> teleportQueue;
 	vector<RotateObj> rotateQueue;
 
-	// TODO: ????
 	vector<GameObject*> setStaticQueue;
 	vector<int> deleteQueue;
 	vector<int> expirationQueue;
@@ -129,36 +125,15 @@ public:
 	void executeExpirationQueue();
 
 	/// <summary>
-	/// Set's the contact listener.
+	/// Set's the contact handler.
 	/// </summary>
-	/// <param name="contactListener">The contact listener.</param>
-	void setContactListener(unique_ptr<AbstractContactListener> contactListener);
+	/// <param name="contactListener">The contact handler.</param>
+	void setContactHandler(unique_ptr<AbstractContactHandler> contactHandler);
 
 	/// <summary>
 	/// Clear all the queues.
 	/// </summary>
 	void clearAllQueues();
-
-	/// <summary>
-	/// Get Linear velocity of game object
-	/// </summary>
-	/// <param name="gameObject">The gameobject</param>
-	/// <returns>The linear velocity.</returns>
-	Vec2 getLinearVelocity(GameObject* gameObject);
-
-	/// <summary>
-	/// Get Linear velocity of game object
-	/// </summary>
-	/// <param name="gameObject">The game object</param>
-	/// <returns>The linear velocity</returns>
-	void setLinearVelocity(GameObject* gameObject, const Vec2& vel);
-
-	/// <summary>
-	/// Get's the position of the game object.
-	/// </summary>
-	/// <param name="gameObject">The game object.</param>
-	/// <returns>The position of the game object</returns>
-	Vec2 getPosition(GameObject* gameObject);
 };
 
 #endif

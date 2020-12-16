@@ -210,9 +210,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="IEMath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultEntityAI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
@@ -282,9 +279,6 @@
     <ClInclude Include="LibCurl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractContactListener.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>Header Files\UiElements\Mouse</Filter>
     </ClInclude>
@@ -302,6 +296,24 @@
     </ClInclude>
     <ClInclude Include="ExtensionProperty.h">
       <Filter>Header Files\Core\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Contact.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Fixture.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListener.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractContactHandler.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="FixtureFilter.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +467,6 @@
     <ClCompile Include="DefaultEntityAI.cpp">
       <Filter>Source Files\Ai</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractContactListener.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\UiElements\Mouse</Filter>
     </ClCompile>
@@ -469,6 +478,18 @@
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Contact.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Fixture.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactListener.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

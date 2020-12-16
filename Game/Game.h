@@ -17,6 +17,7 @@
 #include "GameSettings.h"
 #include "LevelData.h"
 #include "LibCurl.h"
+#include "DefaultContactHandler.h"
 
 //engine
 #include "GameEngine.h" 
@@ -34,4 +35,3 @@ public:
 	/// </summary>
 	void onInit();
 };
-

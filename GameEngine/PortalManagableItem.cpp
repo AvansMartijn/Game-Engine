@@ -33,7 +33,7 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 		auto timePassed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - _lastUsed).count();
 		if (timePassed >= _cooldown) {
 			_lastUsed = std::chrono::steady_clock::now();
-			b2Vec2 playerPos = Scene::getInstance().getPlayer()->body.b2body->GetPosition();
+			Vec2 playerPos = Scene::getInstance().getPlayer()->body.getPosition();
 			playerPos.x = Scene::getInstance().metersToPixels(playerPos.x);
 			playerPos.y = Scene::getInstance().metersToPixels(playerPos.y);
 			b2Vec2 diffs = { playerPos.x - (1080 / 2), playerPos.y - (720 / 2) };
@@ -58,8 +58,8 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			Physics::getInstance().addBody(gameObject.get(), Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 0.5f, 0.5f, 0.3f, false, true, true, fixtureUserData);
 
 			int force = 50;
-			b2Vec2 vect = b2Vec2((float)sin(angleDeg * (b2_pi / 180)) * force, (float)cos(angleDeg * (b2_pi / 180)) * force);
-			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
+			Vec2 vect = Vec2((float)sin(angleDeg * (b2_pi / 180)) * force, (float)cos(angleDeg * (b2_pi / 180)) * force);
+			gameObject->body.applyLinearImpulseToCenter(vect, true);
 			if (_ammo > 0)
 				_ammo -= 1;
 			Scene::getInstance().addGameObject(std::move(gameObject));

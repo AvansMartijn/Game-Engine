@@ -5,11 +5,11 @@ void BehaviourSeesEnemy::execute() {
 	float lookX = 10;
 	float lookY = 2;
 
-	float subjectX = Physics::getInstance().getPosition(_self).x;
-	float subjectY = Physics::getInstance().getPosition(_self).y;
-	
-	float playerX = Physics::getInstance().getPosition(Scene::getInstance().getPlayer()).x;
-	float playerY = Physics::getInstance().getPosition(Scene::getInstance().getPlayer()).y;
+	float subjectX = _self->body.getPosition().x;
+	float subjectY = _self->body.getPosition().y;
+
+	float playerX = Scene::getInstance().getPlayer()->body.getPosition().x;
+	float playerY = Scene::getInstance().getPlayer()->body.getPosition().y;
 
 	float fovStartX = subjectX;
 	float fovStartY = subjectY - lookY;

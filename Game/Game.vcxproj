@@ -179,9 +179,9 @@
     <ClCompile Include="CheatHelpScreen.cpp" />
     <ClCompile Include="CheatManager.cpp" />
     <ClCompile Include="CheatScreen.cpp" />
-    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="DefaultContactHandler.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
     <ClCompile Include="DefaultTiledLevel.cpp" />
     <ClCompile Include="EnemyAnimationHandler.cpp" />
@@ -223,9 +223,9 @@
     <ClInclude Include="CheatHelpScreen.h" />
     <ClInclude Include="CheatManager.h" />
     <ClInclude Include="CheatScreen.h" />
-    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="DefaultContactHandler.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
     <ClInclude Include="DefaultTiledLevel.h" />
     <ClInclude Include="EnemyAnimationHandler.h" />

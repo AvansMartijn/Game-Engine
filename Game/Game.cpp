@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "CollisionListener.h"
 
 Game::Game(const char* title, int width, int height) : AbstractGame(title, width, height) {}
 Game::~Game() {}
@@ -77,7 +76,8 @@ void Game::onInit() {
 	registerSFXTrack("Glue_Sound", "res/music/Glue_Sound.ogg");
 
 	//create collision listener
-	Physics::getInstance().setContactListener(make_unique<CollisionListener>(CollisionListener()));
+	DefaultContactHandler contactHandler;
+	Physics::getInstance().setContactHandler(make_unique<DefaultContactHandler>(contactHandler));
 
 
 	for (size_t i = 0; i < screens.size(); i++)

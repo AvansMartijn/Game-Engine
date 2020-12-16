@@ -207,9 +207,6 @@
     <ClCompile Include="StartNewLevelScreen.cpp">
       <Filter>Source Files\Screens\NewLoadGameScreen</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionListener.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="SonicModeCheat.cpp">
       <Filter>Source Files\Misc\Cheats\Commands</Filter>
     </ClCompile>
@@ -227,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="PlayerAnimationHandler.cpp">
       <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultContactHandler.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,9 +380,6 @@
     <ClInclude Include="StartNewLevelScreen.h">
       <Filter>Header Files\Screens\NewLoadGameScreen</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionListener.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="SonicModeCheat.h">
       <Filter>Header Files\Misc\Cheats\Commands</Filter>
     </ClInclude>
@@ -400,6 +397,9 @@
     </ClInclude>
     <ClInclude Include="PlayerAnimationHandler.h">
       <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultContactHandler.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
