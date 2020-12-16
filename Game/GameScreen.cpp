@@ -105,7 +105,7 @@ void GameScreen::onTick() {
 				gameObject->getExtension<AiExtension>()->execute();
 
 			if (gameObject->hasExtension(typeid(HealthExtension))) {
-				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
+				HealthExtension* healthExtension = gameObject->getExtension<HealthExtension>();
 
 				if (healthExtension->getHealth() <= 0) {
 					Scene::getInstance().removeEntity((int)gameObjectIndex);
@@ -189,7 +189,7 @@ void GameScreen::handlePlayerControls() {
 
 	if (keystate[walkLeft]) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
 			if (moveExtension->leftArmCounter <= 0)
 				moveExtension->moveX(-5);
 		}
@@ -203,7 +203,7 @@ void GameScreen::handlePlayerControls() {
 
 	if (keystate[walkRight]) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
 			if (moveExtension->rightArmCounter <= 0)
 				moveExtension->moveX(5);
 		}
@@ -226,7 +226,7 @@ void GameScreen::handlePlayerControls() {
 
 	if (keystate[jump]) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
 			if (moveExtension->canJump()) {
 				moveExtension->moveY(-5);
 				SoundPlayer::getInstance().playSFX("Player_Jump");
@@ -344,7 +344,7 @@ void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
 
 void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		shared_ptr<CanWieldExtension> wieldExtension = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>();
+		CanWieldExtension* wieldExtension = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>();
 
 		switch (e.button) {
 		case SDL_BUTTON_LEFT:

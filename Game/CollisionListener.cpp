@@ -144,7 +144,7 @@ void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserDa
 
 void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB, const CustomUserData& valB) {
 	if (gameObjectA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
-		shared_ptr<AbstractCollisionResolutionExtension> resolution = gameObjectA->getExtension<AbstractCollisionResolutionExtension>();
+		AbstractCollisionResolutionExtension* resolution = gameObjectA->getExtension<AbstractCollisionResolutionExtension>();
 		if (!resolution->isDefault()) {
 			if (gameObjectB->body.b2body->GetType() == b2_dynamicBody && valB.type != "portalABullet" && valB.type != "portalBbullet" && valB.type != "glueBullet")
 				resolution->resolveCollision(gameObjectB);
@@ -155,8 +155,8 @@ void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared
 void CollisionListener::checkDamage(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
 	if (gameObjectA->hasExtension(typeid(HealthExtension))) {
 		if (gameObjectB->hasExtension(typeid(DoesDamageExtension))) {
-			shared_ptr<HealthExtension> healthExtension = gameObjectA->getExtension<HealthExtension>();
-			shared_ptr<DoesDamageExtension> damageExtension = gameObjectB->getExtension<DoesDamageExtension>();
+			HealthExtension* healthExtension = gameObjectA->getExtension<HealthExtension>();
+			DoesDamageExtension* damageExtension = gameObjectB->getExtension<DoesDamageExtension>();
 			healthExtension->reduceHealth(damageExtension->damage);
 		}
 	}
@@ -193,7 +193,7 @@ void CollisionListener::checkPortalBullet(const CustomUserData& valA, const Cust
 			else if (valA.type == "portalBbullet")
 				teleportObj.obj = Scene::getInstance().portalB;
 
-			shared_ptr<CollisionResolutionPortalExtension> extension = teleportObj.obj->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>();
+			CollisionResolutionPortalExtension* extension = teleportObj.obj->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>();
 			float angle = 0;
 			if (aLeft > bLeft && aLeft < bRight) {
 				//A left is in between B left and right

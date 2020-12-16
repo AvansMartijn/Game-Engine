@@ -28,7 +28,6 @@ private:
 	shared_ptr<GameObject> _player;
 
 	bool preRender = false;
-
 public:
 	float tickRate = 60.0;
 	float refreshRate = 60.0;

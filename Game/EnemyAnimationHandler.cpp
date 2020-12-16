@@ -59,7 +59,7 @@ void EnemyAnimationHandler::registerAnimations() {
 
 void EnemyAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 	if (gameObject->hasExtension(typeid(MoveExtension))) {
-		shared_ptr<MoveExtension> moveExtension = gameObject->getExtension<MoveExtension>();
+		MoveExtension* moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipLeft = moveExtension->isLookingToLeft;
 
 		std::string movementType = getKeyFromMovementType(moveExtension->currentMovementType);

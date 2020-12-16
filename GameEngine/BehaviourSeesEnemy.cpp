@@ -17,7 +17,7 @@ void BehaviourSeesEnemy::execute() {
 	float fovEndY = subjectY + lookY;
 
 	if (_self->hasExtension(typeid(MoveExtension))) {
-		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
+		MoveExtension* moveExtension = _self->getExtension<MoveExtension>();
 
 		if (moveExtension->isLookingToLeft) {
 			fovStartX = subjectX - lookX;

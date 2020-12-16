@@ -7,11 +7,11 @@ void GameObjectBuilder::buildGameObject() {
 
 void GameObjectBuilder::addExtension(const std::vector<string>& extensionNames) {
 	for (const string& extensionName : extensionNames) {
-		shared_ptr<AbstractGameObjectExtension> extension(GameObjectExtensionFactory::get()->createExtension(extensionName));
+		unique_ptr<AbstractGameObjectExtension> extension(GameObjectExtensionFactory::get()->createExtension(extensionName));
 		if (extension) {
 			extension->registerSubject(_gameObject);
 
-			_gameObject->addExtension(extension);
+			_gameObject->addExtension(std::move(extension));
 		}
 	}
 }

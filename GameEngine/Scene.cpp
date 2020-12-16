@@ -92,6 +92,7 @@ void Scene::reset() {
     gameOver = false;
     score = 1000;
     _gameObjects.clear();
+    _textElements.clear();
     preRender = false;
     hasCheated = false;
 }

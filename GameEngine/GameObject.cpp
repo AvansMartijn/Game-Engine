@@ -32,7 +32,7 @@ void GameObject::render(const unique_ptr<Window>& window) {
 
 
 	if (hasExtension(typeid(AnimationExtension))) {
-		shared_ptr<AnimationExtension> animation = getExtension<AnimationExtension>();
+		AnimationExtension* animation = getExtension<AnimationExtension>();
 		if (animation->getAnimationHandler() != nullptr) {
 			Rect sprite = animation->getCurrentSprite();
 
@@ -48,12 +48,12 @@ int GameObject::metersToPixels(float value) {
 }
 
 
-void GameObject::addExtension(std::shared_ptr<AbstractGameObjectExtension> extension) {
-	_gameObjectExtensions.push_back(extension);
+void GameObject::addExtension(std::unique_ptr<AbstractGameObjectExtension> extension) {
+	_gameObjectExtensions.push_back(std::move(extension));
 }
 
 bool GameObject::hasExtension(const std::type_info& type) {
-	for (shared_ptr<AbstractGameObjectExtension> const& extension : _gameObjectExtensions) {
+	for (const unique_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions) {
 		string givenName = type.name();
 		givenName.erase(0, 6);
 		string currentName = extension->type;
@@ -64,17 +64,17 @@ bool GameObject::hasExtension(const std::type_info& type) {
 	return false;
 }
 
-vector<shared_ptr<AbstractGameObjectExtension>> GameObject::getExtensions() {
+vector<unique_ptr<AbstractGameObjectExtension>>& GameObject::getExtensions() {
 	return _gameObjectExtensions;
 }
 
-std::shared_ptr<AbstractGameObjectExtension> GameObject::getExtension(const std::type_info& type) {
-	for (shared_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions) {
+AbstractGameObjectExtension* GameObject::getExtension(const std::type_info& type) {
+	for (unique_ptr<AbstractGameObjectExtension>& extension : _gameObjectExtensions) {
 		string givenName = type.name();
 		givenName.erase(0, 6);
 		string currentName = extension->type;
 		if (currentName.compare(givenName) == 0)
-			return extension;
+			return extension.get();
 	}
 	return nullptr;
 }

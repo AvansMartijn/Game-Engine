@@ -63,7 +63,7 @@ void MoveExtension::updateState() {
 	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
 	if (canJump() && vel.x == 0 && vel.y == 0 && currentMovementType != MovementType::HURTING) {
 		if (_subject->hasExtension(typeid(CanWieldExtension))) {
-			shared_ptr<CanWieldExtension> canWieldExtension = _subject->getExtension<CanWieldExtension>();
+			CanWieldExtension* canWieldExtension = _subject->getExtension<CanWieldExtension>();
 
 			if (canWieldExtension->hasItems()) {
 				if (currentMovementType == MovementType::AFK)

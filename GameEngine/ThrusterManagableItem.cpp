@@ -15,7 +15,7 @@ ThrusterManagableItem::ThrusterManagableItem() {
 void ThrusterManagableItem::onLeftClick(int x, int y) {
 	if (_ammo > 0 || _ammo == -1) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
 
 			moveExtension->resetAfkTime();
 			moveExtension->currentMovementType = MovementType::IDLE;

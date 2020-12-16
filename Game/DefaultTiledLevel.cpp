@@ -59,14 +59,14 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textureKey,
 			x, y, width, height, sensor);
 
-		for (shared_ptr<AbstractGameObjectExtension> extension : gameObject->getExtensions())
+		for (const unique_ptr<AbstractGameObjectExtension>& extension : gameObject->getExtensions())
 			extension->fillProperties(extensionProperties);
 	}
 	else {
 		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textureKey,
 			x, y, width, height, friction, isFixed, false);
 
-		for (shared_ptr<AbstractGameObjectExtension> extension : gameObject->getExtensions())
+		for (const unique_ptr<AbstractGameObjectExtension>& extension : gameObject->getExtensions())
 			extension->fillProperties(extensionProperties);
 	}
 }
@@ -79,7 +79,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_unique<PlayerAnimationHandler>(animationHandler));
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
 
-		for (shared_ptr<AbstractGameObjectExtension> extension : Scene::getInstance().getPlayer()->getExtensions())
+		for (const unique_ptr<AbstractGameObjectExtension>& extension : Scene::getInstance().getPlayer()->getExtensions())
 			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.type == "Enemy") {
@@ -97,7 +97,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		enemy->getExtension<AnimationExtension>()->setAnimationHandler(make_unique<EnemyAnimationHandler>(animationHandler));
 		enemy->getExtension<AnimationExtension>()->registerAnimations();
 
-		for (shared_ptr<AbstractGameObjectExtension> extension : enemy->getExtensions())
+		for (const unique_ptr<AbstractGameObjectExtension>& extension : enemy->getExtensions())
 			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.layerType == "Tools") {
@@ -108,7 +108,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, itemBluePrint->getWidth(), itemBluePrint->getHeight(), sensor);
 
 		gameObject->getExtension<PickupExtension>()->itemType = tiledGameObject.type;
-		for (shared_ptr<AbstractGameObjectExtension> extension : gameObject->getExtensions())
+		for (const unique_ptr<AbstractGameObjectExtension>& extension : gameObject->getExtensions())
 			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.layerType == "Misc") {

@@ -2,7 +2,7 @@
 #include "BehaviourMove.h"
 
 void BehaviourMove::execute() {
-	shared_ptr<MoveExtension> extension = _self->getExtension<MoveExtension>();
+	MoveExtension* extension = _self->getExtension<MoveExtension>();
 
 	if (_self->body.b2body->GetLinearVelocity().y == 0) {
 
@@ -32,7 +32,7 @@ bool BehaviourMove::isPlayerInAttackRange() {
 	float fovEndY = subjectY + lookY;
 
 	if (_self->hasExtension(typeid(MoveExtension))) {
-		shared_ptr<MoveExtension> moveExtension = _self->getExtension<MoveExtension>();
+		MoveExtension* moveExtension = _self->getExtension<MoveExtension>();
 
 		if (moveExtension->isLookingToLeft) {
 			fovStartX = subjectX - lookX;
