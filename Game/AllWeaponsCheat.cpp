@@ -8,7 +8,6 @@ bool AllWeaponsCheat::execute()
 		glueItem->setAmmo(-1);
 		glueItem->setCooldown(0);
 
-		// TODO: FIX
 		unique_ptr<AbstractManageableItem> thrusterItem = Scene::getInstance().getItem("ThrusterGun")->clone();
 		thrusterItem->setAmmo(-1);
 		thrusterItem->setCooldown(0);

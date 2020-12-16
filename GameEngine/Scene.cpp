@@ -31,8 +31,8 @@ void Scene::addGameObject(shared_ptr<GameObject> obj) {
     addGameObject(obj->id, obj);
 }
 
-void Scene::addTextUiElement(shared_ptr<TextUiElement> obj) {
-    _textElements.push_back(obj);
+void Scene::addTextUiElement(unique_ptr<TextUiElement> obj) {
+    _textElements.push_back(std::move(obj));
 }
 
 void Scene::addEntity(shared_ptr<GameObject> obj) {
@@ -92,7 +92,6 @@ void Scene::reset() {
     gameOver = false;
     score = 1000;
     _gameObjects.clear();
-    _textElements.clear();
     preRender = false;
     hasCheated = false;
 }
@@ -103,7 +102,7 @@ void Scene::render(const unique_ptr<Window>& window) {
             x.second->render(window);
     }
 
-    for (auto textElement : _textElements) {
+    for (const auto& textElement : _textElements) {
         if (!preRender) {
             textElement->preRender(window);
             preRender = true;

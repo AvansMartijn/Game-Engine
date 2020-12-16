@@ -34,14 +34,8 @@ class GameScreen : public AbstractScreen {
 private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
+	unique_ptr<AbstractLevelLoader> _levelLoader;
 
-	// TODO: OMZETTEN
-	std::vector<std::shared_ptr<AbstractManageableItem>> _availableItems;
-
-	// TODO: OMZETTEN
-	shared_ptr<AbstractLevelLoader> _levelLoader;
-
-	// TODO: CHANGE
 	vector<unique_ptr<AbstractUiElement>> _gameUiElements;
 	unique_ptr<ImageUiElement> _backgroundImg;
 	TextUiElement* _weapon;

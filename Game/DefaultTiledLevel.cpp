@@ -76,7 +76,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		Scene::getInstance().setPlayer(createPlayer(gameEngine, extensions, "Waluigi", x, y, 0.7f, 1.8f));
 
 		PlayerAnimationHandler animationHandler;
-		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));
+		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_unique<PlayerAnimationHandler>(animationHandler));
 		Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
 
 		for (shared_ptr<AbstractGameObjectExtension> extension : Scene::getInstance().getPlayer()->getExtensions())
@@ -94,7 +94,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 		}
 
 		EnemyAnimationHandler animationHandler;
-		enemy->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<EnemyAnimationHandler>(animationHandler));
+		enemy->getExtension<AnimationExtension>()->setAnimationHandler(make_unique<EnemyAnimationHandler>(animationHandler));
 		enemy->getExtension<AnimationExtension>()->registerAnimations();
 
 		for (shared_ptr<AbstractGameObjectExtension> extension : enemy->getExtensions())
@@ -127,7 +127,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 			lines.push_back(text.substr(prev));
 
 			TextUiElement textBox = TextUiElement(lines, "Portal", 20, { (1080 / 2), 600, 0, 0 }, { 0, 0, 0 }, { 255, 255, 255, 100 }, true, true);
-			Scene::getInstance().addTextUiElement(make_shared<TextUiElement>(textBox));
+			Scene::getInstance().addTextUiElement(make_unique<TextUiElement>(textBox));
 		}
 	}
 }

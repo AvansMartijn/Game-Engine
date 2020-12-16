@@ -29,7 +29,7 @@ private:
 	// TODO: DEZE WEG WERKEN.
 	b2World* _world;
 	b2Vec2 _gravity;
-	shared_ptr<AbstractContactListener> _colListener;
+	unique_ptr<AbstractContactListener> _colListener;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -130,7 +130,7 @@ public:
 	/// Set's the contact listener.
 	/// </summary>
 	/// <param name="contactListener">The contact listener.</param>
-	void setContactListener(shared_ptr<AbstractContactListener> contactListener);
+	void setContactListener(unique_ptr<AbstractContactListener> contactListener);
 
 	/// <summary>
 	/// Clear all the queues.

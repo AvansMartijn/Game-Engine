@@ -1,7 +1,6 @@
 #include "DefaultLevel.h"
 
 void DefaultLevel::createLevel(GameEngine gameEngine) {
-	// TODO: FIX OR REMOVE
 	// Player
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension", "AnimationExtension" };			
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, "Waluigi",
@@ -9,7 +8,7 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler({});
 
 	PlayerAnimationHandler animationHandler;
-	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));
+	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_unique<PlayerAnimationHandler>(animationHandler));
 	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
 
 	// Normal Blocks

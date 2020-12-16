@@ -77,8 +77,7 @@ void Game::onInit() {
 	registerSFXTrack("Glue_Sound", "res/music/Glue_Sound.ogg");
 
 	//create collision listener
-	shared_ptr<CollisionListener> colListener = make_shared<CollisionListener>(CollisionListener());
-	Physics::getInstance().setContactListener(colListener);
+	Physics::getInstance().setContactListener(make_unique<CollisionListener>(CollisionListener()));
 
 
 	for (size_t i = 0; i < screens.size(); i++)

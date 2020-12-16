@@ -5,7 +5,7 @@
 
 class DefaultLevelLoader : public AbstractLevelLoader {
 private:
-	std::map<std::string, shared_ptr<AbstractLevel>> _levels;
+	std::map<std::string, unique_ptr<AbstractLevel>> _levels;
 public:
 	DefaultLevelLoader();
 

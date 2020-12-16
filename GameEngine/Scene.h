@@ -22,8 +22,8 @@ private:
 	std::vector<int> _entities;
 	map<std::string, unique_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
-	// TODO: WHY????
-	std::vector<shared_ptr<TextUiElement>> _textElements;
+
+	std::vector<unique_ptr<TextUiElement>> _textElements;
 
 	shared_ptr<GameObject> _player;
 
@@ -65,7 +65,7 @@ public:
 	/// Ad an UI element to the scene.
 	/// </summary>
 	/// <param name="obj"></param>
-	void addTextUiElement(shared_ptr<TextUiElement> obj);
+	void addTextUiElement(unique_ptr<TextUiElement> obj);
 
 	/// <summary>
 	/// Add an entity to the registry.

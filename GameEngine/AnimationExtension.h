@@ -9,7 +9,7 @@
 
 class GAMEENGINE_AnimationExtension AnimationExtension : public AbstractGameObjectExtension {
 private:
-	shared_ptr<AbstractAnimationHandler> _animationHandler;
+	unique_ptr<AbstractAnimationHandler> _animationHandler;
 public:
 	AnimationExtension();
 
@@ -22,13 +22,13 @@ public:
 	/// Set's the animation handler.
 	/// </summary>
 	/// <param name="animationHandler">The animation handler.</param>
-	void setAnimationHandler(shared_ptr<AbstractAnimationHandler> animationHandler);
+	void setAnimationHandler(unique_ptr<AbstractAnimationHandler> animationHandler);
 
 	/// <summary>
 	/// Get's the animation handler.
 	/// </summary>
 	/// <returns>The animation handler.</returns>
-	shared_ptr<AbstractAnimationHandler> getAnimationHandler();
+	AbstractAnimationHandler* getAnimationHandler();
 
 	/// <summary>
 	/// Executes the animation.

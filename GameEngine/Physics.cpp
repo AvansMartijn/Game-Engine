@@ -280,8 +280,8 @@ void Physics::executeExpirationQueue() {
     }
 }
 
-void Physics::setContactListener(shared_ptr<AbstractContactListener> contactListener) {
-    _colListener = contactListener;
+void Physics::setContactListener(unique_ptr<AbstractContactListener> contactListener) {
+    _colListener = std::move(contactListener);
 
     reset();
 }
