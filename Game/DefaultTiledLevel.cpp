@@ -103,7 +103,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 	else if (tiledGameObject.layerType == "Tools") {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
-		shared_ptr<AbstractManageableItem> itemBluePrint = Scene::getInstance().getItem<AbstractManageableItem>(tiledGameObject.type);
+		AbstractManageableItem* itemBluePrint = Scene::getInstance().getItem<AbstractManageableItem>(tiledGameObject.type);
 
 		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, itemBluePrint->getWidth(), itemBluePrint->getHeight(), sensor);
 

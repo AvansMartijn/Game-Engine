@@ -56,19 +56,25 @@ void Scene::removeEntity(int index) {
     _entities.erase(_entities.begin() + index);
 }
 
-void Scene::addItem(std::string name, shared_ptr<AbstractManageableItem> item) {
+void Scene::addItem(std::string name, unique_ptr<AbstractManageableItem> item) {
     int id = (int)_items.size() + 1;
     
-    _items.insert(std::pair<std::string, shared_ptr<AbstractManageableItem>>(name, item));
+    _items.insert(std::pair<std::string, unique_ptr<AbstractManageableItem>>(name, std::move(item)));
     _keyRegistry.insert(std::pair<int, std::string>(id, name));
 }
 
-shared_ptr<AbstractManageableItem> Scene::getItem(int index) {
-    return _items[_keyRegistry[index]];
+AbstractManageableItem* Scene::getItem(int index) {
+    if (_items[_keyRegistry[index]] == nullptr)
+        return nullptr;
+
+    return _items[_keyRegistry[index]].get();
 }
 
-shared_ptr<AbstractManageableItem> Scene::getItem(std::string name) {
-    return _items[name];
+AbstractManageableItem* Scene::getItem(std::string name) {
+    if (_items[name] == nullptr)
+        return nullptr;
+
+    return _items[name].get();
 }
 
 shared_ptr<GameObject> Scene::getPlayer() const {

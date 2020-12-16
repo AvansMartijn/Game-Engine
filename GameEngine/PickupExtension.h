@@ -12,7 +12,7 @@
 
 class GAMEENGINE_PickupExtension PickupExtension : public AbstractGameObjectExtension {
 private:
-	shared_ptr<AbstractManageableItem> _item;
+	unique_ptr<AbstractManageableItem> _item;
 public:
 	PickupExtension();
 
@@ -22,13 +22,13 @@ public:
 	/// Set's the current item.
 	/// </summary>
 	/// <param name="item">The item we want to set.</param>
-	void setItem(shared_ptr<AbstractManageableItem> item);
+	void setItem(unique_ptr<AbstractManageableItem> item);
 
 	/// <summary>
 	/// Get's the current item.
 	/// </summary>
 	/// <returns></returns>
-	shared_ptr<AbstractManageableItem> getItem();
+	AbstractManageableItem* getItem();
 
 	/// <summary>
 	/// When an entity collides with game object which has this extension.

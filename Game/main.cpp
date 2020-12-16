@@ -33,14 +33,9 @@ int main(int argc, char* argv[]) {
 	CheatManager::getInstance().initializeCheats();
 
 	// Register Items
-	shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>();
-	Scene::getInstance().addItem("GlueGun", glueItem);
-
-	shared_ptr<ThrusterManagableItem> thrusterItem = std::make_shared<ThrusterManagableItem>();
-	Scene::getInstance().addItem("ThrusterGun", thrusterItem);
-
-	shared_ptr<PortalManagableItem> portalItem = std::make_shared<PortalManagableItem>();
-	Scene::getInstance().addItem("PortalGun", portalItem);
+	Scene::getInstance().addItem("GlueGun", std::make_unique<GlueManagableItem>());
+	Scene::getInstance().addItem("ThrusterGun", std::make_unique<ThrusterManagableItem>());
+	Scene::getInstance().addItem("PortalGun", std::make_unique<PortalManagableItem>());
 
 	// The screens have to be created outside the Game class, using "this" will create problems.
 	unique_ptr<GameScreen> gameScreen(new GameScreen);

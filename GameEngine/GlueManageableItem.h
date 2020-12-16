@@ -30,6 +30,6 @@ public:
 	/// Clones the current item.
 	/// </summary>
 	/// <returns>A copy of the current item.</returns>
-	shared_ptr<AbstractManageableItem> clone() const;
+	unique_ptr<AbstractManageableItem> clone() const;
 };
 

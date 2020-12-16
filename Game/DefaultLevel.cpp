@@ -1,6 +1,7 @@
 #include "DefaultLevel.h"
 
 void DefaultLevel::createLevel(GameEngine gameEngine) {
+	// TODO: FIX OR REMOVE
 	// Player
 	vector<string> extensionNames = { "MoveExtension", "CheckPhysicsExtension", "CollisionResolutionDefaultExtension", "CanWieldExtension", "AnimationExtension" };			
 	Scene::getInstance().setPlayer(createEntity(gameEngine, extensionNames, "Waluigi",
@@ -10,35 +11,6 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 	PlayerAnimationHandler animationHandler;
 	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->setAnimationHandler(make_shared<PlayerAnimationHandler>(animationHandler));
 	Scene::getInstance().getPlayer()->getExtension<AnimationExtension>()->registerAnimations();
-
-	// Weapon Block
-	shared_ptr<GlueManagableItem> glueItemBlueprint = Scene::getInstance().getItem<GlueManagableItem>("GlueGun");
-	std::shared_ptr<GlueManagableItem> glueItem = std::make_shared<GlueManagableItem>(*glueItemBlueprint);
-	glueItem->setAmmo(5);
-	glueItem->setCooldown(500);
-	shared_ptr<GameObject> weaponGlue = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
-		8, 17.5f, glueItem->getWidth(), glueItem->getHeight(), "pickupSensor");
-
-	std::shared_ptr<GlueManagableItem> glueItem2 = std::make_shared<GlueManagableItem>(*glueItemBlueprint);
-	glueItem2->setAmmo(10);
-	glueItem2->setCooldown(500);
-	shared_ptr<GameObject> weaponGlue2 = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
-		12, 17.5f, glueItem2->getWidth(), glueItem2->getHeight(), "pickupSensor");
-
-	//shared_ptr<AbstractManageableItem> glueItem = 
-
-
-	shared_ptr<AbstractManageableItem> thrusterItem = Scene::getInstance().getItem("ThrusterGun");
-	thrusterItem->setAmmo(-1);
-	thrusterItem->setCooldown(1500);
-	shared_ptr<GameObject> weaponThruster = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
-		8, 17.5f, thrusterItem->getWidth(), thrusterItem->getHeight(), "pickupSensor");
-
-	shared_ptr<AbstractManageableItem> portalItem = Scene::getInstance().getItem("PortalGun");
-	portalItem->setAmmo(-1);
-	portalItem->setCooldown(0);
-	shared_ptr<GameObject> weaponPortal = createNonRigidBody(gameEngine, { "PickupExtension" }, "",
-		8, 17.5f, portalItem->getWidth(), portalItem->getHeight(), "pickupSensor");
 
 	// Normal Blocks
 	shared_ptr<GameObject> floor = createGameObject(gameEngine, { "CheckPhysicsExtension" }, "Tile_Interior_Ground_Center",
@@ -91,11 +63,4 @@ void DefaultLevel::createLevel(GameEngine gameEngine) {
 
 	portal1->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalB);
 	portal2->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalA);
-
-	//// Item Binding
-	weaponGlue->getExtension<PickupExtension>()->setItem(glueItem);
-	weaponGlue2->getExtension<PickupExtension>()->setItem(glueItem2);
-	weaponThruster->getExtension<PickupExtension>()->setItem(thrusterItem);
-	weaponPortal->getExtension<PickupExtension>()->setItem(portalItem);
-
 }

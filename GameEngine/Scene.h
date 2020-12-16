@@ -20,8 +20,9 @@ private:
 
 	map<int, shared_ptr<GameObject>> _gameObjects;
 	std::vector<int> _entities;
-	map<std::string, shared_ptr<AbstractManageableItem>> _items;
+	map<std::string, unique_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
+	// TODO: WHY????
 	std::vector<shared_ptr<TextUiElement>> _textElements;
 
 	shared_ptr<GameObject> _player;
@@ -121,21 +122,23 @@ public:
 	/// </summary>
 	/// <param name="name">The name.</param>
 	/// <param name="item">The item.</param>
-	void addItem(std::string name, shared_ptr<AbstractManageableItem> item);
+	void addItem(std::string name, std::unique_ptr<AbstractManageableItem> item);
 
+	// REASON: It's possible for the item to be a nullptr, that's why a reference is returned. 
 	/// <summary>
 	/// Get's the item with the given index.
 	/// </summary>
 	/// <param name="index">The index of the item.</param>
 	/// <returns>The item on the given index.</returns>
-	shared_ptr<AbstractManageableItem> getItem(int index);
+	AbstractManageableItem* getItem(int index);
 
+	// REASON: It's possible for the item to be a nullptr, that's why a reference is returned. 
 	/// <summary>
 	/// Get's the item with the given name.
 	/// </summary>
 	/// <param name="name">The name of the item.</param>
 	/// <returns>The item with the given name.</returns>
-	shared_ptr<AbstractManageableItem> getItem(std::string name);
+	AbstractManageableItem* getItem(std::string name);
 
 	/// <summary>
 	/// Get's an item from the scene.
@@ -144,13 +147,13 @@ public:
 	/// <param name="name">The item name.</param>
 	/// <returns>The item.</returns>
 	template<typename T>
-	std::shared_ptr<T> getItem(std::string name) {
-		std::shared_ptr<AbstractManageableItem> item = getItem(name);
+	T* getItem(std::string name) {
+		AbstractManageableItem* item = getItem(name);
 
 		if (item == nullptr)
 			return nullptr;
 
-		return dynamic_pointer_cast<T>(item);
+		return static_cast<T*>(item);
 	}
 
 	/// <summary>

@@ -9,7 +9,6 @@
 
 class CreditsScreen : public AbstractScreen {
 private:
-	// TODO: CHANGE
 	int _offset{ 0 };
 	int _anchor{ 0 };
 	bool _scrollLock = true;

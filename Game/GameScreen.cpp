@@ -132,9 +132,7 @@ void GameScreen::onTick() {
 	}
 
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getItems();
-
-		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
+		AbstractManageableItem* currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
 		if (currentWeapon != NULL) {
 			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
 

@@ -109,6 +109,6 @@ public:
 	/// Clones the current item.
 	/// </summary>
 	/// <returns>A copy of the current item.</returns>
-	virtual shared_ptr<AbstractManageableItem> clone() const = 0;
+	virtual unique_ptr<AbstractManageableItem> clone() const = 0;
 };
 
