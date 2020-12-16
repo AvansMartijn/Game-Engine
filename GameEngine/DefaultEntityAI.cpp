@@ -2,7 +2,7 @@
 #include "DefaultEntityAI.h"
 #include <thread>
 
-void DefaultEntityAI::createBehaviourTree(shared_ptr<GameObject> self) {
+void DefaultEntityAI::createBehaviourTree(GameObject* self) {
 	_idleBehaviour = make_unique<BehaviourIdle>(self);
 
 	_seesEnemyBehaviour = make_unique<BehaviourSeesEnemy>(self);

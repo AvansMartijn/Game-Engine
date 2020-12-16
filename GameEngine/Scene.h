@@ -18,21 +18,21 @@ private:
 	Scene();
 	static Scene instance;
 
-	map<int, shared_ptr<GameObject>> _gameObjects;
+	map<int, unique_ptr<GameObject>> _gameObjects;
 	std::vector<int> _entities;
 	map<std::string, unique_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
 
 	std::vector<unique_ptr<TextUiElement>> _textElements;
 
-	shared_ptr<GameObject> _player;
+	GameObject* _player;
 
 	bool preRender = false;
 public:
 	float tickRate = 60.0;
 	float refreshRate = 60.0;
-	shared_ptr<GameObject> portalA;
-	shared_ptr<GameObject> portalB;
+	GameObject* portalA;
+	GameObject* portalB;
 	static Scene& getInstance() { return instance; }
 
 	Scene(const Scene&) = delete;
@@ -52,13 +52,13 @@ public:
 	/// </summary>
 	/// <param name="index">The index in the registry.</param>
 	/// <param name="obj">The object we want to register.</param>
-	void addGameObject(int index, shared_ptr<GameObject> obj);
+	void addGameObject(int index, unique_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Adds a game object to the registry.
 	/// </summary>
 	/// <param name="obj">The object we want to register.</param>
-	void addGameObject(shared_ptr<GameObject> obj);
+	void addGameObject(unique_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Ad an UI element to the scene.
@@ -70,27 +70,27 @@ public:
 	/// Add an entity to the registry.
 	/// </summary>
 	/// <param name="obj">The entity we want to register.</param>
-	void addEntity(shared_ptr<GameObject> obj);
+	void addEntity(unique_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Get's a gameobject from the registry.
 	/// </summary>
 	/// <param name="id">The id of the gameobject</param>
 	/// <returns>The game object.</returns>
-	shared_ptr<GameObject> getGameObject(int id);
+	GameObject* getGameObject(int id);
 
 	/// <summary>
 	/// Get's the game objects in the current scene.
 	/// </summary>
 	/// <returns>The game objects in the current scene.</returns>
-	map<int, shared_ptr<GameObject>> getGameObjects() const;
+	map<int, unique_ptr<GameObject>>& getGameObjects();
 
 	/// <summary>
 	/// Get's the index at the given index.
 	/// </summary>
 	/// <param name="index">The entity index.</param>
 	/// <returns>The correct game object.</returns>
-	shared_ptr<GameObject> getEntityAtIndex(int index);
+	GameObject* getEntityAtIndex(int index);
 
 	/// <summary>
 	/// Get's the size of the entities vector.
@@ -159,13 +159,13 @@ public:
 	/// Set's the player.
 	/// </summary>
 	/// <param name="player">The player</param>
-	void setPlayer(shared_ptr<GameObject> player);
+	void setPlayer(GameObject* player);
 
 	/// <summary>
 	/// Get's the player.
 	/// </summary>
 	/// <returns>The player.</returns>
-	shared_ptr<GameObject> getPlayer() const;
+	GameObject* getPlayer() const;
 
 	/// <summary>
 	/// Resets the scene.

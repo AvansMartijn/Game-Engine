@@ -6,7 +6,6 @@
 #include "Scene.h"
 #include "PickupExtension.h"
 
-// TODO: DEZE STREAM LINEN
 class AbstractLevel{
 protected:
 	/// <summary>
@@ -20,7 +19,7 @@ protected:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created entity.</returns>
-	shared_ptr<GameObject> createEntity(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
+	GameObject* createEntity(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
 	/// <summary>
 	/// Creates a new player
 	/// </summary>
@@ -32,7 +31,7 @@ protected:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created player.</returns>
-	shared_ptr<GameObject> createPlayer(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
+	GameObject* createPlayer(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
 	/// <summary>
 	/// Creates a new enemy
 	/// </summary>
@@ -44,7 +43,7 @@ protected:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created enemy.</returns>
-	shared_ptr<GameObject> createEnemy(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
+	GameObject* createEnemy(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height);
 	/// <summary>
 	/// Creates a new non ridgid.
 	/// </summary>
@@ -56,7 +55,7 @@ protected:
 	/// <param name="width">The object width.</param>
 	/// <param name="height">The object height.</param>
 	/// <returns>The created portal.</returns>
-	shared_ptr<GameObject> createNonRigidBody(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, std::string userDataType);
+	GameObject* createNonRigidBody(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, std::string userDataType);
 	/// <summary>
 	/// Creates a new game object.
 	/// </summary>
@@ -71,13 +70,13 @@ protected:
 	/// <param name="fixed">If this object should use fixtures.</param>
 	/// <param name="fixedRotation"></param>
 	/// <returns>The created game object.</returns>
-	shared_ptr<GameObject> createGameObject(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
+	GameObject* createGameObject(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation);
 
 public:
 	/// <summary>
 	/// Create the level.
 	/// </summary>
 	/// <param name="gameEngine">The game engine</param>
-	virtual void createLevel(GameEngine gameEngine) = 0;
+	virtual void createLevel(GameEngine& gameEngine) = 0;
 };
 

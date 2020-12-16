@@ -182,7 +182,6 @@
     <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
-    <ClCompile Include="DefaultLevel.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
     <ClCompile Include="DefaultTiledLevel.cpp" />
     <ClCompile Include="EnemyAnimationHandler.cpp" />
@@ -227,7 +226,6 @@
     <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
-    <ClInclude Include="DefaultLevel.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
     <ClInclude Include="DefaultTiledLevel.h" />
     <ClInclude Include="EnemyAnimationHandler.h" />

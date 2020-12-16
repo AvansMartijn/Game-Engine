@@ -13,7 +13,7 @@ class GAMEENGINE_AbstractManageableItem AbstractManageableItem {
 protected:
 	std::string _textureKey;
 	std::string _screenName;
-	shared_ptr<GameObject> _owner;
+	GameObject* _owner;
 	float _width;
 	float _height;
 	int _ammo;
@@ -83,7 +83,7 @@ public:
 	/// Set's the owner of this item.
 	/// </summary>
 	/// <param name="owner">The owner.</param>
-	void setOwner(shared_ptr<GameObject> owner);
+	void setOwner(GameObject* owner);
 
 	/// <summary>
 	/// Renders this item.

@@ -1,7 +1,7 @@
 #include "DefaultTiledLevel.h"
 #include <DefaultEntityAI.h>
 
-void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
+void DefaultTiledLevel::createLevel(GameEngine& gameEngine) {
 	for (size_t gameObjectIndex = 0; gameObjectIndex < gameObjects.size(); gameObjectIndex++) {
 		TiledGameObject go = gameObjects[gameObjectIndex];
 
@@ -30,11 +30,11 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 	}
 
 	// Create Portals
-	shared_ptr<GameObject> portal1 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Portal1",
+	GameObject* portal1 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Portal1",
 		-50, -50, 3, 0.7f, "portalSensor");
 	Scene::getInstance().portalA = portal1;
 
-	shared_ptr<GameObject> portal2 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Portal2",
+	GameObject* portal2 = createNonRigidBody(gameEngine, { "CheckPhysicsExtension", "CollisionResolutionPortalExtension" }, "Portal2",
 		-50, -50, 3, 0.7f, "portalSensor");
 	Scene::getInstance().portalB = portal2;
 
@@ -42,7 +42,7 @@ void DefaultTiledLevel::createLevel(GameEngine gameEngine) {
 	portal2->getExtension<CollisionResolutionPortalExtension, AbstractCollisionResolutionExtension>()->link(Scene::getInstance().portalA);
 }
 
-void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height) {
+void DefaultTiledLevel::createTile(GameEngine& gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height) {
 	std::string textureKey = getTextureKeyFromPath("Tiled", tiledGameObject.image);
 
 	float friction = 2.5f;
@@ -56,14 +56,14 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	if (tiledGameObject.properties.find("sensor") != tiledGameObject.properties.end()) {
 		std::string sensor = tiledGameObject.properties["sensor"].valueString;
 
-		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, textureKey,
+		GameObject* gameObject = createNonRigidBody(gameEngine, extensions, textureKey,
 			x, y, width, height, sensor);
 
 		for (const unique_ptr<AbstractGameObjectExtension>& extension : gameObject->getExtensions())
 			extension->fillProperties(extensionProperties);
 	}
 	else {
-		shared_ptr<GameObject> gameObject = createGameObject(gameEngine, extensions, textureKey,
+		GameObject* gameObject = createGameObject(gameEngine, extensions, textureKey,
 			x, y, width, height, friction, isFixed, false);
 
 		for (const unique_ptr<AbstractGameObjectExtension>& extension : gameObject->getExtensions())
@@ -71,7 +71,7 @@ void DefaultTiledLevel::createTile(GameEngine gameEngine, TiledGameObject& tiled
 	}
 }
 
-void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height) {
+void DefaultTiledLevel::createObject(GameEngine& gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height) {
 	if (tiledGameObject.type == "Player") {
 		Scene::getInstance().setPlayer(createPlayer(gameEngine, extensions, "Waluigi", x, y, 0.7f, 1.8f));
 
@@ -83,14 +83,14 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 			extension->fillProperties(extensionProperties);
 	}
 	else if (tiledGameObject.type == "Enemy") {
-		shared_ptr<GameObject> enemy = createEnemy(gameEngine, extensions, "Goomba", x, y, 0.7f, 1.0f);
+		GameObject* enemy = createEnemy(gameEngine, extensions, "Goomba", x, y, 0.7f, 1.0f);
 
 		if (enemy->hasExtension(typeid(AiExtension))) {
 			// We only use the default entity ai, so no need to check for anything else.
-			shared_ptr<DefaultEntityAI> entityAi = make_shared<DefaultEntityAI>(DefaultEntityAI{});
+			unique_ptr<DefaultEntityAI> entityAi = make_unique<DefaultEntityAI>(DefaultEntityAI{});
 			entityAi->createBehaviourTree(enemy);
 
-			enemy->getExtension<AiExtension>()->ai = entityAi;
+			enemy->getExtension<AiExtension>()->ai = std::move(entityAi);
 		}
 
 		EnemyAnimationHandler animationHandler;
@@ -105,7 +105,7 @@ void DefaultTiledLevel::createObject(GameEngine gameEngine, TiledGameObject& til
 
 		AbstractManageableItem* itemBluePrint = Scene::getInstance().getItem<AbstractManageableItem>(tiledGameObject.type);
 
-		shared_ptr<GameObject> gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, itemBluePrint->getWidth(), itemBluePrint->getHeight(), sensor);
+		GameObject* gameObject = createNonRigidBody(gameEngine, extensions, "", x, y, itemBluePrint->getWidth(), itemBluePrint->getHeight(), sensor);
 
 		gameObject->getExtension<PickupExtension>()->itemType = tiledGameObject.type;
 		for (const unique_ptr<AbstractGameObjectExtension>& extension : gameObject->getExtensions())

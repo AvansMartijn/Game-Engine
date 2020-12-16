@@ -141,9 +141,6 @@
     <ClCompile Include="TiledMapBuilder.cpp">
       <Filter>Source Files\LevelLoader\Tiled</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultLevel.cpp">
-      <Filter>Source Files\LevelLoader\Levels</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractLevel.cpp">
       <Filter>Source Files\LevelLoader\Levels</Filter>
     </ClCompile>
@@ -295,9 +292,6 @@
     </ClInclude>
     <ClInclude Include="TiledGameObject.h">
       <Filter>Header Files\LevelLoader\Tiled\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultLevel.h">
-      <Filter>Header Files\LevelLoader\Levels</Filter>
     </ClInclude>
     <ClInclude Include="AbstractLevel.h">
       <Filter>Header Files\LevelLoader\Levels</Filter>

@@ -9,5 +9,5 @@
 class GAMEENGINE_AbstractCollisionResolutionExtension AbstractCollisionResolutionExtension : public AbstractGameObjectExtension {
 public:
 	virtual bool isDefault() = 0;
-	virtual void resolveCollision(shared_ptr<GameObject> otherObject) = 0;
+	virtual void resolveCollision(GameObject* otherObject) = 0;
 };

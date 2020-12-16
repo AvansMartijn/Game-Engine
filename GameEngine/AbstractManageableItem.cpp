@@ -47,7 +47,7 @@ void AbstractManageableItem::setCooldown(long cooldown) {
 	_cooldown = cooldown;
 }
 
-void AbstractManageableItem::setOwner(shared_ptr<GameObject> owner) {
+void AbstractManageableItem::setOwner(GameObject* owner) {
 	_owner = owner;
 }
 

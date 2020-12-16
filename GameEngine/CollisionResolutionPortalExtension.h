@@ -11,7 +11,7 @@
 
 class GAMEENGINE_CollisionResolutionPortalExtension CollisionResolutionPortalExtension : public AbstractCollisionResolutionExtension{
 private:
-	shared_ptr<GameObject> _linkedPortal;
+	GameObject* _linkedPortal;
 public:
 	bool isActive = false;
 	CollisionResolutionPortalExtension();
@@ -41,13 +41,13 @@ public:
 	/// Resolve the collision
 	/// </summary>
 	/// <param name="inputObject">The gameObject which we want to resolve with.</param>
-	void resolveCollision(shared_ptr<GameObject> inputObject);
+	void resolveCollision(GameObject* inputObject);
 
 	/// <summary>
 	/// Link two game objects.
 	/// </summary>
 	/// <param name="linkedPortal">The game object we want to link with.</param>
-	void link(shared_ptr<GameObject> linkedPortal);
+	void link(GameObject* linkedPortal);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new CollisionResolutionPortalExtension(); }
 	static std::string __stdcall getType() { return "CollisionResolutionPortalExtension"; }

@@ -13,7 +13,7 @@
 /// </summary>
 class GAMEENGINE_AbstractBehaviour AbstractBehaviour {
 protected:
-	shared_ptr<GameObject> _self = nullptr;
+	GameObject* _self;
 	std::chrono::steady_clock::time_point _begin;
 
 	/// <summary>
@@ -26,7 +26,7 @@ public:
 	AbstractBehaviour* behaviourTrue;
 	AbstractBehaviour* behaviourFalse;
 
-	AbstractBehaviour(shared_ptr<GameObject> self);
+	AbstractBehaviour(GameObject* self);
 
 	/// <summary>
 	/// Execute the behaviour.

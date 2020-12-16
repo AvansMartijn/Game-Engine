@@ -45,7 +45,7 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			double angleDeg = angleRad * (180.0f / M_PI);
 
 			GameObjectFacade gameEngine;
-			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({});
+			unique_ptr<GameObject> gameObject = gameEngine.createGameObject({});
 
 			if (fixtureUserData == "portalAbullet")
 				gameObject->texture = "Portal1";
@@ -55,14 +55,15 @@ void PortalManagableItem::shootPortal(std::string fixtureUserData, int x, int y)
 			gameObject->id = Scene::getInstance().getNextAvailableId();
 
 			//Physics::getInstance().addBody(gameObject, x, y, 1.0f, 1.0f, 0.3f, fixed, false);
-			Physics::getInstance().addBody(gameObject, Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 0.5f, 0.5f, 0.3f, false, true, true, fixtureUserData);
-			Scene::getInstance().addGameObject(gameObject);
+			Physics::getInstance().addBody(gameObject.get(), Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 0.5f, 0.5f, 0.3f, false, true, true, fixtureUserData);
 
 			int force = 50;
 			b2Vec2 vect = b2Vec2((float)sin(angleDeg * (b2_pi / 180)) * force, (float)cos(angleDeg * (b2_pi / 180)) * force);
 			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
 			if (_ammo > 0)
 				_ammo -= 1;
+			Scene::getInstance().addGameObject(std::move(gameObject));
+
 		}
 	}
 }

@@ -57,7 +57,7 @@ void EnemyAnimationHandler::registerAnimations() {
 	_animations.insert(make_pair(KEY_HURTING, frames));
 }
 
-void EnemyAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
+void EnemyAnimationHandler::animate(GameObject* gameObject) {
 	if (gameObject->hasExtension(typeid(MoveExtension))) {
 		MoveExtension* moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipLeft = moveExtension->isLookingToLeft;

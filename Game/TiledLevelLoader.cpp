@@ -1,6 +1,6 @@
 #include "TiledLevelLoader.h"
 
-void TiledLevelLoader::createLevel(GameEngine gameEngine, const std::string& name) {
+void TiledLevelLoader::createLevel(GameEngine& gameEngine, const std::string& name) {
 	// Don't reload data from the file if we already have the correct game objects.
 	if (name != _currentName) {
 		TiledLevel tiledLevel = getTiledLevel(name);

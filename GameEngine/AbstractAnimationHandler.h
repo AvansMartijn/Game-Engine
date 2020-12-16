@@ -40,7 +40,7 @@ public:
 	/// Animate the given game object.
 	/// </summary>
 	/// <param name="gameObject">The game object we want to animate.</param>
-	virtual void animate(std::shared_ptr<GameObject> gameObject) = 0;
+	virtual void animate(GameObject* gameObject) = 0;
 	
 	/// <summary>
 	/// Converts a movement type to a key.

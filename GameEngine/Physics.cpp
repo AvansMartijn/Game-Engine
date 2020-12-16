@@ -21,7 +21,7 @@ void Physics::step(float timeStep, int velocityIterations, int positionIteration
     executeExpirationQueue();
 }
 
-void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height) {
+void Physics::addPlayer(GameObject* obj, float x, float y, float width, float height) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -96,7 +96,7 @@ void Physics::addPlayer(shared_ptr<GameObject> obj, float x, float y, float widt
     body->CreateFixture(&wheelFix2);
 }
 
-void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
+void Physics::addEntity(GameObject* obj, float x, float y, float width, float height, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -145,7 +145,7 @@ void Physics::addEntity(shared_ptr<GameObject> obj, float x, float y, float widt
     body->CreateFixture(&wheelFix);
 }
 
-void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType) {
+void Physics::addNonRigidBody(GameObject* obj, float x, float y, float width, float height, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -178,7 +178,7 @@ void Physics::addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, floa
     body->CreateFixture(&fixtureDef);
 }
 
-void Physics::addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet, std::string userDataType) {
+void Physics::addBody(GameObject* obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet, std::string userDataType) {
     obj->body.width = width;
     obj->body.height = height;
 
@@ -242,7 +242,7 @@ void Physics::executeDeleteQueue() {
 
         deleteQueue.pop_back();
 
-        shared_ptr<GameObject> gameObject = Scene::getInstance().getGameObject(id);
+        GameObject* gameObject = Scene::getInstance().getGameObject(id);
         if (gameObject != nullptr)
             _world->DestroyBody(gameObject->body.b2body);
 
@@ -302,17 +302,17 @@ void Physics::clearAllQueues() {
     setStaticQueue.clear();
 }
 
-Vec2 Physics::getLinearVelocity(shared_ptr<GameObject> gameObject) {
+Vec2 Physics::getLinearVelocity(GameObject* gameObject) {
     auto linVel = gameObject->body.b2body->GetLinearVelocity();
 
     return { linVel.x, linVel.y };
 }
 
-void Physics::setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel) {
+void Physics::setLinearVelocity(GameObject* gameObject, const Vec2& vel) {
     gameObject->body.b2body->SetLinearVelocity({ vel.x, vel.y });
 }
 
-Vec2 Physics::getPosition(shared_ptr<GameObject> gameObject) {
+Vec2 Physics::getPosition(GameObject* gameObject) {
     auto position = gameObject->body.b2body->GetPosition();
 
     return { position.x, position.y };

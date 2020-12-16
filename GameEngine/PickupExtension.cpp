@@ -14,7 +14,7 @@ void PickupExtension::setItem(unique_ptr<AbstractManageableItem> item) {
 	_subject->texture = _item->getTextureKey();
 }
 
-void PickupExtension::onEntityCollision(shared_ptr<GameObject> gameObject) {
+void PickupExtension::onEntityCollision(GameObject* gameObject) {
 	for (const unique_ptr<AbstractManageableItem>& gun : Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getItems()) {
 		if (_item->getTextureKey() == gun->getTextureKey()) {
 			if (_item->getAmmo() == -1 || gun->getAmmo() == -1)

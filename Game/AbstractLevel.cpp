@@ -1,65 +1,70 @@
 #include "AbstractLevel.h"
 
-shared_ptr<GameObject> AbstractLevel::createEntity(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
+GameObject* AbstractLevel::createEntity(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
 	return createGameObject(gameEngine, extensions, texture, x, y, width, height, -1, false, false);
 }
 
-shared_ptr<GameObject> AbstractLevel::createGameObject(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
-	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
+GameObject* AbstractLevel::createGameObject(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation) {
+	unique_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
+	int id = gameObject->id;
 
 	if (friction == -1 && !fixed && !fixedRotation)
-		Physics::getInstance().addPlayer(gameObject, x, y, width, height);
+		Physics::getInstance().addPlayer(gameObject.get(), x, y, width, height);
 	else
-		Physics::getInstance().addBody(gameObject, x, y, width, height, friction, fixed, fixedRotation);
+		Physics::getInstance().addBody(gameObject.get(), x, y, width, height, friction, fixed, fixedRotation);
 
 	if (std::find(extensions.begin(), extensions.end(), "AiExtension") != extensions.end())
-		Scene::getInstance().addEntity(gameObject);
+		Scene::getInstance().addEntity(std::move(gameObject));
 	else
-		Scene::getInstance().addGameObject(gameObject);
+		Scene::getInstance().addGameObject(std::move(gameObject));
 
-	return gameObject;
+	return Scene::getInstance().getGameObject(id);
 }
 
-shared_ptr<GameObject> AbstractLevel::createPlayer(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
+GameObject* AbstractLevel::createPlayer(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
 	extensions.push_back("AnimationExtension");
 
-	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
+	unique_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
+	int id = gameObject->id;
 
-	Physics::getInstance().addPlayer(gameObject, x, y, width, height);
+	Physics::getInstance().addPlayer(gameObject.get(), x, y, width, height);
 
-	Scene::getInstance().addGameObject(gameObject);
+	Scene::getInstance().addGameObject(std::move(gameObject));
 
-	return gameObject;
+	return Scene::getInstance().getGameObject(id);
 }
 
-shared_ptr<GameObject> AbstractLevel::createEnemy(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
+GameObject* AbstractLevel::createEnemy(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height) {
 	extensions.push_back("AnimationExtension");
 
-	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
+	unique_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
+	int id = gameObject->id;
 
-	Physics::getInstance().addEntity(gameObject, x, y, width, height);
+	Physics::getInstance().addEntity(gameObject.get(), x, y, width, height);
 
 	if (std::find(extensions.begin(), extensions.end(), "AiExtension") != extensions.end())
-		Scene::getInstance().addEntity(gameObject);
+		Scene::getInstance().addEntity(std::move(gameObject));
 	else
-		Scene::getInstance().addGameObject(gameObject);
+		Scene::getInstance().addGameObject(std::move(gameObject));
 
-	return gameObject;
+	return Scene::getInstance().getGameObject(id);
 }
 
-shared_ptr<GameObject> AbstractLevel::createNonRigidBody(GameEngine gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, std::string userDataType = NULL) {
-	shared_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
+GameObject* AbstractLevel::createNonRigidBody(GameEngine& gameEngine, vector<string> extensions, std::string texture, float x, float y, float width, float height, std::string userDataType = NULL) {
+	unique_ptr<GameObject> gameObject = gameEngine.createGameObject(extensions);
 	gameObject->texture = texture;
 	gameObject->id = Scene::getInstance().getNextAvailableId();
+	int id = gameObject->id;
 
-	Physics::getInstance().addNonRigidBody(gameObject, x, y, width, height, userDataType);
+	Physics::getInstance().addNonRigidBody(gameObject.get(), x, y, width, height, userDataType);
 
-	Scene::getInstance().addGameObject(gameObject);
-	return gameObject;
+	Scene::getInstance().addGameObject(std::move(gameObject));
+
+	return Scene::getInstance().getGameObject(id);
 }

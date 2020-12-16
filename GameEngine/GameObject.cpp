@@ -5,7 +5,7 @@
 GameObject::GameObject() {}
 
 void GameObject::render(const unique_ptr<Window>& window) {
-	std::shared_ptr<GameObject> player = Scene::getInstance().getPlayer();
+	GameObject* player = Scene::getInstance().getPlayer();
 
 	//get object position
 	b2Vec2 position = body.b2body->GetPosition();

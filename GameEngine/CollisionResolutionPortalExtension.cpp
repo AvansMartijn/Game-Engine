@@ -9,11 +9,11 @@ bool CollisionResolutionPortalExtension::isDefault() {
     return false;
 }
 
-void CollisionResolutionPortalExtension::link(shared_ptr<GameObject> linkedPortal) {
+void CollisionResolutionPortalExtension::link(GameObject* linkedPortal) {
     _linkedPortal = linkedPortal;
 }
 
-void CollisionResolutionPortalExtension::resolveCollision(shared_ptr<GameObject> inputObject) {
+void CollisionResolutionPortalExtension::resolveCollision(GameObject* inputObject) {
     //culling duplicate to prevent double operations
     auto objectLocation = std::find_if(Physics::getInstance().teleportQueue.begin(), Physics::getInstance().teleportQueue.end(), [inputObject](TeleportObject tellie) {return tellie.obj == inputObject; });
     if (objectLocation != Physics::getInstance().teleportQueue.end())

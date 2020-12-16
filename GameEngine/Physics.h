@@ -41,7 +41,9 @@ public:
 	
 	vector<TeleportObject> teleportQueue;
 	vector<RotateObj> rotateQueue;
-	vector<shared_ptr<GameObject>> setStaticQueue;
+
+	// TODO: ????
+	vector<GameObject*> setStaticQueue;
 	vector<int> deleteQueue;
 	vector<int> expirationQueue;
 
@@ -61,7 +63,7 @@ public:
 	/// <param name="y">The y-coordinate.</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
-	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void addPlayer(GameObject* obj, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Adds an entity to the world.
@@ -72,7 +74,7 @@ public:
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
 	/// <param name="userDataType">The identifier.</param>
-	void addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType = "entityFixture");
+	void addEntity(GameObject* obj, float x, float y, float width, float height, std::string userDataType = "entityFixture");
 
 	/// <summary>
 	/// Adds a portal to the world.
@@ -82,7 +84,7 @@ public:
 	/// <param name="y">The y-coordinate.</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
-	void addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType);
+	void addNonRigidBody(GameObject* obj, float x, float y, float width, float height, std::string userDataType);
 
 	/// <summary>
 	/// Adds a body to the world.
@@ -95,7 +97,7 @@ public:
 	/// <param name="friction">The friction.</param>
 	/// <param name="fixed">If this body should be affected by collisions.</param>
 	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
-	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet = false, std::string userDataType = "fixture");
+	void addBody(GameObject* obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet = false, std::string userDataType = "fixture");
 
 	/// <summary>
 	/// Reset the physics.
@@ -142,21 +144,21 @@ public:
 	/// </summary>
 	/// <param name="gameObject">The gameobject</param>
 	/// <returns>The linear velocity.</returns>
-	Vec2 getLinearVelocity(shared_ptr<GameObject> gameObject);
+	Vec2 getLinearVelocity(GameObject* gameObject);
 
 	/// <summary>
 	/// Get Linear velocity of game object
 	/// </summary>
 	/// <param name="gameObject">The game object</param>
 	/// <returns>The linear velocity</returns>
-	void setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel);
+	void setLinearVelocity(GameObject* gameObject, const Vec2& vel);
 
 	/// <summary>
 	/// Get's the position of the game object.
 	/// </summary>
 	/// <param name="gameObject">The game object.</param>
 	/// <returns>The position of the game object</returns>
-	Vec2 getPosition(shared_ptr<GameObject> gameObject);
+	Vec2 getPosition(GameObject* gameObject);
 };
 
 #endif

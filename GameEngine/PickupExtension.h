@@ -34,7 +34,7 @@ public:
 	/// When an entity collides with game object which has this extension.
 	/// </summary>
 	/// <param name="gameObject">The colliding game object</param>
-	void onEntityCollision(shared_ptr<GameObject> gameObject);
+	void onEntityCollision(GameObject* gameObject);
 
 	/// <summary>
 	/// Fills the extensions with the given properties.

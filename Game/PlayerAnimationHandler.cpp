@@ -57,7 +57,7 @@ void PlayerAnimationHandler::registerAnimations() {
 	_animations.insert(make_pair(KEY_HURTING, frames));
 }
 
-void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
+void PlayerAnimationHandler::animate(GameObject* gameObject) {
 	if (gameObject->hasExtension(typeid(MoveExtension))) {
 		MoveExtension* moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipLeft = moveExtension->isLookingToLeft;

@@ -4,7 +4,7 @@
 #pragma once
 class RotateObj {
 public:
-	shared_ptr<GameObject> obj;
+	GameObject* obj;
 	float angleRad;
 };
 

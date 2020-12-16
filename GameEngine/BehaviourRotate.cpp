@@ -2,7 +2,7 @@
 #include "BehaviourRotate.h"
 #include "Utilities.h"
 
-BehaviourRotate::BehaviourRotate(shared_ptr<GameObject> self, int waitTime) : AbstractBehaviour(self) {
+BehaviourRotate::BehaviourRotate(GameObject* self, int waitTime) : AbstractBehaviour(self) {
 	_waitTime = waitTime;
 }
 

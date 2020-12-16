@@ -75,7 +75,7 @@ void GameScreen::onTick() {
 	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (Scene::getInstance().getPlayer()->getExtension<HealthExtension>()) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
+		GameObject* gameObject = Scene::getInstance().getPlayer();
 		float healthValue = (float)gameObject->getExtension<HealthExtension>()->getHealth();
 
 		if (healthValue <= 0) {
@@ -98,7 +98,7 @@ void GameScreen::onTick() {
 	}
 
 	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex((int)gameObjectIndex);
+		GameObject* gameObject = Scene::getInstance().getEntityAtIndex((int)gameObjectIndex);
 
 		if (gameObject != nullptr) {
 			if (gameObject->hasExtension(typeid(AiExtension)))
@@ -126,7 +126,7 @@ void GameScreen::onTick() {
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->updateState();
 	}
 
-	for (auto gameObject : Scene::getInstance().getGameObjects()) {
+	for (const auto& gameObject : Scene::getInstance().getGameObjects()) {
 		if (gameObject.second != nullptr && gameObject.second->hasExtension(typeid(AnimationExtension)))
 			gameObject.second->getExtension<AnimationExtension>()->animate();
 	}

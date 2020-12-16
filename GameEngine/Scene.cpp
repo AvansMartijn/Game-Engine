@@ -7,37 +7,37 @@ Scene::Scene() {
     score = 1000;
 }
 
-shared_ptr<GameObject> Scene::getGameObject(int id) {
-    return _gameObjects[id];
+GameObject* Scene::getGameObject(int id) {
+    return _gameObjects[id].get();
 }
 
-map<int, shared_ptr<GameObject>> Scene::getGameObjects() const {
+map<int, unique_ptr<GameObject>>& Scene::getGameObjects() {
     return _gameObjects;
 }
 
-shared_ptr<GameObject> Scene::getEntityAtIndex(int index) {
-    return _gameObjects[_entities.at(index)];
+GameObject* Scene::getEntityAtIndex(int index) {
+    return _gameObjects[_entities.at(index)].get();
 }
 
 size_t Scene::getEntitiesSize() const {
     return _entities.size();
 }
 
-void Scene::addGameObject(int index, shared_ptr<GameObject> obj) {
-    _gameObjects.insert(std::pair<int, shared_ptr<GameObject>>(index, obj));
+void Scene::addGameObject(int index, unique_ptr<GameObject> obj) {
+    _gameObjects.insert(std::pair<int, unique_ptr<GameObject>>(index, std::move(obj)));
 }
 
-void Scene::addGameObject(shared_ptr<GameObject> obj) {
-    addGameObject(obj->id, obj);
+void Scene::addGameObject(unique_ptr<GameObject> obj) {
+    _gameObjects.insert(std::pair<int, unique_ptr<GameObject>>(obj->id, std::move(obj)));
 }
 
 void Scene::addTextUiElement(unique_ptr<TextUiElement> obj) {
     _textElements.push_back(std::move(obj));
 }
 
-void Scene::addEntity(shared_ptr<GameObject> obj) {
-    addGameObject(obj->id, obj);
+void Scene::addEntity(unique_ptr<GameObject> obj) {
     _entities.push_back(obj->id);
+    _gameObjects.insert(std::pair<int, unique_ptr<GameObject>>(obj->id, std::move(obj)));
 }
 
 int Scene::getNextAvailableId() {
@@ -77,11 +77,11 @@ AbstractManageableItem* Scene::getItem(std::string name) {
     return _items[name].get();
 }
 
-shared_ptr<GameObject> Scene::getPlayer() const {
+GameObject* Scene::getPlayer() const {
     return _player;
 }
 
-void Scene::setPlayer(shared_ptr<GameObject> player) {
+void Scene::setPlayer(GameObject* player) {
     _player = player;
 }
 
@@ -98,7 +98,7 @@ void Scene::reset() {
 }
 
 void Scene::render(const unique_ptr<Window>& window) {
-    for (pair<int, shared_ptr<GameObject>> const& x : _gameObjects) {
+    for (const auto& x : _gameObjects) {
         if (x.second != nullptr)
             x.second->render(window);
     }

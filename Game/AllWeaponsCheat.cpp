@@ -1,9 +1,10 @@
 #include "AllWeaponsCheat.h"
 #include "Scene.h"
 
-bool AllWeaponsCheat::execute()
-{
+bool AllWeaponsCheat::execute() {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {		
+		Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->clearItems();
+
 		unique_ptr<AbstractManageableItem> glueItem = Scene::getInstance().getItem("GlueGun")->clone();
 		glueItem->setAmmo(-1);
 		glueItem->setCooldown(0);

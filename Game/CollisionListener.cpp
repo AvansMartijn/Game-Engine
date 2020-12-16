@@ -20,8 +20,8 @@ void CollisionListener::BeginContact(b2Contact* contact) {
 	CustomUserData* objA = (CustomUserData*)bodyA->GetUserData().pointer;
 	CustomUserData* objB = (CustomUserData*)bodyB->GetUserData().pointer;
 
-	shared_ptr<GameObject> gameObjectA = Scene::getInstance().getGameObject(objA->index);
-	shared_ptr<GameObject> gameObjectB = Scene::getInstance().getGameObject(objB->index);
+	GameObject* gameObjectA = Scene::getInstance().getGameObject(objA->index);
+	GameObject* gameObjectB = Scene::getInstance().getGameObject(objB->index);
 
 
 	if (valA != nullptr) {
@@ -118,7 +118,7 @@ void CollisionListener::checkExitSensor(const CustomUserData& valA, const Custom
 	}
 }
 
-void CollisionListener::checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
+void CollisionListener::checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, GameObject* gameObjectA, GameObject* gameObjectB) {
 	if (valA.type == "pickupSensor") {
 		if (valB.type == "playerFixture") {
 			if (gameObjectA->hasExtension(typeid(PickupExtension)))
@@ -127,7 +127,7 @@ void CollisionListener::checkPickupSensor(const CustomUserData& valA, const Cust
 	}
 }
 
-void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObject, const CustomUserData& objA, b2Fixture& fixtureA) {
+void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, GameObject* gameObject, const CustomUserData& objA, b2Fixture& fixtureA) {
 	if (valA.type == "glueBullet") {
 		if (valB.type == "portalSensor")
 			Physics::getInstance().deleteQueue.push_back(objA.index);
@@ -137,12 +137,13 @@ void CollisionListener::checkGlueBullet(CustomUserData& valA, const CustomUserDa
 			filter.categoryBits = SCENERY;
 			filter.maskBits = -1;
 			fixtureA.SetFilterData(filter);
+
 			Physics::getInstance().setStaticQueue.push_back(gameObject);
 		}
 	}
 }
 
-void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB, const CustomUserData& valB) {
+void CollisionListener::checkTeleport(GameObject* gameObjectA, GameObject* gameObjectB, const CustomUserData& valB) {
 	if (gameObjectA->hasExtension(typeid(AbstractCollisionResolutionExtension))) {
 		AbstractCollisionResolutionExtension* resolution = gameObjectA->getExtension<AbstractCollisionResolutionExtension>();
 		if (!resolution->isDefault()) {
@@ -152,7 +153,7 @@ void CollisionListener::checkTeleport(shared_ptr<GameObject> gameObjectA, shared
 	}
 }
 
-void CollisionListener::checkDamage(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
+void CollisionListener::checkDamage(GameObject* gameObjectA, GameObject* gameObjectB) {
 	if (gameObjectA->hasExtension(typeid(HealthExtension))) {
 		if (gameObjectB->hasExtension(typeid(DoesDamageExtension))) {
 			HealthExtension* healthExtension = gameObjectA->getExtension<HealthExtension>();
@@ -162,7 +163,7 @@ void CollisionListener::checkDamage(shared_ptr<GameObject> gameObjectA, shared_p
 	}
 }
 
-void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB) {
+void CollisionListener::checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, GameObject* gameObjectA, GameObject* gameObjectB) {
 	//culling duplicate to prevent double operations
 	auto objectLocation = std::find_if(Physics::getInstance().deleteQueue.begin(), Physics::getInstance().deleteQueue.end(), [objA](int id) {return id == objA.index; });
 	if (objectLocation != Physics::getInstance().deleteQueue.end())

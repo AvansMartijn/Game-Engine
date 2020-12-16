@@ -2,7 +2,7 @@
 #include "AbstractGameObjectExtension.h"
 #include <map>
 
-void AbstractGameObjectExtension::registerSubject(shared_ptr<GameObject> subject) {
+void AbstractGameObjectExtension::registerSubject(GameObject* subject) {
 	_subject = subject;
 }
 

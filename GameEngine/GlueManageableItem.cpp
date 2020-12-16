@@ -37,13 +37,12 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			double angleDeg = angleRad * (180.0f / M_PI);
 
 			GameObjectFacade gameEngine;
-			shared_ptr<GameObject> gameObject = gameEngine.createGameObject({"TimerExtension"});
+			unique_ptr<GameObject> gameObject = gameEngine.createGameObject({"TimerExtension"});
 
 			gameObject->texture = "Blob";
 			gameObject->id = Scene::getInstance().getNextAvailableId();
 
-			Physics::getInstance().addBody(gameObject, Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 0.5f, 0.5f, 0.3f, false, false, true, "glueBullet");
-			Scene::getInstance().addGameObject(gameObject);
+			Physics::getInstance().addBody(gameObject.get(), Scene::getInstance().pixelsToMeters(playerPos.x), Scene::getInstance().pixelsToMeters(playerPos.y), 0.5f, 0.5f, 0.3f, false, false, true, "glueBullet");
 			Physics::getInstance().expirationQueue.push_back(gameObject->id);
 
 			int force = 30;
@@ -51,6 +50,8 @@ void GlueManagableItem::onLeftClick(int x, int y) {
 			gameObject->body.b2body->ApplyLinearImpulseToCenter(vect, true);
 			if (_ammo > 0)
 				_ammo -= 1;
+
+			Scene::getInstance().addGameObject(std::move(gameObject));
 		}
 	}
 }

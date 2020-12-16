@@ -24,6 +24,6 @@ public:
 	/// Create the behaviour tree.
 	/// </summary>
 	/// <param name="self">The player</param>
-	void createBehaviourTree(shared_ptr<GameObject> self);
+	void createBehaviourTree(GameObject* self);
 };
 

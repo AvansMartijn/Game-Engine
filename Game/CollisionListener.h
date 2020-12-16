@@ -18,9 +18,9 @@ public:
 	void checkLeftArmSensor(const CustomUserData& val, b2Body& bodyB);
 	void checkRightArmSensor(const CustomUserData& val, b2Body& bodyB);
 	void checkExitSensor(const CustomUserData& valA, const CustomUserData& valB);
-	void checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
-	void checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, shared_ptr<GameObject> gameObject, const CustomUserData& objA, b2Fixture& fixtureA);
-	void checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
-	void checkTeleport(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB, const CustomUserData& valB);
-	void checkDamage(shared_ptr<GameObject> gameObjectA, shared_ptr<GameObject> gameObjectB);
+	void checkPickupSensor(const CustomUserData& valA, const CustomUserData& valB, GameObject* gameObjectA, GameObject* gameObjectB);
+	void checkGlueBullet(CustomUserData& valA, const CustomUserData& valB, GameObject* gameObject, const CustomUserData& objA, b2Fixture& fixtureA);
+	void checkPortalBullet(const CustomUserData& valA, const CustomUserData& valB, const CustomUserData& objA, GameObject* gameObjectA, GameObject* gameObjectB);
+	void checkTeleport(GameObject* gameObjectA, GameObject* gameObjectB, const CustomUserData& valB);
+	void checkDamage(GameObject* gameObjectA, GameObject* gameObjectB);
 };
