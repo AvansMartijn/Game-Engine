@@ -14,7 +14,11 @@
 
 class GAMEENGINE_DefaultEntityAI DefaultEntityAI : public AbstractEntityAI {
 private:
-	shared_ptr<BehaviourIdle> _behaviourIdle;
+	unique_ptr<BehaviourIdle> _idleBehaviour;
+	unique_ptr<BehaviourSeesEnemy> _seesEnemyBehaviour;
+	unique_ptr<BehaviourRotate> _rotateEnemyBehaviour;
+	unique_ptr<BehaviourMove> _moveEnemyBehaviour;
+	unique_ptr<BehaviourAttack> _attackPlayerBehaviour;
 public:
 	/// <summary>
 	/// Create the behaviour tree.

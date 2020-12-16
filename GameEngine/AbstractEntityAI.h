@@ -14,7 +14,7 @@
 /// </summary>
 class GAMEENGINE_AbstractEntityAI AbstractEntityAI {
 protected:
-	shared_ptr<AbstractBehaviour> _currentBehaviour;
+	AbstractBehaviour* _currentBehaviour;
 	std::chrono::steady_clock::time_point _begin;
 public:
 	AbstractEntityAI();

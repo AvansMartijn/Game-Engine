@@ -22,14 +22,15 @@ protected:
 	/// <param name="isTrue">The state of the next behaviour.</param>
 	virtual void executeNextBehaviour(bool isTrue);
 public:
+	// Both these pointers should not own the behaviour.
+	AbstractBehaviour* behaviourTrue;
+	AbstractBehaviour* behaviourFalse;
+
 	AbstractBehaviour(shared_ptr<GameObject> self);
 
 	/// <summary>
 	/// Execute the behaviour.
 	/// </summary>
 	virtual void execute() = 0;
-
-	shared_ptr<AbstractBehaviour> behaviourTrue = nullptr;
-	shared_ptr<AbstractBehaviour> behaviourFalse = nullptr;
 };
 

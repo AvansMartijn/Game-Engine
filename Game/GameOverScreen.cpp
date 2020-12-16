@@ -42,7 +42,7 @@ void GameOverScreen::onTick() {
 }
 
 void GameOverScreen::onScreenShowed(vector<string> args) {
-	//_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
+	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
 void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
