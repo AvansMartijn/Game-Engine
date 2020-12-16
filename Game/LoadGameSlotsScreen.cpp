@@ -25,7 +25,7 @@ void LoadGameSlotsScreen::onInit() {
 
 	ButtonUiElement slot1 = ButtonUiElement("Slot 1", { 700, 170, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot1.registerGame(_game);
-	slot1.onClick = [](shared_ptr<AbstractGame> game) {
+	slot1.onClick = [](AbstractGame* game) {
 		if (GameSettings::getInstance().saveGame.slot1 != -1) {
 			GameSettings::getInstance().saveGame.currentSlot = 1;
 			LevelData levelData = GameSettings::getInstance().getCurrentLevel();
@@ -36,7 +36,7 @@ void LoadGameSlotsScreen::onInit() {
 
 	ButtonUiElement slot2 = ButtonUiElement("Slot 2", { 700, 220, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot2.registerGame(_game);
-	slot2.onClick = [](shared_ptr<AbstractGame> game) {
+	slot2.onClick = [](AbstractGame* game) {
 		if (GameSettings::getInstance().saveGame.slot2 != -1) {
 			GameSettings::getInstance().saveGame.currentSlot = 2;
 			LevelData levelData = GameSettings::getInstance().getCurrentLevel();
@@ -47,7 +47,7 @@ void LoadGameSlotsScreen::onInit() {
 
 	ButtonUiElement slot3 = ButtonUiElement("Slot 3", { 700, 270, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	slot3.registerGame(_game);
-	slot3.onClick = [](shared_ptr<AbstractGame> game) {
+	slot3.onClick = [](AbstractGame* game) {
 		if (GameSettings::getInstance().saveGame.slot3 != -1) {
 			GameSettings::getInstance().saveGame.currentSlot = 3;
 			LevelData levelData = GameSettings::getInstance().getCurrentLevel();
@@ -58,7 +58,7 @@ void LoadGameSlotsScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 700, 400, width, height }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
 	addFpsElement("Portal");

@@ -3,11 +3,11 @@
 AbstractUiElement::AbstractUiElement() {
 	_game = NULL;
 	rect = {};
-	onClick = [](shared_ptr<AbstractGame> game) {std::cout << "No OnClick\n"; };
+	onClick = [](AbstractGame* game) {std::cout << "No OnClick\n"; };
 }
 
 AbstractUiElement::~AbstractUiElement() {}
 
-void AbstractUiElement::registerGame(shared_ptr<AbstractGame> game) {
+void AbstractUiElement::registerGame(AbstractGame* game) {
 	_game = game;
 }

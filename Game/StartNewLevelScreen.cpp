@@ -75,7 +75,7 @@ void StartNewLevelScreen::onInit() {
 
 	ButtonUiElement startButton = ButtonUiElement("Start", { 515, 650, 70, 40 }, tColor, { 255, 255, 255 }, font, 25);
 	startButton.registerGame(_game);
-	startButton.onClick = [](shared_ptr<AbstractGame> game) {
+	startButton.onClick = [](AbstractGame* game) {
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
 		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 	};

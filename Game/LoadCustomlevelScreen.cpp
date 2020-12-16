@@ -20,7 +20,7 @@ void LoadCustomLevelScreen::onInit() {
 
 		ButtonUiElement lineOfC = ButtonUiElement(levelData.levelName, { 430, y, 720, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 		lineOfC.registerGame(_game);
-		lineOfC.onClick = [levelData](shared_ptr<AbstractGame> game) {
+		lineOfC.onClick = [levelData](AbstractGame* game) {
 			GameSettings::getInstance().saveGame.currentSlot = 0;
 			GameSettings::getInstance().saveGame.customSlot = GameSettings::getInstance().getIndexByLevelName(levelData.levelName);
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "custom", "reset" });
@@ -34,7 +34,7 @@ void LoadCustomLevelScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
 	addFpsElement("Portal");

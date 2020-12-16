@@ -15,7 +15,8 @@ class Window;
 class AbstractGame;
 class GAMEENGINE_AbstractUiElement AbstractUiElement {
 protected:
-	shared_ptr<AbstractGame> _game;
+	// REASON: The screen themself should not own the game.
+	AbstractGame* _game;
 public:
 	Rect rect;
 
@@ -43,9 +44,9 @@ public:
 	/// Register the game to the element.
 	/// </summary>
 	/// <param name="game">The Game</param>
-	virtual void registerGame(shared_ptr<AbstractGame> game);
+	virtual void registerGame(AbstractGame* game);
 	/// <summary>
 	/// The onclick function. This function needs to be changed so it calls a function.
 	/// </summary>
-	std::function<void(shared_ptr<AbstractGame>)> onClick;
+	std::function<void(AbstractGame*)> onClick;
 };

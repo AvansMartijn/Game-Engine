@@ -40,7 +40,7 @@ void HighScoreScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 20, 650, 70, 40 }, TColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
 	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
 	addFpsElement("Portal");

@@ -25,7 +25,7 @@ void GameOverScreen::onInit() {
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::MainMenu); };
+	quitGameButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainMenu); };
 	_uiElements.push_back(make_unique<ButtonUiElement>(quitGameButton));
 
 	addFpsElement("Portal");

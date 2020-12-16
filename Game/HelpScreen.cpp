@@ -150,7 +150,7 @@ void HelpScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, tColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) {
+	backButton.onClick = [](AbstractGame* game) {
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
 		game->switchScreen(Screens::GoBack);
 	};

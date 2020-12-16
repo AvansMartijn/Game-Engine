@@ -18,11 +18,10 @@ class GameEngine;
 class AbstractGame;
 class GAMEENGINE_AbstractScreen AbstractScreen {
 protected:
-	// REASON: All screens need full ownership over the Game instance.
-	shared_ptr<AbstractGame> _game;
+	// REASON: The screen themself should not own the game.
+	AbstractGame* _game;
 	vector<unique_ptr<AbstractUiElement>> _uiElements;
 
-	// Raw pointer, this class does not delete the pointer (uiElements / the vector does that)
 	TextUiElement* _fpsElement;
 
 	/// <summary>
@@ -81,7 +80,7 @@ public:
 	/// Adds a reference to the game.
 	/// </summary>
 	/// <param name="game">A refrence to the game.</param>
-	virtual void registerGame(shared_ptr<AbstractGame> game);
+	virtual void registerGame(AbstractGame* game);
 	/// <summary>
 	/// Renders all the objects on the screen.
 	/// </summary>

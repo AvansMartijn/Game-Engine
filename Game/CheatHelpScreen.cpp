@@ -31,7 +31,7 @@ void CheatHelpScreen::onInit() {
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::Cheat); };
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::Cheat); };
 	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
 	addFpsElement("Portal");
