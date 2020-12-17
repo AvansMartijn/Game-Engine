@@ -1,4 +1,5 @@
 #include "MainMenuScreen.h"
+#include <Utilities.h>
 
 MainMenuScreen::MainMenuScreen() {}
 MainMenuScreen::~MainMenuScreen() {}
@@ -75,28 +76,24 @@ void MainMenuScreen::onTick() {
 	updateFpsElement();
 }
 
-void MainMenuScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void MainMenuScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_d:
+	switch (e.keyCode) {
+	case KEY_d:
 		_game->switchScreen(Screens::MainGame, { "default", "Default", "reset" });
 
 		break;
-	case SDLK_F5:
+	case KEY_F5:
 		GameSettings::getInstance().load();
 
 		break;
 	}
 }
-
-void MainMenuScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-void MainMenuScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
-

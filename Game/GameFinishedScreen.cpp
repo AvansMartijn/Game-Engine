@@ -134,32 +134,25 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 		_nextLevelButton->text = "Next level";
 }
 
-void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Scancode test = e.keysym.scancode;
-	std::string test3 = SDL_GetScancodeName(test);
-	if (e.keysym.sym == SDLK_BACKSPACE) {
+void GameFinishedScreen::handleKeyboardInput(KeyboardEvent e) {
+	if (e.keyCode == KEY_BACKSPACE) {
 		if (_nameText->text.size() > 1)
 			_nameText->text.pop_back();
 	}
 	if (_nameText->text.length() < 21) {
-		if (e.keysym.sym == SDLK_SPACE)
+		if (e.keyCode == KEY_SPACE)
 			_nameText->text.push_back(' ');
-		if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-			_nameText->text.push_back((char)e.keysym.sym);
+		if (e.keyCode >= 97 && e.keyCode <= 122)
+			_nameText->text.push_back((char)e.keyCode);
 	}
 	
-	SDL_Keycode fps;
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode== fps)
 		shouldShowFPS = !shouldShowFPS;
 
 }
-
-void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void GameFinishedScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
-

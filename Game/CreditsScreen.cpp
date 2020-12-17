@@ -91,18 +91,18 @@ void CreditsScreen::onTick() {
 	_scoreText->text = "Score: " + to_string(_score);
 }
 
-void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void CreditsScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_ESCAPE: // GO BACK TO PAUSE
+	switch (e.keyCode) {
+	case KEY_ESCAPE: // GO BACK TO PAUSE
 		_game->switchScreen(Screens::MainMenu);
 
 		break;
@@ -111,9 +111,7 @@ void CreditsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	}
 }
 
-void CreditsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+void CreditsScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (!_scrollLock) {
 		if (e.y > 0) // scroll up
 			_offset = 20;
@@ -139,10 +137,10 @@ void CreditsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	}
 }
 
-void CreditsScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
+void CreditsScreen::handleMouseClickInput(MouseButtonEvent e) {
 	AbstractScreen::handleMouseClickInput(e);
 
-	if (e.button == SDL_BUTTON_LEFT) {
+	if (e.button == BUTTON_LEFT) {
 		for (unique_ptr<ButtonUiElement>& element : _wackAMoleButtons) {
 			if (element->isInBound(e.x, e.y)) {
 				element->onClick(_game);

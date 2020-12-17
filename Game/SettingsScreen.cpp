@@ -131,26 +131,21 @@ void SettingsScreen::onTick() {
 	updateFpsElement();
 }
 
-void SettingsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void SettingsScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_ESCAPE: // GO BACK 
+	switch (e.keyCode) {
+	case KEY_ESCAPE: // GO BACK 
 		_game->switchScreen(Screens::GoBack);
 		break;
 	default:
 		break;
 	}
 }
-
-void SettingsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void SettingsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
-

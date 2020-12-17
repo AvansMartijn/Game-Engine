@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Utilities.h"
+#include <SDL_keycode.h>
+#include <SDL_keyboard.h>
 
 Utilities Utilities::instance;
 
@@ -53,4 +55,20 @@ int Utilities::getRandomInt(int low, int high) const {
 	std::uniform_int_distribution<int> d{ low, high - 1 };
 
 	return d(getRandomEngine());
+}
+
+Scancode Utilities::getScancodeFromKeyCode(const Keycode& keycode) {
+	return Scancode::SCANCODE_0;
+}
+
+Keycode Utilities::getKeycodeFromScancode(const Scancode& scancode) const {
+	return (Keycode)SDL_SCANCODE_TO_KEYCODE((SDL_Scancode)scancode);
+}
+
+std::string Utilities::getScancodeName(const Scancode& scancode) const {
+	return SDL_GetScancodeName((SDL_Scancode)scancode);
+}
+
+const Uint8* Utilities::getKeyboardState() {
+	return SDL_GetKeyboardState(NULL);
 }

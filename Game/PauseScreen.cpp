@@ -52,25 +52,21 @@ void PauseScreen::onTick() {
 		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
 }
 
-void PauseScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void PauseScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_ESCAPE:
+	switch (e.keyCode) {
+	case KEY_ESCAPE:
 		_game->switchScreen(Screens::MainGame);
 		break;
 	default:
 		break;
 	}
 }
-
-void PauseScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void PauseScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}

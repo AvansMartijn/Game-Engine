@@ -11,7 +11,11 @@
 #include "AbstractUiElement.h"
 #include "Physics.h"
 #include "TextUIElement.h"
-
+#include "MouseButtonEvent.h"
+#include "MouseWheelEvent.h"
+#include "MouseMotionEvent.h"
+#include "KeyboardEvent.h"
+#include "Utilities.h"
 using namespace std;
 
 class GameEngine;
@@ -60,22 +64,22 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	virtual void handleKeyboardInput(SDL_KeyboardEvent e) = 0;
+	virtual void handleKeyboardInput(KeyboardEvent e) = 0;
 	/// <summary>
 	/// Called when the user moves their mouse.
 	/// </summary>
 	/// <param name="e">The mouse mouse event.</param>
-	virtual void handleMouseMotionInput(SDL_MouseMotionEvent e) = 0;
+	virtual void handleMouseMotionInput(MouseMotionEvent e);
 	/// <summary>
 	/// Handle the mouse wheel input.
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
-	virtual void handleMouseWheelInput(SDL_MouseWheelEvent e) = 0;
+	virtual void handleMouseWheelInput(MouseWheelEvent e);
 	/// <summary>
 	/// Called when the user click their mouse.
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
-	virtual void handleMouseClickInput(SDL_MouseButtonEvent e);
+	virtual void handleMouseClickInput(MouseButtonEvent e);
 	/// <summary>
 	/// Adds a reference to the game.
 	/// </summary>

@@ -8,6 +8,8 @@
 #include <string>
 #include <random>
 #include <cassert>
+#include "Keycode.h"
+#include "Scancode.h"
 
 class GAMEENGINE_Utilities Utilities
 {
@@ -68,5 +70,32 @@ public:
 	/// <param name="high">The highest possible number.</param>
 	/// <returns>The random number.</returns>
 	int getRandomInt(int low, int high) const;
+
+	/// <summary>
+	/// Get's the scancode from the given keycode.
+	/// </summary>
+	/// <param name="keycode">The keycode we want to convert.</param>
+	/// <returns>The scancode</returns>
+	Scancode getScancodeFromKeyCode(const Keycode& keycode);
+
+	/// <summary>
+	/// Get's the keycode from the given scancode.
+	/// </summary>
+	/// <param name="scancode">The scancode we want to convert.</param>
+	/// <returns>The scancode.</returns>
+	Keycode getKeycodeFromScancode(const Scancode& scancode) const;
+
+	/// <summary>
+	/// Get's the scancode name.
+	/// </summary>
+	/// <param name="scancode">The scancode we want the name of.</param>
+	/// <returns>The scancode name.</returns>
+	std::string getScancodeName(const Scancode& scancode) const;
+
+	/// <summary>
+	/// Get's the current keyboard state.
+	/// </summary>
+	/// <returns>The current keyboard state.</returns>
+	const Uint8* getKeyboardState();
 };
 

@@ -47,17 +47,17 @@ void CheatScreen::onScreenShowed(vector<std::string> args) {
 	_cheatText->text = " ";
 }
 
-void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void CheatScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	if (e.keysym.sym == SDLK_RETURN) {
+	if (e.keyCode == KEY_RETURN) {
 		std::string cheat = _cheatText->text;
 
 		Utilities::getInstance().trim(cheat);
@@ -70,20 +70,16 @@ void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 		}
 	}
 
-	if (e.keysym.sym == SDLK_BACKSPACE) {
+	if (e.keyCode == KEY_BACKSPACE) {
 		if (_cheatText->text.size() == 1)
 			_cheatText->text = " ";
 		else if (_cheatText->text.size() > 1)
 			_cheatText->text.pop_back();
 	}
 	if (_cheatText->text.length() <= 20) {
-		if (e.keysym.sym == SDLK_SPACE)
+		if (e.keyCode == KEY_SPACE)
 			_cheatText->text.push_back(' ');
-		if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-			_cheatText->text.push_back((char)e.keysym.sym);
+		if (e.keyCode >= 97 && e.keyCode <= 122)
+			_cheatText->text.push_back((char)e.keyCode);
 	}
 }
-
-void CheatScreen::handleMouseMotionInput(SDL_MouseMotionEvent e){}
-
-void CheatScreen::handleMouseWheelInput(SDL_MouseWheelEvent e){}

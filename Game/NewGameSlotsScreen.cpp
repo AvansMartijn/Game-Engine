@@ -78,22 +78,22 @@ void NewGameSlotsScreen::onTick() {
 	updateFpsElement();
 }
 
-void NewGameSlotsScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void NewGameSlotsScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_d:
+	switch (e.keyCode) {
+	case KEY_d:
 		_game->switchScreen(Screens::MainGame, { "default", "Default", "reset" });
 
 		break;
-	case SDLK_F5:
+	case KEY_F5:
 		GameSettings::getInstance().load();
 
 		break;
@@ -116,7 +116,3 @@ void NewGameSlotsScreen::onScreenShowed(vector<std::string> args) {
 	else
 		_slot3Button->text = "Slot 3 - " + GameSettings::getInstance().getLevelByIndex(GameSettings::getInstance().saveGame.slot3).levelName;
 }
-
-void NewGameSlotsScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-void NewGameSlotsScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
-

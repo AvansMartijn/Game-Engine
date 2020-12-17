@@ -80,22 +80,17 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	void handleKeyboardInput(SDL_KeyboardEvent e);
-	/// <summary>
-	/// Called when the user moves their mouse.
-	/// </summary>
-	/// <param name="e">The mouse mouse event.</param>
-	void handleMouseMotionInput(SDL_MouseMotionEvent e);
-	/// <summary>
-	/// Handle the mouse wheel input.
-	/// </summary>
-	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleKeyboardInput(KeyboardEvent e);
 	/// <summary>
 	/// Called when the user click their mouse.
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
-	void handleMouseClickInput(SDL_MouseButtonEvent e);
+	void handleMouseClickInput(MouseButtonEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
+	void handleMouseWheelInput(MouseWheelEvent e);
 	/// <summary>
 	/// Pre renders all the objects on the screen.
 	/// </summary>

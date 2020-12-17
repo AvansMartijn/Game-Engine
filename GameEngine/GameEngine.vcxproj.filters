@@ -100,6 +100,12 @@
     <Filter Include="Source Files\Misc">
       <UniqueIdentifier>{d05e6f6f-9736-478e-af77-9fe4320383d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{cb6c67d8-aa02-40ef-a884-31335c31f760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Enums">
+      <UniqueIdentifier>{4f5db364-fae1-4c11-a9b2-abfecfce3eb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -314,6 +320,27 @@
     </ClInclude>
     <ClInclude Include="FixtureFilter.h">
       <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseButtonEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseMotionEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseWheelEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Keycode.h">
+      <Filter>Header Files\Graphics\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Scancode.h">
+      <Filter>Header Files\Graphics\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Definitions.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

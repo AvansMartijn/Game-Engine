@@ -1,5 +1,6 @@
 #include "GameOverScreen.h"
 #include <Mouse.h>
+#include <Utilities.h>
 
 
 GameOverScreen::GameOverScreen() {}
@@ -45,18 +46,14 @@ void GameOverScreen::onScreenShowed(vector<string> args) {
 	_bodyText->text = "  Score: " + to_string(Scene::getInstance().score);
 }
 
-void GameOverScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void GameOverScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 }
-
-void GameOverScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void GameOverScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
 

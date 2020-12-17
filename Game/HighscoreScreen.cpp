@@ -4,6 +4,7 @@
 #include <ButtonUiElement.h>
 #include "Screens.h"
 #include "GameSettings.h"
+#include <Utilities.h>
 
 HighScoreScreen::HighScoreScreen() {}
 
@@ -76,20 +77,18 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	}
 }
 
-void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void HighScoreScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 }
 
-void HighScoreScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+void HighScoreScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (e.y > 0) // scroll up
 		_offset = 20;
 	else if (e.y < 0) // scroll down

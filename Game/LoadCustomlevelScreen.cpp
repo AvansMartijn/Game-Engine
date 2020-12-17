@@ -1,4 +1,5 @@
 #include "LoadCustomLevelScreen.h"
+#include <Utilities.h>
 
 LoadCustomLevelScreen::LoadCustomLevelScreen() {}
 LoadCustomLevelScreen::~LoadCustomLevelScreen() {}
@@ -44,18 +45,18 @@ void LoadCustomLevelScreen::onTick() {
 	updateFpsElement();
 }
 
-void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void LoadCustomLevelScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_ESCAPE: // GO BACK TO PAUSE
+	switch (e.keyCode) {
+	case KEY_ESCAPE: // GO BACK TO PAUSE
 		_game->switchScreen(Screens::MainMenu);
 		break;
 	default:
@@ -63,9 +64,7 @@ void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	}
 }
 
-void LoadCustomLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void LoadCustomLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+void LoadCustomLevelScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (_files.size() > 20) {
 		if (e.y > 0) // scroll up
 			offset = 10;
@@ -77,10 +76,10 @@ void LoadCustomLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	}
 }
 
-void LoadCustomLevelScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
+void LoadCustomLevelScreen::handleMouseClickInput(MouseButtonEvent e) {
 	AbstractScreen::handleMouseClickInput(e);
 
-	if (e.button == SDL_BUTTON_LEFT) {
+	if (e.button == BUTTON_LEFT) {
 		for (unique_ptr<AbstractUiElement>& element : _scrollableUiElements) {
 			if (element->isInBound(e.x, e.y)) {
 				element->onClick(_game);

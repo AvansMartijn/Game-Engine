@@ -225,6 +225,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="Definitions.h" />
     <ClInclude Include="DoesDamageExtension.h" />
     <ClInclude Include="EntityCategory.h" />
     <ClInclude Include="dirent.h" />
@@ -242,10 +243,15 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="HpBarUIElement.h" />
     <ClInclude Include="ImageUiElement.h" />
+    <ClInclude Include="KeyboardEvent.h" />
+    <ClInclude Include="Keycode.h" />
     <ClInclude Include="LibCurl.h" />
     <ClInclude Include="IsPortalableExtension.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseButtonEvent.h" />
+    <ClInclude Include="MouseMotionEvent.h" />
     <ClInclude Include="MouseSkins.h" />
+    <ClInclude Include="MouseWheelEvent.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
@@ -254,6 +260,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="PortalManagableItem.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="RotateObj.h" />
+    <ClInclude Include="Scancode.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
     <ClInclude Include="SDLTexture.h" />

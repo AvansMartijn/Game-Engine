@@ -6,6 +6,7 @@
 #include "ImageUiElement.h"
 #include "Screens.h"
 #include "ControllManager.h"
+#include <KeyboardEvent.h>
 
 class HelpScreen : public AbstractScreen {
 private:
@@ -33,17 +34,12 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	void handleKeyboardInput(SDL_KeyboardEvent e);
-	/// <summary>
-	/// Called when the user moves their mouse.
-	/// </summary>
-	/// <param name="e">The mouse mouse event.</param>
-	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	void handleKeyboardInput(KeyboardEvent e);
 	/// <summary>
 	/// Handle the mouse wheel input.
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleMouseWheelInput(MouseWheelEvent e);
 	/// <summary>
 	/// Renders all the objects on the screen.
 	/// </summary>

@@ -1,6 +1,7 @@
 #include "HelpScreen.h"
 #include "GameSettings.h"
 #include "GameSettings.h"
+#include <Utilities.h>
 
 HelpScreen::HelpScreen() {}
 HelpScreen::~HelpScreen() {}
@@ -163,20 +164,18 @@ void HelpScreen::onTick(){
 	updateFpsElement();
 }
 
-void HelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void HelpScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 }
 
-void HelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void HelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+void HelpScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (e.y > 0) // scroll up
 		_offset = 25;
 	else if (e.y < 0) // scroll down

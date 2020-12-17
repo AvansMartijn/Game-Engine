@@ -13,7 +13,11 @@ void AbstractScreen::registerGame(AbstractGame* game) {
 	_game = game;
 }
 
-void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
+void AbstractScreen::handleMouseMotionInput(MouseMotionEvent e) {}
+
+void AbstractScreen::handleMouseWheelInput(MouseWheelEvent e) {}
+
+void AbstractScreen::handleMouseClickInput(MouseButtonEvent e) {
 	if (e.button == SDL_BUTTON_LEFT) {
 		for (unique_ptr<AbstractUiElement>& element : _uiElements) {
 			if (element->isInBound(e.x, e.y)) {
@@ -24,7 +28,7 @@ void AbstractScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 		}
 	}
 }
-
+//void AbstractScreen::handleKeyboardInput(KeyboardEvent e) {}
 
 void AbstractScreen::render(const unique_ptr<Window>& window) {
 	for (unique_ptr<AbstractUiElement>& obj : _uiElements)

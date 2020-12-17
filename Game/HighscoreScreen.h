@@ -3,6 +3,7 @@
 #include <TextUiElement.h>
 #include "ControllManager.h"
 #include "ImageUiElement.h"
+#include <KeyboardEvent.h>
 
 class HighScoreScreen : public AbstractScreen {
 private:
@@ -29,17 +30,12 @@ public:
 	/// Handles keyboard input
 	/// </summary>
 	/// <param name="e"></param>
-	void handleKeyboardInput(SDL_KeyboardEvent e) override;
-	/// <summary>
-	/// handles mouse input
-	/// </summary>
-	/// <param name="e"></param>
-	void handleMouseMotionInput(SDL_MouseMotionEvent e) override;
+	void handleKeyboardInput(KeyboardEvent e);
 	/// <summary>
 	/// Handle the mouse wheel input.
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleMouseWheelInput(MouseWheelEvent e);
 	/// <summary>
 	/// Pre renders all the objects on the screen.
 	/// </summary>

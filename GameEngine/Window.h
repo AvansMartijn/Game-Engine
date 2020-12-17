@@ -31,7 +31,6 @@ private:
 public:
 	Window(const char* title, int width, int height);
 
-	// TODO: WEG WERKEN.
 	/// <summary>
 	/// Get's the window pointer.
 	/// </summary>
@@ -83,7 +82,6 @@ public:
 	/// <param name="fontPath">The path to the font.</param>
 	void registerFont(const std::string& fontKey, const std::string& fontPath);
 
-	// TODO: WEG WERKEN.
 	/// <summary>
 	/// Get's the font from the given path.
 	/// </summary>

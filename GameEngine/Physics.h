@@ -23,7 +23,6 @@ private:
 	Physics();
 	static Physics instance;
 
-	// TODO: DEZE WEG WERKEN.
 	b2World* _world;
 	b2Vec2 _gravity;
 	unique_ptr<ContactListener> _colListener;

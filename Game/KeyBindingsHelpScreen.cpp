@@ -1,4 +1,5 @@
 #include "KeyBindingsHelpScreen.h"
+#include <Utilities.h>
 
 KeyBindingsHelpScreen::KeyBindingsHelpScreen() {}
 
@@ -170,26 +171,22 @@ void KeyBindingsHelpScreen::onTick() {
 	updateFpsElement();
 }
 
-void KeyBindingsHelpScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
+void KeyBindingsHelpScreen::handleKeyboardInput(KeyboardEvent e) {
 	if (_listingForInput) {
-		std::string keyPressed = SDL_GetScancodeName(e.keysym.scancode);
-		SDL_Scancode KeyPressedSDL = e.keysym.scancode;
+		std::string keyPressed = Utilities::getInstance().getScancodeName(e.scanCode);
+		Scancode keyPressedScan = e.scanCode;
 		_listingForInput = false;
 		
-		ControllManager::getInstance().updateControl(_currentAction, keyPressed, KeyPressedSDL);
+		ControllManager::getInstance().updateControl(_currentAction, keyPressed, keyPressedScan);
 		loadKeybinding();
 	}
 
-	SDL_Keycode fps;
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 }
-
-void KeyBindingsHelpScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void KeyBindingsHelpScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
