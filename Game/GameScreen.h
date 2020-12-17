@@ -105,5 +105,33 @@ public:
 	/// Resets the game.
 	/// </summary>
 	void reset();
+	/// <summary>
+	/// Calculate the players health.
+	/// </summary>
+	void calculateHealth();
+	/// <summary>
+	/// Calculate the score.
+	/// </summary>
+	void calculateScore();
+	/// <summary>
+	/// Calculate game over.
+	/// </summary>
+	void calculateGameOver();
+	/// <summary>
+	/// Handles the enemies.
+	/// </summary>
+	void handleEnemies();
+	/// <summary>
+	/// Handle animations.
+	/// </summary>
+	void handleAnimation();
+	/// <summary>
+	/// Handles movement.
+	/// </summary>
+	void handleMovement();
+	/// <summary>
+	/// Updates the hud.
+	/// </summary>
+	void updateHud();
 };
 

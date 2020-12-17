@@ -72,8 +72,18 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 }
 
 void GameScreen::onTick() {
-	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+	calculateHealth();
+	calculateScore();
+	calculateGameOver();
+	handleEnemies();
+	Physics::getInstance().step(1.0f / 60.0f, 6, 2);
+	handleMovement();
+	handleAnimation();
+	updateHud();
+	updateFpsElement();
+}
 
+void GameScreen::calculateHealth() {
 	if (Scene::getInstance().getPlayer()->getExtension<HealthExtension>()) {
 		GameObject* gameObject = Scene::getInstance().getPlayer();
 		float healthValue = (float)gameObject->getExtension<HealthExtension>()->getHealth();
@@ -85,18 +95,26 @@ void GameScreen::onTick() {
 		else
 			_hpBar->percent = healthValue / 100;
 	}
+}
+
+void GameScreen::calculateScore() {
+	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (timePassed >= 1) {
 		begin = std::chrono::steady_clock::now();
 		if (Scene::getInstance().score >= 1)
 			Scene::getInstance().score--;
 	}
+}
 
+void GameScreen::calculateGameOver() {
 	if (Scene::getInstance().gameOver) {
 		_game->switchScreen(Screens::GameFinished);
 		Scene::getInstance().gameOver = false;
 	}
+}
 
+void GameScreen::handleEnemies() {
 	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
 		GameObject* gameObject = Scene::getInstance().getEntityAtIndex((int)gameObjectIndex);
 
@@ -114,68 +132,6 @@ void GameScreen::onTick() {
 			}
 		}
 	}
-
-	float timeStep = 1.0f / 60.0f;
-
-	Physics::getInstance().step(timeStep, 6, 2);
-
-	if (Scene::getInstance().getPlayer()) {
-		handlePlayerControls();
-
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
-			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->updateState();
-	}
-
-	for (const auto& gameObject : Scene::getInstance().getGameObjects()) {
-		if (gameObject.second != nullptr && gameObject.second->hasExtension(typeid(AnimationExtension)))
-			gameObject.second->getExtension<AnimationExtension>()->animate();
-	}
-
-	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		AbstractManageableItem* currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
-		if (currentWeapon != NULL) {
-			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
-
-			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::CROSSHAIR))
-				Mouse::getInstance().setCursor(MouseSkins::CROSSHAIR);
-
-			for (std::string cheat : Scene::getInstance().activatedCheats) {
-				if (cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
-					_ammo->text = "AMMO: INFINITE";
-			}
-
-			if (_ammo->text != "AMMO: INFINITE") {
-				if (currentWeapon->getAmmo() == -1) {
-					long difference = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
-					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
-						_ammo->text = "COOLDOWN: READY";
-					else if (difference >= currentWeapon->getCooldown())
-						_ammo->text = "COOLDOWN: READY";
-					else
-						_ammo->text = "COOLDOWN: RECHARGING";
-				}
-				else {
-					long cooldown = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
-					if (cooldown == 0)
-						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
-					else if (cooldown < currentWeapon->getCooldown())
-						_ammo->text = "COOLDOWN: RECHARGING";
-					else if (cooldown >= currentWeapon->getCooldown())
-						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
-				}
-
-			}
-		}
-		else {
-			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::NONE))
-				Mouse::getInstance().setCursor(MouseSkins::NONE);
-			_weapon->text = "WEAPON: NONE";
-			_ammo->text = "AMMO:";
-		}
-	}
-	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
-
-	updateFpsElement();
 }
 
 void GameScreen::handlePlayerControls() {
@@ -233,6 +189,68 @@ void GameScreen::handlePlayerControls() {
 			}
 		}
 	}
+}
+
+void GameScreen::handleAnimation() {
+	for (const auto& gameObject : Scene::getInstance().getGameObjects()) {
+		if (gameObject.second != nullptr && gameObject.second->hasExtension(typeid(AnimationExtension)))
+			gameObject.second->getExtension<AnimationExtension>()->animate();
+	}
+}
+
+void GameScreen::handleMovement() {
+	if (Scene::getInstance().getPlayer()) {
+		handlePlayerControls();
+
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
+			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->updateState();
+	}
+}
+
+void GameScreen::updateHud() {
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+		AbstractManageableItem* currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
+		if (currentWeapon != NULL) {
+			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
+
+			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::CROSSHAIR))
+				Mouse::getInstance().setCursor(MouseSkins::CROSSHAIR);
+
+			for (std::string cheat : Scene::getInstance().activatedCheats) {
+				if (cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
+					_ammo->text = "AMMO: INFINITE";
+			}
+
+			if (_ammo->text != "AMMO: INFINITE") {
+				if (currentWeapon->getAmmo() == -1) {
+					long difference = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					if (difference == 0 && currentWeapon->getScreenName() != "GLUE GUN")
+						_ammo->text = "COOLDOWN: READY";
+					else if (difference >= currentWeapon->getCooldown())
+						_ammo->text = "COOLDOWN: READY";
+					else
+						_ammo->text = "COOLDOWN: RECHARGING";
+				}
+				else {
+					long cooldown = Utilities::getInstance().convertTimeToLong(std::chrono::steady_clock::now()) - currentWeapon->getLastUsed();
+					if (cooldown == 0)
+						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+					else if (cooldown < currentWeapon->getCooldown())
+						_ammo->text = "COOLDOWN: RECHARGING";
+					else if (cooldown >= currentWeapon->getCooldown())
+						_ammo->text = "AMMO: " + std::to_string(currentWeapon->getAmmo());
+				}
+
+			}
+		}
+		else {
+			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::NONE))
+				Mouse::getInstance().setCursor(MouseSkins::NONE);
+			_weapon->text = "WEAPON: NONE";
+			_ammo->text = "AMMO:";
+		}
+	}
+	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
 }
 
 void GameScreen::handleKeyboardInput(KeyboardEvent e) {
