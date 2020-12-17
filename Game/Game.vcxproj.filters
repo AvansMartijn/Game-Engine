@@ -414,5 +414,8 @@
     <Image Include="..\..\..\..\Downloads\LatropLogo.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\gfx\LatropLogo.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
