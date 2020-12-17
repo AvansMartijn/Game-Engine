@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "AbstractBehaviour.h"
-AbstractBehaviour::AbstractBehaviour(shared_ptr<GameObject> self) {
+AbstractBehaviour::AbstractBehaviour(GameObject* self) {
 	_self = self;
 	_begin = std::chrono::steady_clock::now();
 }

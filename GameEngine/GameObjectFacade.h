@@ -12,5 +12,5 @@ public:
 	/// </summary>
 	/// <param name="extensionNames">The extensions we want to add.</param>
 	/// <returns>The created game object.</returns>
-	shared_ptr<GameObject> createGameObject(vector<string> extensionNames);
+	unique_ptr<GameObject> createGameObject(vector<string> extensionNames);
 };

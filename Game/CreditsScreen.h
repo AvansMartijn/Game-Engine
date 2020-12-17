@@ -6,29 +6,28 @@
 #include "ImageUiElement.h"
 #include "Screens.h"
 #include "ControllManager.h"
+#include <KeyboardEvent.h>
 
 class CreditsScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _fps;
-
 	int _offset{ 0 };
 	int _anchor{ 0 };
 	bool _scrollLock = true;
-	shared_ptr<TextUiElement> _line;
+	TextUiElement* _line;
+	unique_ptr<ImageUiElement> _backgroundImage;
 
-	std::vector<shared_ptr<TextUiElement>> _scrollableElements;
-	shared_ptr<ImageUiElement> _theBoyz;
+	std::vector<unique_ptr<TextUiElement>> _scrollableElements;
+	ImageUiElement* _theBoyz;
 
 	//wack-A-Mole
 	std::chrono::steady_clock::time_point _begin;
 	int _score{ 0 };
-	shared_ptr<TextUiElement> _scoreText;
-	shared_ptr<TextUiElement> _wackAMoleInfo;
-	shared_ptr<ButtonUiElement> _mole;
+	TextUiElement* _scoreText;
+	TextUiElement* _wackAMoleInfo;
+	ButtonUiElement* _mole;
 	
-	std::vector<shared_ptr<ButtonUiElement>> _wackAMoleButtons;
+	std::vector<unique_ptr<ButtonUiElement>> _wackAMoleButtons;
 public:
-	using AbstractScreen::AbstractScreen;
 	CreditsScreen();
 	~CreditsScreen();
 
@@ -44,15 +43,25 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	void handleKeyboardInput(SDL_KeyboardEvent e);
-	/// <summary>
-	/// Called when the user moves their mouse.
-	/// </summary>
-	/// <param name="e">The mouse mouse event.</param>
-	void handleMouseMotionInput(SDL_MouseMotionEvent e);
+	void handleKeyboardInput(KeyboardEvent e);
 	/// <summary>
 	/// Handle the mouse wheel input.
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleMouseWheelInput(MouseWheelEvent e);
+	/// <summary>
+	/// Called when the user click their mouse.
+	/// </summary>
+	/// <param name="e">The mouse click event.</param>
+	void handleMouseClickInput(MouseButtonEvent e);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void render(const unique_ptr<Window>& window);
 };

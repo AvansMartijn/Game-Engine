@@ -57,9 +57,9 @@ void EnemyAnimationHandler::registerAnimations() {
 	_animations.insert(make_pair(KEY_HURTING, frames));
 }
 
-void EnemyAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
+void EnemyAnimationHandler::animate(GameObject* gameObject) {
 	if (gameObject->hasExtension(typeid(MoveExtension))) {
-		shared_ptr<MoveExtension> moveExtension = gameObject->getExtension<MoveExtension>();
+		MoveExtension* moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipLeft = moveExtension->isLookingToLeft;
 
 		std::string movementType = getKeyFromMovementType(moveExtension->currentMovementType);
@@ -67,7 +67,7 @@ void EnemyAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
 			_currentFrame = 0;
 			currentAnimation = movementType;
 
-			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
+			Vec2 velocity = gameObject->body.getLinearVelocity();
 
 			if (movementType == KEY_RUNNING)
 				_currentCooldown = 200;

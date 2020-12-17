@@ -19,16 +19,18 @@ using namespace std;
 class Window;
 class GAMEENGINE_GameObject GameObject {
 private:
-	vector<shared_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
+	vector<unique_ptr<AbstractGameObjectExtension>> _gameObjectExtensions;
 
 	/// <summary>
 	/// Get's an extension from type_info.
 	/// </summary>
 	/// <param name="type">The typeinfo for the type.</param>
 	/// <returns>The extension/</returns>
-	shared_ptr<AbstractGameObjectExtension> getExtension(const std::type_info& type);
+	AbstractGameObjectExtension* getExtension(const std::type_info& type);
 public:
 	GameObject();
+	GameObject(const GameObject&) = delete;
+	GameObject& operator =(const GameObject&) = delete;
 
 	Body body;
 	int id;
@@ -39,7 +41,7 @@ public:
 	/// Adds an extension.
 	/// </summary>
 	/// <param name="extension">The extension we want to add</param>
-	void addExtension(shared_ptr<AbstractGameObjectExtension> extension);
+	void addExtension(unique_ptr<AbstractGameObjectExtension> extension);
 
 	/// <summary>
 	/// Checks if the given extension is available.
@@ -65,7 +67,7 @@ public:
 	/// Get's all the extensions for this game object.
 	/// </summary>
 	/// <returns>All the extensions.</returns>
-	vector<shared_ptr<AbstractGameObjectExtension>> getExtensions();
+	vector<unique_ptr<AbstractGameObjectExtension>>& getExtensions();
 
 	/// <summary>
 	/// Get's the extension with the given type.
@@ -73,15 +75,15 @@ public:
 	/// <typeparam name="T">The extension type.</typeparam>
 	/// <returns>The extension.</returns>
 	template<typename T>
-	std::shared_ptr<T> getExtension() {
+	T* getExtension() {
 		const std::type_info& typeId = typeid(T);
 
-		std::shared_ptr<AbstractGameObjectExtension> baseExtension = getExtension(typeId);
+		AbstractGameObjectExtension* baseExtension = getExtension(typeId);
 
 		if (baseExtension == nullptr)
 			return nullptr;
 
-		return dynamic_pointer_cast<T>(baseExtension);
+		return static_cast<T*>(baseExtension);
 	}
 
 	/// <summary>
@@ -91,15 +93,15 @@ public:
 	/// <typeparam name="T2">The type id type.</typeparam>
 	/// <returns>The extension.</returns>
 	template<typename T1, typename T2>
-	std::shared_ptr<T1> getExtension() {
+	T1* getExtension() {
 		const std::type_info& typeId = typeid(T2);
 
-		std::shared_ptr<AbstractGameObjectExtension> baseExtension = getExtension(typeId);
+		AbstractGameObjectExtension* baseExtension = getExtension(typeId);
 
 		if (baseExtension == nullptr)
 			return nullptr;
 
-		return dynamic_pointer_cast<T1>(baseExtension);
+		return static_cast<T1*>(baseExtension);
 	}
 };
 

@@ -28,7 +28,7 @@ void Window::registerTexture(const std::string& textureKey, const std::string& t
 	SDLTexture texture = SDLTexture(texturePath, _renderer.get());
 	texture.isReversed = isReversed;
 
-	AssetRegistry::getInstance().registerTexture(textureKey, make_shared<SDLTexture>(texture));
+	AssetRegistry::getInstance().registerTexture(textureKey, make_unique<SDLTexture>(texture));
 }
 
 void Window::registerTextures(const std::string& prefix, const std::string& directory, bool isDeep) {
@@ -67,13 +67,13 @@ void Window::renderRectangle(const Rect& rect, const Color& color) {
 }
 
 void Window::renderTexture(const std::string& textureKey, const Rect& rect, float angle, bool flipLeft, int alpha) {
-	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
+	SDLTexture* texture = AssetRegistry::getInstance().getTexture(textureKey);
 
 	texture->renderTexture(_renderer.get(), rect, angle, flipLeft, alpha);
 }
 
 void Window::renderSprite(const std::string& textureKey, const Rect& rect, const Rect& sprite, float angle, bool flipLeft) {
-	std::shared_ptr<SDLTexture> texture = AssetRegistry::getInstance().getTexture(textureKey);
+	SDLTexture* texture = AssetRegistry::getInstance().getTexture(textureKey);
 
 	texture->renderSprite(_renderer.get(), rect, sprite, angle, flipLeft);
 }

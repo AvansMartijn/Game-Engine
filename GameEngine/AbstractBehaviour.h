@@ -13,7 +13,7 @@
 /// </summary>
 class GAMEENGINE_AbstractBehaviour AbstractBehaviour {
 protected:
-	shared_ptr<GameObject> _self = nullptr;
+	GameObject* _self;
 	std::chrono::steady_clock::time_point _begin;
 
 	/// <summary>
@@ -22,14 +22,15 @@ protected:
 	/// <param name="isTrue">The state of the next behaviour.</param>
 	virtual void executeNextBehaviour(bool isTrue);
 public:
-	AbstractBehaviour(shared_ptr<GameObject> self);
+	// Both these pointers should not own the behaviour.
+	AbstractBehaviour* behaviourTrue;
+	AbstractBehaviour* behaviourFalse;
+
+	AbstractBehaviour(GameObject* self);
 
 	/// <summary>
 	/// Execute the behaviour.
 	/// </summary>
 	virtual void execute() = 0;
-
-	shared_ptr<AbstractBehaviour> behaviourTrue = nullptr;
-	shared_ptr<AbstractBehaviour> behaviourFalse = nullptr;
 };
 

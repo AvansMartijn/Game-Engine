@@ -15,7 +15,7 @@ public:
 	/// Resolve the collision
 	/// </summary>
 	/// <param name="otherObject">The gameObject which we want to resolve with.</param>
-	void resolveCollision(shared_ptr<GameObject> otherObject);
+	void resolveCollision(GameObject* otherObject);
 
 	static AbstractGameObjectExtension* __stdcall create() { return new CollisionResolutionDefaultExtension(); }
 	static std::string __stdcall getType() { return "CollisionResolutionDefaultExtension"; }

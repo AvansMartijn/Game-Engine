@@ -10,16 +10,12 @@ void StartNewLevelScreen::onInit() {
 	const string fontPortal = "Portal";
 	backgroundTrackKey = "Game_Over";
 
-	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_backgroundElement = make_unique<ImageUiElement>(ImageUiElement("Background", { 0 , 0, 1080, 720 }));
 
 	//SCROLL
-	TextUiElement storyTitle = TextUiElement("-", "Portal", 40, { 515, 125, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	_storyTitle = make_shared<TextUiElement>(storyTitle);
-	_storyTitle->text = "Story";
-	_uiElements.push_back(_storyTitle);
-	_scrollableElements.push_back(_storyTitle);
-
+	TextUiElement storyTitle = TextUiElement("Story", "Portal", 40, { 515, 125, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(storyTitle));
+	_storyTitle = static_cast<TextUiElement*>(_scrollableUiElement.back().get());
 
 	std::vector<std::string> lines;
 	lines.push_back("For years, waluigi has been hoping to access the Super Smash roster.");
@@ -34,100 +30,78 @@ void StartNewLevelScreen::onInit() {
 	lines.push_back(" ");
 	lines.push_back("He sees a back door behind a bush and sneaks in ... ");
 
+
 	TextUiElement storyText = TextUiElement(lines, "Portal", 25, { 515, 200, 100, 0 }, { 255, 255, 255 }, bgColor, true);
-	_storyText = make_shared<TextUiElement>(storyText);
-	_uiElements.push_back(_storyText);
-	_scrollableElements.push_back(_storyText);
-	_anchor = _storyText->rect.y;
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(storyText));
+	_storyText = static_cast<TextUiElement*>(_scrollableUiElement.back().get());
+	_anchor = _scrollableUiElement.back()->rect.y;
 
-	TextUiElement keyBindingsText = TextUiElement("-", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
-	shared_ptr<TextUiElement> pKeyBindingsTitle = make_shared<TextUiElement>(keyBindingsText);
-	pKeyBindingsTitle->text = "Basic keybindings";
-	_uiElements.push_back(pKeyBindingsTitle);
-	_scrollableElements.push_back(pKeyBindingsTitle);
+	TextUiElement keyBindingsText = TextUiElement("Basic keybindings", "Portal", 40, { 515, 600, 100, 0 }, { 255, 255, 255 }, bgColor, true, true);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(keyBindingsText));
 
-	TextUiElement movementText = TextUiElement("-", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> pMovementText = make_shared<TextUiElement>(movementText);
-	pMovementText->text = "Movement";
-	_uiElements.push_back(pMovementText);
-	_scrollableElements.push_back(pMovementText);
+	TextUiElement movementText = TextUiElement("Movement", "Portal", 20, { 110, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(movementText));
 
-	TextUiElement weaponsText = TextUiElement("-", "Portal", 20, { 250, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> pWeaponsText = make_shared<TextUiElement>(weaponsText);
-	pWeaponsText->text = "Weapon select";
-	_uiElements.push_back(pWeaponsText);
-	_scrollableElements.push_back(pWeaponsText);
+	TextUiElement weaponsText = TextUiElement("Weapon select", "Portal", 20, { 250, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(weaponsText));
 
-	TextUiElement mouseText = TextUiElement("-", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> pMouseText = make_shared<TextUiElement>(mouseText);
-	pMouseText->text = "Shoot";
-	_uiElements.push_back(pMouseText);
-	_scrollableElements.push_back(pMouseText);
+	TextUiElement mouseText = TextUiElement("Shoot", "Portal", 20, { 880, 700, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(mouseText));
 
-	TextUiElement jumpText = TextUiElement("-", "Portal", 20, { 350, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> pJumpText = make_shared<TextUiElement>(jumpText);
-	pJumpText->text = "Jump";
-	_uiElements.push_back(pJumpText);
-	_scrollableElements.push_back(pJumpText);
+	TextUiElement jumpText = TextUiElement("Jump", "Portal", 20, { 350, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(jumpText));
 
-	TextUiElement scrollText = TextUiElement("-", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
-	shared_ptr<TextUiElement> pScrollText = make_shared<TextUiElement>(scrollText);
-	pScrollText->text = "Zoom";
-	_uiElements.push_back(pScrollText);
-	_scrollableElements.push_back(pScrollText);
+	TextUiElement scrollText = TextUiElement("Zoom", "Portal", 20, { 880, 1030, 100, 0 }, { 255, 255, 255 }, bgColor, false, false);
+	_scrollableUiElement.push_back(make_unique<TextUiElement>(scrollText));
 
-	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 },0,false);
-	_keybindingsImage = make_shared<ImageUiElement>(keybindingsImg);
-	_uiElements.push_back(_keybindingsImage);
+	ImageUiElement keybindingsImg = ImageUiElement("Keybindings", { (1080 - 900) / 2 , 450, 1000, 800 }, 0, false);
+	_scrollableUiElement.push_back(make_unique<ImageUiElement>(keybindingsImg));
+	_keybindingsImage = static_cast<ImageUiElement*>(_scrollableUiElement.back().get());
+	////SCROLL END
+	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
+	_uiElements.push_back(make_unique<ImageUiElement>(portalOrangeImg));
 
-	//SCROLL END
-	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2)-100, 50, 200 });
-	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
-
-	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2)-100, 50, 200 });
-	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
+	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2) - 100, 50, 200 });
+	_uiElements.push_back(make_unique<ImageUiElement>(portalPurpleImg));
 
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
-	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(headerImg));
 
-	TextUiElement title = TextUiElement("Waluigi", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, tColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(title));
+	TextUiElement title = TextUiElement("Help", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, tColor, true);
+	_uiElements.push_back(make_unique<TextUiElement>(title));
 
 	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
-	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(footerImg));
 
-	ButtonUiElement backButton = ButtonUiElement("Start", { 515, 650, 70, 40 }, tColor, { 255, 255, 255 }, font, 25);
-	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) {
+	ButtonUiElement startButton = ButtonUiElement("Start", { 515, 650, 70, 40 }, tColor, { 255, 255, 255 }, font, 25);
+	startButton.registerGame(_game);
+	startButton.onClick = [](AbstractGame* game) {
 		LevelData levelData = GameSettings::getInstance().getCurrentLevel();
 		game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "reset" });
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(startButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void StartNewLevelScreen::onTick() {
-	_fps->text = "FPS: " + std::to_string(_game->currentFPS);
+	updateFpsElement();
 }
 
-void StartNewLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void StartNewLevelScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 }
 
 void StartNewLevelScreen::onScreenShowed(vector<std::string> args) {}
 
-void StartNewLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+void StartNewLevelScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (e.y > 0) // scroll up
 		_offset = 20;
 	else if (e.y < 0) // scroll down
@@ -142,12 +116,26 @@ void StartNewLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 
 	if ((currentY += _offset) < _anchor) {
 		if ((currentY += _offset) > ((_anchor + heightOfScrolBlock - 200) * -1)) {
-			
-			for (auto textElement : _scrollableElements)
-				textElement->rect.y += _offset;
-
-			_keybindingsImage->rect.y += _offset;
+			for (const auto& uiElement : _scrollableUiElement)
+				uiElement->rect.y += _offset;
 		}
 	}
 }
 
+void StartNewLevelScreen::preRender(const unique_ptr<Window>& window) {
+	_backgroundElement->preRender(window);
+
+	for (const unique_ptr<AbstractUiElement>& scrollableUiElements : _scrollableUiElement)
+		scrollableUiElements->preRender(window);
+
+	AbstractScreen::preRender(window);
+}
+
+void StartNewLevelScreen::render(const unique_ptr<Window>& window) {
+	_backgroundElement->render(window);
+
+	for (const unique_ptr<AbstractUiElement>& scrollableUiElements : _scrollableUiElement)
+		scrollableUiElements->render(window);
+
+	AbstractScreen::render(window);
+}

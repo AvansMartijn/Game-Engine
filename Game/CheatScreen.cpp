@@ -12,37 +12,32 @@ void CheatScreen::onInit() {
 	const string font = "Portal";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	TextUiElement title = TextUiElement("Cheats", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(title));
+	_uiElements.push_back(make_unique<TextUiElement>(title));
 
 	TextUiElement enterCheat = TextUiElement("Enter Cheat", font, 30, { 250, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(enterCheat));
+	_uiElements.push_back(make_unique<TextUiElement>(enterCheat));
 
 	TextUiElement cheatText = TextUiElement(" ", font, 30, { 100, 350, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_cheatText = make_shared<TextUiElement>(cheatText);
-	_uiElements.push_back(_cheatText);
+	_cheatText = addUiElement<TextUiElement>(make_unique<TextUiElement>(cheatText));
 
 	ButtonUiElement cheatHelp = ButtonUiElement("Cheat Overview", { 400, 650, 180, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	cheatHelp.registerGame(_game);
-	cheatHelp.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::CheatHelp); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(cheatHelp));
+	cheatHelp.onClick = [](AbstractGame* game) { game->switchScreen(Screens::CheatHelp); };
+	_uiElements.push_back(make_unique<ButtonUiElement>(cheatHelp));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 600, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::MainGame); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::MainGame); };
+	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void CheatScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 
 	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::BEAM))
 		Mouse::getInstance().setCursor(MouseSkins::BEAM);
@@ -52,17 +47,17 @@ void CheatScreen::onScreenShowed(vector<std::string> args) {
 	_cheatText->text = " ";
 }
 
-void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void CheatScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	if (e.keysym.sym == SDLK_RETURN) {
+	if (e.keyCode == KEY_RETURN) {
 		std::string cheat = _cheatText->text;
 
 		Utilities::getInstance().trim(cheat);
@@ -73,22 +68,21 @@ void CheatScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 				Scene::getInstance().activatedCheats.push_back(cheat);
 			}
 		}
+		else {
+			_cheatText->text = "Cheat Not Found";
+		}
 	}
 
-	if (e.keysym.sym == SDLK_BACKSPACE) {
+	if (e.keyCode == KEY_BACKSPACE) {
 		if (_cheatText->text.size() == 1)
 			_cheatText->text = " ";
 		else if (_cheatText->text.size() > 1)
 			_cheatText->text.pop_back();
 	}
 	if (_cheatText->text.length() <= 20) {
-		if (e.keysym.sym == SDLK_SPACE)
+		if (e.keyCode == KEY_SPACE)
 			_cheatText->text.push_back(' ');
-		if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-			_cheatText->text.push_back((char)e.keysym.sym);
+		if (e.keyCode >= 97 && e.keyCode <= 122)
+			_cheatText->text.push_back((char)e.keyCode);
 	}
 }
-
-void CheatScreen::handleMouseMotionInput(SDL_MouseMotionEvent e){}
-
-void CheatScreen::handleMouseWheelInput(SDL_MouseWheelEvent e){}

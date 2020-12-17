@@ -57,16 +57,16 @@ void PlayerAnimationHandler::registerAnimations() {
 	_animations.insert(make_pair(KEY_HURTING, frames));
 }
 
-void PlayerAnimationHandler::animate(std::shared_ptr<GameObject> gameObject) {
+void PlayerAnimationHandler::animate(GameObject* gameObject) {
 	if (gameObject->hasExtension(typeid(MoveExtension))) {
-		shared_ptr<MoveExtension> moveExtension = gameObject->getExtension<MoveExtension>();
+		MoveExtension* moveExtension = gameObject->getExtension<MoveExtension>();
 		shouldFlipLeft = moveExtension->isLookingToLeft;
 
 		std::string movementType = getKeyFromMovementType(moveExtension->currentMovementType);
 		if (movementType != currentAnimation) {
 			_currentFrame = 0;
 
-			Vec2 velocity = Physics::getInstance().getLinearVelocity(gameObject);
+			Vec2 velocity = gameObject->body.getLinearVelocity();
 
 			currentAnimation = movementType;
 			if (movementType == KEY_RUNNING)

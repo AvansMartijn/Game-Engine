@@ -16,7 +16,7 @@ using namespace std;
 class GameObject;
 class GAMEENGINE_AbstractGameObjectExtension AbstractGameObjectExtension {
 protected:
-	shared_ptr<GameObject> _subject;
+	GameObject* _subject;
 public:
 	std::string type;
 
@@ -24,7 +24,7 @@ public:
 	/// Registers the subject of the extension.
 	/// </summary>
 	/// <param name="subject">The subject of the extension.</param>
-	virtual void registerSubject(shared_ptr<GameObject> subject);
+	virtual void registerSubject(GameObject* subject);
 
 	/// <summary>
 	/// Fills the extensions with the given properties.

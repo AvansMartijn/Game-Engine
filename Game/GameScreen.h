@@ -34,16 +34,15 @@ class GameScreen : public AbstractScreen {
 private:
 	std::chrono::steady_clock::time_point begin;
 	GameEngine _gameEngine;
-	std::vector<std::shared_ptr<AbstractManageableItem>> _availableItems;
-	shared_ptr<AbstractLevelLoader> _levelLoader;
-	vector<shared_ptr<AbstractUiElement>> _gameUiElements;
-	shared_ptr<TextUiElement> _weapon;
-	shared_ptr<TextUiElement> _score;
-	shared_ptr<TextUiElement> _fps;
-	shared_ptr<ImageUiElement> _backgroundImg;
-	shared_ptr<ImageUiElement> _hudBackgroundImg;
-	shared_ptr<HpBarUIElement> _hpBar;
-	shared_ptr<TextUiElement> _ammo;
+	unique_ptr<AbstractLevelLoader> _levelLoader;
+
+	vector<unique_ptr<AbstractUiElement>> _gameUiElements;
+	unique_ptr<ImageUiElement> _backgroundImg;
+	TextUiElement* _weapon;
+	TextUiElement* _score;
+	HpBarUIElement* _hpBar;
+	TextUiElement* _ammo;
+
 	std::string _name;
 public:
 	GameScreen();
@@ -81,22 +80,22 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	void handleKeyboardInput(SDL_KeyboardEvent e);
-	/// <summary>
-	/// Called when the user moves their mouse.
-	/// </summary>
-	/// <param name="e">The mouse mouse event.</param>
-	void handleMouseMotionInput(SDL_MouseMotionEvent e);
-	/// <summary>
-	/// Handle the mouse wheel input.
-	/// </summary>
-	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleKeyboardInput(KeyboardEvent e);
 	/// <summary>
 	/// Called when the user click their mouse.
 	/// </summary>
 	/// <param name="e">The mouse click event.</param>
-	void handleMouseClickInput(SDL_MouseButtonEvent e);
+	void handleMouseClickInput(MouseButtonEvent e);
+	/// <summary>
+	/// Handle the mouse wheel input.
+	/// </summary>
+	/// <param name="e">The mouse wheel input</param>
+	void handleMouseWheelInput(MouseWheelEvent e);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
 	/// <summary>
 	/// Renders all the objects on the screen.
 	/// </summary>
@@ -106,5 +105,33 @@ public:
 	/// Resets the game.
 	/// </summary>
 	void reset();
+	/// <summary>
+	/// Calculate the players health.
+	/// </summary>
+	void calculateHealth();
+	/// <summary>
+	/// Calculate the score.
+	/// </summary>
+	void calculateScore();
+	/// <summary>
+	/// Calculate game over.
+	/// </summary>
+	void calculateGameOver();
+	/// <summary>
+	/// Handles the enemies.
+	/// </summary>
+	void handleEnemies();
+	/// <summary>
+	/// Handle animations.
+	/// </summary>
+	void handleAnimation();
+	/// <summary>
+	/// Handles movement.
+	/// </summary>
+	void handleMovement();
+	/// <summary>
+	/// Updates the hud.
+	/// </summary>
+	void updateHud();
 };
 

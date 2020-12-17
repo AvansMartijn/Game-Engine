@@ -2,25 +2,25 @@
 #include "AbstractScreen.h"
 #include <TextUiElement.h>
 #include "ControllManager.h"
+#include "ImageUiElement.h"
+#include <KeyboardEvent.h>
 
 class HighScoreScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _scrollableText;
+	unique_ptr<TextUiElement> _scrollableText;
+	unique_ptr<ImageUiElement> _backgroundImage;
 
 	int _offset = 0;
 	int _anchor = 0;
-	shared_ptr<TextUiElement> _fps;
-
 public:
-	using AbstractScreen::AbstractScreen;
 	HighScoreScreen();
 	~HighScoreScreen();
 	// Inherited via AbstractScreen
-	virtual void onInit() override;
+	void onInit() override;
 	/// <summary>
 	/// updates every tick
 	/// </summary>
-	virtual void onTick() override;
+	void onTick() override;
 	/// <summary>
 	/// Called when the user switches to this screen.
 	/// </summary>
@@ -30,16 +30,21 @@ public:
 	/// Handles keyboard input
 	/// </summary>
 	/// <param name="e"></param>
-	virtual void handleKeyboardInput(SDL_KeyboardEvent e) override;
-	/// <summary>
-	/// handles mouse input
-	/// </summary>
-	/// <param name="e"></param>
-	virtual void handleMouseMotionInput(SDL_MouseMotionEvent e) override;
+	void handleKeyboardInput(KeyboardEvent e);
 	/// <summary>
 	/// Handle the mouse wheel input.
 	/// </summary>
 	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleMouseWheelInput(MouseWheelEvent e);
+	/// <summary>
+	/// Pre renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void preRender(const unique_ptr<Window>& window);
+	/// <summary>
+	/// Renders all the objects on the screen.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	void render(const unique_ptr<Window>& window);
 };
 

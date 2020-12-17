@@ -179,10 +179,9 @@
     <ClCompile Include="CheatHelpScreen.cpp" />
     <ClCompile Include="CheatManager.cpp" />
     <ClCompile Include="CheatScreen.cpp" />
-    <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="ControllManager.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
-    <ClCompile Include="DefaultLevel.cpp" />
+    <ClCompile Include="DefaultContactHandler.cpp" />
     <ClCompile Include="DefaultLevelLoader.cpp" />
     <ClCompile Include="DefaultTiledLevel.cpp" />
     <ClCompile Include="EnemyAnimationHandler.cpp" />
@@ -224,10 +223,9 @@
     <ClInclude Include="CheatHelpScreen.h" />
     <ClInclude Include="CheatManager.h" />
     <ClInclude Include="CheatScreen.h" />
-    <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="ControllManager.h" />
     <ClInclude Include="CreditsScreen.h" />
-    <ClInclude Include="DefaultLevel.h" />
+    <ClInclude Include="DefaultContactHandler.h" />
     <ClInclude Include="DefaultLevelLoader.h" />
     <ClInclude Include="DefaultTiledLevel.h" />
     <ClInclude Include="EnemyAnimationHandler.h" />
@@ -254,6 +252,7 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerAnimationHandler.h" />
     <ClInclude Include="Quotes.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SaveGame.h" />
     <ClInclude Include="NewGameSlotsScreen.h" />
     <ClInclude Include="SaveHighscore.h" />
@@ -277,6 +276,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SettingsScreen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\gfx\LatropLogo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -1,11 +1,11 @@
 #pragma once
 #include "AbstractLevelLoader.h"
 #include <CollisionResolutionPortalExtension.h>
-#include "DefaultLevel.h"
+#include "AbstractLevel.h"
 
 class DefaultLevelLoader : public AbstractLevelLoader {
 private:
-	std::map<std::string, shared_ptr<AbstractLevel>> _levels;
+	std::map<std::string, unique_ptr<AbstractLevel>> _levels;
 public:
 	DefaultLevelLoader();
 
@@ -14,6 +14,6 @@ public:
 	/// </summary>
 	/// <param name="gameEngine">The game engine.</param>
 	/// <param name="name">The name of the level.</param>
-	void createLevel(GameEngine gameEngine, const std::string& name);
+	void createLevel(GameEngine& gameEngine, const std::string& name);
 };
 

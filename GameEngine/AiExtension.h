@@ -12,7 +12,7 @@
 /// </summary>
 class GAMEENGINE_AiExtension AiExtension : public AbstractGameObjectExtension {
 public:
-	std::shared_ptr<AbstractEntityAI> ai;
+	unique_ptr<AbstractEntityAI> ai;
 
 	AiExtension();
 

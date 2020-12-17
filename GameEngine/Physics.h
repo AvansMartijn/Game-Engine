@@ -9,27 +9,23 @@
 #ifndef Physics_h
 #define Physics_h
 
-
 #include <Box2D.h>
 #include <memory>
 #include "GameObject.h"
-#include "AbstractContactListener.h"
 #include "CustomUserData.h"
 #include "TeleportObject.h"
 #include "Scene.h"
 #include "RotateObj.h"
-#include "AbstractContactListener.h"
+#include "ContactListener.h"
 
-class CollisionListener;
 class GAMEENGINE_Physics Physics {
 private:
 	Physics();
 	static Physics instance;
 
-	// TODO: DEZE WEG WERKEN.
 	b2World* _world;
 	b2Vec2 _gravity;
-	shared_ptr<AbstractContactListener> _colListener;
+	unique_ptr<ContactListener> _colListener;
 public:
 	static Physics& getInstance() { return instance; }
 
@@ -41,7 +37,8 @@ public:
 	
 	vector<TeleportObject> teleportQueue;
 	vector<RotateObj> rotateQueue;
-	vector<shared_ptr<GameObject>> setStaticQueue;
+
+	vector<GameObject*> setStaticQueue;
 	vector<int> deleteQueue;
 	vector<int> expirationQueue;
 
@@ -61,7 +58,7 @@ public:
 	/// <param name="y">The y-coordinate.</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
-	void addPlayer(shared_ptr<GameObject> obj, float x, float y, float width, float height);
+	void addPlayer(GameObject* obj, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Adds an entity to the world.
@@ -72,7 +69,7 @@ public:
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
 	/// <param name="userDataType">The identifier.</param>
-	void addEntity(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType = "entityFixture");
+	void addEntity(GameObject* obj, float x, float y, float width, float height, std::string userDataType = "entityFixture");
 
 	/// <summary>
 	/// Adds a portal to the world.
@@ -82,7 +79,7 @@ public:
 	/// <param name="y">The y-coordinate.</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height.</param>
-	void addNonRigidBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, std::string userDataType);
+	void addNonRigidBody(GameObject* obj, float x, float y, float width, float height, std::string userDataType);
 
 	/// <summary>
 	/// Adds a body to the world.
@@ -95,7 +92,7 @@ public:
 	/// <param name="friction">The friction.</param>
 	/// <param name="fixed">If this body should be affected by collisions.</param>
 	/// <param name="fixedRotation">If the rotation should be effected by collisions.</param>
-	void addBody(shared_ptr<GameObject> obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet = false, std::string userDataType = "fixture");
+	void addBody(GameObject* obj, float x, float y, float width, float height, float friction, bool fixed, bool fixedRotation, bool isBullet = false, std::string userDataType = "fixture");
 
 	/// <summary>
 	/// Reset the physics.
@@ -127,36 +124,15 @@ public:
 	void executeExpirationQueue();
 
 	/// <summary>
-	/// Set's the contact listener.
+	/// Set's the contact handler.
 	/// </summary>
-	/// <param name="contactListener">The contact listener.</param>
-	void setContactListener(shared_ptr<AbstractContactListener> contactListener);
+	/// <param name="contactListener">The contact handler.</param>
+	void setContactHandler(unique_ptr<AbstractContactHandler> contactHandler);
 
 	/// <summary>
 	/// Clear all the queues.
 	/// </summary>
 	void clearAllQueues();
-
-	/// <summary>
-	/// Get Linear velocity of game object
-	/// </summary>
-	/// <param name="gameObject">The gameobject</param>
-	/// <returns>The linear velocity.</returns>
-	Vec2 getLinearVelocity(shared_ptr<GameObject> gameObject);
-
-	/// <summary>
-	/// Get Linear velocity of game object
-	/// </summary>
-	/// <param name="gameObject">The game object</param>
-	/// <returns>The linear velocity</returns>
-	void setLinearVelocity(shared_ptr<GameObject> gameObject, const Vec2& vel);
-
-	/// <summary>
-	/// Get's the position of the game object.
-	/// </summary>
-	/// <param name="gameObject">The game object.</param>
-	/// <returns>The position of the game object</returns>
-	Vec2 getPosition(shared_ptr<GameObject> gameObject);
 };
 
 #endif

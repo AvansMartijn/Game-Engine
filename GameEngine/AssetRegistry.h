@@ -22,7 +22,7 @@ private:
 
 	static AssetRegistry instance;
 
-	std::map<std::string, std::shared_ptr<SDLTexture>> _textures;
+	std::map<std::string, std::unique_ptr<SDLTexture>> _textures;
 	std::map<std::string, std::string> _fonts;
 
 public:
@@ -38,14 +38,14 @@ public:
 	/// </summary>
 	/// <param name="textureKey">The texture key.</param>
 	/// <param name="texture">The texture.</param>
-	void registerTexture(const std::string& textureKey, std::shared_ptr<SDLTexture> texture);
+	void registerTexture(const std::string& textureKey, std::unique_ptr<SDLTexture> texture);
 
 	/// <summary>
 	/// Get's the texture from the registry.
 	/// </summary>
 	/// <param name="textureKey">The texture key.</param>
 	/// <returns>The texture.</returns>
-	std::shared_ptr<SDLTexture> getTexture(const std::string& textureKey);
+	SDLTexture* getTexture(const std::string& textureKey);
 
 	/// <summary>
 	/// Adds the font path to the registry.

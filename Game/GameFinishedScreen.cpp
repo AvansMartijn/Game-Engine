@@ -11,31 +11,28 @@ void GameFinishedScreen::onInit() {
 	const string font = "Portal";
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	TextUiElement headerText = TextUiElement("Level Finished", font, 60, { 0, 0, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(headerText));
+	_uiElements.push_back(make_unique<TextUiElement>(headerText));
 
 	TextUiElement bodyText = TextUiElement("Score:", font, 48, { 100, 100, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_bodyText = make_shared<TextUiElement>(bodyText);
-	_uiElements.push_back(_bodyText);
+	_bodyText = addUiElement<TextUiElement>(make_unique<TextUiElement>(bodyText));
 
 	TextUiElement nameLabelText = TextUiElement("Type your name:", font, 48, { 100, 200, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(nameLabelText));
+	_uiElements.push_back(make_unique<TextUiElement>(nameLabelText));
 
 	ImageUiElement walu = ImageUiElement("Win", { 1080 - 350 , ((720 - 400) / 2) + 50, 400, 400 });
-	_uiElements.push_back(make_shared<ImageUiElement>(walu));
+	_uiElements.push_back(make_unique<ImageUiElement>(walu));
 
 	TextUiElement nameText = TextUiElement(" ", font, 48, { 100, 300, 0, 0 }, { 255, 255, 255 }, bgColor, true);
-	_nameText = make_shared<TextUiElement>(nameText);
-	_uiElements.push_back(_nameText);
+	_nameText = addUiElement<TextUiElement>(make_unique<TextUiElement>(nameText));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 
 	ButtonUiElement nextLevelButton = ButtonUiElement("Next level & Save", { 500, 600, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	nextLevelButton.registerGame(_game);
-	nextLevelButton.onClick = [this](shared_ptr<AbstractGame> game) {
+	nextLevelButton.onClick = [this](AbstractGame* game) {
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
 		auto test = GameSettings::getInstance().getNextLevel().levelName;
@@ -81,12 +78,11 @@ void GameFinishedScreen::onInit() {
 		else
 			game->switchScreen(Screens::Credits);
 	};
-	_nextLevelButton = make_shared<ButtonUiElement>(nextLevelButton);
-	_uiElements.push_back(_nextLevelButton);
+	_nextLevelButton = addUiElement<ButtonUiElement>(make_unique<ButtonUiElement>(nextLevelButton));
 
 	ButtonUiElement quitGameButton = ButtonUiElement("Main menu", { 500, 650, 200, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	quitGameButton.registerGame(_game);
-	quitGameButton.onClick = [this](shared_ptr<AbstractGame> game) {
+	quitGameButton.onClick = [this](AbstractGame* game) {
 		LevelData currentLevelData = GameSettings::getInstance().getCurrentLevel();
 
 		if (GameSettings::getInstance().isStoryLevel(currentLevelData)) {
@@ -113,14 +109,11 @@ void GameFinishedScreen::onInit() {
 		}
 		game->switchScreen(Screens::MainMenu);
 	};
-	_uiElements.push_back(make_shared<ButtonUiElement>(quitGameButton));
+	_uiElements.push_back(make_unique<ButtonUiElement>(quitGameButton));
 }
 
 void GameFinishedScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 
 	if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::DEFAULT))
 		Mouse::getInstance().setCursor(MouseSkins::DEFAULT);
@@ -130,7 +123,6 @@ void GameFinishedScreen::onTick() {
 }
 
 void GameFinishedScreen::onScreenShowed(vector<string> args) {
-
 	if (Scene::getInstance().hasCheated)
 		_bodyText->text = "No Score For Cheaters >:(";
 	else
@@ -142,32 +134,25 @@ void GameFinishedScreen::onScreenShowed(vector<string> args) {
 		_nextLevelButton->text = "Next level";
 }
 
-void GameFinishedScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Scancode test = e.keysym.scancode;
-	std::string test3 = SDL_GetScancodeName(test);
-	if (e.keysym.sym == SDLK_BACKSPACE) {
+void GameFinishedScreen::handleKeyboardInput(KeyboardEvent e) {
+	if (e.keyCode == KEY_BACKSPACE) {
 		if (_nameText->text.size() > 1)
 			_nameText->text.pop_back();
 	}
 	if (_nameText->text.length() < 21) {
-		if (e.keysym.sym == SDLK_SPACE)
+		if (e.keyCode == KEY_SPACE)
 			_nameText->text.push_back(' ');
-		if (e.keysym.sym >= 97 && e.keysym.sym <= 122)
-			_nameText->text.push_back((char)e.keysym.sym);
+		if (e.keyCode >= 97 && e.keyCode <= 122)
+			_nameText->text.push_back((char)e.keyCode);
 	}
 	
-	SDL_Keycode fps;
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode== fps)
 		shouldShowFPS = !shouldShowFPS;
 
 }
-
-void GameFinishedScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void GameFinishedScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {}
-

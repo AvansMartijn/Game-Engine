@@ -5,12 +5,12 @@ AnimationExtension::AnimationExtension() {
 	type = getType();
 }
 
-void AnimationExtension::setAnimationHandler(shared_ptr<AbstractAnimationHandler> animationHandler) {
-	_animationHandler = animationHandler;
+void AnimationExtension::setAnimationHandler(unique_ptr<AbstractAnimationHandler> animationHandler) {
+	_animationHandler = std::move(animationHandler);
 }
 
-shared_ptr<AbstractAnimationHandler> AnimationExtension::getAnimationHandler() {
-	return _animationHandler;
+AbstractAnimationHandler* AnimationExtension::getAnimationHandler() {
+	return _animationHandler.get();
 }
 
 void AnimationExtension::registerAnimations() {

@@ -47,14 +47,14 @@ void AbstractManageableItem::setCooldown(long cooldown) {
 	_cooldown = cooldown;
 }
 
-void AbstractManageableItem::setOwner(shared_ptr<GameObject> owner) {
+void AbstractManageableItem::setOwner(GameObject* owner) {
 	_owner = owner;
 }
 
 void AbstractManageableItem::render(const unique_ptr<Window>& window) {
 	bool isLookingToLeft = _owner->hasExtension(typeid(MoveExtension)) ? _owner->getExtension<MoveExtension>()->isLookingToLeft : false;
 
-	b2Vec2 position = _owner->body.b2body->GetPosition();
+	Vec2 position = _owner->body.getPosition();
 
 	float x = position.x;
 	if (isLookingToLeft)

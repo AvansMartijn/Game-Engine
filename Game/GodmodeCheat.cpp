@@ -4,7 +4,7 @@
 
 bool GodmodeCheat::execute() {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(HealthExtension))) {
-		shared_ptr<HealthExtension> healthExtension = Scene::getInstance().getPlayer()->getExtension<HealthExtension>();
+		HealthExtension* healthExtension = Scene::getInstance().getPlayer()->getExtension<HealthExtension>();
 		healthExtension->setHealth(MAXINT);
 
 		return true;

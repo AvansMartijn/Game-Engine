@@ -52,7 +52,7 @@ void CheatManager::initializeCheats() {
     _cheatInformation.insert({ "sonicmode","Ups the game speed" });
 
     _cheatList.insert({ "martijnmode", std::make_unique<MartijnModeCheat>(martijnModeCheat) });
-    _cheatInformation.insert({ "martijnmode","reset the game speed" });
+    _cheatInformation.insert({ "martijnmode","Reset the game speed" });
     
     _cheatList.insert({ "flyboi", std::make_unique<FlyCheat>(flyCheat) });
     _cheatInformation.insert({ "flyboi","Allows you to fly." });

@@ -14,6 +14,6 @@ public:
 	/// Animate the given game object.
 	/// </summary>
 	/// <param name="gameObject">The game object we want to animate.</param>
-	void animate(std::shared_ptr<GameObject> gameObject);
+	void animate(GameObject* gameObject);
 };
 

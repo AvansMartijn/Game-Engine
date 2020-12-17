@@ -22,7 +22,7 @@ public:
 	/// Create the level.
 	/// </summary>
 	/// <param name="gameEngine">The game engine</param>
-	void createLevel(GameEngine gameEngine);
+	void createLevel(GameEngine& gameEngine);
 
 	/// <summary>
 	/// Creates the tile.
@@ -36,7 +36,7 @@ public:
 	/// <param name="y">The y-coordinate</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height</param>
-	void createTile(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height);
+	void createTile(GameEngine& gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Creates the object.
@@ -50,7 +50,7 @@ public:
 	/// <param name="y">The y-coordinate</param>
 	/// <param name="width">The width</param>
 	/// <param name="height">The height</param>
-	void createObject(GameEngine gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height);
+	void createObject(GameEngine& gameEngine, TiledGameObject& tiledGameObject, std::vector<std::string>& extensions, std::map<std::string, ExtensionProperty> extensionProperties, float x, float y, float width, float height);
 
 	/// <summary>
 	/// Get's the texture key from the path.

@@ -8,7 +8,7 @@ MoveExtension::MoveExtension() {
 }
 
 void MoveExtension::move(float movementX, float movementY) {
-	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	Vec2 vel = _subject->body.getLinearVelocity();
 	vel.x = movementX;
 	vel.y = movementY;
 
@@ -23,12 +23,12 @@ void MoveExtension::move(float movementX, float movementY) {
 	else if (vel.x > 0)
 		isLookingToLeft = false;
 
-	Physics::getInstance().setLinearVelocity(_subject, vel);
+	_subject->body.setLinearVelocity(vel);
 	resetAfkTime();
 }
 
 void MoveExtension::moveX(float movementX) {
-	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	Vec2 vel = _subject->body.getLinearVelocity();
 	vel.x = movementX;
 
 	if(currentMovementType != MovementType::JUMPING)
@@ -42,12 +42,12 @@ void MoveExtension::moveX(float movementX) {
 	else if (vel.x > 0)
 		isLookingToLeft = false;
 
-	Physics::getInstance().setLinearVelocity(_subject, vel);
+	_subject->body.setLinearVelocity(vel);
 	resetAfkTime();
 }
 
 void MoveExtension::moveY(float movementY) {
-	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	Vec2 vel = _subject->body.getLinearVelocity();
 	vel.y = movementY;
 	
 	currentMovementType = MovementType::JUMPING;
@@ -55,15 +55,15 @@ void MoveExtension::moveY(float movementY) {
 	if (_subject->hasExtension(typeid(CanWieldExtension)))
 		_subject->getExtension<CanWieldExtension>()->setShouldRender(true);
 
-	Physics::getInstance().setLinearVelocity(_subject, vel);
+	_subject->body.setLinearVelocity(vel);
 	resetAfkTime();
 }
 
 void MoveExtension::updateState() {
-	Vec2 vel = Physics::getInstance().getLinearVelocity(_subject);
+	Vec2 vel = _subject->body.getLinearVelocity();
 	if (canJump() && vel.x == 0 && vel.y == 0 && currentMovementType != MovementType::HURTING) {
 		if (_subject->hasExtension(typeid(CanWieldExtension))) {
-			shared_ptr<CanWieldExtension> canWieldExtension = _subject->getExtension<CanWieldExtension>();
+			CanWieldExtension* canWieldExtension = _subject->getExtension<CanWieldExtension>();
 
 			if (canWieldExtension->hasItems()) {
 				if (currentMovementType == MovementType::AFK)

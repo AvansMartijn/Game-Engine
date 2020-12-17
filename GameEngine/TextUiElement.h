@@ -19,13 +19,14 @@ private:
 	bool _center;
 	bool _multiLine;
 
-	// TODO: WEG WERKEN
 	// This has to be here, otherwise we have to add every possible fontSize to the registry.
 	TTF_Font* _font;
 public:
+	//TextUiElement() {}
 	TextUiElement(const std::string& txt, const std::string& fontKey, int fontSize, const Rect& textRect, const Color& fgColor, const Color& bgColor, bool center, bool mutliLine = false);
 	TextUiElement(std::vector<std::string> txt, const std::string& fontKey, int fontSize, const Rect& rect, const Color& fgColor, const Color& bgColor, bool center, bool mutliLine = false);
 	~TextUiElement();
+
 	std::string text;
 	std::vector<std::string> textLines;
 

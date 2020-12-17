@@ -2,21 +2,21 @@
 #include "DefaultEntityAI.h"
 #include <thread>
 
-void DefaultEntityAI::createBehaviourTree(shared_ptr<GameObject> self) {
-	_behaviourIdle = make_shared<BehaviourIdle>(BehaviourIdle(self));
+void DefaultEntityAI::createBehaviourTree(GameObject* self) {
+	_idleBehaviour = make_unique<BehaviourIdle>(self);
 
-	shared_ptr<BehaviourSeesEnemy> seesEnemy = make_shared<BehaviourSeesEnemy>(BehaviourSeesEnemy(self));
-	_behaviourIdle->behaviourTrue = seesEnemy;
+	_seesEnemyBehaviour = make_unique<BehaviourSeesEnemy>(self);
+	_idleBehaviour->behaviourTrue = _seesEnemyBehaviour.get();
 
-	shared_ptr<BehaviourAttack> attackPlayer = make_shared<BehaviourAttack>(BehaviourAttack(self));
+	_attackPlayerBehaviour = make_unique<BehaviourAttack>(self);
 
-	shared_ptr<BehaviourMove> moveEnemy = make_shared<BehaviourMove>(BehaviourMove(self));
-	moveEnemy->behaviourFalse = attackPlayer;
+	_moveEnemyBehaviour = make_unique<BehaviourMove>(self);
+	_moveEnemyBehaviour->behaviourFalse = _attackPlayerBehaviour.get();
 
-	shared_ptr<BehaviourRotate> rotateEnemy = make_shared<BehaviourRotate>(BehaviourRotate(self, 2000));
-	seesEnemy->behaviourTrue = moveEnemy;
-	seesEnemy->behaviourFalse = rotateEnemy;
+	_rotateEnemyBehaviour = make_unique<BehaviourRotate>(self, 2000);
+	_seesEnemyBehaviour->behaviourTrue = _moveEnemyBehaviour.get();
+	_seesEnemyBehaviour->behaviourFalse = _rotateEnemyBehaviour.get();
 
-	_currentBehaviour = _behaviourIdle;
+	_currentBehaviour = _idleBehaviour.get();
 }
 

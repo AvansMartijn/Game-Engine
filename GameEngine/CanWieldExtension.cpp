@@ -5,22 +5,23 @@ CanWieldExtension::CanWieldExtension() {
 	type = getType();
 }
 
-void CanWieldExtension::addItem(std::shared_ptr<AbstractManageableItem> item) {
+void CanWieldExtension::addItem(std::unique_ptr<AbstractManageableItem> item) {
 	item->setOwner(_subject);
-	_items.push_back(item);
+	_items.push_back(std::move(item));
 }
 
 void CanWieldExtension::clearItems() {
 	_items.clear();
 }
 
-std::shared_ptr<AbstractManageableItem> CanWieldExtension::getCurrentItem() {
+AbstractManageableItem* CanWieldExtension::getCurrentItem() {
 	if (_currentItemIndex >= _items.size())
 		return nullptr;
-	return _items[_currentItemIndex];
+
+	return _items[_currentItemIndex].get();
 }
 
-std::vector<std::shared_ptr<AbstractManageableItem>> CanWieldExtension::getItems() {
+std::vector<std::unique_ptr<AbstractManageableItem>>& CanWieldExtension::getItems() {
 	return _items;
 }
 
@@ -32,14 +33,14 @@ void CanWieldExtension::setCurrentItemIndex(int index) {
 }
 
 void CanWieldExtension::onLeftClick(int x, int y) {
-	std::shared_ptr<AbstractManageableItem> item = getCurrentItem();
+	AbstractManageableItem* item = getCurrentItem();
 
 	if (item != nullptr)
 		getCurrentItem()->onLeftClick(x, y);
 }
 
 void CanWieldExtension::onRightClick(int x, int y) {
-	std::shared_ptr<AbstractManageableItem> item = getCurrentItem();
+	AbstractManageableItem* item = getCurrentItem();
 
 	if (item != nullptr)
 		getCurrentItem()->onRightClick(x, y);

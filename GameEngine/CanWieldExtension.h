@@ -13,33 +13,36 @@
 
 class GAMEENGINE_CanWieldExtension CanWieldExtension : public AbstractGameObjectExtension {
 private:
-	std::vector<std::shared_ptr<AbstractManageableItem>> _items;
+	std::vector<std::unique_ptr<AbstractManageableItem>> _items;
 	int _currentItemIndex;
 public:
 	CanWieldExtension();
-	
+	CanWieldExtension(const CanWieldExtension&) = delete;
+	CanWieldExtension& operator =(const CanWieldExtension&) = delete;
+
 	/// <summary>
 	/// Add the item to the extension.
 	/// </summary>
 	/// <param name="item">The item we want to add.</param>
-	void addItem(std::shared_ptr<AbstractManageableItem> item);
+	void addItem(std::unique_ptr<AbstractManageableItem> item);
 
 	/// <summary>
 	/// Clear all the items currently wielded.
 	/// </summary>
 	void clearItems();
 
+	// REASON: It's possible for the item to be a nullptr, that's why a reference is returned. 
 	/// <summary>
 	/// Get's the current item.
 	/// </summary>
 	/// <returns>The current item.</returns>
-	std::shared_ptr<AbstractManageableItem> getCurrentItem();
+	AbstractManageableItem* getCurrentItem();
 
 	/// <summary>
 	/// Get's all available items.
 	/// </summary>
 	/// <returns>All available items.</returns>
-	std::vector<std::shared_ptr<AbstractManageableItem>> getItems();
+	std::vector<std::unique_ptr<AbstractManageableItem>>& getItems();
 
 	/// <summary>
 	/// Set's the current item index.

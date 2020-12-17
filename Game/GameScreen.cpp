@@ -15,8 +15,7 @@ void GameScreen::onInit() {
 }
 
 void GameScreen::setupScreen() {
-	_backgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 }));
-	_uiElements.push_back(_backgroundImg);
+	_backgroundImg = make_unique<ImageUiElement>(ImageUiElement("BackgroundGame", { 0 , 0, 2160, 720 }));
 }
 
 void GameScreen::setupHUD() {
@@ -27,29 +26,21 @@ void GameScreen::setupHUD() {
 	const string font = "Portal";
 	const int fontSize = 19;
 
-	_hudBackgroundImg = make_shared<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 240, 100 }, 122));
-	_uiElements.push_back(_hudBackgroundImg);
-	_gameUiElements.push_back(_hudBackgroundImg);
+	_gameUiElements.push_back(make_unique<ImageUiElement>(ImageUiElement("BackgroundHud", { 0 , 620, 240, 100 }, 122)));
 
-	_score = make_shared<TextUiElement>(TextUiElement("SCORE: 999", font, fontSize, { 10, 630, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_score);
-	_gameUiElements.push_back(_score);
+	_gameUiElements.push_back(make_unique<TextUiElement>(TextUiElement("SCORE: 999", font, fontSize, { 10, 630, 0, 0 }, fgColor, bgColor, false)));
+	_score = static_cast<TextUiElement*>(_gameUiElements.back().get());
 
-	_weapon = make_shared<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 10, 650, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_weapon);
-	_gameUiElements.push_back(_weapon);
+	_gameUiElements.push_back(make_unique<TextUiElement>(TextUiElement("WEAPON: NONE", font, fontSize, { 10, 650, 0, 0 }, fgColor, bgColor, false)));
+	_weapon = static_cast<TextUiElement*>(_gameUiElements.back().get());
 
-	_ammo = make_shared<TextUiElement>(TextUiElement("AMMO:", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false));
-	_uiElements.push_back(_ammo);
-	_gameUiElements.push_back(_ammo);
+	_gameUiElements.push_back(make_unique<TextUiElement>(TextUiElement("AMMO:", font, fontSize, { 10, 670, 0, 0 }, fgColor, bgColor, false)));
+	_ammo = static_cast<TextUiElement*>(_gameUiElements.back().get());
 
-	_hpBar = make_shared<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed));
-	_uiElements.push_back(_hpBar);
-	_gameUiElements.push_back(_hpBar);
+	_gameUiElements.push_back(make_unique<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed)));
+	_hpBar = static_cast<HpBarUIElement*>(_gameUiElements.back().get());
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
-	_gameUiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void GameScreen::setupGame() {
@@ -66,11 +57,11 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 		std::string arg = args[i];
 
 		if (arg == "tiled") {
-			_levelLoader = make_shared<TiledLevelLoader>(TiledLevelLoader());
+			_levelLoader = make_unique<TiledLevelLoader>(TiledLevelLoader());
 			_levelLoader->directory = AssetRegistry::getInstance().getBasePath() + "res\\levels\\";
 		}
 		else if (arg == "default")
-			_levelLoader = make_shared<DefaultLevelLoader>(DefaultLevelLoader());
+			_levelLoader = make_unique<DefaultLevelLoader>(DefaultLevelLoader());
 		else if (arg == "custom")
 			_levelLoader->directory = AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2") + "Levels\\";
 		else if (arg == "reset")
@@ -81,10 +72,20 @@ void GameScreen::onScreenShowed(vector<std::string> args) {
 }
 
 void GameScreen::onTick() {
-	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
+	calculateHealth();
+	calculateScore();
+	calculateGameOver();
+	handleEnemies();
+	Physics::getInstance().step(1.0f / 60.0f, 6, 2);
+	handleMovement();
+	handleAnimation();
+	updateHud();
+	updateFpsElement();
+}
 
+void GameScreen::calculateHealth() {
 	if (Scene::getInstance().getPlayer()->getExtension<HealthExtension>()) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getPlayer();
+		GameObject* gameObject = Scene::getInstance().getPlayer();
 		float healthValue = (float)gameObject->getExtension<HealthExtension>()->getHealth();
 
 		if (healthValue <= 0) {
@@ -94,27 +95,35 @@ void GameScreen::onTick() {
 		else
 			_hpBar->percent = healthValue / 100;
 	}
+}
+
+void GameScreen::calculateScore() {
+	auto timePassed = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - begin).count();
 
 	if (timePassed >= 1) {
 		begin = std::chrono::steady_clock::now();
 		if (Scene::getInstance().score >= 1)
 			Scene::getInstance().score--;
 	}
+}
 
+void GameScreen::calculateGameOver() {
 	if (Scene::getInstance().gameOver) {
 		_game->switchScreen(Screens::GameFinished);
 		Scene::getInstance().gameOver = false;
 	}
+}
 
+void GameScreen::handleEnemies() {
 	for (size_t gameObjectIndex = 0; gameObjectIndex < Scene::getInstance().getEntitiesSize(); gameObjectIndex++) {
-		shared_ptr<GameObject> gameObject = Scene::getInstance().getEntityAtIndex((int)gameObjectIndex);
+		GameObject* gameObject = Scene::getInstance().getEntityAtIndex((int)gameObjectIndex);
 
 		if (gameObject != nullptr) {
 			if (gameObject->hasExtension(typeid(AiExtension)))
 				gameObject->getExtension<AiExtension>()->execute();
 
 			if (gameObject->hasExtension(typeid(HealthExtension))) {
-				shared_ptr<HealthExtension> healthExtension = gameObject->getExtension<HealthExtension>();
+				HealthExtension* healthExtension = gameObject->getExtension<HealthExtension>();
 
 				if (healthExtension->getHealth() <= 0) {
 					Scene::getInstance().removeEntity((int)gameObjectIndex);
@@ -123,27 +132,84 @@ void GameScreen::onTick() {
 			}
 		}
 	}
+}
 
-	float timeStep = 1.0f / 60.0f;
+void GameScreen::handlePlayerControls() {
+	const Uint8* keystate = Utilities::getInstance().getKeyboardState();
 
-	Physics::getInstance().step(timeStep, 6, 2);
+	Scancode walkLeft;
+	if (ControllManager::getInstance().walkLeftKey.isDefault)
+		walkLeft = ControllManager::getInstance().walkLeftKey.defaultScanKey;
+	else
+		walkLeft = ControllManager::getInstance().walkLeftKey.userScanKey;
 
+	if (keystate[walkLeft]) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			if (moveExtension->leftArmCounter <= 0)
+				moveExtension->moveX(-5);
+		}
+	}
+
+	Scancode walkRight;
+	if (ControllManager::getInstance().walkRightKey.isDefault)
+		walkRight = ControllManager::getInstance().walkRightKey.defaultScanKey;
+	else
+		walkRight = ControllManager::getInstance().walkRightKey.userScanKey;
+
+	if (keystate[walkRight]) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			if (moveExtension->rightArmCounter <= 0)
+				moveExtension->moveX(5);
+		}
+	}
+
+	Scancode stop;
+	if (ControllManager::getInstance().stopKey.isDefault)
+		stop = ControllManager::getInstance().stopKey.defaultScanKey;
+	else
+		stop = ControllManager::getInstance().stopKey.userScanKey;
+
+	if (keystate[stop])
+		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(0);
+
+	Scancode jump;
+	if (ControllManager::getInstance().jumpKey.isDefault)
+		jump = ControllManager::getInstance().jumpKey.defaultScanKey;
+	else
+		jump = ControllManager::getInstance().jumpKey.userScanKey;
+
+	if (keystate[jump]) {
+		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
+			MoveExtension* moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
+			if (moveExtension->canJump()) {
+				moveExtension->moveY(-5);
+				SoundPlayer::getInstance().playSFX("Player_Jump");
+			}
+		}
+	}
+}
+
+void GameScreen::handleAnimation() {
+	for (const auto& gameObject : Scene::getInstance().getGameObjects()) {
+		if (gameObject.second != nullptr && gameObject.second->hasExtension(typeid(AnimationExtension)))
+			gameObject.second->getExtension<AnimationExtension>()->animate();
+	}
+}
+
+void GameScreen::handleMovement() {
 	if (Scene::getInstance().getPlayer()) {
 		handlePlayerControls();
 
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension)))
 			Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->updateState();
 	}
+}
 
-	for (auto gameObject : Scene::getInstance().getGameObjects()) {
-		if (gameObject.second != nullptr && gameObject.second->hasExtension(typeid(AnimationExtension)))
-			gameObject.second->getExtension<AnimationExtension>()->animate();
-	}
-
+void GameScreen::updateHud() {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		std::vector<std::shared_ptr<AbstractManageableItem>> guns = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getItems();
-
-		shared_ptr<AbstractManageableItem> currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
+		AbstractManageableItem* currentWeapon = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem();
 		if (currentWeapon != NULL) {
 			_weapon->text = "WEAPON: " + currentWeapon->getScreenName();
 
@@ -151,7 +217,7 @@ void GameScreen::onTick() {
 				Mouse::getInstance().setCursor(MouseSkins::CROSSHAIR);
 
 			for (std::string cheat : Scene::getInstance().activatedCheats) {
-				if (cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
+				if (cheat == "unlimitedammo" && currentWeapon->getScreenName() == "GLUE GUN")
 					_ammo->text = "AMMO: INFINITE";
 			}
 
@@ -178,175 +244,111 @@ void GameScreen::onTick() {
 			}
 		}
 		else {
-			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::NONE))
-				Mouse::getInstance().setCursor(MouseSkins::NONE);
 			_weapon->text = "WEAPON: NONE";
 			_ammo->text = "AMMO:";
 		}
 	}
 	_score->text = "SCORE: " + std::to_string(Scene::getInstance().score);
-
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else if(_fps->text.length() > 0)
-		_fps->text = "  ";
 }
 
-void GameScreen::handlePlayerControls() {
-	const Uint8* keystate = SDL_GetKeyboardState(NULL);
+void GameScreen::handleKeyboardInput(KeyboardEvent e) {
+	Scancode firstGun;
 
-	SDL_Scancode walkLeft;
-	if (ControllManager::getInstance().walkLeftKey.isDefault)
-		walkLeft = ControllManager::getInstance().walkLeftKey.defaultSDLKey;
-	else
-		walkLeft = ControllManager::getInstance().walkLeftKey.userSDLKey;
-
-	if (keystate[walkLeft]) {
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
-			if (moveExtension->leftArmCounter <= 0)
-				moveExtension->moveX(-5);
-		}
-	}
-
-	SDL_Scancode walkRight;
-	if (ControllManager::getInstance().walkRightKey.isDefault)
-		walkRight = ControllManager::getInstance().walkRightKey.defaultSDLKey;
-	else
-		walkRight = ControllManager::getInstance().walkRightKey.userSDLKey;
-
-	if (keystate[walkRight]) {
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
-			if (moveExtension->rightArmCounter <= 0)
-				moveExtension->moveX(5);
-		}
-	}
-
-	SDL_Scancode stop;
-	if (ControllManager::getInstance().stopKey.isDefault)
-		stop = ControllManager::getInstance().stopKey.defaultSDLKey;
-	else
-		stop = ControllManager::getInstance().stopKey.userSDLKey;
-
-	if (keystate[stop])
-		Scene::getInstance().getPlayer()->getExtension<MoveExtension>()->moveX(0);
-
-	SDL_Scancode jump;
-	if (ControllManager::getInstance().jumpKey.isDefault)
-		jump = ControllManager::getInstance().jumpKey.defaultSDLKey;
-	else
-		jump = ControllManager::getInstance().jumpKey.userSDLKey;
-
-	if (keystate[jump]) {
-		if (Scene::getInstance().getPlayer()->hasExtension(typeid(MoveExtension))) {
-			shared_ptr<MoveExtension> moveExtension = Scene::getInstance().getPlayer()->getExtension<MoveExtension>();
-			if (moveExtension->canJump()) {
-				moveExtension->moveY(-5);
-				SoundPlayer::getInstance().playSFX("Player_Jump");
-			}
-		}
-
-	}
-}
-
-void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode firstGun;
 	if (ControllManager::getInstance().equipPortalKey.isDefault)
-		firstGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipPortalKey.defaultSDLKey);
+		firstGun = ControllManager::getInstance().equipPortalKey.defaultScanKey;
 	else
-		firstGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipPortalKey.userSDLKey);
+		firstGun = ControllManager::getInstance().equipPortalKey.userScanKey;
 
-	SDL_Keycode secondGun;
+	Scancode secondGun;
 	if (ControllManager::getInstance().equipThrusterKey.isDefault)
-		secondGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipThrusterKey.defaultSDLKey);
+		secondGun = ControllManager::getInstance().equipThrusterKey.defaultScanKey;
 	else
-		secondGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipThrusterKey.userSDLKey);
+		secondGun = ControllManager::getInstance().equipThrusterKey.userScanKey;
 
-	SDL_Keycode thirdGun;
+	Scancode thirdGun;
 	if (ControllManager::getInstance().equipGlueKey.isDefault)
-		thirdGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipGlueKey.defaultSDLKey);
+		thirdGun = ControllManager::getInstance().equipGlueKey.defaultScanKey;
 	else
-		thirdGun = SDL_GetKeyFromScancode(ControllManager::getInstance().equipGlueKey.userSDLKey);
+		thirdGun = ControllManager::getInstance().equipGlueKey.userScanKey;
 
-	if (e.keysym.sym == firstGun) {
+	if (e.scanCode == firstGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(0);
 	}
-	else if (e.keysym.sym == secondGun) {
+	else if (e.scanCode == secondGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(1);
 	}
-	else if (e.keysym.sym == thirdGun) {
+	else if (e.scanCode == thirdGun) {
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(2);
 	}
 
-	SDL_Keycode fps;
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_GetKeyFromScancode(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_GetKeyFromScancode(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps) 
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 	
-	switch (e.keysym.sym) {
-	case SDLK_ESCAPE:
+	switch (e.keyCode) {
+	case KEY_ESCAPE:
 		_game->switchScreen(Screens::Pause);
 
 		break;
-	case SDLK_4:
+	case KEY_4:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(3);
 
 		break;
-	case SDLK_5:
+	case KEY_5:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(4);
 
 		break;
-	case SDLK_6:
+	case KEY_6:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(5);
 
 		break;
-	case SDLK_7:
+	case KEY_7:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(6);
 
 		break;
-	case SDLK_8:
+	case KEY_8:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(7);
 
 		break;
-	case SDLK_9:
+	case KEY_9:
 		if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension)))
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->setCurrentItemIndex(8);
 
 		break;
-	case SDLK_TAB:
+	case KEY_TAB:
 		_game->switchScreen(Screens::Cheat);
 		break;
-	case SDLK_PAGEUP:
+	case KEY_PAGEUP:
 		if (Scene::getInstance().tickRate + 10 <= 250)
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate + 10;
 		break;
-	case SDLK_PAGEDOWN:
+	case KEY_PAGEDOWN:
 		if (Scene::getInstance().tickRate - 10 > 0)
 			Scene::getInstance().tickRate = Scene::getInstance().tickRate - 10;
 		break;
-	case SDLK_HOME:
+	case KEY_HOME:
 		Scene::getInstance().tickRate = 60.0;
 		break;
-	case SDLK_p:
+	case KEY_p:
 		_game->reset();
-	case SDLK_KP_PLUS:
+	case KEY_KP_PLUS:
 		if(Scene::getInstance().zoom < 60)
 			Scene::getInstance().zoom += 3.0f;
 		break;
-	case SDLK_KP_MINUS:
+	case KEY_KP_MINUS:
 	if (Scene::getInstance().zoom > 10)
 		Scene::getInstance().zoom -= 3.0f;
 	default:
@@ -354,18 +356,16 @@ void GameScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	}
 }
 
-void GameScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
+void GameScreen::handleMouseClickInput(MouseButtonEvent e) {
 	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
-		shared_ptr<CanWieldExtension> wieldExtension = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>();
+		CanWieldExtension* wieldExtension = Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>();
 
 		switch (e.button) {
-		case SDL_BUTTON_LEFT:
+		case BUTTON_LEFT:
 			wieldExtension->onLeftClick(e.x, e.y);
 
 			break;
-		case SDL_BUTTON_RIGHT:
+		case BUTTON_RIGHT:
 			wieldExtension->onRightClick(e.x, e.y);
 
 			break;
@@ -373,7 +373,7 @@ void GameScreen::handleMouseClickInput(SDL_MouseButtonEvent e) {
 	}
 }
 
-void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
+void GameScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (e.y > 0) {
 		// Put code for handling "scroll up" here!
 		if (Scene::getInstance().zoom < 60)
@@ -386,16 +386,24 @@ void GameScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	}
 }
 
+void GameScreen::preRender(const unique_ptr<Window>& window) {
+	_backgroundImg->preRender(window);
+
+	for (const unique_ptr<AbstractUiElement>& uiElement : _gameUiElements)
+		uiElement->preRender(window);
+
+	AbstractScreen::preRender(window);
+}
 
 void GameScreen::render(const unique_ptr<Window>& window) {
 	_backgroundImg->render(window);
 
 	Scene::getInstance().render(window);
 
-	for (size_t gameUiElementIndex = 0; gameUiElementIndex < _gameUiElements.size(); gameUiElementIndex++)
-		_gameUiElements[gameUiElementIndex]->render(window);
+	for(const unique_ptr<AbstractUiElement>& uiElement : _gameUiElements)
+		uiElement->render(window);
 
-  if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
+	if (Scene::getInstance().getPlayer()->hasExtension(typeid(CanWieldExtension))) {
 		if (Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem() != nullptr)
 			Scene::getInstance().getPlayer()->getExtension<CanWieldExtension>()->getCurrentItem()->render(window);
 	}

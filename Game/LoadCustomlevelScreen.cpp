@@ -1,4 +1,5 @@
 #include "LoadCustomLevelScreen.h"
+#include <Utilities.h>
 
 LoadCustomLevelScreen::LoadCustomLevelScreen() {}
 LoadCustomLevelScreen::~LoadCustomLevelScreen() {}
@@ -11,58 +12,51 @@ void LoadCustomLevelScreen::onInit() {
 	offset = 0;
 
 	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(backgroundImg));
 
 	_files = AssetRegistry::getInstance().getFilesInDirectory(AssetRegistry::getInstance().getPrefPath("Mike", "Latrop 2"), "Levels\\", false, false);
 
 	for (size_t i = 0; i < _files.size(); i++) {
 		LevelData levelData = { _files[i].key, LevelType::TILED };
 
-		shared_ptr<ButtonUiElement> _line;
 		ButtonUiElement lineOfC = ButtonUiElement(levelData.levelName, { 430, y, 720, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 		lineOfC.registerGame(_game);
-		lineOfC.onClick = [levelData](shared_ptr<AbstractGame> game) {
+		lineOfC.onClick = [levelData](AbstractGame* game) {
 			GameSettings::getInstance().saveGame.currentSlot = 0;
 			GameSettings::getInstance().saveGame.customSlot = GameSettings::getInstance().getIndexByLevelName(levelData.levelName);
 			game->switchScreen(Screens::Loading, { to_string(Screens::MainGame), levelData.levelType == LevelType::DEFAULT ? "default" : "tiled", levelData.levelName, "custom", "reset" });
 		};
-		_line = make_shared<ButtonUiElement>(lineOfC);
-		_uiElements.push_back(_line);
-		uiList.push_back(_line);
+		_scrollableUiElements.push_back(make_unique<ButtonUiElement>(lineOfC));
 		y += 35;
 	}
 
 	TextUiElement title = TextUiElement("Custom levels", font, 60, { 5, 10, 100, 130 }, { 255, 255, 255 }, bgColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(title));
+	_uiElements.push_back(make_unique<TextUiElement>(title));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 515, 650, 70, 40 }, bgColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
+	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void LoadCustomLevelScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else
-		_fps->text = "  ";
+	updateFpsElement();
 }
 
-void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void LoadCustomLevelScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 
-	switch (e.keysym.sym) {
-	case SDLK_ESCAPE: // GO BACK TO PAUSE
+	switch (e.keyCode) {
+	case KEY_ESCAPE: // GO BACK TO PAUSE
 		_game->switchScreen(Screens::MainMenu);
 		break;
 	default:
@@ -70,19 +64,44 @@ void LoadCustomLevelScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
 	}
 }
 
-void LoadCustomLevelScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void LoadCustomLevelScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-
+void LoadCustomLevelScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (_files.size() > 20) {
 		if (e.y > 0) // scroll up
 			offset = 10;
 		else if (e.y < 0) // scroll down
 			offset = -10;
 
-		for (int i = 0; i < uiList.size(); i++)
-			uiList[i]->rect.y += offset;
+		for (const unique_ptr<AbstractUiElement>& uiElement : _scrollableUiElements)
+			uiElement->rect.y += offset;
 	}
+}
+
+void LoadCustomLevelScreen::handleMouseClickInput(MouseButtonEvent e) {
+	AbstractScreen::handleMouseClickInput(e);
+
+	if (e.button == BUTTON_LEFT) {
+		for (unique_ptr<AbstractUiElement>& element : _scrollableUiElements) {
+			if (element->isInBound(e.x, e.y)) {
+				element->onClick(_game);
+
+				break;
+			}
+		}
+	}
+}
+
+void LoadCustomLevelScreen::preRender(const unique_ptr<Window>& window) {
+	AbstractScreen::preRender(window);
+
+	for (const unique_ptr<AbstractUiElement>& uiElement : _scrollableUiElements)
+		uiElement->preRender(window);
+}
+
+void LoadCustomLevelScreen::render(const unique_ptr<Window>& window) {
+	AbstractScreen::render(window);
+
+	for (const unique_ptr<AbstractUiElement>& uiElement : _scrollableUiElements)
+		uiElement->render(window);
 }
 
 

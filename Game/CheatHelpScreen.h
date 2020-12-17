@@ -5,12 +5,13 @@
 #include "TextUiElement.h"
 #include "ImageUiElement.h"
 #include "Screens.h"
+#include <KeyboardEvent.h>
 
 #pragma once
 class CheatHelpScreen : public AbstractScreen {
 private:
-	shared_ptr<TextUiElement> _cheatInformation;
-	shared_ptr<TextUiElement> _fps;
+	TextUiElement* _cheatInformation;
+
 	void loadCheatInformation();
 public:
 	using AbstractScreen::AbstractScreen;
@@ -29,16 +30,6 @@ public:
 	/// Called when the user uses their keyboard.
 	/// </summary>
 	/// <param name="e">The keyboard event.</param>
-	void handleKeyboardInput(SDL_KeyboardEvent e);
-	/// <summary>
-	/// Called when the user moves their mouse.
-	/// </summary>
-	/// <param name="e">The mouse mouse event.</param>
-	void handleMouseMotionInput(SDL_MouseMotionEvent e);
-	/// <summary>
-	/// Handle the mouse wheel input.
-	/// </summary>
-	/// <param name="e">The mouse wheel input</param>
-	void handleMouseWheelInput(SDL_MouseWheelEvent e);
+	void handleKeyboardInput(KeyboardEvent e);
 };
 

@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "AbstractGame.h"
+#include "MouseWheelEvent.h"
+#include "KeyboardEvent.h"
 
 // How many frames time values to keep
 // The higher the value the smoother the result is...
@@ -41,19 +43,19 @@ void AbstractGame::gameLoop() {
 			while (SDL_PollEvent(&event)) {
 				switch (event.type) {
 				case SDL_KEYDOWN:
-					screens.at(_activeScreen)->handleKeyboardInput(event.key);
+					screens.at(_activeScreen)->handleKeyboardInput(KeyboardEvent(event.key));
 
 					break;
 				case SDL_MOUSEMOTION:
-					screens.at(_activeScreen)->handleMouseMotionInput(event.motion);
+					screens.at(_activeScreen)->handleMouseMotionInput(MouseMotionEvent(event.motion));
 
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					screens.at(_activeScreen)->handleMouseClickInput(event.button);
+					screens.at(_activeScreen)->handleMouseClickInput(MouseButtonEvent(event.button));
 
 					break;
 				case SDL_MOUSEWHEEL:
-					screens.at(_activeScreen)->handleMouseWheelInput(event.wheel);
+					screens.at(_activeScreen)->handleMouseWheelInput(MouseWheelEvent(event.wheel));
 
 					break;
 				case SDL_QUIT:

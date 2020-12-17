@@ -11,28 +11,27 @@
 #include "AbstractManageableItem.h"
 #include "CanWieldExtension.h"
 #include "TextUiElement.h"
-#include "IEMath.h"
 
 class GAMEENGINE_Scene Scene {
 private:
 	Scene();
 	static Scene instance;
 
-	map<int, shared_ptr<GameObject>> _gameObjects;
+	map<int, unique_ptr<GameObject>> _gameObjects;
 	std::vector<int> _entities;
-	map<std::string, shared_ptr<AbstractManageableItem>> _items;
+	map<std::string, unique_ptr<AbstractManageableItem>> _items;
 	map<int, std::string> _keyRegistry;
-	std::vector<shared_ptr<TextUiElement>> _textElements;
 
-	shared_ptr<GameObject> _player;
+	std::vector<unique_ptr<TextUiElement>> _textElements;
+
+	GameObject* _player;
 
 	bool preRender = false;
-
 public:
 	float tickRate = 60.0;
 	float refreshRate = 60.0;
-	shared_ptr<GameObject> portalA;
-	shared_ptr<GameObject> portalB;
+	GameObject* portalA;
+	GameObject* portalB;
 	static Scene& getInstance() { return instance; }
 
 	Scene(const Scene&) = delete;
@@ -52,45 +51,45 @@ public:
 	/// </summary>
 	/// <param name="index">The index in the registry.</param>
 	/// <param name="obj">The object we want to register.</param>
-	void addGameObject(int index, shared_ptr<GameObject> obj);
+	void addGameObject(int index, unique_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Adds a game object to the registry.
 	/// </summary>
 	/// <param name="obj">The object we want to register.</param>
-	void addGameObject(shared_ptr<GameObject> obj);
+	void addGameObject(unique_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Ad an UI element to the scene.
 	/// </summary>
 	/// <param name="obj"></param>
-	void addTextUiElement(shared_ptr<TextUiElement> obj);
+	void addTextUiElement(unique_ptr<TextUiElement> obj);
 
 	/// <summary>
 	/// Add an entity to the registry.
 	/// </summary>
 	/// <param name="obj">The entity we want to register.</param>
-	void addEntity(shared_ptr<GameObject> obj);
+	void addEntity(unique_ptr<GameObject> obj);
 
 	/// <summary>
 	/// Get's a gameobject from the registry.
 	/// </summary>
 	/// <param name="id">The id of the gameobject</param>
 	/// <returns>The game object.</returns>
-	shared_ptr<GameObject> getGameObject(int id);
+	GameObject* getGameObject(int id);
 
 	/// <summary>
 	/// Get's the game objects in the current scene.
 	/// </summary>
 	/// <returns>The game objects in the current scene.</returns>
-	map<int, shared_ptr<GameObject>> getGameObjects() const;
+	map<int, unique_ptr<GameObject>>& getGameObjects();
 
 	/// <summary>
 	/// Get's the index at the given index.
 	/// </summary>
 	/// <param name="index">The entity index.</param>
 	/// <returns>The correct game object.</returns>
-	shared_ptr<GameObject> getEntityAtIndex(int index);
+	GameObject* getEntityAtIndex(int index);
 
 	/// <summary>
 	/// Get's the size of the entities vector.
@@ -121,21 +120,23 @@ public:
 	/// </summary>
 	/// <param name="name">The name.</param>
 	/// <param name="item">The item.</param>
-	void addItem(std::string name, shared_ptr<AbstractManageableItem> item);
+	void addItem(std::string name, std::unique_ptr<AbstractManageableItem> item);
 
+	// REASON: It's possible for the item to be a nullptr, that's why a reference is returned. 
 	/// <summary>
 	/// Get's the item with the given index.
 	/// </summary>
 	/// <param name="index">The index of the item.</param>
 	/// <returns>The item on the given index.</returns>
-	shared_ptr<AbstractManageableItem> getItem(int index);
+	AbstractManageableItem* getItem(int index);
 
+	// REASON: It's possible for the item to be a nullptr, that's why a reference is returned. 
 	/// <summary>
 	/// Get's the item with the given name.
 	/// </summary>
 	/// <param name="name">The name of the item.</param>
 	/// <returns>The item with the given name.</returns>
-	shared_ptr<AbstractManageableItem> getItem(std::string name);
+	AbstractManageableItem* getItem(std::string name);
 
 	/// <summary>
 	/// Get's an item from the scene.
@@ -144,26 +145,26 @@ public:
 	/// <param name="name">The item name.</param>
 	/// <returns>The item.</returns>
 	template<typename T>
-	std::shared_ptr<T> getItem(std::string name) {
-		std::shared_ptr<AbstractManageableItem> item = getItem(name);
+	T* getItem(std::string name) {
+		AbstractManageableItem* item = getItem(name);
 
 		if (item == nullptr)
 			return nullptr;
 
-		return dynamic_pointer_cast<T>(item);
+		return static_cast<T*>(item);
 	}
 
 	/// <summary>
 	/// Set's the player.
 	/// </summary>
 	/// <param name="player">The player</param>
-	void setPlayer(shared_ptr<GameObject> player);
+	void setPlayer(GameObject* player);
 
 	/// <summary>
 	/// Get's the player.
 	/// </summary>
 	/// <returns>The player.</returns>
-	shared_ptr<GameObject> getPlayer() const;
+	GameObject* getPlayer() const;
 
 	/// <summary>
 	/// Resets the scene.

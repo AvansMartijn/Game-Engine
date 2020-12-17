@@ -4,6 +4,7 @@
 #include <ButtonUiElement.h>
 #include "Screens.h"
 #include "GameSettings.h"
+#include <Utilities.h>
 
 HighScoreScreen::HighScoreScreen() {}
 
@@ -15,45 +16,40 @@ void HighScoreScreen::onInit() {
 	const string font = "Portal";
 	backgroundTrackKey = "Game_Over";
 
-	ImageUiElement backgroundImg = ImageUiElement("Background", { 0 , 0, 1080, 720 });
-	_uiElements.push_back(make_shared<ImageUiElement>(backgroundImg));
+	_backgroundImage = make_unique<ImageUiElement>(ImageUiElement("Background", { 0 , 0, 1080, 720 }));
 
 	std::vector<std::string> lines;
 	lines.push_back("-");
 	TextUiElement scrollText = TextUiElement(lines, "Portal", 25, { 515, 250, 100, 0 }, { 255, 255, 255 }, bgColor, true);
-	_scrollableText = make_shared<TextUiElement>(scrollText);
-	_uiElements.push_back(_scrollableText);
+	_scrollableText = make_unique<TextUiElement>(scrollText);
 	_anchor = _scrollableText->rect.y;
 
 	ImageUiElement portalOrangeImg = ImageUiElement("PortalOrange", { 20 , (720 / 2) - 100, 50, 200 });
-	_uiElements.push_back(make_shared<ImageUiElement>(portalOrangeImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(portalOrangeImg));
 
 	ImageUiElement portalPurpleImg = ImageUiElement("PortalPurple", { (1080 - 70) , (720 / 2) - 100, 50, 200 });
-	_uiElements.push_back(make_shared<ImageUiElement>(portalPurpleImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(portalPurpleImg));
 
 	ImageUiElement headerImg = ImageUiElement("BackgroundTint", { 0 , 0, 1080, 100 });
-	_uiElements.push_back(make_shared<ImageUiElement>(headerImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(headerImg));
 	
 	TextUiElement headerText = TextUiElement("Highscores", font, 60, { 10, 10, 0, 0 }, { 255, 255, 255 }, TColor, true);
-	_uiElements.push_back(make_shared<TextUiElement>(headerText));
+	_uiElements.push_back(make_unique<TextUiElement>(headerText));
 
 	ImageUiElement footerImg = ImageUiElement("BackgroundTint", { 0 , 625, 1080, 100 });
-	_uiElements.push_back(make_shared<ImageUiElement>(footerImg));
+	_uiElements.push_back(make_unique<ImageUiElement>(footerImg));
 
 	ButtonUiElement backButton = ButtonUiElement("Back", { 20, 650, 70, 40 }, TColor, { 255, 255, 255 }, font, 25);
 	backButton.registerGame(_game);
-	backButton.onClick = [](shared_ptr<AbstractGame> game) { game->switchScreen(Screens::GoBack); };
-	_uiElements.push_back(make_shared<ButtonUiElement>(backButton));
+	backButton.onClick = [](AbstractGame* game) { game->switchScreen(Screens::GoBack); };
+	_uiElements.push_back(make_unique<ButtonUiElement>(backButton));
 
-	_fps = make_shared<TextUiElement>(TextUiElement("FPS: 60", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false));
-	_uiElements.push_back(_fps);
+	addFpsElement("Portal");
 }
 
 void HighScoreScreen::onTick() {
-	if (shouldShowFPS)
-		_fps->text = "FPS: " + std::to_string(_game->currentFPS);
-	else 
-		_fps->text = "  ";
+	updateFpsElement();
+
 }
 
 void HighScoreScreen::onScreenShowed(vector<string> args) {
@@ -81,21 +77,18 @@ void HighScoreScreen::onScreenShowed(vector<string> args) {
 	}
 }
 
-void HighScoreScreen::handleKeyboardInput(SDL_KeyboardEvent e) {
-	SDL_Keycode fps;
+void HighScoreScreen::handleKeyboardInput(KeyboardEvent e) {
+	Keycode fps;
 	if (ControllManager::getInstance().toggleFPSKey.isDefault)
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.defaultSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.defaultScanKey);
 	else
-		fps = SDL_SCANCODE_TO_KEYCODE(ControllManager::getInstance().toggleFPSKey.userSDLKey);
+		fps = Utilities::getInstance().getKeycodeFromScancode(ControllManager::getInstance().toggleFPSKey.userScanKey);
 
-	if (e.keysym.sym == fps)
+	if (e.keyCode == fps)
 		shouldShowFPS = !shouldShowFPS;
 }
 
-void HighScoreScreen::handleMouseMotionInput(SDL_MouseMotionEvent e) {}
-
-void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
-
+void HighScoreScreen::handleMouseWheelInput(MouseWheelEvent e) {
 	if (e.y > 0) // scroll up
 		_offset = 20;
 	else if (e.y < 0) // scroll down
@@ -110,5 +103,16 @@ void HighScoreScreen::handleMouseWheelInput(SDL_MouseWheelEvent e) {
 	}
 }
 
+void HighScoreScreen::preRender(const unique_ptr<Window>& window) {
+	_backgroundImage->preRender(window);
+	AbstractScreen::preRender(window);
 
+	_scrollableText->preRender(window);
+}
 
+void HighScoreScreen::render(const unique_ptr<Window>& window) {
+	_backgroundImage->render(window);
+	_scrollableText->render(window);
+
+	AbstractScreen::render(window);
+}

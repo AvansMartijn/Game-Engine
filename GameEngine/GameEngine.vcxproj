@@ -200,7 +200,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="AbstractAnimationHandler.h" />
     <ClInclude Include="AbstractBehaviour.h" />
     <ClInclude Include="AbstractCollisionResolutionExtension.h" />
-    <ClInclude Include="AbstractContactListener.h" />
+    <ClInclude Include="AbstractContactHandler.h" />
     <ClInclude Include="AbstractEntityAI.h" />
     <ClInclude Include="AbstractGame.h" />
     <ClInclude Include="AbstractGameObjectExtension.h" />
@@ -221,13 +221,18 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="CollisionResolutionDefaultExtension.h" />
     <ClInclude Include="CollisionResolutionPortalExtension.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Contact.h" />
+    <ClInclude Include="ContactListener.h" />
     <ClInclude Include="CustomUserData.h" />
     <ClInclude Include="DefaultEntityAI.h" />
+    <ClInclude Include="Definitions.h" />
     <ClInclude Include="DoesDamageExtension.h" />
     <ClInclude Include="EntityCategory.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="ExtensionProperty.h" />
     <ClInclude Include="FileData.h" />
+    <ClInclude Include="Fixture.h" />
+    <ClInclude Include="FixtureFilter.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -237,12 +242,16 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="GlueManageableItem.h" />
     <ClInclude Include="HealthExtension.h" />
     <ClInclude Include="HpBarUIElement.h" />
-    <ClInclude Include="IEMath.h" />
     <ClInclude Include="ImageUiElement.h" />
+    <ClInclude Include="KeyboardEvent.h" />
+    <ClInclude Include="Keycode.h" />
     <ClInclude Include="LibCurl.h" />
     <ClInclude Include="IsPortalableExtension.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseButtonEvent.h" />
+    <ClInclude Include="MouseMotionEvent.h" />
     <ClInclude Include="MouseSkins.h" />
+    <ClInclude Include="MouseWheelEvent.h" />
     <ClInclude Include="MoveExtension.h" />
     <ClInclude Include="MovementType.h" />
     <ClInclude Include="pch.h" />
@@ -251,6 +260,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="PortalManagableItem.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="RotateObj.h" />
+    <ClInclude Include="Scancode.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SDLImageWrapper.h" />
     <ClInclude Include="SDLTexture.h" />
@@ -263,13 +273,13 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClInclude Include="ThrusterManagableItem.h" />
     <ClInclude Include="TimerExtension.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Vec2.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractAnimationHandler.cpp" />
     <ClCompile Include="AbstractBehaviour.cpp" />
     <ClCompile Include="AbstractCollisionResolutionExtension.cpp" />
-    <ClCompile Include="AbstractContactListener.cpp" />
     <ClCompile Include="AbstractEntityAI.cpp" />
     <ClCompile Include="AbstractGame.cpp" />
     <ClCompile Include="AbstractGameObjectExtension.cpp" />
@@ -289,10 +299,13 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="CanWieldExtension.cpp" />
     <ClCompile Include="CollisionResolutionDefaultExtension.cpp" />
     <ClCompile Include="CollisionResolutionPortalExtension.cpp" />
+    <ClCompile Include="Contact.cpp" />
+    <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="DefaultEntityAI.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DoesDamageExtension.cpp" />
     <ClCompile Include="FileData.cpp" />
+    <ClCompile Include="Fixture.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectBuilder.cpp" />
@@ -325,6 +338,7 @@ copy "..\Lib\libcurl\$(PlatformTarget)$(Configuration)\lib\*.dll" "..\$(IntDir)"
     <ClCompile Include="ThrusterManagableItem.cpp" />
     <ClCompile Include="TimerExtension.cpp" />
     <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

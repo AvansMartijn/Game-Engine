@@ -100,6 +100,12 @@
     <Filter Include="Source Files\Misc">
       <UniqueIdentifier>{d05e6f6f-9736-478e-af77-9fe4320383d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{cb6c67d8-aa02-40ef-a884-31335c31f760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Enums">
+      <UniqueIdentifier>{4f5db364-fae1-4c11-a9b2-abfecfce3eb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -210,9 +216,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="IEMath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultEntityAI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
@@ -282,9 +285,6 @@
     <ClInclude Include="LibCurl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractContactListener.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>Header Files\UiElements\Mouse</Filter>
     </ClInclude>
@@ -302,6 +302,45 @@
     </ClInclude>
     <ClInclude Include="ExtensionProperty.h">
       <Filter>Header Files\Core\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Contact.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Fixture.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListener.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractContactHandler.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="FixtureFilter.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseButtonEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseMotionEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseWheelEvent.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Keycode.h">
+      <Filter>Header Files\Graphics\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Scancode.h">
+      <Filter>Header Files\Graphics\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Definitions.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +494,6 @@
     <ClCompile Include="DefaultEntityAI.cpp">
       <Filter>Source Files\Ai</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractContactListener.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\UiElements\Mouse</Filter>
     </ClCompile>
@@ -469,6 +505,18 @@
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Contact.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Fixture.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactListener.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
