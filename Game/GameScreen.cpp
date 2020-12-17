@@ -40,7 +40,10 @@ void GameScreen::setupHUD() {
 	_gameUiElements.push_back(make_unique<HpBarUIElement>(HpBarUIElement(160, 693, -150, 20, 0.8f, hpColor, bgRed)));
 	_hpBar = static_cast<HpBarUIElement*>(_gameUiElements.back().get());
 
-	addFpsElement("Portal");
+	TextUiElement fps = TextUiElement(" ", "Portal", 19, { 1000, 5, 0, 0 }, { 0, 255, 0 }, { 0, 0, 0, 1 }, false, false);
+	unique_ptr<TextUiElement> fpsPtr = make_unique<TextUiElement>(fps);
+	_gameUiElements.push_back(std::move(fpsPtr));
+	_fpsElement = static_cast<TextUiElement*>(_gameUiElements.back().get());
 }
 
 void GameScreen::setupGame() {
