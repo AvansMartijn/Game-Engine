@@ -217,7 +217,7 @@ void GameScreen::updateHud() {
 				Mouse::getInstance().setCursor(MouseSkins::CROSSHAIR);
 
 			for (std::string cheat : Scene::getInstance().activatedCheats) {
-				if (cheat == "unlimitedammo" || currentWeapon->getScreenName() == "GLUE GUN")
+				if (cheat == "unlimitedammo" && currentWeapon->getScreenName() == "GLUE GUN")
 					_ammo->text = "AMMO: INFINITE";
 			}
 
@@ -244,8 +244,6 @@ void GameScreen::updateHud() {
 			}
 		}
 		else {
-			if (!Mouse::getInstance().isCurrentMouseSkin(MouseSkins::NONE))
-				Mouse::getInstance().setCursor(MouseSkins::NONE);
 			_weapon->text = "WEAPON: NONE";
 			_ammo->text = "AMMO:";
 		}

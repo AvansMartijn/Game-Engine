@@ -68,6 +68,9 @@ void CheatScreen::handleKeyboardInput(KeyboardEvent e) {
 				Scene::getInstance().activatedCheats.push_back(cheat);
 			}
 		}
+		else {
+			_cheatText->text = "Cheat Not Found";
+		}
 	}
 
 	if (e.keyCode == KEY_BACKSPACE) {
