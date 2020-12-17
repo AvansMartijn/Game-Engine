@@ -252,6 +252,7 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayerAnimationHandler.h" />
     <ClInclude Include="Quotes.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SaveGame.h" />
     <ClInclude Include="NewGameSlotsScreen.h" />
     <ClInclude Include="SaveHighscore.h" />
@@ -275,6 +276,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SettingsScreen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\gfx\LatropLogo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

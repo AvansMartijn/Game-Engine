@@ -89,6 +89,7 @@ void Scene::reset() {
     if (getPlayer() && getPlayer()->hasExtension(typeid(MoveExtension)))
         getPlayer()->getExtension<MoveExtension>()->reset();
 
+    activatedCheats.clear();
     gameOver = false;
     score = 1000;
     _gameObjects.clear();
